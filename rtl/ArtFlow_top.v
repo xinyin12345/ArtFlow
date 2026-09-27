@@ -215,13 +215,13 @@ localparam [15:0] CFG_R_GAIN   = 16'h0118;   // 280 ≈ 1.09
 localparam [15:0] CFG_G_GAIN   = 16'h00FF;   // 255 ≈ 1.00
 localparam [15:0] CFG_B_GAIN   = 16'h015E;   // 350 ≈ 1.37
 // Gamma：0 = 直通（与 v01 默认一致），1 = 查表
-localparam        CFG_GAMMA_EN = 1'b0;
+localparam        CFG_GAMMA_EN = 1'b1;
 // debayer 输出 R/B 互换：v01 的直通路径在 HDMI 编码器入口把 R/B 交叉接了，
 // 为保持 v01 画面，这里显式地在 debayer 之后做一次互换（唯一一处）。
 // 上板用红色物体确认：若红色显示成蓝色，把它改成 0。
 localparam        CFG_SWAP_RB  = 1'b1;
 // 色条（自带独立 1080p60 时序，不依赖摄像头/DDR）：0 = 摄像头，1 = 常显色条，2 = 上电先显示约 5 秒色条再切摄像头
-localparam [1:0]  CFG_PATTERN  = 2'd2;
+localparam [1:0]  CFG_PATTERN  = 2'd1;
 //===============================================================================
 //signal
 //===============================================================================
