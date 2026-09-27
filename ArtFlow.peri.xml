@@ -103,12 +103,6 @@
         <efxpt:comp_gpio name="ddr_addr[13]" gpio_def="GPIOR_N_04" mode="output" bus_name="ddr_addr" io_standard="1.5 V SSTL">
             <efxpt:output_config name="ddr_addr[13]" name_ddio_lo="" register_option="register" clock_name="sdram_clk" is_clock_inverted="false" is_slew_rate="false" tied_option="none" ddio_type="none" delay="0" is_serial="false" drive_strength="8" fastclk_name=""/>
         </efxpt:comp_gpio>
-        <efxpt:comp_gpio name="ddr_addr[14]" gpio_def="GPIOR_P_06" mode="output" bus_name="ddr_addr" io_standard="1.5 V SSTL">
-            <efxpt:output_config name="ddr_addr[14]" name_ddio_lo="" register_option="register" clock_name="sdram_clk" is_clock_inverted="false" is_slew_rate="false" tied_option="none" ddio_type="none" delay="0" is_serial="false" drive_strength="8" fastclk_name=""/>
-        </efxpt:comp_gpio>
-        <efxpt:comp_gpio name="ddr_addr[15]" gpio_def="GPIOB_N_11" mode="output" bus_name="ddr_addr" io_standard="1.5 V SSTL">
-            <efxpt:output_config name="ddr_addr[15]" name_ddio_lo="" register_option="register" clock_name="sdram_clk" is_clock_inverted="false" is_slew_rate="false" tied_option="none" ddio_type="none" delay="0" is_serial="false" drive_strength="8" fastclk_name=""/>
-        </efxpt:comp_gpio>
         <efxpt:comp_gpio name="ddr_addr[1]" gpio_def="GPIOR_N_01" mode="output" bus_name="ddr_addr" io_standard="1.5 V SSTL">
             <efxpt:output_config name="ddr_addr[1]" name_ddio_lo="" register_option="register" clock_name="sdram_clk" is_clock_inverted="false" is_slew_rate="false" tied_option="none" ddio_type="none" delay="0" is_serial="false" drive_strength="8" fastclk_name=""/>
         </efxpt:comp_gpio>
@@ -300,7 +294,7 @@
             <efxpt:input_config name="verf1" name_ddio_lo="" conn_type="vref" is_register="false" clock_name="" is_clock_inverted="false" pull_option="none" is_schmitt_trigger="false" ddio_type="none" is_bus_hold="false" delay="0" is_serial="false" is_dyn_delay="false" fastclk_name="" pullup_ena_name="verf1_PULL_UP_ENA" dyn_delay_en_name="verf1_DLY_ENA" dyn_delay_reset_name="verf1_DLY_RST" dyn_delay_ctrl_name="verf1_DLY_CTRL" clkmux_buf_name=""/>
         </efxpt:comp_gpio>
         <efxpt:global_unused_config state="input with weak pullup"/>
-        <efxpt:bus name="ddr_addr" mode="output" msb="15" lsb="0"/>
+        <efxpt:bus name="ddr_addr" mode="output" msb="13" lsb="0"/>
         <efxpt:bus name="ddr_ba" mode="output" msb="2" lsb="0"/>
         <efxpt:bus name="ddr_cke" mode="output" msb="0" lsb="0"/>
         <efxpt:bus name="ddr_cs_n" mode="output" msb="0" lsb="0"/>

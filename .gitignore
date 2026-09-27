@@ -6,3 +6,6 @@ work_dbg/
 ooc/
 *.wlf
 *.bak
+
+# ModelSim / QuestaSim compiled simulation library
+/sim/work/

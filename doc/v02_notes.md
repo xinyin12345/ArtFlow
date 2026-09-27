@@ -41,10 +41,13 @@ v02 把交叉挪到唯一一处 —— debayer 之后的 `CFG_SWAP_RB`（默认 
 ## 上板检查步骤
 
 1. ModelSim：`cd sim` → `do run_v02.do`，两个测试都打印 `PASS`。
-2. Efinity 全编译，看资源报告：
+2. Efinity 全编译，看资源报告（以实际报告为准）：
    * 不再有 `edb_top` / `debug_*` 层级；
-   * BRAM 比 v01 多 3 块（gamma），FF 应该比 v01 少一万左右；
-   * 时序全部满足（`hdmi_tx_slow_clk` 148.5 MHz）。
+   * `inst_gamma_lut` 的资源取决于 `CFG_GAMMA_EN`：
+     - 默认 0（旁路）：`i_bypass` 为常量，ROM 被综合优化掉 —— 实测约 54 FF、0 RAM；
+     - 改为 1：实测约 30 FF、3 RAM（每通道一块 256x8 ROM）；
+   * v01 的 gamma 由 VIO 运行时选择，1024x10 寄存器数组无法被优化，v02 的 FF 应明显少于 v01，具体差值以两版报告对比为准；
+   * 时序全部满足（`hdmi_tx_slow_clk` 148.5 MHz）——注意这只代表报告实际分析到的路径满足约束。
 3. 烧录，上电：
    * 约 5 秒色条，**LED1 亮**。从左到右应为：白 黄 青 绿 品红 红 蓝 黑；
      下 1/3：**红 | 绿 | 蓝**。
@@ -84,3 +87,24 @@ v01 里 DSI 其实只剩空壳：控制器和面板初始化都没有例化，�
 * 摄像头（CSI RX）的 5 个 DPHY RX 块完全没动。
 * `LCD_POWER` / `LCD_RST_P` 删除后这两个管脚不再被驱动（工程开了 `io_weak_pullup`，会弱上拉）。如果板上仍插着 DSI 屏且不希望它上电，可以再把 `LCD_POWER` 加回来并固定输出 0。
 * 改完 peri.xml 后，建议在 Efinity 里用 Interface Designer 打开一次，确认没有报错，再点一次 “Generate Efinity Constraint Files”。
+
+## 补充：约束清理（第三次提交）
+
+* `ArtFlow.sdc`：删除 v01 自动插入调试核遗留的 14 条 `jtag_inst2_autodbg_*` 输入/输出延时（时钟不存在，PnR 已忽略），以及 inst1/inst2 的全部 JTAG 注释模板。
+* `ArtFlow.sdc`：`CLK_25M` 的 `create_clock -period <USER_PERIOD>` 占位符改为 `-period 40.000 -name CLK_25M`（25 MHz）。
+* `ArtFlow.peri.xml` + `ArtFlow.sdc`：删除 RTL 中不存在的 `ddr_addr[14]`、`ddr_addr[15]` 两个管脚及其 4 条输出延时；`ddr_addr` 总线改为 `[13:0]`，与 `ROW_WIDTH=14` 一致。
+  这两个管脚之前在 RTL 中本就没有连接，删除后作为未用 IO 处理（工程开启了 `io_weak_pullup`），行为与 v01 相同。
+* 旧的 `outflow/` 编译产物（2026-09-24）早于 v02 修改，不能用于验收 v02。
+
+## v02 剩余待验收项
+
+| # | 待验收 | 验收方式 | 通过标准 |
+|---|---|---|---|
+| 1 | 仿真 | ModelSim：`cd sim` → `do run_v02.do` | 两个测试均打印 `PASS` |
+| 2 | 约束/工程文件 | Interface Designer 打开 peri.xml → 检查无报错 → Generate Efinity Constraint Files；然后全编译 | 无 peri 报错；编译日志不再出现 `jtag_inst2_autodbg`、`<USER_PERIOD>`、`ddr_addr[14/15]` 相关警告；时序满足 |
+| 3 | Gamma ROM 可启用 | `CFG_GAMMA_EN=1` 完整编译 → 查资源 → 烧录 | `inst_gamma_lut` 占 3 块 RAM；画面有明显 Gamma 效果且无花屏/错位 |
+| 4 | 输出链路 R/B | 默认配置编译烧录，上电约 5 s 色条（LED1 亮） | 上 2/3 从左到右：白 黄 青 绿 品红 红 蓝 黑；下 1/3：红 \| 绿 \| 蓝 |
+| 5 | 输入链路 R/B | 色条结束（LED1 灭）后用摄像头拍红色物体 | 显示为红色；若为蓝色，`CFG_SWAP_RB` 改 `1'b0` 重编重测 |
+| 6 | 基本稳定性 | 连续运行 ≥10 min | 无花屏、无断流，LED0 持续闪烁（DDR 校准正常） |
+
+以上全部通过后，再决定交付默认 `CFG_GAMMA_EN`，并把本表更新为“已验收”。

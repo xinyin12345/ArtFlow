@@ -19,67 +19,19 @@ create_clock -period 200.000 -name CLK_5M [get_ports {CLK_5M}]
 
 create_clock -period 10.000 -name i_cam_ck_CLKOUT [get_ports {i_cam_ck_CLKOUT}]
 
-# [v02 removed debug core] set_clock_groups -exclusive  -group {i_mipi_rx_pclk} -group {jtag_inst1_TCK}
 set_clock_groups -exclusive -group {core_clk} -group {tx_cal_clk} -group {vid_clk_dvi2} -group {CLK_5M} -group {i_mipi_rx_pclk} -group {sdram_clk} -group {rx_cal_clk}
 
-#set_clock_groups -exclusive -group {i_sysclk} -group {jtag_inst1_TCK}                       2.500           -0.197           (R-R)
 
-#set_clock_groups -exclusive -group {i_sysclk_div_2} -group {jtag_inst1_TCK}
 
-#set_clock_groups -exclusive -group {jtag_inst1_TCK} -group {i_hbramClk_fb i_hbramClk_cal i_hbramClk_cal i_hbramClk90} -group {io_systemClk} -group {i_mipi_rx_pclk} -group {i_mipi_tx_pclk i_mipi_clk i_mipi_txc_sclk i_mipi_txd_sclk}
 
 # GPIO Constraints
 ####################
 
-# JTAG Constraints
-####################
-# create_clock -period <USER_PERIOD> -name jtag_inst1_TCK [get_ports {jtag_inst1_TCK}]
-# [v02 removed debug core] set_output_delay -clock jtag_inst1_TCK -max 1.519 [get_ports {jtag_inst1_TDO}]
-# [v02 removed debug core] set_output_delay -clock jtag_inst1_TCK -min 0.495 [get_ports {jtag_inst1_TDO}]
-# [v02 removed debug core] set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.144 [get_ports {jtag_inst1_CAPTURE}]
-# [v02 removed debug core] set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.077 [get_ports {jtag_inst1_CAPTURE}]
-# [v02 removed debug core] set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.759 [get_ports {jtag_inst1_RESET}]
-# [v02 removed debug core] set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.401 [get_ports {jtag_inst1_RESET}]
-# [v02 removed debug core] set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.234 [get_ports {jtag_inst1_SEL}]
-# [v02 removed debug core] set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.025 [get_ports {jtag_inst1_SEL}]
-# [v02 removed debug core] set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.176 [get_ports {jtag_inst1_UPDATE}]
-# [v02 removed debug core] set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.074 [get_ports {jtag_inst1_UPDATE}]
-# [v02 removed debug core] set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.197 [get_ports {jtag_inst1_SHIFT}]
-# [v02 removed debug core] set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.055 [get_ports {jtag_inst1_SHIFT}]
-# [v02 removed debug core] set_input_delay -clock_fall -clock jtag_inst1_TCK -max 1.190 [get_ports {jtag_inst1_DRCK}]
-# [v02 removed debug core] set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.620 [get_ports {jtag_inst1_DRCK}]
-# JTAG Constraints (extra... not used by current Efinity debug tools)
-# create_clock -period <USER_PERIOD> -name jtag_inst1_DRCK [get_ports {jtag_inst1_DRCK}]
-# set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.169 [get_ports {jtag_inst1_RUNTEST}]
-# set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.066 [get_ports {jtag_inst1_RUNTEST}]
-# Create separate clock groups for JTAG clocks. Remove DRCK clock from the list below if it is not defined.
-# set_clock_groups -asynchronous -group {jtag_inst1_TCK jtag_inst1_DRCK}
-# create_clock -period <USER_PERIOD> -name jtag_inst2_autodbg_TCK__ [get_ports {jtag_inst2_autodbg_TCK__}]
-set_output_delay -clock jtag_inst2_autodbg_TCK__ -max 1.519 [get_ports {jtag_inst2_autodbg_TDO__}]
-set_output_delay -clock jtag_inst2_autodbg_TCK__ -min 0.495 [get_ports {jtag_inst2_autodbg_TDO__}]
-set_input_delay -clock_fall -clock jtag_inst2_autodbg_TCK__ -max 0.144 [get_ports {jtag_inst2_autodbg_CAPTURE__}]
-set_input_delay -clock_fall -clock jtag_inst2_autodbg_TCK__ -min 0.077 [get_ports {jtag_inst2_autodbg_CAPTURE__}]
-set_input_delay -clock_fall -clock jtag_inst2_autodbg_TCK__ -max 0.759 [get_ports {jtag_inst2_autodbg_RESET__}]
-set_input_delay -clock_fall -clock jtag_inst2_autodbg_TCK__ -min 0.401 [get_ports {jtag_inst2_autodbg_RESET__}]
-set_input_delay -clock_fall -clock jtag_inst2_autodbg_TCK__ -max 0.234 [get_ports {jtag_inst2_autodbg_SEL__}]
-set_input_delay -clock_fall -clock jtag_inst2_autodbg_TCK__ -min 0.025 [get_ports {jtag_inst2_autodbg_SEL__}]
-set_input_delay -clock_fall -clock jtag_inst2_autodbg_TCK__ -max 0.176 [get_ports {jtag_inst2_autodbg_UPDATE__}]
-set_input_delay -clock_fall -clock jtag_inst2_autodbg_TCK__ -min 0.074 [get_ports {jtag_inst2_autodbg_UPDATE__}]
-set_input_delay -clock_fall -clock jtag_inst2_autodbg_TCK__ -max 0.197 [get_ports {jtag_inst2_autodbg_SHIFT__}]
-set_input_delay -clock_fall -clock jtag_inst2_autodbg_TCK__ -min 0.055 [get_ports {jtag_inst2_autodbg_SHIFT__}]
-set_input_delay -clock_fall -clock jtag_inst2_autodbg_TCK__ -max 1.190 [get_ports {jtag_inst2_autodbg_DRCK__}]
-set_input_delay -clock_fall -clock jtag_inst2_autodbg_TCK__ -min 0.620 [get_ports {jtag_inst2_autodbg_DRCK__}]
-# JTAG Constraints (extra... not used by current Efinity debug tools)
-# create_clock -period <USER_PERIOD> -name jtag_inst2_autodbg_DRCK__ [get_ports {jtag_inst2_autodbg_DRCK__}]
-# set_input_delay -clock_fall -clock jtag_inst2_autodbg_TCK__ -max 0.169 [get_ports {jtag_inst2_autodbg_RUNTEST__}]
-# set_input_delay -clock_fall -clock jtag_inst2_autodbg_TCK__ -min 0.066 [get_ports {jtag_inst2_autodbg_RUNTEST__}]
-# Create separate clock groups for JTAG clocks. Remove DRCK clock from the list below if it is not defined.
-# set_clock_groups -asynchronous -group {jtag_inst2_autodbg_TCK__ jtag_inst2_autodbg_DRCK__}
 
 
 # HSIO GPIO Constraints
 #########################
-create_clock -period <USER_PERIOD> [get_ports {CLK_25M}]
+create_clock -period 40.000 -name CLK_25M [get_ports {CLK_25M}]
 set_output_delay -clock sdram_clk -reference_pin [get_ports {sdram_clk~CLKOUT~218~95}] -max 0.302 [get_ports {ddr_addr[0]}]
 set_output_delay -clock sdram_clk -reference_pin [get_ports {sdram_clk~CLKOUT~218~95}] -min -0.140 [get_ports {ddr_addr[0]}]
 set_output_delay -clock sdram_clk -reference_pin [get_ports {sdram_clk~CLKOUT~218~36}] -max 0.302 [get_ports {ddr_addr[1]}]
@@ -108,10 +60,6 @@ set_output_delay -clock sdram_clk -reference_pin [get_ports {sdram_clk~CLKOUT~21
 set_output_delay -clock sdram_clk -reference_pin [get_ports {sdram_clk~CLKOUT~218~35}] -min -0.140 [get_ports {ddr_addr[12]}]
 set_output_delay -clock sdram_clk -reference_pin [get_ports {sdram_clk~CLKOUT~218~71}] -max 0.302 [get_ports {ddr_addr[13]}]
 set_output_delay -clock sdram_clk -reference_pin [get_ports {sdram_clk~CLKOUT~218~71}] -min -0.140 [get_ports {ddr_addr[13]}]
-set_output_delay -clock sdram_clk -reference_pin [get_ports {sdram_clk~CLKOUT~218~109}] -max 0.302 [get_ports {ddr_addr[14]}]
-set_output_delay -clock sdram_clk -reference_pin [get_ports {sdram_clk~CLKOUT~218~109}] -min -0.140 [get_ports {ddr_addr[14]}]
-set_output_delay -clock sdram_clk -reference_pin [get_ports {sdram_clk~CLKOUT~143~1}] -max 0.302 [get_ports {ddr_addr[15]}]
-set_output_delay -clock sdram_clk -reference_pin [get_ports {sdram_clk~CLKOUT~143~1}] -min -0.140 [get_ports {ddr_addr[15]}]
 set_output_delay -clock sdram_clk -reference_pin [get_ports {sdram_clk~CLKOUT~74~1}] -max 0.302 [get_ports {ddr_ba[0]}]
 set_output_delay -clock sdram_clk -reference_pin [get_ports {sdram_clk~CLKOUT~74~1}] -min -0.140 [get_ports {ddr_ba[0]}]
 set_output_delay -clock sdram_clk -reference_pin [get_ports {sdram_clk~CLKOUT~132~1}] -max 0.302 [get_ports {ddr_ba[1]}]
