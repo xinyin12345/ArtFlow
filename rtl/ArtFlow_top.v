@@ -125,7 +125,7 @@ module ArtFlow_top #(
 	output                             ddr_ck_lo,
 	output                             ddr_reset_n,
 	output [CKE_WIDTH-1:0]             ddr_cke,     
-	output [ROW_WIDTH-1:0]             ddr_addr,
+	output [15:0]                      ddr_addr,     // 板上 DDR3 为 A0~A15；控制器只用 [ROW_WIDTH-1:0]，高位固定为 0
 	output [BANK_WIDTH-1:0]            ddr_ba,
 	output                             ddr_cas_n,
  
@@ -220,7 +220,7 @@ localparam        CFG_GAMMA_EN = 1'b0;
 // 为保持 v01 画面，这里显式地在 debayer 之后做一次互换（唯一一处）。
 // 上板用红色物体确认：若红色显示成蓝色，把它改成 0。
 localparam        CFG_SWAP_RB  = 1'b1;
-// 色条：0 = 摄像头，1 = 常显色条，2 = 上电先显示约 5 秒色条再切摄像头
+// 色条（自带独立 1080p60 时序，不依赖摄像头/DDR）：0 = 摄像头，1 = 常显色条，2 = 上电先显示约 5 秒色条再切摄像头
 localparam [1:0]  CFG_PATTERN  = 2'd2;
 //===============================================================================
 //signal
@@ -323,6 +323,8 @@ begin
 end
 assign led[0]  = cal_done ? cnt[24] : 1'b0;   // DDR 校准完成后闪烁
 assign led[3:2] = 2'b00;
+// DDR3 A14/A15 必须驱动为 0：MRS 命令要求保留位为 0，悬空/上拉会导致 DDR 初始化失败
+assign ddr_addr[15:ROW_WIDTH] = {(16-ROW_WIDTH){1'b0}};
 
 //========================================================================================================
 //MIPI RX
@@ -598,7 +600,7 @@ ddr3_top                 u_ddr3_top
 .ddr_ras_n              (ddr_ras_n           ),
 .ddr_cas_n              (ddr_cas_n           ),
 .ddr_we_n               (ddr_we_n            ),     
-.ddr_addr               (ddr_addr            ),
+.ddr_addr               (ddr_addr[ROW_WIDTH-1:0]),
 .ddr_ba                 (ddr_ba              ),
 
 .ddr_dqs_oe             (ddr_dqs_oe          ),
@@ -797,7 +799,13 @@ wire       pat_active;
 
 test_pattern #(
   .H_ACTIVE    (MAX_HRES),
+  .H_FP        (HFP     ),
+  .H_SYNC      (HSP     ),
+  .H_BP        (HBP     ),
   .V_ACTIVE    (MAX_VRES),
+  .V_FP        (VFP     ),
+  .V_SYNC      (VSP     ),
+  .V_BP        (VBP     ),
   .BOOT_FRAMES (300)
 ) u_test_pattern (
   .i_clk    (hdmi_tx_slow_clk),

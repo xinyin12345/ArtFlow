@@ -108,3 +108,24 @@ v01 里 DSI 其实只剩空壳：控制器和面板初始化都没有例化，�
 | 6 | 基本稳定性 | 连续运行 ≥10 min | 无花屏、无断流，LED0 持续闪烁（DDR 校准正常） |
 
 以上全部通过后，再决定交付默认 `CFG_GAMMA_EN`，并把本表更新为“已验收”。
+
+## 问题记录：v02 首次上板 HDMI 无输出（2026-09-27）
+
+**现象**：`CFG_GAMMA_EN=1`、`CFG_PATTERN=1` 编译烧录后显示器无图像；demo2 / demo3 在同一板卡、同一显示器正常。
+
+**分析**
+1. 编译产物正常：时序全部满足；gamma ROM 已正确初始化（`EFX_RAM10 INIT_*` 为预期曲线，`net 'rom_r' does not have a driver` 是无写口 ROM 的正常告警）。
+2. 旧色条设计缺陷：`test_pattern` 复用了 `frame_buffer` 输出的时序，而 `data_tx` 只有在 `frame_stable`（摄像头帧经 DDR 稳定读写）后才产生 hs/vs/de。**摄像头或 DDR 任一不工作，HDMI 连同步都没有**，色条也不会出现——色条并不能像设计时说的那样隔离输出链路。
+3. 第三次提交把 `ddr_addr[14]/[15]` 从 peri.xml 删掉了。板载 DDR3（tRFC=350 ns，为 8Gb 颗粒）有 A14/A15；删掉后这两个脚变成未使用 IO（弱上拉），MRS 命令保留位不再为 0，DDR 可能初始化/校准失败 → 无帧 → 无 HDMI 同步。**这是本次最可疑的引入点。**
+
+**修复**
+* `test_pattern` 改为自带独立 1080p60 时序发生器（hdmi_tx_slow_clk 计数），显示色条时不依赖摄像头/DDR。
+* 恢复 peri.xml 中 `ddr_addr[14]/[15]` 及其 SDC 约束；顶层 `ddr_addr` 端口改为 `[15:0]`，`[15:14]` 明确驱动为 0。
+* `.lock`（Efinity 工程锁文件）加入 `.gitignore`。
+
+**上板判定**（`CFG_PATTERN=1` 常显色条）
+| 现象 | 结论 |
+|---|---|
+| 有色条 | 输出链路正常；再切 `CFG_PATTERN=2` 看摄像头 |
+| 仍无信号 | 问题在 USER_PLL / 复位 / HDMI 输出，与摄像头、DDR 无关 |
+| 色条正常，切摄像头后无信号 | 看 LED0：不闪 = DDR 未校准；闪 = 摄像头/MIPI 无帧 |

@@ -9,3 +9,6 @@ ooc/
 
 # ModelSim / QuestaSim compiled simulation library
 /sim/work/
+
+# Efinity 工程锁文件
+/.lock
