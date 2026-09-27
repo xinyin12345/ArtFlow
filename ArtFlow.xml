@@ -69,8 +69,9 @@
         <efx:design_file name="rtl/dvi_tx/encode.v_encrypted.v" version="default" library="default"/>
         <efx:design_file name="rtl/dvi_tx/tx_aux.v_encrypted.v" version="default" library="default"/>
         <efx:design_file name="rtl/dvi_tx/dvi_encoder.v_encrypted.v" version="default" library="default"/>
-        <efx:design_file name="rtl/gamma_conrrection/gamma_correction.v" version="default" library="default"/>
-        <efx:design_file name="debug_top.v" version="default" library="default"/>
+        <efx:design_file name="rtl/gamma_conrrection/gamma_lut.v" version="default" library="default"/>
+        <efx:design_file name="rtl/video/test_pattern.v" version="default" library="default"/>
+        
         <efx:design_file name="rtl/debayer/rgb_gain_v1.v" version="default" library="default"/>
         <efx:design_file name="rtl/csi_rx_controller.sv" version="default" library="default"/>
         <efx:top_vhdl_arch name=""/>
@@ -168,8 +169,8 @@
     </efx:bitstream_generation>
     <efx:debugger>
         <efx:param name="work_dir" value="work_dbg" value_type="e_string"/>
-        <efx:param name="auto_instantiation" value="on" value_type="e_bool"/>
-        <efx:param name="profile" value="debug_profile.wizard.json" value_type="e_string"/>
+        <efx:param name="auto_instantiation" value="off" value_type="e_bool"/>
+        <efx:param name="profile" value="NONE" value_type="e_string"/>
     </efx:debugger>
     <efx:security>
         <efx:param name="enable_bitstream_encrypt" value="off" value_type="e_bool"/>

@@ -41,17 +41,6 @@ module ArtFlow_top #(
 )
 (
 
-  (* syn_peri_port = 0 *) input jtag_inst1_CAPTURE,
-  (* syn_peri_port = 0 *) input jtag_inst1_DRCK,
-  (* syn_peri_port = 0 *) input jtag_inst1_RESET,
-  (* syn_peri_port = 0 *) input jtag_inst1_RUNTEST,
-  (* syn_peri_port = 0 *) input jtag_inst1_SEL,
-  (* syn_peri_port = 0 *) input jtag_inst1_SHIFT,
-  (* syn_peri_port = 0 *) input jtag_inst1_TCK,
-  (* syn_peri_port = 0 *) input jtag_inst1_TDI,
-  (* syn_peri_port = 0 *) input jtag_inst1_TMS,
-  (* syn_peri_port = 0 *) input jtag_inst1_UPDATE,
-  (* syn_peri_port = 0 *) output jtag_inst1_TDO,
 
    //Clocks 
 	input	wire	i_arstn,
@@ -260,6 +249,22 @@ localparam MAX_VRES = 1080;
 localparam VFP      = 4;
 localparam VSP      = 5;
 localparam VBP      = 36;
+
+//===============================================================================
+// v02 配置（原来由 VIO 调试核提供，现固化为常量；v05 起改由 RISC-V 寄存器控制）
+//===============================================================================
+// 白平衡增益 Q8.8（256 = 1.0），取 v01 VIO 初值，保持 v01 画面一致
+localparam [15:0] CFG_R_GAIN   = 16'h0118;   // 280 ≈ 1.09
+localparam [15:0] CFG_G_GAIN   = 16'h00FF;   // 255 ≈ 1.00
+localparam [15:0] CFG_B_GAIN   = 16'h015E;   // 350 ≈ 1.37
+// Gamma：0 = 直通（与 v01 默认一致），1 = 查表
+localparam        CFG_GAMMA_EN = 1'b0;
+// debayer 输出 R/B 互换：v01 的直通路径在 HDMI 编码器入口把 R/B 交叉接了，
+// 为保持 v01 画面，这里显式地在 debayer 之后做一次互换（唯一一处）。
+// 上板用红色物体确认：若红色显示成蓝色，把它改成 0。
+localparam        CFG_SWAP_RB  = 1'b1;
+// 色条：0 = 摄像头，1 = 常显色条，2 = 上电先显示约 5 秒色条再切摄像头
+localparam [1:0]  CFG_PATTERN  = 2'd2;
 //===============================================================================
 //signal
 //===============================================================================
@@ -360,7 +365,8 @@ always @( posedge core_clk)
 begin 
        cnt <= cnt + 1'b1;
 end
-assign led[0]  = cal_done ? cnt[24] : 1'b0;
+assign led[0]  = cal_done ? cnt[24] : 1'b0;   // DDR 校准完成后闪烁
+assign led[3:2] = 2'b00;
 
 //========================================================================================================
 //MIPI RX
@@ -725,9 +731,9 @@ wire        rgb_hs;
 wire        rgb_de;
 wire        rgb_valid;
 wire [47:0] rgb_datax2;
-wire [15:0] r_gain;
-wire [15:0] g_gain;
-wire [15:0] b_gain;
+wire [15:0] r_gain = CFG_R_GAIN;
+wire [15:0] g_gain = CFG_G_GAIN;
+wire [15:0] b_gain = CFG_B_GAIN;
 
 debayer_top_2to1 debayer_top
 (
@@ -739,9 +745,9 @@ debayer_top_2to1 debayer_top
 	.raw_de_i		  (ch0_de		      ),
 	.raw_valid_i	(ch0_de	        ),
 	.raw_datax4_i	({ch0_b,ch0_g}	),
-	.r_gain       (|r_gain? r_gain:255 ),
-  .g_gain       (|g_gain? g_gain:255 ),
-  .b_gain       (|b_gain? b_gain:255 ),
+	.r_gain       (r_gain       ),
+  .g_gain       (g_gain       ),
+  .b_gain       (b_gain       ),
 	.rgb_vs_o		  (rgb_vs         ),
 	.rgb_hs_o		  (rgb_hs         ),
 	.rgb_de_o		  (rgb_de         ),
@@ -768,10 +774,13 @@ begin
     else if( rgb_de )
       vid_cnt <= ~vid_cnt ;
 
+    // rgb_datax2 = {b1,g1,r1, b0,g0,r0}（debayer 的命名）
     if( vid_cnt )
-      {hdmi_tx_bdata,hdmi_tx_gdata,hdmi_tx_rdata} <= rgb_datax2[23:0];
-    else 
-      {hdmi_tx_bdata,hdmi_tx_gdata,hdmi_tx_rdata} <= rgb_datax2[47:24];
+      {hdmi_tx_bdata,hdmi_tx_gdata,hdmi_tx_rdata} <= CFG_SWAP_RB ?
+          {rgb_datax2[ 7: 0],rgb_datax2[15: 8],rgb_datax2[23:16]} : rgb_datax2[23:0];
+    else
+      {hdmi_tx_bdata,hdmi_tx_gdata,hdmi_tx_rdata} <= CFG_SWAP_RB ?
+          {rgb_datax2[31:24],rgb_datax2[39:32],rgb_datax2[47:40]} : rgb_datax2[47:24];
 
   hdmi_tx_vs <= rgb_vs;
   hdmi_tx_hs <= rgb_hs;
@@ -912,44 +921,57 @@ wire [7:0] gamma_bdata ;
 wire gamma_valid;
 wire gamma_hs;
 wire gamma_vs;
-wire gamma_sel;
 
-wire [7:0] con_rdata ;
-wire [7:0] con_gdata ;
-wire [7:0] con_bdata ;
-wire con_de;
-wire con_hs;
-wire con_vs;
-wire con_sel;
+// ---------------------------------------------------------------- 色条叠加
+wire [7:0] pat_rdata;
+wire [7:0] pat_gdata;
+wire [7:0] pat_bdata;
+wire       pat_de;
+wire       pat_hs;
+wire       pat_vs;
+wire       pat_active;
 
-wire [7:0] BRIGHT_SIG    ;
-wire CONTRAST_SIG_G;
-wire CONTRAST_SIG_R;
-wire [7:0] CONTRAST_G    ;
-wire CONTRAST_SIG_B;
-wire [7:0] BRIGHT        ;
-wire [7:0] CONTRAST_R    ;
+test_pattern #(
+  .H_ACTIVE    (MAX_HRES),
+  .V_ACTIVE    (MAX_VRES),
+  .BOOT_FRAMES (300)
+) u_test_pattern (
+  .i_clk    (hdmi_tx_slow_clk),
+  .i_rstn   (vid_rst_n       ),
+  .i_mode   (CFG_PATTERN     ),
+  .i_de     (hdmi_tx_de      ),
+  .i_hs     (hdmi_tx_hs      ),
+  .i_vs     (hdmi_tx_vs      ),
+  .i_r      (hdmi_tx_rdata   ),
+  .i_g      (hdmi_tx_gdata   ),
+  .i_b      (hdmi_tx_bdata   ),
+  .o_de     (pat_de          ),
+  .o_hs     (pat_hs          ),
+  .o_vs     (pat_vs          ),
+  .o_r      (pat_rdata       ),
+  .o_g      (pat_gdata       ),
+  .o_b      (pat_bdata       ),
+  .o_active (pat_active      )
+);
+assign led[1] = pat_active;     // LED1 亮 = 正在显示色条
 
 
-wire CONTRAST_B    ;
-
-
-gamma_correction
+gamma_lut
 #(
-	.DATA_WIDTH		(8),
-	.GAMMA_CURVE	("./rtl/gamma_conrrection/2P2.mem")
+	.LUT_FILE	("./rtl/gamma_conrrection/gamma_2p2_8b.mem")
 )
-inst_gamma_correction
+inst_gamma_lut
 (
 	.i_pclk		(hdmi_tx_slow_clk),
 	.i_rstn		(vid_rst_n),
-	
-	.i_red		(hdmi_tx_rdata),//(con_rdata  ),//
-	.i_green	(hdmi_tx_gdata),//(con_gdata  ),//
-	.i_blue		(hdmi_tx_bdata),//(con_bdata  ),//
-  .i_valid	(hdmi_tx_de   ),//(con_de     ),//
-  .i_hs     (hdmi_tx_hs   ),//(con_hs     ),//
-  .i_vs     (hdmi_tx_vs   ),//(con_vs     ),//
+	.i_bypass	(~CFG_GAMMA_EN),
+
+	.i_red		(pat_rdata    ),
+	.i_green	(pat_gdata    ),
+	.i_blue		(pat_bdata    ),
+  .i_valid	(pat_de       ),
+  .i_hs     (pat_hs       ),
+  .i_vs     (pat_vs       ),
 	.o_blue		(gamma_bdata		),
   .o_green	(gamma_gdata	  ),
 	.o_red		(gamma_rdata		),
@@ -962,12 +984,12 @@ dvi_encoder dvi_encoder_m0
 (
 	.pixelclk      		(hdmi_tx_slow_clk          ),// system clock
 	.rst_p         		(~vid_rst_n      ),// reset
-	.i_bdata      		(gamma_sel ? gamma_bdata	: hdmi_tx_rdata 	),//(hdmi_tx_rdata ),//(video_b            ),//(bdata_in	),   //
-	.i_gdata     		  (gamma_sel ? gamma_gdata	: hdmi_tx_gdata   ),//(hdmi_tx_gdata ),//(video_g            ),//(gdata_in	),   //   
-	.i_rdata       		(gamma_sel ? gamma_rdata	: hdmi_tx_bdata 	),//(hdmi_tx_bdata ),//(video_r            ),//(rdata_in	),   //   
-  .i_de            	(gamma_sel ? gamma_valid	: hdmi_tx_de      ),//(hdmi_tx_de    ),//(video_de           ),//(rx_de		  ),   //
-	.i_hs         		(gamma_sel ? gamma_hs	    : hdmi_tx_hs    ),//(video_hs           ),//(rx_hsync	),   //   
-	.i_vs         		(gamma_sel ? gamma_vs	    : hdmi_tx_vs    ),//(video_vs           ),//(rx_vsync	),   //  
+	.i_bdata      		(gamma_bdata ),
+	.i_gdata     		  (gamma_gdata ),
+	.i_rdata       		(gamma_rdata ),
+  .i_de            	(gamma_valid ),
+	.i_hs         		(gamma_hs    ),
+	.i_vs         		(gamma_vs    ),  
 	
   .video_format     (video_format), //// 00 = RGB, 01 = YCbCr 4:2:2, 10 = YCbCr 4:4:4
   .video_VIC        (0),
@@ -989,29 +1011,5 @@ assign tmds_tx_data0_TX_DATA = ~tmds_data0;
 assign tmds_tx_data1_TX_DATA = ~tmds_data1;
 assign tmds_tx_data2_TX_DATA = ~tmds_data2;
 
-debug_edb_top debug_edb_top_inst (
-    .bscan_CAPTURE      ( jtag_inst1_CAPTURE  ),
-    .bscan_DRCK         ( jtag_inst1_DRCK     ),
-    .bscan_RESET        ( jtag_inst1_RESET    ),
-    .bscan_RUNTEST      ( jtag_inst1_RUNTEST  ),
-    .bscan_SEL          ( jtag_inst1_SEL      ),
-    .bscan_SHIFT        ( jtag_inst1_SHIFT    ),
-    .bscan_TCK          ( jtag_inst1_TCK      ),
-    .bscan_TDI          ( jtag_inst1_TDI      ),
-    .bscan_TMS          ( jtag_inst1_TMS      ),
-    .bscan_UPDATE       ( jtag_inst1_UPDATE   ),
-    .bscan_TDO          ( jtag_inst1_TDO      ),
-    .vio0_clk           ( vid_clk_dvi2        ),
-    .vio0_r_gain        ( r_gain              ),
-    .vio0_g_gain        ( g_gain              ),
-    .vio0_b_gain        ( b_gain              ),
-
-    .vio0_gamma_sel     (gamma_sel),
-    .la0_clk            ( vid_clk_dvi2        ),
-    .la0_ch0_g          ( ch0_g               ),
-    .la0_ch0_b          ( ch0_b               ),
-    .la0_ch0_de         ( ch0_de              ),
-    .la0_cal_done       ( cal_done            )
-);
 
 endmodule

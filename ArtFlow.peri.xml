@@ -420,23 +420,7 @@
             </efxpt:adv_ltx_info>
         </efxpt:lvds>
     </efxpt:lvds_info>
-    <efxpt:jtag_info>
-        <efxpt:jtag name="jtag_inst1" jtag_def="JTAG_USER1">
-            <efxpt:gen_pin>
-                <efxpt:pin name="jtag_inst1_CAPTURE" type_name="CAPTURE" is_bus="false"/>
-                <efxpt:pin name="jtag_inst1_DRCK" type_name="DRCK" is_bus="false"/>
-                <efxpt:pin name="jtag_inst1_RESET" type_name="RESET" is_bus="false"/>
-                <efxpt:pin name="jtag_inst1_RUNTEST" type_name="RUNTEST" is_bus="false"/>
-                <efxpt:pin name="jtag_inst1_SEL" type_name="SEL" is_bus="false"/>
-                <efxpt:pin name="jtag_inst1_SHIFT" type_name="SHIFT" is_bus="false"/>
-                <efxpt:pin name="jtag_inst1_TCK" type_name="TCK" is_bus="false"/>
-                <efxpt:pin name="jtag_inst1_TDI" type_name="TDI" is_bus="false"/>
-                <efxpt:pin name="jtag_inst1_TMS" type_name="TMS" is_bus="false"/>
-                <efxpt:pin name="jtag_inst1_UPDATE" type_name="UPDATE" is_bus="false"/>
-                <efxpt:pin name="jtag_inst1_TDO" type_name="TDO" is_bus="false"/>
-            </efxpt:gen_pin>
-        </efxpt:jtag>
-    </efxpt:jtag_info>
+    <efxpt:jtag_info/>
     <efxpt:mipi_dphy_info>
         <efxpt:mipi_dphy name="mipi_dp_clk" block_def="GPIOT_PN_01" ops_type="tx">
             <efxpt:tx_info mode="clock lane" is_reversible="false" delay="10">

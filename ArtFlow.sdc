@@ -22,7 +22,7 @@ create_clock -period 200.000 -name CLK_5M [get_ports {CLK_5M}]
 
 create_clock -period 10.000 -name i_cam_ck_CLKOUT [get_ports {i_cam_ck_CLKOUT}]
 
-set_clock_groups -exclusive  -group {i_mipi_rx_pclk} -group {jtag_inst1_TCK}
+# [v02 removed debug core] set_clock_groups -exclusive  -group {i_mipi_rx_pclk} -group {jtag_inst1_TCK}
 set_clock_groups -exclusive -group {core_clk} -group {tx_cal_clk} -group {i_mipi_tx_pclk} -group {vid_clk_dvi2} -group {CLK_5M} -group {i_mipi_rx_pclk} -group {sdram_clk} -group {rx_cal_clk}
 set_clock_groups -exclusive -group {i_mipi_tx_pclk}    -group {i_mipi_rx_pclk}
 
@@ -38,20 +38,20 @@ set_clock_groups -exclusive -group {i_mipi_tx_pclk}    -group {i_mipi_rx_pclk}
 # JTAG Constraints
 ####################
 # create_clock -period <USER_PERIOD> -name jtag_inst1_TCK [get_ports {jtag_inst1_TCK}]
-set_output_delay -clock jtag_inst1_TCK -max 1.519 [get_ports {jtag_inst1_TDO}]
-set_output_delay -clock jtag_inst1_TCK -min 0.495 [get_ports {jtag_inst1_TDO}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.144 [get_ports {jtag_inst1_CAPTURE}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.077 [get_ports {jtag_inst1_CAPTURE}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.759 [get_ports {jtag_inst1_RESET}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.401 [get_ports {jtag_inst1_RESET}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.234 [get_ports {jtag_inst1_SEL}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.025 [get_ports {jtag_inst1_SEL}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.176 [get_ports {jtag_inst1_UPDATE}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.074 [get_ports {jtag_inst1_UPDATE}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.197 [get_ports {jtag_inst1_SHIFT}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.055 [get_ports {jtag_inst1_SHIFT}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -max 1.190 [get_ports {jtag_inst1_DRCK}]
-set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.620 [get_ports {jtag_inst1_DRCK}]
+# [v02 removed debug core] set_output_delay -clock jtag_inst1_TCK -max 1.519 [get_ports {jtag_inst1_TDO}]
+# [v02 removed debug core] set_output_delay -clock jtag_inst1_TCK -min 0.495 [get_ports {jtag_inst1_TDO}]
+# [v02 removed debug core] set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.144 [get_ports {jtag_inst1_CAPTURE}]
+# [v02 removed debug core] set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.077 [get_ports {jtag_inst1_CAPTURE}]
+# [v02 removed debug core] set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.759 [get_ports {jtag_inst1_RESET}]
+# [v02 removed debug core] set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.401 [get_ports {jtag_inst1_RESET}]
+# [v02 removed debug core] set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.234 [get_ports {jtag_inst1_SEL}]
+# [v02 removed debug core] set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.025 [get_ports {jtag_inst1_SEL}]
+# [v02 removed debug core] set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.176 [get_ports {jtag_inst1_UPDATE}]
+# [v02 removed debug core] set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.074 [get_ports {jtag_inst1_UPDATE}]
+# [v02 removed debug core] set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.197 [get_ports {jtag_inst1_SHIFT}]
+# [v02 removed debug core] set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.055 [get_ports {jtag_inst1_SHIFT}]
+# [v02 removed debug core] set_input_delay -clock_fall -clock jtag_inst1_TCK -max 1.190 [get_ports {jtag_inst1_DRCK}]
+# [v02 removed debug core] set_input_delay -clock_fall -clock jtag_inst1_TCK -min 0.620 [get_ports {jtag_inst1_DRCK}]
 # JTAG Constraints (extra... not used by current Efinity debug tools)
 # create_clock -period <USER_PERIOD> -name jtag_inst1_DRCK [get_ports {jtag_inst1_DRCK}]
 # set_input_delay -clock_fall -clock jtag_inst1_TCK -max 0.169 [get_ports {jtag_inst1_RUNTEST}]
