@@ -29,7 +29,6 @@
         <efx:design_file name="rtl/ddr3_controller/common/efx_fifo_v2.3/efx_fifo_wrapper.v" version="default" library="default"/>
         <efx:design_file name="rtl/frame_buffer/par2ser_128_24_v1.v" version="default" library="default"/>
         <efx:design_file name="rtl/frame_buffer/vid_check.v" version="default" library="default"/>
-        <efx:design_file name="rtl/frame_buffer/color_bar_rgb.v" version="default" library="default"/>
         <efx:design_file name="rtl/frame_buffer/frame_info_det.v" version="default" library="default"/>
         <efx:design_file name="rtl/frame_buffer/par2ser_parse.v" version="default" library="default"/>
         <efx:design_file name="rtl/frame_buffer/ser2par_16_128_v1.v" version="default" library="default"/>
@@ -49,7 +48,6 @@
         <efx:design_file name="rtl/debayer/line_buffer.v" version="default" library="default"/>
         <efx:design_file name="rtl/debayer/debayer_top_2to1.v" version="default" library="default"/>
         <efx:design_file name="rtl/debayer/raw_to_rgb.v" version="default" library="default"/>
-        <efx:design_file name="rtl/mipi_config/panel_config.v" version="default" library="default"/>
         <efx:design_file name="rtl/cam_i2c_ctrl/i2c_master/i2c_master_byte_ctrl.v" version="default" library="default"/>
         <efx:design_file name="rtl/cam_i2c_ctrl/i2c_master/i2c_master_top.v" version="default" library="default"/>
         <efx:design_file name="rtl/cam_i2c_ctrl/i2c_master/i2c_master_bit_ctrl.v" version="default" library="default"/>
@@ -71,7 +69,6 @@
         <efx:design_file name="rtl/dvi_tx/dvi_encoder.v_encrypted.v" version="default" library="default"/>
         <efx:design_file name="rtl/gamma_conrrection/gamma_lut.v" version="default" library="default"/>
         <efx:design_file name="rtl/video/test_pattern.v" version="default" library="default"/>
-        
         <efx:design_file name="rtl/debayer/rgb_gain_v1.v" version="default" library="default"/>
         <efx:design_file name="rtl/csi_rx_controller.sv" version="default" library="default"/>
         <efx:top_vhdl_arch name=""/>

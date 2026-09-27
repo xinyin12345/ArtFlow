@@ -152,49 +152,6 @@ module ArtFlow_top #(
        //LED
        output [3:0] led,
 
-       // MIPI DSI
-       input	wire	                     i_mipi_tx_pclk		,
-       output	wire	                     mipi_dp_clk_LP_P_OUT		,
-       output	wire	                     mipi_dp_clk_LP_N_OUT		,
-       output	wire	[7:0] 	              mipi_dp_clk_HS_OUT		,
-       output	wire	                     mipi_dp_clk_HS_OE		,
-       output	wire	                     mipi_dp_data3_LP_P_OUT	,
-       output	wire	                     mipi_dp_data2_LP_P_OUT	,
-       output	wire	                     mipi_dp_data1_LP_P_OUT	,
-       output	wire	                     mipi_dp_data0_LP_P_OUT	,
-       output	wire	                     mipi_dp_data3_LP_N_OUT	,
-       output	wire	                     mipi_dp_data2_LP_N_OUT	,
-       output	wire	                     mipi_dp_data1_LP_N_OUT	,
-       output	wire	                     mipi_dp_data0_LP_N_OUT	,
-       output	wire	[7:0] 	              mipi_dp_data0_HS_OUT	       ,
-       output	wire	[7:0] 	              mipi_dp_data1_HS_OUT	       ,
-       output	wire	[7:0] 	              mipi_dp_data2_HS_OUT	       ,
-       output	wire	[7:0] 	              mipi_dp_data3_HS_OUT	       ,
-       output	wire	                     mipi_dp_data3_HS_OE		,
-       output	wire	                     mipi_dp_data2_HS_OE		,
-       output	wire	                     mipi_dp_data1_HS_OE		,
-       output	wire	                     mipi_dp_data0_HS_OE		,
-
-       output	wire	                     mipi_dp_clk_RST		,
-       output	wire	                     mipi_dp_data0_RST		,
-       output	wire	                     mipi_dp_data1_RST		,
-       output	wire	                     mipi_dp_data2_RST		,
-       output	wire	                     mipi_dp_data3_RST		,
-       output	wire	                     mipi_dp_clk_LP_P_OE		,
-       output	wire	                     mipi_dp_clk_LP_N_OE		,
-       output	wire	                     mipi_dp_data3_LP_P_OE	,
-       output	wire	                     mipi_dp_data3_LP_N_OE	,
-       output	wire	                     mipi_dp_data2_LP_P_OE	,
-       output	wire	                     mipi_dp_data2_LP_N_OE	,
-       output	wire	                     mipi_dp_data1_LP_P_OE	,
-       output	wire	                     mipi_dp_data1_LP_N_OE	,
-       output	wire	                     mipi_dp_data0_LP_P_OE	,
-       output	wire	                     mipi_dp_data0_LP_N_OE	,
-
-       input  wire	                     mipi_dp_data0_LP_P_IN	,
-       input  wire	                     mipi_dp_data0_LP_N_IN	,
-       output	wire	                     LCD_RST_P			,
-       output wire                        LCD_POWER			,
 
        // hdmi interface
 
@@ -342,7 +299,6 @@ wire					io_systemReset;
 assign w_arstn  		       = i_pll_locked & pll_locked & user_pll_locked;
 assign pll_inst1_RSTN  		= i_arstn;
 assign USER_PLL_RSTN      		= i_arstn;
-assign mipi_dsi_tx_pll_RSTN 	= i_arstn;
 assign DDR3_PLL_RSTN 		= i_arstn;
 reset_ctrl
 #(
@@ -787,48 +743,8 @@ begin
   hdmi_tx_de <= rgb_de;
 end
 //==============================================================================
-// MIPI DSI
+// 视频通路复位：PLL 锁定后延时约 0.9 s（2^26 / 74.25 MHz）再释放
 //==============================================================================
-// signal 
-
-reg		[25:0]	r_rst_cnt;
-
-wire	[31:0]	w_axi_rdata;
-wire			w_axi_awready;
-wire			w_axi_wready;
-wire			w_axi_arready;
-wire			w_axi_rvalid;
-wire			w_axi_bvalid;
-
-wire	[6:0]	w_axi_awaddr;
-wire			w_axi_awvalid;
-wire	[31:0]	w_axi_wdata;
-wire			w_axi_wvalid;
-wire			w_axi_bready;
-wire	[6:0]	w_axi_araddr;
-wire			w_axi_arvalid;
-wire			w_axi_rready;
-
-wire			w_confdone;
-assign w_confdone = 1'b1;
-
-assign  LCD_POWER 			= i_arstn;
-assign	LCD_RST_P	      = ~w_arstn;//~r_rst_cnt[23]; LCD复位先释放，然后再释放MIPI 的复位
-assign	mipi_dp_clk_RST		= ~i_arstn;
-assign	mipi_dp_data0_RST	= ~i_arstn;
-assign	mipi_dp_data1_RST	= ~i_arstn;
-assign	mipi_dp_data2_RST	= ~i_arstn;
-assign	mipi_dp_data3_RST	= ~i_arstn;
-////////////////////////////////////////////////////////////////
-always@(posedge i_mipi_clk or  negedge w_arstn )
-begin
-  if ( !w_arstn ) begin
-    r_rst_cnt	<= 'd0;
-  end else 		
-    r_rst_cnt	<= r_rst_cnt[25] ? r_rst_cnt :r_rst_cnt + 1'b1;
-end
-
-wire axi_rst_n = r_rst_cnt[25];
 
 reg [26:0] dly_cnt = 'd0;
 
@@ -836,60 +752,19 @@ always @( posedge vid_clk_dvi2 or negedge w_arstn )
 begin
   if( !w_arstn )
     dly_cnt <= 'd0;
-  else if( w_confdone )
-    dly_cnt <= dly_cnt[26] ? dly_cnt :(dly_cnt + 1'b1);
-  else 
-    dly_cnt <= 'd0;
-end 
+  else
+    dly_cnt <= dly_cnt[26] ? dly_cnt : (dly_cnt + 1'b1);
+end
 
 assign vid_rst_n = dly_cnt[26];
 
 
 
 
-wire hs;
-wire vs;
-wire de;
-wire [7:0] rgb_r;
-wire [7:0] rgb_g;
-wire [7:0] rgb_b;
-  
-  // color_bar_rgb #(
-  // .HS_POLORY 		(1'b1		),
-  // .VS_POLORY 		(1'b1		),
-  // .H_FRONT_PORCH 	(HFP		),///2
-  // .H_SYNC 		(HSP		),//
-  // .H_VALID 		(MAX_HRES	),//
-  // .H_BACK_PORCH 	(HBP		),//
-  // .V_FRONT_PORCH 	(VFP		),
-  // .V_SYNC 		(VSP		),
-  // .V_VALID 		(MAX_VRES	),
-  // .V_BACK_PORCH 	(VBP		),
-  // .TEST_MODE 		(2'd2)
-  // )u_color_bar_rgb1(
-  // /*i*/.clk	(vid_clk_dvi2),//(vid_clk),
-  // /*i*/.rst_n	(vid_rst_n),
-  // /*o*/.hs	(hs),
-  // /*o*/.vs	(vs),
-  // /*o*/.de	(de),
-  // // /*O*/.h_cnt (h_cnt),
-  // // /*O*/.v_cnt (v_cnt),
-  // /*o*/.rgb_r	(rgb_r),    //像素数据、红色分量
-  // /*o*/.rgb_g	(rgb_g),    //像素数据、绿色分量
-  // /*o*/.rgb_b (rgb_b)    //像素数据、蓝色分量
-  
-  // );
 
 //=================================================================================
 //hdmi tx ctrl 
 //=================================================================================
-wire                            video_hs;
-wire                            video_vs;
-wire                            video_de;
-wire[7:0]                       video_r;
-wire[7:0]                       video_g;
-wire[7:0]                       video_b;
-
 assign tmds_tx_data0_TX_OE = 1'b1;
 assign tmds_tx_data1_TX_OE = 1'b1;
 assign tmds_tx_data2_TX_OE = 1'b1;
@@ -899,17 +774,6 @@ assign tmds_tx_data0_TX_RST = 1'b0;
 assign tmds_tx_data1_TX_RST = 1'b0;
 assign tmds_tx_data2_TX_RST = 1'b0;
 assign tmds_tx_clk_TX_RST   = 1'b0;
-
-// 	  color_bar color_bar_m0(
-// 	.clk(hdmi_tx_slow_clk),
-// 	.rst(~vid_rst_n),
-// 	.hs(video_hs),
-// 	.vs(video_vs),
-// 	.de(video_de),
-// 	.rgb_r(video_r),
-// 	.rgb_g(video_g),
-// 	.rgb_b(video_b)
-// );
 
 wire [9:0] tmds_data0;
 wire [9:0] tmds_data1;

@@ -66,3 +66,21 @@ v02 把交叉挪到唯一一处 —— debayer 之后的 `CFG_SWAP_RB`（默认 
 | `CFG_PATTERN` | 2 | 0 摄像头 / 1 常显色条 / 2 上电 5 s 色条 |
 
 v05 上 Sapphire SoC 后，这些常量改成 APB 寄存器，由 RISC-V 串口调节。
+
+## 补充：删除 MIPI DSI 屏相关内容（不再使用 DSI 屏，只走 HDMI）
+
+v01 里 DSI 其实只剩空壳：控制器和面板初始化都没有例化，只有端口、复位和 LCD 上电脚。本次全部清掉：
+
+| 位置 | 删除内容 |
+|---|---|
+| `rtl/ArtFlow_top.v` | 全部 `mipi_dp_*` 端口、`i_mipi_tx_pclk`、`LCD_POWER`、`LCD_RST_P`；`mipi_dsi_tx_pll_RSTN`；空置的 `w_axi_*` 配置总线、`r_rst_cnt/axi_rst_n`、恒为 1 的 `w_confdone`；旧色条的 `hs/vs/de/rgb_*`、`video_*` 线网与注释掉的 `color_bar` 例化 |
+| `ArtFlow.peri.xml` | 5 个 MIPI DPHY TX 块（clk、data0~3）；`LCD_POWER`、`LCD_RST_P` 管脚；`MIPI_TX_PLL` 的 `i_mipi_txc_sclk / i_mipi_txd_sclk / i_mipi_tx_pclk` 三路输出 |
+| `ArtFlow.sdc` | 上述 3 个时钟的 `create_clock`、时钟组里的 `i_mipi_tx_pclk`、20 条 `mipi_dp_*` 输出延时 |
+| `ArtFlow.xml` | 移出 `panel_config.v`、`color_bar_rgb.v`（均未例化） |
+| `_archive/v02_dsi/` | 移入 `rtl/mipi_config/`、`rtl/efx_dsi_tx.sv`、`ip/dsi_tx/`、`Panel_1080p_reg.mem`、`color_bar_rgb.v` |
+
+**注意**
+* `MIPI_TX_PLL` 本身保留（名字不变）：它还输出 `core_clk`（100 MHz，DDR/AXI/CSI 在用），锁定信号 `i_pll_locked` 也参与全局复位。只删了 DSI 用的三路输出，VCO 设置没动。
+* 摄像头（CSI RX）的 5 个 DPHY RX 块完全没动。
+* `LCD_POWER` / `LCD_RST_P` 删除后这两个管脚不再被驱动（工程开了 `io_weak_pullup`，会弱上拉）。如果板上仍插着 DSI 屏且不希望它上电，可以再把 `LCD_POWER` 加回来并固定输出 0。
+* 改完 peri.xml 后，建议在 Efinity 里用 Interface Designer 打开一次，确认没有报错，再点一次 “Generate Efinity Constraint Files”。
