@@ -1,0 +1,8 @@
+# Efinity build outputs
+outflow/
+work_syn/
+work_pnr/
+work_dbg/
+ooc/
+*.wlf
+*.bak

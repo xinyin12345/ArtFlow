@@ -1,0 +1,69 @@
+{
+    "debug_cores": [
+        {
+            "name": "vio0",
+            "type": "vio",
+            "uuid": "d2d3643a7f1e49a3a7f48b242e104fdd",
+            "probes": [
+                {
+                    "name": "r_gain",
+                    "width": 16,
+                    "init": "0x118"
+                },
+                {
+                    "name": "g_gain",
+                    "width": 16,
+                    "init": "0xff"
+                },
+                {
+                    "name": "b_gain",
+                    "width": 16,
+                    "init": "0x15e"
+                },
+                {
+                    "name": "gamma_sel",
+                    "width": 1,
+                    "init": "0x0"
+                }
+            ]
+        },
+        {
+            "name": "la0",
+            "type": "la",
+            "uuid": "40fc40c15a7b4e5392113defb86d2a4c",
+            "probes": [
+                {
+                    "name": "ch0_g",
+                    "width": 8,
+                    "probe_type": 1
+                },
+                {
+                    "name": "ch0_b",
+                    "width": 8,
+                    "probe_type": 1
+                },
+                {
+                    "name": "ch0_de",
+                    "width": 1,
+                    "probe_type": 1
+                },
+                {
+                    "name": "cal_done",
+                    "width": 1,
+                    "probe_type": 1
+                }
+            ],
+            "data_depth": 1024,
+            "trigin_en": false,
+            "trigout_en": false,
+            "capture_control": false,
+            "input_pipeline": 1,
+            "auto_inserted": false
+        }
+    ],
+    "session": {
+        "debug_widget": [],
+        "wizard": {}
+    },
+    "jtag_user": "USER1"
+}
