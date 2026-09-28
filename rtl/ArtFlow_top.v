@@ -208,20 +208,21 @@ localparam VSP      = 5;
 localparam VBP      = 36;
 
 //===============================================================================
-// v02 配置（原来由 VIO 调试核提供，现固化为常量；v05 起改由 RISC-V 寄存器控制）
+// 配置（原来由 VIO 调试核提供，现固化为常量；v05 起改由 RISC-V 寄存器控制）
 //===============================================================================
-// 白平衡增益 Q8.8（256 = 1.0），取 v01 VIO 初值，保持 v01 画面一致
+// 白平衡增益 Q8.8（256 = 1.0），取 v01 VIO 初值；v03 起在 2x2 合并时以 10bit 精度相乘
 localparam [15:0] CFG_R_GAIN   = 16'h0118;   // 280 ≈ 1.09
 localparam [15:0] CFG_G_GAIN   = 16'h00FF;   // 255 ≈ 1.00
 localparam [15:0] CFG_B_GAIN   = 16'h015E;   // 350 ≈ 1.37
-// Gamma：0 = 直通（与 v01 默认一致），1 = 查表
+// Gamma：0 = 直通，1 = 查表
 localparam        CFG_GAMMA_EN = 1'b1;
-// debayer 输出 R/B 互换：v01 的直通路径在 HDMI 编码器入口把 R/B 交叉接了，
-// 为保持 v01 画面，这里显式地在 debayer 之后做一次互换（唯一一处）。
-// 上板用红色物体确认：若红色显示成蓝色，把它改成 0。
-localparam        CFG_SWAP_RB  = 1'b1;
+// v03：传感器 Bayer 排列（帧左上角 2x2）：0 = RGGB，1 = GRBG，2 = GBRG，3 = BGGR
+//   替代 v02 的 CFG_SWAP_RB（RGGB <-> BGGR 就是 R/B 互换）。上板判定方法见 doc/v03_notes.md
+localparam [1:0]  CFG_BAYER    = 2'd0;
+// v03：CSI 像素顺序：0 = pixel_data[9:0] 是一行里靠左的像素（Efinix CSI RX 约定），1 = 反过来
+localparam        CFG_PIX_REV  = 1'b0;
 // 色条（自带独立 1080p60 时序，不依赖摄像头/DDR）：0 = 摄像头，1 = 常显色条，2 = 上电先显示约 5 秒色条再切摄像头
-localparam [1:0]  CFG_PATTERN  = 2'd1;
+localparam [1:0]  CFG_PATTERN  = 2'd2;
 //===============================================================================
 //signal
 //===============================================================================
@@ -488,93 +489,68 @@ assign io_cam_scl_OE = ~scl_padoen_o;
 assign io_cam_sda_OE = ~sda_padoen_o;
 
 //=====================================================================================
-//frame buffer
+// v03 视频主通路：CSI RAW -> 2x2 合并(960x540 RGB) -> DDR 三缓冲 -> 2 倍放大 -> 1080p
 //=====================================================================================
-wire [7:0] 	ch0_r;
-wire [7:0]    ch0_g;
-wire [7:0]    ch0_b;
-wire ch0_vs;
-wire ch0_hs;
-wire ch0_de;
-// IMX219
-  frame_buffer #(
-.I_VID_WIDTH         (32),
-.O_VID_WIDTH         (16),
-.START_ADDR          (32'h00000        ),
-.AXI_DATA_WIDTH      ( AXI_DATA_WIDTH	),
-.AXI_ADDR_WIDTH      ( AXI_ADDR_WIDTH	),
-.WR_FIFO_DEPTH	      ( 1024		),    
-.RD_FIFO_DEPTH 	      ( 1024 	),
-.BURST_LEN  	       (127),
-.FB_NUM	            (3),
-.MAX_VID_WIDTH	    (960) ,
-.MAX_VID_HIGHT	    (1080) 
+wire vid_rst_n;
+wire hdmi_tx_de;
+wire hdmi_tx_hs;
+wire hdmi_tx_vs;
+wire [7:0] hdmi_tx_rdata;
+wire [7:0] hdmi_tx_gdata;
+wire [7:0] hdmi_tx_bdata;
 
+cam_fb_pipe #(
+  .AXI_DATA_WIDTH (AXI_DATA_WIDTH ),
+  .AXI_ADDR_WIDTH (AXI_ADDR_WIDTH ),
+  .START_ADDR     (32'h0000_0000  ),
+  .BANK_BYTES     (32'h0040_0000  ),   // 每帧 4 MB：帧 0/1/2 = 0x000000 / 0x400000 / 0x800000
+  .MAX_IN_WIDTH   (MAX_HRES       ),
+  .MAX_OUT_WIDTH  (MAX_HRES/2     )
+) u_video_pipe (
+  .cfg_bayer      (CFG_BAYER      ),
+  .cfg_pix_rev    (CFG_PIX_REV    ),
+  .cfg_gain_r     (CFG_R_GAIN     ),
+  .cfg_gain_g     (CFG_G_GAIN     ),
+  .cfg_gain_b     (CFG_B_GAIN     ),
 
-)checker0(
-       .axi_clk		(core_clk 	        ),
-       .rst_n			(vid_rst_n   ),
+  .i_pclk         (i_mipi_rx_pclk ),
+  .i_pclk_rstn    (w_mipi_rx_pclk_arstn),
+  .i_vs           (w_mipi_rx_vs   ),
+  .i_hs           (w_mipi_rx_hs   ),
+  .i_valid        (w_mipi_rx_de   ),
+  .i_raw          (w_mipi_rx_data[39:0]),
 
-/*i*/.i_clk			(i_mipi_rx_pclk      ),
-/*i*/.i_vs			(w_mipi_rx_vs	),
-/*i*/.i_de			(w_mipi_rx_de & w_mipi_rx_hs	),
-/*i*/.vin 			({w_mipi_rx_data[39:32],w_mipi_rx_data[29:22],w_mipi_rx_data[19:12],w_mipi_rx_data[9:2]}	),
-                     
-/*i*/.o_clk			(vid_clk_dvi2),//(i_mipi_rx_pclk	),
-/*i*/.o_hs    		(ch0_hs		),			
-/*i*/.o_vs    		(ch0_vs		),			
-/*i*/.o_de    		(ch0_de		),			
-/*i*/.vout    		({ch0_g,ch0_b}	),//ch0_r,
+  .H_FRONT_PORCH  (HFP/2          ),
+  .H_SYNC         (HSP/2          ),
+  .H_VALID        (MAX_HRES/2     ),
+  .H_BACK_PORCH   (HBP/2          ),
+  .V_FRONT_PORCH  (VFP            ),
+  .V_SYNC         (VSP            ),
+  .V_VALID        (MAX_VRES       ),
+  .V_BACK_PORCH   (VBP            ),
 
-/*i*/.H_FRONT_PORCH (HFP/2  		),//
-/*i*/.H_SYNC 	 	    (HSP/2	 	),///2
-/*i*/.H_VALID 	 	  (MAX_HRES/2     ),//		
-/*i*/.H_BACK_PORCH	(HBP/2		),//		
-/*i*/.V_FRONT_PORCH (VFP  		),//		
-/*i*/.V_SYNC 	 	    (VSP 	 	),//		
-/*i*/.V_VALID 	 	  (MAX_VRES     ),//		
-/*i*/.V_BACK_PORCH	(VBP		),//		
+  .rst_n          (vid_rst_n      ),
+  .o_clk          (vid_clk_dvi2   ),
+  .o_hdmi_clk     (hdmi_tx_slow_clk),
+  .o_de           (hdmi_tx_de     ),
+  .o_hs           (hdmi_tx_hs     ),
+  .o_vs           (hdmi_tx_vs     ),
+  .o_r            (hdmi_tx_rdata  ),
+  .o_g            (hdmi_tx_gdata  ),
+  .o_b            (hdmi_tx_bdata  ),
 
-       .awid			(s_axi_awid	),      
-       .awaddr		(s_axi_awaddr	),
-       .awlen			(s_axi_awlen	),
-       .awsize		(s_axi_awsize	),
-       .awburst		(s_axi_awburst),
-       .awprot    (s_axi_awprot ),
-       .awcache   (s_axi_awcache),
-       .awlock		(s_axi_awlock	),
-       .awvalid		(s_axi_awvalid),
-       .awready		(s_axi_awready),
-
-       .arid			(s_axi_arid	  ),
-       .araddr		(s_axi_araddr	),
-       .arlen			(s_axi_arlen	),
-       .arsize		(s_axi_arsize	),
-       .arburst 	(s_axi_arburst),
-
-       .arprot    (s_axi_arprot ),
-       .arcache   (s_axi_arcache),
-       .arlock 		(s_axi_arlock	),
-       .arvalid		(s_axi_arvalid),
-       .arready		(s_axi_arready),
-
-       .wdata			(s_axi_wdata	),
-       .wstrb			(s_axi_wstrb	),
-       .wlast			(s_axi_wlast	),
-       .wvalid		(s_axi_wvalid	),
-       .wready		(s_axi_wready	),
-
-
-       .rid			  (s_axi_rid	),
-       .rdata			(s_axi_rdata	),
-       .rlast			(s_axi_rlast	),
-       .rvalid 		(s_axi_rvalid	),
-       .rready		(s_axi_rready	),
-       .rresp			(s_axi_rresp	),
-
-       .bid			  (s_axi_bid	),
-       .bvalid		(s_axi_bvalid	),
-       .bready	  (s_axi_bready	)
+  .axi_clk        (core_clk       ),
+  .awid (s_axi_awid ), .awaddr (s_axi_awaddr ), .awlen (s_axi_awlen ), .awsize (s_axi_awsize ),
+  .awburst(s_axi_awburst), .awcache(s_axi_awcache), .awprot(s_axi_awprot), .awlock(s_axi_awlock),
+  .awvalid(s_axi_awvalid), .awready(s_axi_awready),
+  .arid (s_axi_arid ), .araddr (s_axi_araddr ), .arlen (s_axi_arlen ), .arsize (s_axi_arsize ),
+  .arburst(s_axi_arburst), .arcache(s_axi_arcache), .arprot(s_axi_arprot), .arlock(s_axi_arlock),
+  .arvalid(s_axi_arvalid), .arready(s_axi_arready),
+  .wdata (s_axi_wdata ), .wstrb (s_axi_wstrb ), .wlast (s_axi_wlast ), .wvalid(s_axi_wvalid),
+  .wready(s_axi_wready),
+  .rid   (s_axi_rid   ), .rdata (s_axi_rdata ), .rlast (s_axi_rlast ), .rvalid(s_axi_rvalid),
+  .rready(s_axi_rready), .rresp (s_axi_rresp ),
+  .bid   (s_axi_bid   ), .bvalid(s_axi_bvalid), .bready(s_axi_bready)
 );
 
 
@@ -679,71 +655,8 @@ ddr3_top                 u_ddr3_top
 .cal_done                       (cal_done          ) 
 );
 
-//***************************************************************************
-// debayer
-//***************************************************************************
+// v03：旧的 debayer（插值）和 HDMI 入口的 2 像素拼接已由 cam_fb_pipe 取代，源文件归档在 _archive/v03_debayer/
 
-
-wire        rgb_vs;
-wire        rgb_hs;
-wire        rgb_de;
-wire        rgb_valid;
-wire [47:0] rgb_datax2;
-wire [15:0] r_gain = CFG_R_GAIN;
-wire [15:0] g_gain = CFG_G_GAIN;
-wire [15:0] b_gain = CFG_B_GAIN;
-
-debayer_top_2to1 debayer_top
-(
-	.in_pclk		  (vid_clk_dvi2),//(i_mipi_rx_pclk ),
-	.in_rstn		  (vid_rst_n	),
-	
-	.raw_vs_i		  (ch0_vs		      ),
-	.raw_hs_i		  (ch0_hs		      ),
-	.raw_de_i		  (ch0_de		      ),
-	.raw_valid_i	(ch0_de	        ),
-	.raw_datax4_i	({ch0_b,ch0_g}	),
-	.r_gain       (r_gain       ),
-  .g_gain       (g_gain       ),
-  .b_gain       (b_gain       ),
-	.rgb_vs_o		  (rgb_vs         ),
-	.rgb_hs_o		  (rgb_hs         ),
-	.rgb_de_o		  (rgb_de         ),
-	.rgb_valid_o	(rgb_valid      ),
-	.rgb_datax2_o (rgb_datax2     )//b,g,r,b,g,r
-);
-reg rgb_vs_r = 'd0;
-always @( posedge hdmi_tx_slow_clk )
-begin
-  rgb_vs_r <= rgb_vs;
-end
-assign pos_vs = {rgb_vs_r,rgb_vs} == 2'b01;
-reg vid_cnt = 'd0;
-reg [7:0] hdmi_tx_rdata ;
-reg [7:0] hdmi_tx_gdata ;
-reg [7:0] hdmi_tx_bdata ;
-reg hdmi_tx_vs;
-reg hdmi_tx_hs;
-reg hdmi_tx_de;
-always @( posedge hdmi_tx_slow_clk )
-begin
-    if( pos_vs )
-      vid_cnt <= 1'b1;
-    else if( rgb_de )
-      vid_cnt <= ~vid_cnt ;
-
-    // rgb_datax2 = {b1,g1,r1, b0,g0,r0}（debayer 的命名）
-    if( vid_cnt )
-      {hdmi_tx_bdata,hdmi_tx_gdata,hdmi_tx_rdata} <= CFG_SWAP_RB ?
-          {rgb_datax2[ 7: 0],rgb_datax2[15: 8],rgb_datax2[23:16]} : rgb_datax2[23:0];
-    else
-      {hdmi_tx_bdata,hdmi_tx_gdata,hdmi_tx_rdata} <= CFG_SWAP_RB ?
-          {rgb_datax2[31:24],rgb_datax2[39:32],rgb_datax2[47:40]} : rgb_datax2[47:24];
-
-  hdmi_tx_vs <= rgb_vs;
-  hdmi_tx_hs <= rgb_hs;
-  hdmi_tx_de <= rgb_de;
-end
 //==============================================================================
 // 视频通路复位：PLL 锁定后延时约 0.9 s（2^26 / 74.25 MHz）再释放
 //==============================================================================
