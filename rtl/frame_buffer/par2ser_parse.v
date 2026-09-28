@@ -1,7 +1,8 @@
 
 module par2ser_parse#(
     parameter VID_WIDTH = 24,
-    parameter AXI_DATA_WIDTH	= 512
+    parameter AXI_DATA_WIDTH	= 512,
+    parameter LSB_FIRST = 0          // 仅 VID_WIDTH=32 支持
 )(
     input clk,
     input rst_n,
@@ -65,7 +66,8 @@ module par2ser_parse#(
    end else if(VID_WIDTH == 32 ) begin
     par2ser_128_32_v1 #(
         .VID_WIDTH (VID_WIDTH),
-        .AXI_DATA_WIDTH	(AXI_DATA_WIDTH) 
+        .AXI_DATA_WIDTH	(AXI_DATA_WIDTH),
+        .LSB_FIRST (LSB_FIRST)
 
     )u_par2ser_128_16(
     /*i*/.clk               (clk              ),

@@ -118,6 +118,23 @@ generate
             .fifo_wr_en     (fifo_wr_en     ),
             .fifo_wr_data   (fifo_wr_data   )
         );
+    end else if( I_VID_WIDTH == 64) begin   // v03：2 个 XRGB 像素/拍，低位在前
+
+        ser2par_64_128_v1 # (
+            .I_VID_WIDTH(I_VID_WIDTH),
+            .AXI_DDR_WIDTH(AXI_DDR_WIDTH)
+        )ser2par_64_128_inst (
+            .clk            (clk            ),
+            .rst_n          (rst_n          ),
+            .de             (de_r0          ),
+            .frame_start    (w_frame_start  ),
+            .frame_end      (w_frame_end    ),
+            .frame_stable   (frame_stable   ),
+            .frame_pix_num  (frame_cnt      ),
+            .vin            (din_r0         ),
+            .fifo_wr_en     (fifo_wr_en     ),
+            .fifo_wr_data   (fifo_wr_data   )
+        );
     end
 endgenerate
 

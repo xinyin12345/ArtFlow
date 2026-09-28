@@ -13,6 +13,9 @@ parameter BURST_LEN       = 8'd15,
 parameter FB_NUM			    = 	3,//2 buffer ,3 buffer 
 parameter MAX_VID_WIDTH		=	1920 ,//video width 
 parameter MAX_VID_HIGHT		=	1080 ,//wideo height
+parameter BANK_BYTES      = 0,     // v03：每个帧缓存占用的 DDR 字节数（0 = 旧算法）
+parameter DDR_LSB_FIRST   = 0,     // v03：读出拆包顺序，1 = 128bit 字低位先出（配合 I_VID_WIDTH=64）
+parameter V_REPEAT        = 1,     // v03：1 = 每行输出一次；2 = 每行重复输出两次（竖直 2 倍放大）
 parameter AXI_STRB_WIDTH 	= AXI_DATA_WIDTH/8
 ) (
 
@@ -187,7 +190,9 @@ ddr_buffer #(
 .RD_FIFO_DEPTH 	( RD_FIFO_DEPTH 	),
 .START_ADDR			( START_ADDR      ),
 .I_VID_WIDTH    ( I_VID_WIDTH     ),
-.BURST_LEN      (BURST_LEN        )
+.BURST_LEN      (BURST_LEN        ),
+.FB_NUM         ( FB_NUM          ),
+.BANK_BYTES     ( BANK_BYTES      )
 )u_ddr_buffer(
     .axi_clk		    (axi_clk	),
     .wr_clk_rst_n (wr_clk_rst_n),
@@ -264,8 +269,8 @@ wire tx_valid;
 wire [23:0] tx_vin;
     par2ser_parse#(
       .VID_WIDTH 				( O_VID_WIDTH  ),
-      .AXI_DATA_WIDTH   (AXI_DATA_WIDTH)
-      
+      .AXI_DATA_WIDTH   (AXI_DATA_WIDTH),
+      .LSB_FIRST        (DDR_LSB_FIRST )
     )u_par2ser_parse(
     /*i*/.clk               (o_clk),
     /*i*/.rst_n             (rd_clk_rst_n),
@@ -309,9 +314,9 @@ end
 data_tx #(
 	.VID_WIDTH 				( O_VID_WIDTH  ),
 	.FIFO_DIPTH  			( 1024 				 ),
-	.FIFO_ALMOST_FULL	( 960          )
-	
-	
+	.FIFO_ALMOST_FULL	( 960          ),
+	.V_REPEAT         ( V_REPEAT     ),
+	.LB_DEPTH         ( MAX_VID_WIDTH)
 	)u_data_tx(
 	/*i*/.clk					  (o_clk				),
 	/*i*/.rst_n				  (rd_clk_rst_n	),

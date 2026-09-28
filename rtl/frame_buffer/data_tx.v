@@ -2,9 +2,12 @@
 	module data_tx #(
 			parameter VID_WIDTH 	= 16,
 			parameter FIFO_DIPTH 	= 512,
-			parameter FIFO_ALMOST_FULL = 240//fifo_almost_full
-			
-			
+			parameter FIFO_ALMOST_FULL = 240,//fifo_almost_full
+			// v03：V_REPEAT = 2 时每个有效行输出两次（竖直 2 倍放大）：
+			//   偶数行从 FIFO 读并写入行缓存，奇数行从行缓存重放，不读 FIFO。
+			//   此时 V_VALID 为输出行数（例如 1080），从 FIFO 读取 V_VALID/2 行。
+			parameter V_REPEAT  = 1,
+			parameter LB_DEPTH  = 1024	// 行缓存深度，>= H_VALID
 	)(
 	input		wire									clk,
 	input		wire									rst_n,
@@ -364,25 +367,57 @@ end
 			end
 	end
 
+	// 当前有效行是否为重复行（V_REPEAT=2 时的奇数行）
+	wire rep_line = (V_REPEAT == 2) && v_cnt[0];
+
 	always @( posedge clk )
 	begin
-			if( h_state == S_H_VALID && v_state == S_V_VALID ) begin
+			if( h_state == S_H_VALID && v_state == S_V_VALID && !rep_line ) begin
 					fifo_rd_en <= 1'b1;
 			end else begin
 					fifo_rd_en <= 1'b0;
 			end
 	end
 	
+	reg rep_r1 = 1'b0;
+	reg rep_r2 = 1'b0;
 	always @( posedge clk )
 	begin
-			vout <= de_r2 ? fifo_rd_data : 0;
+			de_r1  <= (h_state == S_H_VALID && v_state == S_V_VALID );
+			de_r2  <= de_r1;
+			o_de   <= de_r2;
+			rep_r1 <= rep_line;
+			rep_r2 <= rep_r1;
 	end
-	
+
+	wire [VID_WIDTH-1:0] line_data;
+	generate
+	if( V_REPEAT == 2 ) begin : g_line_rep
+		localparam LB_AW = $clog2(LB_DEPTH);
+		reg [VID_WIDTH-1:0] lb [0:LB_DEPTH-1];
+		reg [VID_WIDTH-1:0] lb_q  = {VID_WIDTH{1'b0}};
+		reg [LB_AW-1:0]     lb_wa = {LB_AW{1'b0}};
+		reg [LB_AW-1:0]     lb_ra = {LB_AW{1'b0}};
+		// 写：非重复行，fifo_rd_data 在 de_r2 拍有效
+		always @( posedge clk ) begin
+			if( de_r2 && !rep_r2 )
+				lb[lb_wa] <= fifo_rd_data;
+			lb_wa <= de_r2 ? lb_wa + 1'b1 : {LB_AW{1'b0}};
+		end
+		// 读：de_r1 拍发地址，de_r2 拍出数据
+		always @( posedge clk ) begin
+			lb_q  <= lb[lb_ra];
+			lb_ra <= de_r1 ? lb_ra + 1'b1 : {LB_AW{1'b0}};
+		end
+		assign line_data = rep_r2 ? lb_q : fifo_rd_data;
+	end else begin : g_no_rep
+		assign line_data = fifo_rd_data;
+	end
+	endgenerate
+
 	always @( posedge clk )
 	begin
-			de_r1 <= (h_state == S_H_VALID && v_state == S_V_VALID );
-			de_r2 <= de_r1;
-			o_de  <= de_r2;
+			vout <= de_r2 ? line_data : 0;
 	end
 	always @( posedge clk or negedge rst_n)
 	begin
