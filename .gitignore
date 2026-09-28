@@ -12,3 +12,9 @@ ooc/
 
 # Efinity 工程锁文件
 /.lock
+
+# v03 仿真生成物（由 sim/run_v03.do / tools/v03_golden.py 重新生成）
+/sim/*.hex
+/sim/*.png
+/sim/*.log
+/sim/transcript
