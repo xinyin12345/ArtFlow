@@ -24,7 +24,7 @@ import sys
 import zlib
 
 # 与 ArtFlow_top.v 里的 CFG_*_GAIN 默认值一致（仿真 TB 用同样的值）
-GAINS = {"r": 0x0118, "g": 0x0100, "b": 0x015E}
+GAINS = {"r": 0x0118, "g": 0x00FF, "b": 0x015E}
 
 # Bayer 相位：R 所在 (行, 列)
 BAYER_NAMES = ["RGGB", "GRBG", "GBRG", "BGGR"]
@@ -159,12 +159,19 @@ def cmd_gen(a):
                 f.write("\n")
         if k == 0:
             write_png(f"{a.out}_exp_p0.png", exp)
+    for variant in range(a.frames):
+        shifted = [[v ^ (variant * 128) for v in row] for row in raw]
+        for phase in range(4):
+            exp = bin2x2(shifted, phase)
+            with open(f"{a.out}_exp_p{phase}_f{variant}.hex", "w") as f:
+                for row in exp:
+                    f.write("\n".join(f"{r:02x}{g:02x}{b:02x}" for r,g,b in row) + "\n")
     print(f"gen: {a.w}x{a.h} RAW -> {a.w//2}x{a.h//2} RGB, files prefix '{a.out}_'")
 
 
 def cmd_check(a):
     exp = []
-    with open(f"{a.out}_exp_p{a.phase}.hex") as f:
+    with open(f"{a.out}_exp_p{a.phase}_f{a.frame}.hex" if a.frame >= 0 else f"{a.out}_exp_p{a.phase}.hex") as f:
         vals = [int(s, 16) for s in f.read().split()]
     ew, eh = a.w // 2, a.h // 2
     for y in range(eh):
@@ -207,6 +214,8 @@ def main():
     p.add_argument("--h", type=int, default=1080)
     p.add_argument("--out", default="full")
     p.add_argument("--phase", type=int, default=0)
+    p.add_argument("--frames", type=int, default=0)
+    p.add_argument("--frame", type=int, default=-1)
     a = p.parse_args()
     return cmd_gen(a) if a.cmd == "gen" else cmd_check(a)
 

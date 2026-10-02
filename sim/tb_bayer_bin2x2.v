@@ -25,7 +25,7 @@ wire [63:0] o_data;
 bayer_bin2x2 #(.MAX_IN_WIDTH(W)) dut (
     .clk(clk), .rstn(rstn),
     .i_bayer(bayer), .i_pix_rev(pix_rev),
-    .i_gain_r(16'h0118), .i_gain_g(16'h0100), .i_gain_b(16'h015E),
+    .i_gain_r(16'h0118), .i_gain_g(16'h00FF), .i_gain_b(16'h015E),
     .i_vs(vs), .i_hs(hs), .i_valid(valid), .i_data(data),
     .o_vs(o_vs), .o_hs(o_hs), .o_valid(o_valid), .o_data(o_data));
 
@@ -136,7 +136,7 @@ initial begin
     if (errors == 0 && checked == 16 * 2 * OW * OH)
         $display("=== tb_bayer_bin2x2 PASS  (%0d frames, %0d pixels checked) ===", 32, checked);
     else
-        $display("=== tb_bayer_bin2x2 FAIL  errors=%0d checked=%0d (expect %0d) ===", errors, checked, 16*2*OW*OH);
+        $fatal(1, "=== tb_bayer_bin2x2 FAIL  errors=%0d checked=%0d (expect %0d) ===", errors, checked, 16*2*OW*OH);
     $finish;
 end
 

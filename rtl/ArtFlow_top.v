@@ -504,6 +504,7 @@ cam_fb_pipe #(
   .AXI_ADDR_WIDTH (AXI_ADDR_WIDTH ),
   .START_ADDR     (32'h0000_0000  ),
   .BANK_BYTES     (32'h0040_0000  ),   // 每帧 4 MB：帧 0/1/2 = 0x000000 / 0x400000 / 0x800000
+  .MAX_IN_HEIGHT  (MAX_VRES       ),
   .MAX_IN_WIDTH   (MAX_HRES       ),
   .MAX_OUT_WIDTH  (MAX_HRES/2     )
 ) u_video_pipe (
@@ -550,7 +551,7 @@ cam_fb_pipe #(
   .wready(s_axi_wready),
   .rid   (s_axi_rid   ), .rdata (s_axi_rdata ), .rlast (s_axi_rlast ), .rvalid(s_axi_rvalid),
   .rready(s_axi_rready), .rresp (s_axi_rresp ),
-  .bid   (s_axi_bid   ), .bvalid(s_axi_bvalid), .bready(s_axi_bready)
+  .bid   (s_axi_bid   ), .bvalid(s_axi_bvalid), .bresp(s_axi_bresp), .bready(s_axi_bready)
 );
 
 

@@ -3,7 +3,7 @@
 // -----------------------------------------------------------------------------
 //   CSI RAW10 (4 像素/拍, i_pclk)
 //     -> bayer_bin2x2  : 2x2 合并成 RGB，1920x1080 -> 960x540，XRGB8888
-//     -> frame_buffer  : 写 DDR（三缓冲，每帧固定 BANK_BYTES），再按 1080p 时序读出
+//     -> rgb_frame_store : 写 DDR（三缓冲，每帧固定 BANK_BYTES），再按 1080p 时序读出
 //                        读出时 960 像素/行 @ o_clk(74.25M)，每行重复 2 次 -> 960x1080
 //     -> o_hdmi_clk(148.5M，与 o_clk 同源 2 倍频) 下采样：每个像素保持 2 拍
 //                        -> 1920x1080，即水平 2 倍放大
@@ -12,7 +12,7 @@
 //   帧 n 起始地址 = START_ADDR + n * BANK_BYTES（n = 0,1,2）
 //   像素 (x, y) 位于 起始地址 + (y*960 + x)*4，32bit 小端 {8'h00, R, G, B}
 //
-// 顶层和仿真 (sim/tb_v03_pipe.v) 例化的是同一个模块，保证仿真比对的就是上板的逻辑。
+// 顶层和仿真 (sim/tb_v03_pipe.sv) 例化的是同一个模块，保证仿真比对的就是上板的逻辑。
 // =============================================================================
 module cam_fb_pipe
 #(
@@ -20,6 +20,7 @@ module cam_fb_pipe
     parameter AXI_ADDR_WIDTH = 32,
     parameter START_ADDR     = 32'h0000_0000,
     parameter BANK_BYTES     = 32'h0040_0000,   // 4 MB / 帧（>= 960*540*4，4KB 对齐）
+    parameter MAX_IN_HEIGHT  = 1080,
     parameter MAX_IN_WIDTH   = 1920,             // 摄像头每行 RAW 像素数上限
     parameter MAX_OUT_WIDTH  = 960               // 缓存里每行像素数上限（= 读出行缓存深度）
 )
@@ -53,12 +54,12 @@ module cam_fb_pipe
     input               o_clk,            // 74.25 MHz
     input               o_hdmi_clk,       // 148.5 MHz，与 o_clk 同源、上升沿对齐
 
-    output reg          o_de = 1'b0,      // o_hdmi_clk 域，1920x1080
-    output reg          o_hs = 1'b0,
-    output reg          o_vs = 1'b0,
-    output reg [7:0]    o_r  = 8'd0,
-    output reg [7:0]    o_g  = 8'd0,
-    output reg [7:0]    o_b  = 8'd0,
+    output reg          o_de,      // o_hdmi_clk 域，1920x1080
+    output reg          o_hs,
+    output reg          o_vs,
+    output reg [7:0]    o_r,
+    output reg [7:0]    o_g,
+    output reg [7:0]    o_b,
 
     // ------------------------------------------------ AXI4 主口（axi_clk 域）
     input                           axi_clk,
@@ -95,6 +96,7 @@ module cam_fb_pipe
     input  [1:0]                    rresp,
     input  [5:0]                    bid,
     input                           bvalid,
+    input  [1:0]                    bresp,
     output                          bready
 );
 
@@ -126,69 +128,38 @@ bayer_bin2x2 #(
 wire        fb_hs, fb_vs, fb_de;
 wire [31:0] fb_data;
 
-frame_buffer #(
-    .I_VID_WIDTH    (64            ),
-    .O_VID_WIDTH    (32            ),
-    .START_ADDR     (START_ADDR    ),
-    .AXI_DATA_WIDTH (AXI_DATA_WIDTH),
-    .AXI_ADDR_WIDTH (AXI_ADDR_WIDTH),
-    .WR_FIFO_DEPTH  (1024          ),
-    .RD_FIFO_DEPTH  (1024          ),
-    .BURST_LEN      (127           ),
-    .FB_NUM         (3             ),
-    .MAX_VID_WIDTH  (MAX_OUT_WIDTH ),
-    .MAX_VID_HIGHT  (540           ),
-    .BANK_BYTES     (BANK_BYTES    ),
-    .DDR_LSB_FIRST  (1             ),
-    .V_REPEAT       (2             )
-) u_frame_buffer (
-    .axi_clk        (axi_clk       ),
-    .rst_n          (rst_n         ),
-
-    .i_clk          (i_pclk        ),
-    .i_vs           (bin_vs        ),
-    .i_de           (bin_valid     ),
-    .vin            (bin_data      ),
-
-    .o_clk          (o_clk         ),
-    .o_hs           (fb_hs         ),
-    .o_vs           (fb_vs         ),
-    .o_de           (fb_de         ),
-    .vout           (fb_data       ),
-
-    .H_FRONT_PORCH  (H_FRONT_PORCH ),
-    .H_SYNC         (H_SYNC        ),
-    .H_VALID        (H_VALID       ),
-    .H_BACK_PORCH   (H_BACK_PORCH  ),
-    .V_FRONT_PORCH  (V_FRONT_PORCH ),
-    .V_SYNC         (V_SYNC        ),
-    .V_VALID        (V_VALID       ),
-    .V_BACK_PORCH   (V_BACK_PORCH  ),
-
-    .awid (awid ), .awaddr (awaddr ), .awlen (awlen ), .awsize (awsize ), .awburst(awburst),
-    .awprot(awprot), .awcache(awcache), .awlock(awlock), .awvalid(awvalid), .awready(awready),
-    .awcobuf(), .awapcmd(), .awallstrb(), .awqos(),
-
-    .arid (arid ), .araddr (araddr ), .arlen (arlen ), .arsize (arsize ), .arburst(arburst),
-    .arprot(arprot), .arcache(arcache), .arlock(arlock), .arvalid(arvalid), .arready(arready),
-    .arapcmd(), .arqos(),
-
-    .wdata (wdata ), .wstrb (wstrb ), .wlast (wlast ), .wvalid(wvalid), .wready(wready),
-    .rid   (rid   ), .rdata (rdata ), .rlast (rlast ), .rvalid(rvalid), .rready(rready), .rresp(rresp),
-    .bid   (bid   ), .bvalid(bvalid), .bready(bready),
-
-    .test_rd_fifo_rddata(), .test_wdata(), .test_rdata(), .test_BURST_LEN()
+// AXI attributes are constant for aligned 128-bit INCR transfers.
+assign awid=0, arid=0, awsize=4, arsize=4, awburst=1, arburst=1;
+assign awcache=3, arcache=3, awprot=2, arprot=2, awlock=0, arlock=0;
+rgb_frame_store #(
+    .WIDTH(MAX_OUT_WIDTH), .HEIGHT(MAX_IN_HEIGHT/2),
+    .ADDR_WIDTH(AXI_ADDR_WIDTH), .START_ADDR(START_ADDR), .BANK_BYTES(BANK_BYTES)
+) u_store (
+    .rst_n(rst_n), .i_clk(i_pclk), .i_vs(bin_vs), .i_valid(bin_valid), .i_data(bin_data),
+    .o_clk(o_clk), .H_FRONT_PORCH(H_FRONT_PORCH), .H_SYNC(H_SYNC), .H_VALID(H_VALID),
+    .H_BACK_PORCH(H_BACK_PORCH), .V_FRONT_PORCH(V_FRONT_PORCH), .V_SYNC(V_SYNC),
+    .V_VALID(V_VALID), .V_BACK_PORCH(V_BACK_PORCH),
+    .o_de(fb_de), .o_hs(fb_hs), .o_vs(fb_vs), .o_data(fb_data),
+    .axi_clk(axi_clk), .awaddr(awaddr), .awlen(awlen), .awvalid(awvalid), .awready(awready),
+    .wdata(wdata), .wstrb(wstrb), .wlast(wlast), .wvalid(wvalid), .wready(wready),
+    .bvalid(bvalid), .bresp(bresp), .bready(bready),
+    .araddr(araddr), .arlen(arlen), .arvalid(arvalid), .arready(arready),
+    .rdata(rdata), .rlast(rlast), .rvalid(rvalid), .rresp(rresp), .rready(rready)
 );
 
 // ---------------------------------------------------------------- 2 倍频下采样 = 水平 2 倍
 // o_clk 与 o_hdmi_clk 同源（USER_PLL 的 /40 和 /20 输出），每个 o_clk 像素被采到 2 次。
 always @(posedge o_hdmi_clk) begin
+    if (!rst_n) begin
+        o_de <= 0; o_hs <= 0; o_vs <= 0; o_r <= 0; o_g <= 0; o_b <= 0;
+    end else begin
     o_de <= fb_de;
     o_hs <= fb_hs;
     o_vs <= fb_vs;
     o_r  <= fb_data[23:16];
     o_g  <= fb_data[15: 8];
     o_b  <= fb_data[ 7: 0];
+    end
 end
 
 endmodule

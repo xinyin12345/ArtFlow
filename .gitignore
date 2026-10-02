@@ -18,3 +18,5 @@ ooc/
 /sim/*.png
 /sim/*.log
 /sim/transcript
+/work/
+__pycache__/
