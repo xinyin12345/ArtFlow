@@ -1,6 +1,6 @@
 # ArtFlow v03 — Codex 修订版
 
-本目录以 Claude v03 的 `febbada` 为基线。原工程未修改。本版保留 2×2 Bayer 合并与白平衡算法，重新实现活动视频路径的 DDR 帧生命周期管理。
+本目录以 Claude v03 的 `febbada` 为基线。原工程未修改。上一版事务安全三缓冲已保存为 `f6f2388`，本轮改进为后续独立提交；合并说明见 `merge_to_fpga.md`。本版保留 2×2 Bayer 合并与白平衡算法，重新实现活动视频路径的 DDR 帧生命周期管理。
 
 ## 当前数据流
 
@@ -29,6 +29,10 @@ CSI RAW10 → `bayer_bin2x2` → `rgb_frame_store` → 水平/竖直各重复两
 7. 读侧在显示帧请求时固定一个已发布 bank，直到最后一个 R beat 完成才释放。写侧避开最新完整帧与正在读的 bank。
 8. 数据携带 32 位显示帧编号。显示帧切换后，迟到的旧编号数据丢弃，不混入当前帧；已发出的 AR 保持到握手，已接受的 R 突发正常收完。
 
+捕获计数和显示 epoch 在源时钟域注册为 Gray 码，再经目的域两级同步；完成 toggle 经三级同步，坏帧标志经两级同步。写侧只在完成通知可见后使用最终计数和坏帧标志，源端在下一次许可前保持它们稳定。计数在新捕获开始时清零可能跳变多位，因此不得把运行中的计数解码当作完成信息使用。
+
+帧缓存三个时钟域改为异步复位断言、三级同步释放。全局复位必须同时复位 AXI 主从两端；摄像头帧同步和显示帧同步都不触发 AXI 复位。只复位主机、让从机继续旧事务不属于该接口约定。
+
 这里使用“保留最新完整帧”的策略，允许跳过摄像头帧和重复显示完整帧，不承诺逐帧无损录像。
 
 ## 启动和拥塞行为
@@ -43,6 +47,8 @@ CSI RAW10 → `bayer_bin2x2` → `rgb_frame_store` → 水平/竖直各重复两
 
 这是针对当前固定分辨率的视频通路，不是通用 AXI DMA。`MAX_IN_HEIGHT` 已增加为显式参数。存储宽度必须为偶数，像素总数为 4 的倍数；bank 足够大且 4 KB 对齐；起始地址 16 字节对齐；显示有效区必须与配置的二倍放大尺寸一致。运行期间不要改变增益、尺寸和 Bayer 配置。
 
+`ArtFlow_top.v` 是实际配置的唯一编辑入口。`v03_config.py` 严格读取字面量，不支持的表达式、重复/缺失声明均报错；Python golden、单测、端到端及原生入口全部使用该配置。包装器对 128 位 AXI、输入宽度为 4 的倍数、偶数高度、输出宽度关系和显示总时序增加仿真 guard；帧缓存另检查地址位宽及 FIFO 深度为 2 的幂。
+
 `CFG_BAYER`、`CFG_PIX_REV` 保留原默认值。仿真不能确认真实传感器上的排列，请用红/绿物体及细竖边上板确认。74.25 MHz 与 148.5 MHz 必须维持工程 PLL 的同源关系。
 
 ## 回归
@@ -51,14 +57,16 @@ CSI RAW10 → `bayer_bin2x2` → `rgb_frame_store` → 水平/竖直各重复两
 
 ```powershell
 python -B tools/run_v03.py          # 完整的小分辨率/压力回归
-python -B tools/run_v03.py --full   # 再加真实 1080p60 的全分辨率测试
+python -B tools/run_v03.py --full   # 再加高负载和 30 fps 输入的真实 1080p60 测试
 ```
 
-Python 入口的生成物位于 `work/regression/`，包括每个用例日志、抓帧、Python 对比图和 `summary.json`。失败进程、仿真 Error/Fatal、FAIL 或缺失 PASS 都使总回归失败。
+Python 入口的生成物位于 `work/regression_v2/`，包括每个用例日志、抓帧、Python 对比图和 `summary.json`；上一版的 `work/regression/` 保留。失败进程、仿真 Warning/Error/Fatal、FAIL 或缺失 PASS 都使正向用例失败。负向用例必须出现指定 Fatal，以证明检查器能拒绝已知错误。
 
-Questa 中先 `cd D:/work/CodexWork/ArtFlow/v03`，再执行 `do sim/run_v03.do full`。该入口复用当前仿真会话，输出位于 `work/questa_<时间戳>/`；支持 `smoke` 冒烟模式。若从工程目录以外执行，先设置 `V03_PROJECT_ROOT` 环境变量。单会话许可证下，不要同时运行 Python 回归与另一场 Questa 仿真。
+Questa 中先 `cd D:/work/CodexWork/ArtFlow/v03`，再执行 `do sim/run_v03.do full`。该入口复用当前仿真会话，输出位于 `work/questa_v2_<时间戳>/`；支持 `smoke` 冒烟模式。两入口共用 Python 的参数和正向用例注册表，负向用例仅由 Python 批量入口运行。若从工程目录以外执行，先设置 `V03_PROJECT_ROOT` 环境变量。单会话许可证下，不要同时运行 Python 回归与另一场 Questa 仿真。
 
 新增测试 `tb_v03_checked.sv` 每帧更换图像，逐像素检查同一输出帧只来自同一输入图像；每次发布都检查 DDR 内容，强制三个 bank 都经过验证。还检查 AXI 五通道反压稳定性、4 KB 边界、WLAST、未知值、B 前不发布及 RLAST 前不释放。
+
+本轮补入 32 位绝对输入帧号、帧序/冻结检查、正常停流重复与重启、截断、BRESP/RRESP 错误、全局复位及 AR 跨帧长等待。压力期错误像素不会被笼统忽略：只允许正确前缀后全黑尾部。完整用例清单与验证器反向检查见 `case_list.md`。
 
 旧 `tb_v03_pipe.sv`、`axi_mem_model.sv` 仅保留作参考，不是当前验证入口。最新实测结论见 `verification_results.md`。
 
@@ -71,3 +79,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools/run_efinity.ps1 -Flow 
 ```
 
 脚本默认使用本机 `D:\soft\Efinity\2026.1`，可通过 `-EfinityRoot` 指定安装目录。输出位于 `work/efinity_out/`。脚本只编译，不烧录硬件。
+
+实现完成后脚本自动做 Gray CDC 路由审计。Efinity 2026.1 在现有 `set_clock_groups` 下会省略这些路径，因此审计使用生成的 `work/video_cdc_audit.sdc`，仅在此副本中去掉时钟组排除规则；正常实现与 setup/hold 报告仍使用原 `ArtFlow.sdc`。审计强制两组各 32 个端点、skew ≤2.5 ns、慢角数据延迟 ≤2.5 ns；不把端点为空或 NA 的报告判作通过。只重做审计可运行 `-Flow sta_tclsh`。
+
+此项审计是路由后的预算门禁，不是让布线器主动优化跨域 skew 的保证，也不是全工程形式化 CDC 证明。更改时钟、同步结构、SDC 时必须重新审查预算和约束。

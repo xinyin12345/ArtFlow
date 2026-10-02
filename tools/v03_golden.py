@@ -22,9 +22,10 @@ import random
 import struct
 import sys
 import zlib
+from v03_config import load_config, gains as config_gains
 
-# 与 ArtFlow_top.v 里的 CFG_*_GAIN 默认值一致（仿真 TB 用同样的值）
-GAINS = {"r": 0x0118, "g": 0x00FF, "b": 0x015E}
+# 直接读取 ArtFlow_top.v 的实际增益，回归 TB 由同一配置入口传参。
+GAINS = config_gains(load_config())
 
 # Bayer 相位：R 所在 (行, 列)
 BAYER_NAMES = ["RGGB", "GRBG", "GBRG", "BGGR"]
@@ -171,16 +172,24 @@ def cmd_gen(a):
 
 def cmd_check(a):
     exp = []
-    with open(f"{a.out}_exp_p{a.phase}_f{a.frame}.hex" if a.frame >= 0 else f"{a.out}_exp_p{a.phase}.hex") as f:
+    with open(f"{a.out}_exp_p{a.phase}_f{a.frame % 8}.hex" if a.frame >= 0 else f"{a.out}_exp_p{a.phase}.hex") as f:
         vals = [int(s, 16) for s in f.read().split()]
     ew, eh = a.w // 2, a.h // 2
+    if len(vals) != ew * eh or any(v > 0xffffff for v in vals):
+        raise ValueError('Invalid golden image length/range')
+    # Eight reserved RGB pixels carry all 32 frame-id bits (one RAW nibble each).
+    if a.frame >= 0:
+        for n in range(8):
+            value = 64 + ((a.frame >> (4*n)) & 15) * 48
+            r,g,b = (min(255, value * GAINS[k] >> 10) for k in ('r','g','b'))
+            vals[n] = (r << 16) | (g << 8) | b
     for y in range(eh):
         exp.append([((v >> 16) & 255, (v >> 8) & 255, v & 255) for v in vals[y * ew:(y + 1) * ew]])
     exp_up = upscale2(exp)
 
     with open(f"{a.out}_cap.hex") as f:
         cv = [int(s, 16) for s in f.read().split()]
-    if len(cv) != a.w * a.h:
+    if len(cv) != a.w * a.h or any(not 0 <= v <= 0xffffff for v in cv):
         print(f"check: FAIL  captured {len(cv)} pixels, expected {a.w*a.h}")
         return 1
     cap = [[((v >> 16) & 255, (v >> 8) & 255, v & 255) for v in cv[y * a.w:(y + 1) * a.w]]

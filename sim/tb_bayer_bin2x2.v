@@ -7,6 +7,7 @@
 // =============================================================================
 `timescale 1ns/1ps
 module tb_bayer_bin2x2;
+parameter [15:0] GAIN_R=16'h0118, GAIN_G=16'h00ff, GAIN_B=16'h015e;
 
 localparam W = 64, H = 16;
 localparam OW = W / 2, OH = H / 2;
@@ -25,7 +26,7 @@ wire [63:0] o_data;
 bayer_bin2x2 #(.MAX_IN_WIDTH(W)) dut (
     .clk(clk), .rstn(rstn),
     .i_bayer(bayer), .i_pix_rev(pix_rev),
-    .i_gain_r(16'h0118), .i_gain_g(16'h00FF), .i_gain_b(16'h015E),
+    .i_gain_r(GAIN_R), .i_gain_g(GAIN_G), .i_gain_b(GAIN_B),
     .i_vs(vs), .i_hs(hs), .i_valid(valid), .i_data(data),
     .o_vs(o_vs), .o_hs(o_hs), .o_valid(o_valid), .o_data(o_data));
 
@@ -34,12 +35,18 @@ reg [23:0] exp0 [0:OW*OH-1];
 reg [23:0] exp1 [0:OW*OH-1];
 reg [23:0] exp2 [0:OW*OH-1];
 reg [23:0] exp3 [0:OW*OH-1];
+integer vector_n;
 initial begin
     $readmemh("unit_raw.hex",    raw);
     $readmemh("unit_exp_p0.hex", exp0);
     $readmemh("unit_exp_p1.hex", exp1);
     $readmemh("unit_exp_p2.hex", exp2);
     $readmemh("unit_exp_p3.hex", exp3);
+    for (vector_n=0;vector_n<W*H;vector_n=vector_n+1)
+        if ((^raw[vector_n]) === 1'bx) $fatal(1,"Invalid/missing RAW vector at %0d",vector_n);
+    for (vector_n=0;vector_n<OW*OH;vector_n=vector_n+1)
+        if ((^{exp0[vector_n],exp1[vector_n],exp2[vector_n],exp3[vector_n]}) === 1'bx)
+            $fatal(1,"Invalid/missing golden vector at %0d",vector_n);
 end
 
 function [23:0] expect;
@@ -73,7 +80,8 @@ always @(posedge clk) begin
             if (idx >= OW * OH) begin
                 errors = errors + 1;
                 if (errors < 10) $display("ERROR: extra pixel (bayer=%0d rev=%0d)", bayer, pix_rev);
-            end else if (o_data[p*32 +: 32] !== {8'h00, expect(idx)}) begin
+            end else if ((^o_data[p*32 +: 32]) === 1'bx || (^expect(idx)) === 1'bx ||
+                         o_data[p*32 +: 32] !== {8'h00, expect(idx)}) begin
                 errors = errors + 1;
                 if (errors < 10)
                     $display("ERROR: bayer=%0d rev=%0d pix(%0d,%0d) got %h exp %h", bayer, pix_rev,

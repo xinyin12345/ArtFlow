@@ -12,7 +12,7 @@
 //   帧 n 起始地址 = START_ADDR + n * BANK_BYTES（n = 0,1,2）
 //   像素 (x, y) 位于 起始地址 + (y*960 + x)*4，32bit 小端 {8'h00, R, G, B}
 //
-// 顶层和仿真 (sim/tb_v03_pipe.sv) 例化的是同一个模块，保证仿真比对的就是上板的逻辑。
+// 顶层和仿真 (sim/tb_v03_checked.sv) 例化同一个模块。
 // =============================================================================
 module cam_fb_pipe
 #(
@@ -99,6 +99,20 @@ module cam_fb_pipe
     input  [1:0]                    bresp,
     output                          bready
 );
+
+// synthesis translate_off
+initial begin
+    if (AXI_DATA_WIDTH != 128 || MAX_IN_WIDTH < 4 || MAX_IN_WIDTH%4 != 0 ||
+        MAX_IN_HEIGHT < 2 || MAX_IN_HEIGHT%2 != 0 || MAX_OUT_WIDTH != MAX_IN_WIDTH/2)
+        $fatal(1,"Invalid cam_fb_pipe configuration: fixed 128-bit AXI / 2x geometry required");
+end
+always @(posedge o_clk) if(rst_n) begin
+    if (H_VALID != MAX_OUT_WIDTH || V_VALID != MAX_IN_HEIGHT ||
+        H_SYNC+H_BACK_PORCH+H_VALID+H_FRONT_PORCH > 8191 ||
+        V_SYNC+V_BACK_PORCH+V_VALID+V_FRONT_PORCH > 8191 || H_SYNC==0 || V_SYNC==0)
+        $fatal(1,"Video timing does not match frame-store geometry");
+end
+// synthesis translate_on
 
 // ---------------------------------------------------------------- 2x2 合并
 wire        bin_vs, bin_valid;

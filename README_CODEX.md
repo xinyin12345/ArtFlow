@@ -1,10 +1,15 @@
 # ArtFlow v03 修订工程
 
-从本目录的 `ArtFlow.xml` 打开完整工程。
+从本目录 ArtFlow.xml 打开工程。所有开发在 v03 分支；上一版已单独保存为 f6f2388，本轮改进另作后续提交。FPGA 原工程未修改。
 
-- 改动与设计：`doc/v03_notes.md`
-- 实测结果与限制：`doc/verification_results.md`
-- 仿真：`python -B tools/run_v03.py --full`
-- Efinity：`powershell -NoProfile -ExecutionPolicy Bypass -File tools/run_efinity.ps1 -Flow compile`
+- [设计与配置](doc/v03_notes.md)
+- [修改与实际验证结果](doc/verification_results.md)
+- [合并到 FPGA 工程](doc/merge_to_fpga.md)
+- [验证计划](doc/verification_plan.md)、[功能映射](doc/feature_list.md)、[用例表](doc/case_list.md)
 
-基线为 Claude v03 `febbada`。修订在此副本内完成；原 Claude 工程及 FPGA 工程未改动。旧 frame_buffer 控制器保留为参考，新顶层使用 rgb_frame_store。
+```powershell
+python -B tools/run_v03.py --full
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/run_efinity.ps1 -Flow compile
+```
+
+ArtFlow_top.v 为仿真与上板参数的唯一配置源。生成物位于 work/；Git 保留源码、脚本及 doc/verification/ 验证摘要。Efinity 脚本完成实现后自动执行 CDC 路由审计，不下载硬件。

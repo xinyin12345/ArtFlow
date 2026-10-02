@@ -1,0 +1,489 @@
+=== config [work/regression_v2] ===
+config: PASS (gain propagation, comments, duplicate/missing/expression/overflow/geometry)
+
+=== gamma [work/regression_gamma_fix] ===
+# === tb_gamma_lut PASS  (22258 cycles checked) ===
+# Errors: 0, Warnings: 0
+
+=== pattern [work/regression_v2] ===
+# === tb_test_pattern PASS  (24302 cycles checked) ===
+# Errors: 0, Warnings: 0
+
+=== bayer [work/regression_v2] ===
+# === tb_bayer_bin2x2 PASS  (32 frames, 8192 pixels checked) ===
+# Errors: 0, Warnings: 0
+
+=== small_p0_r0_v0 [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=3 pixels=6400 black_tail=0 good_run=1
+# FRAME 3 sequence=8 pixels=6400 black_tail=0 good_run=2
+# FRAME 4 sequence=13 pixels=6400 black_tail=0 good_run=3
+# FRAME 5 sequence=18 pixels=6400 black_tail=0 good_run=4
+# FRAME 6 sequence=23 pixels=6400 black_tail=0 good_run=5
+# FRAME 7 sequence=28 pixels=6400 black_tail=0 good_run=6
+# COUNTERS published=34 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=0 truncated=0 pauses=0 resets=0
+# === tb_v03_checked PASS 160x40 phase=0 rev=0 vs=0 stress=0 fault=0 ===
+# Errors: 0, Warnings: 0
+
+=== check_small_p0_r0_v0 [work/regression_v2] ===
+check: PASS  160x40 = 6400 pixels identical (phase RGGB)
+
+=== small_p0_r0_v1 [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=3 pixels=6400 black_tail=0 good_run=1
+# FRAME 3 sequence=8 pixels=6400 black_tail=0 good_run=2
+# FRAME 4 sequence=13 pixels=6400 black_tail=0 good_run=3
+# FRAME 5 sequence=18 pixels=6400 black_tail=0 good_run=4
+# FRAME 6 sequence=23 pixels=6400 black_tail=0 good_run=5
+# FRAME 7 sequence=28 pixels=6400 black_tail=0 good_run=6
+# COUNTERS published=34 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=7 truncated=0 pauses=0 resets=0
+# === tb_v03_checked PASS 160x40 phase=0 rev=0 vs=1 stress=0 fault=0 ===
+# Errors: 0, Warnings: 0
+
+=== check_small_p0_r0_v1 [work/regression_v2] ===
+check: PASS  160x40 = 6400 pixels identical (phase RGGB)
+
+=== small_p0_r1_v0 [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=3 pixels=6400 black_tail=0 good_run=1
+# FRAME 3 sequence=8 pixels=6400 black_tail=0 good_run=2
+# FRAME 4 sequence=13 pixels=6400 black_tail=0 good_run=3
+# FRAME 5 sequence=18 pixels=6400 black_tail=0 good_run=4
+# FRAME 6 sequence=23 pixels=6400 black_tail=0 good_run=5
+# FRAME 7 sequence=28 pixels=6400 black_tail=0 good_run=6
+# COUNTERS published=34 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=5 truncated=0 pauses=0 resets=0
+# === tb_v03_checked PASS 160x40 phase=0 rev=1 vs=0 stress=0 fault=0 ===
+# Errors: 0, Warnings: 0
+
+=== check_small_p0_r1_v0 [work/regression_v2] ===
+check: PASS  160x40 = 6400 pixels identical (phase RGGB)
+
+=== small_p0_r1_v1 [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=3 pixels=6400 black_tail=0 good_run=1
+# FRAME 3 sequence=8 pixels=6400 black_tail=0 good_run=2
+# FRAME 4 sequence=13 pixels=6400 black_tail=0 good_run=3
+# FRAME 5 sequence=18 pixels=6400 black_tail=0 good_run=4
+# FRAME 6 sequence=23 pixels=6400 black_tail=0 good_run=5
+# FRAME 7 sequence=28 pixels=6400 black_tail=0 good_run=6
+# COUNTERS published=34 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=4 truncated=0 pauses=0 resets=0
+# === tb_v03_checked PASS 160x40 phase=0 rev=1 vs=1 stress=0 fault=0 ===
+# Errors: 0, Warnings: 0
+
+=== check_small_p0_r1_v1 [work/regression_v2] ===
+check: PASS  160x40 = 6400 pixels identical (phase RGGB)
+
+=== small_p1_r0_v0 [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=3 pixels=6400 black_tail=0 good_run=1
+# FRAME 3 sequence=8 pixels=6400 black_tail=0 good_run=2
+# FRAME 4 sequence=13 pixels=6400 black_tail=0 good_run=3
+# FRAME 5 sequence=18 pixels=6400 black_tail=0 good_run=4
+# FRAME 6 sequence=23 pixels=6400 black_tail=0 good_run=5
+# FRAME 7 sequence=28 pixels=6400 black_tail=0 good_run=6
+# COUNTERS published=34 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=6 truncated=0 pauses=0 resets=0
+# === tb_v03_checked PASS 160x40 phase=1 rev=0 vs=0 stress=0 fault=0 ===
+# Errors: 0, Warnings: 0
+
+=== check_small_p1_r0_v0 [work/regression_v2] ===
+check: PASS  160x40 = 6400 pixels identical (phase GRBG)
+
+=== small_p1_r0_v1 [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=3 pixels=6400 black_tail=0 good_run=1
+# FRAME 3 sequence=8 pixels=6400 black_tail=0 good_run=2
+# FRAME 4 sequence=13 pixels=6400 black_tail=0 good_run=3
+# FRAME 5 sequence=18 pixels=6400 black_tail=0 good_run=4
+# FRAME 6 sequence=23 pixels=6400 black_tail=0 good_run=5
+# FRAME 7 sequence=28 pixels=6400 black_tail=0 good_run=6
+# COUNTERS published=34 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=7 truncated=0 pauses=0 resets=0
+# === tb_v03_checked PASS 160x40 phase=1 rev=0 vs=1 stress=0 fault=0 ===
+# Errors: 0, Warnings: 0
+
+=== check_small_p1_r0_v1 [work/regression_v2] ===
+check: PASS  160x40 = 6400 pixels identical (phase GRBG)
+
+=== small_p1_r1_v0 [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=3 pixels=6400 black_tail=0 good_run=1
+# FRAME 3 sequence=8 pixels=6400 black_tail=0 good_run=2
+# FRAME 4 sequence=13 pixels=6400 black_tail=0 good_run=3
+# FRAME 5 sequence=18 pixels=6400 black_tail=0 good_run=4
+# FRAME 6 sequence=23 pixels=6400 black_tail=0 good_run=5
+# FRAME 7 sequence=28 pixels=6400 black_tail=0 good_run=6
+# COUNTERS published=34 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=5 truncated=0 pauses=0 resets=0
+# === tb_v03_checked PASS 160x40 phase=1 rev=1 vs=0 stress=0 fault=0 ===
+# Errors: 0, Warnings: 0
+
+=== check_small_p1_r1_v0 [work/regression_v2] ===
+check: PASS  160x40 = 6400 pixels identical (phase GRBG)
+
+=== small_p1_r1_v1 [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=3 pixels=6400 black_tail=0 good_run=1
+# FRAME 3 sequence=8 pixels=6400 black_tail=0 good_run=2
+# FRAME 4 sequence=13 pixels=6400 black_tail=0 good_run=3
+# FRAME 5 sequence=18 pixels=6400 black_tail=0 good_run=4
+# FRAME 6 sequence=23 pixels=6400 black_tail=0 good_run=5
+# FRAME 7 sequence=28 pixels=6400 black_tail=0 good_run=6
+# COUNTERS published=34 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=7 truncated=0 pauses=0 resets=0
+# === tb_v03_checked PASS 160x40 phase=1 rev=1 vs=1 stress=0 fault=0 ===
+# Errors: 0, Warnings: 0
+
+=== check_small_p1_r1_v1 [work/regression_v2] ===
+check: PASS  160x40 = 6400 pixels identical (phase GRBG)
+
+=== small_p2_r0_v0 [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=3 pixels=6400 black_tail=0 good_run=1
+# FRAME 3 sequence=8 pixels=6400 black_tail=0 good_run=2
+# FRAME 4 sequence=13 pixels=6400 black_tail=0 good_run=3
+# FRAME 5 sequence=18 pixels=6400 black_tail=0 good_run=4
+# FRAME 6 sequence=23 pixels=6400 black_tail=0 good_run=5
+# FRAME 7 sequence=28 pixels=6400 black_tail=0 good_run=6
+# COUNTERS published=34 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=6 truncated=0 pauses=0 resets=0
+# === tb_v03_checked PASS 160x40 phase=2 rev=0 vs=0 stress=0 fault=0 ===
+# Errors: 0, Warnings: 0
+
+=== check_small_p2_r0_v0 [work/regression_v2] ===
+check: PASS  160x40 = 6400 pixels identical (phase GBRG)
+
+=== small_p2_r0_v1 [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=3 pixels=6400 black_tail=0 good_run=1
+# FRAME 3 sequence=8 pixels=6400 black_tail=0 good_run=2
+# FRAME 4 sequence=13 pixels=6400 black_tail=0 good_run=3
+# FRAME 5 sequence=18 pixels=6400 black_tail=0 good_run=4
+# FRAME 6 sequence=23 pixels=6400 black_tail=0 good_run=5
+# FRAME 7 sequence=28 pixels=6400 black_tail=0 good_run=6
+# COUNTERS published=34 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=6 truncated=0 pauses=0 resets=0
+# === tb_v03_checked PASS 160x40 phase=2 rev=0 vs=1 stress=0 fault=0 ===
+# Errors: 0, Warnings: 0
+
+=== check_small_p2_r0_v1 [work/regression_v2] ===
+check: PASS  160x40 = 6400 pixels identical (phase GBRG)
+
+=== small_p2_r1_v0 [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=3 pixels=6400 black_tail=0 good_run=1
+# FRAME 3 sequence=8 pixels=6400 black_tail=0 good_run=2
+# FRAME 4 sequence=13 pixels=6400 black_tail=0 good_run=3
+# FRAME 5 sequence=18 pixels=6400 black_tail=0 good_run=4
+# FRAME 6 sequence=23 pixels=6400 black_tail=0 good_run=5
+# FRAME 7 sequence=28 pixels=6400 black_tail=0 good_run=6
+# COUNTERS published=34 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=11 truncated=0 pauses=0 resets=0
+# === tb_v03_checked PASS 160x40 phase=2 rev=1 vs=0 stress=0 fault=0 ===
+# Errors: 0, Warnings: 0
+
+=== check_small_p2_r1_v0 [work/regression_v2] ===
+check: PASS  160x40 = 6400 pixels identical (phase GBRG)
+
+=== small_p2_r1_v1 [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=3 pixels=6400 black_tail=0 good_run=1
+# FRAME 3 sequence=8 pixels=6400 black_tail=0 good_run=2
+# FRAME 4 sequence=13 pixels=6400 black_tail=0 good_run=3
+# FRAME 5 sequence=18 pixels=6400 black_tail=0 good_run=4
+# FRAME 6 sequence=23 pixels=6400 black_tail=0 good_run=5
+# FRAME 7 sequence=28 pixels=6400 black_tail=0 good_run=6
+# COUNTERS published=34 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=5 truncated=0 pauses=0 resets=0
+# === tb_v03_checked PASS 160x40 phase=2 rev=1 vs=1 stress=0 fault=0 ===
+# Errors: 0, Warnings: 0
+
+=== check_small_p2_r1_v1 [work/regression_v2] ===
+check: PASS  160x40 = 6400 pixels identical (phase GBRG)
+
+=== small_p3_r0_v0 [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=3 pixels=6400 black_tail=0 good_run=1
+# FRAME 3 sequence=8 pixels=6400 black_tail=0 good_run=2
+# FRAME 4 sequence=13 pixels=6400 black_tail=0 good_run=3
+# FRAME 5 sequence=18 pixels=6400 black_tail=0 good_run=4
+# FRAME 6 sequence=23 pixels=6400 black_tail=0 good_run=5
+# FRAME 7 sequence=28 pixels=6400 black_tail=0 good_run=6
+# COUNTERS published=34 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=4 truncated=0 pauses=0 resets=0
+# === tb_v03_checked PASS 160x40 phase=3 rev=0 vs=0 stress=0 fault=0 ===
+# Errors: 0, Warnings: 0
+
+=== check_small_p3_r0_v0 [work/regression_v2] ===
+check: PASS  160x40 = 6400 pixels identical (phase BGGR)
+
+=== small_p3_r0_v1 [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=3 pixels=6400 black_tail=0 good_run=1
+# FRAME 3 sequence=8 pixels=6400 black_tail=0 good_run=2
+# FRAME 4 sequence=13 pixels=6400 black_tail=0 good_run=3
+# FRAME 5 sequence=18 pixels=6400 black_tail=0 good_run=4
+# FRAME 6 sequence=23 pixels=6400 black_tail=0 good_run=5
+# FRAME 7 sequence=28 pixels=6400 black_tail=0 good_run=6
+# COUNTERS published=34 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=4 truncated=0 pauses=0 resets=0
+# === tb_v03_checked PASS 160x40 phase=3 rev=0 vs=1 stress=0 fault=0 ===
+# Errors: 0, Warnings: 0
+
+=== check_small_p3_r0_v1 [work/regression_v2] ===
+check: PASS  160x40 = 6400 pixels identical (phase BGGR)
+
+=== small_p3_r1_v0 [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=3 pixels=6400 black_tail=0 good_run=1
+# FRAME 3 sequence=8 pixels=6400 black_tail=0 good_run=2
+# FRAME 4 sequence=13 pixels=6400 black_tail=0 good_run=3
+# FRAME 5 sequence=18 pixels=6400 black_tail=0 good_run=4
+# FRAME 6 sequence=23 pixels=6400 black_tail=0 good_run=5
+# FRAME 7 sequence=28 pixels=6400 black_tail=0 good_run=6
+# COUNTERS published=34 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=8 truncated=0 pauses=0 resets=0
+# === tb_v03_checked PASS 160x40 phase=3 rev=1 vs=0 stress=0 fault=0 ===
+# Errors: 0, Warnings: 0
+
+=== check_small_p3_r1_v0 [work/regression_v2] ===
+check: PASS  160x40 = 6400 pixels identical (phase BGGR)
+
+=== small_p3_r1_v1 [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=3 pixels=6400 black_tail=0 good_run=1
+# FRAME 3 sequence=8 pixels=6400 black_tail=0 good_run=2
+# FRAME 4 sequence=13 pixels=6400 black_tail=0 good_run=3
+# FRAME 5 sequence=18 pixels=6400 black_tail=0 good_run=4
+# FRAME 6 sequence=23 pixels=6400 black_tail=0 good_run=5
+# FRAME 7 sequence=28 pixels=6400 black_tail=0 good_run=6
+# COUNTERS published=34 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=7 truncated=0 pauses=0 resets=0
+# === tb_v03_checked PASS 160x40 phase=3 rev=1 vs=1 stress=0 fault=0 ===
+# Errors: 0, Warnings: 0
+
+=== check_small_p3_r1_v1 [work/regression_v2] ===
+check: PASS  160x40 = 6400 pixels identical (phase BGGR)
+
+=== stress_31 [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=30720 black_tail=0 good_run=0
+# FRAME 2 sequence=1 pixels=30720 black_tail=0 good_run=1
+# FRAME 3 sequence=4 pixels=30720 black_tail=0 good_run=2
+# FRAME 4 sequence=4 pixels=30720 black_tail=0 good_run=3
+# FRAME 5 sequence=4 pixels=30720 black_tail=0 good_run=4
+# FRAME 6 sequence=4 pixels=30720 black_tail=0 good_run=5
+# FRAME 7 sequence=4 pixels=30720 black_tail=0 good_run=6
+# FRAME 8 sequence=4 pixels=30720 black_tail=1 good_run=0
+# FRAME 9 sequence=-1 pixels=30720 black_tail=0 good_run=0
+# FRAME 10 sequence=-1 pixels=30720 black_tail=0 good_run=0
+# FRAME 11 sequence=-1 pixels=30720 black_tail=0 good_run=0
+# FRAME 12 sequence=-1 pixels=30720 black_tail=0 good_run=0
+# FRAME 13 sequence=-1 pixels=30720 black_tail=0 good_run=0
+# FRAME 14 sequence=-1 pixels=30720 black_tail=0 good_run=0
+# FRAME 15 sequence=34 pixels=30720 black_tail=0 good_run=1
+# FRAME 16 sequence=37 pixels=30720 black_tail=0 good_run=2
+# FRAME 17 sequence=39 pixels=30720 black_tail=0 good_run=3
+# FRAME 18 sequence=42 pixels=30720 black_tail=0 good_run=4
+# FRAME 19 sequence=45 pixels=30720 black_tail=0 good_run=5
+# FRAME 20 sequence=47 pixels=30720 black_tail=0 good_run=6
+# COUNTERS published=38 rejected=1 dropped=12 overflow=1 underflow=8 banks=111 updates=8 repeats=4 black=7 tails=1 B_errors=0 R_errors=0 AR_stall=200039 truncated=0 pauses=0 resets=0
+# === tb_v03_checked PASS 320x96 phase=0 rev=0 vs=0 stress=1 fault=0 ===
+# Errors: 0, Warnings: 0
+
+=== check_stress_31 [work/regression_v2] ===
+check: PASS  320x96 = 30720 pixels identical (phase RGGB)
+
+=== stress_73 [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=30720 black_tail=0 good_run=0
+# FRAME 2 sequence=1 pixels=30720 black_tail=0 good_run=1
+# FRAME 3 sequence=4 pixels=30720 black_tail=0 good_run=2
+# FRAME 4 sequence=4 pixels=30720 black_tail=0 good_run=3
+# FRAME 5 sequence=4 pixels=30720 black_tail=0 good_run=4
+# FRAME 6 sequence=4 pixels=30720 black_tail=0 good_run=5
+# FRAME 7 sequence=4 pixels=30720 black_tail=0 good_run=6
+# FRAME 8 sequence=4 pixels=30720 black_tail=1 good_run=0
+# FRAME 9 sequence=-1 pixels=30720 black_tail=0 good_run=0
+# FRAME 10 sequence=-1 pixels=30720 black_tail=0 good_run=0
+# FRAME 11 sequence=-1 pixels=30720 black_tail=0 good_run=0
+# FRAME 12 sequence=-1 pixels=30720 black_tail=0 good_run=0
+# FRAME 13 sequence=-1 pixels=30720 black_tail=0 good_run=0
+# FRAME 14 sequence=-1 pixels=30720 black_tail=0 good_run=0
+# FRAME 15 sequence=34 pixels=30720 black_tail=0 good_run=1
+# FRAME 16 sequence=37 pixels=30720 black_tail=0 good_run=2
+# FRAME 17 sequence=39 pixels=30720 black_tail=0 good_run=3
+# FRAME 18 sequence=42 pixels=30720 black_tail=0 good_run=4
+# FRAME 19 sequence=45 pixels=30720 black_tail=0 good_run=5
+# FRAME 20 sequence=47 pixels=30720 black_tail=0 good_run=6
+# COUNTERS published=38 rejected=1 dropped=12 overflow=1 underflow=8 banks=111 updates=8 repeats=4 black=7 tails=1 B_errors=0 R_errors=0 AR_stall=200042 truncated=0 pauses=0 resets=0
+# === tb_v03_checked PASS 320x96 phase=0 rev=0 vs=0 stress=1 fault=0 ===
+# Errors: 0, Warnings: 0
+
+=== check_stress_73 [work/regression_v2] ===
+check: PASS  320x96 = 30720 pixels identical (phase RGGB)
+
+=== short_burst [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=128 black_tail=0 good_run=0
+# FRAME 2 sequence=34 pixels=128 black_tail=0 good_run=1
+# FRAME 3 sequence=70 pixels=128 black_tail=0 good_run=2
+# FRAME 4 sequence=105 pixels=128 black_tail=0 good_run=3
+# FRAME 5 sequence=140 pixels=128 black_tail=0 good_run=4
+# FRAME 6 sequence=176 pixels=128 black_tail=0 good_run=5
+# FRAME 7 sequence=211 pixels=128 black_tail=0 good_run=6
+# COUNTERS published=248 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=0 truncated=0 pauses=0 resets=0
+# === tb_v03_checked PASS 16x8 phase=0 rev=0 vs=0 stress=0 fault=0 ===
+# Errors: 0, Warnings: 0
+
+=== check_short_burst [work/regression_v2] ===
+check: PASS  16x8 = 128 pixels identical (phase RGGB)
+
+=== bresp_error [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=3 pixels=6400 black_tail=0 good_run=1
+# FRAME 3 sequence=8 pixels=6400 black_tail=0 good_run=2
+# FRAME 4 sequence=13 pixels=6400 black_tail=0 good_run=3
+# FRAME 5 sequence=18 pixels=6400 black_tail=0 good_run=4
+# FRAME 6 sequence=23 pixels=6400 black_tail=0 good_run=5
+# FRAME 7 sequence=28 pixels=6400 black_tail=0 good_run=6
+# COUNTERS published=33 rejected=1 dropped=0 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=1 tails=0 B_errors=2 R_errors=0 AR_stall=4 truncated=0 pauses=0 resets=0
+# === tb_v03_checked PASS 160x40 phase=0 rev=0 vs=0 stress=0 fault=1 ===
+# Errors: 0, Warnings: 0
+
+=== check_bresp_error [work/regression_v2] ===
+check: PASS  160x40 = 6400 pixels identical (phase RGGB)
+
+=== rresp_error [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=3 pixels=6400 black_tail=0 good_run=1
+# FRAME 3 sequence=8 pixels=6400 black_tail=1 good_run=0
+# FRAME 4 sequence=13 pixels=6400 black_tail=0 good_run=1
+# FRAME 5 sequence=18 pixels=6400 black_tail=0 good_run=2
+# FRAME 6 sequence=23 pixels=6400 black_tail=0 good_run=3
+# FRAME 7 sequence=28 pixels=6400 black_tail=0 good_run=4
+# FRAME 8 sequence=33 pixels=6400 black_tail=0 good_run=5
+# FRAME 9 sequence=38 pixels=6400 black_tail=0 good_run=6
+# COUNTERS published=44 rejected=0 dropped=0 overflow=0 underflow=2 banks=111 updates=7 repeats=0 black=1 tails=1 B_errors=0 R_errors=9 AR_stall=12 truncated=0 pauses=0 resets=0
+# === tb_v03_checked PASS 160x40 phase=0 rev=0 vs=0 stress=0 fault=2 ===
+# Errors: 0, Warnings: 0
+
+=== check_rresp_error [work/regression_v2] ===
+check: PASS  160x40 = 6400 pixels identical (phase RGGB)
+
+=== camera_stop_restart [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=3 pixels=6400 black_tail=0 good_run=1
+# FRAME 3 sequence=8 pixels=6400 black_tail=0 good_run=2
+# FRAME 4 sequence=9 pixels=6400 black_tail=0 good_run=3
+# FRAME 5 sequence=9 pixels=6400 black_tail=0 good_run=4
+# FRAME 6 sequence=9 pixels=6400 black_tail=0 good_run=5
+# FRAME 7 sequence=9 pixels=6400 black_tail=0 good_run=6
+# FRAME 8 sequence=9 pixels=6400 black_tail=0 good_run=7
+# FRAME 9 sequence=9 pixels=6400 black_tail=0 good_run=8
+# FRAME 10 sequence=9 pixels=6400 black_tail=0 good_run=9
+# FRAME 11 sequence=13 pixels=6400 black_tail=0 good_run=10
+# FRAME 12 sequence=18 pixels=6400 black_tail=0 good_run=11
+# FRAME 13 sequence=23 pixels=6400 black_tail=0 good_run=12
+# FRAME 14 sequence=28 pixels=6400 black_tail=0 good_run=13
+# FRAME 15 sequence=33 pixels=6400 black_tail=0 good_run=14
+# FRAME 16 sequence=38 pixels=6400 black_tail=0 good_run=15
+# COUNTERS published=44 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=9 repeats=6 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=11 truncated=0 pauses=1 resets=0
+# === tb_v03_checked PASS 160x40 phase=0 rev=0 vs=0 stress=0 fault=3 ===
+# Errors: 0, Warnings: 0
+
+=== check_camera_stop_restart [work/regression_v2] ===
+check: PASS  160x40 = 6400 pixels identical (phase RGGB)
+
+=== truncated_frame [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=3 pixels=6400 black_tail=0 good_run=1
+# FRAME 3 sequence=8 pixels=6400 black_tail=0 good_run=2
+# FRAME 4 sequence=14 pixels=6400 black_tail=0 good_run=3
+# FRAME 5 sequence=19 pixels=6400 black_tail=0 good_run=4
+# FRAME 6 sequence=24 pixels=6400 black_tail=0 good_run=5
+# FRAME 7 sequence=29 pixels=6400 black_tail=0 good_run=6
+# COUNTERS published=34 rejected=1 dropped=0 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=9 truncated=1 pauses=0 resets=0
+# === tb_v03_checked PASS 160x40 phase=0 rev=0 vs=0 stress=0 fault=4 ===
+# Errors: 0, Warnings: 0
+
+=== check_truncated_frame [work/regression_v2] ===
+check: PASS  160x40 = 6400 pixels identical (phase RGGB)
+
+=== reset_during_write [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=3 pixels=6400 black_tail=0 good_run=1
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=13 pixels=6400 black_tail=0 good_run=1
+# FRAME 3 sequence=18 pixels=6400 black_tail=0 good_run=2
+# FRAME 4 sequence=23 pixels=6400 black_tail=0 good_run=3
+# FRAME 5 sequence=28 pixels=6400 black_tail=0 good_run=4
+# FRAME 6 sequence=33 pixels=6400 black_tail=0 good_run=5
+# FRAME 7 sequence=38 pixels=6400 black_tail=0 good_run=6
+# COUNTERS published=34 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=2 tails=0 B_errors=0 R_errors=0 AR_stall=8 truncated=0 pauses=0 resets=1
+# === tb_v03_checked PASS 160x40 phase=0 rev=0 vs=0 stress=0 fault=5 ===
+# Errors: 0, Warnings: 0
+
+=== check_reset_during_write [work/regression_v2] ===
+check: PASS  160x40 = 6400 pixels identical (phase RGGB)
+
+=== reset_during_read [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=3 pixels=6400 black_tail=0 good_run=1
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=13 pixels=6400 black_tail=0 good_run=1
+# FRAME 3 sequence=18 pixels=6400 black_tail=0 good_run=2
+# FRAME 4 sequence=23 pixels=6400 black_tail=0 good_run=3
+# FRAME 5 sequence=28 pixels=6400 black_tail=0 good_run=4
+# FRAME 6 sequence=33 pixels=6400 black_tail=0 good_run=5
+# FRAME 7 sequence=38 pixels=6400 black_tail=0 good_run=6
+# COUNTERS published=34 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=2 tails=0 B_errors=0 R_errors=0 AR_stall=6 truncated=0 pauses=0 resets=1
+# === tb_v03_checked PASS 160x40 phase=0 rev=0 vs=0 stress=0 fault=6 ===
+# Errors: 0, Warnings: 0
+
+=== check_reset_during_read [work/regression_v2] ===
+check: PASS  160x40 = 6400 pixels identical (phase RGGB)
+
+=== full_high_load [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=2073600 black_tail=0 good_run=0
+# FRAME 2 sequence=0 pixels=2073600 black_tail=0 good_run=1
+# FRAME 3 sequence=1 pixels=2073600 black_tail=0 good_run=2
+# FRAME 4 sequence=3 pixels=2073600 black_tail=0 good_run=3
+# COUNTERS published=5 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=3 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=743 truncated=0 pauses=0 resets=0
+# === tb_v03_checked PASS 1920x1080 phase=0 rev=0 vs=0 stress=0 fault=0 ===
+# Errors: 0, Warnings: 0
+
+=== check_full_high_load [work/regression_v2] ===
+check: PASS  1920x1080 = 2073600 pixels identical (phase RGGB)
+
+=== full_30fps [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=2073600 black_tail=0 good_run=0
+# FRAME 2 sequence=-1 pixels=2073600 black_tail=0 good_run=0
+# FRAME 3 sequence=0 pixels=2073600 black_tail=0 good_run=1
+# FRAME 4 sequence=0 pixels=2073600 black_tail=0 good_run=2
+# FRAME 5 sequence=1 pixels=2073600 black_tail=0 good_run=3
+# FRAME 6 sequence=1 pixels=2073600 black_tail=0 good_run=4
+# FRAME 7 sequence=2 pixels=2073600 black_tail=0 good_run=5
+# FRAME 8 sequence=2 pixels=2073600 black_tail=0 good_run=6
+# COUNTERS published=4 rejected=0 dropped=0 overflow=0 underflow=2 banks=111 updates=3 repeats=3 black=2 tails=0 B_errors=0 R_errors=0 AR_stall=1585 truncated=0 pauses=0 resets=0
+# === tb_v03_checked PASS 1920x1080 phase=0 rev=0 vs=0 stress=0 fault=0 ===
+# Errors: 0, Warnings: 0
+
+=== check_full_30fps [work/regression_v2] ===
+check: PASS  1920x1080 = 2073600 pixels identical (phase RGGB)
+
+=== negative_x_vector [work/regression_v2] ===
+# ** Fatal: Invalid/missing golden vector at 0
+# Errors: 1, Warnings: 0
+
+=== negative_missing_vector [work/regression_v2] ===
+# ** Fatal: Invalid/missing golden vector at 0
+# Errors: 1, Warnings: 1
+
+=== negative_startup [work/regression_v2] ===
+# ** Fatal: Nonblack pixel in startup/black tail
+# Errors: 1, Warnings: 0
+
+=== negative_stress [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=30720 black_tail=0 good_run=0
+# FRAME 2 sequence=1 pixels=30720 black_tail=0 good_run=1
+# ** Fatal: Display pixel mismatch sequence=4 x=20 y=0 got=123456 expected=8b7fad
+# Errors: 1, Warnings: 0
+
+=== negative_frozen [work/regression_v2] ===
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# ** Fatal: Display pixel mismatch sequence=3 x=0 y=0 got=110f15 expected=383347
+# Errors: 1, Warnings: 0
+
+=== negative_geometry [work/regression_v2] ===
+# ** Fatal: Invalid cam_fb_pipe configuration: fixed 128-bit AXI / 2x geometry required
+# Errors: 1, Warnings: 1
+
+=== negative_gamma_missing ===
+# ** Fatal: Unknown gamma output/reference; check LUT files
+# Errors: 1, Warnings: 4

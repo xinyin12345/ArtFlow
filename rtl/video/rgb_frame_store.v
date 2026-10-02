@@ -29,7 +29,9 @@ module rgb_frame_store #(
 initial begin
     if (WIDTH < 2 || WIDTH%2 != 0 || HEIGHT < 1 || (WIDTH*HEIGHT)%4 != 0 ||
         BANK_BYTES < WIDTH*HEIGHT*4 || BANK_BYTES%4096 != 0 || START_ADDR%16 != 0 ||
-        BURST_BEATS < 1 || BURST_BEATS > 256 || FIFO_DEPTH < BURST_BEATS+16)
+        ADDR_WIDTH < 12 || ADDR_WIDTH > 32 ||
+        BURST_BEATS < 1 || BURST_BEATS > 256 || FIFO_DEPTH < BURST_BEATS+16 ||
+        (FIFO_DEPTH & (FIFO_DEPTH-1)) != 0)
         $fatal(1,"Unsupported rgb_frame_store geometry/burst/bank configuration");
 end
 // synthesis translate_on
@@ -37,9 +39,18 @@ localparam WORDS = WIDTH * HEIGHT / 4;
 localparam INPUTS = WIDTH * HEIGHT / 2;
 localparam CW = $clog2(FIFO_DEPTH)+1;
 wire crst, arst, orst;
-rst_n_piple #(.DLY(3)) rc (.clk(i_clk), .rst_n_i(rst_n), .rst_n_o(crst));
-rst_n_piple #(.DLY(3)) ra (.clk(axi_clk), .rst_n_i(rst_n), .rst_n_o(arst));
-rst_n_piple #(.DLY(3)) ro (.clk(o_clk), .rst_n_i(rst_n), .rst_n_o(orst));
+video_reset_sync rc (.clk(i_clk), .rst_n(rst_n), .ready(crst));
+video_reset_sync ra (.clk(axi_clk), .rst_n(rst_n), .ready(arst));
+video_reset_sync ro (.clk(o_clk), .rst_n(rst_n), .ready(orst));
+
+function [31:0] gray_decode;
+    input [31:0] gray;
+    integer n;
+    begin
+        gray_decode[31]=gray[31];
+        for(n=30;n>=0;n=n-1) gray_decode[n]=gray_decode[n+1]^gray[n];
+    end
+endfunction
 
 // Capture grant is a toggle handshake: equality grants exactly one frame.
 reg grant = 0, capture_begin = 0, capture_done = 0;
@@ -47,6 +58,7 @@ reg grant = 0, capture_begin = 0, capture_done = 0;
 reg vs_d = 0, frame_pending = 1, capturing = 0, half_valid = 0;
 reg [63:0] half_word = 0;
 reg [31:0] input_count = 0, capture_words = 0;
+reg [31:0] capture_words_gray = 0;
 reg capture_bad = 0;
 reg [31:0] dropped_frames = 0, overflow_frames = 0;
 wire vs_edge = vs_d != i_vs;
@@ -66,7 +78,7 @@ always @(posedge i_clk or negedge crst) begin
         grant_sync <= 0; vs_d <= 0; frame_pending <= 1;
         capturing <= 0; half_valid <= 0; input_count <= 0;
         capture_begin <= 0; capture_done <= 0;
-        capture_words <= 0; capture_bad <= 0;
+        capture_words <= 0; capture_words_gray <= 0; capture_bad <= 0;
         dropped_frames <= 0; overflow_frames <= 0;
     end else begin
         grant_sync <= {grant_sync[0],grant};
@@ -83,7 +95,7 @@ always @(posedge i_clk or negedge crst) begin
                 frame_pending <= 0;
                 if (!capturing && capture_begin == grant_sync[1]) begin
                     capturing <= 1; capture_begin <= ~capture_begin;
-                    input_count <= 1; capture_words <= 0; capture_bad <= 0;
+                    input_count <= 1; capture_words <= 0; capture_words_gray <= 0; capture_bad <= 0;
                     half_word <= i_data; half_valid <= 1;
                 end else dropped_frames <= dropped_frames + 1;
             end else if (capturing) begin
@@ -94,7 +106,10 @@ always @(posedge i_clk or negedge crst) begin
                     if (cf_full) begin
                         capture_bad <= 1;
                         overflow_frames <= overflow_frames + 1;
-                    end else capture_words <= capture_words + 1;
+                    end else begin
+                        capture_words <= capture_words + 1;
+                        capture_words_gray <= ((capture_words+1)>>1) ^ (capture_words+1);
+                    end
                 end
                 if (input_count == INPUTS-1) begin
                     capturing <= 0; half_valid <= 0;
@@ -105,25 +120,30 @@ always @(posedge i_clk or negedge crst) begin
     end
 end
 
-// Display request: epoch bus remains stable for a complete video frame, and is
-// sampled only after the request toggle has crossed two synchronizer stages.
+// Registered Gray buses replace direct asynchronous binary-bus sampling.
+// Capture count is used only after the 3-stage completion toggle; the count and
+// bad flag have 2 stages and remain stable until the writer returns its grant.
 reg [31:0] display_epoch = 0;
-reg display_request = 0;
-(* async_reg = "true" *) reg [1:0] req_sync = 0, begin_sync = 0, done_sync = 0;
+reg [31:0] display_epoch_gray = 0;
+(* async_reg = "true" *) reg [31:0] epoch_meta=0, epoch_sync=0;
+(* async_reg = "true" *) reg [31:0] count_meta=0, count_sync=0;
+(* async_reg = "true" *) reg [1:0] begin_sync=0, bad_sync=0;
+(* async_reg = "true" *) reg [2:0] done_sync=0;
 reg [31:0] requested_epoch = 0;
-reg req_seen = 0, begin_seen = 0;
+reg begin_seen = 0;
+wire [31:0] completed_words = gray_decode(count_sync);
 always @(posedge axi_clk or negedge arst) begin
     if (!arst) begin
-        req_sync <= 0; begin_sync <= 0; done_sync <= 0;
-        requested_epoch <= 0; req_seen <= 0;
+        begin_sync <= 0; done_sync <= 0; bad_sync<=0;
+        epoch_meta<=0; epoch_sync<=0; count_meta<=0; count_sync<=0;
+        requested_epoch <= 0;
     end else begin
-        req_sync <= {req_sync[0],display_request};
+        epoch_meta<=display_epoch_gray; epoch_sync<=epoch_meta;
+        count_meta<=capture_words_gray; count_sync<=count_meta;
+        bad_sync<={bad_sync[0],capture_bad};
         begin_sync <= {begin_sync[0],capture_begin};
-        done_sync <= {done_sync[0],capture_done};
-        if (req_sync[1] != req_seen) begin
-            req_seen <= req_sync[1];
-            requested_epoch <= display_epoch;
-        end
+        done_sync <= {done_sync[1:0],capture_done};
+        requested_epoch <= gray_decode(epoch_sync);
     end
 end
 
@@ -137,7 +157,7 @@ reg [31:0] words_written = 0;
 reg [8:0] write_beats = 0, write_beat = 0;
 reg [ADDR_WIDTH-1:0] write_addr = 0;
 reg write_bad = 0;
-wire capture_finished = done_sync[1] == begin_seen;
+wire capture_finished = done_sync[2] == begin_seen;
 integer candidate, wanted, boundary;
 reg [1:0] free_bank;
 always @* begin
@@ -145,7 +165,7 @@ always @* begin
     for (candidate=0; candidate<3; candidate=candidate+1)
         if ((!latest_valid || candidate != latest_bank) &&
             (!read_active || candidate != read_bank)) free_bank = candidate[1:0];
-    wanted = capture_finished ? capture_words - words_written : WORDS - words_written;
+    wanted = capture_finished ? completed_words - words_written : WORDS - words_written;
     boundary = (4096 - {1'b0,write_addr[11:0]}) >> 4;
     if (wanted > BURST_BEATS) wanted = BURST_BEATS;
     if (wanted > boundary) wanted = boundary;
@@ -172,8 +192,8 @@ always @(posedge axi_clk or negedge arst) begin
             ws <= W_WAIT;
         end
         W_WAIT: begin
-            if (capture_finished && words_written == capture_words) begin
-                if (!capture_bad && !write_bad && words_written == WORDS) begin
+            if (capture_finished && words_written == completed_words) begin
+                if (!bad_sync[1] && !write_bad && words_written == WORDS) begin
                     latest_bank <= write_bank; latest_valid <= 1;
                     published_frames <= published_frames + 1;
                 end else rejected_frames <= rejected_frames + 1;
@@ -309,7 +329,7 @@ always @(posedge o_clk or negedge orst) begin
 end
 always @(posedge o_clk or negedge orst) begin
     if (!orst) begin
-        hx <= 0; vy <= 0; pixel <= 0; display_epoch <= 0; display_request <= 0;
+        hx <= 0; vy <= 0; pixel <= 0; display_epoch <= 0; display_epoch_gray <= 0;
         o_de <= 0; o_hs <= 0; o_vs <= 0; o_data <= 0;
         frame_bad <= 0; underflow_frames <= 0;
     end else begin
@@ -319,7 +339,7 @@ always @(posedge o_clk or negedge orst) begin
         end else hx <= hx+13'd1;
         if (frame_tick) begin
             display_epoch <= display_epoch + 1;
-            display_request <= ~display_request;
+            display_epoch_gray <= ((display_epoch+1)>>1) ^ (display_epoch+1);
             pixel <= 0; frame_bad <= 0;
         end
         o_de <= active;
@@ -343,4 +363,13 @@ always @(posedge o_clk)
     if (consume) line[px] <= next_pixel;
 always @(posedge o_clk)
     if (next_x < WIDTH) line_q <= line[next_x];
+endmodule
+
+// Global reset must also reset the AXI slave; camera frame boundaries never do.
+// Asynchronous assertion stops VALID immediately, deassertion is local-clock safe.
+module video_reset_sync(input clk, input rst_n, output ready);
+(* async_reg = "true" *) reg [2:0] stages=0;
+always @(posedge clk or negedge rst_n)
+    if(!rst_n) stages<=0; else stages<={stages[1:0],1'b1};
+assign ready=stages[2];
 endmodule

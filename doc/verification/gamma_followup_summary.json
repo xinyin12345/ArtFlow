@@ -1,0 +1,84 @@
+{
+  "status": "PASS",
+  "config": {
+    "MAX_HRES": 1920,
+    "MAX_VRES": 1080,
+    "HFP": 88,
+    "HSP": 44,
+    "HBP": 148,
+    "VFP": 4,
+    "VSP": 5,
+    "VBP": 36,
+    "CFG_R_GAIN": 280,
+    "CFG_G_GAIN": 255,
+    "CFG_B_GAIN": 350,
+    "CFG_BAYER": 0,
+    "CFG_PIX_REV": 0,
+    "top_sha256": "af96d998f1b6cd30f0cd2b8c231471ff29600731f2791ba6a32f6d2f82fce6af"
+  },
+  "tests": [
+    {
+      "name": "config",
+      "status": "PASS",
+      "seconds": 0.14,
+      "expected_failure": false
+    },
+    {
+      "name": "gamma",
+      "status": "PASS",
+      "seconds": 2.93,
+      "expected_failure": false,
+      "seed": 1,
+      "parameters": {
+        "OLD_FILE": "D:/work/CodexWork/ArtFlow/v03/rtl/gamma_conrrection/2P2.mem",
+        "LUT_FILE": "D:/work/CodexWork/ArtFlow/v03/rtl/gamma_conrrection/gamma_2p2_8b.mem"
+      }
+    },
+    {
+      "name": "pattern",
+      "status": "PASS",
+      "seconds": 2.88,
+      "expected_failure": false,
+      "seed": 1,
+      "parameters": {}
+    },
+    {
+      "name": "bayer",
+      "status": "PASS",
+      "seconds": 2.68,
+      "expected_failure": false,
+      "seed": 1,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350
+      }
+    },
+    {
+      "name": "small_p0",
+      "status": "PASS",
+      "seconds": 7.62,
+      "expected_failure": false,
+      "seed": 1,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 0,
+        "REV": 0,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36
+      }
+    },
+    {
+      "name": "check_small_p0",
+      "status": "PASS",
+      "seconds": 0.11,
+      "expected_failure": false
+    }
+  ]
+}

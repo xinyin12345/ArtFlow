@@ -1,0 +1,3 @@
+empty_endpoints: PASS rejected: CDC paths missing: endpoints=[0, 0], rows=2, paths=124
+missing_bit: PASS rejected: Missing slow-corner CDC bits: count_meta
+over_budget: PASS rejected: CDC route exceeds 2.5 ns skew/data-delay budget

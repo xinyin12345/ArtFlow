@@ -1,97 +1,162 @@
 #!/usr/bin/env python3
-"""Reproducible Questa regression. All generated files go under work/regression.
-Nonzero process status, assertion/error/fatal, FAIL, or missing PASS fails the run.
-"""
+"""Single regression registry for batch Python and native Questa entry points."""
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import re
 import subprocess
 import sys
 import time
+from v03_config import load_config
+ROOT=Path(__file__).resolve().parents[1]
+RUN=ROOT/'work/regression_v2'
+SOURCES=['rtl/frame_buffer/DC_FIFO.v','rtl/frame_buffer/rst_n_piple.v',
+ 'rtl/video/bayer_bin2x2.v','rtl/video/rgb_frame_store.v','rtl/video/cam_fb_pipe.v',
+ 'rtl/true_dual_port_ram.v','rtl/gamma_conrrection/gamma_correction.v','rtl/gamma_conrrection/gamma_lut.v',
+ 'rtl/video/test_pattern.v','sim/tb_gamma_lut.v','sim/tb_test_pattern.v','sim/tb_bayer_bin2x2.v',
+ 'sim/axi_memory_checked.sv','sim/tb_v03_checked.sv','sim/tb_v03_params.sv']
+ERROR=re.compile(r'\*\* (?:Error|Fatal|Warning)\b|\bFAIL\b|(?:Errors|Warnings):\s*[1-9]')
 
-ROOT = Path(__file__).resolve().parents[1]
-RUN = ROOT / 'work' / 'regression'
-SOURCES = ['rtl/frame_buffer/DC_FIFO.v', 'rtl/frame_buffer/rst_n_piple.v',
-           'rtl/video/bayer_bin2x2.v', 'rtl/video/rgb_frame_store.v',
-           'rtl/video/cam_fb_pipe.v', 'rtl/true_dual_port_ram.v',
-           'rtl/gamma_conrrection/gamma_correction.v', 'rtl/gamma_conrrection/gamma_lut.v',
-           'rtl/video/test_pattern.v', 'sim/tb_gamma_lut.v', 'sim/tb_test_pattern.v',
-           'sim/tb_bayer_bin2x2.v', 'sim/axi_memory_checked.sv', 'sim/tb_v03_checked.sv']
+def command(args,name,required=None,timeout=1200,expected_error=None):
+ start=time.time()
+ r=subprocess.run([str(a) for a in args],cwd=RUN,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=timeout)
+ output=r.stdout.decode('utf-8',errors='replace')
+ (RUN/f'{name}.log').write_text(output,encoding='utf-8')
+ if expected_error:
+  passed=expected_error in output and '** Fatal:' in output and ' PASS ' not in output
+ else:
+  passed=r.returncode==0 and not ERROR.search(output) and (not required or required in output)
+ print(f'{name}: {"PASS" if passed else "FAIL"} ({time.time()-start:.1f}s)',flush=True)
+ if not passed:
+  print(output[-12000:],flush=True);raise RuntimeError(name)
+ return dict(name=name,status='PASS',seconds=round(time.time()-start,2),
+             expected_failure=bool(expected_error))
 
-def command(args, name, required=None, timeout=900):
-    start = time.time()
-    r = subprocess.run([str(a) for a in args], cwd=RUN, stdout=subprocess.PIPE,
-                       stderr=subprocess.STDOUT, timeout=timeout)
-    output = r.stdout.decode('utf-8', errors='replace')
-    (RUN / f'{name}.log').write_text(output, encoding='utf-8')
-    failed = r.returncode != 0 or re.search(r'\*\* (?:Error|Fatal)\b|\bFAIL\b|Errors:\s*[1-9]', output)
-    if required and required not in output:
-        failed = True
-    print(f'{name}: {"FAIL" if failed else "PASS"} ({time.time()-start:.1f}s)', flush=True)
-    if failed:
-        print(output[-10000:], flush=True)
-        raise RuntimeError(name)
-    return dict(name=name, status='PASS', seconds=round(time.time()-start, 2))
+def config_params(c):
+ return {**{f'GAIN_{k}':c[f'CFG_{k}_GAIN'] for k in 'RGB'},
+  'PHASE':c['CFG_BAYER'],'REV':c['CFG_PIX_REV'],
+  **{n:c[n]//2 for n in ('HFP','HSP','HBP')},**{n:c[n] for n in ('VFP','VSP','VBP')}}
 
-def gen(w, h, prefix, frames=8):
-    command([sys.executable, '-B', ROOT/'tools/v03_golden.py', 'gen', '--w', w,
-             '--h', h, '--out', prefix, '--frames', frames], f'gen_{prefix}')
+def plan(c,smoke=False,full=False):
+ gains={f'GAIN_{k}':c[f'CFG_{k}_GAIN'] for k in 'RGB'}
+ base=config_params(c)
+ gamma={'OLD_FILE':(ROOT/'rtl/gamma_conrrection/2P2.mem').as_posix(),
+        'LUT_FILE':(ROOT/'rtl/gamma_conrrection/gamma_2p2_8b.mem').as_posix()}
+ cases=[('gamma','tb_gamma_lut',gamma,1),('pattern','tb_test_pattern',{},1),('bayer','tb_bayer_bin2x2',gains,1)]
+ if smoke:
+  cases.append(('small_p0','tb_v03_checked',dict(base,PHASE=0),1))
+ else:
+  for ph in range(4):
+   for rev in range(2):
+    for vs in range(2):
+     cases.append((f'small_p{ph}_r{rev}_v{vs}','tb_v03_checked',dict(base,PHASE=ph,REV=rev,VS_MODE=vs),1+ph*4+rev*2+vs))
+  for seed in (31,73):
+   cases.append((f'stress_{seed}','tb_v03_checked',dict(base,W=320,H=96,PREFIX='stress',STRESS=1,MAXFRM=100),seed))
+  cases.append(('short_burst','tb_v03_checked',dict(base,W=16,H=8,PREFIX='tiny'),7))
+  for fault,name in enumerate(('bresp_error','rresp_error','camera_stop_restart','truncated_frame','reset_during_write','reset_during_read'),1):
+   cases.append((name,'tb_v03_checked',dict(base,FAULT=fault),101+fault))
+ if full:
+  dims=dict(base,W=c['MAX_HRES'],H=c['MAX_VRES'],PREFIX='full',GAP_PCT=10,MAXFRM=30)
+  cases.append(('full_high_load','tb_v03_checked',dict(dims,VBLANK=20000,NGOOD=3),1))
+  # Line period ~1481 pixel clocks plus 45 lines vertical blank -> ~30 fps at 50 MHz.
+  cases.append(('full_30fps','tb_v03_checked',dict(dims,LINE_BLANK=948,VBLANK=66650,NOMINAL_FPS=30,NGOOD=6),17))
+ return cases
 
-def sim(name, top, params=(), seed=1):
-    return command(['vsim', '-c', '-onfinish', 'exit', '-sv_seed', seed,
-                    *params, f'work.{top}', '-do',
-                    'onbreak {quit -code 1}; run -all; quit -code 0'], name, f'{top} PASS')
+def sim(name,top,params,seed=1,expected_error=None):
+ return command(['vsim','-c','-onfinish','exit','-sv_seed',seed,
+  *[f'-G{k}={v}' for k,v in params.items()],f'work.{top}','-do',
+  'run -all; quit -code 0'],name,top+' PASS',expected_error=expected_error)
 
-def check(prefix, w, h, phase):
-    variant = int((RUN/f'{prefix}_cap_variant.txt').read_text().strip())
-    return command([sys.executable, '-B', ROOT/'tools/v03_golden.py', 'check',
-                    '--w', w, '--h', h, '--out', prefix, '--phase', phase,
-                    '--frame', variant], f'check_{prefix}_{phase}', 'check: PASS')
+def generate(cases):
+ vectors={'unit':(64,16,0)}
+ for _,top,p,_ in cases:
+  if top=='tb_v03_checked':vectors[p.get('PREFIX','small')]=(p.get('W',160),p.get('H',40),8)
+ for prefix,(w,h,frames) in vectors.items():
+  command([sys.executable,'-B',ROOT/'tools/v03_golden.py','gen','--w',w,'--h',h,'--out',prefix,'--frames',frames],f'gen_{prefix}')
+  expected={f'{prefix}_raw.hex':(w*h,1023)}
+  for ph in range(4):
+   expected[f'{prefix}_exp_p{ph}.hex']=(w*h//4,0xffffff)
+   for n in range(frames):expected[f'{prefix}_exp_p{ph}_f{n}.hex']=(w*h//4,0xffffff)
+  for f,(size,limit) in expected.items():
+   words=(RUN/f).read_text().split()
+   if len(words)!=size or any(not re.fullmatch('[0-9a-fA-F]+',v) or int(v,16)>limit for v in words):
+    raise ValueError('Invalid vector '+f)
+
+def check(name,p):
+ prefix=p.get('PREFIX','small')
+ seq=int((RUN/f'{prefix}_cap_variant.txt').read_text().strip())
+ return command([sys.executable,'-B',ROOT/'tools/v03_golden.py','check','--w',p.get('W',160),'--h',p.get('H',40),
+  '--out',prefix,'--phase',p.get('PHASE',0),'--frame',seq],f'check_{name}','check: PASS')
+
+def negative_tests(c):
+ results=[];gp={f'GAIN_{k}':c[f'CFG_{k}_GAIN'] for k in 'RGB'}
+ results.append(sim('negative_gamma_missing','tb_gamma_lut',
+  {'OLD_FILE':'intentionally_missing_old.mem','LUT_FILE':'intentionally_missing_new.mem'},
+  expected_error='Unknown gamma output/reference'))
+ target=RUN/'unit_exp_p0.hex';original=target.read_bytes()
+ try:
+  target.write_text('xxxxxx\n'*256)
+  results.append(sim('negative_x_vector','tb_bayer_bin2x2',gp,expected_error='Invalid/missing golden vector'))
+  target.rename(target.with_suffix('.hidden'))
+  try:results.append(sim('negative_missing_vector','tb_bayer_bin2x2',gp,expected_error='Invalid/missing golden vector'))
+  finally:target.with_suffix('.hidden').rename(target)
+ finally:target.write_bytes(original)
+ for mutation,name,marker in [(1,'startup','Nonblack pixel in startup/black tail'),(2,'stress','Display pixel mismatch'),(3,'frozen','Display pixel mismatch')]:
+  p=dict(config_params(c),MUTATION=mutation)
+  if mutation==2:p.update(STRESS=1,W=320,H=96,PREFIX='stress')
+  results.append(sim('negative_'+name,'tb_v03_checked',p,expected_error=marker))
+ results.append(sim('negative_geometry','tb_v03_params',{},expected_error='Invalid cam_fb_pipe configuration'))
+ return results
+
+def emit_tcl(cases,path):
+ # Uses the already-running Questa session, no second license checkout.
+ lines=['onerror {quit -code 1}',f'cd {{{RUN.as_posix()}}}','catch {quit -sim}','vlib work']
+ lines += ['vlog '+' '.join('{'+(ROOT/f).as_posix()+'}' for f in SOURCES)]
+ lines += ['proc run_case {name top params seed} {',
+  ' transcript file ${name}.log',' transcript on',' vsim -onfinish stop -sv_seed $seed {*}$params work.$top',
+  ' run -all',' quit -sim',' transcript off',' set f [open ${name}.log r]; set body [read $f]; close $f',' transcript on',
+  ' if {[regexp {\\*\\* (Error|Fatal|Warning)\\M|\\mFAIL\\M|(Errors|Warnings):\\s*[1-9]} $body] || [string first "$top PASS" $body]<0} {error "Failed: $name"}',
+  ' puts "$name PASS"','}']
+ for name,top,p,seed in cases:
+  lines.append(f'run_case {name} {top} '+'{'+' '.join(f'-G{k}={v}' for k,v in p.items())+f'}} {seed}')
+  if top=='tb_v03_checked':
+   prefix=p.get('PREFIX','small')
+   lines += [f'set f [open {prefix}_cap_variant.txt r]; set seq [string trim [read $f]]; close $f',
+    f'puts [exec {{{sys.executable}}} -B {{{ROOT.as_posix()}/tools/v03_golden.py}} check --w {p.get("W",160)} --h {p.get("H",40)} --out {prefix} --phase {p.get("PHASE",0)} --frame $seq]']
+ lines.append('puts "REGRESSION PASS (native entry)"')
+ Path(path).write_text('\n'.join(lines)+'\n',encoding='utf-8')
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--full', action='store_true')
-    parser.add_argument('--smoke', action='store_true')
-    args = parser.parse_args()
-    RUN.mkdir(parents=True, exist_ok=True)
-    results = []
-    try:
-        if not (RUN/'work').exists():
-            command(['vlib', 'work'], 'vlib')
-        command(['vlog', *[ROOT/f for f in SOURCES]], 'compile')
-        gen(64, 16, 'unit', 0)
-        gen(160, 40, 'small')
-        results.append(sim('gamma', 'tb_gamma_lut'))
-        results.append(sim('pattern', 'tb_test_pattern'))
-        results.append(sim('bayer', 'tb_bayer_bin2x2'))
-        for phase in ([0] if args.smoke else range(4)):
-            results.append(sim(f'small_p{phase}', 'tb_v03_checked', [f'-GPHASE={phase}']))
-            results.append(check('small',160,40,phase))
-        if not args.smoke:
-            results.append(sim('reverse_pulse', 'tb_v03_checked', ['-GREV=1','-GVS_MODE=1'], 17))
-            results.append(check('small',160,40,0))
-            gen(320,96,'stress')
-            results.append(sim('stress', 'tb_v03_checked',
-                               ['-GW=320','-GH=96','-GPREFIX=stress','-GSTRESS=1','-GMAXFRM=80'], 31))
-            results.append(check('stress',320,96,0))
-            gen(16,8,'tiny')
-            results.append(sim('short_burst', 'tb_v03_checked',
-                               ['-GW=16','-GH=8','-GPREFIX=tiny'], 7))
-            results.append(check('tiny',16,8,0))
-        if args.full:
-            gen(1920,1080,'full')
-            results.append(sim('full', 'tb_v03_checked',
-                               ['-GW=1920','-GH=1080','-GPREFIX=full','-GGAP_PCT=10',
-                                '-GVBLANK=20000','-GNGOOD=3','-GMAXFRM=15']))
-            results.append(check('full',1920,1080,0))
-        status = 'PASS'
-    except Exception as e:
-        results.append(dict(name=str(e), status='FAIL'))
-        status = 'FAIL'
-    (RUN/'summary.json').write_text(json.dumps(dict(status=status, tests=results), indent=2), encoding='utf-8')
-    print(f'REGRESSION {status}', flush=True)
-    return status != 'PASS'
-
-if __name__ == '__main__':
-    sys.exit(main())
+ global RUN
+ parser=argparse.ArgumentParser()
+ parser.add_argument('--full',action='store_true');parser.add_argument('--smoke',action='store_true')
+ parser.add_argument('--only');parser.add_argument('--run-dir',type=Path);parser.add_argument('--emit-tcl',type=Path)
+ args=parser.parse_args()
+ if args.run_dir:RUN=args.run_dir.resolve()
+ RUN.mkdir(parents=True,exist_ok=True)
+ results=[];c={}
+ try:
+  results.append(command([sys.executable,'-B',ROOT/'tools/test_v03_config.py'],'config','config: PASS'))
+  c=load_config();cases=plan(c,args.smoke,args.full)
+  if args.only:
+   cases=[v for v in cases if re.fullmatch(args.only,v[0])]
+   if not cases:raise ValueError('No matching test case')
+  (RUN/'config.json').write_text(json.dumps(c,indent=2)+'\n')
+  (RUN/'source_sha256.json').write_text(json.dumps({f:hashlib.sha256((ROOT/f).read_bytes()).hexdigest() for f in SOURCES+['rtl/ArtFlow_top.v']},indent=2)+'\n')
+  generate(cases)
+  if args.emit_tcl:
+   emit_tcl(cases,args.emit_tcl);print('Native plan prepared');return 0
+  if not (RUN/'work').exists():command(['vlib','work'],'vlib')
+  command(['vlog',*[ROOT/f for f in SOURCES]],'compile')
+  for name,top,p,seed in cases:
+   results.append(dict(sim(name,top,p,seed),seed=seed,parameters=p))
+   if top=='tb_v03_checked':results.append(check(name,p))
+  if not args.smoke and not args.only:results.extend(negative_tests(c))
+  status='PASS'
+ except Exception as e:
+  results.append(dict(name=str(e),status='FAIL'));status='FAIL'
+ (RUN/'summary.json').write_text(json.dumps(dict(status=status,config=c,tests=results),indent=2)+'\n',encoding='utf-8')
+ print('REGRESSION '+status,flush=True)
+ return status!='PASS'
+if __name__=='__main__':sys.exit(main())

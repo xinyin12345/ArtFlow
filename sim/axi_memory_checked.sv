@@ -6,17 +6,17 @@ module axi_memory_checked #(parameter DW=128, AW=32, STALL_PCT=20, RD_LAT=12)(
     input [1:0] awburst, input awlock, awvalid, output reg awready=0,
     input [DW-1:0] wdata, input [DW/8-1:0] wstrb,
     input wlast,wvalid, output reg wready=0,
-    output reg bvalid=0, output [1:0] bresp, input bready,
+    output reg bvalid=0, output reg [1:0] bresp=0, input bready,
     input [AW-1:0] araddr, input [7:0] arlen, input [2:0] arsize,
     input [1:0] arburst, input arlock, arvalid, output reg arready=0,
     output reg [DW-1:0] rdata=0, output reg rlast=0,rvalid=0,
-    output [1:0] rresp, input rready,
-    input hold_aw,hold_w,hold_b,hold_ar,hold_r
+    output reg [1:0] rresp=0, input rready,
+    input hold_aw,hold_w,hold_b,hold_ar,hold_r,
+    input inject_b_error, inject_r_error
 );
 localparam BYTES=DW/8, SH=$clog2(BYTES);
 logic [DW-1:0] mem[longint];
-int n_wr_burst=0,n_rd_burst=0,n_err=0;
-assign bresp=0, rresp=0;
+int n_wr_burst=0,n_rd_burst=0,n_err=0,n_b_error=0,n_r_error=0;
 function automatic bit go(); return $urandom_range(99)>=STALL_PCT; endfunction
 function automatic logic [DW-1:0] rd_word(longint a);
     return mem.exists(a) ? mem[a] : {DW{1'bx}};
@@ -24,7 +24,7 @@ endfunction
 int ws=0,rs=0,wb=0,wl=0,rb=0,rl=0,delay_count=0;
 longint wa,ra;
 always @(posedge clk) begin
-    if (!rst_n) begin ws<=0; awready<=0; wready<=0; bvalid<=0; end
+    if (!rst_n) begin ws<=0; awready<=0; wready<=0; bvalid<=0; bresp<=0; end
     else case(ws)
         0: begin
             awready<=go()&&!hold_aw;
@@ -46,13 +46,16 @@ always @(posedge clk) begin
             end
         end
         2: begin
-            if(!bvalid&&!hold_b) bvalid<=1;
-            if(bvalid&&bready) begin bvalid<=0; ws<=0; end
+            if(!bvalid&&!hold_b) begin bvalid<=1; bresp<=inject_b_error?2'b10:0; end
+            if(bvalid&&bready) begin
+                if(bresp!=0) n_b_error++;
+                bvalid<=0; ws<=0;
+            end
         end
     endcase
 end
 always @(posedge clk) begin
-    if(!rst_n) begin rs<=0; arready<=0; rvalid<=0; rlast<=0; end
+    if(!rst_n) begin rs<=0; arready<=0; rvalid<=0; rlast<=0; rresp<=0; end
     else case(rs)
         0: begin
             arready<=go()&&!hold_ar;
@@ -67,16 +70,19 @@ always @(posedge clk) begin
         1: if(delay_count==0) rs<=2; else delay_count<=delay_count-1;
         2: begin
             if(rvalid&&rready) begin
+                if(rresp!=0) n_r_error++;
                 rvalid<=0;
                 if(rlast) begin rs<=0; rlast<=0; n_rd_burst++; end
                 else begin
                     rb<=rb+1;
                     if(go()&&!hold_r) begin
                         rdata<=rd_word(ra+rb+1); rvalid<=1; rlast<=(rb+1==rl);
+                        rresp<=inject_r_error?2'b10:0;
                     end
                 end
             end else if(!rvalid&&go()&&!hold_r) begin
                 rdata<=rd_word(ra+rb); rvalid<=1; rlast<=(rb==rl);
+                rresp<=inject_r_error?2'b10:0;
             end
         end
     endcase

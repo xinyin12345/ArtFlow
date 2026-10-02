@@ -6,6 +6,8 @@
 // =============================================================================
 `timescale 1ns/1ps
 module tb_gamma_lut;
+parameter OLD_FILE = "../rtl/gamma_conrrection/2P2.mem";
+parameter LUT_FILE = "../rtl/gamma_conrrection/gamma_2p2_8b.mem";
 
 reg clk = 0;  always #3.367 clk = ~clk;          // 148.5 MHz
 reg rstn = 0;
@@ -16,7 +18,7 @@ reg  [7:0] r = 0, g = 0, b = 0;
 // ---------------- 旧模块（金标准，1 拍延迟）
 wire [7:0] o_r_old, o_g_old, o_b_old;
 wire       ov_old, ohs_old, ovs_old;
-gamma_correction #(.DATA_WIDTH(8), .GAMMA_CURVE("../rtl/gamma_conrrection/2P2.mem")) u_old (
+gamma_correction #(.DATA_WIDTH(8), .GAMMA_CURVE(OLD_FILE)) u_old (
     .i_pclk(clk), .i_rstn(rstn),
     .i_red(r), .i_green(g), .i_blue(b), .i_valid(valid), .i_hs(hs), .i_vs(vs),
     .o_red(o_r_old), .o_green(o_g_old), .o_blue(o_b_old),
@@ -25,7 +27,7 @@ gamma_correction #(.DATA_WIDTH(8), .GAMMA_CURVE("../rtl/gamma_conrrection/2P2.me
 // ---------------- 新模块（2 拍延迟）
 wire [7:0] o_r, o_g, o_b;
 wire       ov, ohs, ovs;
-gamma_lut #(.LUT_FILE("../rtl/gamma_conrrection/gamma_2p2_8b.mem")) u_new (
+gamma_lut #(.LUT_FILE(LUT_FILE)) u_new (
     .i_pclk(clk), .i_rstn(rstn), .i_bypass(bypass),
     .i_red(r), .i_green(g), .i_blue(b), .i_valid(valid), .i_hs(hs), .i_vs(vs),
     .o_red(o_r), .o_green(o_g), .o_blue(o_b),
@@ -51,6 +53,9 @@ integer errors = 0, checks = 0;
 reg     compare_en = 0;        // 1 = 与旧模块比；bypass 时与输入比
 
 always @(posedge clk) if (compare_en) begin
+    if ((^{o_r,o_g,o_b,ov,ohs,ovs}) === 1'bx ||
+        (!bypass && (^{r_old_d,g_old_d,b_old_d,v_old_d,hs_old_d,vs_old_d}) === 1'bx))
+        $fatal(1,"Unknown gamma output/reference; check LUT files");
     checks = checks + 1;
     if (!bypass) begin
         if ({o_r, o_g, o_b, ov, ohs, ovs} !==
