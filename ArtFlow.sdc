@@ -21,6 +21,13 @@ create_clock -period 10.000 -name i_cam_ck_CLKOUT [get_ports {i_cam_ck_CLKOUT}]
 
 set_clock_groups -exclusive -group {core_clk} -group {tx_cal_clk} -group {vid_clk_dvi2} -group {CLK_5M} -group {i_mipi_rx_pclk} -group {sdram_clk} -group {rx_cal_clk}
 
+# v03 registered Gray CDC buses, including the MSB merged into the binary FF.
+# Efinity 2026.1 omits these paths under the clock groups above. The post-route
+# gate in run_efinity.ps1 audits these constraints with a generated SDC copy that
+# omits clock groups, without changing implementation or normal STA constraints.
+set_bus_skew -from [get_pins {u_video_pipe/u_store/capture_words*[*]~FF|CLK}] -to [get_pins {u_video_pipe/u_store/count_meta[*]~FF|D}] 2.500
+set_bus_skew -from [get_pins {u_video_pipe/u_store/display_epoch*[*]~FF|CLK}] -to [get_pins {u_video_pipe/u_store/epoch_meta[*]~FF|D}] 2.500
+
 
 
 

@@ -12,6 +12,7 @@ parameter MAX_VID_HIGHT		=	1080 ,//wideo height
 parameter START_ADDR				=	33'h000201900,
 parameter BURST_LEN       = 8'd15,
 parameter I_VID_WIDTH = 16,
+parameter BANK_BYTES = 0,   // v03：见 bank_switch
 parameter AXI_STRB_WIDTH = AXI_DATA_WIDTH/8//!总共的字节数量，= AXI_DATA_WIDTH/8
 
 ) (
@@ -218,7 +219,8 @@ bank_switch #(
 		.MAX_VID_HIGHT 	( MAX_VID_HIGHT),
 		.START_ADDR			(	START_ADDR 	),
 		.VID_DATA_WIDTH	(I_VID_WIDTH	),
-		.AXI_DATA_WIDTH (AXI_DATA_WIDTH )
+		.AXI_DATA_WIDTH (AXI_DATA_WIDTH ),
+		.BANK_BYTES     (BANK_BYTES     )
 )
   u_bank_sw
 (

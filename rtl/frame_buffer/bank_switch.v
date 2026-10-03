@@ -6,8 +6,8 @@ module bank_switch #(
 		parameter MAX_VID_HIGHT = 1080,
 		parameter START_ADDR= 0,
 		parameter VID_DATA_WIDTH= 16,
-		parameter AXI_DATA_WIDTH = 256
-		
+		parameter AXI_DATA_WIDTH = 256,
+		parameter BANK_BYTES = 0		// v03：>0 时每个帧缓存固定占 BANK_BYTES 字节（建议 4KB 对齐）；0 = 旧算法
 )
 
 (
@@ -29,7 +29,7 @@ output	reg[31:0]	wr_start_addr
 
 );                       
 localparam AXI_BYTE_NUMBER = AXI_DATA_WIDTH/8  ;
-localparam FRAME_LEN =   MAX_VID_WIDTH*MAX_VID_HIGHT*VID_DATA_WIDTH/8 + 32'h200;  
+localparam FRAME_LEN = (BANK_BYTES > 0) ? BANK_BYTES : (MAX_VID_WIDTH*MAX_VID_HIGHT*VID_DATA_WIDTH/8 + 32'h200);
 
 localparam FRAME_1ST_START_ADDR = START_ADDR;
 localparam FRAME_2ND_START_ADDR = FRAME_LEN + START_ADDR ;
