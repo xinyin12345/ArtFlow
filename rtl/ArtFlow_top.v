@@ -43,6 +43,8 @@ module ArtFlow_top #(
 
 
    // v05 board UART (115200 8N1, RX GPIOL_02 / TX GPIOR_28)
+    input wire key_mode_n, // board key_i[1], GPIOR_22, active low
+    input wire key_osd_n,  // board key_i[2], GPIOR_21, active low
     input wire uart_rx,
     output wire uart_tx,
 
@@ -525,6 +527,7 @@ assign o_cam_rst_p = !w_arstn || !soc_reset_n || camera_reset;
 // v04: CSI RAW -> 960x540 RGB -> scheduled DDR triple buffer -> centered dual windows
 //=====================================================================================
 wire vid_rst_n;
+wire capture_toggle;
 wire hdmi_tx_de;
 wire hdmi_tx_hs;
 wire hdmi_tx_vs;
@@ -567,6 +570,7 @@ cam_fb_pipe #(
   .rst_n          (vid_rst_n      ),
   .o_clk          (vid_clk_dvi2   ),
   .o_hdmi_clk     (hdmi_tx_slow_clk),
+  .capture_toggle(capture_toggle),
   .o_de           (hdmi_tx_de     ),
   .o_hs           (hdmi_tx_hs     ),
   .o_vs           (hdmi_tx_vs     ),
@@ -800,16 +804,38 @@ inst_gamma_lut
   .o_vs     (gamma_vs       )
 );
 
+// v06: controls, measured FPS and OSD after Gamma, before TMDS.
+wire ui_rst_n;
+video_reset_sync u_ui_reset(.clk(hdmi_tx_slow_clk),.rst_n(vid_rst_n),.ready(ui_rst_n));
+wire [1:0] display_mode;
+wire osd_enable, fps_valid;
+wire [11:0] capture_fps_bcd, display_fps_bcd;
+artflow_ui u_ui(
+    .clk(hdmi_tx_slow_clk),.rst_n(ui_rst_n),
+    .key_mode_n(key_mode_n),.key_osd_n(key_osd_n),
+    .capture_toggle(capture_toggle),.i_vs(gamma_vs),
+    .mode(display_mode),.osd_enable(osd_enable),
+    .capture_bcd(capture_fps_bcd),.display_bcd(display_fps_bcd),.fps_valid(fps_valid));
+wire osd_de,osd_hs,osd_vs;
+wire [23:0] osd_rgb;
+artflow_osd #(.H_ACTIVE(MAX_HRES)) u_osd(
+    .clk(hdmi_tx_slow_clk),.rst_n(ui_rst_n),
+    .mode(display_mode),.osd_enable(osd_enable),
+    .capture_bcd(capture_fps_bcd),.display_bcd(display_fps_bcd),.fps_valid(fps_valid),
+    .i_de(gamma_valid),.i_hs(gamma_hs),.i_vs(gamma_vs),
+    .i_rgb({gamma_rdata,gamma_gdata,gamma_bdata}),
+    .o_de(osd_de),.o_hs(osd_hs),.o_vs(osd_vs),.o_rgb(osd_rgb));
+
 dvi_encoder dvi_encoder_m0
 (
 	.pixelclk      		(hdmi_tx_slow_clk          ),// system clock
 	.rst_p         		(~vid_rst_n      ),// reset
-	.i_bdata      		(gamma_bdata ),
-	.i_gdata     		  (gamma_gdata ),
-	.i_rdata       		(gamma_rdata ),
-  .i_de            	(gamma_valid ),
-	.i_hs         		(gamma_hs    ),
-	.i_vs         		(gamma_vs    ),  
+	.i_bdata      		(osd_rgb[7:0] ),
+	.i_gdata     		  (osd_rgb[15:8] ),
+	.i_rdata       		(osd_rgb[23:16] ),
+  .i_de            	(osd_de ),
+	.i_hs         		(osd_hs    ),
+	.i_vs         		(osd_vs    ),  
 	
   .video_format     (video_format), //// 00 = RGB, 01 = YCbCr 4:2:2, 10 = YCbCr 4:4:4
   .video_VIC        (0),

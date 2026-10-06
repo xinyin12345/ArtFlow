@@ -1,0 +1,18 @@
+Questa Altera Starter FPGA Edition-64 vlog 2025.3 Compiler 2025.09 Sep 15 2025
+Start time: 12:24:52 on Oct 06,2026
+vlog -sv D:\work\CodexWork\ArtFlow\v06\rtl\video\artflow_button.v D:\work\CodexWork\ArtFlow\v06\rtl\video\artflow_fps.v D:\work\CodexWork\ArtFlow\v06\rtl\video\artflow_osd.v D:\work\CodexWork\ArtFlow\v06\rtl\video\artflow_ui.v D:\work\CodexWork\ArtFlow\v06\sim\tb_v06_fps.sv D:\work\CodexWork\ArtFlow\v06\sim\tb_v06_osd.sv D:\work\CodexWork\ArtFlow\v06\sim\tb_v06_ui.sv 
+** Note: (vlog-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
+-- Compiling module artflow_button
+-- Compiling module artflow_fps
+-- Compiling module artflow_osd
+-- Compiling module artflow_ui
+-- Compiling module tb_v06_fps
+-- Compiling module tb_v06_osd
+-- Compiling module tb_v06_ui
+
+Top level modules:
+	tb_v06_fps
+	tb_v06_osd
+	tb_v06_ui
+End time: 12:24:52 on Oct 06,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

@@ -11,7 +11,7 @@ Set-Content -LiteralPath (Join-Path $scratchDir 'implementation_summary.json') -
 if ($Flow -ne 'sta_tclsh') {
     & python -B (Join-Path $PSScriptRoot 'build_firmware.py')
     if ($LASTEXITCODE -ne 0) { throw 'Firmware build failed' }
-    & python -B (Join-Path $PSScriptRoot 'check_project_v05.py') --snapshot
+    & python -B (Join-Path $PSScriptRoot 'check_project_v06.py') --snapshot
     if ($LASTEXITCODE -ne 0) { throw 'Project input gate failed' }
 }
 New-Item -ItemType Directory -Path (Join-Path $scratchDir 'efinity_user') -Force | Out-Null
@@ -53,11 +53,15 @@ try {
           & $efinityPython -B tools/check_implementation.py
           $resultCode = $LASTEXITCODE
           if ($resultCode -eq 0) {
-            & $efinityPython -B tools/check_project_v05.py --check-snapshot
+            & $efinityPython -B tools/check_project_v06.py --check-snapshot
             $resultCode = $LASTEXITCODE
           }
         }
       }
+    }
+    if ($resultCode -eq 0 -and $Flow -ne 'map') {
+      & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'run_ui_cdc.ps1') -EfinityRoot $EfinityRoot
+      $resultCode = $LASTEXITCODE
     }
     exit $resultCode
 } finally { Pop-Location }

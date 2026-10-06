@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "tests": [
+    {
+      "name": "compile_tb_soc_boot",
+      "status": "PASS",
+      "seconds": 0.37
+    },
+    {
+      "name": "soc_success",
+      "status": "PASS",
+      "seconds": 898.19
+    },
+    {
+      "name": "soc_nack",
+      "status": "PASS",
+      "seconds": 602.15
+    }
+  ],
+  "scope": {
+    "control": false,
+    "soc": true,
+    "video": false,
+    "full_video": false
+  }
+}

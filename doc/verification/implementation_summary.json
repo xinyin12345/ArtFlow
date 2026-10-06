@@ -1,13 +1,13 @@
 {
   "status": "PASS",
   "minimum_slack_ns": {
-    "Setup (Max)": 0.49,
+    "Setup (Max)": 0.418,
     "Hold (Min)": 0.026
   },
   "sha256": {
-    "work/implementation_source_sha256.json": "d8345b427c7e82c34986390b7ca4af2ac82666e7fde299aae17872fce8a63272",
-    "work/efinity_out/ArtFlow.timing.rpt": "056220953349e15a115ddd2b05ac5663359a3fffec3bc8fde9459371f949eaca",
-    "work/efinity_out/ArtFlow.bit": "32424c8ec8c4c5ba5012b20fe15cdd815f19ed21cc17abfe536a6988f515acd9",
-    "work/efinity_out/ArtFlow.hex": "57327ac87f44e7277a96f9ec847cb91c8fc59bd4ba273d9cc5b61461954a152d"
+    "work/implementation_source_sha256.json": "858ad10aeffb93f92b2ae39f5d0dc56b9e5c13a29acb2cad223401e7c52369ef",
+    "work/efinity_out/ArtFlow.timing.rpt": "fe27be459eff67963e638c1ac6722309dc95a4145fe29461af28cf248d764d48",
+    "work/efinity_out/ArtFlow.bit": "3a62bc40dcaab259a1a0cae9d387a3074b1556e78214abceff0811f502ec523c",
+    "work/efinity_out/ArtFlow.hex": "7bcfa3a4176eaaf383104a782761869c2f97a6e894f36a894eca8e3fbc9394f9"
   }
 }

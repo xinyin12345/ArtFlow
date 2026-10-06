@@ -1,0 +1,12 @@
+test_changed_input_cannot_finish_pass (__main__.EvidenceTests.test_changed_input_cannot_finish_pass) ... ok
+test_command_binds_replaced_log (__main__.EvidenceTests.test_command_binds_replaced_log) ... ok
+test_emit_tcl_cannot_reuse_old_pass (__main__.EvidenceTests.test_emit_tcl_cannot_reuse_old_pass) ... ok
+test_failure_invalidates_old_pass_before_command (__main__.EvidenceTests.test_failure_invalidates_old_pass_before_command) ... ok
+test_full_registry_has_all_72_results (__main__.EvidenceTests.test_full_registry_has_all_72_results) ... ok
+test_interrupt_leaves_running_not_old_pass (__main__.EvidenceTests.test_interrupt_leaves_running_not_old_pass) ... ok
+test_timeout_cannot_leave_old_log (__main__.EvidenceTests.test_timeout_cannot_leave_old_log) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 1.161s
+
+OK

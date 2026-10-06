@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "paths": [
+    {
+      "chain": "mode",
+      "kind": "setup",
+      "min_slack_ns": 6.286
+    },
+    {
+      "chain": "mode",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    },
+    {
+      "chain": "osd",
+      "kind": "setup",
+      "min_slack_ns": 6.286
+    },
+    {
+      "chain": "osd",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    },
+    {
+      "chain": "capture",
+      "kind": "setup",
+      "min_slack_ns": 6.286
+    },
+    {
+      "chain": "capture",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    }
+  ],
+  "sha256": {
+    "tools/check_ui_cdc.tcl": "feb9314a7d9551efd62973c47a787012a71baf3a64b9f249647ebc3017344b65",
+    "tools/check_ui_cdc.py": "e5dcef87907e15f234505064a4bfd00531c1187407e8e41004921d59f4b7e879",
+    "work/ui_cdc.log": "c1ea18fa2ddd5d53353e7c6209ded7d6d13ee1b5e473f752705b5c8e74f9ec94",
+    "ArtFlow.sdc": "83a95b2aac41c1adfe6d52510e24676d07e8f3b191df6aea11ed8b9fc3b64bd9",
+    "rtl/video/artflow_button.v": "31dc6ad1248f82d7de0df0837788104ef2b79b585a8595273c882c53cbcf7a21",
+    "rtl/video/artflow_fps.v": "a4d668572673cbdd3e11943998c3205c1d472afa8c0f533add77db5f37fc381e",
+    "work/implementation_source_sha256.json": "858ad10aeffb93f92b2ae39f5d0dc56b9e5c13a29acb2cad223401e7c52369ef",
+    "work/efinity_out/ArtFlow.vdb": "8024c50dd146fac852e3e5e1ff740ca8df9c74fff5e601ee4d6e50c3b066a41f",
+    "work/efinity_out/ArtFlow.place": "b7bbad070e5d479f29d37f4380e6159bf40eb6546496286cbeb455937dc71083",
+    "work/efinity_out/ArtFlow.troutingtraces": "ac9d3df65f3625752706a62be363c77f97f07aca8e1d04b621d336dbbabc9069",
+    "work/efinity_out/ArtFlow.ui_mode_setup.rpt": "6dfd328692152d1a13e9fcbd0911cbf3d66130b81962584d913c7704d3fbc413",
+    "work/efinity_out/ArtFlow.ui_mode_hold.rpt": "58b14ef6113bae0ace9ae1d7b76ff35b8c0294f8e04f77f00bb73323e4e9f542",
+    "work/efinity_out/ArtFlow.ui_osd_setup.rpt": "26f42b71fd429efd94010276de212499d7390b60f6ba88a8add0f9ad64007448",
+    "work/efinity_out/ArtFlow.ui_osd_hold.rpt": "85b01523a5950be4776d2f7ef0a3938f1d4031ec0e81569958760acb518af3d7",
+    "work/efinity_out/ArtFlow.ui_capture_setup.rpt": "f9630013f5c6f0e4536fc8965a2fe3dd7fd2e3daf82d2b6d3b377a7477288a29",
+    "work/efinity_out/ArtFlow.ui_capture_hold.rpt": "4a16cd69294729ad63906e8e99dc4f86dd02144cf157a0b0ac142bf7ada82343"
+  }
+}

@@ -14,6 +14,7 @@ module rgb_frame_store #(
     input [12:0] H_FRONT_PORCH, H_SYNC, H_VALID, H_BACK_PORCH,
     input [12:0] V_FRONT_PORCH, V_SYNC, V_VALID, V_BACK_PORCH,
     output reg o_de, o_hs, o_vs, output reg [31:0] o_data,
+    output wire capture_toggle, // AXI-domain successful publication telemetry
     input axi_clk,
     output [ADDR_WIDTH-1:0] awaddr, output [7:0] awlen,
     output awvalid, input awready,
@@ -153,6 +154,7 @@ reg [1:0] write_bank = 0, latest_bank = 0, read_bank = 0;
 reg latest_valid = 0;
 reg read_active = 0;
 reg [31:0] published_frames = 0, rejected_frames = 0;
+assign capture_toggle = published_frames[0];
 reg [2:0] ws = 0;
 localparam W_IDLE=0, W_WAIT=1, W_ADDR=2, W_DATA=3, W_RESP=4, W_ALLOC=5;
 reg [31:0] words_written = 0;

@@ -1,0 +1,82 @@
+
+Efinix report_timing Report
+Version: 2026.1.132
+Date: Tue Oct  6 12:36:52 2026
+
+Copyright (C) 2013 - 2026 Efinix, Inc. All rights reserved.
+
+User command: foreach {tag head tail} {
+ mode u_ui/u_mode_key/key_meta u_ui/u_mode_key/key_sync
+ osd u_ui/u_osd_key/key_meta u_ui/u_osd_key/key_sync
+ capture u_ui/u_fps/cap_meta u_ui/u_fps/cap_sync
+} {
+ foreach name [list $head $tail] {
+ set cells [get_cells ${name}~FF]
+ puts "UI_CDC_ENDPOINT $name count=[llength $cells]"
+ if {[llength $cells] != 1} {error "Missing UI synchronizer: $name"}
+ }
+ report_timing -setup -from [get_cells ${head}~FF] -to [get_cells ${tail}~FF] -npaths 1 -file ArtFlow.ui_${tag}_setup.rpt
+ report_timing -hold -from [get_cells ${head}~FF] -to [get_cells ${tail}~FF] -npaths 1 -file ArtFlow.ui_${tag}_hold.rpt
+}
+
+Timing Model: I3
+	process : typical
+	temperature : -40C to 100C
+	voltage : 0.95 +/-30mV
+	speedgrade : 3
+	technology : t16ff
+	status : final
+
+Summary:
+
+ Path #  | Slack(ns) |           Start Pin            |           End Pin            |      Launch Clock       |      Capture Clock
+========================================================================================================================================
+ 1       |  0.109    | u_ui/u_osd_key/key_meta~FF|CLK | u_ui/u_osd_key/key_sync~FF|D | hdmi_tx_slow_clk (RISE) | hdmi_tx_slow_clk (RISE)
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.109 ns (arrival time - required time)                              
+Path Start      : u_ui/u_osd_key/key_meta~FF|CLK                                       
+Path End        : u_ui/u_osd_key/key_sync~FF|D                                         
+Launch Clock    : hdmi_tx_slow_clk {rise@0.000 ns fall@3.367 ns period=6.734 ns} (RISE)
+Capture Clock   : hdmi_tx_slow_clk {rise@0.000 ns fall@3.367 ns period=6.734 ns} (RISE)
+Path Type       : Min at Fast Process Corner                                           
+Data Path Delay : 0.179 ns                                                             
+Logic Levels    : 0                                                                    
+
+Launch Clock Path Delay        : 1.193
++ Clock To Q + Data Path Delay : 0.179
+--------------------------------------
+End-of-path arrival time       : 1.372
+
+Constraint                     : 0.000
++ Capture Clock Path Delay     : 1.193
++ Clock Uncertainty            : 0.070
++ Hold                         : 0.000
+--------------------------------------
+End-of-path required time      : 1.263
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)        Netlist Resource(s)
+===================================================================================
+  (112,0)    input            0.000        0.000     hdmi_tx_slow_clk              
+  (112,0)    input            0.070        0.070     hdmi_tx_slow_clk              
+             net (fo=1786)    1.123        1.193     hdmi_tx_slow_clk              
+  (208,77)   EFX_FF           0.000        1.193     u_ui/u_osd_key/key_meta~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)       Netlist Resource(s)
+================================================================================
+  (208,77)   EFX_FF (Tco)    0.072        0.072     u_ui/u_osd_key/key_meta~FF|Q
+             net (fo=1)      0.107        0.179     u_ui/u_osd_key/key_meta     
+  (208,78)   EFX_FF          0.000        0.179     u_ui/u_osd_key/key_sync~FF|D
+
+Capture Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)        Netlist Resource(s)
+===================================================================================
+  (112,0)    input            0.000        0.000     hdmi_tx_slow_clk              
+  (112,0)    input            0.070        0.070     hdmi_tx_slow_clk              
+             net (fo=1786)    1.123        1.193     hdmi_tx_slow_clk              
+  (208,78)   EFX_FF           0.000        1.193     u_ui/u_osd_key/key_sync~FF|CLK
+  (208,78)   EFX_FF (Hold)    0.000        1.193     u_ui/u_osd_key/key_sync~FF    
+

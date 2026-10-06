@@ -1,0 +1,927 @@
+{
+  "status": "PASS",
+  "config": {
+    "MAX_HRES": 1920,
+    "MAX_VRES": 1080,
+    "HFP": 88,
+    "HSP": 44,
+    "HBP": 148,
+    "VFP": 4,
+    "VSP": 5,
+    "VBP": 36,
+    "CFG_R_GAIN": 280,
+    "CFG_G_GAIN": 255,
+    "CFG_B_GAIN": 350,
+    "CFG_BAYER": 0,
+    "CFG_PIX_REV": 0,
+    "top_sha256": "af96d998f1b6cd30f0cd2b8c231471ff29600731f2791ba6a32f6d2f82fce6af"
+  },
+  "tests": [
+    {
+      "name": "config",
+      "status": "PASS",
+      "seconds": 0.28,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "gamma",
+      "status": "PASS",
+      "seconds": 2.93,
+      "expected_failure": false,
+      "seed": 1,
+      "parameters": {
+        "OLD_FILE": "D:/work/CodexWork/ArtFlow/v03/rtl/gamma_conrrection/2P2.mem",
+        "LUT_FILE": "D:/work/CodexWork/ArtFlow/v03/rtl/gamma_conrrection/gamma_2p2_8b.mem"
+      },
+      "run_directory": "work/regression_gamma_fix"
+    },
+    {
+      "name": "pattern",
+      "status": "PASS",
+      "seconds": 3.64,
+      "expected_failure": false,
+      "seed": 1,
+      "parameters": {},
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "bayer",
+      "status": "PASS",
+      "seconds": 3.56,
+      "expected_failure": false,
+      "seed": 1,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "small_p0_r0_v0",
+      "status": "PASS",
+      "seconds": 8.73,
+      "expected_failure": false,
+      "seed": 1,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 0,
+        "REV": 0,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "VS_MODE": 0
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_small_p0_r0_v0",
+      "status": "PASS",
+      "seconds": 0.13,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "small_p0_r0_v1",
+      "status": "PASS",
+      "seconds": 8.79,
+      "expected_failure": false,
+      "seed": 2,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 0,
+        "REV": 0,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "VS_MODE": 1
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_small_p0_r0_v1",
+      "status": "PASS",
+      "seconds": 0.14,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "small_p0_r1_v0",
+      "status": "PASS",
+      "seconds": 8.34,
+      "expected_failure": false,
+      "seed": 3,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 0,
+        "REV": 1,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "VS_MODE": 0
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_small_p0_r1_v0",
+      "status": "PASS",
+      "seconds": 0.12,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "small_p0_r1_v1",
+      "status": "PASS",
+      "seconds": 8.14,
+      "expected_failure": false,
+      "seed": 4,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 0,
+        "REV": 1,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "VS_MODE": 1
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_small_p0_r1_v1",
+      "status": "PASS",
+      "seconds": 0.12,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "small_p1_r0_v0",
+      "status": "PASS",
+      "seconds": 7.91,
+      "expected_failure": false,
+      "seed": 5,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 1,
+        "REV": 0,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "VS_MODE": 0
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_small_p1_r0_v0",
+      "status": "PASS",
+      "seconds": 0.12,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "small_p1_r0_v1",
+      "status": "PASS",
+      "seconds": 7.71,
+      "expected_failure": false,
+      "seed": 6,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 1,
+        "REV": 0,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "VS_MODE": 1
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_small_p1_r0_v1",
+      "status": "PASS",
+      "seconds": 0.11,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "small_p1_r1_v0",
+      "status": "PASS",
+      "seconds": 8.4,
+      "expected_failure": false,
+      "seed": 7,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 1,
+        "REV": 1,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "VS_MODE": 0
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_small_p1_r1_v0",
+      "status": "PASS",
+      "seconds": 0.14,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "small_p1_r1_v1",
+      "status": "PASS",
+      "seconds": 9.12,
+      "expected_failure": false,
+      "seed": 8,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 1,
+        "REV": 1,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "VS_MODE": 1
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_small_p1_r1_v1",
+      "status": "PASS",
+      "seconds": 0.14,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "small_p2_r0_v0",
+      "status": "PASS",
+      "seconds": 8.7,
+      "expected_failure": false,
+      "seed": 9,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 2,
+        "REV": 0,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "VS_MODE": 0
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_small_p2_r0_v0",
+      "status": "PASS",
+      "seconds": 0.13,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "small_p2_r0_v1",
+      "status": "PASS",
+      "seconds": 7.44,
+      "expected_failure": false,
+      "seed": 10,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 2,
+        "REV": 0,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "VS_MODE": 1
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_small_p2_r0_v1",
+      "status": "PASS",
+      "seconds": 0.1,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "small_p2_r1_v0",
+      "status": "PASS",
+      "seconds": 6.72,
+      "expected_failure": false,
+      "seed": 11,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 2,
+        "REV": 1,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "VS_MODE": 0
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_small_p2_r1_v0",
+      "status": "PASS",
+      "seconds": 0.09,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "small_p2_r1_v1",
+      "status": "PASS",
+      "seconds": 6.54,
+      "expected_failure": false,
+      "seed": 12,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 2,
+        "REV": 1,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "VS_MODE": 1
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_small_p2_r1_v1",
+      "status": "PASS",
+      "seconds": 0.1,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "small_p3_r0_v0",
+      "status": "PASS",
+      "seconds": 6.62,
+      "expected_failure": false,
+      "seed": 13,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 3,
+        "REV": 0,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "VS_MODE": 0
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_small_p3_r0_v0",
+      "status": "PASS",
+      "seconds": 0.11,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "small_p3_r0_v1",
+      "status": "PASS",
+      "seconds": 6.81,
+      "expected_failure": false,
+      "seed": 14,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 3,
+        "REV": 0,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "VS_MODE": 1
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_small_p3_r0_v1",
+      "status": "PASS",
+      "seconds": 0.1,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "small_p3_r1_v0",
+      "status": "PASS",
+      "seconds": 6.69,
+      "expected_failure": false,
+      "seed": 15,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 3,
+        "REV": 1,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "VS_MODE": 0
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_small_p3_r1_v0",
+      "status": "PASS",
+      "seconds": 0.1,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "small_p3_r1_v1",
+      "status": "PASS",
+      "seconds": 6.71,
+      "expected_failure": false,
+      "seed": 16,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 3,
+        "REV": 1,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "VS_MODE": 1
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_small_p3_r1_v1",
+      "status": "PASS",
+      "seconds": 0.1,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "stress_31",
+      "status": "PASS",
+      "seconds": 33.18,
+      "expected_failure": false,
+      "seed": 31,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 0,
+        "REV": 0,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "W": 320,
+        "H": 96,
+        "PREFIX": "stress",
+        "STRESS": 1,
+        "MAXFRM": 100
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_stress_31",
+      "status": "PASS",
+      "seconds": 0.14,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "stress_73",
+      "status": "PASS",
+      "seconds": 35.78,
+      "expected_failure": false,
+      "seed": 73,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 0,
+        "REV": 0,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "W": 320,
+        "H": 96,
+        "PREFIX": "stress",
+        "STRESS": 1,
+        "MAXFRM": 100
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_stress_73",
+      "status": "PASS",
+      "seconds": 0.13,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "short_burst",
+      "status": "PASS",
+      "seconds": 4.72,
+      "expected_failure": false,
+      "seed": 7,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 0,
+        "REV": 0,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "W": 16,
+        "H": 8,
+        "PREFIX": "tiny"
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_short_burst",
+      "status": "PASS",
+      "seconds": 0.12,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "bresp_error",
+      "status": "PASS",
+      "seconds": 8.22,
+      "expected_failure": false,
+      "seed": 102,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 0,
+        "REV": 0,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "FAULT": 1
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_bresp_error",
+      "status": "PASS",
+      "seconds": 0.13,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "rresp_error",
+      "status": "PASS",
+      "seconds": 9.32,
+      "expected_failure": false,
+      "seed": 103,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 0,
+        "REV": 0,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "FAULT": 2
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_rresp_error",
+      "status": "PASS",
+      "seconds": 0.12,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "camera_stop_restart",
+      "status": "PASS",
+      "seconds": 13.0,
+      "expected_failure": false,
+      "seed": 104,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 0,
+        "REV": 0,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "FAULT": 3
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_camera_stop_restart",
+      "status": "PASS",
+      "seconds": 0.12,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "truncated_frame",
+      "status": "PASS",
+      "seconds": 7.98,
+      "expected_failure": false,
+      "seed": 105,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 0,
+        "REV": 0,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "FAULT": 4
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_truncated_frame",
+      "status": "PASS",
+      "seconds": 0.1,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "reset_during_write",
+      "status": "PASS",
+      "seconds": 9.34,
+      "expected_failure": false,
+      "seed": 106,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 0,
+        "REV": 0,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "FAULT": 5
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_reset_during_write",
+      "status": "PASS",
+      "seconds": 0.13,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "reset_during_read",
+      "status": "PASS",
+      "seconds": 9.41,
+      "expected_failure": false,
+      "seed": 107,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 0,
+        "REV": 0,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "FAULT": 6
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_reset_during_read",
+      "status": "PASS",
+      "seconds": 0.16,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "full_high_load",
+      "status": "PASS",
+      "seconds": 262.33,
+      "expected_failure": false,
+      "seed": 1,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 0,
+        "REV": 0,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "W": 1920,
+        "H": 1080,
+        "PREFIX": "full",
+        "GAP_PCT": 10,
+        "MAXFRM": 30,
+        "VBLANK": 20000,
+        "NGOOD": 3
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_full_high_load",
+      "status": "PASS",
+      "seconds": 2.04,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "full_30fps",
+      "status": "PASS",
+      "seconds": 404.58,
+      "expected_failure": false,
+      "seed": 17,
+      "parameters": {
+        "GAIN_R": 280,
+        "GAIN_G": 255,
+        "GAIN_B": 350,
+        "PHASE": 0,
+        "REV": 0,
+        "HFP": 44,
+        "HSP": 22,
+        "HBP": 74,
+        "VFP": 4,
+        "VSP": 5,
+        "VBP": 36,
+        "W": 1920,
+        "H": 1080,
+        "PREFIX": "full",
+        "GAP_PCT": 10,
+        "MAXFRM": 30,
+        "LINE_BLANK": 948,
+        "VBLANK": 66650,
+        "NOMINAL_FPS": 30,
+        "NGOOD": 6
+      },
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "check_full_30fps",
+      "status": "PASS",
+      "seconds": 1.67,
+      "expected_failure": false,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "negative_x_vector",
+      "status": "PASS",
+      "seconds": 3.11,
+      "expected_failure": true,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "negative_missing_vector",
+      "status": "PASS",
+      "seconds": 1.47,
+      "expected_failure": true,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "negative_startup",
+      "status": "PASS",
+      "seconds": 3.11,
+      "expected_failure": true,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "negative_stress",
+      "status": "PASS",
+      "seconds": 6.55,
+      "expected_failure": true,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "negative_frozen",
+      "status": "PASS",
+      "seconds": 3.85,
+      "expected_failure": true,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "negative_geometry",
+      "status": "PASS",
+      "seconds": 2.96,
+      "expected_failure": true,
+      "run_directory": "work/regression_v2"
+    },
+    {
+      "name": "negative_gamma_missing",
+      "status": "PASS",
+      "seconds": 2.68,
+      "expected_failure": true,
+      "run_directory": "work/regression_gamma_fix"
+    }
+  ],
+  "aggregation": "Full video regression plus gamma-only repair and smoke follow-up; initial gamma result invalidated by LUT/X audit.",
+  "superseded_gamma": {
+    "name": "gamma",
+    "status": "PASS",
+    "seconds": 4.22,
+    "expected_failure": false,
+    "seed": 1,
+    "parameters": {}
+  }
+}

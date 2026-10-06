@@ -1,45 +1,35 @@
-# ArtFlow v05
+# ArtFlow v06
 
-在 Efinity 中打开本目录 `ArtFlow.xml`。本版由相邻的 v04 复制并继续开发，接入真实 Sapphire RV32IM SoC：RISC-V 从片上 RAM 自启动，通过 I2C 初始化 SC431HAI，通过 UART 修改白平衡。v04 的三缓冲、左右双窗口、AXI 调度和 Gamma 通路继续使用。
+在 Efinity 2026.1 中打开本目录 `ArtFlow.xml`。本版从 `D:\work\CodexWork\ArtFlow\v05` 继续开发，增加 OSD 字符、采集/输出 FPS、按键切换显示模式。v05 原工程保留。
 
-- [设计与来源](doc/v05_notes.md)
-- [串口及固件](doc/firmware.md)、[控制寄存器](doc/control_registers.md)
-- [实际验证结果](doc/verification_results.md)
-- [验证计划](doc/verification_plan.md)、[功能映射](doc/feature_list.md)
-- [上板验收](doc/board_acceptance.md)
+- `key_i[1]`（GPIOR_22，封装 P14）：每次按下依次切换 **DUAL → LEFT → RIGHT → BARS → DUAL**。
+- `key_i[2]`（GPIOR_21，封装 N14）：开关 OSD。两个按键均低有效，按下/释放各消抖 20 ms，长按只触发一次。
+- 复位仍用 `i_arstn`（GPIOL_07）。复位后默认双窗口、OSD 开启。
+- LEFT/RIGHT 保留对应的 960×540 原尺寸窗口，另一半为黑色；不放大、不改变 DDR 读写调度。BARS 为全屏八色条。
+- OSD 第一行显示版本和当前模式；第二行 `CAP FPS` 是一秒内成功发布到 DDR 的完整采集帧数，`OUT FPS` 是 HDMI VS 帧数。二者不是同一指标。正常 1080p60 输出预期 OUT≈060；CAP 取决于真实相机和 DDR。
+- 统计未完成第一个一秒窗口时显示 `---`，之后逐秒更新，并在下一次 VS 帧边界生效。停流后 CAP 在一个完整无事件窗口结束后显示 000；HDMI 可继续重复最近一帧。
+
+保留 v05 的开机 300 帧色条、Sapphire RISC-V/I2C 摄像头初始化和 115200 8N1 串口白平衡命令。固件逻辑和硬件 ID 未改，固件文件仍名为 `artflow_v05.*`，这是主动保留的兼容版本标识；FPGA 镜像为 `ArtFlow_v06.bit/.hex`。
+
+## 构建与验证
 
 ```powershell
-cd D:\work\CodexWork\ArtFlow\v05
+cd D:\work\CodexWork\ArtFlow\v06
 python -B tools/build_firmware.py
-python -B tools/test_firmware.py *> work/firmware_tests.log
-python -B tools/run_v05.py --full --run-dir work/regression_v05
+python -B tools/test_firmware.py
+python -B tools/check_project_v06.py
+python -B tools/run_v06.py --full
+python -B tools/run_v06_chain.py
+python -B tools/test_v06_gates.py
 powershell -NoProfile -ExecutionPolicy Bypass -File tools/run_efinity.ps1 -Flow compile
-python -B tools/test_video_cdc_gate.py *> work/cdc_gate_tests.log
-python -B tools/test_implementation_gate.py *> work/implementation_gate_tests.log
-python -B tools/test_v04_evidence.py *> work/v04_evidence_tests.log
-python -B tools/test_delivery_gates.py *> work/delivery_gate_isolated_tests.log
-python -B tools/package_v05.py --control-run work/regression_v05 --soc-run work/regression_v05 --video-run work/regression_v05/video
-python -B tools/verify_delivery.py --with-generated
+python -B tools/package_v06.py
+python -B tools/verify_v06.py
 ```
 
-每步成功后再执行下一步。最后四项快速测试检查验证工具自身的失败门禁；它们不启动 EDA，也不能替代前面的 RTL 和实现结果。
+逐步成功后再运行下一步；不要同时运行多个 Questa 回归。脚本默认使用本机 `D:\soft\Questa\questa_fse\win64` 和 Efinity `D:\soft\Efinity\2026.1`。固件构建器支持 `--gcc`；Efinity 入口支持 `-EfinityRoot`。仅 `run_v06.py` 不带 `--full` 时为新增功能单测，不能用于完整交付签核。`--soc` 可额外重跑生产 CPU 正常启动和 NACK 场景，固件等待时间不缩短。
 
-UART 为 **115200、8 数据位、无校验、1 停止位、无流控**。等待 `READY; type help` 后输入命令，每条命令收到应答再发下一条：
+本版实际通过项、未运行项和板级状态以 [验证结果](doc/verification_results.md) 为准。构建脚本生成镜像，不自动下载板卡。
 
-```text
-status
-wb 256 256 256
-wb 280 255 350
-defaults
-cam off
-cam init
-help
-```
+源码压缩包可独立解压、构建与校验；重新签核打包要求相邻原始 v05 基线，以确认基线未改。`outputs/ArtFlow_v06_OSD_simulation.png` 是确定性仿真图案上四种模式前100行的拼图，标注的030/060为测试输入，不是实板测量。
 
-增益使用 Q8.8 十进制整数，256 表示 1 倍，允许 0～1024。三色一起提交，在摄像头安全帧边界生效；`OK wb applied` 表示收到像素域确认，`PENDING` 表示尚未确认。命令不会改变分辨率、Gamma 或双窗口布局。两窗口仍显示同一帧。
-
-固件输出在 `outputs/firmware/`；四路 BRAM 初始化文件位于 `ip/sapphire_soc/`，由构建脚本生成并自动用于比特流。FPGA 编译文件在 `work/efinity_out/ArtFlow.bit` 和 `ArtFlow.hex`。`run_efinity.ps1` 会先重建固件并检查输入指纹，只生成文件，不下载板卡。
-
-Questa 单独入口：`python -B tools/run_v05.py --control-only`、`--soc-only`。运行前将 Questa 的 `win64` 目录加入 PATH。SoC 仿真使用厂商 ModelSim 加密变体和同一份生产固件，保留真实启动延时，运行可能需要数十分钟；不要同时运行多个 Questa 回归。`tools/run_v04.py` 在 v05 内仅负责沿用的视频回归。历史 v04 报告均位于 `doc/baseline_v04/`，不能当作 v05 的验证结果。实际通过项及上板状态以本版验证结果为准。
-
-从压缩包独立解压后可构建和仿真；重新打包会要求相邻的原始 v04 目录，以验证基线未被修改。随包证据和文件完整性可直接运行 `python -B tools/verify_delivery.py` 检查。
+资料：[设计说明](doc/v06_notes.md)、[验证计划](doc/verification_plan.md)、[功能映射](doc/feature_list.md)、[用例](doc/case_list.md)、[上板验收](doc/board_acceptance.md)。v05 说明及证据归档于 `doc/baseline_v05/`，不能视为 v06 实测结果。

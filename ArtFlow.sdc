@@ -286,3 +286,7 @@ set_input_delay -clock i_cam_ck_CLKOUT -reference_pin [get_ports {i_cam_ck_CLKOU
 # v05 asynchronous serial inputs terminate in the generated SoC synchronizers.
 # UART 115200 8N1 and camera I2C are verified at protocol level, not as synchronous I/O.
 set_false_path -from [get_ports {uart_rx io_cam_scl_IN io_cam_sda_IN}]
+
+# v06 asynchronous board buttons: only the first synchronization stage.
+set_false_path -from [get_ports {key_mode_n}] -to [get_pins {u_ui/u_mode_key/key_meta~FF|D}]
+set_false_path -from [get_ports {key_osd_n}] -to [get_pins {u_ui/u_osd_key/key_meta~FF|D}]

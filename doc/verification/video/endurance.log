@@ -4,7 +4,7 @@ Reading pref.tcl
 
 # ** Note: (vsim-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
 # vsim -c -onfinish exit -sv_seed 211 work.tb_v04_checked -do "run -all; quit -code 0" -GVSP=2 -GMAXFRM=1100 -GHSP=6 -GDUAL_WINDOW=1 -GREV=0 -GNGOOD=1000 -GW=32 -GH=16 -GGAIN_R=280 -GGAIN_B=350 -GVBP=4 -GPHASE=0 -GHBP=10 -GVFP=2 -GGAIN_G=255 -GPREFIX=endurance -GHFP=12 
-# Start time: 01:02:52 on Oct 03,2026
+# Start time: 12:35:41 on Oct 06,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vopt-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
 # //  Questa Altera Starter FPGA Edition-64
@@ -1027,7 +1027,7 @@ Reading pref.tcl
 # FRAME 1001 sequence=2038 pixels=512 black_tail=0 good_run=1000
 # COUNTERS published=2041 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=1000 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=249 truncated=0 pauses=0 resets=0
 # === tb_v04_checked PASS 32x16 phase=0 rev=0 vs=0 stress=0 fault=0 ===
-# ** Note: $finish    : D:/work/CodexWork/ArtFlow/v05/sim/tb_v04_checked.sv(310)
+# ** Note: $finish    : D:/work/CodexWork/ArtFlow/v06/sim/tb_v04_checked.sv(312)
 #    Time: 14236672632 ps  Iteration: 1  Instance: /tb_v04_checked
-# End time: 01:03:23 on Oct 03,2026, Elapsed time: 0:00:31
+# End time: 12:36:07 on Oct 06,2026, Elapsed time: 0:00:26
 # Errors: 0, Warnings: 0

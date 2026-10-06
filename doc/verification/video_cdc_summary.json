@@ -5,31 +5,31 @@
       "name": "count_meta",
       "endpoints": 32,
       "budget_ns": 2.5,
-      "slow_comparisons": 32,
-      "skew_ns": 0.452,
-      "slack_ns": 2.048,
-      "max_relative_delay_ns": 0.755,
-      "max_data_delay_ns": 0.744
+      "slow_comparisons": 31,
+      "skew_ns": 0.511,
+      "slack_ns": 1.989,
+      "max_relative_delay_ns": 0.817,
+      "max_data_delay_ns": 0.806
     },
     {
       "name": "epoch_meta",
       "endpoints": 32,
       "budget_ns": 2.5,
       "slow_comparisons": 31,
-      "skew_ns": 0.426,
-      "slack_ns": 2.074,
-      "max_relative_delay_ns": 0.723,
-      "max_data_delay_ns": 0.713
+      "skew_ns": 0.411,
+      "slack_ns": 2.089,
+      "max_relative_delay_ns": 0.709,
+      "max_data_delay_ns": 0.699
     },
     {
       "name": "gain_mailbox",
       "endpoints": 48,
       "budget_ns": 20.0,
-      "slow_comparisons": 48,
-      "skew_ns": 0.503,
-      "slack_ns": 19.497,
-      "max_relative_delay_ns": 0.784,
-      "max_data_delay_ns": 0.789
+      "slow_comparisons": 47,
+      "skew_ns": 0.585,
+      "slack_ns": 19.415,
+      "max_relative_delay_ns": 0.869,
+      "max_data_delay_ns": 0.874
     }
   ],
   "endpoints": [
@@ -38,28 +38,28 @@
     48
   ],
   "skew_ns": [
-    0.452,
-    0.426,
-    0.503
+    0.511,
+    0.411,
+    0.585
   ],
   "slack_ns": [
-    2.048,
-    2.074,
-    19.497
+    1.989,
+    2.089,
+    19.415
   ],
   "kind": "post-route audit with clock groups omitted",
   "sha256": {
-    "ArtFlow.sdc": "f59687d43c18cfe2687cfb1a61308a306fc738f6a6eb6e33210a6afee82c61d7",
-    "rtl/video/rgb_frame_store.v": "06fef069e52605e49ab4b86a66ded38547c18780e5a81017a0c2001c924ef7ff",
+    "ArtFlow.sdc": "83a95b2aac41c1adfe6d52510e24676d07e8f3b191df6aea11ed8b9fc3b64bd9",
+    "rtl/video/rgb_frame_store.v": "5aab91e33091433b3087da509c9d64bab3fdc94dfcb742f21221a51eb7daf511",
     "rtl/control/artflow_control.v": "cd5d3ce942660ef37a41dc11380e50318973563dce6925881fab2ff34971ec12",
-    "rtl/ArtFlow_top.v": "2065a78d8642b2d3d94b0df2618900025fdf40f05725d7ee877ccc562b3f71ad",
+    "rtl/ArtFlow_top.v": "4ea8700d9c487cfe5c6acc88ea19c8b8c1e2ee2cf2168a280e4186c0867e5310",
     "tools/check_video_cdc.py": "27378ba93215c79a56a3eff733993a2c15d24d4ce28a1b94172f827f4da4a2c2",
     "tools/check_video_cdc.tcl": "48fa89182ab45f49d0777b55ae6ff3e8bd99bb995b5009c9d98d1b3f96e5299f",
-    "work/video_cdc_audit.sdc": "99e25bac75ef6a002953f0028ada2c7c352bddff61357fd9c9df1313d6da1dff",
-    "work/efinity_out/ArtFlow.vdb": "96995fad7736baead2f7709f0bb711140b9b031bf8a0f9164f162f99584fb5bc",
-    "work/efinity_out/ArtFlow.place": "3c07d78de527603a1397f9d042cbbcdab47eb61181bcbd4e1e24d1c612758ee7",
-    "work/efinity_out/ArtFlow.troutingtraces": "8121f6d80c6426d580bbfe160e7fbf22c87f8bc7069cc44cf83eb5fa553c6966",
-    "work/efinity_out/ArtFlow.video_bus_skew.rpt": "4a402221ab433cdbc01c02ead4d478a660467049dca9c4cd6918f965cfd3bf85",
-    "work/efinity_out/ArtFlow.video_bus_delay.rpt": "558276376272d3ea905e9832d4f70d6559195c07f81b684f2506de4b41d04760"
+    "work/video_cdc_audit.sdc": "b7fd64a99f21a4ae718a947461f368fc71f989b800d274d7f27637724934f2e4",
+    "work/efinity_out/ArtFlow.vdb": "8024c50dd146fac852e3e5e1ff740ca8df9c74fff5e601ee4d6e50c3b066a41f",
+    "work/efinity_out/ArtFlow.place": "b7bbad070e5d479f29d37f4380e6159bf40eb6546496286cbeb455937dc71083",
+    "work/efinity_out/ArtFlow.troutingtraces": "ac9d3df65f3625752706a62be363c77f97f07aca8e1d04b621d336dbbabc9069",
+    "work/efinity_out/ArtFlow.video_bus_skew.rpt": "2f774c4726004cb90aa5e493fc0b11e13c9d8acda954f44d43d3e0c4ebb3bd35",
+    "work/efinity_out/ArtFlow.video_bus_delay.rpt": "e19bf871fe487b0cfb586261d297ac43ac2041281ec46c0afc850d98e2a4103e"
   }
 }

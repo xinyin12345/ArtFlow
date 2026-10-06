@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "endpoints": [
+    32,
+    32
+  ],
+  "skew_ns": [
+    0.363,
+    0.381
+  ],
+  "slack_ns": [
+    2.137,
+    2.119
+  ],
+  "max_data_delay_ns": 0.745,
+  "budget_ns": 2.5,
+  "kind": "post-route audit with clock groups omitted",
+  "sha256": {
+    "ArtFlow.sdc": "1af2869e73c1f7cc6c094403c26e5637c68990d12a692a77ae43dea550bad949",
+    "rtl/video/rgb_frame_store.v": "f1765d1e39cd42ac1d101a123787eca4b526140733797d1ae281f5d1c49055cb",
+    "work/video_cdc_audit.sdc": "a1862b601ac3cfd527faf3d98192d2574ac5542a86949813e8e4e195b59493d2",
+    "work/efinity_out/ArtFlow.vdb": "68d3533887abf4af114a34fba8218c07b206239c853836ddc627d991514d9cad",
+    "work/efinity_out/ArtFlow.place": "c706220cc901aef7b41c763a4a3ef334043e95b333317aad7de551303c9ba1de",
+    "work/efinity_out/ArtFlow.troutingtraces": "d9891f1b5053bff4e880fd34ca5c80d21ca853ff665db1560158f7567e15a9a5",
+    "work/efinity_out/ArtFlow.video_bus_skew.rpt": "d301781a2ba410898a02c08bd2a3af03f024ee372f6c98b2adb902937579d3a2",
+    "work/efinity_out/ArtFlow.video_bus_delay.rpt": "6557a3e30486351a80156142417bd145d9ad598396ed1697d768c906d7a2bc2a"
+  }
+}

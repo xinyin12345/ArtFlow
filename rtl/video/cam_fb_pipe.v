@@ -40,6 +40,7 @@ module cam_fb_pipe
     input               o_clk,            // 74.25 MHz
     input               o_hdmi_clk,       // 148.5 MHz，与 o_clk 同源、上升沿对齐
 
+    output wire         capture_toggle, // AXI domain
     output reg          o_de,      // o_hdmi_clk 域，1920x1080
     output reg          o_hs,
     output reg          o_vs,
@@ -142,6 +143,7 @@ rgb_frame_store #(
     .WIDTH(MAX_OUT_WIDTH), .HEIGHT(MAX_IN_HEIGHT/2), .DUAL_WINDOW(DUAL_WINDOW),
     .ADDR_WIDTH(AXI_ADDR_WIDTH), .START_ADDR(START_ADDR), .BANK_BYTES(BANK_BYTES)
 ) u_store (
+    .capture_toggle(capture_toggle),
     .rst_n(rst_n), .i_clk(i_pclk), .i_vs(bin_vs), .i_valid(bin_valid), .i_data(bin_data),
     .o_clk(store_clk), .H_FRONT_PORCH(store_hfp), .H_SYNC(store_hsp), .H_VALID(store_hvalid),
     .H_BACK_PORCH(store_hbp), .V_FRONT_PORCH(V_FRONT_PORCH), .V_SYNC(V_SYNC),

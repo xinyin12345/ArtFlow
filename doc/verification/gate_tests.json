@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "tests": [
+    "unknown_pixel",
+    "wrong_first_pixel",
+    "missing_pixels",
+    "extra_pixels",
+    "incomplete_regression",
+    "stale_source_hash",
+    "missing_log"
+  ]
+}

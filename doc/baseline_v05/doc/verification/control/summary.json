@@ -1,0 +1,61 @@
+{
+  "status": "PASS",
+  "tests": [
+    {
+      "name": "compile_tb_sapphire_i2c",
+      "status": "PASS",
+      "seconds": 0.3
+    },
+    {
+      "name": "tb_sapphire_i2c",
+      "status": "PASS",
+      "seconds": 3.66
+    },
+    {
+      "name": "compile_tb_bayer_first_pixel",
+      "status": "PASS",
+      "seconds": 0.2
+    },
+    {
+      "name": "tb_bayer_first_pixel",
+      "status": "PASS",
+      "seconds": 2.31
+    },
+    {
+      "name": "compile_tb_camera_gate",
+      "status": "PASS",
+      "seconds": 0.21
+    },
+    {
+      "name": "tb_camera_gate",
+      "status": "PASS",
+      "seconds": 2.45
+    },
+    {
+      "name": "compile_tb_artflow_control",
+      "status": "PASS",
+      "seconds": 0.2
+    },
+    {
+      "name": "tb_artflow_control",
+      "status": "PASS",
+      "seconds": 2.44
+    },
+    {
+      "name": "control_async_7_11",
+      "status": "PASS",
+      "seconds": 2.52
+    },
+    {
+      "name": "control_async_11_7",
+      "status": "PASS",
+      "seconds": 2.64
+    }
+  ],
+  "scope": {
+    "control": true,
+    "soc": false,
+    "video": false,
+    "full_video": false
+  }
+}

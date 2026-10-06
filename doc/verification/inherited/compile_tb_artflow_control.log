@@ -1,0 +1,12 @@
+Questa Altera Starter FPGA Edition-64 vlog 2025.3 Compiler 2025.09 Sep 15 2025
+Start time: 12:25:17 on Oct 06,2026
+vlog -sv D:\work\CodexWork\ArtFlow\v06\rtl\control\artflow_control.v D:\work\CodexWork\ArtFlow\v06\rtl\video\bayer_bin2x2.v D:\work\CodexWork\ArtFlow\v06\sim\tb_artflow_control.sv 
+** Note: (vlog-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
+-- Compiling module artflow_control
+-- Compiling module bayer_bin2x2
+-- Compiling module tb_artflow_control
+
+Top level modules:
+	tb_artflow_control
+End time: 12:25:17 on Oct 06,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

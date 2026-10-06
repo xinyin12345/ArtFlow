@@ -1,0 +1,13 @@
+vlib: PASS (0.11 s)
+compile_tb_sapphire_i2c: PASS (0.26 s)
+tb_sapphire_i2c: PASS (3.55 s)
+compile_tb_bayer_first_pixel: PASS (0.19 s)
+tb_bayer_first_pixel: PASS (2.23 s)
+compile_tb_camera_gate: PASS (0.17 s)
+tb_camera_gate: PASS (1.97 s)
+compile_tb_artflow_control: PASS (0.16 s)
+tb_artflow_control: PASS (1.96 s)
+control_async_7_11: PASS (1.98 s)
+control_async_11_7: PASS (2.03 s)
+video_regression: PASS (664.76 s)
+V05 REGRESSION PASS
