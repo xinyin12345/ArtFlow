@@ -222,7 +222,7 @@ localparam [15:0] CFG_B_GAIN   = 16'h015E;   // 350 ≈ 1.37
 localparam        CFG_GAMMA_EN = 1'b1;
 // v03：传感器 Bayer 排列（帧左上角 2x2）：0 = RGGB，1 = GRBG，2 = GBRG，3 = BGGR
 //   替代 v02 的 CFG_SWAP_RB（RGGB <-> BGGR 就是 R/B 互换）。上板判定方法见 doc/v03_notes.md
-localparam [1:0]  CFG_BAYER    = 2'd0;
+localparam [1:0]  CFG_BAYER    = 2'd3;
 // v03：CSI 像素顺序：0 = pixel_data[9:0] 是一行里靠左的像素（Efinix CSI RX 约定），1 = 反过来
 localparam        CFG_PIX_REV  = 1'b0;
 // 色条（自带独立 1080p60 时序，不依赖摄像头/DDR）：0 = 摄像头，1 = 常显色条，2 = 上电先显示约 5 秒色条再切摄像头
