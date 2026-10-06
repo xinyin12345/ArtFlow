@@ -1,93 +1,110 @@
-# ArtFlow v03 修改与验证结果
+# ArtFlow v04 修改与验证结果
 
-日期：2026-10-02。工程：D:/work/CodexWork/ArtFlow/v03，分支 v03。
+日期：2026-10-02。主工程：`D:/work/CodexWork/ArtFlow/v04`。
 
-本轮列出的 RTL 与验证问题已补齐。完整视频回归结合 gamma 定向修正复测，最终汇总 **65 项通过**，Efinity 综合、布局布线、比特流生成及 CDC 路由门禁通过。可以作为本轮上板验证候选；尚未烧录硬件，不能称为已完成实板验收的终版。
+**开发与离线验证通过，可作为上板候选；30 分钟实板验收尚未执行。**
 
-## 两版推进与 Git
+## 本版实现
 
-| 阶段 | 内容与记录 |
-|---|---|
-| Claude 基线 | febbada，继承自目标工程 690d94a 的提交链 |
-| 上一版 Codex | f6f2388：事务安全三缓冲、完整帧发布、黑屏/黑尾恢复、动态回归；当时报 11 RTL＋8 Python 复核及 Efinity 通过；其中 gamma 文件/X 检查的遗漏在本轮审计中更正，原始报告保存在该提交 |
-| 本轮后续提交 | 保留三缓冲架构；补强 CDC/reset、参数约束、实际配置读取、严格画面判断、故障覆盖与正常帧率验证 |
+在 v03 的事务安全三缓冲基础上加入左右各 960×540、垂直居中的双窗口；两侧使用同一完整帧，右窗口复用行 BRAM，不增加一次整帧 DDR 读取。新增按 FIFO 水位优先且最多连续服务同侧两次的 AXI 突发调度器，等待 B/RLAST 完成才切换读写。
 
-目标 D:/work/FPGA/ArtFlow/ArtFlow 未修改，收尾检查仍为 690d94a、工作区干净。本轮未直接合入 Claude 的后续独立提交 a88c97d/51c84ba。合并完整提交链的步骤见 [merge_to_fpga.md](merge_to_fpga.md)。
-
-## 问题与处理
-
-1. **启动/压力期检查过宽**：无已发布帧时逐像素全黑；压力期和读错误只允许正确前缀＋全黑尾部，不能忽略任意错误。
-2. **黄金文件 X/X 假通过**：Python 检查数量/范围，Verilog 显式检查 RAW/expected/actual 的 X/Z；缺失或 X 黄金文件必须失败。
-3. **参数漂移**：从真实 ArtFlow_top.v 严格读取配置，Python golden、Bayer TB、端到端与 Questa 原生入口共用；歧义、缺失或不支持表达式直接失败。
-4. **只有高负载输入**：增加真实 30 fps 输入→1080p60 输出，同时保留约 82.5 fps 高负载测试。
-5. **帧身份/重复判断弱**：32 位绝对帧号、顺序与冻结上界；停流允许重复最后完整帧，重启必须更新。
-6. **故障覆盖不足**：增加 AR 跨输出帧等待、BRESP/RRESP 错误、停流重启、半帧截断、W/R 事务中的共同全局复位及恢复。
-7. **CDC/参数约束**：计数与 epoch 使用源端注册 Gray 编码及两级同步，完成 toggle 多一级同步；坏帧标志同步；复位异步断言/同步释放；几何/FIFO/地址位宽 guard；路由后检查所有 64 位跨域端点的预算。
-
-完成计数在捕获开始清零时可能多位跳变，写侧只在完成通知后使用稳定最终值；它不是任意时刻都可用的跨域进度计数。全局复位测试同时复位 AXI 从机，不表示支持主机单独复位后接续旧事务。
+保留 `CFG_DUAL_WINDOW=0` 的全屏二倍放大兼容模式。源文件变更见 [变更索引](changes_v03_to_v04.md)，设计约定见 [设计说明](v04_notes.md)。v03 来源指纹保存在 `baseline_v03/source_sha256.json`，交付打包工具逐文件核对 v03 未改。
 
 ## 实际仿真
 
-工具：Questa Altera Starter FPGA Edition-64 2025.3、Python 3.14；现有许可实际完成仿真，未修改许可。非 UVM 环境，UVM_ERROR/UVM_FATAL 不适用。
+工具：Questa Altera Starter FPGA Edition-64 2025.3（2025.09 Sep 15 2025）、Python 3.14。现有许可证实际运行成功，没有改动许可。原有 SystemVerilog 环境，非 UVM。
 
 ```powershell
-python -B tools/run_v03.py --full
+python -B tools/run_v04.py --full --soak-frames 1000 --run-dir work/regression_final
 ```
 
-[机器汇总](verification/regression_summary.json)：30 项正向 RTL 仿真、27 次 Python 抓帧复核、1 项配置夹具检查、7 项预期失败门禁，共 65 项 PASS。正向仿真日志 Errors=0、Warnings=0。[关键日志汇总](verification/regression_evidence.log) 保留每例的帧序、计数和 PASS/Fatal 证据；完整日志与向量位于 work/regression_v2/。
+最终完整运行 **72 项 PASS**：33 项正向 RTL、29 次 Python 抓帧比对、1 项配置夹具、9 项预期失败门禁。完整结果是一次修正后的全量运行，见 [机器摘要](verification/regression_summary.json)、[逐项列表](case_list.md)、[关键日志](verification/regression_evidence.log)。所有正向 RTL 末尾 Errors=0、Warnings=0，负向 PASS 表示预期错误被拒绝。
 
-| 范围 | 实测 |
-|---|---|
-| Bayer/顺序/VS | 小分辨率全部 16 组合通过；Bayer 单测 32 帧、8192 像素 |
-| full_high_load | 1920×1080，输出序列 0、1、3，连续 3 帧各 2,073,600 像素完全一致；banks=111 |
-| full_30fps | 1920×1080，2 个启动黑帧后输出 0、0、1、1、2、2；连续 6 帧完全一致；更新 3 次、重复 3 次；banks=111 |
-| stress_31 / stress_73 | 每例 published=38、rejected=1、dropped=12、overflow=1、黑尾=1；AR 等待分别 200039 / 200042 周期；恢复后连续 6 帧正确 |
-| BRESP / RRESP | 分别触发 2 / 9 个错误响应；B 错误帧被拒绝，R 错误出现黑尾并恢复 |
-| 停流 / 截断 / 复位 | 停流保留序列 9 后继续更新；半帧截断拒绝计数=1；写/读事务复位各触发 1 次并重新覆盖三个 bank |
+覆盖包括 4 Bayer 相位×2 输入顺序×2 VS 形式、三 bank 全命中、128-beat 与尾部短突发/4 KB 分段、五通道随机反压、AXI 长等待、B/R 错误、停流重启、捕获半帧截断及 W/R 事务中共同复位。正常输出每像素精确比对；压力期间只允许正确前缀后全黑，恢复后必须重新得到连续完整帧。
 
-underflow 计数包含启动时没有完整帧的黑屏，不能直接作为正常运行丢失率。允许丢过载输入帧及重复完整帧，不承诺逐帧无损。
+两组全分辨率均使用 2200×1125 时序和 1920×1080 有效区。高负载连续 3 帧与正常 30 fps 输入连续 6 帧均通过，每帧 2,073,600 像素；30 fps/60 Hz 重复完整帧是预期行为。仿真抓帧位于 Gamma 前，Gamma/test_pattern 分别单测。
 
-七个负向用例分别注入缺失 gamma LUT、X 黄金文件、缺失黄金文件、启动非黑像素、压力期错误像素、冻结像素画面、非法尺寸；全部被指定 Fatal 拒绝。负向结果的 PASS 表示错误检测成功。
+1000 帧 endurance 使用 32×16 RAW/输出有效区、小 porch；模拟时间约 **0.014237 秒**。它验证大量连续帧切换、重复、三 bank 轮转与同帧双窗口，**不是 1800 秒硬件运行，也不是 108000 个实际 60 Hz 帧**。
 
-Questa 原生 do sim/run_v03.do smoke 也实际通过，包含配置检查、3 个单元、1 个端到端及抓帧复核：[原生日志](verification/questa_native_smoke.log)。原生 full 未另跑一遍；full 正向用例与 Python 共用注册表，负向门禁仅由 Python 批量入口运行。
+初轮 `truncated_frame` 暴露了测试注入落在被跳过输入帧的问题；现改为在实际获得捕获许可的帧中截断，定向复测和最终全量均通过。最终同时增加右窗口像素错误、黑边污染的拒绝门禁。初轮失败日志保留在 `work/regression_v04/`，未混入最终通过摘要。
 
-### gamma 收尾修正与复测范围
+Questa 原生 smoke 另行实际验证，证据见 `verification/questa_native_smoke.log`；原生 full 未重复运行，复用同一正向用例注册表。配置检查及正常时序报告门禁的负向夹具另有复核日志。
 
-初次完整运行中的 gamma 报告不能作为有效证据：相对 LUT 路径在 work/regression_v2 中找不到文件，旧检查器可能发生 X/X 假通过。现已将新旧 LUT 路径作为 TB 参数，由共享入口传入真实工程路径；增加未知值 Fatal，并让 Python/原生入口拒绝任何非预期仿真 Warning。
+## Efinity 与时序
 
-修正后实际重跑 Python smoke、Questa 原生 smoke 和缺失 gamma LUT 的反向用例，均通过：[复测摘要](verification/gamma_followup_summary.json)。最终 65 项汇总使用复测 gamma 替换初次无效结果，并新增 negative_gamma_missing；没有把它表述为一次重新执行的全量回归。视频 RTL、端到端 TB 与全分辨率运行时的 SHA-256 完全一致，因此未重复耗时的视频用例。上一版报告关于 gamma 零警告/有效通过的说法也由本段更正。
-
-## Efinity 与 CDC
-
-工具：Efinity 2026.1.132，Ti60F225，时序模型 I3。
+工具：Efinity 2026.1.132；器件 Ti60F225；时序模型 I3。
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File tools/run_efinity.ps1 -Flow compile
+python -B tools/check_implementation.py
 ```
 
-最终命令退出码 0；MAP、interface、PNR、PGM 及附加 CDC 门禁全部通过。[编译日志](verification/efinity_compile.log)、[资源](verification/resource.rpt)、[正常时序摘要](verification/timing_summary.rpt)。PGM 仅生成编程文件，未下载到板卡。
+MAP、interface、PNR、PGM、正常时序门禁和 CDC 路由门禁均通过。PGM 只生成 bit/hex，未下载到板卡。
 
 | 指标 | 实测 |
 |---|---:|
-| XLR | 14,127 / 60,800（23.24%） |
+| XLR | 14,078 / 60,800（23.15%） |
 | Memory blocks | 92 / 256（35.94%） |
 | DSP | 6 / 160（3.75%） |
 | 全局时钟 | 14 / 32 |
-| 正常约束报告内最小 setup / hold slack | +0.494 / +0.028 ns |
-| core_clk 最大分析频率 / 目标 | 139.978 / 100 MHz |
-| vid_clk_dvi2 最大分析频率 / 目标 | 186.428 / 74.25 MHz |
-| hdmi_tx_slow_clk 最大分析频率 / 目标 | 284.010 / 148.5 MHz |
-| 计数 / epoch 总线最大 skew | 0.363 / 0.381 ns |
-| 64 位端点中最大慢角数据延迟 | 0.745 ns |
+| 正常报告内最小 setup / hold slack | +0.419 / +0.029 ns |
+| core_clk 最大分析频率 / 目标 | 123.229 / 100 MHz |
+| HDMI 像素域最大分析频率 / 目标 | 212.269 / 148.5 MHz |
+| count / epoch 总线最大 skew | 0.416 / 0.421 ns |
+| 64 位端点最大慢角数据延迟 | 0.735 ns（预算 2.5 ns） |
 
-正常 setup/hold 签核使用原 ArtFlow.sdc。Efinity 在异步时钟组排除规则下省略 Gray 跨域路径，所以 CDC 审计另用自动生成的 SDC 副本，**只在审计副本去掉时钟组排除规则**，不用于正常时序结论，也不改变实现时的约束。
+正常签核使用 `ArtFlow.sdc`。独立 CDC 审计副本只为展开异步 Gray 路径而去掉 clock-group 排除；检查 32+32 个端点，不用该副本声称正常 setup/hold 通过。报告见 `verification/ArtFlow.timing.rpt`、`verification/cdc_summary.json` 和 `verification/implementation_summary.json`。
 
-[CDC 摘要](verification/cdc_summary.json)、[skew 报告](verification/video_bus_skew.rpt)、[慢角延迟报告](verification/video_bus_delay.rpt) 证明两组各 32 位端点被覆盖，skew/数据延迟均满足 2.5 ns 门限。慢角报告每组有 31 个比较端点，另一个最短路径位作为 reference；门禁按 endpoint/reference 的并集检查完整 32 位。审计是路由后的预算门禁，不是布线器主动优化这些异步路径的保证。另以空端点、缺位、超预算报告做过拒绝测试：[门禁反向日志](verification/cdc_negative_gate.log)。
+继承的外围/IP 提示仍有 `pll_inst4_RSTN` 未分配 core pin、未连接端口/常量复位以及 `cannot find correct IV value`；未隐藏提示或擅改板级外围。正常 STA 与本次 Gray 审计不等于全工程形式化 CDC 证明。
 
-Efinity 原有警告仍存在，包括 pll_inst4_RSTN 未分配 core pin、原 IP 的未连接端口/复位绑常量及 cannot find correct IV value。未据此擅改外围接口或屏蔽警告。通用 synchronizer 报告无警告也不等于全工程 CDC 证明。
+## 交付与待验收
 
-## 交付与边界
+打开 `ArtFlow.xml`。当前构建文件在 `work/efinity_out/ArtFlow.bit`、`ArtFlow.hex`，交付副本在 `outputs/`。`outputs/v04_dual_window_capture.png` 为仿真抓帧；源代码和证据包为 `outputs/ArtFlow_v04_source_and_evidence.zip`。交付文件的 SHA-256 见 `verified_files_sha256.json`，执行 `python -B tools/verify_delivery.py --with-generated` 可复核。
 
-源码、脚本、摘要与报告提交 Git；报告副本统一为 UTF-8/LF 并去掉行末填充空格，原始输出仍在 work/。大型向量、缓存、PNG、完整运行目录和比特流留在忽略的 work/ 下。当前生成 ArtFlow.hex / ArtFlow.bit 位于 work/efinity_out/，合并后建议重新构建。[交付指纹](verified_files_sha256.json) 同时保存文本原始字节 SHA-256 与归一化 LF 的 SHA-256，便于区分跨目录 checkout 的 CRLF 差异。
+**尚未完成：实板 30 分钟无撕裂/无显示断流验收。** 还需确认 DDR 校准、CSI/HDMI 电气、实际 Bayer 排列、开机色条切换和动态场景稳定性。操作和记录要求见 [实板验收](board_acceptance.md)。没有采集 RTL 行/分支/翻转覆盖率、32 位计数回绕或形式化 CDC 证明；不宣称覆盖率 100%。右窗目前为旁路，CNN/RISC-V 属于后续版本。
 
-本轮未覆盖板上 DDR 校准、真实 Bayer/像素排列、CSI/HDMI 电气行为、上电色条切换及长时间运行；未量化 RTL 行/分支/翻转覆盖率、形式化 CDC/亚稳态概率或 32 位计数回绕。当前固定尺寸、时钟关系和运行时配置约定见 [v03_notes.md](v03_notes.md)。
+## 可核验事件计数
+
+以下来自最终运行的原始日志。`underflow` 包含启动时尚无完整帧的黑屏，不能直接作为正常运行丢失率；压力用例中的黑尾是注入超出缓冲能力的故障所致。
+
+### scheduler
+
+```text
+SCHEDULER writes=313 reads=319 urgent_w=126 urgent_r=125 forced_w=62 forced_r=62
+```
+
+### full_high_load
+
+```text
+COUNTERS published=5 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=3 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=811 truncated=0 pauses=0 resets=0
+```
+
+### full_30fps
+
+```text
+COUNTERS published=4 rejected=0 dropped=0 overflow=0 underflow=2 banks=111 updates=3 repeats=3 black=2 tails=0 B_errors=0 R_errors=0 AR_stall=1471 truncated=0 pauses=0 resets=0
+```
+
+### stress_31
+
+```text
+COUNTERS published=20 rejected=1 dropped=30 overflow=1 underflow=13 banks=111 updates=7 repeats=0 black=8 tails=5 B_errors=0 R_errors=0 AR_stall=200029 truncated=0 pauses=0 resets=0
+```
+
+### stress_73
+
+```text
+COUNTERS published=19 rejected=1 dropped=31 overflow=1 underflow=13 banks=111 updates=7 repeats=0 black=8 tails=5 B_errors=0 R_errors=0 AR_stall=200041 truncated=0 pauses=0 resets=0
+```
+
+### truncated_frame
+
+```text
+COUNTERS published=32 rejected=1 dropped=2 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=10 truncated=1 pauses=0 resets=0
+```
+
+### endurance
+
+```text
+COUNTERS published=2041 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=1000 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=249 truncated=0 pauses=0 resets=0
+```

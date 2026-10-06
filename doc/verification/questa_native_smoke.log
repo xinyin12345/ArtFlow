@@ -2,25 +2,27 @@ Reading pref.tcl
 
 # 2025.3
 
-# do {D:/work/CodexWork/ArtFlow/v03/sim/run_v03.do} smoke
-# D:/work/CodexWork/ArtFlow/v03/work/native_entry_v2
+# do sim/run_v04.do smoke
+# D:/work/CodexWork/ArtFlow/v04
 # --smoke
-# D:/work/CodexWork/ArtFlow/v03/work/questa_v2_1790938005
-# D:/work/CodexWork/ArtFlow/v03/work/questa_v2_1790938005/suite.do
+# D:/work/CodexWork/ArtFlow/v04/work/questa_v04_1790954315
+# D:/work/CodexWork/ArtFlow/v04/work/questa_v04_1790954315/suite.do
 config: PASS (0.1s)
 gen_unit: PASS (0.1s)
 gen_small: PASS (0.2s)
 Native plan prepared
 # 0
 # Questa Altera Starter FPGA Edition-64 vlog 2025.3 Compiler 2025.09 Sep 15 2025
-# Start time: 18:46:46 on Oct 02,2026
-# vlog D:/work/CodexWork/ArtFlow/v03/rtl/frame_buffer/DC_FIFO.v D:/work/CodexWork/ArtFlow/v03/rtl/frame_buffer/rst_n_piple.v D:/work/CodexWork/ArtFlow/v03/rtl/video/bayer_bin2x2.v D:/work/CodexWork/ArtFlow/v03/rtl/video/rgb_frame_store.v D:/work/CodexWork/ArtFlow/v03/rtl/video/cam_fb_pipe.v D:/work/CodexWork/ArtFlow/v03/rtl/true_dual_port_ram.v D:/work/CodexWork/ArtFlow/v03/rtl/gamma_conrrection/gamma_correction.v D:/work/CodexWork/ArtFlow/v03/rtl/gamma_conrrection/gamma_lut.v D:/work/CodexWork/ArtFlow/v03/rtl/video/test_pattern.v D:/work/CodexWork/ArtFlow/v03/sim/tb_gamma_lut.v D:/work/CodexWork/ArtFlow/v03/sim/tb_test_pattern.v D:/work/CodexWork/ArtFlow/v03/sim/tb_bayer_bin2x2.v D:/work/CodexWork/ArtFlow/v03/sim/axi_memory_checked.sv D:/work/CodexWork/ArtFlow/v03/sim/tb_v03_checked.sv D:/work/CodexWork/ArtFlow/v03/sim/tb_v03_params.sv
+# Start time: 23:18:36 on Oct 02,2026
+# vlog D:/work/CodexWork/ArtFlow/v04/rtl/frame_buffer/DC_FIFO.v D:/work/CodexWork/ArtFlow/v04/rtl/frame_buffer/rst_n_piple.v D:/work/CodexWork/ArtFlow/v04/rtl/video/video_axi_scheduler.v D:/work/CodexWork/ArtFlow/v04/sim/tb_video_axi_scheduler.sv D:/work/CodexWork/ArtFlow/v04/rtl/video/bayer_bin2x2.v D:/work/CodexWork/ArtFlow/v04/rtl/video/rgb_frame_store.v D:/work/CodexWork/ArtFlow/v04/rtl/video/cam_fb_pipe.v D:/work/CodexWork/ArtFlow/v04/rtl/true_dual_port_ram.v D:/work/CodexWork/ArtFlow/v04/rtl/gamma_conrrection/gamma_correction.v D:/work/CodexWork/ArtFlow/v04/rtl/gamma_conrrection/gamma_lut.v D:/work/CodexWork/ArtFlow/v04/rtl/video/test_pattern.v D:/work/CodexWork/ArtFlow/v04/sim/tb_gamma_lut.v D:/work/CodexWork/ArtFlow/v04/sim/tb_test_pattern.v D:/work/CodexWork/ArtFlow/v04/sim/tb_bayer_bin2x2.v D:/work/CodexWork/ArtFlow/v04/sim/axi_memory_checked.sv D:/work/CodexWork/ArtFlow/v04/sim/tb_v04_checked.sv D:/work/CodexWork/ArtFlow/v04/sim/tb_v04_params.sv 
 # ** Note: (vlog-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
 # -- Compiling module DC_FIFO
 # -- Compiling module FifoAddrCnt
 # -- Compiling module GrayCnt
 # -- Compiling module GrayDecode
 # -- Compiling module rst_n_piple
+# -- Compiling module video_axi_scheduler
+# -- Compiling module tb_video_axi_scheduler
 # -- Compiling module bayer_bin2x2
 # -- Compiling module rgb_frame_store
 # -- Compiling module video_reset_sync
@@ -33,21 +35,22 @@ Native plan prepared
 # -- Compiling module tb_test_pattern
 # -- Compiling module tb_bayer_bin2x2
 # -- Compiling module axi_memory_checked
-# -- Compiling module tb_v03_checked
-# -- Compiling module tb_v03_params
-#
+# -- Compiling module tb_v04_checked
+# -- Compiling module tb_v04_params
+# 
 # Top level modules:
 # 	rst_n_piple
+# 	tb_video_axi_scheduler
 # 	tb_gamma_lut
 # 	tb_test_pattern
 # 	tb_bayer_bin2x2
-# 	tb_v03_checked
-# 	tb_v03_params
-# End time: 18:46:46 on Oct 02,2026, Elapsed time: 0:00:00
+# 	tb_v04_checked
+# 	tb_v04_params
+# End time: 23:18:36 on Oct 02,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # ** Note: (vsim-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
-# vsim -onfinish stop -sv_seed 1 work.tb_gamma_lut -GLUT_FILE=D:/work/CodexWork/ArtFlow/v03/rtl/gamma_conrrection/gamma_2p2_8b.mem -GOLD_FILE=D:/work/CodexWork/ArtFlow/v03/rtl/gamma_conrrection/2P2.mem
-# Start time: 18:46:46 on Oct 02,2026
+# vsim -onfinish stop -sv_seed 1 work.tb_video_axi_scheduler 
+# Start time: 23:18:36 on Oct 02,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vopt-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
 # //  Questa Altera Starter FPGA Edition-64
@@ -64,53 +67,70 @@ Native plan prepared
 # // of the Customer's facilities without the express written permission of SISW,
 # // and may not be used in any way not expressly authorized by SISW.
 # //
+# Loading sv_std.std
+# Loading work.tb_video_axi_scheduler(fast)
+# SCHEDULER writes=313 reads=319 urgent_w=126 urgent_r=125 forced_w=62 forced_r=62
+# === tb_video_axi_scheduler PASS ===
+# ** Note: $finish    : D:/work/CodexWork/ArtFlow/v04/sim/tb_video_axi_scheduler.sv(43)
+#    Time: 140100 ns  Iteration: 1  Instance: /tb_video_axi_scheduler
+# Break at D:/work/CodexWork/ArtFlow/v04/sim/tb_video_axi_scheduler.sv line 43
+# Stopped at D:/work/CodexWork/ArtFlow/v04/sim/tb_video_axi_scheduler.sv line 43
+scheduler PASS
+# End time: 23:18:38 on Oct 02,2026, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0
+# run_case gamma tb_gamma_lut {-GOLD_FILE=D:/work/CodexWork/ArtFlow/v04/rtl/gamma_conrrection/2P2.mem -GLUT_FILE=D:/work/CodexWork/ArtFlow/v04/rtl/gamma_conrrection/gamma_2p2_8b.mem} 1
+# ** Note: (vsim-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
+# vsim -onfinish stop -sv_seed 1 work.tb_gamma_lut -GLUT_FILE=D:/work/CodexWork/ArtFlow/v04/rtl/gamma_conrrection/gamma_2p2_8b.mem -GOLD_FILE=D:/work/CodexWork/ArtFlow/v04/rtl/gamma_conrrection/2P2.mem 
+# Start time: 23:18:38 on Oct 02,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
 # Loading work.tb_gamma_lut(fast)
 # === tb_gamma_lut PASS  (22258 cycles checked) ===
-# ** Note: $finish    : D:/work/CodexWork/ArtFlow/v03/sim/tb_gamma_lut.v(110)
+# ** Note: $finish    : D:/work/CodexWork/ArtFlow/v04/sim/tb_gamma_lut.v(110)
 #    Time: 157410617 ps  Iteration: 1  Instance: /tb_gamma_lut
-# Break at D:/work/CodexWork/ArtFlow/v03/sim/tb_gamma_lut.v line 110
-# Stopped at D:/work/CodexWork/ArtFlow/v03/sim/tb_gamma_lut.v line 110
+# Break at D:/work/CodexWork/ArtFlow/v04/sim/tb_gamma_lut.v line 110
+# Stopped at D:/work/CodexWork/ArtFlow/v04/sim/tb_gamma_lut.v line 110
 gamma PASS
-# End time: 18:46:48 on Oct 02,2026, Elapsed time: 0:00:02
+# End time: 23:18:39 on Oct 02,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # run_case pattern tb_test_pattern {} 1
 # ** Note: (vsim-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
-# vsim -onfinish stop -sv_seed 1 work.tb_test_pattern
-# Start time: 18:46:48 on Oct 02,2026
+# vsim -onfinish stop -sv_seed 1 work.tb_test_pattern 
+# Start time: 23:18:40 on Oct 02,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vopt-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
 # Loading work.tb_test_pattern(fast)
 # === tb_test_pattern PASS  (24302 cycles checked) ===
-# ** Note: $finish    : D:/work/CodexWork/ArtFlow/v03/sim/tb_test_pattern.v(122)
+# ** Note: $finish    : D:/work/CodexWork/ArtFlow/v04/sim/tb_test_pattern.v(122)
 #    Time: 163740577 ps  Iteration: 1  Instance: /tb_test_pattern
-# Break at D:/work/CodexWork/ArtFlow/v03/sim/tb_test_pattern.v line 122
-# Stopped at D:/work/CodexWork/ArtFlow/v03/sim/tb_test_pattern.v line 122
+# Break at D:/work/CodexWork/ArtFlow/v04/sim/tb_test_pattern.v line 122
+# Stopped at D:/work/CodexWork/ArtFlow/v04/sim/tb_test_pattern.v line 122
 pattern PASS
-# End time: 18:46:50 on Oct 02,2026, Elapsed time: 0:00:02
+# End time: 23:18:41 on Oct 02,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # run_case bayer tb_bayer_bin2x2 {-GGAIN_R=280 -GGAIN_G=255 -GGAIN_B=350} 1
 # ** Note: (vsim-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
-# vsim -onfinish stop -sv_seed 1 work.tb_bayer_bin2x2 -GGAIN_B=350 -GGAIN_R=280 -GGAIN_G=255
-# Start time: 18:46:50 on Oct 02,2026
+# vsim -onfinish stop -sv_seed 1 work.tb_bayer_bin2x2 -GGAIN_B=350 -GGAIN_R=280 -GGAIN_G=255 
+# Start time: 23:18:41 on Oct 02,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vopt-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
 # Loading work.tb_bayer_bin2x2(fast)
 # === tb_bayer_bin2x2 PASS  (32 frames, 8192 pixels checked) ===
-# ** Note: $finish    : D:/work/CodexWork/ArtFlow/v03/sim/tb_bayer_bin2x2.v(148)
+# ** Note: $finish    : D:/work/CodexWork/ArtFlow/v04/sim/tb_bayer_bin2x2.v(148)
 #    Time: 319010 ns  Iteration: 1  Instance: /tb_bayer_bin2x2
-# Break at D:/work/CodexWork/ArtFlow/v03/sim/tb_bayer_bin2x2.v line 148
-# Stopped at D:/work/CodexWork/ArtFlow/v03/sim/tb_bayer_bin2x2.v line 148
+# Break at D:/work/CodexWork/ArtFlow/v04/sim/tb_bayer_bin2x2.v line 148
+# Stopped at D:/work/CodexWork/ArtFlow/v04/sim/tb_bayer_bin2x2.v line 148
 bayer PASS
-# End time: 18:46:51 on Oct 02,2026, Elapsed time: 0:00:01
+# End time: 23:18:43 on Oct 02,2026, Elapsed time: 0:00:02
 # Errors: 0, Warnings: 0
-# run_case small_p0 tb_v03_checked {-GGAIN_R=280 -GGAIN_G=255 -GGAIN_B=350 -GPHASE=0 -GREV=0 -GHFP=44 -GHSP=22 -GHBP=74 -GVFP=4 -GVSP=5 -GVBP=36} 1
+# run_case small_p0 tb_v04_checked {-GGAIN_R=280 -GGAIN_G=255 -GGAIN_B=350 -GDUAL_WINDOW=1 -GPHASE=0 -GREV=0 -GHFP=44 -GHSP=22 -GHBP=74 -GVFP=4 -GVSP=5 -GVBP=36} 1
 # ** Note: (vsim-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
-# vsim -onfinish stop -sv_seed 1 work.tb_v03_checked -GVBP=36 -GVFP=4 -GGAIN_B=350 -GGAIN_R=280 -GVSP=5 -GREV=0 -GPHASE=0 -GGAIN_G=255 -GHBP=74 -GHFP=44 -GHSP=22
-# Start time: 18:46:52 on Oct 02,2026
+# vsim -onfinish stop -sv_seed 1 work.tb_v04_checked -GVSP=5 -GHSP=22 -GDUAL_WINDOW=1 -GREV=0 -GGAIN_R=280 -GGAIN_B=350 -GVBP=36 -GPHASE=0 -GHBP=74 -GVFP=4 -GGAIN_G=255 -GHFP=44 
+# Start time: 23:18:43 on Oct 02,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vopt-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
 # Loading sv_std.std
-# Loading work.tb_v03_checked(fast)
+# Loading work.tb_v04_checked(fast)
 # FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
 # FRAME 2 sequence=3 pixels=6400 black_tail=0 good_run=1
 # FRAME 3 sequence=8 pixels=6400 black_tail=0 good_run=2
@@ -118,17 +138,17 @@ bayer PASS
 # FRAME 5 sequence=18 pixels=6400 black_tail=0 good_run=4
 # FRAME 6 sequence=23 pixels=6400 black_tail=0 good_run=5
 # FRAME 7 sequence=28 pixels=6400 black_tail=0 good_run=6
-# COUNTERS published=34 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=0 truncated=0 pauses=0 resets=0
-# === tb_v03_checked PASS 160x40 phase=0 rev=0 vs=0 stress=0 fault=0 ===
-# ** Note: $finish    : D:/work/CodexWork/ArtFlow/v03/sim/tb_v03_checked.sv(298)
-#    Time: 1763223826 ps  Iteration: 1  Instance: /tb_v03_checked
-# Break at D:/work/CodexWork/ArtFlow/v03/sim/tb_v03_checked.sv line 298
-# Stopped at D:/work/CodexWork/ArtFlow/v03/sim/tb_v03_checked.sv line 298
+# COUNTERS published=30 rejected=0 dropped=4 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=6 truncated=0 pauses=0 resets=0
+# === tb_v04_checked PASS 160x40 phase=0 rev=0 vs=0 stress=0 fault=0 ===
+# ** Note: $finish    : D:/work/CodexWork/ArtFlow/v04/sim/tb_v04_checked.sv(310)
+#    Time: 1763203624 ps  Iteration: 1  Instance: /tb_v04_checked
+# Break at D:/work/CodexWork/ArtFlow/v04/sim/tb_v04_checked.sv line 310
+# Stopped at D:/work/CodexWork/ArtFlow/v04/sim/tb_v04_checked.sv line 310
 small_p0 PASS
-# End time: 18:46:57 on Oct 02,2026, Elapsed time: 0:00:05
+# End time: 23:18:48 on Oct 02,2026, Elapsed time: 0:00:05
 # Errors: 0, Warnings: 0
 # set f [open small_cap_variant.txt r]; set seq [string trim [read $f]]; close $f
-# puts [exec {C:\Python314\python.exe} -B {D:/work/CodexWork/ArtFlow/v03/tools/v03_golden.py} check --w 160 --h 40 --out small --phase 0 --frame $seq]
+# puts [exec {C:\Python314\python.exe} -B {D:/work/CodexWork/ArtFlow/v04/tools/v04_golden.py} check --w 160 --h 40 --out small --phase 0 --frame $seq --dual-window 1]
 check: PASS  160x40 = 6400 pixels identical (phase RGGB)
 # puts "REGRESSION PASS (native entry)"
 REGRESSION PASS (native entry)

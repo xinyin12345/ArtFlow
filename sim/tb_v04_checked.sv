@@ -1,7 +1,8 @@
-// v03 end-to-end scoreboard: absolute frame IDs, strict black-tail semantics,
+// v04 end-to-end scoreboard: absolute frame IDs, strict black-tail semantics,
 // publication/ownership checks and bounded recovery from protocol/camera faults.
 `timescale 1ns/1ps
-module tb_v03_checked;
+module tb_v04_checked;
+parameter int DUAL_WINDOW=1;
 parameter int STRESS=0, REV=0, VS_MODE=0, FAULT=0, MUTATION=0;
 parameter int W=160,H=40,PHASE=0,GAP_PCT=25,NGOOD=6,MAXFRM=100;
 parameter int VBLANK=20,LINE_BLANK=8,NOMINAL_FPS=0;
@@ -35,7 +36,7 @@ reg sensor_pause=0,truncate_once=0;
 bit fault_window=0,fault_done=(STRESS==0 && FAULT==0);
 int current_seq=0,in_frames=0,truncated=0,pauses=0,reset_events=0;
 int ar_stall_cycles=0,b_error_seen=0,r_error_seen=0;
-cam_fb_pipe #(.AXI_DATA_WIDTH(128),.AXI_ADDR_WIDTH(32),.START_ADDR(0),.BANK_BYTES(BANK),
+cam_fb_pipe #(.DUAL_WINDOW(DUAL_WINDOW),.AXI_DATA_WIDTH(128),.AXI_ADDR_WIDTH(32),.START_ADDR(0),.BANK_BYTES(BANK),
  .MAX_IN_HEIGHT(H),.MAX_IN_WIDTH(W),.MAX_OUT_WIDTH(OW)) dut (
  .cfg_bayer(PHASE[1:0]),.cfg_pix_rev(REV[0]),.cfg_gain_r(GAIN_R),.cfg_gain_g(GAIN_G),.cfg_gain_b(GAIN_B),
  .i_pclk(pclk),.i_pclk_rstn(prst_n),.i_vs(s_vs),.i_hs(s_hs),.i_valid(s_valid),.i_raw(s_raw),
@@ -100,7 +101,9 @@ initial begin : sensor
   if(VS_MODE) begin s_vs=0;repeat(3)@(negedge pclk);end
   for(int y=0;y<H;y++) begin
    if(!prst_n) begin cut=1;break;end
-   if(truncate_once && y==H/2) begin truncate_once=0;truncated++;cut=1;break;end
+   // The admission scheduler may skip a sensor frame. Inject only into a
+   // granted capture, otherwise no rejected-frame event can be expected.
+   if(truncate_once && y==H/2 && dut.u_store.capturing) begin truncate_once=0;truncated++;cut=1;break;end
    s_hs=1;x=0;
    while(x<W && prst_n) begin
     @(negedge pclk);
@@ -147,6 +150,7 @@ always @(posedge aclk) begin
   if(arvalid&&arready)read_outstanding++;
   if(arvalid&&!arready)ar_stall_cycles++;
   if(rvalid&&rready)begin if(rlast)read_outstanding--;if(rresp!=0)r_error_seen++;end
+  if(write_outstanding+read_outstanding>1)$fatal(1,"Scheduler allowed overlapping bursts");
   if(write_outstanding<0 || write_outstanding>1 || read_outstanding<0 || read_outstanding>1)
    $fatal(1,"Invalid outstanding transaction count");
   if(read_active_d&&!dut.u_store.read_active&&read_outstanding!=0)$fatal(1,"Read bank released before RLAST");
@@ -179,6 +183,12 @@ int black_frames=0,black_tails=0,complete_frames=0,repeat_frames=0,recovery_at=1
 bit de_d=0,vs_d=0,black_tail=0,dumped=0,cap_this=0;
 int fd=0;
 realtime last_vs=0;
+function automatic bit in_window(int yy);
+ return !DUAL_WINDOW || (yy>=OH/2 && yy<OH/2+OH);
+endfunction
+function automatic int source_index(int xx,int yy);
+ return DUAL_WINDOW ? (yy-OH/2)*OW+(xx%OW) : (yy/2)*OW+xx/2;
+endfunction
 function automatic bit disruption_allowed();
  return (STRESS!=0 || FAULT==2) &&
         (fault_window || !fault_done || frm<=recovery_at+2);
@@ -229,12 +239,14 @@ always @(posedge hclk) begin : display_check
     if(seq>=0&&!dumped&&fault_done)begin fd=$fopen({PREFIX,"_cap.hex"},"w");cap_this=1;end
    end
    if(MUTATION==1 && first_good<0 && npx==0)actual=24'h123456;
-   if(MUTATION==2 && fault_window && npx==20)actual=24'h123456;
-   if(MUTATION==3 && seq>=1)actual=expected_pixel(0,(y/2)*OW+x/2);
+   if(MUTATION==2 && fault_window && in_window(y) && x==20)actual=24'h123456;
+   if(MUTATION==3 && seq>=1)actual=in_window(y)?expected_pixel(0,source_index(x,y)):0;
+   if(MUTATION==4 && seq>=0 && y==OH/2 && x==OW)actual=actual^24'h000001;
+   if(MUTATION==5 && seq>=0 && y==0 && x==W-1)actual=24'h000001;
    if($isunknown(actual))$fatal(1,"Unknown display pixel");
    if(y>=H||x>=W)$fatal(1,"Display pixel outside geometry");
-   expected=seq<0?24'd0:expected_pixel(seq,(y/2)*OW+x/2);
-   if(seq<0 || black_tail)begin
+   expected=seq<0 || !in_window(y)?24'd0:expected_pixel(seq,source_index(x,y));
+   if(seq<0 || black_tail || !in_window(y))begin
     if(actual!==24'd0)$fatal(1,"Nonblack pixel in startup/black tail");
    end else if(actual!==expected)begin
     if(actual===24'd0 && disruption_allowed())black_tail=1;
@@ -294,7 +306,7 @@ initial begin
  $display("COUNTERS published=%0d rejected=%0d dropped=%0d overflow=%0d underflow=%0d banks=%b updates=%0d repeats=%0d black=%0d tails=%0d B_errors=%0d R_errors=%0d AR_stall=%0d truncated=%0d pauses=%0d resets=%0d",
   dut.u_store.published_frames,dut.u_store.rejected_frames,dut.u_store.dropped_frames,dut.u_store.overflow_frames,
   dut.u_store.underflow_frames,banks_checked,updates,repeat_frames,black_frames,black_tails,b_error_seen,r_error_seen,ar_stall_cycles,truncated,pauses,reset_events);
- $display("=== tb_v03_checked PASS %0dx%0d phase=%0d rev=%0d vs=%0d stress=%0d fault=%0d ===",W,H,PHASE,REV,VS_MODE,STRESS,FAULT);
+ $display("=== tb_v04_checked PASS %0dx%0d phase=%0d rev=%0d vs=%0d stress=%0d fault=%0d ===",W,H,PHASE,REV,VS_MODE,STRESS,FAULT);
  $finish;
 end
 initial begin #(FRAME_NS*(MAXFRM+10)*2);$fatal(1,"Global watchdog");end

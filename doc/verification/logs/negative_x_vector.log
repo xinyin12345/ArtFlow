@@ -1,0 +1,31 @@
+Reading pref.tcl
+
+# 2025.3
+
+# ** Note: (vsim-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
+# vsim -c -onfinish exit -sv_seed 1 work.tb_bayer_bin2x2 -do "run -all; quit -code 0" -GGAIN_B=350 -GGAIN_R=280 -GGAIN_G=255 
+# Start time: 23:17:44 on Oct 02,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
+# //  Questa Altera Starter FPGA Edition-64
+# //  Version 2025.3 win64 Sep 15 2025
+# //
+# // Unpublished work. Copyright 2025 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading work.tb_bayer_bin2x2(fast)
+# run -all
+# ** Fatal: Invalid/missing golden vector at 0
+#    Time: 0 ps  Scope: tb_bayer_bin2x2 File: D:/work/CodexWork/ArtFlow/v04/sim/tb_bayer_bin2x2.v Line: 49
+# ** Note: $finish    : D:/work/CodexWork/ArtFlow/v04/sim/tb_bayer_bin2x2.v(49)
+#    Time: 0 ps  Iteration: 0  Instance: /tb_bayer_bin2x2
+# End time: 23:17:46 on Oct 02,2026, Elapsed time: 0:00:02
+# Errors: 1, Warnings: 0
