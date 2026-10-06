@@ -40,6 +40,10 @@ try {
       if ($resultCode -eq 0) {
         & $efinityPython -B tools/check_video_cdc.py check
         $resultCode = $LASTEXITCODE
+        if ($resultCode -eq 0) {
+          & $efinityPython -B tools/check_implementation.py
+          $resultCode = $LASTEXITCODE
+        }
       }
     }
     exit $resultCode

@@ -50,6 +50,7 @@
         <efx:design_file name="rtl/gamma_conrrection/gamma_lut.v" version="default" library="default" />
         <efx:design_file name="rtl/video/test_pattern.v" version="default" library="default" />
         <efx:design_file name="rtl/video/bayer_bin2x2.v" version="default" library="default" />
+        <efx:design_file name="rtl/video/video_axi_scheduler.v" version="default" library="default" />
         <efx:design_file name="rtl/video/rgb_frame_store.v" version="default" library="default" />
         <efx:design_file name="rtl/video/cam_fb_pipe.v" version="default" library="default" />
         <efx:design_file name="rtl/csi_rx_controller.sv" version="default" library="default" />

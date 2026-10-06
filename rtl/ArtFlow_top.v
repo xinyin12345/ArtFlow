@@ -197,6 +197,7 @@ localparam RD_FIFO_DEPTH  = 1024;
 // localparam	VBP			= 8'd20;
 // localparam	VFP			= 8'd20;
 
+localparam CFG_DUAL_WINDOW = 1; // native 960x540 at (0,270) and (960,270)
 localparam MAX_HRES = 1920;
 localparam HFP      = 88;
 localparam HSP      = 44;
@@ -489,7 +490,7 @@ assign io_cam_scl_OE = ~scl_padoen_o;
 assign io_cam_sda_OE = ~sda_padoen_o;
 
 //=====================================================================================
-// v03 视频主通路：CSI RAW -> 2x2 合并(960x540 RGB) -> DDR 三缓冲 -> 2 倍放大 -> 1080p
+// v04: CSI RAW -> 960x540 RGB -> scheduled DDR triple buffer -> centered dual windows
 //=====================================================================================
 wire vid_rst_n;
 wire hdmi_tx_de;
@@ -500,6 +501,7 @@ wire [7:0] hdmi_tx_gdata;
 wire [7:0] hdmi_tx_bdata;
 
 cam_fb_pipe #(
+  .DUAL_WINDOW    (CFG_DUAL_WINDOW),
   .AXI_DATA_WIDTH (AXI_DATA_WIDTH ),
   .AXI_ADDR_WIDTH (AXI_ADDR_WIDTH ),
   .START_ADDR     (32'h0000_0000  ),

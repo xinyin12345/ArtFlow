@@ -12,5 +12,6 @@
   "CFG_B_GAIN": 350,
   "CFG_BAYER": 0,
   "CFG_PIX_REV": 0,
-  "top_sha256": "af96d998f1b6cd30f0cd2b8c231471ff29600731f2791ba6a32f6d2f82fce6af"
+  "CFG_DUAL_WINDOW": 1,
+  "top_sha256": "24deef0c6e0a499f01fb433c304ad58858627ec848a2008baac54e82e4212501"
 }

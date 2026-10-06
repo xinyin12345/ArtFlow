@@ -1,10 +1,10 @@
-// ArtFlow v03: fixed-size XRGB8888 triple buffer.
+// ArtFlow v04: fixed-size XRGB8888 triple buffer.
 // Only this controller owns bank allocation. A bank is published after the
 // entire capture AND every AXI B response. A reader pins its bank through RLAST.
 // Camera overload drops a whole frame; frame boundaries never reset AXI/FIFOs.
 // Output words carry a 32-bit display epoch. Late data is drained, not displayed.
 module rgb_frame_store #(
-    parameter WIDTH = 960, HEIGHT = 540,
+    parameter WIDTH = 960, HEIGHT = 540, DUAL_WINDOW = 1,
     parameter ADDR_WIDTH = 32, START_ADDR = 0, BANK_BYTES = 32'h00400000,
     parameter FIFO_DEPTH = 1024, BURST_BEATS = 128
 )(
@@ -29,7 +29,8 @@ module rgb_frame_store #(
 initial begin
     if (WIDTH < 2 || WIDTH%2 != 0 || HEIGHT < 1 || (WIDTH*HEIGHT)%4 != 0 ||
         BANK_BYTES < WIDTH*HEIGHT*4 || BANK_BYTES%4096 != 0 || START_ADDR%16 != 0 ||
-        ADDR_WIDTH < 12 || ADDR_WIDTH > 32 ||
+        ADDR_WIDTH < 12 || ADDR_WIDTH > 32 || (DUAL_WINDOW != 0 && DUAL_WINDOW != 1) ||
+        (DUAL_WINDOW && WIDTH%4 != 0) ||
         BURST_BEATS < 1 || BURST_BEATS > 256 || FIFO_DEPTH < BURST_BEATS+16 ||
         (FIFO_DEPTH & (FIFO_DEPTH-1)) != 0)
         $fatal(1,"Unsupported rgb_frame_store geometry/burst/bank configuration");
@@ -39,6 +40,7 @@ localparam WORDS = WIDTH * HEIGHT / 4;
 localparam INPUTS = WIDTH * HEIGHT / 2;
 localparam CW = $clog2(FIFO_DEPTH)+1;
 wire crst, arst, orst;
+wire write_grant, read_grant;
 video_reset_sync rc (.clk(i_clk), .rst_n(rst_n), .ready(crst));
 video_reset_sync ra (.clk(axi_clk), .rst_n(rst_n), .ready(arst));
 video_reset_sync ro (.clk(o_clk), .rst_n(rst_n), .ready(orst));
@@ -198,7 +200,7 @@ always @(posedge axi_clk or negedge arst) begin
                     published_frames <= published_frames + 1;
                 end else rejected_frames <= rejected_frames + 1;
                 ws <= W_ALLOC;
-            end else if (wanted > 0 && cf_count >= wanted && !cf_empty) begin
+            end else if (write_grant) begin
                 // All W beats are buffered BEFORE AW; sensor loss cannot strand AXI.
                 write_beats <= wanted[8:0]; write_beat <= 0; ws <= W_ADDR;
             end
@@ -269,7 +271,7 @@ always @(posedge axi_clk or negedge arst) begin
         R_WAIT: begin
             if (read_stale || words_read == WORDS) begin
                 read_active <= 0; rs <= R_IDLE;
-            end else if (rf_used + read_wanted + 8 < FIFO_DEPTH) begin
+            end else if (read_grant) begin
                 read_beats <= read_wanted[8:0]; read_beat <= 0; rs <= R_ADDR;
             end
         end
@@ -283,6 +285,18 @@ always @(posedge axi_clk or negedge arst) begin
         end
     endcase
 end
+
+// Requests reserve a complete write burst or sufficient read FIFO capacity.
+// Low display fill / high capture fill get bounded priority at burst boundaries.
+wire write_request = ws==W_WAIT && wanted>0 && cf_count>=wanted && !cf_empty;
+wire read_request = rs==R_WAIT && !read_stale && words_read<WORDS &&
+                    rf_used+read_wanted+8<FIFO_DEPTH;
+video_axi_scheduler u_scheduler (
+    .clk(axi_clk), .rst_n(arst),
+    .write_request(write_request), .read_request(read_request),
+    .write_urgent(cf_count >= FIFO_DEPTH*3/4), .read_urgent(rf_used < FIFO_DEPTH/4),
+    .write_done(bvalid && bready), .read_done(rvalid && rready && rlast),
+    .write_grant(write_grant), .read_grant(read_grant));
 
 // Two-word elastic queue hides the synchronous FIFO read latency.
 reg [160:0] q0 = 0, q1 = 0;
@@ -300,13 +314,18 @@ wire frame_tick = hx == 0 && vy == 0;
 reg frame_bad = 0;
 reg [31:0] underflow_frames = 0;
 wire word_ok = qcount != 0 && q0[159:128] == display_epoch && !q0[160];
-wire consume = active && !py[0] && !frame_bad && word_ok;
+// Dual view: native-size left/right copies, centered in the active raster.
+// Read each source row once; replay it from BRAM in the right window.
+wire image_row = !DUAL_WINDOW || (py >= HEIGHT/2 && py < HEIGHT/2+HEIGHT);
+wire source_slot = DUAL_WINDOW ? px < WIDTH : !py[0];
+wire consume = active && image_row && source_slot && !frame_bad && word_ok;
 wire discard = qcount != 0 && (q0[159:128] != display_epoch || frame_bad);
 wire pop = discard || (consume && pixel == 3);
 assign rf_read = orst && !rf_empty && !pending_read && qcount < 2;
 reg [31:0] line [0:WIDTH-1];
 reg [31:0] line_q = 0;
 wire [12:0] next_x = hx + 13'd1 - H_SYNC - H_BACK_PORCH;
+wire [12:0] line_read_x = DUAL_WINDOW && next_x >= WIDTH ? next_x-WIDTH : next_x;
 wire [31:0] next_pixel = q0[pixel*32 +: 32];
 always @(posedge o_clk or negedge orst) begin
     if (!orst) begin
@@ -346,8 +365,8 @@ always @(posedge o_clk or negedge orst) begin
         o_hs <= hx < H_SYNC;
         o_vs <= vy < V_SYNC;
         o_data <= 0;
-        if (active && !frame_bad) begin
-            if (py[0]) o_data <= line_q;
+        if (active && image_row && !frame_bad) begin
+            if (!source_slot) o_data <= line_q;
             else if (word_ok) begin
                 o_data <= next_pixel;
                 pixel <= pixel+2'd1;
@@ -362,7 +381,7 @@ end
 always @(posedge o_clk)
     if (consume) line[px] <= next_pixel;
 always @(posedge o_clk)
-    if (next_x < WIDTH) line_q <= line[next_x];
+    if (line_read_x < WIDTH) line_q <= line[line_read_x];
 endmodule
 
 // Global reset must also reset the AXI slave; camera frame boundaries never do.
