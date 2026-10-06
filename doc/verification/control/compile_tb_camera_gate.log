@@ -1,0 +1,22 @@
+Questa Altera Starter FPGA Edition-64 vlog 2025.3 Compiler 2025.09 Sep 15 2025
+Start time: 00:23:20 on Oct 03,2026
+vlog -sv D:\work\CodexWork\ArtFlow\v05\rtl\control\artflow_camera_gate.v D:\work\CodexWork\ArtFlow\v05\rtl\video\bayer_bin2x2.v D:\work\CodexWork\ArtFlow\v05\rtl\video\rgb_frame_store.v D:\work\CodexWork\ArtFlow\v05\rtl\video\video_axi_scheduler.v D:\work\CodexWork\ArtFlow\v05\rtl\frame_buffer\DC_FIFO.v D:\work\CodexWork\ArtFlow\v05\rtl\frame_buffer\rst_n_piple.v D:\work\CodexWork\ArtFlow\v05\sim\axi_memory_checked.sv D:\work\CodexWork\ArtFlow\v05\sim\tb_camera_gate.sv 
+** Note: (vlog-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
+-- Compiling module artflow_camera_gate
+-- Compiling module bayer_bin2x2
+-- Compiling module rgb_frame_store
+-- Compiling module video_reset_sync
+-- Compiling module video_axi_scheduler
+-- Compiling module DC_FIFO
+-- Compiling module FifoAddrCnt
+-- Compiling module GrayCnt
+-- Compiling module GrayDecode
+-- Compiling module rst_n_piple
+-- Compiling module axi_memory_checked
+-- Compiling module tb_camera_gate
+
+Top level modules:
+	rst_n_piple
+	tb_camera_gate
+End time: 00:23:20 on Oct 03,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

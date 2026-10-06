@@ -1,0 +1,6 @@
+PASS console: valid commands, 21 malformed commands, bounds, CRLF, editing, all non-ASCII bytes
+PASS I2C: write/read wire bytes, consecutive STOP-separated transactions, LISTEN rearm after recovery, repeated START, per-byte NACK, ACK timeout, dropped START, stuck STOP, timer wrap, bounded recovery, hardware timing widths
+PASS camera: exact 164-write ordering, 5 readbacks, each of 164 NACK locations, each readback timeout/mismatch, fail-closed ready gating
+PASS command dispatch: atomic RGB order, busy rejection, applied versus pending, defaults, malformed no-write, bad-ID no-write, camera reset, UART framing/overflow/break discard and recovery
+PASS camera ROM: SHA256 equal to v04
+PASS: 5 firmware test groups

@@ -14,12 +14,11 @@ create_clock -period 18.519 -name fb [get_ports {fb}]
 create_clock -waveform {0.337 1.010} -period 1.347 -name hdmi_tx_fast_clk [get_ports {hdmi_tx_fast_clk}]
 create_clock -period 10.000 -name core_clk [get_ports {core_clk}]
 create_clock -period 20.000 -name i_mipi_rx_pclk [get_ports {i_mipi_rx_pclk}]
-create_clock -period 200.000 -name CLK_5M [get_ports {CLK_5M}]
 
 
 create_clock -period 10.000 -name i_cam_ck_CLKOUT [get_ports {i_cam_ck_CLKOUT}]
 
-set_clock_groups -exclusive -group {core_clk} -group {tx_cal_clk} -group {vid_clk_dvi2 hdmi_tx_slow_clk hdmi_tx_fast_clk} -group {CLK_5M} -group {i_mipi_rx_pclk} -group {sdram_clk} -group {rx_cal_clk}
+set_clock_groups -exclusive -group {core_clk} -group {tx_cal_clk} -group {vid_clk_dvi2 hdmi_tx_slow_clk hdmi_tx_fast_clk} -group {i_mipi_rx_pclk} -group {sdram_clk} -group {rx_cal_clk}
 
 # v04 registered Gray CDC buses, including the MSB merged into the binary FF.
 # Efinity 2026.1 omits these paths under the clock groups above. The post-route
@@ -27,6 +26,14 @@ set_clock_groups -exclusive -group {core_clk} -group {tx_cal_clk} -group {vid_cl
 # omits clock groups, without changing implementation or normal STA constraints.
 set_bus_skew -from [get_pins {u_video_pipe/u_store/capture_words*[*]~FF|CLK}] -to [get_pins {u_video_pipe/u_store/count_meta[*]~FF|D}] 2.500
 set_bus_skew -from [get_pins {u_video_pipe/u_store/display_epoch*[*]~FF|CLK}] -to [get_pins {u_video_pipe/u_store/epoch_meta[*]~FF|D}] 2.500
+
+# v05 bundled-data mailbox: the source holds the whole gain snapshot until
+# a two-flop request crossing, pixel capture, and two-flop acknowledgement.
+# Earliest capture is two 20 ns pixel periods after launch. Limit every data
+# path and bus skew to 20 ns in the post-route CDC audit (clock groups omitted).
+# MAP flattens the gain output FFs to camera_gain_{r,g,b}; all 48 direct D-pin
+# connections were checked against the generated ArtFlow.map.v netlist.
+set_bus_skew -from [get_pins {u_control/mailbox_*[*]~FF|CLK}] -to [get_pins {camera_gain_*[*]~FF|D}] 20.000
 
 
 
@@ -275,3 +282,7 @@ set_input_delay -clock i_cam_ck_CLKOUT -reference_pin [get_ports {i_cam_ck_CLKOU
 
 
 
+
+# v05 asynchronous serial inputs terminate in the generated SoC synchronizers.
+# UART 115200 8N1 and camera I2C are verified at protocol level, not as synchronous I/O.
+set_false_path -from [get_ports {uart_rx io_cam_scl_IN io_cam_sda_IN}]

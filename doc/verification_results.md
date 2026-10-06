@@ -1,110 +1,56 @@
-# ArtFlow v04 修改与验证结果
+# ArtFlow v05 验证结果
 
-日期：2026-10-02。主工程：`D:/work/CodexWork/ArtFlow/v04`。
+执行日期：2026-10-02～2026-10-03。结论：**离线开发与验证 PASS；实板 NOT_RUN**。主工程为 `D:\work\CodexWork\ArtFlow\v05`；148 个 v04 基线源文件哈希保持不变。
 
-**开发与离线验证通过，可作为上板候选；30 分钟实板验收尚未执行。**
+## 实际执行结果
 
-## 本版实现
+| 层级 | 结果 | 实际证据 |
+|---|---|---|
+| 固件构建 | PASS | RV32IM、8 KiB OCRAM，镜像 5824 字节，BSS 32 字节，另保留 1024 字节栈；四路 RAM 与二进制逐字节重组一致 |
+| 主机 C 测试 | 5 组 PASS | 命令解析、I2C、摄像头顺序/失败隔离、命令调度/UART 错误、原始 ROM 一致性 |
+| 真实 I2C 外设 RTL | PASS | 复现旧 STOP 清 LISTEN 问题；修复后连续两写及重复 START 读回正确 |
+| 控制面 RTL | 3 组时钟 PASS | 每组 132 次 APB 检查、20 个真实 Bayer 输出像素；原子提交、帧边界、异常访问和复位 |
+| Bayer 首像素 | PASS | 24 个变化图案帧、768 个像素；四相位×两顺序，含 VS 与首字同拍 |
+| 摄像头重启门控 | PASS | 半帧中断、缺 FE/VS 停高、未完成 AXI 排空、等待新边界；恢复后 64 个 DDR 像素逐个比对 |
+| 生产 CPU 正常启动 | PASS | 厂商 Sapphire RTL 执行同一生产固件，164 条 I2C 写入顺序和值完全匹配原 ROM，5 条读回；UART READY、wb 命令、OK 应答和像素域增益更新 |
+| 生产 CPU 传感器 NACK | PASS | 地址 NACK 后错误回报、相机保持复位且不 ready，默认增益保留，UART help 可用 |
+| 继承视频完整回归 | 72 项 PASS | 33 个正向 RTL 用例、29 次 Python 帧比较、1 个配置检查、9 个预期失败门禁；包括 1080p 高负载、30 fps 采集、1000 小尺寸输出帧 |
+| Efinity 全实现 | PASS | 综合、接口生成、布局布线和 bit/hex 生成；正常 SDC setup/hold 与独立 CDC 路由审计通过 |
 
-在 v03 的事务安全三缓冲基础上加入左右各 960×540、垂直居中的双窗口；两侧使用同一完整帧，右窗口复用行 BRAM，不增加一次整帧 DDR 读取。新增按 FIFO 水位优先且最多连续服务同侧两次的 AXI 突发调度器，等待 B/RLAST 完成才切换读写。
+原始日志和 JSON 汇总保存在 [verification/](verification/)，生产 ELF/bin/map/dis 和主机测试在 `outputs/firmware/`。完整用例条件见 [case_list.md](case_list.md)。实际 CPU 仿真未缩短生产固件的 20 ms 复位及 50 ms 启动等待。
 
-保留 `CFG_DUAL_WINDOW=0` 的全屏二倍放大兼容模式。源文件变更见 [变更索引](changes_v03_to_v04.md)，设计约定见 [设计说明](v04_notes.md)。v03 来源指纹保存在 `baseline_v03/source_sha256.json`，交付打包工具逐文件核对 v03 未改。
+## 时序、CDC 与资源
 
-## 实际仿真
+正常 `ArtFlow.sdc` 最小 setup slack 为 **+0.490 ns**，最小 hold slack 为 **+0.026 ns**。CDC 审计使用另一个移除异步分组的审计 SDC，不能拿该报告代替正常 STA。
 
-工具：Questa Altera Starter FPGA Edition-64 2025.3（2025.09 Sep 15 2025）、Python 3.14。现有许可证实际运行成功，没有改动许可。原有 SystemVerilog 环境，非 UVM。
+| 跨域总线 | 端点 | 最大 skew | 最大 Clock-to-Q + 数据延迟 | 预算 |
+|---|---:|---:|---:|---:|
+| capture_words Gray → count_meta | 32 | 0.452 ns | 0.744 ns | 2.5 ns |
+| display_epoch Gray → epoch_meta | 32 | 0.426 ns | 0.713 ns | 2.5 ns |
+| RGB mailbox → active gains | 48 | 0.503 ns | 0.789 ns | 20 ns |
 
-```powershell
-python -B tools/run_v04.py --full --soak-frames 1000 --run-dir work/regression_final
-```
+布局报告：XLR **20464/60800（33.66%）**，Memory Block **118/256（46.09%）**，DSP **10/160（6.25%）**，GBUF **13/32（40.62%）**。数据对应随包的 place、timing、bus_skew 和 bus_delay 报告。
 
-最终完整运行 **72 项 PASS**：33 项正向 RTL、29 次 Python 抓帧比对、1 项配置夹具、9 项预期失败门禁。完整结果是一次修正后的全量运行，见 [机器摘要](verification/regression_summary.json)、[逐项列表](case_list.md)、[关键日志](verification/regression_evidence.log)。所有正向 RTL 末尾 Errors=0、Warnings=0，负向 PASS 表示预期错误被拒绝。
+实现流程有既有 DDR/HDMI/CSI 代码和厂商 SoC 的参数、位宽、未使用端口及逻辑优化警告，不能表述为“全工程零警告”。本次综合末段警告原文在 `verification/efinity_warnings_final.log`；包括未使用的 `pll_inst4_RSTN` 和厂商 CPU cache 控制输入常量化。工具还输出 `cannot find correct IV value`，当前工程的 bitstream encryption/auth 均关闭。所有实施阶段返回 PASS，新增控制/SoC 正向仿真则要求零 Error/Warning。
 
-覆盖包括 4 Bayer 相位×2 输入顺序×2 VS 形式、三 bank 全命中、128-beat 与尾部短突发/4 KB 分段、五通道随机反压、AXI 长等待、B/R 错误、停流重启、捕获半帧截断及 W/R 事务中共同复位。正常输出每像素精确比对；压力期间只允许正确前缀后全黑，恢复后必须重新得到连续完整帧。
+## 本次修复并回归的问题
 
-两组全分辨率均使用 2200×1125 时序和 1920×1080 有效区。高负载连续 3 帧与正常 30 fps 输入连续 6 帧均通过，每帧 2,073,600 像素；30 fps/60 Hz 重复完整帧是预期行为。仿真抓帧位于 Gamma 前，Gamma/test_pattern 分别单测。
+1. 实际 I2C STOP/DROP 清除 RX LISTEN：每次 START 完成后重新启用，避免第二条寄存器配置失败。真实外设台先复现旧行为，再验证修复。
+2. I2C 寄存器实际位宽比通用 BSP 假设小：硬件超时改为 10 ms、数据建立时间 500 ns，防止计数值静默截断。
+3. 传感器在半帧复位且没有 FE 时可能拼接旧/新帧：新增 camera gate，中止旧半帧并等待真实新帧边界，保留 AXI 事务排空。
+4. VS 与首 RAW 同拍时 Bayer 首列可能覆盖：修正首字写入与列推进，增加变化图案逐像素验证。
+5. 验证入口和打包门禁防止旧 PASS、旧 bit 或不完整视频用例集误签；源码、固件、日志、实现快照和交付文件均可用 SHA-256 核验。
 
-1000 帧 endurance 使用 32×16 RAW/输出有效区、小 porch；模拟时间约 **0.014237 秒**。它验证大量连续帧切换、重复、三 bank 轮转与同帧双窗口，**不是 1800 秒硬件运行，也不是 108000 个实际 60 Hz 帧**。
+## 明确未执行的项目
 
-初轮 `truncated_frame` 暴露了测试注入落在被跳过输入帧的问题；现改为在实际获得捕获许可的帧中截断，定向复测和最终全量均通过。最终同时增加右窗口像素错误、黑边污染的拒绝门禁。初轮失败日志保留在 `work/regression_v04/`，未混入最终通过摘要。
+实板下载、真实 UART/I2C 电气、摄像头图像、HDMI 观察及 30 分钟连续运行全部 **NOT_RUN**，见 [board_acceptance.md](board_acceptance.md)。1000 个小尺寸仿真帧不等于 30 分钟实板稳定性。未做完整 CSI 电气到 HDMI 串行输出的整机数字仿真；视频抓帧位于 Gamma 前，Gamma 有独立查表测试。未采集 RTL 行/分支/翻转覆盖率，不宣称 100% 覆盖率。独立 CPU/debug 复位没有本版入口，不能宣称支持该恢复场景。
 
-Questa 原生 smoke 另行实际验证，证据见 `verification/questa_native_smoke.log`；原生 full 未重复运行，复用同一正向用例注册表。配置检查及正常时序报告门禁的负向夹具另有复核日志。
+## 交付镜像 SHA-256
 
-## Efinity 与时序
+| 文件 | SHA-256 |
+|---|---|
+| 固件 bin | `83e4191574f1c5f33f7c37ddabc75d94d6a2bdc86b9b9299f1c1d4c90d7d0b10` |
+| ArtFlow_v05.bit | `32424c8ec8c4c5ba5012b20fe15cdd815f19ed21cc17abfe536a6988f515acd9` |
+| ArtFlow_v05.hex | `57327ac87f44e7277a96f9ec847cb91c8fc59bd4ba273d9cc5b61461954a152d` |
 
-工具：Efinity 2026.1.132；器件 Ti60F225；时序模型 I3。
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File tools/run_efinity.ps1 -Flow compile
-python -B tools/check_implementation.py
-```
-
-MAP、interface、PNR、PGM、正常时序门禁和 CDC 路由门禁均通过。PGM 只生成 bit/hex，未下载到板卡。
-
-| 指标 | 实测 |
-|---|---:|
-| XLR | 14,078 / 60,800（23.15%） |
-| Memory blocks | 92 / 256（35.94%） |
-| DSP | 6 / 160（3.75%） |
-| 全局时钟 | 14 / 32 |
-| 正常报告内最小 setup / hold slack | +0.419 / +0.029 ns |
-| core_clk 最大分析频率 / 目标 | 123.229 / 100 MHz |
-| HDMI 像素域最大分析频率 / 目标 | 212.269 / 148.5 MHz |
-| count / epoch 总线最大 skew | 0.416 / 0.421 ns |
-| 64 位端点最大慢角数据延迟 | 0.735 ns（预算 2.5 ns） |
-
-正常签核使用 `ArtFlow.sdc`。独立 CDC 审计副本只为展开异步 Gray 路径而去掉 clock-group 排除；检查 32+32 个端点，不用该副本声称正常 setup/hold 通过。报告见 `verification/ArtFlow.timing.rpt`、`verification/cdc_summary.json` 和 `verification/implementation_summary.json`。
-
-继承的外围/IP 提示仍有 `pll_inst4_RSTN` 未分配 core pin、未连接端口/常量复位以及 `cannot find correct IV value`；未隐藏提示或擅改板级外围。正常 STA 与本次 Gray 审计不等于全工程形式化 CDC 证明。
-
-## 交付与待验收
-
-打开 `ArtFlow.xml`。当前构建文件在 `work/efinity_out/ArtFlow.bit`、`ArtFlow.hex`，交付副本在 `outputs/`。`outputs/v04_dual_window_capture.png` 为仿真抓帧；源代码和证据包为 `outputs/ArtFlow_v04_source_and_evidence.zip`。交付文件的 SHA-256 见 `verified_files_sha256.json`，执行 `python -B tools/verify_delivery.py --with-generated` 可复核。
-
-**尚未完成：实板 30 分钟无撕裂/无显示断流验收。** 还需确认 DDR 校准、CSI/HDMI 电气、实际 Bayer 排列、开机色条切换和动态场景稳定性。操作和记录要求见 [实板验收](board_acceptance.md)。没有采集 RTL 行/分支/翻转覆盖率、32 位计数回绕或形式化 CDC 证明；不宣称覆盖率 100%。右窗目前为旁路，CNN/RISC-V 属于后续版本。
-
-## 可核验事件计数
-
-以下来自最终运行的原始日志。`underflow` 包含启动时尚无完整帧的黑屏，不能直接作为正常运行丢失率；压力用例中的黑尾是注入超出缓冲能力的故障所致。
-
-### scheduler
-
-```text
-SCHEDULER writes=313 reads=319 urgent_w=126 urgent_r=125 forced_w=62 forced_r=62
-```
-
-### full_high_load
-
-```text
-COUNTERS published=5 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=3 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=811 truncated=0 pauses=0 resets=0
-```
-
-### full_30fps
-
-```text
-COUNTERS published=4 rejected=0 dropped=0 overflow=0 underflow=2 banks=111 updates=3 repeats=3 black=2 tails=0 B_errors=0 R_errors=0 AR_stall=1471 truncated=0 pauses=0 resets=0
-```
-
-### stress_31
-
-```text
-COUNTERS published=20 rejected=1 dropped=30 overflow=1 underflow=13 banks=111 updates=7 repeats=0 black=8 tails=5 B_errors=0 R_errors=0 AR_stall=200029 truncated=0 pauses=0 resets=0
-```
-
-### stress_73
-
-```text
-COUNTERS published=19 rejected=1 dropped=31 overflow=1 underflow=13 banks=111 updates=7 repeats=0 black=8 tails=5 B_errors=0 R_errors=0 AR_stall=200041 truncated=0 pauses=0 resets=0
-```
-
-### truncated_frame
-
-```text
-COUNTERS published=32 rejected=1 dropped=2 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=10 truncated=1 pauses=0 resets=0
-```
-
-### endurance
-
-```text
-COUNTERS published=2041 rejected=0 dropped=0 overflow=0 underflow=1 banks=111 updates=1000 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=249 truncated=0 pauses=0 resets=0
-```
+构建与复现入口见 [README_CODEX.md](../README_CODEX.md)。最终文件清单在 `doc/verified_files_sha256.json`，执行 `python -B tools/verify_delivery.py --with-generated` 检查项目及本机构建输出；解压包内执行不带 `--with-generated` 的版本检查随包内容。

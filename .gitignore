@@ -20,3 +20,5 @@ ooc/
 /sim/transcript
 /work/
 __pycache__/
+
+/outputs/

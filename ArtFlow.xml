@@ -28,14 +28,6 @@
         <efx:design_file name="rtl/ddr3_controller/common/efx_fifo_v2.3/efx_fifo_wrapper.v" version="default" library="default" />
         <efx:design_file name="rtl/frame_buffer/DC_FIFO.v" version="default" library="default" />
         <efx:design_file name="rtl/frame_buffer/rst_n_piple.v" version="default" library="default" />
-        <efx:design_file name="rtl/cam_i2c_ctrl/i2c_master/i2c_master_byte_ctrl.v" version="default" library="default" />
-        <efx:design_file name="rtl/cam_i2c_ctrl/i2c_master/i2c_master_top.v" version="default" library="default" />
-        <efx:design_file name="rtl/cam_i2c_ctrl/i2c_master/i2c_master_bit_ctrl.v" version="default" library="default" />
-        <efx:design_file name="rtl/cam_i2c_ctrl/i2c_master/oc_i2c_master.v" version="default" library="default" />
-        <efx:design_file name="rtl/cam_i2c_ctrl/i2c/i2c_16addr_8data.v" version="default" library="default" />
-        <efx:design_file name="rtl/cam_i2c_ctrl/i2c/i2c_master_reg_rom.v" version="default" library="default" />
-        <efx:design_file name="rtl/cam_i2c_ctrl/i2c/i2c_master_reg_set.v" version="default" library="default" />
-        <efx:design_file name="rtl/cam_i2c_ctrl/i2c/i2c_master_ctrl_top.v" version="default" library="default" />
         <efx:design_file name="rtl/dvi_tx/ecc_calc_v1.v" version="default" library="default" />
         <efx:design_file name="rtl/dvi_tx/audio_clock_regeneration_packet.sv" version="default" library="default" />
         <efx:design_file name="rtl/dvi_tx/audio_packet.sv" version="default" library="default" />
@@ -54,6 +46,10 @@
         <efx:design_file name="rtl/video/rgb_frame_store.v" version="default" library="default" />
         <efx:design_file name="rtl/video/cam_fb_pipe.v" version="default" library="default" />
         <efx:design_file name="rtl/csi_rx_controller.sv" version="default" library="default" />
+        <efx:design_file name="ip/sapphire_soc/sapphire_soc.v" version="default" library="default" />
+        <efx:design_file name="rtl/control/artflow_soc.v" version="default" library="default" />
+        <efx:design_file name="rtl/control/artflow_control.v" version="default" library="default" />
+        <efx:design_file name="rtl/control/artflow_camera_gate.v" version="default" library="default" />
         <efx:top_vhdl_arch name="" />
         <efx:msg_config name="" />
         <efx:partition_definitions name="" />

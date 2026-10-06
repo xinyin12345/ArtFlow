@@ -1,0 +1,11 @@
+Questa Altera Starter FPGA Edition-64 vlog 2025.3 Compiler 2025.09 Sep 15 2025
+Start time: 00:23:17 on Oct 03,2026
+vlog -sv D:\work\CodexWork\ArtFlow\v05\rtl\video\bayer_bin2x2.v D:\work\CodexWork\ArtFlow\v05\sim\tb_bayer_first_pixel.sv 
+** Note: (vlog-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
+-- Compiling module bayer_bin2x2
+-- Compiling module tb_bayer_first_pixel
+
+Top level modules:
+	tb_bayer_first_pixel
+End time: 00:23:17 on Oct 03,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

@@ -16,13 +16,31 @@ SOURCES=['rtl/frame_buffer/DC_FIFO.v','rtl/frame_buffer/rst_n_piple.v',
  'rtl/true_dual_port_ram.v','rtl/gamma_conrrection/gamma_correction.v','rtl/gamma_conrrection/gamma_lut.v',
  'rtl/video/test_pattern.v','sim/tb_gamma_lut.v','sim/tb_test_pattern.v','sim/tb_bayer_bin2x2.v',
  'sim/axi_memory_checked.sv','sim/tb_v04_checked.sv','sim/tb_v04_params.sv']
+INPUTS=SOURCES+['rtl/ArtFlow_top.v','rtl/gamma_conrrection/2P2.mem',
+ 'rtl/gamma_conrrection/gamma_2p2_8b.mem','tools/run_v04.py','tools/v04_golden.py',
+ 'tools/v04_config.py','tools/test_v04_config.py']
+NEGATIVE_CASE_NAMES=('negative_gamma_missing','negative_x_vector','negative_missing_vector',
+ 'negative_startup','negative_stress','negative_frozen','negative_right_window',
+ 'negative_border','negative_geometry')
+EVIDENCE={}
 ERROR=re.compile(r'\*\* (?:Error|Fatal|Warning)\b|\bFAIL\b|(?:Errors|Warnings):\s*[1-9]')
+
+def sha(path):
+ return hashlib.sha256(path.read_bytes()).hexdigest()
+
+def input_hashes():
+ return {f:sha(ROOT/f) for f in INPUTS}
 
 def command(args,name,required=None,timeout=1200,expected_error=None):
  start=time.time()
- r=subprocess.run([str(a) for a in args],cwd=RUN,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=timeout)
- output=r.stdout.decode('utf-8',errors='replace')
- (RUN/f'{name}.log').write_text(output,encoding='utf-8')
+ log=RUN/f'{name}.log'
+ # Truncate before launching, so interruption cannot leave an earlier PASS log.
+ try:
+  with log.open('wb') as stream:
+   r=subprocess.run([str(a) for a in args],cwd=RUN,stdout=stream,stderr=subprocess.STDOUT,timeout=timeout)
+ finally:
+  EVIDENCE[log.name]=sha(log)
+ output=log.read_text(encoding='utf-8',errors='replace')
  if expected_error:
   passed=expected_error in output and '** Fatal:' in output and ' PASS ' not in output
  else:
@@ -31,7 +49,7 @@ def command(args,name,required=None,timeout=1200,expected_error=None):
  if not passed:
   print(output[-12000:],flush=True);raise RuntimeError(name)
  return dict(name=name,status='PASS',seconds=round(time.time()-start,2),
-             expected_failure=bool(expected_error))
+             expected_failure=bool(expected_error),log=log.name,log_sha256=EVIDENCE[log.name])
 
 def config_params(c):
  return {**{f'GAIN_{k}':c[f'CFG_{k}_GAIN'] for k in 'RGB'},
@@ -65,6 +83,13 @@ def plan(c,smoke=False,full=False):
   cases.append(('full_30fps','tb_v04_checked',dict(dims,LINE_BLANK=948,VBLANK=66650,NOMINAL_FPS=30,NGOOD=6),17))
  return cases
 
+def required_full_results(c):
+ """Exact result registry for --full --soak-frames (including negative gates)."""
+ cases=plan(c,full=True)
+ return {'config','endurance','check_endurance',*NEGATIVE_CASE_NAMES,
+         *(name for name,_,_,_ in cases),
+         *('check_'+name for name,top,_,_ in cases if top=='tb_v04_checked')}
+
 def sim(name,top,params,seed=1,expected_error=None):
  return command(['vsim','-c','-onfinish','exit','-sv_seed',seed,
   *[f'-G{k}={v}' for k,v in params.items()],f'work.{top}','-do',
@@ -88,8 +113,13 @@ def generate(cases):
 def check(name,p):
  prefix=p.get('PREFIX','small')
  seq=int((RUN/f'{prefix}_cap_variant.txt').read_text().strip())
- return command([sys.executable,'-B',ROOT/'tools/v04_golden.py','check','--w',p.get('W',160),'--h',p.get('H',40),
+ result=command([sys.executable,'-B',ROOT/'tools/v04_golden.py','check','--w',p.get('W',160),'--h',p.get('H',40),
   '--out',prefix,'--phase',p.get('PHASE',0),'--frame',seq,'--dual-window',p.get('DUAL_WINDOW',1)],f'check_{name}','check: PASS')
+ # A shared prefix can be checked again; retain the hash of its latest checked
+ # PNG. Negative tests do not generate PNGs or replace this evidence entry.
+ capture=f'{prefix}_cap.png'
+ EVIDENCE[capture]=sha(RUN/capture)
+ return dict(result,capture=capture,capture_sha256=EVIDENCE[capture],frame=seq)
 
 def negative_tests(c):
  results=[];gp={f'GAIN_{k}':c[f'CFG_{k}_GAIN'] for k in 'RGB'}
@@ -132,7 +162,7 @@ def emit_tcl(cases,path):
  Path(path).write_text('\n'.join(lines)+'\n',encoding='utf-8')
 
 def main():
- global RUN
+ global RUN,EVIDENCE
  parser=argparse.ArgumentParser()
  parser.add_argument('--full',action='store_true');parser.add_argument('--smoke',action='store_true')
  parser.add_argument('--only');parser.add_argument('--run-dir',type=Path);parser.add_argument('--emit-tcl',type=Path)
@@ -141,8 +171,15 @@ def main():
  args=parser.parse_args()
  if args.run_dir:RUN=args.run_dir.resolve()
  RUN.mkdir(parents=True,exist_ok=True)
- results=[];c={}
+ results=[];c={};cases=[];sources={};EVIDENCE={}
+ scope=dict(full=args.full,smoke=args.smoke,only=args.only,soak_frames=args.soak_frames)
+ summary=RUN/'summary.json'
+ # Invalidate old success before configuration, generation, or any subprocess.
+ summary.write_text(json.dumps(dict(status='RUNNING',scope=scope))+'\n',encoding='utf-8')
  try:
+  sources=input_hashes()
+  (RUN/'source_sha256.json').write_text(json.dumps(sources,indent=2)+'\n',encoding='utf-8')
+  EVIDENCE['source_sha256.json']=sha(RUN/'source_sha256.json')
   results.append(command([sys.executable,'-B',ROOT/'tools/test_v04_config.py'],'config','config: PASS'))
   c=load_config();cases=plan(c,args.smoke,args.full)
   if args.soak_frames:
@@ -153,20 +190,25 @@ def main():
    cases=[v for v in cases if re.fullmatch(args.only,v[0])]
    if not cases:raise ValueError('No matching test case')
   (RUN/'config.json').write_text(json.dumps(c,indent=2)+'\n')
-  (RUN/'source_sha256.json').write_text(json.dumps({f:hashlib.sha256((ROOT/f).read_bytes()).hexdigest() for f in SOURCES+['rtl/ArtFlow_top.v']},indent=2)+'\n')
+  EVIDENCE['config.json']=sha(RUN/'config.json')
   generate(cases)
   if args.emit_tcl:
-   emit_tcl(cases,args.emit_tcl);print('Native plan prepared');return 0
-  if not (RUN/'work').exists():command(['vlib','work'],'vlib')
-  command(['vlog',*[ROOT/f for f in SOURCES]],'compile')
-  for name,top,p,seed in cases:
-   results.append(dict(sim(name,top,p,seed),seed=seed,parameters=p))
-   if top=='tb_v04_checked':results.append(check(name,p))
-  if not args.smoke and not args.only:results.extend(negative_tests(c))
-  status='PASS'
+   emit_tcl(cases,args.emit_tcl);print('Native plan prepared');status='PREPARED'
+  else:
+   if not (RUN/'work').exists():command(['vlib','work'],'vlib')
+   command(['vlog',*[ROOT/f for f in SOURCES]],'compile')
+   for name,top,p,seed in cases:
+    results.append(dict(sim(name,top,p,seed),seed=seed,parameters=p))
+    if top=='tb_v04_checked':results.append(check(name,p))
+   if not args.smoke and not args.only:results.extend(negative_tests(c))
+   status='PASS'
+  if sources!=input_hashes():raise ValueError('Regression inputs changed during run')
+  for name,digest in EVIDENCE.items():
+   if sha(RUN/name)!=digest:raise ValueError('Regression evidence changed during run: '+name)
  except Exception as e:
   results.append(dict(name=str(e),status='FAIL'));status='FAIL'
- (RUN/'summary.json').write_text(json.dumps(dict(status=status,config=c,tests=results),indent=2)+'\n',encoding='utf-8')
+ summary.write_text(json.dumps(dict(status=status,config=c,tests=results,scope=scope,
+  source_sha256=sources,evidence_sha256=EVIDENCE),indent=2)+'\n',encoding='utf-8')
  print('REGRESSION '+status,flush=True)
- return status!='PASS'
+ return status not in ('PASS','PREPARED')
 if __name__=='__main__':sys.exit(main())

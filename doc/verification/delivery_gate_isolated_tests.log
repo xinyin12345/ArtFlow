@@ -1,0 +1,20 @@
+Isolated delivery gate fixtures; no EDA commands; no production files modified.
+Inputs: check_implementation.py=085bbd8f0c24060ea46e3c8af402df39065ab6ad6eafb2b08e2395d04cb88bd8, package_v05.py=2e43a2a2f35cc3345592dbcc68263e960c2702cea51c6b314def88beaf2e5821, run_v04.py=39895fb75669f5deca08c12dbe3d14d9532ed12bf149f2b6475a47675b1b0f61
+PASS valid_current_implementation_and_72_case_package
+PASS changed_implementation_input: rejected (Implementation inputs changed during/after build)
+PASS old_ArtFlow.bit: rejected (Output predates this build input snapshot: ArtFlow.bit)
+PASS old_ArtFlow.hex: rejected (Output predates this build input snapshot: ArtFlow.hex)
+PASS old_ArtFlow.timing.rpt: rejected (Output predates this build input snapshot: ArtFlow.timing.rpt)
+PASS rewritten_snapshot_cannot_sign_old_outputs: rejected (Output predates this build input snapshot: ArtFlow.timing.rpt)
+PASS snapshot_bytes_bound_in_implementation_summary: rejected (Evidence no longer matches work/implementation_source_sha256.json)
+PASS missing_video_check_case: rejected (Missing/extra full video regression cases)
+PASS duplicate_video_case: rejected (Duplicate/failed test records: video)
+PASS failed_video_case: rejected (Duplicate/failed test records: video)
+PASS short_endurance: rejected (Video endurance must cover at least 1000 output frames)
+PASS summary_source_binding_mismatch: rejected (Video summary input binding mismatch)
+PASS changed_test_log: rejected (Changed video evidence: full_30fps.log)
+PASS test_record_log_digest_mismatch: rejected (Video test log binding mismatch: full_30fps)
+PASS running_summary_rejected: rejected (Regression failed: video)
+PASS changed_bound_capture: rejected (Changed video evidence: full_cap.png)
+PASS missing_capture_binding: rejected (Missing verified full-size capture hash)
+RESULT 17/17 passed

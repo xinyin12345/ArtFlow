@@ -299,6 +299,12 @@
         <efxpt:comp_gpio name="verf1" gpio_def="GPIOB_P_04" mode="input" bus_name="" io_standard="1.5 V SSTL">
             <efxpt:input_config name="verf1" name_ddio_lo="" conn_type="vref" is_register="false" clock_name="" is_clock_inverted="false" pull_option="none" is_schmitt_trigger="false" ddio_type="none" is_bus_hold="false" delay="0" is_serial="false" is_dyn_delay="false" fastclk_name="" pullup_ena_name="verf1_PULL_UP_ENA" dyn_delay_en_name="verf1_DLY_ENA" dyn_delay_reset_name="verf1_DLY_RST" dyn_delay_ctrl_name="verf1_DLY_CTRL" clkmux_buf_name=""/>
         </efxpt:comp_gpio>
+        <efxpt:comp_gpio name="uart_rx" gpio_def="GPIOL_02" mode="input" bus_name="" io_standard="3.3 V LVCMOS">
+            <efxpt:input_config name="uart_rx" name_ddio_lo="" conn_type="normal" is_register="false" clock_name="" is_clock_inverted="false" pull_option="none" is_schmitt_trigger="false" ddio_type="none" is_bus_hold="false" delay="0" is_serial="false" is_dyn_delay="false" fastclk_name="" pullup_ena_name="uart_rx_PULL_UP_ENA" dyn_delay_en_name="uart_rx_DLY_ENA" dyn_delay_reset_name="uart_rx_DLY_RST" dyn_delay_ctrl_name="uart_rx_DLY_CTRL" clkmux_buf_name=""/>
+        </efxpt:comp_gpio>
+        <efxpt:comp_gpio name="uart_tx" gpio_def="GPIOR_28" mode="output" bus_name="" io_standard="3.3 V LVCMOS">
+            <efxpt:output_config name="uart_tx" name_ddio_lo="" register_option="none" clock_name="" is_clock_inverted="false" is_slew_rate="false" tied_option="none" ddio_type="none" delay="0" is_serial="false" drive_strength="2" fastclk_name=""/>
+        </efxpt:comp_gpio>
         <efxpt:global_unused_config state="input with weak pullup"/>
         <efxpt:bus name="ddr_addr" mode="output" msb="15" lsb="0"/>
         <efxpt:bus name="ddr_ba" mode="output" msb="2" lsb="0"/>
@@ -360,7 +366,6 @@
                 <efxpt:pin name="" type_name="DESKEWED" is_bus="false"/>
             </efxpt:gen_pin>
             <efxpt:comp_output_clock name="i_mipi_rx_pclk" number="0" out_divider="12" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk"/>
-            <efxpt:comp_output_clock name="CLK_5M" number="1" out_divider="120" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk"/>
             <efxpt:comp_prop/>
         </efxpt:pll>
     </efxpt:pll_info>

@@ -1,0 +1,33 @@
+Reading pref.tcl
+
+# 2025.3
+
+# ** Note: (vsim-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
+# vsim -c -onfinish exit -sv_seed 1 work.tb_v04_checked -do "run -all; quit -code 0" -GMUTATION=5 -GVSP=5 -GHSP=22 -GDUAL_WINDOW=1 -GREV=0 -GGAIN_R=280 -GGAIN_B=350 -GVBP=36 -GPHASE=0 -GHBP=74 -GVFP=4 -GGAIN_G=255 -GHFP=44 
+# Start time: 01:03:45 on Oct 03,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
+# //  Questa Altera Starter FPGA Edition-64
+# //  Version 2025.3 win64 Sep 15 2025
+# //
+# // Unpublished work. Copyright 2025 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading sv_std.std
+# Loading work.tb_v04_checked(fast)
+# run -all
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# ** Fatal: Nonblack pixel in startup/black tail
+#    Time: 375935651 ps  Scope: tb_v04_checked.display_check File: D:/work/CodexWork/ArtFlow/v05/sim/tb_v04_checked.sv Line: 250
+# ** Note: $finish    : D:/work/CodexWork/ArtFlow/v05/sim/tb_v04_checked.sv(250)
+#    Time: 375935651 ps  Iteration: 1  Instance: /tb_v04_checked
+# End time: 01:03:47 on Oct 03,2026, Elapsed time: 0:00:02
+# Errors: 1, Warnings: 0

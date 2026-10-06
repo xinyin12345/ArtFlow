@@ -42,12 +42,15 @@ module ArtFlow_top #(
 (
 
 
+   // v05 board UART (115200 8N1, RX GPIOL_02 / TX GPIOR_28)
+    input wire uart_rx,
+    output wire uart_tx,
+
    //Clocks 
 	input	wire	i_arstn,
     input	wire	i_mipi_rx_pclk,
     input wire  vid_clk_dvi2,
     input wire hdmi_tx_slow_clk,
-    input wire CLK_5M,
     input  wire CLK_25M,
 	output  wire    pll_inst1_RSTN,
 	input	wire	i_pll_locked,
@@ -209,7 +212,7 @@ localparam VSP      = 5;
 localparam VBP      = 36;
 
 //===============================================================================
-// 配置（原来由 VIO 调试核提供，现固化为常量；v05 起改由 RISC-V 寄存器控制）
+// v05: white-balance reset defaults; runtime gains are controlled by Sapphire APB.
 //===============================================================================
 // 白平衡增益 Q8.8（256 = 1.0），取 v01 VIO 初值；v03 起在 2x2 合并时以 10bit 精度相乘
 localparam [15:0] CFG_R_GAIN   = 16'h0118;   // 280 ≈ 1.09
@@ -298,7 +301,7 @@ wire					io_systemReset;
 //reset module
 //===================================================================================================
 
-assign w_arstn  		       = i_pll_locked & pll_locked & user_pll_locked;
+assign w_arstn  		       = i_arstn & i_pll_locked & pll_locked & user_pll_locked;
 assign pll_inst1_RSTN  		= i_arstn;
 assign USER_PLL_RSTN      		= i_arstn;
 assign DDR3_PLL_RSTN 		= i_arstn;
@@ -324,7 +327,8 @@ begin
        cnt <= cnt + 1'b1;
 end
 assign led[0]  = cal_done ? cnt[24] : 1'b0;   // DDR 校准完成后闪烁
-assign led[3:2] = 2'b00;
+assign led[2] = camera_ready;
+assign led[3] = camera_reset;
 // DDR3 A14/A15 必须驱动为 0：MRS 命令要求保留位为 0，悬空/上拉会导致 DDR 初始化失败
 assign ddr_addr[15:ROW_WIDTH] = {(16-ROW_WIDTH){1'b0}};
 
@@ -459,35 +463,63 @@ wire mdebug_receive_error      = mipi_debug_out[14];
 										// .o_iic_scl(io_cam_scl)    	
 										// ); 	
 
-wire scl_padoen_o;
-wire sda_padoen_o;
+// Sapphire runs from its own 8 KiB BRAM at 100 MHz. Video retains exclusive DDR.
+wire soc_reset_n;
+wire [15:0] control_paddr;
+wire control_psel, control_penable, control_pwrite;
+wire [31:0] control_pwdata, control_prdata;
+wire control_pready, control_pslverror;
+wire [15:0] camera_gain_r, camera_gain_g, camera_gain_b;
+wire camera_reset, camera_ready;
 
+artflow_soc u_soc (
+    .clk(core_clk), .reset_n(w_arstn), .system_reset_n(soc_reset_n),
+    .uart_rx(uart_rx), .uart_tx(uart_tx),
+    .i2c_scl_i(io_cam_scl_IN), .i2c_scl_o(io_cam_scl_OUT), .i2c_scl_oe(io_cam_scl_OE),
+    .i2c_sda_i(io_cam_sda_IN), .i2c_sda_o(io_cam_sda_OUT), .i2c_sda_oe(io_cam_sda_OE),
+    .paddr16(control_paddr), .psel(control_psel), .penable(control_penable),
+    .pwrite(control_pwrite), .pwdata(control_pwdata), .prdata(control_prdata),
+    .pready(control_pready), .pslverror(control_pslverror)
+);
 
-reg [12:0] i2c_rst_cnt = '0;
-
-always @( posedge CLK_5M or negedge w_arstn )
-begin
-    if( !w_arstn )
-       i2c_rst_cnt <= 'd0;
-    else 
-       i2c_rst_cnt <= i2c_rst_cnt[12] ? i2c_rst_cnt : i2c_rst_cnt + 1'b1;
+// Both mailbox endpoints share reset assertion; pixel release is synchronized.
+(* async_reg = "true" *) reg [1:0] control_pixel_reset = 2'b00;
+always @(posedge i_mipi_rx_pclk or negedge soc_reset_n) begin
+    if (!soc_reset_n) control_pixel_reset <= 2'b00;
+    else control_pixel_reset <= {control_pixel_reset[0], 1'b1};
 end
-wire i2c_rst_n = i2c_rst_cnt[12];
+(* async_reg = "true" *) reg [1:0] camera_ready_sync = 2'b00;
+always @(posedge i_mipi_rx_pclk or negedge soc_reset_n) begin
+    if (!soc_reset_n) camera_ready_sync <= 2'b00;
+    else camera_ready_sync <= {camera_ready_sync[0], camera_ready};
+end
 
-i2c_master_ctrl_top u2_i2c_master_ctrl_top(
-  /*i*/.clk			(CLK_5M		),
-  /*i*/.rst_n			(i2c_rst_n		),
-  /*i*/.scl_pad_i     (io_cam_scl_IN),//(1'b1),
-  /*o*/.scl_pad_o     (io_cam_scl_OUT),
-  /*o*/.scl_padoen_o  (scl_padoen_o),
-  /*i*/.sda_pad_i     (io_cam_sda_IN),
-  /*o*/.sda_pad_o     (io_cam_sda_OUT),
-  /*o*/.sda_padoen_o  (sda_padoen_o)
-  
-  );
-assign o_cam_rst_p = ~w_arstn;
-assign io_cam_scl_OE = ~scl_padoen_o;
-assign io_cam_sda_OE = ~sda_padoen_o;
+// A sensor reset may omit Frame End. Explicitly terminate that partial frame,
+// then wait for a fresh CSI frame boundary before admitting new RAW pixels.
+wire capture_vs, capture_hs, capture_valid;
+wire [39:0] capture_raw;
+artflow_camera_gate u_camera_gate (
+    .clk(i_mipi_rx_pclk), .rstn(control_pixel_reset[1]),
+    .camera_ready(camera_ready_sync[1]),
+    .raw_vs(w_mipi_rx_vs), .raw_hs(w_mipi_rx_hs),
+    .raw_valid(w_mipi_rx_de), .raw_data(w_mipi_rx_data[39:0]),
+    .video_vs(capture_vs), .video_hs(capture_hs),
+    .video_valid(capture_valid), .video_data(capture_raw)
+);
+
+artflow_control #(
+    .DEFAULT_R(CFG_R_GAIN), .DEFAULT_G(CFG_G_GAIN), .DEFAULT_B(CFG_B_GAIN)
+) u_control (
+    .pclk(core_clk), .presetn(soc_reset_n),
+    .paddr(control_paddr), .psel(control_psel), .penable(control_penable),
+    .pwrite(control_pwrite), .pwdata(control_pwdata), .prdata(control_prdata),
+    .pready(control_pready), .pslverror(control_pslverror),
+    .pixel_clk(i_mipi_rx_pclk), .pixel_resetn(control_pixel_reset[1]),
+    .pixel_vs(capture_vs), .pixel_hs(capture_hs), .pixel_valid(capture_valid),
+    .cal_done(cal_done), .gain_r(camera_gain_r), .gain_g(camera_gain_g), .gain_b(camera_gain_b),
+    .camera_reset(camera_reset), .camera_ready(camera_ready)
+);
+assign o_cam_rst_p = !w_arstn || !soc_reset_n || camera_reset;
 
 //=====================================================================================
 // v04: CSI RAW -> 960x540 RGB -> scheduled DDR triple buffer -> centered dual windows
@@ -512,16 +544,16 @@ cam_fb_pipe #(
 ) u_video_pipe (
   .cfg_bayer      (CFG_BAYER      ),
   .cfg_pix_rev    (CFG_PIX_REV    ),
-  .cfg_gain_r     (CFG_R_GAIN     ),
-  .cfg_gain_g     (CFG_G_GAIN     ),
-  .cfg_gain_b     (CFG_B_GAIN     ),
+  .cfg_gain_r     (camera_gain_r  ),
+  .cfg_gain_g     (camera_gain_g  ),
+  .cfg_gain_b     (camera_gain_b  ),
 
   .i_pclk         (i_mipi_rx_pclk ),
   .i_pclk_rstn    (w_mipi_rx_pclk_arstn),
-  .i_vs           (w_mipi_rx_vs   ),
-  .i_hs           (w_mipi_rx_hs   ),
-  .i_valid        (w_mipi_rx_de   ),
-  .i_raw          (w_mipi_rx_data[39:0]),
+  .i_vs           (capture_vs     ),
+  .i_hs           (capture_hs     ),
+  .i_valid        (capture_valid  ),
+  .i_raw          (capture_raw    ),
 
   .H_FRONT_PORCH  (HFP/2          ),
   .H_SYNC         (HSP/2          ),
