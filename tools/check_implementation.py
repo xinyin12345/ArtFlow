@@ -3,6 +3,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+from check_project_v05 import implementation_sources
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -23,6 +24,9 @@ def parse_timing(body):
 
 def main():
     out=ROOT/'work/efinity_out'
+    snapshot=ROOT/'work/implementation_source_sha256.json'
+    if implementation_sources()!=json.loads(snapshot.read_text()):
+        raise ValueError('Implementation inputs changed during/after build')
     report=out/'ArtFlow.timing.rpt'
     values=parse_timing(report.read_text(encoding='utf-8'))
     cdc=json.loads((ROOT/'work/video_cdc_summary.json').read_text(encoding='utf-8'))
@@ -30,7 +34,10 @@ def main():
     for name in ['ArtFlow.bit','ArtFlow.hex']:
         if not (out/name).is_file() or (out/name).stat().st_size==0:
             raise ValueError('Missing bitstream '+name)
-    paths=[report,out/'ArtFlow.bit',out/'ArtFlow.hex']
+    for path in [report,out/'ArtFlow.bit',out/'ArtFlow.hex']:
+        if path.stat().st_mtime_ns < snapshot.stat().st_mtime_ns:
+            raise ValueError('Output predates this build input snapshot: '+path.name)
+    paths=[snapshot,report,out/'ArtFlow.bit',out/'ArtFlow.hex']
     result=dict(status='PASS',minimum_slack_ns=values,
                 sha256={p.relative_to(ROOT).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in paths})
     (ROOT/'work/implementation_summary.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')

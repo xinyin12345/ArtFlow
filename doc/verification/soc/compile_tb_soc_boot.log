@@ -1,0 +1,56 @@
+Questa Altera Starter FPGA Edition-64 vlog 2025.3 Compiler 2025.09 Sep 15 2025
+Start time: 00:23:51 on Oct 03,2026
+vlog -sv D:\work\CodexWork\ArtFlow\v05\ip\sapphire_soc\sim\sapphire_soc.v D:\work\CodexWork\ArtFlow\v05\rtl\control\artflow_soc.v D:\work\CodexWork\ArtFlow\v05\rtl\control\artflow_control.v D:\work\CodexWork\ArtFlow\v05\sim\tb_soc_boot.sv 
+** Note: (vlog-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
+-- Compiling module sapphire_soc
+-- Compiling module EfxSapphireSoc
+-- Compiling module BmbToApb3Bridge
+-- Compiling module BmbGpio2
+-- Compiling module BmbI2cCtrl
+-- Compiling module BmbSpiXdrMasterCtrl
+-- Compiling module BmbUartCtrl
+-- Compiling module BmbClint
+-- Compiling module BmbDecoder_3
+-- Compiling module BmbUnburstify
+-- Compiling module BmbOnChipRam
+-- Compiling module BmbDecoder_2
+-- Compiling module BmbToAxi4SharedBridge
+-- Compiling module BmbArbiter
+-- Compiling module BmbDecoder_1
+-- Compiling module BmbExclusiveMonitor
+-- Compiling module BmbDecoder
+-- Compiling module BufferCC_3
+-- Compiling module SystemDebugger
+-- Compiling module JtagBridgeNoTap
+-- Compiling module BufferCC_2
+-- Compiling module VexRiscv
+-- Compiling module BufferCC_1
+-- Compiling module BufferCC
+-- Compiling module I2cSlave
+-- Compiling module StreamFifo_1
+-- Compiling module StreamFifo
+-- Compiling module TopLevel
+-- Compiling module StreamFifo_2
+-- Compiling module UartCtrl
+-- Compiling module StreamFifo_4
+-- Compiling module StreamArbiter
+-- Compiling module FlowCCByToggle
+-- Compiling module DataCache
+-- Compiling module InstructionCache
+-- Compiling module BufferCC_4
+-- Compiling module UartCtrlRx
+-- Compiling module UartCtrlTx
+-- Compiling module BufferCC_6
+-- Compiling module BufferCC_7
+-- Compiling module EfxCPUSp1
+-- Compiling module EfxCPUSp2
+-- Compiling module artflow_soc
+-- Compiling module artflow_axi_error_slave
+-- Compiling module artflow_control
+-- Compiling module tb_soc_boot
+-- Compiling module artflow_sensor_model
+
+Top level modules:
+	tb_soc_boot
+End time: 00:23:52 on Oct 03,2026, Elapsed time: 0:00:01
+Errors: 0, Warnings: 0

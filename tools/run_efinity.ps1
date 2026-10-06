@@ -5,6 +5,15 @@ param(
 $ErrorActionPreference = 'Stop'
 $projectDir = Split-Path -Parent $PSScriptRoot
 $scratchDir = Join-Path $projectDir 'work'
+New-Item -ItemType Directory -Path $scratchDir -Force | Out-Null
+Set-Content -LiteralPath (Join-Path $scratchDir 'implementation_summary.json') -Value '{"status":"RUNNING"}' -Encoding ascii
+# Build the BRAM program before mapping. This tool never downloads hardware.
+if ($Flow -ne 'sta_tclsh') {
+    & python -B (Join-Path $PSScriptRoot 'build_firmware.py')
+    if ($LASTEXITCODE -ne 0) { throw 'Firmware build failed' }
+    & python -B (Join-Path $PSScriptRoot 'check_project_v05.py') --snapshot
+    if ($LASTEXITCODE -ne 0) { throw 'Project input gate failed' }
+}
 New-Item -ItemType Directory -Path (Join-Path $scratchDir 'efinity_user') -Force | Out-Null
 $env:EFINITY_HOME = $EfinityRoot.Replace('\','/')
 $env:EFXPT_HOME = "$env:EFINITY_HOME/pt"
@@ -43,6 +52,10 @@ try {
         if ($resultCode -eq 0) {
           & $efinityPython -B tools/check_implementation.py
           $resultCode = $LASTEXITCODE
+          if ($resultCode -eq 0) {
+            & $efinityPython -B tools/check_project_v05.py --check-snapshot
+            $resultCode = $LASTEXITCODE
+          }
         }
       }
     }

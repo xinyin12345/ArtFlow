@@ -1,0 +1,9 @@
+WARNING: cannot find correct IV value
+Running: efx_run_map.py ArtFlow --family Titanium --device Ti60F225 --project_xml D:\work\CodexWork\ArtFlow\v03\ArtFlow.xml --output_dir work/efinity_out --work_dir work/efinity_build --timeout 900 --opt root=ArtFlow_top --opt veri_options=verilog_mode=sv_09,vhdl_mode=vhdl_2008 work-dir=work/efinity_build write_efx_verilog=on
+   map :	PASS
+Running: efx_run_pt_unified.py ArtFlow Titanium Ti60F225 --output_dir work/efinity_out --timing_model I3 --project_xml ArtFlow.xml --work_dir work/efinity_build
+   interface :	PASS
+Running: efx_run_pnr.py ArtFlow --prj D:\work\CodexWork\ArtFlow\v03\ArtFlow.xml --family Titanium --device Ti60F225 --timing_model I3 --output_dir work/efinity_out --work_dir work/efinity_build --timeout 842 --opt sdc_file=ArtFlow.sdc
+   pnr :	PASS
+Running: efx_run_pgm.py ArtFlow --family Titanium --device Ti60F225 --output_dir work/efinity_out --work_dir work/efinity_build --timeout 774 --opt mode=active width=1 enable_roms=on spi_low_power_mode=on io_weak_pullup=on oscillator_clock_divider=DIV8 enable_crc_check=on bitstream_compression=on active_capture_clk_edge=posedge release_tri_then_reset=on enable_external_master_clock=off jtag_usercode=0xFFFFFFFF
+   pgm :	PASS

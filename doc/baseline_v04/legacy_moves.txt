@@ -1,0 +1,9 @@
+tools/run_v03.py -> _archive/v03_verification/tools/run_v03.py
+tools/v03_config.py -> _archive/v03_verification/tools/v03_config.py
+tools/v03_golden.py -> _archive/v03_verification/tools/v03_golden.py
+tools/test_v03_config.py -> _archive/v03_verification/tools/test_v03_config.py
+sim/run_v03.do -> _archive/v03_verification/sim/run_v03.do
+sim/tb_v03_checked.sv -> _archive/v03_verification/sim/tb_v03_checked.sv
+sim/tb_v03_params.sv -> _archive/v03_verification/sim/tb_v03_params.sv
+sim/tb_v03_pipe.sv -> _archive/v03_verification/sim/tb_v03_pipe.sv
+sim/axi_mem_model.sv -> _archive/v03_verification/sim/axi_mem_model.sv

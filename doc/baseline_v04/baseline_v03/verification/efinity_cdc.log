@@ -1,0 +1,25 @@
+WARNING: cannot find correct IV value
+Running: D:/soft/Efinity/2026.1\bin\efx_sta.exe --prj D:\work\CodexWork\ArtFlow\v03\ArtFlow.xml -t tools/check_video_cdc.tcl -- --circuit ArtFlow --family Titanium --device Ti60F225 --operating_conditions I3 --vdb_file work/efinity_out\ArtFlow.vdb --use_vdb_file on --prj D:\work\CodexWork\ArtFlow\v03\ArtFlow.xml --output_dir work/efinity_out --work_dir work/efinity_build --place_file work/efinity_out\ArtFlow.place --route_file work/efinity_out\ArtFlow.route --sync_file work/efinity_out\ArtFlow.interface.csv --generate_prevpr_netlist off --sdc_file=work/video_cdc_audit.sdc
+INFO     : Reading project database "D:\work\CodexWork\ArtFlow\v03\ArtFlow.xml" [FlowMsg::ProjectDatabaseReading]
+INFO     : Maximum concurrency has been set to 16 [FlowMsg::MaxThreads]
+INFO     : SDC file 'work/video_cdc_audit.sdc' parsed successfully.
+INFO     : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+INFO     : Router Setup
+INFO     : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+INFO     : Routing trace digest: 15173318427293990925
+INFO     : Successfully reloaded trace from trace file
+INFO     : SDC file 'work/video_cdc_audit.sdc' parsed successfully.
+
+INFO     : Evaluating user specified Tcl script "tools/check_video_cdc.tcl" [FlowMsg::EvaluatingTclScript]
+CDC_ENDPOINTS count_meta count=32
+CDC_ENDPOINTS epoch_meta count=32
+INFO     : Write report_bus_skew report to "work/efinity_out\ArtFlow.video_bus_skew.rpt" ...
+INFO     : Done printing report_bus_skew result
+INFO     : Write report_bus_skew report to "work/efinity_out\ArtFlow.video_bus_delay.rpt" ...
+INFO     : Done printing report_bus_skew result
+INFO     : The entire flow of EFX_STA took 14.5816362 seconds [FlowMsg::StageDuration]
+INFO     :     The entire flow of EFX_STA took 15.703125 seconds (approximately) in total CPU time [FlowMsg::StageDuration::CPUTime]
+INFO     : The entire flow of EFX_STA virtual memory usage: begin = 20.072 MB, end = 289.928 MB, delta = 269.856 MB [FlowMsg::VMUsage]
+INFO     :     The entire flow of EFX_STA peak virtual memory usage = 291.52 MB [FlowMsg::VMUsage::Peak]
+INFO     : The entire flow of EFX_STA resident set memory usage: begin = 23.104 MB, end = 298.66 MB, delta = 275.556 MB [FlowMsg::RSSUsage]
+INFO     :     The entire flow of EFX_STA peak resident set memory usage = 299.18 MB [FlowMsg::RSSUsage::Peak]

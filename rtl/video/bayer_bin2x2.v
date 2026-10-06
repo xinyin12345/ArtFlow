@@ -79,10 +79,17 @@ wire         line_end = hs_d & ~a_hs;
 always @(posedge clk) begin
     vs_d <= a_vs;
     hs_d <= a_hs;
-    if (!rstn || vs_edge) begin
+    if (!rstn) begin
         row_odd       <= 1'b0;
         line_has_data <= 1'b0;
         col           <= {AW{1'b0}};
+    end else if (vs_edge) begin
+        // CSI may assert FS/VS together with the first RAW word. That word is
+        // the first word of the new even row, independently of the old row.
+        // Consume it exactly once: the following word belongs at column 1.
+        row_odd       <= 1'b0;
+        line_has_data <= a_valid;
+        col           <= a_valid ? {{(AW-1){1'b0}},1'b1} : {AW{1'b0}};
     end else if (line_end) begin
         if (line_has_data)
             row_odd <= ~row_odd;
@@ -98,8 +105,8 @@ end
 reg [39:0] lb [0:LB_DEPTH-1];
 reg [39:0] lb_q = 40'd0;
 always @(posedge clk) begin
-    if (a_valid && !row_odd)
-        lb[col] <= a_data;
+    if (a_valid && (vs_edge || !row_odd))
+        lb[vs_edge ? {AW{1'b0}} : col] <= a_data;
     lb_q <= lb[col];
 end
 
