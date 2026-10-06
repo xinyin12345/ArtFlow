@@ -216,7 +216,7 @@ localparam VBP      = 36;
 //===============================================================================
 // 白平衡增益 Q8.8（256 = 1.0），取 v01 VIO 初值；v03 起在 2x2 合并时以 10bit 精度相乘
 localparam [15:0] CFG_R_GAIN   = 16'h0118;   // 280 ≈ 1.09
-localparam [15:0] CFG_G_GAIN   = 16'h00FF;   // 255 ≈ 1.00
+localparam [15:0] CFG_G_GAIN   = 16'h00E6;   // 230 ≈ 0.90
 localparam [15:0] CFG_B_GAIN   = 16'h015E;   // 350 ≈ 1.37
 // Gamma：0 = 直通，1 = 查表
 localparam        CFG_GAMMA_EN = 1'b1;
