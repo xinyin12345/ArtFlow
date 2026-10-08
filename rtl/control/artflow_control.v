@@ -22,6 +22,10 @@ module artflow_control #(
     input              pixel_vs,
     input              pixel_hs,
     input              pixel_valid,
+    input [2:0]        diag_events, // independent pixel-domain toggles
+    input [2:0]        diag_axi_fire, // AW, W, B handshakes in pclk
+    input [31:0]       diag_state, diag_fifo, diag_written, diag_completed,
+    input [31:0]       diag_published, diag_rejected,
     input              cal_done,
     output reg [15:0]  gain_r,
     output reg [15:0]  gain_g,
@@ -42,6 +46,28 @@ reg acknowledge_toggle;
 (* async_reg = "true" *) reg [1:0] acknowledge_sync;
 (* async_reg = "true" *) reg [1:0] request_sync;
 (* async_reg = "true" *) reg [1:0] calibration_sync;
+
+// Diagnostic registers only observe the data path. No read or write here
+// changes capture, frame ownership, AXI scheduling or any reset.
+(* async_reg = "true" *) reg [2:0] diag_meta, diag_sync;
+reg [2:0] diag_previous;
+reg [31:0] diag_vs_count, diag_raw_blocks, diag_bin_blocks;
+reg [31:0] diag_aw_count, diag_w_count, diag_b_count;
+always @(posedge pclk or negedge presetn) begin
+    if (!presetn) begin
+        diag_meta <= 0; diag_sync <= 0; diag_previous <= 0;
+        diag_vs_count <= 0; diag_raw_blocks <= 0; diag_bin_blocks <= 0;
+        diag_aw_count <= 0; diag_w_count <= 0; diag_b_count <= 0;
+    end else begin
+        diag_meta <= diag_events; diag_sync <= diag_meta; diag_previous <= diag_sync;
+        if (diag_sync[0] != diag_previous[0]) diag_vs_count <= diag_vs_count + 1'b1;
+        if (diag_sync[1] != diag_previous[1]) diag_raw_blocks <= diag_raw_blocks + 1'b1;
+        if (diag_sync[2] != diag_previous[2]) diag_bin_blocks <= diag_bin_blocks + 1'b1;
+        if (diag_axi_fire[0]) diag_aw_count <= diag_aw_count + 1'b1;
+        if (diag_axi_fire[1]) diag_w_count <= diag_w_count + 1'b1;
+        if (diag_axi_fire[2]) diag_b_count <= diag_b_count + 1'b1;
+    end
+end
 
 reg address_valid, write_valid;
 wire transfer = psel && penable;
@@ -81,6 +107,19 @@ always @* begin
             prdata = {30'd0, camera_ready, camera_reset};
             write_valid = pwdata <= 32'd2;
         end
+        16'h0034: prdata = 32'h44494131; // "DIA1", firmware compatibility marker
+        16'h0038: prdata = diag_vs_count;
+        16'h003c: prdata = diag_raw_blocks;
+        16'h0040: prdata = diag_bin_blocks;
+        16'h0044: prdata = diag_aw_count;
+        16'h0048: prdata = diag_w_count;
+        16'h004c: prdata = diag_b_count;
+        16'h0050: prdata = diag_state;
+        16'h0054: prdata = diag_fifo;
+        16'h0058: prdata = diag_written;
+        16'h005c: prdata = diag_completed;
+        16'h0060: prdata = diag_published;
+        16'h0064: prdata = diag_rejected;
         default: address_valid = 1'b0;
     endcase
 end

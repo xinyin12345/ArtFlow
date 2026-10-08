@@ -211,3 +211,42 @@ endgenerate
 assign	o_srst	= r_srst_1P[CYCLE-1];
 
 endmodule
+
+// ArtFlow camera RX reset sequence. This module shares a source file with the
+// existing resets so the user's Efinity project XML stays byte-for-byte intact.
+// Assertion does not require any clock. Release follows core -> HS byte ->
+// pixel, each through three local edges. A stopped discontinuous byte clock
+// holds the byte/pixel datapaths in reset; the core/PHY can start independently
+// and enable the clock lane. Never make PHY release depend on that byte clock.
+// The firmware holds CAMERA reset for 20 ms and waits 50 ms after releasing it
+// before configuring/starting the sensor; the vendor tINIT remains 100 us.
+module artflow_csi_reset (
+    input wire request_n,
+    input wire core_clk,
+    input wire byte_clk,
+    input wire pixel_clk,
+    output wire core_reset_n,
+    output wire byte_reset_n,
+    output wire pixel_reset_n,
+    output wire phy_reset
+);
+(* async_reg = "true" *) reg [2:0] core_release = 3'b000;
+(* async_reg = "true" *) reg [2:0] byte_release = 3'b000;
+(* async_reg = "true" *) reg [2:0] pixel_release = 3'b000;
+always @(posedge core_clk or negedge request_n) begin
+    if (!request_n) core_release <= 3'b000;
+    else core_release <= {core_release[1:0],1'b1};
+end
+always @(posedge byte_clk or negedge core_reset_n) begin
+    if (!core_reset_n) byte_release <= 3'b000;
+    else byte_release <= {byte_release[1:0],1'b1};
+end
+always @(posedge pixel_clk or negedge byte_reset_n) begin
+    if (!byte_reset_n) pixel_release <= 3'b000;
+    else pixel_release <= {pixel_release[1:0],1'b1};
+end
+assign core_reset_n = core_release[2];
+assign byte_reset_n = byte_release[2];
+assign pixel_reset_n = pixel_release[2];
+assign phy_reset = ~core_reset_n;
+endmodule

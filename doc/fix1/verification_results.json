@@ -1,0 +1,112 @@
+{
+  "identity": "ArtFlow v06 FIX1",
+  "built_at": "2026-10-07T00:05:25.057338+08:00",
+  "purpose": "candidate repair of camera receive reset coverage and ordering",
+  "hardware_validation": "NOT_RUN",
+  "observed_stop": "raw_valid activity continues; CSI VS edges absent or only one; a single complete DDR frame is published",
+  "root_cause_confidence": "RTL reset omissions confirmed; physical causation and complete on-board resolution still unproven",
+  "simulation": {
+    "reset_cases": [
+      {
+        "case": "reset_5_7_10",
+        "checks": 2676,
+        "reset_assertions": 88
+      },
+      {
+        "case": "reset_11_3_7",
+        "checks": 2624,
+        "reset_assertions": 88
+      },
+      {
+        "case": "reset_3_13_5",
+        "checks": 3691,
+        "reset_assertions": 88
+      }
+    ],
+    "reset_gate_pixel_checks": 64,
+    "control_simulations": 6,
+    "diagnostic_clock_ratios": 3,
+    "video_registry_entries": 66,
+    "video_scope": {
+      "full": false,
+      "smoke": false,
+      "only": null,
+      "soak_frames": 0
+    },
+    "ui": [
+      {
+        "name": "vlib",
+        "status": "PASS",
+        "seconds": 0.1
+      },
+      {
+        "name": "compile_v06",
+        "status": "PASS",
+        "seconds": 0.17
+      },
+      {
+        "name": "tb_v06_ui",
+        "status": "PASS",
+        "seconds": 1.87
+      },
+      {
+        "name": "tb_v06_fps",
+        "status": "PASS",
+        "seconds": 1.86
+      },
+      {
+        "name": "tb_v06_osd",
+        "status": "PASS",
+        "seconds": 14.21
+      },
+      {
+        "name": "osd_pixel_reference",
+        "status": "PASS",
+        "pixels": 1728000
+      }
+    ],
+    "firmware_host_groups": 4
+  },
+  "implementation": {
+    "status": "PASS",
+    "minimum_slack_ns": {
+      "Setup (Max)": 0.459,
+      "Hold (Min)": 0.026
+    },
+    "sha256": {
+      "work/implementation_source_sha256.json": "12865f704d9241c9d781e19b01015fcbb54b8aa6a4a867738538f01d5bb344ba",
+      "work/efinity_out/ArtFlow.timing.rpt": "fb0e3210fe652485c12db904a522c67436c3048808f18a7d8e868af1ff79dd04",
+      "work/efinity_out/ArtFlow.bit": "d41578247ff05053cb7efde547c735020e516a25b2381eab6214fe398039035e",
+      "work/efinity_out/ArtFlow.hex": "4a181da85ecf4b7b5b7120a3e5cd4715ce60071bd4180a73abf4c72fb003ec31"
+    }
+  },
+  "reset_chain_min_setup_ns": 9.542,
+  "reset_chain_min_hold_ns": 0.109,
+  "tools": {
+    "questa": "2025.3 Altera Starter FPGA Edition",
+    "efinity": "2026.1.132",
+    "firmware_compiler": "riscv-none-elf-gcc.exe (xPack GNU RISC-V Embedded GCC x86_64) 13.4.0",
+    "license_preflight": "Native Questa and Efinity actually ran successfully. No license changes; VCS/VM/UVM not used."
+  },
+  "coverage": "Directed assertions, 3 asynchronous clock ratios, reset with absent clocks, AXI scoreboard and pixel references. No structural/UCDB/UVM coverage collected.",
+  "not_run": [
+    "physical D-PHY / encrypted CSI packet decoder fault modeling",
+    "FIX1 hardware acceptance",
+    "new full-resolution capture endurance",
+    "new actual Sapphire CPU boot simulation"
+  ],
+  "preserved": {
+    "ArtFlow.xml": "2665c7adeccf444958a755afad2d1e217658fcc728b75facbf90d9b446356449",
+    "ArtFlow.peri.xml": "3cd280079d776f9b534fdaa499af0c90e1b161b43fa3b7045098347c3d8d3521",
+    "ArtFlow.sdc": "83a95b2aac41c1adfe6d52510e24676d07e8f3b191df6aea11ed8b9fc3b64bd9"
+  },
+  "user_settings": {
+    "R": 280,
+    "G": 230,
+    "B": 350,
+    "Bayer": "BGGR",
+    "pattern": 0
+  },
+  "live_project_unmodified": true,
+  "audit_note": "Mapped final reset FFs use output-net aliases csi_reset_core_n/byte_n/pixel_n; audit repaired to check actual connected FFs. No RTL or constraint relaxation for that repair."
+}

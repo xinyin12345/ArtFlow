@@ -15,6 +15,9 @@ module rgb_frame_store #(
     input [12:0] V_FRONT_PORCH, V_SYNC, V_VALID, V_BACK_PORCH,
     output reg o_de, o_hs, o_vs, output reg [31:0] o_data,
     output wire capture_toggle, // AXI-domain successful publication telemetry
+    // Read-only diagnostics, all in axi_clk. No feedback into video control.
+    output [31:0] diag_state, diag_fifo, diag_written, diag_completed,
+    output [31:0] diag_published, diag_rejected,
     input axi_clk,
     output [ADDR_WIDTH-1:0] awaddr, output [7:0] awlen,
     output awvalid, input awready,
@@ -384,6 +387,18 @@ always @(posedge o_clk)
     if (consume) line[px] <= next_pixel;
 always @(posedge o_clk)
     if (line_read_x < WIDTH) line_q <= line[line_read_x];
+// Each field is a live AXI-domain value. A UART status line is not an atomic
+// multi-register snapshot; compare successive readings to locate stalled work.
+assign diag_state = {9'd0,rlast,rready,rvalid,arready,arvalid,bready,bvalid,
+                     wready,wvalid,awready,awvalid,rf_full,cf_empty,
+                     write_bad,bad_sync[1],capture_finished,read_active,latest_valid,rs,ws};
+wire [15:0] diag_cf_count = cf_count;
+wire [15:0] diag_beats = write_beats;
+assign diag_fifo = {diag_cf_count,diag_beats};
+assign diag_written = words_written;
+assign diag_completed = completed_words;
+assign diag_published = published_frames;
+assign diag_rejected = rejected_frames;
 endmodule
 
 // Global reset must also reset the AXI slave; camera frame boundaries never do.

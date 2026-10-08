@@ -15,6 +15,9 @@ module tb_artflow_control;
     reg [39:0] raw = {4{10'd400}};
     wire [15:0] gain_r, gain_g, gain_b;
     wire camera_reset, camera_ready;
+    wire [2:0] diag_events = 0, diag_axi_fire = 0;
+    wire [31:0] diag_state = 0, diag_fifo = 0, diag_written = 0, diag_completed = 0;
+    wire [31:0] diag_published = 0, diag_rejected = 0;
     artflow_control dut (.*);
 
     wire bin_vs, bin_hs, bin_valid;

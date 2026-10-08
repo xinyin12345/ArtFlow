@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-08",
+  "timezone": "Asia/Singapore",
+  "identity_context": "ArtFlow v06 FIX1",
+  "evidence_origin": "User-provided screenshot of two status reports; user reports 1.5 hours continuous operation. No direct board access or timestamped acquisition by assistant.",
+  "reported_uptime_minutes": 90,
+  "user_confirmed_interval_between_status_reports_seconds": 5400,
+  "interval_precision": "User-confirmed 90 minutes; no machine timestamps supplied",
+  "current_osd_cap_fps": [
+    12,
+    13
+  ],
+  "current_osd_out_fps": 60,
+  "user_clarification": "两次status之间间隔90分钟，当前的cap fps是12-13交替，out fps是稳定60",
+  "status": "USER_REPORTED_SOAK_PASS_AT_12_TO_13_FPS",
+  "common_status": {
+    "status": "0x00000006",
+    "camera": "0x00000002",
+    "active": [
+      280,
+      230,
+      350
+    ],
+    "shadow": [
+      280,
+      230,
+      350
+    ],
+    "last_camera": "OK",
+    "uart_tx_dropped": 0,
+    "uart_rx_errors": 0
+  },
+  "start": {
+    "vs_edges": 19141,
+    "raw256": 19380032,
+    "bin256": 9690074,
+    "axi_aw": 9685801,
+    "w": 1239175104,
+    "b": 9685883,
+    "video_state": "0x0048a069",
+    "fifo_beats": "0x00100080",
+    "written": 105088,
+    "completed": 113040,
+    "published": 9561,
+    "rejected": 0
+  },
+  "end": {
+    "vs_edges": 157524,
+    "raw256": 159493050,
+    "bin256": 79746525,
+    "axi_aw": 79776789,
+    "w": 1616454208,
+    "b": 79776789,
+    "video_state": "0x0048a4a0",
+    "fifo_beats": "0x00000040",
+    "written": 129600,
+    "completed": 129600,
+    "published": 78753,
+    "rejected": 0
+  },
+  "cumulative_deltas": {
+    "vs_edges": 138383,
+    "raw256": 140113018,
+    "bin256": 70056451,
+    "axi_aw": 70090988,
+    "w": 377279104,
+    "b": 70090906,
+    "published": 69192,
+    "rejected": 0
+  },
+  "checks": {
+    "frame_publication_progresses": true,
+    "rejected_remains_zero": true,
+    "uart_errors_remain_zero": true,
+    "capture_bad_and_write_bad_clear_at_both_endpoints": true,
+    "vs_edge_frame_equivalent": 69191.5,
+    "raw_frame_equivalent": 69191.61382716049,
+    "bin_frame_equivalent": 69191.55654320988,
+    "aw_frame_equivalent": 69191.49851924976,
+    "b_frame_equivalent": 69191.41757156959,
+    "inferred_w_counter_wraps_assuming_same_reset_epoch": 2,
+    "w_unwrapped_delta": 8967213696,
+    "w_frame_equivalent": 69191.4637037037,
+    "conditional_average_fps_if_interval_exactly_90_minutes": 12.813333333333333,
+    "conditional_interval_minutes_if_average_exactly_30fps": 38.440000000000005
+  },
+  "interpretation": "The endpoint counts agree to within one frame with no reported rejects/errors. User confirms 90 minutes between reports and current CAP 12/13, OUT 60. Average 12.813 fps agrees with CAP. Record this run as user-reported 90-minute soak acceptance at the measured capture rate, not a 30fps performance result.",
+  "limits": [
+    "Two endpoints cannot exclude every intermediate pause or transient artifact.",
+    "Counter unwrap assumes no system reset between the supplied endpoints.",
+    "Current CAP/OUT rates are user-observed; image appearance throughout the full soak was not continuously instrumented.",
+    "Repeated-reset/cam-init acceptance from the previous user report remains valid; this addendum does not alter it."
+  ],
+  "source_screenshot_sha256": "b94ad66e100b5a1536c57530fa39857967db68622a034f2f699feb27dad34d47"
+}

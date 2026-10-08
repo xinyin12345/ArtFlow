@@ -40,6 +40,10 @@ module cam_fb_pipe
     input               o_clk,            // 74.25 MHz
     input               o_hdmi_clk,       // 148.5 MHz，与 o_clk 同源、上升沿对齐
 
+    // Read-only diagnostics, all in axi_clk. No feedback into video control.
+    output [31:0] diag_state, diag_fifo, diag_written, diag_completed,
+    output [31:0] diag_published, diag_rejected,
+    output wire diag_bin_toggle, // one event per 256 binned beats, pixel domain
     output wire         capture_toggle, // AXI domain
     output reg          o_de,      // o_hdmi_clk 域，1920x1080
     output reg          o_hs,
@@ -105,6 +109,11 @@ end
 // ---------------------------------------------------------------- 2x2 合并
 wire        bin_vs, bin_valid;
 wire [63:0] bin_data;
+reg [8:0] diag_bin_count = 0;
+always @(posedge i_pclk or negedge i_pclk_rstn)
+    if (!i_pclk_rstn) diag_bin_count <= 0;
+    else if (bin_valid) diag_bin_count <= diag_bin_count + 1'b1;
+assign diag_bin_toggle = diag_bin_count[8];
 
 bayer_bin2x2 #(
     .MAX_IN_WIDTH (MAX_IN_WIDTH)
@@ -143,6 +152,9 @@ rgb_frame_store #(
     .WIDTH(MAX_OUT_WIDTH), .HEIGHT(MAX_IN_HEIGHT/2), .DUAL_WINDOW(DUAL_WINDOW),
     .ADDR_WIDTH(AXI_ADDR_WIDTH), .START_ADDR(START_ADDR), .BANK_BYTES(BANK_BYTES)
 ) u_store (
+    .diag_state(diag_state), .diag_fifo(diag_fifo),
+    .diag_written(diag_written), .diag_completed(diag_completed),
+    .diag_published(diag_published), .diag_rejected(diag_rejected),
     .capture_toggle(capture_toggle),
     .rst_n(rst_n), .i_clk(i_pclk), .i_vs(bin_vs), .i_valid(bin_valid), .i_data(bin_data),
     .o_clk(store_clk), .H_FRONT_PORCH(store_hfp), .H_SYNC(store_hsp), .H_VALID(store_hvalid),

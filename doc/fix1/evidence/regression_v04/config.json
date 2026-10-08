@@ -1,0 +1,17 @@
+{
+  "MAX_HRES": 1920,
+  "MAX_VRES": 1080,
+  "HFP": 88,
+  "HSP": 44,
+  "HBP": 148,
+  "VFP": 4,
+  "VSP": 5,
+  "VBP": 36,
+  "CFG_R_GAIN": 280,
+  "CFG_G_GAIN": 230,
+  "CFG_B_GAIN": 350,
+  "CFG_BAYER": 3,
+  "CFG_PIX_REV": 0,
+  "CFG_DUAL_WINDOW": 1,
+  "top_sha256": "43ba50ffbb55f4aaa06e1ea9423f4cee4aa2ed1f42f187fec72839613c8172c6"
+}

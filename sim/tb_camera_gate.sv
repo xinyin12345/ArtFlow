@@ -32,6 +32,7 @@ wire [31:0] o_data;
 reg hold_b=0;
 rgb_frame_store #(.WIDTH(OW),.HEIGHT(OH),.BANK_BYTES(BANK),
     .FIFO_DEPTH(32),.BURST_BEATS(2)) store (
+    .diag_state(), .diag_fifo(), .diag_written(), .diag_completed(), .diag_published(), .diag_rejected(),
     .capture_toggle(),
     .rst_n(rstn),.i_clk(clk),.i_vs(bin_vs),.i_valid(bin_valid),.i_data(bin_data),
     .o_clk(oclk),.H_FRONT_PORCH(13'd40),.H_SYNC(13'd2),.H_VALID(13'd16),

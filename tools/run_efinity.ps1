@@ -9,6 +9,7 @@ New-Item -ItemType Directory -Path $scratchDir -Force | Out-Null
 Set-Content -LiteralPath (Join-Path $scratchDir 'implementation_summary.json') -Value '{"status":"RUNNING"}' -Encoding ascii
 # Build the BRAM program before mapping. This tool never downloads hardware.
 if ($Flow -ne 'sta_tclsh') {
+    Copy-Item -LiteralPath (Join-Path $projectDir 'ArtFlow.xml') -Destination (Join-Path $scratchDir 'ArtFlow.before_compile.xml') -Force
     & python -B (Join-Path $PSScriptRoot 'build_firmware.py')
     if ($LASTEXITCODE -ne 0) { throw 'Firmware build failed' }
     & python -B (Join-Path $PSScriptRoot 'check_project_v06.py') --snapshot
@@ -36,6 +37,10 @@ try {
         *> "work/efinity_$Flow.log"
       $resultCode = $LASTEXITCODE
       Get-Content -LiteralPath "work/efinity_$Flow.log" -Tail 35
+      if ($resultCode -eq 0) {
+        & $efinityPython -B tools/restore_project_xml.py
+        if ($LASTEXITCODE -ne 0) { throw 'Project XML preservation failed' }
+      }
     }
     if ($resultCode -eq 0 -and $Flow -ne 'map') {
       & $efinityPython -B tools/check_video_cdc.py prepare

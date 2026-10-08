@@ -38,7 +38,9 @@ int current_seq=0,in_frames=0,truncated=0,pauses=0,reset_events=0;
 int ar_stall_cycles=0,b_error_seen=0,r_error_seen=0;
 cam_fb_pipe #(.DUAL_WINDOW(DUAL_WINDOW),.AXI_DATA_WIDTH(128),.AXI_ADDR_WIDTH(32),.START_ADDR(0),.BANK_BYTES(BANK),
  .MAX_IN_HEIGHT(H),.MAX_IN_WIDTH(W),.MAX_OUT_WIDTH(OW)) dut (
-    .capture_toggle(),
+       .diag_state(), .diag_fifo(), .diag_written(), .diag_completed(), .diag_published(), .diag_rejected(),
+    .diag_bin_toggle(),
+ .capture_toggle(),
  .cfg_bayer(PHASE[1:0]),.cfg_pix_rev(REV[0]),.cfg_gain_r(GAIN_R),.cfg_gain_g(GAIN_G),.cfg_gain_b(GAIN_B),
  .i_pclk(pclk),.i_pclk_rstn(prst_n),.i_vs(s_vs),.i_hs(s_hs),.i_valid(s_valid),.i_raw(s_raw),
  .H_FRONT_PORCH(HFP[12:0]),.H_SYNC(HSP[12:0]),.H_VALID(OW[12:0]),.H_BACK_PORCH(HBP[12:0]),

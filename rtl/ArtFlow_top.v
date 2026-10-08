@@ -340,21 +340,31 @@ assign ddr_addr[15:ROW_WIDTH] = {(16-ROW_WIDTH){1'b0}};
 wire i_mipi_clk ;
 assign i_mipi_clk = core_clk;
 
-		assign	cam_d0_RST		= 1'b0;
-		assign	cam_d1_RST		= 1'b0;
-		assign  cam_d2_RST = 1'b0;
-    assign  cam_d3_RST = 1'b0;
-	
+// SW0/PLL loss, SoC reset and CAMERA reset must reset the entire RX path.
+// Leave the DDR/store reset independent: cam init must drain accepted AXI.
+wire csi_reset_core_n, csi_reset_byte_n, csi_reset_pixel_n, csi_phy_reset;
+artflow_csi_reset u_csi_reset (
+    .request_n(w_arstn & soc_reset_n & ~camera_reset),
+    .core_clk(core_clk), .byte_clk(i_cam_ck_CLKOUT),
+    .pixel_clk(i_mipi_rx_pclk),
+    .core_reset_n(csi_reset_core_n), .byte_reset_n(csi_reset_byte_n),
+    .pixel_reset_n(csi_reset_pixel_n), .phy_reset(csi_phy_reset)
+);
+assign cam_d0_RST = csi_phy_reset;
+assign cam_d1_RST = csi_phy_reset;
+assign cam_d2_RST = csi_phy_reset;
+assign cam_d3_RST = csi_phy_reset;
+
 wire [15:0] mipi_debug_out;
 		
 
 		csi_rx_controller inst_efx_csi2_rx
 		(
-              .reset_n			(i_arstn),
+              .reset_n			(csi_reset_core_n),
               .clk				(i_mipi_clk),
-              .reset_byte_HS_n	(i_arstn),
+              .reset_byte_HS_n	(csi_reset_byte_n),
               .clk_byte_HS		  (i_cam_ck_CLKOUT),
-              .reset_pixel_n		(w_mipi_rx_pclk_arstn),
+              .reset_pixel_n		(csi_reset_pixel_n),
               .clk_pixel			  (i_mipi_rx_pclk),
               
               .Rx_LP_CLK_P		  (i_cam_ck_LP_P_IN),
@@ -473,6 +483,22 @@ wire [31:0] control_pwdata, control_prdata;
 wire control_pready, control_pslverror;
 wire [15:0] camera_gain_r, camera_gain_g, camera_gain_b;
 wire camera_reset, camera_ready;
+wire [31:0] diag_state, diag_fifo, diag_written, diag_completed;
+wire [31:0] diag_published, diag_rejected;
+wire diag_bin_toggle;
+reg diag_raw_vs_d = 0, diag_vs_toggle = 0;
+reg [8:0] diag_raw_count = 0;
+// Observe CSI before admission gating. Toggle events avoid sampling a counter
+// bus across clocks; RAW/BIN activity units are 256 valid beats, not frames.
+always @(posedge i_mipi_rx_pclk or negedge w_mipi_rx_pclk_arstn) begin
+    if (!w_mipi_rx_pclk_arstn) begin
+        diag_raw_vs_d <= 0; diag_vs_toggle <= 0; diag_raw_count <= 0;
+    end else begin
+        diag_raw_vs_d <= w_mipi_rx_vs;
+        if (diag_raw_vs_d != w_mipi_rx_vs) diag_vs_toggle <= ~diag_vs_toggle;
+        if (w_mipi_rx_de) diag_raw_count <= diag_raw_count + 1'b1;
+    end
+end
 
 artflow_soc u_soc (
     .clk(core_clk), .reset_n(w_arstn), .system_reset_n(soc_reset_n),
@@ -518,6 +544,12 @@ artflow_control #(
     .pready(control_pready), .pslverror(control_pslverror),
     .pixel_clk(i_mipi_rx_pclk), .pixel_resetn(control_pixel_reset[1]),
     .pixel_vs(capture_vs), .pixel_hs(capture_hs), .pixel_valid(capture_valid),
+    .diag_events({diag_bin_toggle,diag_raw_count[8],diag_vs_toggle}),
+    .diag_axi_fire({s_axi_bvalid && s_axi_bready,s_axi_wvalid && s_axi_wready,
+                    s_axi_awvalid && s_axi_awready}),
+    .diag_state(diag_state), .diag_fifo(diag_fifo),
+    .diag_written(diag_written), .diag_completed(diag_completed),
+    .diag_published(diag_published), .diag_rejected(diag_rejected),
     .cal_done(cal_done), .gain_r(camera_gain_r), .gain_g(camera_gain_g), .gain_b(camera_gain_b),
     .camera_reset(camera_reset), .camera_ready(camera_ready)
 );
@@ -545,6 +577,10 @@ cam_fb_pipe #(
   .MAX_IN_WIDTH   (MAX_HRES       ),
   .MAX_OUT_WIDTH  (MAX_HRES/2     )
 ) u_video_pipe (
+  .diag_bin_toggle(diag_bin_toggle),
+  .diag_state(diag_state), .diag_fifo(diag_fifo),
+  .diag_written(diag_written), .diag_completed(diag_completed),
+  .diag_published(diag_published), .diag_rejected(diag_rejected),
   .cfg_bayer      (CFG_BAYER      ),
   .cfg_pix_rev    (CFG_PIX_REV    ),
   .cfg_gain_r     (camera_gain_r  ),

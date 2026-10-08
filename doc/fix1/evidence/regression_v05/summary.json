@@ -1,0 +1,66 @@
+{
+  "status": "PASS",
+  "tests": [
+    {
+      "name": "vlib",
+      "status": "PASS",
+      "seconds": 0.11
+    },
+    {
+      "name": "compile_tb_sapphire_i2c",
+      "status": "PASS",
+      "seconds": 0.24
+    },
+    {
+      "name": "tb_sapphire_i2c",
+      "status": "PASS",
+      "seconds": 3.09
+    },
+    {
+      "name": "compile_tb_bayer_first_pixel",
+      "status": "PASS",
+      "seconds": 0.17
+    },
+    {
+      "name": "tb_bayer_first_pixel",
+      "status": "PASS",
+      "seconds": 2.02
+    },
+    {
+      "name": "compile_tb_camera_gate",
+      "status": "PASS",
+      "seconds": 0.17
+    },
+    {
+      "name": "tb_camera_gate",
+      "status": "PASS",
+      "seconds": 2.0
+    },
+    {
+      "name": "compile_tb_artflow_control",
+      "status": "PASS",
+      "seconds": 0.17
+    },
+    {
+      "name": "tb_artflow_control",
+      "status": "PASS",
+      "seconds": 1.94
+    },
+    {
+      "name": "control_async_7_11",
+      "status": "PASS",
+      "seconds": 1.99
+    },
+    {
+      "name": "control_async_11_7",
+      "status": "PASS",
+      "seconds": 2.18
+    }
+  ],
+  "scope": {
+    "control": true,
+    "soc": false,
+    "video": false,
+    "full_video": false
+  }
+}

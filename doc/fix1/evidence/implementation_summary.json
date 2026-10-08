@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "minimum_slack_ns": {
+    "Setup (Max)": 0.459,
+    "Hold (Min)": 0.026
+  },
+  "sha256": {
+    "work/implementation_source_sha256.json": "12865f704d9241c9d781e19b01015fcbb54b8aa6a4a867738538f01d5bb344ba",
+    "work/efinity_out/ArtFlow.timing.rpt": "fb0e3210fe652485c12db904a522c67436c3048808f18a7d8e868af1ff79dd04",
+    "work/efinity_out/ArtFlow.bit": "d41578247ff05053cb7efde547c735020e516a25b2381eab6214fe398039035e",
+    "work/efinity_out/ArtFlow.hex": "4a181da85ecf4b7b5b7120a3e5cd4715ce60071bd4180a73abf4c72fb003ec31"
+  }
+}

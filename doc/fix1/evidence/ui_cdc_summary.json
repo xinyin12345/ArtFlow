@@ -1,0 +1,161 @@
+{
+  "status": "PASS",
+  "paths": [
+    {
+      "chain": "mode",
+      "kind": "setup",
+      "min_slack_ns": 6.286
+    },
+    {
+      "chain": "mode",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    },
+    {
+      "chain": "osd",
+      "kind": "setup",
+      "min_slack_ns": 6.286
+    },
+    {
+      "chain": "osd",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    },
+    {
+      "chain": "capture",
+      "kind": "setup",
+      "min_slack_ns": 6.286
+    },
+    {
+      "chain": "capture",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    },
+    {
+      "chain": "diag_vs",
+      "kind": "setup",
+      "min_slack_ns": 9.552
+    },
+    {
+      "chain": "diag_vs",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    },
+    {
+      "chain": "diag_raw",
+      "kind": "setup",
+      "min_slack_ns": 9.552
+    },
+    {
+      "chain": "diag_raw",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    },
+    {
+      "chain": "diag_bin",
+      "kind": "setup",
+      "min_slack_ns": 9.552
+    },
+    {
+      "chain": "diag_bin",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    },
+    {
+      "chain": "csi_core_1",
+      "kind": "setup",
+      "min_slack_ns": 9.552
+    },
+    {
+      "chain": "csi_core_1",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    },
+    {
+      "chain": "csi_core_2",
+      "kind": "setup",
+      "min_slack_ns": 9.552
+    },
+    {
+      "chain": "csi_core_2",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    },
+    {
+      "chain": "csi_byte_1",
+      "kind": "setup",
+      "min_slack_ns": 9.551
+    },
+    {
+      "chain": "csi_byte_1",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    },
+    {
+      "chain": "csi_byte_2",
+      "kind": "setup",
+      "min_slack_ns": 9.542
+    },
+    {
+      "chain": "csi_byte_2",
+      "kind": "hold",
+      "min_slack_ns": 0.115
+    },
+    {
+      "chain": "csi_pixel_1",
+      "kind": "setup",
+      "min_slack_ns": 19.552
+    },
+    {
+      "chain": "csi_pixel_1",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    },
+    {
+      "chain": "csi_pixel_2",
+      "kind": "setup",
+      "min_slack_ns": 19.552
+    },
+    {
+      "chain": "csi_pixel_2",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    }
+  ],
+  "sha256": {
+    "tools/check_ui_cdc.tcl": "4bf2b9ee48ad40baa796879b1ae2e037d5853a29a8560d6f605754452988de85",
+    "tools/check_ui_cdc.py": "28e70791c822077e37c38ed82b8574526a19a65fdf847dd6294c8c539680e67a",
+    "work/ui_cdc.log": "19370a9a019cdc60c7cecc70f15106ae1716b61281de67816de47c1f89a5e532",
+    "ArtFlow.sdc": "83a95b2aac41c1adfe6d52510e24676d07e8f3b191df6aea11ed8b9fc3b64bd9",
+    "rtl/video/artflow_button.v": "31dc6ad1248f82d7de0df0837788104ef2b79b585a8595273c882c53cbcf7a21",
+    "rtl/video/artflow_fps.v": "a4d668572673cbdd3e11943998c3205c1d472afa8c0f533add77db5f37fc381e",
+    "work/implementation_source_sha256.json": "12865f704d9241c9d781e19b01015fcbb54b8aa6a4a867738538f01d5bb344ba",
+    "work/efinity_out/ArtFlow.vdb": "b20d2ac9aa490c7654c0a082c515ae94c68ce345e0c6c3e4a9d6c6bf5f6bc6dc",
+    "work/efinity_out/ArtFlow.place": "191416623cd460dd1971c11466798d463f98051d34bac2ffa798566bfe8be305",
+    "work/efinity_out/ArtFlow.troutingtraces": "d28e14a1c904e9f85e1325ff3ee137685e9c0b84f5c0dbd820bad97bef6e5d15",
+    "work/efinity_out/ArtFlow.ui_mode_setup.rpt": "d46b63da8d358c512ff40ec11160f903ed8aac0ac2143f46bd137142f0c6836f",
+    "work/efinity_out/ArtFlow.ui_mode_hold.rpt": "ffeb0d8dd4b6aa79e481285deabd957753c5888460a4d8b7224fe8bd744d728a",
+    "work/efinity_out/ArtFlow.ui_osd_setup.rpt": "8322e1dceb1066e4e2d5538377d76271fe81608f2157cb840ec9139337a30ac8",
+    "work/efinity_out/ArtFlow.ui_osd_hold.rpt": "473ec52ccd96e10a9c510c83a1a04573e476900bce94ffe204ac00d607627c35",
+    "work/efinity_out/ArtFlow.ui_capture_setup.rpt": "144878cd45600f602ef95d840d7c74cfb74875a0ab6f80efc0624522765ef016",
+    "work/efinity_out/ArtFlow.ui_capture_hold.rpt": "48ed808ff3fc5f3bff29ac36d3e28ed7c34492cb8eb24691162062ff6a78c431",
+    "work/efinity_out/ArtFlow.ui_diag_vs_setup.rpt": "bf93a8067b8e11b5e76ff4b221cacfa6839b35292444437b2718ebe59ed8d968",
+    "work/efinity_out/ArtFlow.ui_diag_vs_hold.rpt": "bba67145a04002b0b3ac3da0e34ed7100eee62d76455086a6ce46ae238b84475",
+    "work/efinity_out/ArtFlow.ui_diag_raw_setup.rpt": "c250d02b3c4968ebe69968f9488984743f6c1b7f06f85c782f27398c124eccd4",
+    "work/efinity_out/ArtFlow.ui_diag_raw_hold.rpt": "fc927dd8dfb2c18cfc141dd7318f646b5e541bac3319bc42b3eb7872643120e0",
+    "work/efinity_out/ArtFlow.ui_diag_bin_setup.rpt": "42beefc223b5d1073cdb336ca0c0170ea4ab6a5cbce7b1e61c4c986602ad1a0d",
+    "work/efinity_out/ArtFlow.ui_diag_bin_hold.rpt": "4dbb7206472684e7d26a1e4e8427e4affd9380d2faafffb97c500abf303d6005",
+    "work/efinity_out/ArtFlow.ui_csi_core_1_setup.rpt": "1c41bc9541521a4a548b38c8e9ecace6e2addf8e91d4496a4ae6dac0626224db",
+    "work/efinity_out/ArtFlow.ui_csi_core_1_hold.rpt": "c9ffa8289a391066ec4dc687b86bd173e552026edfd34507b6d7ade5d927a500",
+    "work/efinity_out/ArtFlow.ui_csi_core_2_setup.rpt": "f7b6bb43b047ad02b4e0db45b5295dd24cfdd2626e0ce809936806136ab355ea",
+    "work/efinity_out/ArtFlow.ui_csi_core_2_hold.rpt": "be6cf7cd01a8e63b69a5a7b3154ce83322418324be15fbdf141a976e414b1daa",
+    "work/efinity_out/ArtFlow.ui_csi_byte_1_setup.rpt": "e5dd4678924eefee3e8cf291e9557930d53b1b8f86b51bcb3f2f432c6aeafdf7",
+    "work/efinity_out/ArtFlow.ui_csi_byte_1_hold.rpt": "c6e3b0d940d54c48a03b67c1edaafc35614439d6d962977dfe6b7400e0f2c781",
+    "work/efinity_out/ArtFlow.ui_csi_byte_2_setup.rpt": "1db919a62ea01c2cfd0413c32b99d384ea353ce60054f82100660d8068ac67ce",
+    "work/efinity_out/ArtFlow.ui_csi_byte_2_hold.rpt": "a3f89b26de57ad6c030ef6e393adf6110eeb7b9b30d004c837685aaad6dea56b",
+    "work/efinity_out/ArtFlow.ui_csi_pixel_1_setup.rpt": "4955169b1b3bf5c8c3a682502b88e77cb4188a48c003bde0ff7d313b4f46bc34",
+    "work/efinity_out/ArtFlow.ui_csi_pixel_1_hold.rpt": "282ced910b59dfa8d826e644d801cbacad66ed7bc9b674c1e106a7361b8af0e0",
+    "work/efinity_out/ArtFlow.ui_csi_pixel_2_setup.rpt": "fb5b4b7a84670661b280a189a4684c31d6e232f9ddeb417203c5f0dcabfc864c",
+    "work/efinity_out/ArtFlow.ui_csi_pixel_2_hold.rpt": "7048926cd6934868865de3009b38c08c83f9e719617e6b0d22ef351654caa15c"
+  }
+}

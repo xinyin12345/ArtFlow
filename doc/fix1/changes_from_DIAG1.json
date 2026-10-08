@@ -1,0 +1,62 @@
+[
+  {
+    "path": "rtl/ArtFlow_top.v",
+    "diag1_sha256": "61bbbcc576744b134b9ac54b1e2ae135571da4dcf2f8bd6fc6b371b0fc8f874c",
+    "fix1_sha256": "43ba50ffbb55f4aaa06e1ea9423f4cee4aa2ed1f42f187fec72839613c8172c6"
+  },
+  {
+    "path": "rtl/reset.v",
+    "diag1_sha256": "126540013b52b8cab339cdaf57b1a6947d3088e97eeb9cb84fb68448f8a2e978",
+    "fix1_sha256": "ebd78ac16f2d7dc22a4c90b4cde05290e5c8510cea3486c2541514853ce7c25a"
+  },
+  {
+    "path": "ip/sapphire_soc/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol0.bin",
+    "diag1_sha256": "08ae40fee0df620441ef6c8e4511f2d8f0f3d3285305c3a0652df80c357d240c",
+    "fix1_sha256": "8f3361043b82212a1cdb14d33edf3eea8ba2ba9bd6524c7b19cddfa926ffcb68"
+  },
+  {
+    "path": "ip/sapphire_soc/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol1.bin",
+    "diag1_sha256": "e849f35cc2c550f1ac51a926b3d598cb3fb328b669fbe1b4d3dfe7798a4f8c68",
+    "fix1_sha256": "62be28e38be51f83d29e1d22d4c66dc6f675d414eb8d4f22f9ac0afd657fc960"
+  },
+  {
+    "path": "ip/sapphire_soc/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol2.bin",
+    "diag1_sha256": "8d2380d0508a2720ec29c265ac55605b6b8b47334de60b7f8545dac2db6685b5",
+    "fix1_sha256": "f531809b5e43a492e111315b30f417472433dd53b5d2ff0915ddc5652557c634"
+  },
+  {
+    "path": "ip/sapphire_soc/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol3.bin",
+    "diag1_sha256": "2e2fe588e76e0365921247a9bcfff072e1c0e3150cf66fc5688bc64ff4cfb217",
+    "fix1_sha256": "49a64f38edcd1d011c3a80d14b9dcd8db8eb1251cbad89c5868ba90dc9c1f770"
+  },
+  {
+    "path": "firmware/src/main.c",
+    "diag1_sha256": "e93f6d40b7dfa721b5d8cf955819b4c4108eb6bad0c64ce7c99b316ff29d3919",
+    "fix1_sha256": "52150571bfe4bcb1e2ae50eb21d926c4229d4775cb1b81d473c262b086b81c98"
+  },
+  {
+    "path": "sim/tb_csi_reset.sv",
+    "diag1_sha256": null,
+    "fix1_sha256": "5bbadaf7f1c6aa32cb4ed0c9e9d8ac0800a6cc11267c094e55db97b4d3bf19de"
+  },
+  {
+    "path": "sim/tb_csi_reset_gate.sv",
+    "diag1_sha256": null,
+    "fix1_sha256": "b7fab5832b6ed939771e67964d990761ead2fb9edee9c82b2cce28e0cc67870f"
+  },
+  {
+    "path": "tools/check_ui_cdc.py",
+    "diag1_sha256": "bafc4f5ac9c3a7cd8632f9aa9386238e84be6e87a125cd6ad345265fe79f26db",
+    "fix1_sha256": "28e70791c822077e37c38ed82b8574526a19a65fdf847dd6294c8c539680e67a"
+  },
+  {
+    "path": "tools/check_ui_cdc.tcl",
+    "diag1_sha256": "4de934a224efd3158ad5e3ff8181633e128a16743b0b73dcd5c8e61a80b9cabc",
+    "fix1_sha256": "4bf2b9ee48ad40baa796879b1ae2e037d5853a29a8560d6f605754452988de85"
+  },
+  {
+    "path": "tools/run_csi_reset.py",
+    "diag1_sha256": null,
+    "fix1_sha256": "0f9efe9d173254ea53cfbed1387042abd31c0fa4457feaf0c1ec5e72bd19e292"
+  }
+]

@@ -1,0 +1,39 @@
+Reading pref.tcl
+
+# 2025.3
+
+# ** Note: (vsim-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
+# vsim -c -onfinish exit -sv_seed 4 work.tb_v04_checked -do "run -all; quit -code 0" -GVSP=5 -GHSP=22 -GDUAL_WINDOW=1 -GREV=1 -GGAIN_R=280 -GGAIN_B=350 -GVBP=36 -GPHASE=0 -GHBP=74 -GVFP=4 -GVS_MODE=1 -GGAIN_G=230 -GHFP=44 
+# Start time: 23:58:05 on Oct 06,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
+# //  Questa Altera Starter FPGA Edition-64
+# //  Version 2025.3 win64 Sep 15 2025
+# //
+# // Unpublished work. Copyright 2025 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading sv_std.std
+# Loading work.tb_v04_checked(fast)
+# run -all
+# FRAME 1 sequence=-1 pixels=6400 black_tail=0 good_run=0
+# FRAME 2 sequence=3 pixels=6400 black_tail=0 good_run=1
+# FRAME 3 sequence=8 pixels=6400 black_tail=0 good_run=2
+# FRAME 4 sequence=13 pixels=6400 black_tail=0 good_run=3
+# FRAME 5 sequence=18 pixels=6400 black_tail=0 good_run=4
+# FRAME 6 sequence=23 pixels=6400 black_tail=0 good_run=5
+# FRAME 7 sequence=28 pixels=6400 black_tail=0 good_run=6
+# COUNTERS published=31 rejected=0 dropped=3 overflow=0 underflow=1 banks=111 updates=6 repeats=0 black=1 tails=0 B_errors=0 R_errors=0 AR_stall=3 truncated=0 pauses=0 resets=0
+# === tb_v04_checked PASS 160x40 phase=0 rev=1 vs=1 stress=0 fault=0 ===
+# ** Note: $finish    : D:/work/CodexWork/ArtFlow/v06/work/sw0_diagnosis/fix1_project/sim/tb_v04_checked.sv(314)
+#    Time: 1763203624 ps  Iteration: 1  Instance: /tb_v04_checked
+# End time: 23:58:09 on Oct 06,2026, Elapsed time: 0:00:04
+# Errors: 0, Warnings: 0

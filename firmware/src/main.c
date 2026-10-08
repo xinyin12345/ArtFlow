@@ -74,6 +74,21 @@ static void apply_gains(uint16_t r, uint16_t g, uint16_t b) {
         control_read(REG_ACTIVE_B) == b) print("OK wb applied\r\n");
     else print("ERR wb active mirror mismatch\r\n");
 }
+static void show_video_diagnostics(void) {
+    print("diag_v1 vs_edges="); decimal(control_read(0x38u));
+    print(" raw256="); decimal(control_read(0x3cu));
+    print(" bin256="); decimal(control_read(0x40u));
+    print("\r\naxi_aw="); decimal(control_read(0x44u));
+    print(" w="); decimal(control_read(0x48u));
+    print(" b="); decimal(control_read(0x4cu));
+    print("\r\nvideo_state="); hex(control_read(0x50u));
+    print(" fifo_beats="); hex(control_read(0x54u));
+    print("\r\nwritten="); decimal(control_read(0x58u));
+    print(" completed="); decimal(control_read(0x5cu));
+    print(" published="); decimal(control_read(0x60u));
+    print(" rejected="); decimal(control_read(0x64u));
+    print("\r\n");
+}
 static void execute(const struct command *command) {
     if (command->kind == CMD_EMPTY) return;
     if (command->kind == CMD_HELP) {
@@ -95,7 +110,7 @@ static void execute(const struct command *command) {
         print("\r\nlast_camera="); print(camera_error(last_camera.code));
         print(" uart_tx_dropped="); decimal(uart_dropped);
         print(" uart_rx_errors="); decimal(uart_rx_errors);
-        print("\r\n"); break;
+        print("\r\n"); show_video_diagnostics(); break;
     case CMD_WB: apply_gains(command->rgb[0], command->rgb[1], command->rgb[2]); break;
     case CMD_DEFAULTS: apply_gains(DEFAULT_R, DEFAULT_G, DEFAULT_B); break;
     case CMD_CAM_INIT: init_camera(); break;
@@ -142,7 +157,7 @@ int main(void) {
     mmio_write(UART_BASE + 8u, CORE_HZ / (115200u * 8u) - 1u);
     mmio_write(UART_BASE + 12u, 7u); /* 8 data bits, no parity, one stop. */
     mmio_write(UART_BASE + 4u, 0u); /* Polling; disable TX/RX interrupts. */
-    print("\r\nArtFlow v05 Sapphire RV32IM; UART 115200 8N1\r\n");
+    print("\r\nArtFlow v06 FIX1 Sapphire RV32IM; UART 115200 8N1\r\n");
     control_valid = control_read(REG_ID) == CONTROL_ID;
     if (control_valid) init_camera();
     else print("ERR control ID mismatch; camera initialization skipped\r\n");

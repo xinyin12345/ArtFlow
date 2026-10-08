@@ -27,6 +27,9 @@ module tb_soc_boot;
         .pwdata(pwdata), .prdata(prdata), .pready(pready), .pslverror(pslverror)
     );
     artflow_control control (
+        .diag_events(3'd0), .diag_axi_fire(3'd0), .diag_state(32'd0),
+        .diag_fifo(32'd0), .diag_written(32'd0), .diag_completed(32'd0),
+        .diag_published(32'd0), .diag_rejected(32'd0),
         .pclk(clk), .presetn(system_reset_n), .paddr(paddr), .psel(psel),
         .penable(penable), .pwrite(pwrite), .pwdata(pwdata), .prdata(prdata),
         .pready(pready), .pslverror(pslverror), .pixel_clk(pixel_clk),

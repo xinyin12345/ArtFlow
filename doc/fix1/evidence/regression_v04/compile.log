@@ -1,0 +1,36 @@
+Questa Altera Starter FPGA Edition-64 vlog 2025.3 Compiler 2025.09 Sep 15 2025
+Start time: 23:57:39 on Oct 06,2026
+vlog D:\work\CodexWork\ArtFlow\v06\work\sw0_diagnosis\fix1_project\rtl\frame_buffer\DC_FIFO.v D:\work\CodexWork\ArtFlow\v06\work\sw0_diagnosis\fix1_project\rtl\frame_buffer\rst_n_piple.v D:\work\CodexWork\ArtFlow\v06\work\sw0_diagnosis\fix1_project\rtl\video\video_axi_scheduler.v D:\work\CodexWork\ArtFlow\v06\work\sw0_diagnosis\fix1_project\sim\tb_video_axi_scheduler.sv D:\work\CodexWork\ArtFlow\v06\work\sw0_diagnosis\fix1_project\rtl\video\bayer_bin2x2.v D:\work\CodexWork\ArtFlow\v06\work\sw0_diagnosis\fix1_project\rtl\video\rgb_frame_store.v D:\work\CodexWork\ArtFlow\v06\work\sw0_diagnosis\fix1_project\rtl\video\cam_fb_pipe.v D:\work\CodexWork\ArtFlow\v06\work\sw0_diagnosis\fix1_project\rtl\true_dual_port_ram.v D:\work\CodexWork\ArtFlow\v06\work\sw0_diagnosis\fix1_project\rtl\gamma_conrrection\gamma_correction.v D:\work\CodexWork\ArtFlow\v06\work\sw0_diagnosis\fix1_project\rtl\gamma_conrrection\gamma_lut.v D:\work\CodexWork\ArtFlow\v06\work\sw0_diagnosis\fix1_project\rtl\video\test_pattern.v D:\work\CodexWork\ArtFlow\v06\work\sw0_diagnosis\fix1_project\sim\tb_gamma_lut.v D:\work\CodexWork\ArtFlow\v06\work\sw0_diagnosis\fix1_project\sim\tb_test_pattern.v D:\work\CodexWork\ArtFlow\v06\work\sw0_diagnosis\fix1_project\sim\tb_bayer_bin2x2.v D:\work\CodexWork\ArtFlow\v06\work\sw0_diagnosis\fix1_project\sim\axi_memory_checked.sv D:\work\CodexWork\ArtFlow\v06\work\sw0_diagnosis\fix1_project\sim\tb_v04_checked.sv D:\work\CodexWork\ArtFlow\v06\work\sw0_diagnosis\fix1_project\sim\tb_v04_params.sv 
+** Note: (vlog-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
+-- Compiling module DC_FIFO
+-- Compiling module FifoAddrCnt
+-- Compiling module GrayCnt
+-- Compiling module GrayDecode
+-- Compiling module rst_n_piple
+-- Compiling module video_axi_scheduler
+-- Compiling module tb_video_axi_scheduler
+-- Compiling module bayer_bin2x2
+-- Compiling module rgb_frame_store
+-- Compiling module video_reset_sync
+-- Compiling module cam_fb_pipe
+-- Compiling module true_dual_port_ram
+-- Compiling module gamma_correction
+-- Compiling module gamma_lut
+-- Compiling module test_pattern
+-- Compiling module tb_gamma_lut
+-- Compiling module tb_test_pattern
+-- Compiling module tb_bayer_bin2x2
+-- Compiling module axi_memory_checked
+-- Compiling module tb_v04_checked
+-- Compiling module tb_v04_params
+
+Top level modules:
+	rst_n_piple
+	tb_video_axi_scheduler
+	tb_gamma_lut
+	tb_test_pattern
+	tb_bayer_bin2x2
+	tb_v04_checked
+	tb_v04_params
+End time: 23:57:39 on Oct 06,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

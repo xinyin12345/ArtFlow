@@ -5,7 +5,7 @@
 #include "../src/main.c"
 #undef main
 
-static uint32_t timer, control[16], write_offsets[16], write_values[16];
+static uint32_t timer, control[32], write_offsets[16], write_values[16];
 static unsigned write_count, text_used, polls;
 static int complete_commit;
 static char text[2048];
@@ -28,7 +28,7 @@ uint32_t mmio_read(uint32_t address) {
         if (error_on_last_char && value == '\r') rx_error = 1;
         return value;
     }
-    assert(address >= CONTROL_BASE && address < CONTROL_BASE + 64u);
+    assert(address >= CONTROL_BASE && address < CONTROL_BASE + 128u);
     unsigned offset = address - CONTROL_BASE;
     if (offset == REG_STATUS && (control[REG_STATUS / 4] & STATUS_BUSY) && complete_commit && ++polls > 3u) {
         control[REG_STATUS / 4] = 0;
@@ -56,6 +56,18 @@ static void command(const char *line) {
     struct command parsed = parse_command(line); execute(&parsed);
 }
 int main(void) {
+    reset_model();
+    control[0x38 / 4] = 123; control[0x3c / 4] = 456; control[0x40 / 4] = 789;
+    control[0x44 / 4] = 25; control[0x48 / 4] = 3200; control[0x4c / 4] = 24;
+    control[0x50 / 4] = 0x20284; control[0x54 / 4] = 0x100080;
+    control[0x58 / 4] = 128; control[0x5c / 4] = 256;
+    control[0x60 / 4] = 10; control[0x64 / 4] = 2;
+    command("status");
+    assert(write_count == 0);
+    assert(strstr(text, "diag_v1 vs_edges=123 raw256=456 bin256=789") != NULL);
+    assert(strstr(text, "axi_aw=25 w=3200 b=24") != NULL);
+    assert(strstr(text, "video_state=0x00020284 fifo_beats=0x00100080") != NULL);
+    assert(strstr(text, "written=128 completed=256 published=10 rejected=2") != NULL);
     reset_model(); command("wb 1024 0 256");
     assert(write_count == 4 && write_offsets[0] == 0x10 && write_values[0] == 1024);
     assert(write_offsets[1] == 0x14 && write_values[1] == 0);

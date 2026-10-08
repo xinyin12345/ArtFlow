@@ -1,0 +1,11 @@
+Questa Altera Starter FPGA Edition-64 vlog 2025.3 Compiler 2025.09 Sep 15 2025
+Start time: 23:57:17 on Oct 06,2026
+vlog -sv D:\work\CodexWork\ArtFlow\v06\work\sw0_diagnosis\fix1_project\rtl\control\artflow_control.v D:\work\CodexWork\ArtFlow\v06\work\sw0_diagnosis\fix1_project\sim\tb_video_diag.sv 
+** Note: (vlog-220) 'D:/soft/Questa/questa_fse/win64/../modelsim.ini' is used as the ini file.
+-- Compiling module artflow_control
+-- Compiling module tb_video_diag
+
+Top level modules:
+	tb_video_diag
+End time: 23:57:17 on Oct 06,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
