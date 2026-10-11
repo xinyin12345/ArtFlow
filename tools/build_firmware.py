@@ -29,7 +29,7 @@ def extract_table() -> tuple[int, str]:
     table = "/* Generated from the preserved v04 camera ROM by tools/build_firmware.py. */\n"
     table += "#ifndef ARTFLOW_CAMERA_TABLE_H\n#define ARTFLOW_CAMERA_TABLE_H\n#include <stdint.h>\n"
     table += "#define CAMERA_REGISTER_COUNT 164u\n"
-    table += "static const struct { uint16_t address; uint8_t value; } camera_registers[] = {\n"
+    table += "static const struct __attribute__((packed)) { uint16_t address; uint8_t value; } camera_registers[] = {\n"
     table += "".join(f"    {{ 0x{address.lower()}, 0x{value.lower()} }}, /* {int(i, 16)} */\n" for i, address, value in rows)
     table += "};\n#endif\n"
     target = ROOT / "firmware/include/camera_table.h"
@@ -62,7 +62,7 @@ def main() -> None:
     def tool(name: str) -> str:
         return str(gcc.with_name(gcc_prefix + name + suffix))
     sources = [ROOT / "firmware/start.S", *sorted((ROOT / "firmware/src").glob("*.c"))]
-    flags = ["-march=rv32im_zicsr_zifencei", "-mabi=ilp32", "-mcmodel=medany", "-Os", "-flto", "-g",
+    flags = ["-march=rv32im_zicsr_zifencei", "-mabi=ilp32", "-mcmodel=medany", "-Oz", "-flto", "-g",
              "-ffreestanding", "-fno-builtin", "-fno-common", "-fno-stack-protector",
              "-fdata-sections", "-ffunction-sections", "-fstack-usage", "-msmall-data-limit=0",
              "-Wall", "-Wextra", "-Werror", "-nostdlib", "-nostartfiles",

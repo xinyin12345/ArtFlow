@@ -1,0 +1,7 @@
+{
+  "stage": "C:\\Users\\dong\\AppData\\Local\\Temp\\s8_480_shared_xmpefcgq",
+  "command": "call \"C:\\Efinity\\2026.1\\bin\\efx_run.bat\" s8_shared.xml --flow map --map_opts max_mult=150 max-bit-blast-mem-size=16384",
+  "clock_ns": 6.667,
+  "rtl_sha256": "9c0c485945cc9e1d35d4cf5668523d3210022f8328684089adf487a73d4718d3",
+  "rtl_sha256_lf_text": "1586174a8f775b66d04f455a7fce2f69624bd6e04ff0252d0c6a38f760e7e90d"
+}

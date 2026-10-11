@@ -1,0 +1,771 @@
+{
+  "byte_order": "little",
+  "arrays": {
+    "body.0.add_quant.main_multiplier": {
+      "file": "parameters/body.0.add_quant.main_multiplier.bin",
+      "shape": [
+        48
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 384,
+      "sha256": "42360be03dd609c016495d2a92dc965d29a10e958a247a67646ccaa50ff80084"
+    },
+    "body.0.add_quant.skip_multiplier": {
+      "file": "parameters/body.0.add_quant.skip_multiplier.bin",
+      "shape": [
+        1
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 8,
+      "sha256": "233122303894ec2c2d61c457c4a49e55477b00e591cd61600f73e8186760eb3e"
+    },
+    "body.0.expand.conv.bias": {
+      "file": "parameters/body.0.expand.conv.bias.bin",
+      "shape": [
+        48
+      ],
+      "dtype": "<i4",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 192,
+      "sha256": "b3020329f19558e16abf6d089c80b4424d4e730b7e03f36adbf4430d7e542c21"
+    },
+    "body.0.expand.conv.weight": {
+      "file": "parameters/body.0.expand.conv.weight.bin",
+      "shape": [
+        48,
+        24,
+        1,
+        1
+      ],
+      "dtype": "|i1",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 1152,
+      "sha256": "9f5657aa4a3eed1bd73ce783f114bc1494477bbb19c823a84e9d87fff54a9008"
+    },
+    "body.0.reduce.act.multiplier": {
+      "file": "parameters/body.0.reduce.act.multiplier.bin",
+      "shape": [
+        24
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 192,
+      "sha256": "fd698fcaa1509c4ef2520d34a8f421b9138a20a5970c8d0e1dc008c57620b789"
+    },
+    "body.0.reduce.conv.bias": {
+      "file": "parameters/body.0.reduce.conv.bias.bin",
+      "shape": [
+        24
+      ],
+      "dtype": "<i4",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 96,
+      "sha256": "1376d562f6676b885481cbdc18bf5df388671ba1827a108c6257a9ac78fd3809"
+    },
+    "body.0.reduce.conv.weight": {
+      "file": "parameters/body.0.reduce.conv.weight.bin",
+      "shape": [
+        24,
+        48,
+        1,
+        1
+      ],
+      "dtype": "|i1",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 1152,
+      "sha256": "80cba3745724ae61ebce2e65c8f6467d3d21527afc373b25dc23b30d87a9fc65"
+    },
+    "body.0.spatial.act.multiplier": {
+      "file": "parameters/body.0.spatial.act.multiplier.bin",
+      "shape": [
+        24
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 192,
+      "sha256": "5bc2c6c113afb8500e0a992facf6287a0d1d6d4aeac8007922e927d287ee5e66"
+    },
+    "body.0.spatial.conv.bias": {
+      "file": "parameters/body.0.spatial.conv.bias.bin",
+      "shape": [
+        24
+      ],
+      "dtype": "<i4",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 96,
+      "sha256": "4eaf4716e6311b68f6f6712c2f19a7500813c369e69ab07679ccb247fbde3bb2"
+    },
+    "body.0.spatial.conv.weight": {
+      "file": "parameters/body.0.spatial.conv.weight.bin",
+      "shape": [
+        24,
+        24,
+        3,
+        3
+      ],
+      "dtype": "|i1",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 5184,
+      "sha256": "888d4083ae30eff861daccd60f81ed1aaccba189ccb8bd5b03c2b776f2eef52a"
+    },
+    "body.1.add_quant.main_multiplier": {
+      "file": "parameters/body.1.add_quant.main_multiplier.bin",
+      "shape": [
+        48
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 384,
+      "sha256": "c922137c26b10b38491e7e60392e81491dbd3d13d0648d3de4b1b6d0ba4ee88e"
+    },
+    "body.1.add_quant.skip_multiplier": {
+      "file": "parameters/body.1.add_quant.skip_multiplier.bin",
+      "shape": [
+        1
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 8,
+      "sha256": "a7c162ec0c78fef2d9ec5321cce8a47dcc162e3b26f00529140ab89d578b1f75"
+    },
+    "body.1.expand.conv.bias": {
+      "file": "parameters/body.1.expand.conv.bias.bin",
+      "shape": [
+        48
+      ],
+      "dtype": "<i4",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 192,
+      "sha256": "9c25c54dd17cb0b8dcce1ce1e504a88c41bf25e79723c62490cb7bacab20b838"
+    },
+    "body.1.expand.conv.weight": {
+      "file": "parameters/body.1.expand.conv.weight.bin",
+      "shape": [
+        48,
+        24,
+        1,
+        1
+      ],
+      "dtype": "|i1",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 1152,
+      "sha256": "1d5e4b08629e5adfe740758e5742e36069b6654bd8c96a2a6e60a32ad513c6d3"
+    },
+    "body.1.reduce.act.multiplier": {
+      "file": "parameters/body.1.reduce.act.multiplier.bin",
+      "shape": [
+        24
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 192,
+      "sha256": "acef6759ff18c33427a352fb5e10b6ea950080b8c75f23c5bb4219223c9df95d"
+    },
+    "body.1.reduce.conv.bias": {
+      "file": "parameters/body.1.reduce.conv.bias.bin",
+      "shape": [
+        24
+      ],
+      "dtype": "<i4",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 96,
+      "sha256": "38cd65bf3dcf9d8fe39590438cc282294eb75536112c764b0002fd7adae9e35b"
+    },
+    "body.1.reduce.conv.weight": {
+      "file": "parameters/body.1.reduce.conv.weight.bin",
+      "shape": [
+        24,
+        48,
+        1,
+        1
+      ],
+      "dtype": "|i1",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 1152,
+      "sha256": "3c610ee3b1437fb5d5801f397159470422f90337e7c1b82a8147d0c9cd9dd04c"
+    },
+    "body.1.spatial.act.multiplier": {
+      "file": "parameters/body.1.spatial.act.multiplier.bin",
+      "shape": [
+        24
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 192,
+      "sha256": "563ad7f1df6445468f5e18fdb1df6ded9e2e2cea1e6105ab61d16373eaee5360"
+    },
+    "body.1.spatial.conv.bias": {
+      "file": "parameters/body.1.spatial.conv.bias.bin",
+      "shape": [
+        24
+      ],
+      "dtype": "<i4",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 96,
+      "sha256": "043924f052e3ece6b9b1b4f6d71a3aaa159f94e71be0caa0aecb02f99b91a134"
+    },
+    "body.1.spatial.conv.weight": {
+      "file": "parameters/body.1.spatial.conv.weight.bin",
+      "shape": [
+        24,
+        24,
+        3,
+        3
+      ],
+      "dtype": "|i1",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 5184,
+      "sha256": "8684ef1fd089b6d448117c282445ac82f9e2215d31de5b416a72073d38095c94"
+    },
+    "body.2.add_quant.main_multiplier": {
+      "file": "parameters/body.2.add_quant.main_multiplier.bin",
+      "shape": [
+        48
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 384,
+      "sha256": "4e8cad1774e9f06f86f686b439b1ea85630588789f6f7ff22b998f8f9cea9e9c"
+    },
+    "body.2.add_quant.skip_multiplier": {
+      "file": "parameters/body.2.add_quant.skip_multiplier.bin",
+      "shape": [
+        1
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 8,
+      "sha256": "4afd4f3f55f5bd4a6122aaef9f2770fdf21c5c52872a4e557b63751ace446361"
+    },
+    "body.2.expand.conv.bias": {
+      "file": "parameters/body.2.expand.conv.bias.bin",
+      "shape": [
+        48
+      ],
+      "dtype": "<i4",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 192,
+      "sha256": "9cc6720c8d883a141c07287fbe8dfd0b22dd07cd3ce1fc8157d75eaf629a39da"
+    },
+    "body.2.expand.conv.weight": {
+      "file": "parameters/body.2.expand.conv.weight.bin",
+      "shape": [
+        48,
+        24,
+        1,
+        1
+      ],
+      "dtype": "|i1",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 1152,
+      "sha256": "70d6e585f3cfd227e6a96a8449d41c6bcbbf1f1f3ddd34770a0ae2e77b322720"
+    },
+    "body.2.reduce.act.multiplier": {
+      "file": "parameters/body.2.reduce.act.multiplier.bin",
+      "shape": [
+        24
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 192,
+      "sha256": "551d17cc30ef3701df73c650d08cb756c2ea0d66aba025b194d53b22923d1446"
+    },
+    "body.2.reduce.conv.bias": {
+      "file": "parameters/body.2.reduce.conv.bias.bin",
+      "shape": [
+        24
+      ],
+      "dtype": "<i4",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 96,
+      "sha256": "3bfbee402c033a86001bbe67c838cad4e53b7708e9a9c873aa941d43680cd8bb"
+    },
+    "body.2.reduce.conv.weight": {
+      "file": "parameters/body.2.reduce.conv.weight.bin",
+      "shape": [
+        24,
+        48,
+        1,
+        1
+      ],
+      "dtype": "|i1",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 1152,
+      "sha256": "177be8374adf2d6c2642c499f85ea56de1ae89488a7980c343f0d87ed7c7dba4"
+    },
+    "body.2.spatial.act.multiplier": {
+      "file": "parameters/body.2.spatial.act.multiplier.bin",
+      "shape": [
+        24
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 192,
+      "sha256": "8d1e92ea80db10fc95e1ddbe619a0b9890173a0b0e550f91833df1b4f49bddf5"
+    },
+    "body.2.spatial.conv.bias": {
+      "file": "parameters/body.2.spatial.conv.bias.bin",
+      "shape": [
+        24
+      ],
+      "dtype": "<i4",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 96,
+      "sha256": "60fe528af19279566c9b85a94cbf13f478bf2b6303f047afc5d04b6588ba028b"
+    },
+    "body.2.spatial.conv.weight": {
+      "file": "parameters/body.2.spatial.conv.weight.bin",
+      "shape": [
+        24,
+        24,
+        3,
+        3
+      ],
+      "dtype": "|i1",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 5184,
+      "sha256": "08a5b6caffbef1248caf853bbee5aef3af2d225051da13e931acf5a1333e8817"
+    },
+    "body.3.add_quant.main_multiplier": {
+      "file": "parameters/body.3.add_quant.main_multiplier.bin",
+      "shape": [
+        48
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 384,
+      "sha256": "30a263632437c50607cfce07c379a05b2d18e52ece919e76432f7484c58b7434"
+    },
+    "body.3.add_quant.skip_multiplier": {
+      "file": "parameters/body.3.add_quant.skip_multiplier.bin",
+      "shape": [
+        1
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 8,
+      "sha256": "c6474ad6dab88dd293ca56be384155252b9dab9434caec24a1fefb01e5cc019c"
+    },
+    "body.3.expand.conv.bias": {
+      "file": "parameters/body.3.expand.conv.bias.bin",
+      "shape": [
+        48
+      ],
+      "dtype": "<i4",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 192,
+      "sha256": "54412e6583330abef03125341dd095702879aab410f3b28fcac3c2b5ed7c85ef"
+    },
+    "body.3.expand.conv.weight": {
+      "file": "parameters/body.3.expand.conv.weight.bin",
+      "shape": [
+        48,
+        24,
+        1,
+        1
+      ],
+      "dtype": "|i1",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 1152,
+      "sha256": "f90e7b05361703cce3a1c27da9d2a9064aaafb5943d15e28bb6503dd433d0f9e"
+    },
+    "body.3.reduce.act.multiplier": {
+      "file": "parameters/body.3.reduce.act.multiplier.bin",
+      "shape": [
+        24
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 192,
+      "sha256": "3a5629dc65041c90187dfeb987af84c75e1a7b241398c9b3f49dec07d73546cd"
+    },
+    "body.3.reduce.conv.bias": {
+      "file": "parameters/body.3.reduce.conv.bias.bin",
+      "shape": [
+        24
+      ],
+      "dtype": "<i4",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 96,
+      "sha256": "bbcb51790a6c3ca162d8b6c68db552c135cb2963247ee70d360ee0b840f5394b"
+    },
+    "body.3.reduce.conv.weight": {
+      "file": "parameters/body.3.reduce.conv.weight.bin",
+      "shape": [
+        24,
+        48,
+        1,
+        1
+      ],
+      "dtype": "|i1",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 1152,
+      "sha256": "ad1190daaebf92202b0a02f31c5ba479a78a4b960b0d1c8f783d6b21dd0fc8c7"
+    },
+    "body.3.spatial.act.multiplier": {
+      "file": "parameters/body.3.spatial.act.multiplier.bin",
+      "shape": [
+        24
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 192,
+      "sha256": "9c4756b7a0226e56c17efe9981c21e6f4bacd716854c2bd6d5284e5a08f77f23"
+    },
+    "body.3.spatial.conv.bias": {
+      "file": "parameters/body.3.spatial.conv.bias.bin",
+      "shape": [
+        24
+      ],
+      "dtype": "<i4",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 96,
+      "sha256": "369bfb3f2bf106306f2b29f768643cb9e2a025d755874a1fe22e6bd4fd81ea54"
+    },
+    "body.3.spatial.conv.weight": {
+      "file": "parameters/body.3.spatial.conv.weight.bin",
+      "shape": [
+        24,
+        24,
+        3,
+        3
+      ],
+      "dtype": "|i1",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 5184,
+      "sha256": "f28183f00cee12907819ccdbcc411de43a76647ba50b1f155716c0bd31bbfc43"
+    },
+    "dec.0.dw.act.multiplier": {
+      "file": "parameters/dec.0.dw.act.multiplier.bin",
+      "shape": [
+        24
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 192,
+      "sha256": "bd10789ebf714322d1ae849de288ac031930acab3cb6b0c76e255032b6bad433"
+    },
+    "dec.0.dw.conv.bias": {
+      "file": "parameters/dec.0.dw.conv.bias.bin",
+      "shape": [
+        24
+      ],
+      "dtype": "<i4",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 96,
+      "sha256": "998817b2da71cb53887925cde44ea886cb0ae4c06b6dd7237498fe7476317297"
+    },
+    "dec.0.dw.conv.weight": {
+      "file": "parameters/dec.0.dw.conv.weight.bin",
+      "shape": [
+        24,
+        1,
+        3,
+        3
+      ],
+      "dtype": "|i1",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 216,
+      "sha256": "757170a7e0884c980e5e9309600ef037e71303e3ab54462bf33d81498ccb18c9"
+    },
+    "dec.0.pw.act.multiplier": {
+      "file": "parameters/dec.0.pw.act.multiplier.bin",
+      "shape": [
+        24
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 192,
+      "sha256": "ad18a1dbc75d30a79b13f98ca3447f23af367b5514a414a8a67e0dfc02ae26e1"
+    },
+    "dec.0.pw.conv.bias": {
+      "file": "parameters/dec.0.pw.conv.bias.bin",
+      "shape": [
+        24
+      ],
+      "dtype": "<i4",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 96,
+      "sha256": "b878d77829460923e5ec6a7813f793dad842fefd4c1c2cc00c47e54bd9b45ea2"
+    },
+    "dec.0.pw.conv.weight": {
+      "file": "parameters/dec.0.pw.conv.weight.bin",
+      "shape": [
+        24,
+        48,
+        1,
+        1
+      ],
+      "dtype": "|i1",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 1152,
+      "sha256": "c1c9dcbfbbf5550d67e4b6e3cbd04ea34466846cc57327b9f8b202edd31a36a8"
+    },
+    "dec.1.dw.act.multiplier": {
+      "file": "parameters/dec.1.dw.act.multiplier.bin",
+      "shape": [
+        12
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 96,
+      "sha256": "1ef66754a69d27085cb8b0fc639f0075613fe888d768921ffa1e4db52943237f"
+    },
+    "dec.1.dw.conv.bias": {
+      "file": "parameters/dec.1.dw.conv.bias.bin",
+      "shape": [
+        12
+      ],
+      "dtype": "<i4",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 48,
+      "sha256": "7b33ab559f95e1380f82e3e1f76af00ead608d32d6bf052b23d846e6f3aa6b1c"
+    },
+    "dec.1.dw.conv.weight": {
+      "file": "parameters/dec.1.dw.conv.weight.bin",
+      "shape": [
+        12,
+        1,
+        3,
+        3
+      ],
+      "dtype": "|i1",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 108,
+      "sha256": "d0114a1dc3247c40a69890eb9404b92407cea261fc47c08f409bd7c8ff252261"
+    },
+    "dec.1.pw.act.multiplier": {
+      "file": "parameters/dec.1.pw.act.multiplier.bin",
+      "shape": [
+        12
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 96,
+      "sha256": "cd8b191913a594987ab92d70bb79c54f63890477bd02d087ca14f5f5449fe383"
+    },
+    "dec.1.pw.conv.bias": {
+      "file": "parameters/dec.1.pw.conv.bias.bin",
+      "shape": [
+        12
+      ],
+      "dtype": "<i4",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 48,
+      "sha256": "6b85b0ad414f70b22a3e87fecbcc6c7c25a4617e08ea7bf562acead0779e82bd"
+    },
+    "dec.1.pw.conv.weight": {
+      "file": "parameters/dec.1.pw.conv.weight.bin",
+      "shape": [
+        12,
+        24,
+        1,
+        1
+      ],
+      "dtype": "|i1",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 288,
+      "sha256": "c1c8abe134dffb15bc83c3904f0508d067ed53625f39b9cba8b56fe1f1a2e2c6"
+    },
+    "dec.2.dw.act.multiplier": {
+      "file": "parameters/dec.2.dw.act.multiplier.bin",
+      "shape": [
+        8
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 64,
+      "sha256": "6be932caf896b589742e4ad7bbd1c93832e35dfd7d3141679908035011ff383c"
+    },
+    "dec.2.dw.conv.bias": {
+      "file": "parameters/dec.2.dw.conv.bias.bin",
+      "shape": [
+        8
+      ],
+      "dtype": "<i4",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 32,
+      "sha256": "19a90cd6d2475f195ccc456b1c178b10e39724421bf4b841864e98cc9052ebc4"
+    },
+    "dec.2.dw.conv.weight": {
+      "file": "parameters/dec.2.dw.conv.weight.bin",
+      "shape": [
+        8,
+        1,
+        3,
+        3
+      ],
+      "dtype": "|i1",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 72,
+      "sha256": "cbe9708db0bff1cdde8be0c08e536dd20a6e93337ebb1558c3dd9fb430a89e97"
+    },
+    "dec.2.pw.act.multiplier": {
+      "file": "parameters/dec.2.pw.act.multiplier.bin",
+      "shape": [
+        8
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 64,
+      "sha256": "c9a0bc341d8808f3ec127a1cf77befe8d1616be4095a703ae02773206acf7dcb"
+    },
+    "dec.2.pw.conv.bias": {
+      "file": "parameters/dec.2.pw.conv.bias.bin",
+      "shape": [
+        8
+      ],
+      "dtype": "<i4",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 32,
+      "sha256": "86b44d22e8647dab0958cd71091497ec906017fed48c7451c15a0c1a3a9a2aba"
+    },
+    "dec.2.pw.conv.weight": {
+      "file": "parameters/dec.2.pw.conv.weight.bin",
+      "shape": [
+        8,
+        12,
+        1,
+        1
+      ],
+      "dtype": "|i1",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 96,
+      "sha256": "a29217ca1ca7b738bcace677da1947bce6fe2d45374ff5187b8538b75589ee86"
+    },
+    "enc.0.act.multiplier": {
+      "file": "parameters/enc.0.act.multiplier.bin",
+      "shape": [
+        8
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 64,
+      "sha256": "1111227505da22d0fa1ab303b31207d36d3fa82720c6f0f562eacdd9873c8b03"
+    },
+    "enc.0.conv.bias": {
+      "file": "parameters/enc.0.conv.bias.bin",
+      "shape": [
+        8
+      ],
+      "dtype": "<i4",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 32,
+      "sha256": "ac5e2203df0098988633fcf55bf4d6b8b6c69a2b77ec39cf36a9fbd2ebbf780f"
+    },
+    "enc.0.conv.weight": {
+      "file": "parameters/enc.0.conv.weight.bin",
+      "shape": [
+        8,
+        3,
+        3,
+        3
+      ],
+      "dtype": "|i1",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 216,
+      "sha256": "3136bd0a5fb68e470990bf85b73b18254c453481b70dd3c13cb42fef6fa80272"
+    },
+    "enc.1.act.multiplier": {
+      "file": "parameters/enc.1.act.multiplier.bin",
+      "shape": [
+        24
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 192,
+      "sha256": "a16a8323c418738676e6ad74c01ebef3a26b6368847e8f6acdc91055622ac736"
+    },
+    "enc.1.conv.bias": {
+      "file": "parameters/enc.1.conv.bias.bin",
+      "shape": [
+        24
+      ],
+      "dtype": "<i4",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 96,
+      "sha256": "f702700e4ecb0d8f2c6e3cbcc08407942465959df5edbcb92dc4f87b631a939e"
+    },
+    "enc.1.conv.weight": {
+      "file": "parameters/enc.1.conv.weight.bin",
+      "shape": [
+        24,
+        8,
+        3,
+        3
+      ],
+      "dtype": "|i1",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 1728,
+      "sha256": "f2ab39b0262b7c79eacb56afd086afeba8d6310d44e3d8198fdfd0ef59956333"
+    },
+    "enc.2.act.multiplier": {
+      "file": "parameters/enc.2.act.multiplier.bin",
+      "shape": [
+        48
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 384,
+      "sha256": "cf66a2e7bb702968ed94b8b229026f8d2c40618c2c52eb7d9fc174c09035743e"
+    },
+    "enc.2.conv.bias": {
+      "file": "parameters/enc.2.conv.bias.bin",
+      "shape": [
+        48
+      ],
+      "dtype": "<i4",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 192,
+      "sha256": "654446d6701a04847aa08bd06b4c4545b7553b7dea40e2cedf2ac120e8542080"
+    },
+    "enc.2.conv.weight": {
+      "file": "parameters/enc.2.conv.weight.bin",
+      "shape": [
+        48,
+        24,
+        3,
+        3
+      ],
+      "dtype": "|i1",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 10368,
+      "sha256": "8d92e7d8532db1c5187bd996ad6ce33193eb7599159741536d90ed66d9e0f4f1"
+    },
+    "output.rgb8.multiplier": {
+      "file": "parameters/output.rgb8.multiplier.bin",
+      "shape": [
+        3
+      ],
+      "dtype": "<i8",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 24,
+      "sha256": "726044b49483b522e838c972c915ebbae664c5c4bbfb75b99526ec6bf6cd7d9f"
+    },
+    "rgb.bias": {
+      "file": "parameters/rgb.bias.bin",
+      "shape": [
+        3
+      ],
+      "dtype": "<i4",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 12,
+      "sha256": "bc3cb6a23d9c964ca3b5aaa8371a27b2f395abc23e8e85a97baa96605207c529"
+    },
+    "rgb.weight": {
+      "file": "parameters/rgb.weight.bin",
+      "shape": [
+        3,
+        8,
+        1,
+        1
+      ],
+      "dtype": "|i1",
+      "order": "C; weights OIHW; per-output channel vectors",
+      "bytes": 24,
+      "sha256": "4563248b4503a2f798d5c3dfd9dcc7ad54991e58d1ebd0e9e8d04d041346e937"
+    }
+  }
+}

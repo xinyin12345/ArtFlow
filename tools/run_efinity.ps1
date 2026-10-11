@@ -12,12 +12,15 @@ if ($Flow -ne 'sta_tclsh') {
     Copy-Item -LiteralPath (Join-Path $projectDir 'ArtFlow.xml') -Destination (Join-Path $scratchDir 'ArtFlow.before_compile.xml') -Force
     & python -B (Join-Path $PSScriptRoot 'build_firmware.py')
     if ($LASTEXITCODE -ne 0) { throw 'Firmware build failed' }
-    & python -B (Join-Path $PSScriptRoot 'check_project_v06.py') --snapshot
+    & python -B (Join-Path $PSScriptRoot 'check_project_v07.py') --snapshot
     if ($LASTEXITCODE -ne 0) { throw 'Project input gate failed' }
 }
 New-Item -ItemType Directory -Path (Join-Path $scratchDir 'efinity_user') -Force | Out-Null
 $env:EFINITY_HOME = $EfinityRoot.Replace('\','/')
 $env:EFXPT_HOME = "$env:EFINITY_HOME/pt"
+# Optional project-local database copy for sandboxed Python chdir restrictions.
+$localPt = Join-Path $scratchDir 'v07/efinity_pt'
+if (Test-Path (Join-Path $localPt 'bin/design/service.py')) { $env:EFXPT_HOME = $localPt.Replace('\','/') }
 $env:EFXPGM_HOME = "$env:EFINITY_HOME/pgm"
 $env:EFXDBG_HOME = "$env:EFINITY_HOME/debugger"
 $env:EFXIPM_HOME = "$env:EFINITY_HOME/ipm"
@@ -58,7 +61,7 @@ try {
           & $efinityPython -B tools/check_implementation.py
           $resultCode = $LASTEXITCODE
           if ($resultCode -eq 0) {
-            & $efinityPython -B tools/check_project_v06.py --check-snapshot
+            & $efinityPython -B tools/check_project_v07.py --check-snapshot
             $resultCode = $LASTEXITCODE
           }
         }

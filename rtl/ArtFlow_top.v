@@ -485,6 +485,12 @@ wire [15:0] control_paddr;
 wire control_psel, control_penable, control_pwrite;
 wire [31:0] control_pwdata, control_prdata;
 wire control_pready, control_pslverror;
+wire [31:0] legacy_prdata,accel_prdata;
+wire legacy_pready,legacy_pslverror,accel_pready,accel_pslverror,accel_irq;
+wire process_toggle;
+assign control_prdata=control_paddr[7] ? accel_prdata : legacy_prdata;
+assign control_pready=control_paddr[7] ? accel_pready : legacy_pready;
+assign control_pslverror=control_paddr[7] ? accel_pslverror : legacy_pslverror;
 wire [15:0] camera_gain_r, camera_gain_g, camera_gain_b;
 wire camera_reset, camera_ready;
 wire [31:0] diag_state, diag_fifo, diag_written, diag_completed;
@@ -505,6 +511,7 @@ always @(posedge i_mipi_rx_pclk or negedge w_mipi_rx_pclk_arstn) begin
 end
 
 artflow_soc u_soc (
+    .accel_irq(accel_irq),
     .clk(core_clk), .reset_n(w_arstn), .system_reset_n(soc_reset_n),
     .uart_rx(uart_rx), .uart_tx(uart_tx),
     .i2c_scl_i(io_cam_scl_IN), .i2c_scl_o(io_cam_scl_OUT), .i2c_scl_oe(io_cam_scl_OE),
@@ -543,9 +550,9 @@ artflow_control #(
     .DEFAULT_R(CFG_R_GAIN), .DEFAULT_G(CFG_G_GAIN), .DEFAULT_B(CFG_B_GAIN)
 ) u_control (
     .pclk(core_clk), .presetn(soc_reset_n),
-    .paddr(control_paddr), .psel(control_psel), .penable(control_penable),
-    .pwrite(control_pwrite), .pwdata(control_pwdata), .prdata(control_prdata),
-    .pready(control_pready), .pslverror(control_pslverror),
+    .paddr(control_paddr), .psel(control_psel && !control_paddr[7]), .penable(control_penable),
+    .pwrite(control_pwrite), .pwdata(control_pwdata), .prdata(legacy_prdata),
+    .pready(legacy_pready), .pslverror(legacy_pslverror),
     .pixel_clk(i_mipi_rx_pclk), .pixel_resetn(control_pixel_reset[1]),
     .pixel_vs(capture_vs), .pixel_hs(capture_hs), .pixel_valid(capture_valid),
     .diag_events({diag_bin_toggle,diag_raw_count[8],diag_vs_toggle}),
@@ -571,7 +578,7 @@ wire [7:0] hdmi_tx_rdata;
 wire [7:0] hdmi_tx_gdata;
 wire [7:0] hdmi_tx_bdata;
 
-cam_fb_pipe #(
+cam_fb_pipe_v07 #(
   .DUAL_WINDOW    (CFG_DUAL_WINDOW),
   .BLACK_LEVEL    (CFG_BLACK_LEVEL),
   .AXI_DATA_WIDTH (AXI_DATA_WIDTH ),
@@ -582,6 +589,10 @@ cam_fb_pipe #(
   .MAX_IN_WIDTH   (MAX_HRES       ),
   .MAX_OUT_WIDTH  (MAX_HRES/2     )
 ) u_video_pipe (
+  .accel_paddr(control_paddr),.accel_psel(control_psel && control_paddr[7]),
+  .accel_penable(control_penable),.accel_pwrite(control_pwrite),.accel_pwdata(control_pwdata),
+  .accel_prdata(accel_prdata),.accel_pready(accel_pready),.accel_pslverror(accel_pslverror),
+  .accel_irq(accel_irq),.process_toggle(process_toggle),
   .diag_bin_toggle(diag_bin_toggle),
   .diag_state(diag_state), .diag_fifo(diag_fifo),
   .diag_written(diag_written), .diag_completed(diag_completed),
@@ -857,12 +868,21 @@ artflow_ui u_ui(
     .capture_toggle(capture_toggle),.i_vs(gamma_vs),
     .mode(display_mode),.osd_enable(osd_enable),
     .capture_bcd(capture_fps_bcd),.display_bcd(display_fps_bcd),.fps_valid(fps_valid));
+wire [11:0] process_sample;
+wire process_sample_valid;
+reg [11:0] process_fps_bcd=0;
+artflow_fps u_process_fps(.clk(hdmi_tx_slow_clk),.rst_n(ui_rst_n),
+ .capture_toggle(process_toggle),.display_tick(1'b0),
+ .capture_bcd(process_sample),.display_bcd(),.sample_valid(process_sample_valid));
+always @(posedge hdmi_tx_slow_clk or negedge ui_rst_n)
+ if(!ui_rst_n) process_fps_bcd<=0;
+ else if(hdmi_tx_vs) process_fps_bcd<=process_sample;
 wire osd_de,osd_hs,osd_vs;
 wire [23:0] osd_rgb;
-artflow_osd #(.H_ACTIVE(MAX_HRES)) u_osd(
+artflow_osd #(.H_ACTIVE(MAX_HRES),.VERSION_DIGIT("7"),.PROCESS_FPS(1)) u_osd(
     .clk(hdmi_tx_slow_clk),.rst_n(ui_rst_n),
     .mode(display_mode),.osd_enable(osd_enable),
-    .capture_bcd(capture_fps_bcd),.display_bcd(display_fps_bcd),.fps_valid(fps_valid),
+    .capture_bcd(capture_fps_bcd),.display_bcd(process_fps_bcd),.fps_valid(fps_valid),
     .i_de(gamma_valid),.i_hs(gamma_hs),.i_vs(gamma_vs),
     .i_rgb({gamma_rdata,gamma_gdata,gamma_bdata}),
     .o_de(osd_de),.o_hs(osd_hs),.o_vs(osd_vs),.o_rgb(osd_rgb));

@@ -4,6 +4,7 @@ foreach {tag head tail} {
     mode u_ui/u_mode_key/key_meta u_ui/u_mode_key/key_sync
     osd u_ui/u_osd_key/key_meta u_ui/u_osd_key/key_sync
     capture u_ui/u_fps/cap_meta u_ui/u_fps/cap_sync
+    process u_process_fps/cap_meta u_process_fps/cap_sync
     diag_vs {u_control/diag_meta[0]} {u_control/diag_sync[0]}
     diag_raw {u_control/diag_meta[1]} {u_control/diag_sync[1]}
     diag_bin {u_control/diag_meta[2]} {u_control/diag_sync[2]}

@@ -12,8 +12,8 @@ def main():
     # Existing launcher emits this even for STA with encryption disabled.
     checked_log=log.replace('WARNING: cannot find correct IV value','')
     if re.search(r'WARNING|ERROR|Failed to run command',checked_log):raise ValueError('UI CDC STA warning/error')
-    if len(re.findall(r'UI_CDC_ENDPOINT \S+ count=1',log))!=24:raise ValueError('Missing UI CDC endpoints')
-    for tag in ('mode','osd','capture','diag_vs','diag_raw','diag_bin','csi_core_1','csi_core_2','csi_byte_1','csi_byte_2','csi_pixel_1','csi_pixel_2'):
+    if len(re.findall(r'UI_CDC_ENDPOINT \S+ count=1',log))!=26:raise ValueError('Missing UI CDC endpoints')
+    for tag in ('mode','osd','capture','process','diag_vs','diag_raw','diag_bin','csi_core_1','csi_core_2','csi_byte_1','csi_byte_2','csi_pixel_1','csi_pixel_2'):
         for kind in ('setup','hold'):
             name=f'work/efinity_out/ArtFlow.ui_{tag}_{kind}.rpt';files.append(name)
             text=(ROOT/name).read_text()
@@ -22,6 +22,7 @@ def main():
             head,tail={'mode':('u_ui/u_mode_key/key_meta','u_ui/u_mode_key/key_sync'),
                        'osd':('u_ui/u_osd_key/key_meta','u_ui/u_osd_key/key_sync'),
                        'capture':('u_ui/u_fps/cap_meta','u_ui/u_fps/cap_sync'),
+                       'process':('u_process_fps/cap_meta','u_process_fps/cap_sync'),
                        **{'csi_core_1': ('u_csi_reset/core_release[0]', 'u_csi_reset/core_release[1]'), 'csi_core_2': ('u_csi_reset/core_release[1]', 'csi_reset_core_n'), 'csi_byte_1': ('u_csi_reset/byte_release[0]', 'u_csi_reset/byte_release[1]'), 'csi_byte_2': ('u_csi_reset/byte_release[1]', 'csi_reset_byte_n'), 'csi_pixel_1': ('u_csi_reset/pixel_release[0]', 'u_csi_reset/pixel_release[1]'), 'csi_pixel_2': ('u_csi_reset/pixel_release[1]', 'csi_reset_pixel_n')},
                        **{tag:(f'u_control/diag_meta[{i}]',f'u_control/diag_sync[{i}]') for i,tag in enumerate(('diag_vs','diag_raw','diag_bin'))}}[tag]
             if not re.search(r'Path Start\s*:\s*'+re.escape(head+'~FF|CLK'),text) or not re.search(r'Path End\s*:\s*'+re.escape(tail+'~FF|D'),text):

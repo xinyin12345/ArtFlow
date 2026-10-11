@@ -780,17 +780,15 @@ module GrayDecode
 	localparam DW_C = DataWidht_C;
 	
   /////////////////////////////////////////////////////////
-  reg [DW_C-1:0] Hex; 
+  // Continuous Gray decode also evaluates when a pointer starts and stays at
+  // zero. A procedural @(GrayIn) can remain X until the first pointer change
+  // in event simulators, preventing an initially empty FIFO from being read.
+  assign HexOut[DW_C-1] = GrayIn[DW_C-1];
+  genvar decode_bit;
+  generate for(decode_bit=0;decode_bit<DW_C-1;decode_bit=decode_bit+1) begin : decode_gray
+    assign HexOut[decode_bit] = HexOut[decode_bit+1] ^ GrayIn[decode_bit];
+  end endgenerate
 
-  integer i;
-
-  always @ (GrayIn)
-  begin        
-    Hex[DW_C-1]=GrayIn[DW_C-1];        
-    for(i=DW_C-2;i>=0;i=i-1)   Hex[i]=Hex[i+1]^GrayIn[i];
-  end
-  	
-  assign HexOut = Hex;
 
   /////////////////////////////////////////////////////////
 

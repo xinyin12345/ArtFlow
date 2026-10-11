@@ -3,6 +3,7 @@
 // Firmware executes from the SoC's 8 KiB initialized RAM at 0xf9000000.
 // APB0 is at 0xf8100000; the pixel DDR remains exclusively owned by v04 logic.
 module artflow_soc (
+    input wire accel_irq,
     input  wire        clk,
     input  wire        reset_n,
     output wire        system_reset_n,
@@ -55,7 +56,7 @@ module artflow_soc (
         .io_apbSlave_0_PENABLE(penable), .io_apbSlave_0_PWRITE(pwrite),
         .io_apbSlave_0_PWDATA(pwdata), .io_apbSlave_0_PRDATA(prdata),
         .io_apbSlave_0_PREADY(pready), .io_apbSlave_0_PSLVERROR(pslverror),
-        .userInterruptA(1'b0), .axiAInterrupt(1'b0),
+        .userInterruptA(accel_irq), .axiAInterrupt(1'b0),
         // v05 starts from BRAM and exposes no external debug/flash pins.
         .jtagCtrl_tck(1'b0), .jtagCtrl_tdi(1'b0), .jtagCtrl_enable(1'b0),
         .jtagCtrl_capture(1'b0), .jtagCtrl_shift(1'b0),

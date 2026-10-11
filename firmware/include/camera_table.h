@@ -3,7 +3,7 @@
 #define ARTFLOW_CAMERA_TABLE_H
 #include <stdint.h>
 #define CAMERA_REGISTER_COUNT 164u
-static const struct { uint16_t address; uint8_t value; } camera_registers[] = {
+static const struct __attribute__((packed)) { uint16_t address; uint8_t value; } camera_registers[] = {
     { 0x0100, 0x00 }, /* 0 */
     { 0x36e9, 0x80 }, /* 1 */
     { 0x37f9, 0x80 }, /* 2 */

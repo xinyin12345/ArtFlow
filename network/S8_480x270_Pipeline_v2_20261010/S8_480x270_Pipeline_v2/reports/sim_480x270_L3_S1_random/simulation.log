@@ -1,0 +1,24 @@
+LAYER index_next=1 cycles=1079071 writes=32640 reads=130560
+LAYER index_next=2 cycles=1608338 writes=57120 reads=163200
+LAYER index_next=3 cycles=2014986 writes=69360 reads=187680
+LAYER index_next=4 cycles=2133892 writes=75480 reads=199920
+LAYER index_next=5 cycles=2311871 writes=81600 reads=206040
+LAYER index_next=6 cycles=2498656 writes=93840 reads=224400
+LAYER index_next=7 cycles=2617590 writes=99960 reads=236640
+LAYER index_next=8 cycles=2795487 writes=106080 reads=242760
+LAYER index_next=9 cycles=2982475 writes=118320 reads=261120
+LAYER index_next=10 cycles=3101389 writes=124440 reads=273360
+LAYER index_next=11 cycles=3279172 writes=130560 reads=279480
+LAYER index_next=12 cycles=3466169 writes=142800 reads=297840
+LAYER index_next=13 cycles=3585152 writes=148920 reads=310080
+LAYER index_next=14 cycles=3762964 writes=155040 reads=316200
+LAYER index_next=15 cycles=3949889 writes=167280 reads=334560
+LAYER index_next=16 cycles=4068962 writes=173400 reads=346800
+LAYER index_next=17 cycles=4294290 writes=197880 reads=352920
+LAYER index_next=18 cycles=4546042 writes=214200 reads=377400
+LAYER index_next=19 cycles=5147112 writes=279480 reads=393720
+LAYER index_next=20 cycles=5690714 writes=312120 reads=459000
+LAYER index_next=21 cycles=7015156 writes=442680 reads=491640
+LAYER index_next=21 cycles=8631903 writes=572280 reads=622200
+PASS frame=0 cycles=8631903 reads=622200 writes=572280
+tb.v:45: $finish called at 86319095000 (1ps)

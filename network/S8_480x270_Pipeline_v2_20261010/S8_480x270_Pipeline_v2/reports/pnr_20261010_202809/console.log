@@ -1,0 +1,2 @@
+Running: efx_run_pnr.py s8_shared --prj C:\Users\dong\AppData\Local\Temp\s8_480_shared_stwjhyl0\s8_shared.xml --family Titanium --device Ti60F225 --timing_model I3 --output_dir outflow --opt print_critical_path=10 max_threads=4 seed=1 --opt sdc_file=clock.sdc
+   pnr :	PASS 

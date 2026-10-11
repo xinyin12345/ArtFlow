@@ -1,0 +1,150 @@
+`timescale 1ns/1ps
+module tb_v07_system;
+localparam W=64,H=24,OW=W/2,OH=H/2,DUAL_WINDOW=1,PHASE=3,REV=0;
+localparam HFP=16,HSP=4,HBP=12,VFP=4,VSP=2,VBP=12;
+localparam [31:0] BANK=32'h00400000;
+localparam [15:0] GAIN_R=256,GAIN_G=256,GAIN_B=256;
+reg pclk=0,aclk=0,hclk=0,vclk=0;
+always #10 pclk=~pclk;always #5 aclk=~aclk;always #3.367 hclk=~hclk;
+always @(posedge hclk) vclk<=~vclk;
+reg rst_n=0,prst_n=0,s_vs=0,s_hs=0,s_valid=0;reg [39:0] s_raw=0;
+wire o_de,o_hs,o_vs;wire [7:0] o_r,o_g,o_b;
+wire [5:0] awid,arid;wire [31:0] awaddr,araddr;wire [7:0] awlen,arlen;
+wire [2:0] awsize,arsize,awprot,arprot;wire [1:0] awburst,arburst,bresp,rresp;
+wire [3:0] awcache,arcache;
+wire awlock,arlock,awvalid,awready,arvalid,arready;
+wire [127:0] wdata,rdata;wire [15:0] wstrb;
+wire wlast,wvalid,wready,rlast,rvalid,rready,bvalid,bready;
+reg hold_aw=0,hold_w=0,hold_b=0,hold_ar=0,hold_r=0,inject_b=0,inject_r=0;
+reg [15:0] paddr=0;reg psel=0,penable=0,pwrite=0;reg [31:0] pwdata=0;
+wire [31:0] prdata;wire pready,pslverror,irq;
+cam_fb_pipe_v07 #(.DUAL_WINDOW(DUAL_WINDOW),.AXI_DATA_WIDTH(128),.AXI_ADDR_WIDTH(32),.START_ADDR(0),.BANK_BYTES(BANK),
+ .MAX_IN_HEIGHT(H),.MAX_IN_WIDTH(W),.MAX_OUT_WIDTH(OW)) dut (
+ .accel_paddr(paddr),.accel_psel(psel),.accel_penable(penable),.accel_pwrite(pwrite),
+ .accel_pwdata(pwdata),.accel_prdata(prdata),.accel_pready(pready),.accel_pslverror(pslverror),
+ .accel_irq(irq),.process_toggle(),
+       .diag_state(), .diag_fifo(), .diag_written(), .diag_completed(), .diag_published(), .diag_rejected(),
+    .diag_bin_toggle(),
+ .capture_toggle(),
+ .cfg_bayer(PHASE[1:0]),.cfg_pix_rev(REV[0]),.cfg_gain_r(GAIN_R),.cfg_gain_g(GAIN_G),.cfg_gain_b(GAIN_B),
+ .i_pclk(pclk),.i_pclk_rstn(prst_n),.i_vs(s_vs),.i_hs(s_hs),.i_valid(s_valid),.i_raw(s_raw),
+ .H_FRONT_PORCH(HFP[12:0]),.H_SYNC(HSP[12:0]),.H_VALID(OW[12:0]),.H_BACK_PORCH(HBP[12:0]),
+ .V_FRONT_PORCH(VFP[12:0]),.V_SYNC(VSP[12:0]),.V_VALID(H[12:0]),.V_BACK_PORCH(VBP[12:0]),
+ .rst_n(rst_n),.o_clk(vclk),.o_hdmi_clk(hclk),.o_de(o_de),.o_hs(o_hs),.o_vs(o_vs),.o_r(o_r),.o_g(o_g),.o_b(o_b),
+ .axi_clk(aclk),.awid(awid),.awaddr(awaddr),.awlen(awlen),.awsize(awsize),.awburst(awburst),
+ .awcache(awcache),.awprot(awprot),.awlock(awlock),.awvalid(awvalid),.awready(awready),
+ .arid(arid),.araddr(araddr),.arlen(arlen),.arsize(arsize),.arburst(arburst),
+ .arcache(arcache),.arprot(arprot),.arlock(arlock),.arvalid(arvalid),.arready(arready),
+ .wdata(wdata),.wstrb(wstrb),.wlast(wlast),.wvalid(wvalid),.wready(wready),
+ .rid(6'd0),.rdata(rdata),.rlast(rlast),.rvalid(rvalid),.rready(rready),.rresp(rresp),
+ .bid(6'd0),.bvalid(bvalid),.bresp(bresp),.bready(bready));
+axi_memory_v07 #(.WORDS_PER_BANK(OW*OH/4+512),.DW(128),.AW(32),.STALL_PCT(20),.RD_LAT(12)) u_mem (
+ .clk(aclk),.rst_n(rst_n),.awaddr(awaddr),.awlen(awlen),.awsize(awsize),.awlock(awlock),.awburst(awburst),
+ .awvalid(awvalid),.awready(awready),.wdata(wdata),.wstrb(wstrb),.wlast(wlast),.wvalid(wvalid),.wready(wready),
+ .bvalid(bvalid),.bresp(bresp),.bready(bready),.araddr(araddr),.arlen(arlen),.arsize(arsize),.arlock(arlock),
+ .arburst(arburst),.arvalid(arvalid),.arready(arready),.rdata(rdata),.rlast(rlast),.rvalid(rvalid),.rready(rready),.rresp(rresp),
+ .hold_aw(hold_aw),.hold_w(hold_w),.hold_b(hold_b),.hold_ar(hold_ar),.hold_r(hold_r),
+ .inject_b_error(inject_b),.inject_r_error(inject_r));
+
+task apb_write(input [15:0] addr,input [31:0] value);
+ @(negedge aclk);paddr=addr;pwdata=value;psel=1;pwrite=1;
+ @(negedge aclk);penable=1;
+ // Complete only on a rising edge with PREADY already high. In particular,
+ // reset release may raise PREADY just after an edge, before acceptance.
+ @(posedge aclk);while(!pready) @(posedge aclk);if(pslverror) $fatal(1,"APB write failed");
+ @(negedge aclk);psel=0;penable=0;pwrite=0;
+endtask
+int irqs=0,jobs=0,published=0;integer srcfile,dstfile;reg [127:0] tmp;
+initial begin
+ srcfile=$fopen("system_input.hex","w");dstfile=$fopen("system_output.hex","w");
+ repeat(20) @(negedge aclk);rst_n=1;prst_n=1;
+ apb_write(16'h84,3);
+ forever begin
+  @(posedge irq);irqs++;
+  repeat(irqs%3==0 ? 16000 : 30) @(negedge aclk);
+  apb_write(16'h8c,1);apb_write(16'h84,3);
+ end
+end
+always @(negedge aclk) if(rst_n) begin
+ if(dut.start) begin
+  jobs++;
+  for(int n=0;n<OW*OH/4;n++) begin
+   tmp=u_mem.rd_word((dut.src_addr>>4)+n);
+   for(int q=0;q<4;q++) $fdisplay(srcfile,"%08x",tmp[q*32+:32]);
+  end
+ end
+ if(dut.done) begin
+  if(dut.failed) $fatal(1,"Unexpected shell failure");
+  published++;
+  for(int n=0;n<OW*OH/4;n++) begin
+   tmp=u_mem.rd_word((dut.dst_addr>>4)+n);
+   for(int q=0;q<4;q++) $fdisplay(dstfile,"%08x",tmp[q*32+:32]);
+  end
+ end
+ if(awvalid && awready) begin
+  if(awaddr<3*BANK) begin
+   if(dut.source_locked && awaddr/BANK==dut.source_bank) $fatal(1,"Overwrite accel source");
+   if(dut.u_store.read_active && awaddr/BANK==dut.u_store.read_bank) $fatal(1,"Overwrite display source");
+  end else if(dut.display_active && (awaddr-3*BANK)/BANK==dut.display_bank)
+    $fatal(1,"Overwrite displayed result");
+ end
+end
+// Snapshot both display banks at the epoch selection, before any later reuse.
+reg [31:0] expected[0:OW*OH*2-1];int snapshot_epoch=0,good_pixels=0;
+always @(posedge aclk) if(rst_n && dut.u_store.rs==0 &&
+ dut.u_store.requested_epoch!=dut.u_store.handled_epoch && dut.original_valid) begin
+ snapshot_epoch=dut.u_store.requested_epoch;
+ for(int y=0;y<OH;y++) for(int x=0;x<OW;x++) begin
+  tmp=u_mem.rd_word((dut.original_bank*BANK+y*OW*4+x*4)>>4);
+  expected[y*OW*2+x]=tmp[(x%4)*32+:32];
+  tmp=u_mem.rd_word(((dut.styled_valid ? (3+dut.styled_bank)*BANK : dut.original_bank*BANK)+y*OW*4+x*4)>>4);
+  expected[y*OW*2+OW+x]=tmp[(x%4)*32+:32];
+ end
+end
+int px=0,py=0,underflow_seen=0;reg de_prev=0;
+always @(negedge hclk) if(dut.u_store.underflow_frames!=underflow_seen) begin
+ underflow_seen=dut.u_store.underflow_frames;
+ $display("UNDERFLOW time=%t epoch=%0d x=%0d y=%0d latest=%b words=%0d rs=%0d used=%0d q=%0d qepoch=%0d",
+ $time,dut.u_store.display_epoch,px,py,dut.original_valid,dut.u_store.words_read,dut.u_store.rs,dut.u_store.rf_used,dut.u_store.qcount,dut.u_store.q0[159:128]);
+end
+always @(negedge hclk) begin
+ if(dut.fb_vs) begin px=0;py=0;de_prev=0;end
+ else begin
+  if(dut.fb_de) begin
+   if(py>=OH/2 && py<OH/2+OH && snapshot_epoch==dut.u_store.display_epoch && !dut.u_store.frame_bad) begin
+    if(dut.fb_data!==expected[(py-OH/2)*OW*2+px])
+      $fatal(1,"Display mismatch x=%0d y=%0d got=%08x expected=%08x",px,py,dut.fb_data,expected[(py-OH/2)*OW*2+px]);
+    good_pixels++;
+   end
+   px++;
+  end else begin if(de_prev) py++;px=0;end
+  de_prev=dut.fb_de;
+ end
+end
+initial begin
+ wait(prst_n);repeat(20) @(negedge pclk);
+ for(int f=1;f<=20;f++) begin
+  s_vs=~s_vs;repeat(10) @(negedge pclk);
+  for(int y=0;y<H;y++) begin
+   for(int x=0;x<W;x+=4) begin
+    @(negedge pclk);s_hs=1;s_valid=1;
+    for(int q=0;q<4;q++) s_raw[q*10+:10]=((f*31+x+q+y*7)%220+10)*4;
+   end
+   @(negedge pclk);s_hs=0;s_valid=0;repeat(4) @(negedge pclk);
+  end
+  #50000;
+ end
+ #200000;
+ $display("DEBUG bin=%0d cap=%0d reject=%0d ws=%0d rs=%0d crst=%b arst=%b input=%0d cf=%0d written=%0d cw=%0d ready=%b/b%b/v%b armed=%b",
+ dut.diag_bin_count,dut.u_store.published_frames,dut.u_store.rejected_frames,dut.u_store.ws,dut.u_store.rs,dut.u_store.crst,dut.u_store.arst,dut.u_store.input_count,dut.u_store.cf_count,dut.u_store.words_written,dut.u_store.capture_words,awready,bvalid,awvalid,dut.u_accel_ctrl.armed);
+ if(dut.u_store.underflow_frames>1) $fatal(1,"Steady-state display underflow %0d",dut.u_store.underflow_frames);
+ if(published<6 || jobs!=published || irqs!=published || good_pixels<OW*OH*4)
+   $fatal(1,"Coverage short jobs=%0d done=%0d irq=%0d pixels=%0d",jobs,published,irqs,good_pixels);
+ if(dut.u_accel_ctrl.skipped==0 || dut.u_accel_ctrl.errors!=0) $fatal(1,"Skip/error counters");
+ $fclose(srcfile);$fclose(dstfile);
+ $display("tb_v07_system PASS jobs=%0d done=%0d irq=%0d skip=%0d pixels=%0d underflow=%0d",
+ jobs,published,irqs,dut.u_accel_ctrl.skipped,good_pixels,dut.u_store.underflow_frames);$finish;
+end
+initial begin #5000000;$fatal(1,"system timeout");end
+endmodule
+

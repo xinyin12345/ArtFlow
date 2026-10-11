@@ -19,6 +19,7 @@ module tb_soc_boot;
     reg pixel_vs = 0, pixel_hs = 0, pixel_valid = 0;
 
     artflow_soc dut (
+        .accel_irq(1'b0),
         .clk(clk), .reset_n(reset_n), .system_reset_n(system_reset_n),
         .uart_rx(uart_rx), .uart_tx(uart_tx),
         .i2c_scl_i(scl), .i2c_scl_o(scl_o), .i2c_scl_oe(scl_oe),

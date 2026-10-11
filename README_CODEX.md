@@ -1,3 +1,15 @@
+# ArtFlow v07 加速器外壳（待上板验收）
+
+当前主工程在原目录推进至 v07，保留白平衡改善及 CAP-P1 相机配置。右窗口改为 DDR 降采样/双线性放大后的结果；OSD 为 V07、CAP FPS / PRC FPS。新增网络资料保留，当前不执行 CNN。
+
+上板镜像：`outputs/v07/ArtFlow_v07.bit`；通过构建门禁后同一镜像同步到 `outflow/ArtFlow.bit`。详细的按键、串口、地址分配、验证结果与限制见 [v07 说明](doc/v07_notes.md) 和 `outputs/v07/manifest.json`。2026-10-12 按用户指示纳入 v07 版本提交；尚未记录实板验收结果。
+
+构建入口：`tools/run_efinity.ps1`；RTL 回归：`tools/run_v07.py --full`；真实 Sapphire/PLIC 回归：`tools/run_v07_soc.py`（需要本机 Questa，当前沙箱不能启动）。本版尚不声称完成板级或生产 CPU 中断仿真验收。
+
+---
+
+以下保留 v06 历史说明，其路径和验证状态不代表 v07 当前验收。
+
 # ArtFlow v06 白平衡改善与 CAP 30 fps
 
 > 当前版本包含 **CAP-P1 相机帧率改进，已实板验证 CAP 稳定显示 30 fps**。60 秒串口计数得到完整帧发布率从 12.6333 提升到 30.0667 fps，CSI/RAW/BIN/DDR 计数一致，测量期间无新增拒帧。P1 默认设置 SC431HAI VTS=1500、曝光=2989 半行；`cam timing` 读回参数，`cam baseline` 恢复原相机配置，`cam init` 返回 P1。验证镜像为 `outputs/capture_fps_p1/ArtFlow_capture_fps_p1.bit`，并同步到 `outflow/ArtFlow.bit`。配置、验证边界、原始串口计数与对照步骤见 [CAP-P1 说明](doc/capture_fps_p1.txt)。

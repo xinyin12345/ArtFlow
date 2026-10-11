@@ -88,19 +88,20 @@ static void apply_gains(uint16_t r, uint16_t g, uint16_t b) {
         control_read(REG_ACTIVE_B) == b) print("OK wb applied\r\n");
     else print("ERR wb active mirror mismatch\r\n");
 }
+static volatile uint32_t accel_irqs;
 static void show_video_diagnostics(void) {
-    print("diag_v1 vs_edges="); decimal(control_read(0x38u));
-    print(" raw256="); decimal(control_read(0x3cu));
-    print(" bin256="); decimal(control_read(0x40u));
-    print("\r\naxi_aw="); decimal(control_read(0x44u));
-    print(" w="); decimal(control_read(0x48u));
-    print(" b="); decimal(control_read(0x4cu));
-    print("\r\nvideo_state="); hex(control_read(0x50u));
-    print(" fifo_beats="); hex(control_read(0x54u));
-    print("\r\nwritten="); decimal(control_read(0x58u));
-    print(" completed="); decimal(control_read(0x5cu));
-    print(" published="); decimal(control_read(0x60u));
-    print(" rejected="); decimal(control_read(0x64u));
+    /* In register order: VS, RAW256, BIN256, AW, W, B, STATE, FIFO,
+       WRITTEN, COMPLETE, PUBLISHED, REJECTED. Documented in v07_notes. */
+    print("diag_v2[38..64]=");
+    for (uint32_t reg = 0x38u; reg <= 0x64u; reg += 4u) {
+        hex(control_read(reg)); putc_uart(' ');
+    }
+    print("\r\naccel done/skip/error/cycles=");
+    for (uint32_t reg = REG_ACCEL_DONE; reg <= REG_ACCEL_CYCLES; reg += 4u) {
+        decimal(control_read(reg)); putc_uart(' ');
+    }
+    print("irq="); decimal(accel_irqs);
+    print(" state="); hex(control_read(REG_ACCEL_STATUS));
     print("\r\n");
 }
 static void execute(const struct command *command) {
@@ -164,6 +165,18 @@ static void poll_console(struct line_reader *reader) {
     }
 }
 void firmware_trap(uint32_t cause, uint32_t pc, uint32_t value) {
+    if (cause == 0x8000000bu) {
+        uint32_t id;
+        while ((id = mmio_read(PLIC_BASE + 0x200004u)) != 0u) {
+            if (id == ACCEL_IRQ_ID) {
+                control_write(REG_ACCEL_ACK, 1u);
+                control_write(REG_ACCEL_CONTROL, 3u);
+                ++accel_irqs;
+            }
+            mmio_write(PLIC_BASE + 0x200004u, id);
+        }
+        return;
+    }
     trap_cause = cause; trap_pc = pc; trap_value = value;
     print("FATAL trap cause="); hex(cause);
     print(" pc="); hex(pc); print(" value="); hex(value); print("\r\n");
@@ -174,10 +187,20 @@ int main(void) {
     mmio_write(UART_BASE + 8u, CORE_HZ / (115200u * 8u) - 1u);
     mmio_write(UART_BASE + 12u, 7u); /* 8 data bits, no parity, one stop. */
     mmio_write(UART_BASE + 4u, 0u); /* Polling; disable TX/RX interrupts. */
-    print("\r\nArtFlow v06 CAP-P1; UART 115200 8N1\r\n");
+    print("\r\nArtFlow v07 ACCEL-SHELL CAP-P1; UART 115200 8N1\r\n");
     control_valid = control_read(REG_ID) == CONTROL_ID;
     if (control_valid) init_camera(0);
     else print("ERR control ID mismatch\r\n");
+    if (control_valid && control_read(REG_ACCEL_ID) == 0x41524607u) {
+        mmio_write(PLIC_BASE + ACCEL_IRQ_ID * 4u, 1u);
+        mmio_write(PLIC_BASE + 0x2000u, 1u << ACCEL_IRQ_ID);
+        mmio_write(PLIC_BASE + 0x200000u, 0u);
+        control_write(REG_ACCEL_ACK, 1u);
+        control_write(REG_ACCEL_CONTROL, 3u);
+#ifndef ARTFLOW_HOST_TEST
+        __asm__ volatile ("li t0, 0x800; csrs mie, t0; csrsi mstatus, 8" ::: "t0", "memory");
+#endif
+    }
     print("READY; type help\r\n");
     for (;;) poll_console(&reader);
 }

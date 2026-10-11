@@ -1,0 +1,43 @@
+{
+  "resources": {
+    "xlr": 9104,
+    "ram": 78,
+    "dsp": 121
+  },
+  "clock_period_ns": 6.667,
+  "clock_mhz": 149.99250037498126,
+  "analyzed_max_clock_mhz": 167.029,
+  "setup_slack_ns": 0.68,
+  "hold_slack_ns": 0.045,
+  "rtl_sha256": "9c0c485945cc9e1d35d4cf5668523d3210022f8328684089adf487a73d4718d3",
+  "model_sha256": "6414b936b8bbebf87a9177c05e014f46ead215493e8b3fd86d391ab6cf515c02",
+  "full_arithmetic_verification": {
+    "status": "passed",
+    "cycles": 8631903,
+    "reads": 622200,
+    "writes": 572280,
+    "all_feature_writes_compared": true,
+    "all_write_addresses_compared": true
+  },
+  "frame_time_ms": 57.548897301,
+  "conditional_fps": 17.376527560027174,
+  "slow_ddr_cycles": 12985965,
+  "slow_ddr_conditional_fps": 11.550354584736771,
+  "traffic_bytes": 9555840,
+  "video_resources_from_user": {
+    "xlr": 21557,
+    "ram": 119,
+    "dsp": 10
+  },
+  "projected_combined_resources": {
+    "xlr": 30661,
+    "ram": 197,
+    "dsp": 131
+  },
+  "remaining_after_projection": {
+    "xlr": 30139,
+    "ram": 59,
+    "dsp": 29
+  },
+  "scope": "Standalone CNN core. FPS is cycle simulation times routed clock, not board video measurement. No DDR burst bridge, physical pin/PLL/CDC integration or SDF simulation."
+}

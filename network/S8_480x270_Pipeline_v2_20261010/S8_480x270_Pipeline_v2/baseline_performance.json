@@ -1,0 +1,143 @@
+{
+  "ddr_latency_formula_checked": true,
+  "small_L1_cycles": 89234,
+  "small_L5_cycles": 103874,
+  "reads": 3660,
+  "useful_macs": 129058560,
+  "mac_issue_cycles": 1811520,
+  "useful_mac_fraction_of_96_lane_peak": 0.0808400981703641,
+  "layers": [
+    {
+      "name": "enc.0.conv",
+      "cycles": 1706449,
+      "macs": 7050240,
+      "mac_issue_cycles": 293760
+    },
+    {
+      "name": "enc.1.conv",
+      "cycles": 806050,
+      "macs": 14100480,
+      "mac_issue_cycles": 220320
+    },
+    {
+      "name": "enc.2.conv",
+      "cycles": 541739,
+      "macs": 21150720,
+      "mac_issue_cycles": 220320
+    },
+    {
+      "name": "body.0.reduce.conv",
+      "cycles": 177804,
+      "macs": 2350080,
+      "mac_issue_cycles": 24480
+    },
+    {
+      "name": "body.0.spatial.conv",
+      "cycles": 266444,
+      "macs": 10575360,
+      "mac_issue_cycles": 110160
+    },
+    {
+      "name": "body.0.expand.conv",
+      "cycles": 285779,
+      "macs": 2350080,
+      "mac_issue_cycles": 24480
+    },
+    {
+      "name": "body.1.reduce.conv",
+      "cycles": 177928,
+      "macs": 2350080,
+      "mac_issue_cycles": 24480
+    },
+    {
+      "name": "body.1.spatial.conv",
+      "cycles": 266376,
+      "macs": 10575360,
+      "mac_issue_cycles": 110160
+    },
+    {
+      "name": "body.1.expand.conv",
+      "cycles": 286062,
+      "macs": 2350080,
+      "mac_issue_cycles": 24480
+    },
+    {
+      "name": "body.2.reduce.conv",
+      "cycles": 178056,
+      "macs": 2350080,
+      "mac_issue_cycles": 24480
+    },
+    {
+      "name": "body.2.spatial.conv",
+      "cycles": 266341,
+      "macs": 10575360,
+      "mac_issue_cycles": 110160
+    },
+    {
+      "name": "body.2.expand.conv",
+      "cycles": 285732,
+      "macs": 2350080,
+      "mac_issue_cycles": 24480
+    },
+    {
+      "name": "body.3.reduce.conv",
+      "cycles": 178199,
+      "macs": 2350080,
+      "mac_issue_cycles": 24480
+    },
+    {
+      "name": "body.3.spatial.conv",
+      "cycles": 266405,
+      "macs": 10575360,
+      "mac_issue_cycles": 110160
+    },
+    {
+      "name": "body.3.expand.conv",
+      "cycles": 285821,
+      "macs": 2350080,
+      "mac_issue_cycles": 24480
+    },
+    {
+      "name": "dec.0.pw.conv",
+      "cycles": 178209,
+      "macs": 2350080,
+      "mac_issue_cycles": 24480
+    },
+    {
+      "name": "dec.0.dw.conv",
+      "cycles": 644337,
+      "macs": 1762560,
+      "mac_issue_cycles": 24480
+    },
+    {
+      "name": "dec.1.pw.conv",
+      "cycles": 409893,
+      "macs": 2350080,
+      "mac_issue_cycles": 32640
+    },
+    {
+      "name": "dec.1.dw.conv",
+      "cycles": 1750292,
+      "macs": 3525120,
+      "mac_issue_cycles": 65280
+    },
+    {
+      "name": "dec.2.pw.conv",
+      "cycles": 905942,
+      "macs": 3133440,
+      "mac_issue_cycles": 32640
+    },
+    {
+      "name": "dec.2.dw.conv",
+      "cycles": 3697050,
+      "macs": 9400320,
+      "mac_issue_cycles": 130560
+    },
+    {
+      "name": "rgb",
+      "cycles": 3068958,
+      "macs": 3133440,
+      "mac_issue_cycles": 130560
+    }
+  ]
+}

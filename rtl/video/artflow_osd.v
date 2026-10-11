@@ -1,7 +1,7 @@
 // Two-cycle registered RGB/timing pipeline. 8x8 ROM glyphs at 4x scale.
 // Panel: (32,32)..(927,95), 28 columns, two rows. Outside is transparent.
 module artflow_osd #(
-    parameter H_ACTIVE=1920,
+    parameter H_ACTIVE=1920, parameter [7:0] VERSION_DIGIT="6", parameter PROCESS_FPS=0,
     parameter FONT_FILE="./rtl/video/osd_font.mem"
 )(
     input clk, rst_n, input [1:0] mode, input osd_enable,
@@ -31,7 +31,7 @@ always @* begin
         case(rx[9:5])
              0:character="A"; 1:character="R"; 2:character="T"; 3:character="F";
              4:character="L"; 5:character="O"; 6:character="W";
-             8:character="V"; 9:character="0"; 10:character="6";
+             8:character="V"; 9:character="0"; 10:character=VERSION_DIGIT;
              12:character="M"; 13:character="O"; 14:character="D";
              15:character="E"; 16:character=":";
              18:case(mode) 0:character="D";1:character="L";2:character="R";3:character="B";endcase
@@ -48,7 +48,7 @@ always @* begin
              8:character=fps_valid ? 8'h30+{4'd0,capture_bcd[11:8]} : "-";
              9:character=fps_valid ? 8'h30+{4'd0,capture_bcd[7:4]} : "-";
              10:character=fps_valid ? 8'h30+{4'd0,capture_bcd[3:0]} : "-";
-             13:character="O"; 14:character="U"; 15:character="T";
+             13:character=PROCESS_FPS ? "P" : "O"; 14:character=PROCESS_FPS ? "R" : "U"; 15:character=PROCESS_FPS ? "C" : "T";
              17:character="F"; 18:character="P"; 19:character="S"; 20:character=":";
              21:character=fps_valid ? 8'h30+{4'd0,display_bcd[11:8]} : "-";
              22:character=fps_valid ? 8'h30+{4'd0,display_bcd[7:4]} : "-";

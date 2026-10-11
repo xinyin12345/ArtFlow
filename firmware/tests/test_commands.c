@@ -5,13 +5,13 @@
 #include "../src/main.c"
 #undef main
 
-static uint32_t timer, control[32], write_offsets[16], write_values[16];
+static uint32_t timer, control[64], write_offsets[16], write_values[16];
 static unsigned write_count, text_used, polls;
 static int complete_commit;
 static unsigned init_calls, init_profile, timing_calls;
 static enum i2c_result timing_error;
 static char text[2048];
-static uint32_t rx_error;
+static uint32_t rx_error, claim, completed_irq;
 static const char *rx_input;
 static int error_on_last_char;
 static void reset_model(void) {
@@ -23,6 +23,7 @@ static void reset_model(void) {
     rx_error = 0; rx_input = ""; error_on_last_char = 0;
 }
 uint32_t mmio_read(uint32_t address) {
+    if (address == PLIC_BASE + 0x200004u) { uint32_t id=claim; claim=0; return id; }
     if (address == CLINT_MTIME) { timer += 1000000u; return timer; }
     if (address == UART_BASE + 4u) return 0x00ff0000u | (*rx_input ? 0x01000000u : 0);
     if (address == UART_BASE + 0x10u) return rx_error;
@@ -31,7 +32,7 @@ uint32_t mmio_read(uint32_t address) {
         if (error_on_last_char && value == '\r') rx_error = 1;
         return value;
     }
-    assert(address >= CONTROL_BASE && address < CONTROL_BASE + 128u);
+    assert(address >= CONTROL_BASE && address < CONTROL_BASE + 256u);
     unsigned offset = address - CONTROL_BASE;
     if (offset == REG_STATUS && (control[REG_STATUS / 4] & STATUS_BUSY) && complete_commit && ++polls > 3u) {
         control[REG_STATUS / 4] = 0;
@@ -40,16 +41,17 @@ uint32_t mmio_read(uint32_t address) {
     return control[offset / 4];
 }
 void mmio_write(uint32_t address, uint32_t value) {
+    if (address >= PLIC_BASE) { completed_irq=value; return; }
     if (address == UART_BASE) {
         assert(text_used < sizeof text - 1);
         text[text_used++] = (char)value; text[text_used] = 0; return;
     }
     if (address == UART_BASE + 0x10u) { rx_error &= ~value; return; }
     if (address > UART_BASE && address < UART_BASE + 16u) return;
-    assert(address >= CONTROL_BASE && address < CONTROL_BASE + 64u && write_count < 16u);
+    assert(address >= CONTROL_BASE && address < CONTROL_BASE + 256u && write_count < 16u);
     unsigned offset = address - CONTROL_BASE;
     write_offsets[write_count] = offset; write_values[write_count++] = value;
-    control[(offset / 4) & 15u] = value;
+    control[offset / 4] = value;
     if (offset == REG_COMMIT) control[REG_STATUS / 4] = STATUS_BUSY;
 }
 struct camera_result camera_configure(unsigned baseline) {
@@ -73,10 +75,14 @@ int main(void) {
     control[0x60 / 4] = 10; control[0x64 / 4] = 2;
     command("status");
     assert(write_count == 0);
-    assert(strstr(text, "diag_v1 vs_edges=123 raw256=456 bin256=789") != NULL);
-    assert(strstr(text, "axi_aw=25 w=3200 b=24") != NULL);
-    assert(strstr(text, "video_state=0x00020284 fifo_beats=0x00100080") != NULL);
-    assert(strstr(text, "written=128 completed=256 published=10 rejected=2") != NULL);
+    assert(strstr(text, "diag_v2[38..64]=0x0000007b 0x000001c8 0x00000315") != NULL);
+    assert(strstr(text, "0x00000080 0x00000100 0x0000000a 0x00000002") != NULL);
+    assert(strstr(text, "accel done/skip/error/cycles=0 0 0 0 irq=0") != NULL);
+    reset_model(); claim=16; completed_irq=0; accel_irqs=0;
+    firmware_trap(0x8000000bu,0x1234u,0);
+    assert(completed_irq==16 && accel_irqs==1 && write_count==2);
+    assert(write_offsets[0]==REG_ACCEL_ACK && write_values[0]==1);
+    assert(write_offsets[1]==REG_ACCEL_CONTROL && write_values[1]==3);
     reset_model(); command("wb 1024 0 256");
     assert(write_count == 4 && write_offsets[0] == 0x10 && write_values[0] == 1024);
     assert(write_offsets[1] == 0x14 && write_values[1] == 0);

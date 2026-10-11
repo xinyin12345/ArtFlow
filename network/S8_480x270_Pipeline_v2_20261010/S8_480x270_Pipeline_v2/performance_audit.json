@@ -1,0 +1,115 @@
+{
+  "layers": [
+    {
+      "name": "enc.0.conv",
+      "baseline_cycles": 1706449,
+      "v2_cycles": 1079071
+    },
+    {
+      "name": "enc.1.conv",
+      "baseline_cycles": 806050,
+      "v2_cycles": 529267
+    },
+    {
+      "name": "enc.2.conv",
+      "baseline_cycles": 541739,
+      "v2_cycles": 406648
+    },
+    {
+      "name": "body.0.reduce.conv",
+      "baseline_cycles": 177804,
+      "v2_cycles": 118906
+    },
+    {
+      "name": "body.0.spatial.conv",
+      "baseline_cycles": 266444,
+      "v2_cycles": 177979
+    },
+    {
+      "name": "body.0.expand.conv",
+      "baseline_cycles": 285779,
+      "v2_cycles": 186785
+    },
+    {
+      "name": "body.1.reduce.conv",
+      "baseline_cycles": 177928,
+      "v2_cycles": 118934
+    },
+    {
+      "name": "body.1.spatial.conv",
+      "baseline_cycles": 266376,
+      "v2_cycles": 177897
+    },
+    {
+      "name": "body.1.expand.conv",
+      "baseline_cycles": 286062,
+      "v2_cycles": 186988
+    },
+    {
+      "name": "body.2.reduce.conv",
+      "baseline_cycles": 178056,
+      "v2_cycles": 118914
+    },
+    {
+      "name": "body.2.spatial.conv",
+      "baseline_cycles": 266341,
+      "v2_cycles": 177783
+    },
+    {
+      "name": "body.2.expand.conv",
+      "baseline_cycles": 285732,
+      "v2_cycles": 186997
+    },
+    {
+      "name": "body.3.reduce.conv",
+      "baseline_cycles": 178199,
+      "v2_cycles": 118983
+    },
+    {
+      "name": "body.3.spatial.conv",
+      "baseline_cycles": 266405,
+      "v2_cycles": 177812
+    },
+    {
+      "name": "body.3.expand.conv",
+      "baseline_cycles": 285821,
+      "v2_cycles": 186925
+    },
+    {
+      "name": "dec.0.pw.conv",
+      "baseline_cycles": 178209,
+      "v2_cycles": 119073
+    },
+    {
+      "name": "dec.0.dw.conv",
+      "baseline_cycles": 644337,
+      "v2_cycles": 225328
+    },
+    {
+      "name": "dec.1.pw.conv",
+      "baseline_cycles": 409893,
+      "v2_cycles": 251752
+    },
+    {
+      "name": "dec.1.dw.conv",
+      "baseline_cycles": 1750292,
+      "v2_cycles": 601070
+    },
+    {
+      "name": "dec.2.pw.conv",
+      "baseline_cycles": 905942,
+      "v2_cycles": 543602
+    },
+    {
+      "name": "dec.2.dw.conv",
+      "baseline_cycles": 3697050,
+      "v2_cycles": 1324442
+    },
+    {
+      "name": "rgb",
+      "baseline_cycles": 3068958,
+      "v2_cycles": 1616747
+    }
+  ],
+  "total_cycles": 8631903
+}

@@ -10,6 +10,16 @@
 #define CONTROL_BASE  0xf8100000u
 #define CLINT_MTIME   0xf8b0bff8u
 #define CONTROL_ID    0x41524605u
+#define PLIC_BASE     0xf8c00000u
+#define ACCEL_IRQ_ID  16u
+#define REG_ACCEL_ID 0x80u
+#define REG_ACCEL_CONTROL 0x84u
+#define REG_ACCEL_STATUS 0x88u
+#define REG_ACCEL_ACK 0x8cu
+#define REG_ACCEL_DONE 0x90u
+#define REG_ACCEL_SKIP 0x94u
+#define REG_ACCEL_ERRORS 0x98u
+#define REG_ACCEL_CYCLES 0x9cu
 #define REG_ID        0x00u
 #define REG_STATUS    0x04u
 #define REG_SHADOW_R  0x10u

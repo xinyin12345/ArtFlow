@@ -1,0 +1,17 @@
+{
+  "pass_all": true,
+  "counts": {
+    "weights": 44220,
+    "biases": 555,
+    "main_multipliers": 555,
+    "skip_multipliers": 4
+  },
+  "max_accumulator_abs_bound": 365775,
+  "s20_safe": true,
+  "model_sha256": "6414b936b8bbebf87a9177c05e014f46ead215493e8b3fd86d391ab6cf515c02",
+  "rom_sha256": {
+    "shared_bias.mem": "e27b1f82a8731061c09069ba13d1c643c4e9a90e33c44c9d46f8bd32c6cc4bfb",
+    "shared_main.mem": "2bb993896d6bb7117887e1b324cf5b35b4b5c225984ac58cc586929687d0f8fd",
+    "shared_weights.mem": "3c76a6ee7601bf8911903379d8bf60464799e02c71df3e75cf360f6b0144d3c6"
+  }
+}

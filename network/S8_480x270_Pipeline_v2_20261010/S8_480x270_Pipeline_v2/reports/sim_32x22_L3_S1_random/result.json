@@ -1,0 +1,47 @@
+{
+  "returncode": 0,
+  "seconds": 26.190861225128174,
+  "args": {
+    "width": 32,
+    "height": 22,
+    "latency": 3,
+    "stall": 1,
+    "frames": 2,
+    "mode": "random",
+    "count_only": false
+  },
+  "counts": [
+    192,
+    144,
+    72,
+    36,
+    36,
+    72,
+    36,
+    36,
+    72,
+    36,
+    36,
+    72,
+    36,
+    36,
+    72,
+    36,
+    144,
+    96,
+    384,
+    192,
+    768,
+    704
+  ],
+  "checked_integer": true,
+  "stage": "C:\\Users\\dong\\AppData\\Local\\Temp\\s8_shared_sim_9yqvnc2g",
+  "rtl_sha256": {
+    "rtl\\layer_config.vh": "3fbcbb0a49db81676d512e2aa870e57d40221f2b1a190aabcdc84bb3b7914bb9",
+    "rtl\\s8_shared.v": "176f9f4bbc93f6811a2040f8f39bbd3a52fcbcb7b75a87cb519472be239a045e",
+    "rtl\\s8_shared.v.bak": "1710cc1d8ba5789572e05c32b14eb83f2e2542b594ebc729258e419b2e1516f1",
+    "rtl\\shared_line.v": "078acdfa13e44948ffbec4ce779b22f5183898cb7dad96a056febec08785d9d6",
+    "rtl\\shared_mac.v": "9f105e14f3d4a18d3552b497a6566aa29dc30d9075404cb994e82834cd5b124b",
+    "rtl\\shared_quant.v": "f0d1a46f64ad2b059c51d079fc84dfe5c5e097c76ed1d060f7603d4b4ea95c01"
+  }
+}
