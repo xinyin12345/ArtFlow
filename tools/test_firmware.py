@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--cc", default=os.environ.get("HOST_CC", "gcc"))
+    parser.add_argument("--lto", action="store_true", help="Also exercise cross-file link-time optimization")
     args = parser.parse_args()
     cc = shutil.which(args.cc) or args.cc
     work = ROOT / "work/firmware/tests"
@@ -30,6 +31,7 @@ def main() -> None:
         files = [ROOT / "firmware/tests" / f"test_{case}.c",
                  *(ROOT / "firmware/src" / source for source in sources)]
         command = [cc, "-std=c11", "-O2", "-Wall", "-Wextra", "-Werror", "-DARTFLOW_HOST_TEST",
+                   *(["-flto"] if args.lto else []),
                    "-I", str(ROOT / "firmware/include"), *(str(p) for p in files), "-o", str(executable)]
         built = subprocess.run(command, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         if built.returncode:
@@ -51,13 +53,14 @@ def main() -> None:
             raise SystemExit("Preserved camera ROM differs from v04")
         results.append({"test": "v04_camera_rom", "passed": True, "output": "SHA256 equal to preserved v04 ROM"})
         print("PASS camera ROM: SHA256 equal to v04")
-    (out / "host_tests.json").write_text(json.dumps(results, indent=2) + "\n", encoding="utf-8")
+    suffix = "_lto" if args.lto else ""
+    (out / f"host_tests{suffix}.json").write_text(json.dumps(results, indent=2) + "\n", encoding="utf-8")
     source_files = [p for p in (ROOT / "firmware").rglob("*")
                     if p.is_file() and p.suffix.lower() in {".c", ".h", ".s", ".ld"}]
     source_files.append(Path(__file__).resolve())
     fingerprint = {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                    for p in sorted(source_files)}
-    (out / "host_test_source_sha256.json").write_text(
+    (out / f"host_test_source_sha256{suffix}.json").write_text(
         json.dumps(fingerprint, indent=2) + "\n", encoding="utf-8")
     print(f"PASS: {len(results)} firmware test groups")
 

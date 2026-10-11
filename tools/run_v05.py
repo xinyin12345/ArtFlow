@@ -103,7 +103,7 @@ def main():
             call('compile_tb_soc_boot',['vlog','-sv',*[ROOT/p for p in paths]])
             for scenario in ('success','nack'):
                 if args.soc_scenario not in ('all', scenario): continue
-                call('soc_'+scenario, ['vsim','-c','-onfinish','exit','work.tb_soc_boot',
+                call('soc_'+scenario, ['vsim','-c','-onfinish','exit','work.tb_soc_boot','+P1_BOOT',
                      *(['+SENSOR_NACK'] if scenario=='nack' else []),
                      '-do','run -all; quit -code 0'], 'tb_soc_boot PASS', timeout=3600)
         if not args.control_only and not args.soc_only:

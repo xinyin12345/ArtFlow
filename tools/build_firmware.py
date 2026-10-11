@@ -62,7 +62,7 @@ def main() -> None:
     def tool(name: str) -> str:
         return str(gcc.with_name(gcc_prefix + name + suffix))
     sources = [ROOT / "firmware/start.S", *sorted((ROOT / "firmware/src").glob("*.c"))]
-    flags = ["-march=rv32im_zicsr_zifencei", "-mabi=ilp32", "-mcmodel=medany", "-Os", "-g",
+    flags = ["-march=rv32im_zicsr_zifencei", "-mabi=ilp32", "-mcmodel=medany", "-Os", "-flto", "-g",
              "-ffreestanding", "-fno-builtin", "-fno-common", "-fno-stack-protector",
              "-fdata-sections", "-ffunction-sections", "-fstack-usage", "-msmall-data-limit=0",
              "-Wall", "-Wextra", "-Werror", "-nostdlib", "-nostartfiles",

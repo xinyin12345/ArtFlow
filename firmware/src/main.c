@@ -43,21 +43,35 @@ static const char *camera_error(enum i2c_result error) {
     default: return "UNKNOWN";
     }
 }
-static void init_camera(void) {
-    print("BUSY camera initialization\r\n");
-    last_camera = camera_configure();
+static void show_camera_timing(void) {
+    struct camera_timing timing;
+    if (!(control_read(REG_CAMERA) & CAMERA_READY)) { print("ERR camera off\r\n"); return; }
+    struct camera_result result = camera_get_timing(&timing);
+    if (result.code != I2C_OK) {
+        print("ERR timing "); print(camera_error(result.code));
+        print(" reg="); hex(result.reg); print("\r\n"); return;
+    }
+    print("cam_timing hts="); decimal(timing.hts);
+    print(" vts="); decimal(timing.vts);
+    print(" exposure_half_lines="); decimal(timing.exposure_half_lines);
+    print("\r\n");
+}
+static void init_camera(unsigned baseline) {
+    print("BUSY camera init\r\n");
+    last_camera = camera_configure(baseline);
     if (last_camera.code == I2C_OK) {
-        print("OK camera 164 registers verified 1920x1080\r\n");
+        print(baseline ? "OK camera BASELINE\r\n" : "OK camera P1 VTS1500 EXP2989\r\n");
+        show_camera_timing();
     } else {
         print("ERR camera "); print(camera_error(last_camera.code));
         print(" index="); decimal(last_camera.index);
         print(" reg="); hex(last_camera.reg);
-        print("; sensor held reset; use cam init\r\n");
+        print("; reset; use cam init\r\n");
     }
 }
 static void apply_gains(uint16_t r, uint16_t g, uint16_t b) {
     if (control_read(REG_STATUS) & STATUS_BUSY) {
-        print("ERR wb busy; previous commit still pending\r\n"); return;
+        print("ERR wb busy; commit pending\r\n"); return;
     }
     control_write(REG_SHADOW_R, r);
     control_write(REG_SHADOW_G, g);
@@ -92,10 +106,10 @@ static void show_video_diagnostics(void) {
 static void execute(const struct command *command) {
     if (command->kind == CMD_EMPTY) return;
     if (command->kind == CMD_HELP) {
-        print("help | status | wb R G B | defaults | cam init | cam off\r\n"
+        print("help | status | wb R G B | defaults | cam init/off/baseline/timing\r\n"
               "Gains: unsigned decimal 0..1024 Q8.8 (256=1x); defaults ");
         decimal(DEFAULT_R); print(" "); decimal(DEFAULT_G); print(" "); decimal(DEFAULT_B);
-        print("\r\nCR or LF ends a line; 63 chars max; send next command after response\r\n");
+        print("\r\nCR/LF; max 63 chars; wait for response\r\n");
         return;
     }
     if (command->kind == CMD_INVALID) {
@@ -114,7 +128,9 @@ static void execute(const struct command *command) {
         print("\r\n"); show_video_diagnostics(); break;
     case CMD_WB: apply_gains(command->rgb[0], command->rgb[1], command->rgb[2]); break;
     case CMD_DEFAULTS: apply_gains(DEFAULT_R, DEFAULT_G, DEFAULT_B); break;
-    case CMD_CAM_INIT: init_camera(); break;
+    case CMD_CAM_INIT: init_camera(0); break;
+    case CMD_CAM_BASELINE: init_camera(1); break;
+    case CMD_CAM_TIMING: show_camera_timing(); break;
     case CMD_CAM_OFF:
         control_write(REG_CAMERA, CAMERA_RESET);
         print("OK camera held reset\r\n"); break;
@@ -158,10 +174,10 @@ int main(void) {
     mmio_write(UART_BASE + 8u, CORE_HZ / (115200u * 8u) - 1u);
     mmio_write(UART_BASE + 12u, 7u); /* 8 data bits, no parity, one stop. */
     mmio_write(UART_BASE + 4u, 0u); /* Polling; disable TX/RX interrupts. */
-    print("\r\nArtFlow v06 FIX1 Sapphire RV32IM; UART 115200 8N1\r\n");
+    print("\r\nArtFlow v06 CAP-P1; UART 115200 8N1\r\n");
     control_valid = control_read(REG_ID) == CONTROL_ID;
-    if (control_valid) init_camera();
-    else print("ERR control ID mismatch; camera initialization skipped\r\n");
+    if (control_valid) init_camera(0);
+    else print("ERR control ID mismatch\r\n");
     print("READY; type help\r\n");
     for (;;) poll_console(&reader);
 }

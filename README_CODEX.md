@@ -1,7 +1,9 @@
-# ArtFlow v06 白平衡改善版
+# ArtFlow v06 白平衡改善与 CAP 30 fps
 
-当前版本 `v06-white-balance`：黑电平校正、三通道默认增益 102/102/102（Q8.8）、1/2.2 显示 Gamma，功能为**改善白平衡**。
-2026-10-11 用户确认视频正常、画质明显改善；此前“无信号”是显示器休眠。正式镜像为 `outflow/ArtFlow.bit`，与用户验证的 `ArtFlow_reference_color_trial.bit` 完全相同。
+> 当前版本包含 **CAP-P1 相机帧率改进，已实板验证 CAP 稳定显示 30 fps**。60 秒串口计数得到完整帧发布率从 12.6333 提升到 30.0667 fps，CSI/RAW/BIN/DDR 计数一致，测量期间无新增拒帧。P1 默认设置 SC431HAI VTS=1500、曝光=2989 半行；`cam timing` 读回参数，`cam baseline` 恢复原相机配置，`cam init` 返回 P1。验证镜像为 `outputs/capture_fps_p1/ArtFlow_capture_fps_p1.bit`，并同步到 `outflow/ArtFlow.bit`。配置、验证边界、原始串口计数与对照步骤见 [CAP-P1 说明](doc/capture_fps_p1.txt)。
+
+基础版本 `v06-white-balance`：黑电平校正、三通道默认增益 102/102/102（Q8.8）、1/2.2 显示 Gamma，功能为**改善白平衡**，CAP-P1 保留这些画质设置。
+2026-10-11 用户确认白平衡版视频正常、画质明显改善；此前“无信号”是显示器休眠。白平衡版原交付包保留在 `outputs/white_balance_improved/`；当前 `outflow/ArtFlow.bit` 已更新为上述 CAP-P1 镜像。
 详见[白平衡改善版说明](doc/white_balance_improvement.md)及 `outputs/white_balance_improved/` 的版本清单。OSD 仍显示 V06。
 
 在 Efinity 2026.1 中打开本目录 `ArtFlow.xml`。本版从 `D:\work\CodexWork\ArtFlow\v05` 继续开发，增加 OSD 字符、采集/输出 FPS、按键切换显示模式。v05 原工程保留。

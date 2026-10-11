@@ -61,7 +61,7 @@ module tb_soc_boot;
     string uart_text = "";
     string uart_line = "";
     bit startup_ready = 0, camera_message_ok = 0, camera_message_nack = 0;
-    bit wb_message_ok = 0, help_message_ok = 0;
+    bit wb_message_ok = 0, help_message_ok = 0, timing_message_ok = 0, baseline_message_ok = 0;
     bit nack_scenario;
     initial nack_scenario = $test$plusargs("SENSOR_NACK");
     function automatic bit contains(input string text, input string needle);
@@ -88,11 +88,13 @@ module tb_soc_boot;
             $write("%c", received);
             if (received == 10) begin
                 if (uart_line == "READY; type help\n") startup_ready = 1;
-                if (uart_line == "OK camera 164 registers verified 1920x1080\n")
+                if (uart_line == "OK camera P1 VTS1500 EXP2989\n")
                     camera_message_ok = 1;
+                if (uart_line == "OK camera BASELINE\n") baseline_message_ok = 1;
+                if (uart_line == "cam_timing hts=3000 vts=1500 exposure_half_lines=2989\n") timing_message_ok = 1;
                 if (contains(uart_line, "ERR camera NACK index=0")) camera_message_nack = 1;
                 if (uart_line == "OK wb applied\n") wb_message_ok = 1;
-                if (contains(uart_line, "help | status | wb R G B | defaults | cam init | cam off"))
+                if (contains(uart_line, "help | status | wb R G B | defaults | cam init/off/baseline/timing"))
                     help_message_ok = 1;
                 if (contains(uart_line, "FATAL trap")) $fatal(1, "%s", uart_line);
                 uart_line = "";
@@ -143,24 +145,43 @@ module tb_soc_boot;
             $display("\ntb_soc_boot PASS: production CPU handled sensor NACK, held reset, emitted READY and answered UART help");
         end else begin
             if (!camera_message_ok || !camera_ready || camera_reset ||
-                sensor.write_count != 164 || sensor.read_count != 5)
+                sensor.write_count != 166 || sensor.read_count != 17 || !timing_message_ok)
                 $fatal(1, "READY without verified camera: writes=%0d reads=%0d",
                        sensor.write_count, sensor.read_count);
             if (sensor.memory[16'h3208] != 8'h07 || sensor.memory[16'h3209] != 8'h80 ||
                 sensor.memory[16'h320a] != 8'h04 || sensor.memory[16'h320b] != 8'h38 ||
-                sensor.memory[16'h0100] != 8'h01)
+                sensor.memory[16'h0100] != 8'h01 || sensor.memory[16'h320e] != 5 ||
+                sensor.memory[16'h320f] != 220 || sensor.memory[16'h3e00] != 0 ||
+                sensor.memory[16'h3e01] != 186 || sensor.memory[16'h3e02] != 208)
                 $fatal(1, "camera configuration readback mismatch");
             #(UART_BIT_NS);
             send_line("wb 512 256 384\n");
             wait (gain_r == 512 && gain_g == 256 && gain_b == 384);
             wait (wb_message_ok);
             if (!camera_ready || camera_reset) $fatal(1, "white balance disturbed camera gate");
-            $display("\ntb_soc_boot PASS: production RISC-V boot, 164 ordered I2C writes, 5 readbacks, UART READY/OK wb and atomic gain commit");
+            // Exercise the read-only command and both full initialization profiles.
+            timing_message_ok = 0;
+            #(UART_BIT_NS); send_line("cam timing\n"); wait(timing_message_ok);
+            if (sensor.write_count != 166 || sensor.read_count != 24)
+                $fatal(1,"timing command wrote registers or failed to read all seven bytes");
+            sensor.p1_profile = 0;
+            #(UART_BIT_NS); send_line("cam baseline\n"); wait(baseline_message_ok);
+            wait(sensor.read_count == 12);
+            if (sensor.write_count != 164 || sensor.memory[16'h3e00] != 1 ||
+                sensor.memory[16'h3e01] != 8'hbb || sensor.memory[16'h3e02] != 8'hf0)
+                $fatal(1,"baseline did not replay original 164 writes");
+            // Wait for the UART response to finish before sending another command.
+            #10000000;
+            sensor.p1_profile = 1; camera_message_ok = 0; timing_message_ok = 0;
+            send_line("cam init\n"); wait(camera_message_ok && timing_message_ok);
+            if (!camera_ready || camera_reset || sensor.write_count != 166 || sensor.read_count != 17)
+                $fatal(1,"P1 reinitialization failed");
+            $display("\ntb_soc_boot PASS: production LTO RISC-V boot, 166 ordered P1 writes, 10 readbacks, timing UART, baseline/P1 reinit and atomic gain commit");
         end
         $finish;
     end
     initial begin
-        #400000000;
+        #800000000;
         $fatal(1, "SoC boot timeout: camera_ready=%b reset=%b writes=%0d reads=%0d UART=%s",
                camera_ready, camera_reset, sensor.write_count, sensor.read_count, uart_text);
     end
@@ -179,19 +200,37 @@ module artflow_sensor_model (
     int write_count = 0;
     int read_count = 0;
     reg [7:0] memory [0:65535];
-    reg [23:0] expected [0:163];
+    reg [23:0] original [0:163];
+    reg [23:0] expected [0:165];
+    bit p1_profile;
     reg [7:0] shift = 0, transmit_byte = 0;
     reg [15:0] address = 0;
     reg acknowledge = 0, ack_clock_seen = 0, read_mode = 0, master_acked = 0;
     bit inject_nack;
     initial begin
-        int golden_file;
+        int golden_file, destination;
         inject_nack = $test$plusargs("SENSOR_NACK");
+        p1_profile = $test$plusargs("P1_BOOT");
         for (int i=0; i<65536; i++) memory[i] = 0;
         golden_file = $fopen("camera_golden.memh", "r");
         if (!golden_file) $fatal(1, "runner must export camera_golden.memh from preserved v04 ROM");
         $fclose(golden_file);
-        $readmemh("camera_golden.memh", expected);
+        $readmemh("camera_golden.memh", original);
+        destination = 0;
+        for (int i=0;i<164;i++) begin
+            if (original[i] == 24'h010001) continue;
+            expected[destination] = original[i];
+            case (original[i][23:8])
+                16'h3e00: expected[destination][7:0] = 0;
+                16'h3e01: expected[destination][7:0] = 8'hba;
+                16'h3e02: expected[destination][7:0] = 8'hd0;
+            endcase
+            destination++;
+        end
+        if(destination != 163) $fatal(1,"unexpected baseline stream-on count");
+        expected[163] = 24'h320e05;
+        expected[164] = 24'h320fdc;
+        expected[165] = 24'h010001;
     end
 
     always @(posedge reset) begin
@@ -199,6 +238,9 @@ module artflow_sensor_model (
         sda_low = 0;
         write_count = 0;
         read_count = 0;
+        for (int i=0;i<65536;i++) memory[i] = 0;
+        memory[16'h320c] = 8'h0b; memory[16'h320d] = 8'hb8;
+        memory[16'h320e] = 5; memory[16'h320f] = 220;
     end
     always @(negedge sda) begin
         if (scl === 1'b1 && !reset) begin
@@ -228,10 +270,12 @@ module artflow_sensor_model (
                     end else if (byte_phase == 1) address[15:8] = shift;
                     else if (byte_phase == 2) address[7:0] = shift;
                     else begin
-                        if (write_count >= 164) $fatal(1, "unexpected extra camera I2C write");
-                        if ({address, shift} !== expected[write_count])
-                            $fatal(1, "camera write %0d address/value/order mismatch: actual=%h expected=%h",
-                                   write_count, {address, shift}, expected[write_count]);
+                        if (write_count >= (p1_profile ? 166 : 164)) $fatal(1, "unexpected extra camera I2C write");
+                        if ({address, shift} !== (p1_profile ? expected[write_count] : original[write_count]))
+                            $fatal(1, "camera write %0d address/value/order mismatch: actual=%h",
+                                   write_count, {address, shift});
+                        if (p1_profile && address == 16'h0100 && shift == 1 && read_count != 5)
+                            $fatal(1,"P1 stream-on preceded timing readback verification");
                         memory[address] = shift;
                         address = address + 1'b1;
                         write_count++;

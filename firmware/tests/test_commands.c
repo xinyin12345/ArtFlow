@@ -8,6 +8,8 @@
 static uint32_t timer, control[32], write_offsets[16], write_values[16];
 static unsigned write_count, text_used, polls;
 static int complete_commit;
+static unsigned init_calls, init_profile, timing_calls;
+static enum i2c_result timing_error;
 static char text[2048];
 static uint32_t rx_error;
 static const char *rx_input;
@@ -16,6 +18,7 @@ static void reset_model(void) {
     memset(control, 0, sizeof control);
     timer = 0xffff0000u;
     write_count = text_used = polls = 0;
+    init_calls = timing_calls = 0; timing_error = I2C_OK;
     complete_commit = 1; text[0] = 0; control_valid = 1;
     rx_error = 0; rx_input = ""; error_on_last_char = 0;
 }
@@ -49,8 +52,14 @@ void mmio_write(uint32_t address, uint32_t value) {
     control[(offset / 4) & 15u] = value;
     if (offset == REG_COMMIT) control[REG_STATUS / 4] = STATUS_BUSY;
 }
-struct camera_result camera_configure(void) {
+struct camera_result camera_configure(unsigned baseline) {
+    ++init_calls; init_profile = baseline; control[REG_CAMERA / 4] = CAMERA_READY;
     struct camera_result result = {I2C_OK, 0, 0}; return result;
+}
+struct camera_result camera_get_timing(struct camera_timing *timing) {
+    ++timing_calls;
+    *timing = (struct camera_timing){3000,1500,2989};
+    return (struct camera_result){timing_error,0x320e,2};
 }
 static void command(const char *line) {
     struct command parsed = parse_command(line); execute(&parsed);
@@ -89,6 +98,22 @@ int main(void) {
     assert(write_count == 0 && strstr(text, "ID mismatch") != NULL);
     reset_model(); command("cam off");
     assert(write_count == 1 && write_offsets[0] == REG_CAMERA && write_values[0] == CAMERA_RESET);
+    reset_model(); command("cam init");
+    assert(init_calls == 1 && init_profile == 0 && timing_calls == 1);
+    assert(strstr(text,"P1 VTS1500 EXP2989") != NULL);
+    assert(strstr(text,"cam_timing hts=3000 vts=1500 exposure_half_lines=2989") != NULL);
+    reset_model(); command("cam baseline");
+    assert(init_calls == 1 && init_profile == 1 && strstr(text,"BASELINE") != NULL);
+    reset_model(); control[REG_CAMERA / 4] = CAMERA_READY; command("cam timing");
+    assert(init_calls == 0 && timing_calls == 1 && write_count == 0);
+    reset_model(); command("cam timing");
+    assert(timing_calls == 0 && write_count == 0 && strstr(text,"ERR camera off") != NULL);
+    reset_model(); control[REG_CAMERA / 4] = CAMERA_READY; timing_error = I2C_TIMEOUT_ERROR;
+    command("cam timing");
+    assert(strstr(text,"ERR timing TIMEOUT reg=0x0000320e") != NULL);
+    assert(strstr(text,"cam_timing") == NULL && write_count == 0);
+    reset_model(); control_valid = 0; command("cam baseline"); command("cam timing");
+    assert(init_calls == 0 && timing_calls == 0 && write_count == 0);
     for (unsigned error = 1; error <= 0x200u; error <<= 1) {
         if (!(error & 0x203u)) continue;
         reset_model();

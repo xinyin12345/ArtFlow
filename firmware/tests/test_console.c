@@ -9,7 +9,7 @@ int main(void) {
         "wb 1025 2 3", "wb 4294967296 2 3", "wb 00000 2 3",
         "wb 1.2 2 3", "wb 0x100 2 3", "wb 1 2 3junk", "wb1 2 3",
         "status 1", "defaults now", "cam", "cam init extra", "cam on",
-        "cam off extra", "help; cam init", "WB 1 2 3", "unknown"
+        "cam baseline extra", "cam timing 1", "cam baselineX", "cam timingX", "cam off extra", "help; cam init", "WB 1 2 3", "unknown"
     };
     struct command c = parse_command(" \twb 0 1024 255\t ");
     assert(c.kind == CMD_WB && c.rgb[0] == 0 && c.rgb[1] == 1024 && c.rgb[2] == 255);
@@ -18,6 +18,8 @@ int main(void) {
     assert(parse_command("defaults").kind == CMD_DEFAULTS);
     assert(parse_command("cam init").kind == CMD_CAM_INIT);
     assert(parse_command("cam off").kind == CMD_CAM_OFF);
+    assert(parse_command("cam baseline").kind == CMD_CAM_BASELINE);
+    assert(parse_command("cam timing").kind == CMD_CAM_TIMING);
     assert(parse_command(" \t").kind == CMD_EMPTY);
     for (unsigned i = 0; i < sizeof invalid / sizeof invalid[0]; ++i)
         assert(parse_command(invalid[i]).kind == CMD_INVALID);
@@ -40,5 +42,5 @@ int main(void) {
         line_feed(&reader, (unsigned char)ch);
         assert(line_feed(&reader, '\n') == -1);
     }
-    puts("PASS console: valid commands, 21 malformed commands, bounds, CRLF, editing, all non-ASCII bytes");
+    puts("PASS console: valid commands, 25 malformed commands, bounds, CRLF, editing, all non-ASCII bytes");
 }

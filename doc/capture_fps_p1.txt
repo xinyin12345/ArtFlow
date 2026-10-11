@@ -1,0 +1,118 @@
+ArtFlow CAP-P1 相机曝光/帧长改进（实板 CAP 稳定 30 fps）
+日期：2026-10-11，Asia/Singapore
+工程：D:\work\FPGA\ArtFlow\ArtFlow
+
+1. 优先级与已有证据
+P1：修正 SC431HAI 曝光/帧长配对，读回关键寄存器，提供原配置对照。
+P2：若 P1 仍低于 15 fps，依据读回 HTS/VTS 和实测行时间核对 EXTCLK、PLL，以及厂家的 1080p 20/25/30 fps 完整模式配置。
+P3：只有 CSI 输入帧率显著高于发布帧率，或新增拒帧/溢出时，再优化 FIFO 和 DDR/AXI 调度。
+P4：必要时采用较低的传感器输出分辨率；仅在 FPGA 内缩小图像不能提高传感器送帧速度。
+
+用户本次两次 status 间隔 60 秒：
+published 51522 -> 52280，新增 758 帧，平均 12.6333 fps。
+vs_edges 103062 -> 104578，新增 1516 边沿，折合 758 帧。
+RAW、BIN、DDR 写拍数也各折合 758 帧；rejected 始终为 0。
+这是旧镜像的基准证据；P1 改进后的实板结果与原始计数见第 7 节。
+
+2. 本次 P1 改动
+原表曝光 0x3E00/01/02 = 01/BB/F0，即 7103 个半行（3551.5 行）。
+新默认曝光 = 00/BA/D0，即 2989 个半行（1494.5 行）。
+显式帧长 0x320E/0F = 05/DC，即 VTS=1500。
+依据本机 SC431HAI 数据手册 V1.1 第 23 页，线性曝光上限为 2*VTS-11；2989 恰好满足 VTS=1500 的上限。第 32 页给出 VTS 寄存器及默认值 1500。
+参考手册：E:\Work\FPGA\Efinity\摄像头SC431HAI_数据手册_V1.1.pdf。
+00/BA/D0 也与原 ROM 注释保留的旧曝光值一致。
+
+新配置在 standby 下完成裁剪、曝光和帧长设置，读回曝光/VTS 后才 stream-on；随后读回分辨率/stream 状态，全部成功才开放 FPGA 采集。
+P1 共执行 166 次写寄存器、10 次验证读回；成功后额外读 7 字节输出实际 HTS/VTS/曝光。
+原 164 条初始化表保持不变，cam baseline 逐项重放原表用于 A/B 对照。
+I2C 出错或关键读回不一致时继续保持 sensor reset，避免发布错误配置画面。
+
+RTL、DDR/FIFO、CSI/HDMI 时钟、白平衡默认值 102/102/102 和 Gamma 不作功能修改。OSD 仍显示 V06；以串口 CAP-P1 标识确认试验版。
+固件使用 -Os -flto；保留 freestanding memcpy，防止 LTO 删除编译器后期需要的符号。
+固件 7072 字节，BSS 32 字节，保持 8 KiB OCRAM 和 1 KiB 栈预留；全部静态函数栈帧合计 512 字节（无递归、关闭中断）。
+
+3. 上板操作
+下载本交付包的 ArtFlow_capture_fps_p1.bit。
+串口：115200 8N1。复位/启动后自动使用 P1。正常应看到：
+ArtFlow v06 CAP-P1; UART 115200 8N1
+OK camera P1 VTS1500 EXP2989
+cam_timing hts=<实际读数> vts=1500 exposure_half_lines=2989
+READY; type help
+
+先等待画面和 FPS 稳定至少 5 秒。保持同样光照，观察 CAP、OUT、亮度、运动拖影和是否有异常图像。
+发送 cam timing 保存实际参数，再发送两次 status，间隔准确计时 60 秒。
+成功发布帧率 = (第二次 published - 第一次 published)/60。
+CSI 帧率 = (第二次 vs_edges - 第一次 vs_edges)/120（当前每帧两个 VS 边沿）。
+目标：CAP 持续超过 15 fps，OUT 约 60，rejected 不增加；观察至少数分钟的逐秒 CAP，避免只用 60 秒均值判断稳定性。
+缩短曝光可能令画面变暗，这是需要一起观察的权衡。先记录未经再次调增益的画面。
+
+4. 串口命令
+cam timing   只读实际 HTS、VTS 和曝光（单位：半行）；摄像头关闭时返回错误。
+cam baseline 重新初始化传感器，恢复原来的 164 条配置。用于比较旧帧率和画面亮度。
+cam init     重新初始化并恢复 P1 配置。
+status       原有视频计数与错误诊断。
+cam off      保持摄像头复位。
+原有 wb R G B / defaults / help 继续可用。
+
+每条命令等待完整回复后再发送下一条。切换配置会短暂停流；等 5 秒稳定后，重新选取两次 status 作为计时起终点，不跨越配置切换计算帧率。
+cam baseline 是同一新固件下的相机参数回退，并不回退固件编译方式。
+若需恢复整机旧版本，下载 ArtFlow_before_capture_fps_p1.bit。其 SHA256 为：
+9e962696cb479fc9d9dae560be25e2fb5625b5b69c59a6d6f4ba97dcf2d535d0
+
+5. 验证范围
+普通主机编译和 -flto 编译均通过 4 组测试：console、I2C、camera、commands。
+覆盖 P1 standby/stream 顺序、全部 345 个初始化 I2C 故障位置、15 个读回不匹配、7 个诊断读失败、位域解码、原配置重放、命令无效输入/关机/错误状态，以及原白平衡和串口错误处理。
+实际 RISC-V 固件构建、4 路 BRAM 重构和工程输入检查通过。
+Questa 的 vlib/vsim 在本次环境无法启动，Windows 报 WinError 623（无效系统 DLL 重定位）。SoC 启动/NACK/命令往返测试已适配新配置，但本次未完成执行；不能将旧仿真结果作为新固件已通过的证据。
+FPGA 最终实现通过，最小 setup slack 为 0.369 ns，hold slack 为 0.026 ns，视频和 UI CDC 检查均通过；细节见交付包 verification.json。
+用户已完成上板并确认屏幕 CAP 稳定显示 30 fps；提供的 60 秒串口计数对应 30.0667 fps，见第 7 节。该结果支持本配置下约 30 fps 的处理能力，不代表已完成长时间老化测试或已测得链路性能上限。SoC 仿真未执行的限制仍然保留。
+
+6. 文件与回退
+改动直接保留在原主工程，源码、测试、4 路 BRAM 初始化文件及本说明一并纳入 Git；work/、outputs/ 和 outflow/ 中的生成物按现有 .gitignore 保留在本机。
+修改前文件及旧 bit 在 work/capture_fps_p1/baseline/。
+试验交付在 outputs/capture_fps_p1/，平台 outputs 目录只保留交付副本。
+同一试验 bit 同步为原工程 outflow/ArtFlow.bit，原正式白平衡交付包保留。
+完整 60 秒基准数据、固件测试结果、实现结果与源码哈希见 verification.json 和 evidence/。
+
+7. P1 实板验证结果（2026-10-11）
+来源：用户确认显示屏 CAP FPS 已稳定 30，并提供按约定间隔 60 秒取得的两次 status 截图。以下为截图转录；硬件由用户操作，本记录不代表自动化采集或长时测试。
+启动与参数读回：
+ArtFlow v06 CAP-P1; UART 115200 8N1
+BUSY camera init
+OK camera P1 VTS1500 EXP2989
+cam_timing hts=1400 vts=1500 exposure_half_lines=2989
+READY; type help
+cam_timing hts=1400 vts=1500 exposure_half_lines=2989
+
+第一次 status：
+status=0x00000006 camera=0x00000002
+active=102 102 102 shadow=102 102 102
+last_camera=OK uart_tx_dropped=0 uart_rx_errors=0
+diag_v1 vs_edges=1695 raw256=1716612 bin256=858360
+axi_aw=836690 w=107047728 b=836766
+video_state=0x0048a069 fifo_beats=0x00000040
+written=129600 completed=129600 published=826 rejected=1
+
+第二次 status：
+status=0x00000006 camera=0x00000002
+active=102 102 102 shadow=102 102 102
+last_camera=OK uart_tx_dropped=0 uart_rx_errors=0
+diag_v1 vs_edges=5304 raw256=5370300 bin256=2685151
+axi_aw=2664388 w=340878064 b=2664468
+video_state=0x0048a069 fifo_beats=0x005f0080
+written=47360 completed=54898 published=2630 rejected=1
+
+每帧换算：VS 为 2 个边沿；RAW 为 1920*1080/4/256=2025 个块；BIN 为 960*540/2/256=1012.5 个块；DDR 为 960*540*4/16=129600 个写拍。
+60 秒增量与帧率：
+vs_edges  +3609      /2/60        = 30.0750 fps
+raw256    +3653688   /2025/60     = 30.0715 fps
+bin256    +1826791   /1012.5/60   = 30.0706 fps
+w         +233830336 /129600/60   = 30.0708 fps
+published +1804      /60         = 30.0667 fps
+rejected  +0；计数已有 1 次拒帧，截图不能确定其发生时刻。
+旧 published 帧率为 758/60=12.6333 fps，新旧比为 1804/758=2.37995。
+各级计数相符；寄存器逐项实时读取、帧内采样位置及流水延迟会造成小幅换算差异。written/completed 是当前帧进度，不是累计完整帧数。
+结果表明相机配置是此前主要帧率限制，当前视频链路能跟上约 30 fps。旧 VTS 缺少实测，曝光/VTS/开流顺序同时调整，不能据此断言传感器内部自动延长帧长的具体机制。
+后续验收重点为更长时间运行及暗处亮度、噪声和运动拖影；现有数据不要求继续修改 FIFO/AXI 或 PLL。
+交付 P1 bit SHA256：
+ad683ec403e68cdd6e5ba433c18f8eb298437fda8ca470f10e89962e3189f7e0
