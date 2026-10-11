@@ -578,7 +578,7 @@ wire [7:0] hdmi_tx_rdata;
 wire [7:0] hdmi_tx_gdata;
 wire [7:0] hdmi_tx_bdata;
 
-cam_fb_pipe_v07 #(
+cam_fb_pipe_v09 #(
   .DUAL_WINDOW    (CFG_DUAL_WINDOW),
   .BLACK_LEVEL    (CFG_BLACK_LEVEL),
   .AXI_DATA_WIDTH (AXI_DATA_WIDTH ),
@@ -592,7 +592,7 @@ cam_fb_pipe_v07 #(
   .accel_paddr(control_paddr),.accel_psel(control_psel && control_paddr[7]),
   .accel_penable(control_penable),.accel_pwrite(control_pwrite),.accel_pwdata(control_pwdata),
   .accel_prdata(accel_prdata),.accel_pready(accel_pready),.accel_pslverror(accel_pslverror),
-  .accel_irq(accel_irq),.process_toggle(process_toggle),
+  .accel_irq(accel_irq),.process_toggle(process_toggle),.o_display_rgb(hdmi_display_rgb),
   .diag_bin_toggle(diag_bin_toggle),
   .diag_state(diag_state), .diag_fifo(diag_fifo),
   .diag_written(diag_written), .diag_completed(diag_completed),
@@ -785,6 +785,12 @@ wire [9:0] tmds_data0;
 wire [9:0] tmds_data1;
 wire [9:0] tmds_data2;
 wire [9:0] tmds_clk ;
+wire hdmi_display_rgb;
+reg pat_display_rgb=0, gamma_display_rgb=0;
+always @(posedge hdmi_tx_slow_clk) begin
+ if(!vid_rst_n) begin pat_display_rgb<=0;gamma_display_rgb<=0;end
+ else begin pat_display_rgb<=hdmi_display_rgb && !pat_active;gamma_display_rgb<=pat_display_rgb;end
+end
 wire [7:0] gamma_rdata ;
 wire [7:0] gamma_gdata ;
 wire [7:0] gamma_bdata ;
@@ -840,7 +846,7 @@ inst_gamma_lut
 (
 	.i_pclk		(hdmi_tx_slow_clk),
 	.i_rstn		(vid_rst_n),
-	.i_bypass	(~CFG_GAMMA_EN),
+	.i_bypass	(~CFG_GAMMA_EN || gamma_display_rgb),
 
 	.i_red		(pat_rdata    ),
 	.i_green	(pat_gdata    ),
@@ -879,7 +885,7 @@ always @(posedge hdmi_tx_slow_clk or negedge ui_rst_n)
  else if(hdmi_tx_vs) process_fps_bcd<=process_sample;
 wire osd_de,osd_hs,osd_vs;
 wire [23:0] osd_rgb;
-artflow_osd #(.H_ACTIVE(MAX_HRES),.VERSION_DIGIT("7"),.PROCESS_FPS(1)) u_osd(
+artflow_osd #(.H_ACTIVE(MAX_HRES),.VERSION_DIGIT("9"),.PROCESS_FPS(1)) u_osd(
     .clk(hdmi_tx_slow_clk),.rst_n(ui_rst_n),
     .mode(display_mode),.osd_enable(osd_enable),
     .capture_bcd(capture_fps_bcd),.display_bcd(process_fps_bcd),.fps_valid(fps_valid),

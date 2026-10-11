@@ -187,11 +187,11 @@ int main(void) {
     mmio_write(UART_BASE + 8u, CORE_HZ / (115200u * 8u) - 1u);
     mmio_write(UART_BASE + 12u, 7u); /* 8 data bits, no parity, one stop. */
     mmio_write(UART_BASE + 4u, 0u); /* Polling; disable TX/RX interrupts. */
-    print("\r\nArtFlow v07 ACCEL-SHELL CAP-P1; UART 115200 8N1\r\n");
+    print("\r\nArtFlow v09 S8-CNN CAP-P1; UART 115200 8N1\r\n");
     control_valid = control_read(REG_ID) == CONTROL_ID;
     if (control_valid) init_camera(0);
     else print("ERR control ID mismatch\r\n");
-    if (control_valid && control_read(REG_ACCEL_ID) == 0x41524607u) {
+    if (control_valid && control_read(REG_ACCEL_ID) == 0x41524609u) {
         mmio_write(PLIC_BASE + ACCEL_IRQ_ID * 4u, 1u);
         mmio_write(PLIC_BASE + 0x2000u, 1u << ACCEL_IRQ_ID);
         mmio_write(PLIC_BASE + 0x200000u, 0u);

@@ -12,7 +12,7 @@ if ($Flow -ne 'sta_tclsh') {
     Copy-Item -LiteralPath (Join-Path $projectDir 'ArtFlow.xml') -Destination (Join-Path $scratchDir 'ArtFlow.before_compile.xml') -Force
     & python -B (Join-Path $PSScriptRoot 'build_firmware.py')
     if ($LASTEXITCODE -ne 0) { throw 'Firmware build failed' }
-    & python -B (Join-Path $PSScriptRoot 'check_project_v07.py') --snapshot
+    & python -B (Join-Path $PSScriptRoot 'check_project_v09.py') --snapshot
     if ($LASTEXITCODE -ne 0) { throw 'Project input gate failed' }
 }
 New-Item -ItemType Directory -Path (Join-Path $scratchDir 'efinity_user') -Force | Out-Null
@@ -61,7 +61,7 @@ try {
           & $efinityPython -B tools/check_implementation.py
           $resultCode = $LASTEXITCODE
           if ($resultCode -eq 0) {
-            & $efinityPython -B tools/check_project_v07.py --check-snapshot
+            & $efinityPython -B tools/check_project_v09.py --check-snapshot
             $resultCode = $LASTEXITCODE
           }
         }

@@ -7,7 +7,7 @@ reg original_valid=1;reg [1:0] original_bank=0;reg [31:0] original_seq=1;
 wire source_locked;wire [1:0] source_bank;reg display_active=0;reg [1:0] display_bank=0;
 wire styled_valid;wire [1:0] styled_bank;wire start;wire [31:0] src_addr,dst_addr;
 reg busy=0,done=0,failed=0;wire irq,process_toggle;wire [31:0] completed,skipped,errors;
-artflow_accel_ctrl dut(.*,.cycles(32'd123));
+artflow_accel_ctrl dut(.*,.cycles(32'd123),.source_consumed(1'b0));
 task write_reg(input [15:0] a,input [31:0] d,input bit error_expected);
  @(negedge clk);paddr=a;pwdata=d;psel=1;pwrite=1;
  @(negedge clk);penable=1;

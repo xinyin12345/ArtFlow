@@ -210,7 +210,7 @@ artflow_accel_ctrl #(.ORIGINAL_BASE(START_ADDR),.BANK_BYTES(BANK_BYTES),.STYLED_
  .display_active(display_active),.display_bank(display_bank),
  .styled_valid(styled_valid),.styled_bank(styled_bank),
  .start(start),.src_addr(src_addr),.dst_addr(dst_addr),
- .busy(busy),.done(done),.failed(failed),.cycles(cycles),
+ .busy(busy),.done(done),.failed(failed),.cycles(cycles),.source_consumed(1'b0),
  .irq(accel_irq),.process_toggle(process_toggle),.completed(),.skipped(),.errors());
 artflow_accel_dma #(.WIDTH(MAX_OUT_WIDTH),.HEIGHT(MAX_IN_HEIGHT/2)) u_accel_dma(
  .clk(axi_clk),.rst_n(accel_clk_ready),.start(start),.src_addr(src_addr),.dst_addr(dst_addr),

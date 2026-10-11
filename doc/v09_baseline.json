@@ -1,0 +1,20 @@
+{
+  "base_commit": "6edf0f06c7cecd4536afe525c6ed92a6e7f5e907",
+  "board_inputs": {
+    "ArtFlow.peri.xml": "3cd280079d776f9b534fdaa499af0c90e1b161b43fa3b7045098347c3d8d3521",
+    "ArtFlow.sdc": "83a95b2aac41c1adfe6d52510e24676d07e8f3b191df6aea11ed8b9fc3b64bd9"
+  },
+  "network_root": "network/S8_480x270_Pipeline_v2_20261010/S8_480x270_Pipeline_v2",
+  "model_sha256": "6414b936b8bbebf87a9177c05e014f46ead215493e8b3fd86d391ab6cf515c02",
+  "network_inputs": {
+    "network/S8_480x270_Pipeline_v2_20261010/S8_480x270_Pipeline_v2/s8_shared_flat.v": "9c0c485945cc9e1d35d4cf5668523d3210022f8328684089adf487a73d4718d3",
+    "network/S8_480x270_Pipeline_v2_20261010/S8_480x270_Pipeline_v2/architecture.json": "0ca5fcdb8504e99b5c7f0ddaac54989ce99effe51d318fbd70275a4b2f4d2ce2",
+    "network/S8_480x270_Pipeline_v2_20261010/S8_480x270_Pipeline_v2/reference/exports/model_int.npz": "6414b936b8bbebf87a9177c05e014f46ead215493e8b3fd86d391ab6cf515c02",
+    "network/S8_480x270_Pipeline_v2_20261010/S8_480x270_Pipeline_v2/mem/shared_bias.mem": "e27b1f82a8731061c09069ba13d1c643c4e9a90e33c44c9d46f8bd32c6cc4bfb",
+    "network/S8_480x270_Pipeline_v2_20261010/S8_480x270_Pipeline_v2/mem/shared_main.mem": "2bb993896d6bb7117887e1b324cf5b35b4b5c225984ac58cc586929687d0f8fd",
+    "network/S8_480x270_Pipeline_v2_20261010/S8_480x270_Pipeline_v2/mem/shared_weights.mem": "3c76a6ee7601bf8911903379d8bf60464799e02c71df3e75cf360f6b0144d3c6",
+    "network/S8_480x270_Pipeline_v2_20261010/S8_480x270_Pipeline_v2/reference/integer_model.py": "88237c11ea7c60e25228bf98172cc635397c4ace7f6216a2e079101b76b108ad",
+    "network/S8_480x270_Pipeline_v2_20261010/S8_480x270_Pipeline_v2/reference/integer_ops.py": "b2519382c9e3c24a60c1d6cc363516b90fab0f515e6dac32735ca5b726068383",
+    "network/S8_480x270_Pipeline_v2_20261010/S8_480x270_Pipeline_v2/reference/exports/graph.json": "608efe3127f8bbd79e5f9161d2e6536e543e4c5fc789e12c2355c8c726b3fe5d"
+  }
+}

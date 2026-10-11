@@ -55,6 +55,11 @@
         <efx:design_file name="rtl/control/artflow_soc.v" version="default" library="default"/>
         <efx:design_file name="rtl/control/artflow_control.v" version="default" library="default"/>
         <efx:design_file name="rtl/control/artflow_camera_gate.v" version="default" library="default"/>
+        <efx:design_file name="rtl/accel/artflow_cnn_resize.v" version="default" library="default"/>
+        <efx:design_file name="rtl/accel/artflow_cnn_bridge.v" version="default" library="default"/>
+        <efx:design_file name="rtl/accel/artflow_cnn_dma.v" version="default" library="default"/>
+        <efx:design_file name="rtl/cnn/s8_shared_flat.v" version="default" library="default"/>
+        <efx:design_file name="rtl/video/cam_fb_pipe_v09.v" version="default" library="default"/>
         <efx:design_file name="rtl/accel/artflow_accel_dma.v" version="default" library="default"/>
         <efx:design_file name="rtl/accel/artflow_accel_ctrl.v" version="default" library="default"/>
         <efx:design_file name="rtl/accel/artflow_axi_mux.v" version="default" library="default"/>

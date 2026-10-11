@@ -2,7 +2,7 @@
 // Software arms once; hardware waits for a new completed original. Completion
 // holds a level interrupt until W1C; firmware acknowledges and arms the next job.
 module artflow_accel_ctrl #(
-    parameter ORIGINAL_BASE=0, BANK_BYTES=32'h00400000, STYLED_BASE=32'h00c00000
+    parameter VERSION_ID=32'h41524607, EARLY_RELEASE=0, ORIGINAL_BASE=0, BANK_BYTES=32'h00400000, STYLED_BASE=32'h00c00000
 )(
     input clk,rst_n, input [15:0] paddr, input psel,penable,pwrite,
     input [31:0] pwdata, output reg [31:0] prdata, output pready,pslverror,
@@ -12,10 +12,12 @@ module artflow_accel_ctrl #(
     output reg styled_valid, output reg [1:0] styled_bank,
     output reg start, output reg [31:0] src_addr,dst_addr,
     input busy,done,failed, input [31:0] cycles,
+    input source_consumed,
     output irq, output process_toggle,
     output reg [31:0] completed,skipped,errors
 );
 reg armed,irq_enable,pending;
+reg job_active;
 reg [1:0] job_bank;
 reg [31:0] last_seq,styled_seq,launched;
 reg [1:0] free_bank;
@@ -37,7 +39,7 @@ assign pslverror=psel && penable && (!valid_addr || (pwrite && !valid_write));
 always @* begin
     prdata=0;valid_addr=1;valid_write=0;
     case(paddr)
-        16'h0080: prdata=32'h41524607;
+        16'h0080: prdata=VERSION_ID;
         16'h0084: begin prdata={30'd0,irq_enable,armed};valid_write=pwdata<=3;end
         16'h0088: prdata={27'd0,styled_valid,source_locked,pending,armed,busy};
         16'h008c: begin prdata={31'd0,pending};valid_write=pwdata==1;end
@@ -53,7 +55,7 @@ always @* begin
 end
 always @(posedge clk or negedge rst_n) begin
     if(!rst_n) begin
-        armed<=0;irq_enable<=0;pending<=0;source_locked<=0;source_bank<=0;
+        armed<=0;irq_enable<=0;pending<=0;source_locked<=0;source_bank<=0;job_active<=0;
         styled_valid<=0;styled_bank<=0;start<=0;src_addr<=0;dst_addr<=0;
         job_bank<=0;last_seq<=0;styled_seq<=0;launched<=0;
         completed<=0;skipped<=0;errors<=0;
@@ -63,17 +65,18 @@ always @(posedge clk or negedge rst_n) begin
             if(paddr==16'h0084) begin armed<=pwdata[0];irq_enable<=pwdata[1];end
             if(paddr==16'h008c) pending<=0;
         end
-        if(armed && !pending && !source_locked && !busy && original_valid &&
+        if(armed && !pending && !job_active && !source_locked && !busy && original_valid &&
            original_seq!=last_seq && free_valid) begin
-            armed<=0;source_locked<=1;source_bank<=original_bank;
+            armed<=0;source_locked<=1;source_bank<=original_bank;job_active<=1;
             job_bank<=free_bank;last_seq<=original_seq;launched<=launched+1'b1;
             skipped<=skipped+(original_seq-last_seq-1'b1);
             src_addr<=ORIGINAL_BASE+original_bank*BANK_BYTES;
             dst_addr<=STYLED_BASE+free_bank*BANK_BYTES;
             start<=1;
         end
-        if(done && source_locked) begin
-            source_locked<=0;pending<=1;
+        if(EARLY_RELEASE && source_consumed && job_active) source_locked<=0;
+        if(done && job_active) begin
+            source_locked<=0;pending<=1;job_active<=0;
             if(failed) errors<=errors+1'b1;
             else begin
                 styled_bank<=job_bank;styled_valid<=1;styled_seq<=last_seq;

@@ -1,3 +1,15 @@
+# ArtFlow v09 S8 CNN 风格效果候选版
+
+当前原工程已接入 network 中的完整 22 层 W8/A4/S8 网络，2026-10-12 按用户要求纳入 v09 候选版本提交，板级验收仍待确认。右窗口执行实际训练模型；保持原板级时钟、相机 CAP-P1、白平衡、按键及中断调度。
+
+候选镜像由 tools/package_v09.py 在逐比特仿真、综合、布局布线、正常时序和 CDC 门禁通过后发布至 outputs/v09/ArtFlow_v09.bit，并同步 outflow/ArtFlow.bit。是否已生成以 outputs/v09/manifest.json 为准。详见 [v09 说明](doc/v09_notes.md) 和 [验证计划](doc/v09_verification_plan.md)。
+
+这是风格效果预览候选，不代表原计划 v08/v09 的全部验收完成：当前使用固定 ROM 权重、100 MHz 核心，≥15 fps、动态 APB 权重加载和板级测试仍待完成。原 v07 镜像保留在 outputs/v07/。
+
+---
+
+以下为历史版本说明，不代表当前候选验收。
+
 # ArtFlow v07 加速器外壳（待上板验收）
 
 当前主工程在原目录推进至 v07，保留白平衡改善及 CAP-P1 相机配置。右窗口改为 DDR 降采样/双线性放大后的结果；OSD 为 V07、CAP FPS / PRC FPS。新增网络资料保留，当前不执行 CNN。
