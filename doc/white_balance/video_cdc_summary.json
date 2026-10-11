@@ -1,0 +1,65 @@
+{
+  "status": "PASS",
+  "buses": [
+    {
+      "name": "count_meta",
+      "endpoints": 32,
+      "budget_ns": 2.5,
+      "slow_comparisons": 31,
+      "skew_ns": 0.497,
+      "slack_ns": 2.003,
+      "max_relative_delay_ns": 0.801,
+      "max_data_delay_ns": 0.79
+    },
+    {
+      "name": "epoch_meta",
+      "endpoints": 32,
+      "budget_ns": 2.5,
+      "slow_comparisons": 32,
+      "skew_ns": 0.449,
+      "slack_ns": 2.051,
+      "max_relative_delay_ns": 0.745,
+      "max_data_delay_ns": 0.735
+    },
+    {
+      "name": "gain_mailbox",
+      "endpoints": 48,
+      "budget_ns": 20.0,
+      "slow_comparisons": 48,
+      "skew_ns": 0.752,
+      "slack_ns": 19.248,
+      "max_relative_delay_ns": 1.033,
+      "max_data_delay_ns": 1.038
+    }
+  ],
+  "endpoints": [
+    32,
+    32,
+    48
+  ],
+  "skew_ns": [
+    0.497,
+    0.449,
+    0.752
+  ],
+  "slack_ns": [
+    2.003,
+    2.051,
+    19.248
+  ],
+  "kind": "post-route audit with clock groups omitted",
+  "sha256": {
+    "ArtFlow.sdc": "83a95b2aac41c1adfe6d52510e24676d07e8f3b191df6aea11ed8b9fc3b64bd9",
+    "rtl/video/rgb_frame_store.v": "ba6ed4499611c8a8271b63e2a91bb3a960c51c7477ba894f619870d815e3ac57",
+    "rtl/control/artflow_control.v": "87650e9d2d16df63b892ba8a3629720fbd6b9620e5fc7b2092c6cddb23a547cb",
+    "rtl/ArtFlow_top.v": "4827f7240c09af85edcbff2886ff5cfb70796f66a90bf89f028bed7b5a1b3bfc",
+    "tools/check_video_cdc.py": "27378ba93215c79a56a3eff733993a2c15d24d4ce28a1b94172f827f4da4a2c2",
+    "tools/check_video_cdc.tcl": "48fa89182ab45f49d0777b55ae6ff3e8bd99bb995b5009c9d98d1b3f96e5299f",
+    "work/video_cdc_audit.sdc": "b7fd64a99f21a4ae718a947461f368fc71f989b800d274d7f27637724934f2e4",
+    "work/efinity_out/ArtFlow.vdb": "cb6a606e74c05fb87a2977b76e4292912b016d48a2a7832418a0c7d720d9037c",
+    "work/efinity_out/ArtFlow.place": "fe2135308c4ae1838152e77dbda51830d61d4eaa6e98aaf81914932f005f8cf0",
+    "work/efinity_out/ArtFlow.troutingtraces": "771e907b81fc0ccc8941101da83ca83774c07ff41d1a5c4473a0fbb142a43c3e",
+    "work/efinity_out/ArtFlow.video_bus_skew.rpt": "d7f528329077345d2020101d2366195eb44af43d72960e491255e7021a9d0211",
+    "work/efinity_out/ArtFlow.video_bus_delay.rpt": "8c161dc8bd06b13c0f129a4fae4fcedd8114576e3925384e219a7a2b658adb44"
+  }
+}

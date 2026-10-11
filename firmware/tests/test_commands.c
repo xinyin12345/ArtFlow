@@ -80,7 +80,9 @@ int main(void) {
     command("wb 4 5 6");
     assert(write_count == 4 && strstr(text, "ERR wb busy") != NULL);
     reset_model(); command("defaults");
-    assert(write_values[0] == 280 && write_values[1] == 255 && write_values[2] == 350);
+    assert(write_values[0] == DEFAULT_R && write_values[1] == DEFAULT_G && write_values[2] == DEFAULT_B);
+    reset_model(); command("help");
+    assert(strstr(text, "defaults 102 102 102") != NULL);
     reset_model(); command("wb 1 2 3 extra");
     assert(write_count == 0 && strstr(text, "ERR syntax") != NULL);
     reset_model(); control_valid = 0; command("wb 1 2 3");

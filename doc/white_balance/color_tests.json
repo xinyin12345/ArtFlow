@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "scope": "BLC/WB/gamma and Bayer/APB regressions; not a board test",
+  "source_sha256": {
+    "firmware/include/platform.h": "b729fc4832c9ae53160f1cf068bd081ab659a0f7e54c3b8a1b6a34815dc859ea",
+    "rtl/ArtFlow_top.v": "4827f7240c09af85edcbff2886ff5cfb70796f66a90bf89f028bed7b5a1b3bfc",
+    "rtl/control/artflow_control.v": "87650e9d2d16df63b892ba8a3629720fbd6b9620e5fc7b2092c6cddb23a547cb",
+    "rtl/gamma_conrrection/gamma_inv2p2_8b.mem": "9eeeb04de19b5953bf69f297ae550eb5f8590c8d6bb8161942a481399c895db8",
+    "rtl/gamma_conrrection/gamma_lut.v": "c4c0230931c85992c84f88f604f83d0b289987fa0246648f8f79a6f144794571",
+    "rtl/video/bayer_bin2x2.v": "8c47c5d4c278b072388668f9bd277ca5eedc05652e050ce5b9faa5ab2d8b5cfb",
+    "rtl/video/cam_fb_pipe.v": "0125dc39fc141077ce713150ed75d42ad0af0cec3609e701874cbad3a6ef3952",
+    "sim/tb_artflow_control.sv": "126b54baa318df9fd5f75febed729fc8471d0bd8e2ef0a01688c37bede035786",
+    "sim/tb_bayer_first_pixel.sv": "86d0e894ed4c241a0ba79aadc77e11528a17aea925a4db69c17e3650c807d013",
+    "sim/tb_reference_color.sv": "e482896fa1aeeb13523dc093bbdd13e37deabffc76424597aa5a46fc449c88a1",
+    "tools/test_reference_color.py": "0f88dd25dd75bdb2d5e717bddb203d0caea973b219d8b8fd1bae595961c16260"
+  },
+  "tests": [
+    {
+      "name": "tb_reference_color",
+      "compiler_exit": 3221225477,
+      "compiler_exit_exception": true,
+      "runtime_exit": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "tb_bayer_first_pixel",
+      "compiler_exit": 3221225477,
+      "compiler_exit_exception": true,
+      "runtime_exit": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "tb_artflow_control",
+      "compiler_exit": 3221225477,
+      "compiler_exit_exception": true,
+      "runtime_exit": 0,
+      "status": "PASS"
+    }
+  ],
+  "run_directory": "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\work\\reference_color\\test_20261011_155901_095190"
+}

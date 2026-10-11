@@ -2,6 +2,7 @@
 module cam_fb_pipe
 #(
     parameter DUAL_WINDOW = 1, // 1: centered native-size pair; 0: legacy 2x fullscreen
+    parameter [9:0] BLACK_LEVEL = 10'd0,
     parameter AXI_DATA_WIDTH = 128,
     parameter AXI_ADDR_WIDTH = 32,
     parameter START_ADDR     = 32'h0000_0000,
@@ -116,6 +117,7 @@ always @(posedge i_pclk or negedge i_pclk_rstn)
 assign diag_bin_toggle = diag_bin_count[8];
 
 bayer_bin2x2 #(
+    .BLACK_LEVEL (BLACK_LEVEL),
     .MAX_IN_WIDTH (MAX_IN_WIDTH)
 ) u_bin (
     .clk       (i_pclk      ),

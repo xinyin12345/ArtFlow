@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "checked_at": "2026-10-11T16:15:45.732808+08:00",
+  "implementation_inputs_matched": 71,
+  "firmware_test_inputs_matched": 16,
+  "color_test_inputs_matched": 11,
+  "bit_sha256": "9e962696cb479fc9d9dae560be25e2fb5625b5b69c59a6d6f4ba97dcf2d535d0",
+  "bit_recompiled_during_promotion": false,
+  "tests": "Prior tests retained for byte-identical code; input/timing/CDC consistency checks rerun.",
+  "evidence_sha256": {
+    "board_result.json": "fbbd13b311ba9142ccb44504cd103a1743938e9176c66dc0d389b36b6cae13ff",
+    "color_tests.json": "0eca177468a561d056df7342aab2276c6e2443dc5030b8b4a7c7a2cb9b101281",
+    "firmware_build_manifest.json": "a3e75038b8b967e390e081ed18e085b86a3e50f2771082c59ef05cee23121084",
+    "firmware_host_test_source_sha256.json": "e4354778aa5bf38086150d0e43e46b39fe43769be331052a87c39d5314e18cef",
+    "firmware_host_tests.json": "5e112f44500c6b4b733d508f2f01a9fa5c63680618b2307610183da52ec6660c",
+    "implementation_source_sha256.json": "8f460373ac36a76b867640a5f8f92e61ebea26a994eac586106fee08a024cab7",
+    "implementation_summary.json": "b670014bbc4d053d2e8f1c4c524d729c5354e55c8aca4c845488a68d1b18a4b6",
+    "ui_cdc_summary.json": "cdd15eb93475ff1e7761fcbc5ff0619aed040ecf6a35842492734e7b252c4936",
+    "video_cdc_summary.json": "5e217536872172fe6e26f16ac6141bb8b104479c4718efdb600a19da8a802d40"
+  }
+}

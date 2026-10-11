@@ -1,0 +1,18 @@
+{
+  "firmware/include/camera.h": "dfc945b25236f7d18a1bf98a02fdd658f36fa614dc4e1b849f50c85345d355ac",
+  "firmware/include/camera_table.h": "e50c2d8551b9bc1c4b2b661ba3c85909a2b8ceb8698635faf09bd9fb40314b88",
+  "firmware/include/console.h": "2f9f0f037c277dcc0a6cb560b51f11946e0ee84d327ff497bfe16cf5f52b803e",
+  "firmware/include/platform.h": "b729fc4832c9ae53160f1cf068bd081ab659a0f7e54c3b8a1b6a34815dc859ea",
+  "firmware/linker.ld": "4b0ec4645f3bc1cee844e06bcd7ed1d4083f98efb7f2b4dace7efc1bd199f93b",
+  "firmware/src/camera.c": "1940039b7ce322dcb6fbd0d0adf365244ba0c8dca55fcfc54181eff2263ab66a",
+  "firmware/src/console.c": "da8cfaeb36fec05603b0ad9f14ab08a21444917725dbd192a18891b474fce3a4",
+  "firmware/src/i2c.c": "34a74f2e125bcc18db4fc92421978e7ff055f269d0d73a2753f3a20869cbd187",
+  "firmware/src/main.c": "e2742ded25ca8d7fe3efbf1beb019a164b3c1d79c3fbc833f9f6f445806ed160",
+  "firmware/src/runtime.c": "64c05bd6526f8925f216a0ea83069bec59214444845bd79d2332ed3c05cd7b80",
+  "firmware/start.S": "2200cd80a79e0d5b997ea6e2def4d967073f3510b5c22e7a15c85d1505427a78",
+  "firmware/tests/test_camera.c": "daa36f8c8817ade06b851e425d73c6ce99272a9785a9c1789463f6b3bb03d9c9",
+  "firmware/tests/test_commands.c": "cec9f1779822863e956dfd6183827e03b325a13c0be330a0d1a2cb7b8cef3137",
+  "firmware/tests/test_console.c": "e4eba28ba6e7a6832d0ade4639505e7c4cffa31e455b655a347bdc91ebf4f76c",
+  "firmware/tests/test_i2c.c": "14fdf36e80cfa756abe979ca43911cba885384d5da80f5ccb2669f7bf565039e",
+  "tools/test_firmware.py": "278cf4148f77df70eb9cb94f44941a53fa371740893b76bb4248ecc5aaac46ec"
+}

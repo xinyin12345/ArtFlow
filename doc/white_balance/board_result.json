@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-11",
+  "version": "v06-white-balance",
+  "status": "USER_CONFIRMED",
+  "feature": "改善白平衡",
+  "tested_bit": "ArtFlow_reference_color_trial.bit",
+  "bit_sha256": "9e962696cb479fc9d9dae560be25e2fb5625b5b69c59a6d6f4ba97dcf2d535d0",
+  "observation": "用户确认视频正常输出，视频输出的画质比之前好了很多。",
+  "correction": "用户更正此前无信号反馈：显示器长时间没有信号输入后休眠，并非该 bit 无视频输出。",
+  "scope": "用户目视观察与版本推进确认；没有色卡量化或本轮长期稳定性测量。"
+}

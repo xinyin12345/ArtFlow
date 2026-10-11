@@ -1,5 +1,13 @@
 # ArtFlow v06 验证结果
 
+## 当前版本：2026-10-11 白平衡改善版
+
+`v06-white-balance` 的相同 bit 已由用户上板确认：视频正常，画质比此前明显改善。先前“无信号”反馈已由用户更正为显示器休眠。
+当前镜像 SHA256 为 `9e962696cb479fc9d9dae560be25e2fb5625b5b69c59a6d6f4ba97dcf2d535d0`，setup/hold 最小裕量为 0.369/0.026 ns。
+本版源码、仿真、固件、CDC 和实板范围见[白平衡改善说明](white_balance_improvement.md)及 `white_balance/`；下文是 2026-10-06 的历史验证，不能作为当前镜像清单。
+
+## 2026-10-06 历史版本
+
 日期：2026-10-06。结论：**离线功能、继承回归及 FPGA 全实现 PASS；实板 NOT_RUN**。
 
 主工程 `D:\work\CodexWork\ArtFlow\v06`。原 v05 的190个源/配置/工具基线文件哈希未变。工程保留 v05 的 RISC-V 摄像头初始化和串口白平衡，新增 OSD、CAP/OUT FPS、按键四模式和 OSD 开关。

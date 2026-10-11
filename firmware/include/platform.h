@@ -23,9 +23,10 @@
 #define STATUS_BUSY  1u
 #define CAMERA_RESET 1u
 #define CAMERA_READY 2u
-#define DEFAULT_R    280u
-#define DEFAULT_G    255u
-#define DEFAULT_B    350u
+/* Q8.8 reference-startup profile; must match ArtFlow_top reset gains. */
+#define DEFAULT_R    102u
+#define DEFAULT_G    102u
+#define DEFAULT_B    102u
 
 #ifdef ARTFLOW_HOST_TEST
 uint32_t mmio_read(uint32_t address);

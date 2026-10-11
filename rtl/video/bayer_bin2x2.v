@@ -32,7 +32,8 @@
 // =============================================================================
 module bayer_bin2x2
 #(
-    parameter MAX_IN_WIDTH = 1920            // 每行 RAW 像素数上限（4 的倍数）
+    parameter MAX_IN_WIDTH = 1920,           // 每行 RAW 像素数上限（4 的倍数）
+    parameter [9:0] BLACK_LEVEL = 10'd0      // RAW10 pedestal; 0 preserves legacy behavior
 )
 (
     input               clk,
@@ -61,11 +62,25 @@ localparam AW       = (LB_DEPTH <= 2) ? 1 : $clog2(LB_DEPTH);
 // ---------------------------------------------------------------- stage A：输入寄存 + 像素顺序统一
 reg         a_vs = 1'b0, a_hs = 1'b0, a_valid = 1'b0;
 reg  [39:0] a_data = 40'd0;              // {p3,p2,p1,p0}，p0 最左
+// Subtract each RAW sample before averaging Gr/Gb and before channel gains.
+// Saturating each green separately matters when only one is below black.
+// Reuse stage A so the five-clock data/flag latency remains unchanged.
+function [9:0] remove_black;
+    input [9:0] value;
+    begin
+        remove_black = (value > BLACK_LEVEL) ? value - BLACK_LEVEL : 10'd0;
+    end
+endfunction
+wire [39:0] corrected_raw = {remove_black(i_data[39:30]),
+                            remove_black(i_data[29:20]),
+                            remove_black(i_data[19:10]),
+                            remove_black(i_data[9:0])};
 always @(posedge clk) begin
     a_vs    <= i_vs;
     a_hs    <= i_hs;
     a_valid <= i_valid & i_hs;
-    a_data  <= i_pix_rev ? {i_data[9:0], i_data[19:10], i_data[29:20], i_data[39:30]} : i_data;
+    a_data  <= i_pix_rev ? {corrected_raw[9:0], corrected_raw[19:10],
+                           corrected_raw[29:20], corrected_raw[39:30]} : corrected_raw;
 end
 
 // ---------------------------------------------------------------- 行/列计数

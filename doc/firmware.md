@@ -4,7 +4,7 @@
 
 ## 构建与文件
 
-在 `D:\work\CodexWork\ArtFlow\v05` 运行：
+在正式工程 `D:\work\FPGA\ArtFlow\ArtFlow` 运行：
 
 ```powershell
 python tools\build_firmware.py
@@ -26,7 +26,7 @@ ip/sapphire_soc/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol3.bin
 
 每个文件是 2048 行 8 位二进制文本，供 `$readmemb` 使用；`symbol0` 是一个 32 位小端字的最低字节。脚本会从四个文件重组全部 8192 字节并检查与原始映像一致。**改动固件后，必须重新生成 FPGA 配置文件才能更新上电固件。** 四个 `.bin` 不是四个独立可执行程序，也不能互换顺序。
 
-当前固件为 5824 字节代码/只读数据和 32 字节 BSS；链接器强制额外保留 1024 字节栈，超过 OCRAM 容量直接报错。ISA 为 `rv32im_zicsr_zifencei`、ABI 为 `ilp32`，不生成压缩指令、原子扩展或浮点指令。启动地址、栈和所有软件数据均在 `0xf9000000..0xf9001fff`。
+当前白平衡改善版固件为 6332 字节代码/只读数据和 32 字节 BSS；链接器强制额外保留 1024 字节栈，超过 OCRAM 容量直接报错。ISA 为 `rv32im_zicsr_zifencei`、ABI 为 `ilp32`，不生成压缩指令、原子扩展或浮点指令。启动地址、栈和所有软件数据均在 `0xf9000000..0xf9001fff`。
 
 ## 地址与时钟
 
@@ -88,7 +88,7 @@ READY; type help
 | `help` | 显示语法与范围 |
 | `status` | 读取状态、camera 控制、已生效及 shadow RGB，显示最近摄像头结果、UART 发送丢弃与接收错误计数 |
 | `wb 280 255 350` | 把 R/G/B 三个 ISP 白平衡增益整体提交 |
-| `defaults` | 提交 v04 默认值 R=280、G=255、B=350 |
+| `defaults` | 提交白平衡改善版默认值 R=102、G=102、B=102，与板级复位值一致 |
 | `cam init` | 完整硬复位、164 条 I2C 配置、5 个读回验证 |
 | `cam off` | 拉住摄像头复位并清除 configured |
 

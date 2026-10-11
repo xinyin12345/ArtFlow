@@ -216,12 +216,16 @@ localparam VBP      = 36;
 //===============================================================================
 // v05: white-balance reset defaults; runtime gains are controlled by Sapphire APB.
 //===============================================================================
-// 白平衡增益 Q8.8（256 = 1.0），取 v01 VIO 初值；v03 起在 2x2 合并时以 10bit 精度相乘
-localparam [15:0] CFG_R_GAIN   = 16'h0118;   // 280 ≈ 1.09
-localparam [15:0] CFG_G_GAIN   = 16'h00E6;   // 230 ≈ 0.90
-localparam [15:0] CFG_B_GAIN   = 16'h015E;   // 350 ≈ 1.37
+// Reference VIO boots at 280/255/350, but its Q2.14 WB clamps ALL to 6554
+// (about 0.4x). Reproduce that effective ratio in Q8.8, not the VIO literals.
+// 102/256 = 0.3984375; UART 'wb R G B' still accepts Q8.8 (256 = 1x).
+localparam [15:0] CFG_R_GAIN   = 16'd102;
+localparam [15:0] CFG_G_GAIN   = 16'd102;
+localparam [15:0] CFG_B_GAIN   = 16'd102;
 // Gamma：0 = 直通，1 = 查表
 localparam        CFG_GAMMA_EN = 1'b1;
+// Reference ISP subtracts 17 in RAW8; retain RAW10 precision here (17 * 4).
+localparam [9:0]  CFG_BLACK_LEVEL = 10'd68;
 // v03：传感器 Bayer 排列（帧左上角 2x2）：0 = RGGB，1 = GRBG，2 = GBRG，3 = BGGR
 //   替代 v02 的 CFG_SWAP_RB（RGGB <-> BGGR 就是 R/B 互换）。上板判定方法见 doc/v03_notes.md
 localparam [1:0]  CFG_BAYER    = 2'd3;
@@ -569,6 +573,7 @@ wire [7:0] hdmi_tx_bdata;
 
 cam_fb_pipe #(
   .DUAL_WINDOW    (CFG_DUAL_WINDOW),
+  .BLACK_LEVEL    (CFG_BLACK_LEVEL),
   .AXI_DATA_WIDTH (AXI_DATA_WIDTH ),
   .AXI_ADDR_WIDTH (AXI_ADDR_WIDTH ),
   .START_ADDR     (32'h0000_0000  ),
@@ -818,7 +823,7 @@ assign led[1] = pat_active;     // LED1 亮 = 正在显示色条
 
 gamma_lut
 #(
-	.LUT_FILE	("./rtl/gamma_conrrection/gamma_2p2_8b.mem")
+	.LUT_FILE	("./rtl/gamma_conrrection/gamma_inv2p2_8b.mem")
 )
 inst_gamma_lut
 (

@@ -1,14 +1,16 @@
 # v05 APB3 控制寄存器
 
+接口兼容 v05。当前 v06 白平衡改善版由 `ArtFlow_top` 覆盖控制模块参数，三个通道的板级复位值均为 102（Q8.8），与固件 `defaults` 一致。
+
 `artflow_control` 使用 100 MHz APB 时钟与 50 MHz CSI 像素时钟。下表地址为 SoC 外部 APB 窗口内的字节偏移，所有访问必须为 32 位、4 字节对齐。
 
 | 偏移 | 名称 | 属性 | 内容/复位值 |
 | --- | --- | --- | --- |
 | 0x00 | ID | RO | `0x41524605` |
 | 0x04 | STATUS | RO | bit0 提交忙；bit1 DDR 校准完成（两级同步）；bit2 摄像头已配置；bit3 摄像头复位有效 |
-| 0x10 | SHADOW_R | RW | 红增益，Q8.8，默认 280 |
-| 0x14 | SHADOW_G | RW | 绿增益，Q8.8，默认 255 |
-| 0x18 | SHADOW_B | RW | 蓝增益，Q8.8，默认 350 |
+| 0x10 | SHADOW_R | RW | 红增益，Q8.8，板级默认 102 |
+| 0x14 | SHADOW_G | RW | 绿增益，Q8.8，板级默认 102 |
+| 0x18 | SHADOW_B | RW | 蓝增益，Q8.8，板级默认 102 |
 | 0x1c | COMMIT | RW | 写 1 提交整组影子；读 bit0 返回忙 |
 | 0x20 | ACTIVE_R | RO | 已完成提交的红增益 |
 | 0x24 | ACTIVE_G | RO | 已完成提交的绿增益 |

@@ -1,4 +1,8 @@
-# ArtFlow v06
+# ArtFlow v06 白平衡改善版
+
+当前版本 `v06-white-balance`：黑电平校正、三通道默认增益 102/102/102（Q8.8）、1/2.2 显示 Gamma，功能为**改善白平衡**。
+2026-10-11 用户确认视频正常、画质明显改善；此前“无信号”是显示器休眠。正式镜像为 `outflow/ArtFlow.bit`，与用户验证的 `ArtFlow_reference_color_trial.bit` 完全相同。
+详见[白平衡改善版说明](doc/white_balance_improvement.md)及 `outputs/white_balance_improved/` 的版本清单。OSD 仍显示 V06。
 
 在 Efinity 2026.1 中打开本目录 `ArtFlow.xml`。本版从 `D:\work\CodexWork\ArtFlow\v05` 继续开发，增加 OSD 字符、采集/输出 FPS、按键切换显示模式。v05 原工程保留。
 

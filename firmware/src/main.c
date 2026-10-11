@@ -93,8 +93,9 @@ static void execute(const struct command *command) {
     if (command->kind == CMD_EMPTY) return;
     if (command->kind == CMD_HELP) {
         print("help | status | wb R G B | defaults | cam init | cam off\r\n"
-              "Gains: unsigned decimal 0..1024 Q8.8 (256=1x); defaults 280 255 350\r\n"
-              "CR or LF ends a line; 63 chars max; send next command after response\r\n");
+              "Gains: unsigned decimal 0..1024 Q8.8 (256=1x); defaults ");
+        decimal(DEFAULT_R); print(" "); decimal(DEFAULT_G); print(" "); decimal(DEFAULT_B);
+        print("\r\nCR or LF ends a line; 63 chars max; send next command after response\r\n");
         return;
     }
     if (command->kind == CMD_INVALID) {

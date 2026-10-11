@@ -1,4 +1,12 @@
-# v06 实板验收（待执行）
+# v06 实板验收
+
+## 2026-10-11 白平衡改善版
+
+用户已下载 SHA256 为 `9e962696cb479fc9d9dae560be25e2fb5625b5b69c59a6d6f4ba97dcf2d535d0` 的 bit，确认视频正常输出、画质明显改善，并要求推进为正式版本。此前“无信号”原因已由用户确认为显示器休眠。此反馈确认显示及画质改善，未包含下列全部交互/长期运行项目。详见 [white_balance_improvement.md](white_balance_improvement.md)。
+
+当前镜像为 `outflow/ArtFlow.bit`，默认及串口 `defaults` 均为 `102 102 102`（Q8.8）。
+
+## 原 v06 验收清单（历史记录）
 
 当前状态：**NOT_RUN**。离线 bit/hex 生成成功不代表板卡已下载或显示已确认。
 
