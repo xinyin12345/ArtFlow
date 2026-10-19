@@ -1,0 +1,8 @@
+{
+  "reference/integer/model_int.npz": "bfe447e71a538402668fb5f3bdfbcd714a2c4f257d21c8e93c2ba5100595f05f",
+  "reference/integer/graph.json": "6bfa4a431edf3cfa10283de1ef5006d324260312a9fd157ca09015d6b3a1f4ba",
+  "mem/shared_weights.mem": "0fb495b3c9f8d685c049c08fd9001bc12e38c4aaebe6f6397bab563b81d73d32",
+  "mem/shared_bias.mem": "13893019bb2936333f4727a116c348a0ad138d438fb7f4e28b1ada71d680d99f",
+  "mem/shared_main.mem": "c2eff85020b7bee57497d79c408322de41fc7c400cf29628cc8b493e063705e3",
+  "mem/shared_beta.mem": "3fbe3c7ec5fcf78d2fc19c903a995366f1c11905ad690718d24e34fed7adb6eb"
+}

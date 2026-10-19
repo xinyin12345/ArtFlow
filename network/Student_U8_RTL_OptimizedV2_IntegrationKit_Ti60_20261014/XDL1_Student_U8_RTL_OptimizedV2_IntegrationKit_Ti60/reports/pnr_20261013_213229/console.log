@@ -1,0 +1,2 @@
+Running: efx_run_pnr.py student_u8 --prj C:\Users\dong\Documents\ChatGPT\xfeat\.fpga_u8_stages\u8_efx_sbh6d3sl\student_u8.xml --family Titanium --device Ti60F225 --timing_model I3 --output_dir outflow --opt print_critical_path=10 max_threads=4 seed=1 --opt sdc_file=clock.sdc
+   pnr :	PASS 

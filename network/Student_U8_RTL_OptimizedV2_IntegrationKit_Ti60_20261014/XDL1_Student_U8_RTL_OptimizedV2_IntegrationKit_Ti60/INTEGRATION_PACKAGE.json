@@ -1,0 +1,19 @@
+{
+  "package_date": "2026-10-14",
+  "rtl_report_date": "2026-10-13",
+  "source_archive": "XDL1_Student_U8_RTL_OptimizedV2_Ti60_20261013.zip",
+  "source_archive_sha256": "4d878598c9673298444268e03ec2603f3f7e0870f69f0c1738efa0708be1ee3b",
+  "rtl_changed": false,
+  "rom_changed": false,
+  "new_synthesis_run": false,
+  "new_pnr_run": false,
+  "top": "student_u8",
+  "recommended_source": "student_u8_flat.v",
+  "read_first": "00_集成必读.md",
+  "device": "Ti60F225",
+  "timing_model": "I3",
+  "tool": "Efinity 2026.1.132",
+  "clock_period_ns": 6.667,
+  "board_integration_complete": false,
+  "original_files": 184
+}

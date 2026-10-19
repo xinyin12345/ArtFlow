@@ -12,13 +12,14 @@ create_clock -period 13.468 -name vid_clk_dvi2 [get_ports {vid_clk_dvi2}]
 create_clock -period 6.734 -name hdmi_tx_slow_clk [get_ports {hdmi_tx_slow_clk}]
 create_clock -period 18.519 -name fb [get_ports {fb}]
 create_clock -waveform {0.337 1.010} -period 1.347 -name hdmi_tx_fast_clk [get_ports {hdmi_tx_fast_clk}]
+create_clock -period 7.000 -name cnn_clk [get_ports {cnn_clk}]
 create_clock -period 10.000 -name core_clk [get_ports {core_clk}]
 create_clock -period 20.000 -name i_mipi_rx_pclk [get_ports {i_mipi_rx_pclk}]
 
 
 create_clock -period 10.000 -name i_cam_ck_CLKOUT [get_ports {i_cam_ck_CLKOUT}]
 
-set_clock_groups -exclusive -group {core_clk} -group {tx_cal_clk} -group {vid_clk_dvi2 hdmi_tx_slow_clk hdmi_tx_fast_clk} -group {i_mipi_rx_pclk} -group {sdram_clk} -group {rx_cal_clk}
+set_clock_groups -exclusive -group {core_clk} -group {cnn_clk} -group {tx_cal_clk} -group {vid_clk_dvi2 hdmi_tx_slow_clk hdmi_tx_fast_clk} -group {i_mipi_rx_pclk} -group {sdram_clk} -group {rx_cal_clk}
 
 # v04 registered Gray CDC buses, including the MSB merged into the binary FF.
 # Efinity 2026.1 omits these paths under the clock groups above. The post-route

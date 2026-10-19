@@ -198,10 +198,13 @@ end end
  end end end
  // COMPUTE: consume one window while the frontend constructs the other.
  localparam C_IDLE=0,C_SKIP=1,C_SKIPWAIT=2,C_REQ=3,C_B0=4,C_B1=5,
- C_MAC=6,C_WAIT=7,C_PUSH=8,C_DONE=9;
+ C_MAC=6,C_WAIT=7,C_PUSH=8,C_DONE=9,C_SADDR=10;
  reg [3:0] cs;reg consume_bank;reg [2:0] og;reg [5:0] issue_index;
  wire [9:0] ox=bx[consume_bank],oy=by[consume_bank];
  reg [63:0] skip_data;reg [143:0] main_lo,main_hi;
+ reg [23:0] skip_addr_q;
+ always @(posedge clk) if(state==RUN && cs==C_SADDR)
+ skip_addr_q<={skip_slot,21'd0}+offsets[consume_bank]+(og<<3);
  reg [767:0] wrom[0:511];reg [767:0] weight_q;
  reg [79:0] brom[0:255];reg [143:0] mrom[0:255];
  reg [79:0] bias_q;reg [143:0] mul_q;
@@ -210,7 +213,12 @@ end end
  $readmemh("rtl/cnn/shared_bias.mem",brom);
  $readmemh("rtl/cnn/shared_main.mem",mrom);
  end
- wire [8:0] weight_addr=wbase+(dw?og:og*steps)+(dw?0:issue_index);
+ reg [8:0] group_weight_base;
+ wire [8:0] weight_addr=group_weight_base+issue_index;
+ always @(posedge clk)begin
+ if(rst)group_weight_base<=0;
+ else if(state==RUN && cs==C_REQ)group_weight_base<=wbase+(dw?og:og*steps);
+ end
  wire [7:0] coeff_addr=cbase+(og<<1)+(cs==C_B0?1:0);
  reg rd_valid,rd_last;
  always @(posedge clk)begin
@@ -228,7 +236,9 @@ end end
  assign dw_samples[(dwo*9+dwt)*4+:4]=consume_bank?
  dpatch1[sample_index][(og*8+dwo)*4+:4]:dpatch0[sample_index][(og*8+dwo)*4+:4];
  end end endgenerate
- shared_mac mac(clk,rst,rd_valid,rd_last,dw,sign_in,dw_samples,patch_q,weight_q,
+ reg [287:0] dw_samples_q;
+ always @(posedge clk) if(state==RUN && cs==C_B1)dw_samples_q<=dw_samples;
+ shared_mac mac(clk,rst,rd_valid,rd_last,dw,sign_in,dw_samples_q,patch_q,weight_q,
  state==RUN&&cs==C_B0,state==RUN&&cs==C_B1,bias_q,mac_done,acc);
  // OUTPUT: independent accumulator snapshot, coefficients and write slot.
  localparam Q_IDLE=0,Q_LO=1,Q_HI=2,Q_WAIT=3,Q_WRITE=4;
@@ -264,7 +274,7 @@ end end
  mem_valid=1;mem_write=1;mem_addr=qaddr;
  for(b=0;b<8;b=b+1)if(qgroup*8+b>=co)mem_wdata[b*8+:8]=0;
  end else if(want_skip)begin
- mem_valid=1;mem_addr={skip_slot,21'd0}+offsets[consume_bank]+(og<<3);
+ mem_valid=1;mem_addr=skip_addr_q;
  end else if(want_row)begin mem_valid=1;mem_addr=load_base+load_offset;end
  // Keep command/address/data stable across backpressure, even if priority changes.
  if(command_locked)begin
@@ -350,7 +360,8 @@ end end
  default:begin end
  endcase
  case(cs)
- C_IDLE:if(full[consume_bank])begin og<=0;cs<=mode==1?C_SKIP:C_REQ;end
+ C_IDLE:if(full[consume_bank])begin og<=0;cs<=mode==1?C_SADDR:C_REQ;end
+ C_SADDR:cs<=C_SKIP;
  C_SKIP:if(accept_skip)cs<=C_SKIPWAIT;
  C_SKIPWAIT:if(skip_response)begin skip_data<=mem_rdata;cs<=C_REQ;end
  C_REQ:cs<=C_B0;
@@ -368,9 +379,9 @@ end end
  full[consume_bank]<=0;consume_bank<=!consume_bank;
  og<=0;
  if(last_pixel[consume_bank])cs<=C_DONE;
- else if(full[!consume_bank])cs<=mode==1?C_SKIP:C_REQ;
+ else if(full[!consume_bank])cs<=mode==1?C_SADDR:C_REQ;
  else cs<=C_IDLE;
- end else begin og<=og+1;cs<=mode==1?C_SKIP:C_REQ;end
+ end else begin og<=og+1;cs<=mode==1?C_SADDR:C_REQ;end
  end
  case(qs)
  Q_LO:qs<=Q_HI;
@@ -442,7 +453,11 @@ endmodule
 module shared_quant(input clk,input rst,input valid_in,input [1:0] mode_in,
  input [79:0] accum,input [35:0] skip_mul,input [35:0] skip_codes,
  input [143:0] main_mul,output reg valid_out,output reg [31:0] codes);
- reg v1,v2;reg [1:0] m1,m2;
+ // Register the half/group selection BEFORE the wide DSP multipliers.
+ // This adds one latency cycle without changing any integer arithmetic.
+ reg v0,v1,v2;reg [1:0] m0,m1,m2;
+ reg [79:0] accum_q;reg [35:0] skip_mul_q,skip_codes_q;
+ reg [143:0] main_mul_q;
  reg signed [55:0] pm[0:3];reg signed [44:0] ps[0:3];
  reg signed [56:0] total[0:3];
  integer j;
@@ -462,13 +477,14 @@ module shared_quant(input clk,input rst,input valid_in,input [1:0] mode_in,
  else round_clip=t[7:0];
  end endfunction
  always @(posedge clk)begin
- if(rst)begin v1<=0;v2<=0;valid_out<=0;end
+ if(rst)begin v0<=0;v1<=0;v2<=0;valid_out<=0;end
  else begin
- v1<=valid_in;v2<=v1;valid_out<=v2;m1<=mode_in;m2<=m1;
+ v0<=valid_in;v1<=v0;v2<=v1;valid_out<=v2;m0<=mode_in;m1<=m0;m2<=m1;
+ if(valid_in)begin accum_q<=accum;skip_mul_q<=skip_mul;skip_codes_q<=skip_codes;main_mul_q<=main_mul;end
  for(j=0;j<4;j=j+1)begin
-   if(valid_in)begin
-   pm[j]<=$signed(accum[j*20+:20])*$signed(main_mul[j*36+:36]);
-   ps[j]<=$signed(skip_codes[j*9+:9])*$signed(skip_mul);
+   if(v0)begin
+   pm[j]<=$signed(accum_q[j*20+:20])*$signed(main_mul_q[j*36+:36]);
+   ps[j]<=$signed(skip_codes_q[j*9+:9])*$signed(skip_mul_q);
    end
    if(v1)total[j]<=$signed(pm[j])+$signed(ps[j]);
    if(v2)codes[j*8+:8]<=round_clip(total[j],m2);

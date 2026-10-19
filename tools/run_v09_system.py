@@ -8,8 +8,8 @@ sys.path.insert(0,str(N/'reference'))
 from integer_model import IntegerS8
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
-    out=R/'work/v09/system';out.mkdir(parents=True,exist_ok=True)
-    paths=[*sorted((R/'rtl/accel').glob('*.v')),R/'rtl/cnn/s8_shared_flat.v',*[R/p for p in [
+    out=R/'work/v09_perf/system';out.mkdir(parents=True,exist_ok=True)
+    paths=[*sorted(p for p in (R/'rtl/accel').glob('*.v') if p.name!='artflow_glass_dma.v'),R/'rtl/cnn/s8_shared_flat.v',*[R/p for p in [
         'rtl/video/bayer_bin2x2.v','rtl/video/rgb_frame_store.v','rtl/video/rgb_frame_store_v07.v',
         'rtl/video/cam_fb_pipe_v09.v','rtl/video/video_axi_scheduler.v','rtl/frame_buffer/DC_FIFO.v',
         'rtl/frame_buffer/rst_n_piple.v','sim/axi_memory_v09.sv','sim/tb_v09_system.sv']]]

@@ -1,0 +1,48 @@
+{
+  "returncode": 0,
+  "seconds": 34.854286670684814,
+  "args": {
+    "width": 480,
+    "height": 270,
+    "latency": 3,
+    "stall": 1,
+    "frames": 1,
+    "mode": "random",
+    "image": "D:\\coco_20k\\coco_20k\\000000175191.jpg"
+  },
+  "stage": "C:\\Users\\dong\\Documents\\ChatGPT\\xfeat\\.fpga_u8_stages\\u8_sim_0frq3e3q",
+  "checked_integer": true,
+  "checked_words_per_frame": 782400,
+  "counts": [
+    130560,
+    65280,
+    65280,
+    32640,
+    16320,
+    8160,
+    8160,
+    16320,
+    8160,
+    8160,
+    16320,
+    8160,
+    8160,
+    16320,
+    16320,
+    65280,
+    32640,
+    130560,
+    129600
+  ],
+  "arithmetic_substitution": false,
+  "rtl_sha256": {
+    "rtl\\center_div.v": "c15d0924e462397019680a1a7cae0d56904327529e322069a0fd1116c9e05184",
+    "rtl\\layer_config.vh": "156b1e8e91b100468bba14441cfb96d8370775bb3e179cd37aa2cc678739eb7d",
+    "rtl\\shared_line.v": "6586fafe3a063ccd85e734ff00e482d74efca84240cb4b0aeeb9642a2b156b08",
+    "rtl\\shared_mac.v": "efbab6819da6e283669b9558a40aa5241fd917bba0412b39b277bea1b4d0f1b1",
+    "rtl\\shared_quant.v": "0a59dcdc4dcb40280994d7eff6e4ceaff35d721381f4bbec94c8945551924ede",
+    "rtl\\source_stats.v": "333693a8cc41c9cdd25dd0a1bcf886ac15bca11defb78bbc1de073f270049bf9",
+    "rtl\\student_u8.v": "c7428e6173593cf4592688000fe897f9c15f63cff02dac99da3782cc39a38ed1"
+  },
+  "rgb_max_abs_error": 0
+}

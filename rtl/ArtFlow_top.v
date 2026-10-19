@@ -120,6 +120,7 @@ module ArtFlow_top #(
   	input 					rx_cal_clk,
   	input 					tx_cal_clk,
 	input                              core_clk,     // CORE CLK @ 100MHz
+    input wire cnn_clk, // Dedicated accelerator clock @ 200MHz
 	input                              sdram_clk,    // SDRAM CK @ 400MHz
 	// PLL status flags  
 	output [2:0]                       pll_shift,  
@@ -630,6 +631,7 @@ cam_fb_pipe_v09 #(
   .o_g            (hdmi_tx_gdata  ),
   .o_b            (hdmi_tx_bdata  ),
 
+  .cnn_clk        (cnn_clk        ),
   .axi_clk        (core_clk       ),
   .awid (s_axi_awid ), .awaddr (s_axi_awaddr ), .awlen (s_axi_awlen ), .awsize (s_axi_awsize ),
   .awburst(s_axi_awburst), .awcache(s_axi_awcache), .awprot(s_axi_awprot), .awlock(s_axi_awlock),

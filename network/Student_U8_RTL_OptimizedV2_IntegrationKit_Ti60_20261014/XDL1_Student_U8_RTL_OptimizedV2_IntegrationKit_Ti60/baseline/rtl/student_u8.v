@@ -1,0 +1,339 @@
+// Accepted U8 student: concurrent window/MAC/output, exact same-frame two-pass centers.
+// One outstanding read; ready accepts command; response >=1 cycle later.
+module student_u8 #(parameter EXT_W=480,EXT_H=270)(
+ input clk,input rst,input start,output reg busy,output reg done,
+ output reg mem_valid,output reg mem_write,output reg [23:0] mem_addr,
+ output reg [63:0] mem_wdata,output [7:0] mem_wstrb,
+ input mem_ready,input mem_rvalid,input [63:0] mem_rdata,
+ output reg layer_done,output reg [4:0] layer_index,output reg [31:0] frame_cycles);
+ localparam W=EXT_W,H=((EXT_H+3)/4)*4,ROW_CAP=8*W;
+ localparam [9:0] CW=W,CW2=W/2,CW4=W/4,CW8=W/8;
+ localparam IDLE=0,NEW_LAYER=1,RUN=2,NEXT_LAYER=3,PREPARE=4,MEAN_REQ=5,MEAN_START=6,MEAN_WAIT=7,REPLAY=8;
+ reg [3:0] state;
+ reg [5:0] ci,co,isp,osp;reg [9:0] iw,ih,ow,oh;
+ reg dw,up2,k3,stride2,sign_in,wide_in,skip_sign,center;reg [1:0] mode,src_slot,dst_slot,skip_slot;
+ reg [8:0] wbase;reg [7:0] cbase;reg [2:0] ng,ogs;reg [24:0] skip_mul;
+ reg stats_pass;reg [4:0] mean_ch;
+ reg signed [39:0] center_sums[0:15];reg signed [47:0] dynamic[0:15];
+ wire mean_done;wire signed [47:0] mean_value;
+ wire [19:0] mean_area=(W/4)*(H/4);
+ `include "layer_config.vh"
+ function [9:0] reflect;
+ input signed [11:0] x;input [10:0] size;
+ begin if(x<0)reflect=-x;else if(x>=size)reflect=(size<<1)-2-x;else reflect=x;end
+ endfunction
+ function [15:0] pixel_offset;
+ input [9:0] x;input [5:0] pitch;
+ begin case(pitch)
+ 8:pixel_offset=x<<3;16:pixel_offset=x<<4;
+ 32:pixel_offset=x<<5;
+ default:pixel_offset=0;endcase end endfunction
+ function [23:0] constant_product;
+ input [9:0] r;input [15:0] c;integer b;
+ begin constant_product=0;
+ for(b=0;b<16;b=b+1)if(c[b])constant_product=constant_product+({14'd0,r}<<b);
+ end endfunction
+ function [23:0] row_offset;
+ input [9:0] row;
+ begin
+ if(iw==CW)row_offset=constant_product(row,8*W);
+ else if(iw==CW2)begin
+ if(isp==8)row_offset=constant_product(row,4*W);else row_offset=constant_product(row,8*W);
+ end else begin
+ case(isp)
+ 8:row_offset=constant_product(row,2*W);
+ 16:row_offset=constant_product(row,4*W);
+ 32:row_offset=constant_product(row,8*W);
+ default:row_offset=0;
+ endcase end
+ end endfunction
+ wire [15:0] row_bytes=pixel_offset(iw,isp);
+ // Nearest-up2 3x3 DW windows contain at most 2x2 distinct source pixels.
+ wire [3:0] taps=dw?(up2?4:9):(k3?9:1);
+ wire [5:0] steps=dw?1:(k3?ng*9:ng);
+ wire [2:0] fill_groups=dw?ogs:ng;
+ // FRONTEND: fill alternating windows. Three input rows remain in shared RAM.
+ localparam F_FREE=0,F_ROW0=1,F_ROW1=2,F_ROW2=3,F_READ=4,F_WAIT=5,
+ F_COL0=6,F_COL1=7,F_PATCH=8,F_CAPTURE=9,F_PUBLISH=10,F_DONE=11;
+ reg [3:0] fs;reg [9:0] fx,fy;reg [1:0] row_k;
+ reg [9:0] tags[0:2];reg [2:0] tag_valid;
+ reg [9:0] req_row;reg [1:0] req_slot;
+ reg [23:0] req_base,load_base,front_offset;
+ reg [1:0] loading_slot;reg [15:0] load_offset;
+ reg [15:0] row_bases[0:2];reg [9:0] columns[0:2];reg [15:0] col_bytes[0:2];
+ reg [3:0] ptap;reg [2:0] pig;reg [5:0] patch_index;reg fill_bank;
+ reg [1:0] full;
+ reg [155:0] patch0[0:17],patch1[0:17];reg [155:0] patch_q;
+ reg [1151:0] dpatch0,dpatch1;
+ reg [35:0] dw_map[0:1];
+ reg [23:0] offsets[0:1];reg [9:0] bx[0:1],by[0:1];reg last_pixel[0:1];
+ wire signed [11:0] ycenter=stride2?{1'b0,fy,1'b0}:{2'b00,fy};
+ wire signed [11:0] xcenter=stride2?{1'b0,fx,1'b0}:{2'b00,fx};
+ wire [9:0] required_row=up2?
+ (reflect($signed({2'b00,fy})+$signed({10'd0,row_k})-1,{ih,1'b0})>>1):
+ reflect(ycenter+$signed({10'd0,row_k})-(k3?1:0),{1'b0,ih});
+ wire [9:0] physical_row=(layer_index==0 && req_row>=EXT_H)?(2*EXT_H-2-req_row):req_row;
+ wire [1:0] pky=ptap/3,pkx=ptap%3;
+ wire [15:0] group_offset=dw?({13'd0,pig}<<3):(wide_in?(({13'd0,pig}<<4)+({13'd0,pig}<<3)):(({13'd0,pig}<<3)+({13'd0,pig}<<2)));
+ wire [15:0] second_row=row_bases[1]!=row_bases[0]?row_bases[1]:row_bases[2];
+ wire [15:0] second_col=col_bytes[1]!=col_bytes[0]?col_bytes[1]:col_bytes[2];
+ wire [15:0] line_raddr=up2?
+ (ptap[1]?second_row:row_bases[0])+(ptap[0]?second_col:col_bytes[0])+group_offset:
+ row_bases[pky]+col_bytes[pkx]+group_offset;
+ wire [15:0] line_waddr=(loading_slot==0?0:loading_slot==1?ROW_CAP:2*ROW_CAP)+load_offset;
+ wire [191:0] line_data;
+ reg read_pending,read_owner; // owner 0 frontend, owner 1 residual skip
+ wire front_response=mem_rvalid&&read_pending&&!read_owner;
+ wire skip_response=mem_rvalid&&read_pending&&read_owner;
+ shared_line #(.W(W)) lines(clk,front_response,line_waddr,mem_rdata,line_raddr,line_data);
+ reg line_valid,saved_bank;reg [5:0] saved_index;reg [2:0] saved_pig;reg [3:0] saved_tap;
+ reg [155:0] masked;integer j,p;
+ always @*begin
+ masked=0;
+ for(j=0;j<12;j=j+1)
+ if((dw&&j<8&&saved_pig*8+j<ci)||(!dw&&saved_pig*12+j<ci))begin if(wide_in)masked[j*13+:13]={line_data[j*16+11],line_data[j*16+:12]};
+ else masked[j*13+:13]={{5{sign_in&&line_data[j*8+7]}},line_data[j*8+:8]};end
+ end
+ always @(posedge clk)begin
+ if(rst)begin line_valid<=0;saved_bank<=0;saved_index<=0;saved_pig<=0;saved_tap<=0;end
+ else begin
+ line_valid<=state==RUN&&fs==F_PATCH;
+ saved_bank<=fill_bank;saved_index<=patch_index;saved_pig<=pig;saved_tap<=ptap;
+ if(line_valid)begin
+ if(saved_bank)patch1[saved_index]<=masked;else patch0[saved_index]<=masked;
+ if(dw)for(p=0;p<8;p=p+1)begin
+ if(saved_bank)dpatch1[saved_tap*128+(saved_pig*8+p)*8+:8]<=masked[p*13+:8];
+ else dpatch0[saved_tap*128+(saved_pig*8+p)*8+:8]<=masked[p*13+:8];
+ end
+ end end end
+ // COMPUTE: consume one window while the frontend constructs the other.
+ localparam C_IDLE=0,C_SKIP=1,C_SKIPWAIT=2,C_REQ=3,C_B0=4,C_B1=5,
+ C_MAC=6,C_WAIT=7,C_PUSH=8,C_DONE=9;
+ reg [3:0] cs;reg consume_bank;reg [2:0] og;reg [5:0] issue_index;
+ wire [9:0] ox=bx[consume_bank],oy=by[consume_bank];
+ reg [63:0] skip_data;reg [83:0] main_lo,main_hi;
+ reg [767:0] wrom[0:127];reg [767:0] weight_q;
+ reg [95:0] brom[0:63];reg [83:0] mrom[0:63];reg [127:0] trom[0:63];
+ reg [95:0] bias_q;reg [83:0] mul_q;reg [127:0] beta_q;
+ initial begin
+ $readmemh("mem/shared_weights.mem",wrom);
+ $readmemh("mem/shared_bias.mem",brom);
+ $readmemh("mem/shared_main.mem",mrom);
+ $readmemh("mem/shared_beta.mem",trom);
+ end
+ wire [8:0] weight_addr=wbase+(dw?og:og*steps)+(dw?0:issue_index);
+ wire [7:0] coeff_addr=(state==MEAN_REQ||state==MEAN_START||state==MEAN_WAIT)?cbase+(mean_ch>>2):cbase+(og<<1)+(cs==C_B0?1:0);
+ reg rd_valid,rd_last;
+ always @(posedge clk)begin
+ weight_q<=wrom[weight_addr];
+ patch_q<=consume_bank?patch1[issue_index]:patch0[issue_index];
+ bias_q<=brom[coeff_addr];mul_q<=mrom[coeff_addr];beta_q<=trom[coeff_addr];
+ if(rst)begin rd_valid<=0;rd_last<=0;end
+ else begin rd_valid<=state==RUN&&cs==C_MAC;rd_last<=issue_index==steps-1;end
+ end
+ center_div center_unit(clk,rst,state==MEAN_START,center_sums[mean_ch],
+ $signed(mul_q[mean_ch[1:0]*21+:21]),$signed(beta_q[mean_ch[1:0]*32+:32]),mean_area,mean_done,mean_value);
+ wire mac_done;wire [191:0] acc;wire [575:0] dw_samples;
+ genvar dwo,dwt;
+ generate for(dwo=0;dwo<8;dwo=dwo+1)begin:dwout
+ for(dwt=0;dwt<9;dwt=dwt+1)begin:dwtap
+ wire [3:0] sample_index=dw_map[consume_bank][dwt*4+:4];
+ assign dw_samples[(dwo*9+dwt)*8+:8]=consume_bank?
+ dpatch1[sample_index*128+(og*8+dwo)*8+:8]:dpatch0[sample_index*128+(og*8+dwo)*8+:8];
+ end end endgenerate
+ shared_mac mac(clk,rst,rd_valid,rd_last,dw,dw_samples,patch_q,weight_q,
+ state==RUN&&cs==C_B0,state==RUN&&cs==C_B1,bias_q,mac_done,acc);
+ // OUTPUT: independent accumulator snapshot, coefficients and write slot.
+ localparam Q_IDLE=0,Q_LO=1,Q_HI=2,Q_WAIT=3,Q_WRITE=4;
+ reg [2:0] qs;
+ wire push=state==RUN&&((cs==C_WAIT&&mac_done)||cs==C_PUSH)&&qs==Q_IDLE;
+ reg [191:0] qa;reg [63:0] qsk;reg [127:0] result_codes;reg [83:0] qml,qmh;reg [383:0] qdynamic;reg write_half;
+ reg [23:0] qaddr;reg qcrop,qhalf;reg [2:0] qgroup;
+ wire feed_hi=qs==Q_HI;wire [95:0] qacc=feed_hi?qa[191:96]:qa[95:0];
+ wire [31:0] qskip=feed_hi?qsk[63:32]:qsk[31:0];wire [35:0] skip_codes;
+ genvar s;
+ generate for(s=0;s<4;s=s+1)begin:sx
+ assign skip_codes[s*9+:9]={skip_sign&qskip[s*8+7],qskip[s*8+:8]};
+ end endgenerate
+ wire qvalid;wire [63:0] qcodes;
+ shared_quant quant(clk,rst,state==RUN&&(qs==Q_LO||qs==Q_HI),mode,qacc,
+ mode==1?skip_mul:25'd0,skip_codes,feed_hi?qmh:qml,feed_hi?qdynamic[383:192]:qdynamic[191:0],qvalid,qcodes);
+ // Completed output first, residual skip second, input row fill third.
+ wire want_write=state==RUN&&qs==Q_WRITE&&!qcrop;
+ wire want_skip=state==RUN&&cs==C_SKIP&&!read_pending&&!stats_pass;
+ wire want_row=state==RUN&&fs==F_READ&&!read_pending;
+ wire accept=mem_valid&&mem_ready;
+ wire accept_write=accept&&mem_write;
+ reg command_locked,locked_write,locked_owner;
+ reg [23:0] locked_addr;reg [63:0] locked_data;
+ wire selected_owner=command_locked?locked_owner:want_skip;
+ wire accept_skip=accept&&!mem_write&&selected_owner;
+ wire accept_row=accept&&!mem_write&&!selected_owner;
+ assign mem_wstrb=8'hff;
+ genvar cr;
+ generate for(cr=0;cr<16;cr=cr+1)begin:centers
+ always @(posedge clk)begin
+ if(rst || state==PREPARE)begin center_sums[cr]<=0;dynamic[cr]<=0;end
+ else begin
+ if(push&&stats_pass&&og==cr/8)center_sums[cr]<=center_sums[cr]+$signed(acc[(cr%8)*24+:24]);
+ if(state==MEAN_WAIT&&mean_done&&mean_ch==cr)dynamic[cr]<=mean_value;
+ end end
+ end endgenerate
+ integer b;
+ always @*begin
+ mem_valid=0;mem_write=0;mem_addr=0;mem_wdata=write_half?result_codes[127:64]:result_codes[63:0];
+ if(want_write)begin
+ mem_valid=1;mem_write=1;mem_addr=qaddr+(write_half?8:0);
+ if(mode==3)begin for(b=0;b<4;b=b+1)if(qgroup*8+write_half*4+b>=co)mem_wdata[b*16+:16]=0;end
+ else for(b=0;b<8;b=b+1)if(qgroup*8+b>=co)mem_wdata[b*8+:8]=0;
+ end else if(want_skip)begin
+ mem_valid=1;mem_addr={skip_slot,21'd0}+offsets[consume_bank]+(og<<3);
+ end else if(want_row)begin mem_valid=1;mem_addr=load_base+load_offset;end
+ // Keep command/address/data stable across backpressure, even if priority changes.
+ if(command_locked)begin
+ mem_valid=1;mem_write=locked_write;mem_addr=locked_addr;mem_wdata=locked_data;
+ end
+ end
+ always @(posedge clk)begin
+ if(rst)begin
+ read_pending<=0;read_owner<=0;command_locked<=0;
+ locked_write<=0;locked_owner<=0;locked_addr<=0;locked_data<=0;
+ end
+ else begin
+ if(mem_rvalid)read_pending<=0;
+ if(accept&&!mem_write)begin read_pending<=1;read_owner<=selected_owner;end
+ if(accept)command_locked<=0;
+ else if(mem_valid&&!command_locked)begin
+ command_locked<=1;locked_write<=mem_write;locked_owner<=want_skip;
+ locked_addr<=mem_addr;locked_data<=mem_wdata;
+ end
+ end end
+ always @(posedge clk)begin
+ if(rst)begin
+ state<=IDLE;busy<=0;done<=0;layer_done<=0;layer_index<=0;frame_cycles<=0;
+ fs<=F_FREE;fx<=0;fy<=0;row_k<=0;tag_valid<=0;req_row<=0;req_slot<=0;
+ req_base<=0;load_base<=0;front_offset<=0;loading_slot<=0;load_offset<=0;
+ ptap<=0;pig<=0;patch_index<=0;fill_bank<=0;consume_bank<=0;full<=0;
+ cs<=C_IDLE;og<=0;issue_index<=0;skip_data<=0;main_lo<=0;main_hi<=0;
+ qs<=Q_IDLE;qa<=0;qsk<=0;qml<=0;qmh<=0;qaddr<=0;qcrop<=0;qhalf<=0;qgroup<=0;
+ result_codes<=0;stats_pass<=0;mean_ch<=0;write_half<=0;qdynamic<=0;
+ 
+ end else begin
+ done<=0;layer_done<=0;if(busy)frame_cycles<=frame_cycles+1;
+ case(state)
+ IDLE:if(start)begin busy<=1;frame_cycles<=0;layer_index<=0;state<=NEW_LAYER;end
+ NEW_LAYER:state<=PREPARE;
+ PREPARE,REPLAY:begin
+ if(state==PREPARE)begin
+ stats_pass<=center;
+ end else stats_pass<=0;
+ fs<=F_FREE;fx<=0;fy<=0;row_k<=0;tag_valid<=0;front_offset<=0;
+ ptap<=0;pig<=0;patch_index<=0;fill_bank<=0;consume_bank<=0;full<=0;
+ cs<=C_IDLE;og<=0;issue_index<=0;qs<=Q_IDLE;qhalf<=0;state<=RUN;
+ end
+ RUN:begin
+ case(fs)
+ F_FREE:if(!full[fill_bank])begin
+ if(fx==0)begin row_k<=0;fs<=F_ROW0;end else fs<=F_COL0;
+ end
+ F_ROW0:begin req_row<=required_row;fs<=F_ROW1;end
+ F_ROW1:begin req_slot<=req_row%3;req_base<={src_slot,21'd0}+row_offset(physical_row);fs<=F_ROW2;end
+ F_ROW2:begin
+ row_bases[row_k]<=req_slot==0?0:req_slot==1?ROW_CAP:2*ROW_CAP;
+ if(tag_valid[req_slot]&&tags[req_slot]==req_row)begin
+ if(row_k==(k3?2:0))fs<=F_COL0;else begin row_k<=row_k+1;fs<=F_ROW0;end
+ end else begin loading_slot<=req_slot;load_offset<=0;load_base<=req_base;fs<=F_READ;end
+ end
+ F_READ:if(accept_row)fs<=F_WAIT;
+ F_WAIT:if(front_response)begin
+ if(load_offset+8>=row_bytes)begin tags[loading_slot]<=req_row;tag_valid[loading_slot]<=1;fs<=F_ROW2;end
+ else begin load_offset<=load_offset+8;fs<=F_READ;end
+ end
+ F_COL0:begin
+ for(p=0;p<3;p=p+1)begin
+ if(up2)columns[p]<=reflect($signed({2'b00,fx})+p-1,{iw,1'b0})>>1;
+ else columns[p]<=reflect(xcenter+p-(k3?1:0),{1'b0,iw});
+ end
+ fs<=F_COL1;
+ end
+ F_COL1:begin
+ for(p=0;p<3;p=p+1)col_bytes[p]<=pixel_offset(columns[p],isp);
+ for(p=0;p<9;p=p+1)dw_map[fill_bank][p*4+:4]<=up2?
+ {2'd0,row_bases[p/3]!=row_bases[0],columns[p%3]!=columns[0]}:p;
+ ptap<=0;pig<=0;patch_index<=0;fs<=F_PATCH;
+ end
+ F_PATCH:begin
+ if(pig==fill_groups-1)begin
+ pig<=0;if(ptap==taps-1)fs<=F_CAPTURE;else begin ptap<=ptap+1;patch_index<=patch_index+1;end
+ end else begin pig<=pig+1;patch_index<=patch_index+1;end
+ end
+ F_CAPTURE:fs<=F_PUBLISH;
+ F_PUBLISH:begin
+ full[fill_bank]<=1;offsets[fill_bank]<=front_offset;bx[fill_bank]<=fx;by[fill_bank]<=fy;
+ last_pixel[fill_bank]<=fx==ow-1&&fy==oh-1;
+ fill_bank<=!fill_bank;front_offset<=front_offset+osp;
+ if(fx==ow-1)begin fx<=0;if(fy==oh-1)fs<=F_DONE;else begin fy<=fy+1;fs<=F_FREE;end end
+ else begin fx<=fx+1;fs<=F_FREE;end
+ end
+ default:begin end
+ endcase
+ case(cs)
+ C_IDLE:if(full[consume_bank])begin og<=0;cs<=(mode==1&&!stats_pass)?C_SKIP:C_REQ;end
+ C_SKIP:if(accept_skip)cs<=C_SKIPWAIT;
+ C_SKIPWAIT:if(skip_response)begin skip_data<=mem_rdata;cs<=C_REQ;end
+ C_REQ:cs<=C_B0;
+ C_B0:begin main_lo<=mul_q;cs<=C_B1;end
+ C_B1:begin main_hi<=mul_q;issue_index<=0;cs<=C_MAC;end
+ C_MAC:if(issue_index==steps-1)cs<=C_WAIT;else issue_index<=issue_index+1;
+ C_WAIT:if(mac_done&&!push)cs<=C_PUSH;
+ default:begin end
+ endcase
+ if(push)begin
+ if(stats_pass)begin
+ 
+ end else begin
+ qa<=acc;qsk<=skip_data;qml<=main_lo;qmh<=main_hi;
+ for(p=0;p<8;p=p+1)qdynamic[p*48+:48]<=dynamic[og*8+p];
+ qaddr<={dst_slot,21'd0}+offsets[consume_bank]+(mode==3?(og<<4):(og<<3));
+ qcrop<=mode==2&&by[consume_bank]>=EXT_H;qgroup<=og;qs<=Q_LO;qhalf<=0;write_half<=0;
+ end
+ if(og==ogs-1)begin
+ full[consume_bank]<=0;consume_bank<=!consume_bank;
+ og<=0;
+ if(last_pixel[consume_bank])cs<=C_DONE;
+ else if(full[!consume_bank])cs<=(mode==1&&!stats_pass)?C_SKIP:C_REQ;
+ else cs<=C_IDLE;
+ end else begin og<=og+1;cs<=(mode==1&&!stats_pass)?C_SKIP:C_REQ;end
+ end
+ case(qs)
+ Q_LO:qs<=Q_HI;
+ Q_HI:qs<=Q_WAIT;
+ Q_WRITE:if(qcrop||accept_write)begin if(mode==3&&!write_half&&!qcrop)write_half<=1;else qs<=Q_IDLE;end
+ default:begin end
+ endcase
+ if(qvalid)begin
+ if(mode==3)begin
+ if(!qhalf)result_codes[63:0]<=qcodes;else result_codes[127:64]<=qcodes;
+ end else for(p=0;p<4;p=p+1)begin
+ if(!qhalf)result_codes[p*8+:8]<=qcodes[p*16+:8];else result_codes[(p+4)*8+:8]<=qcodes[p*16+:8];
+ end
+ if(!qhalf)qhalf<=1;else begin qhalf<=0;qs<=Q_WRITE;end
+ end
+ if(fs==F_DONE&&cs==C_DONE&&qs==Q_IDLE&&!read_pending)begin
+ if(stats_pass)begin mean_ch<=0;state<=MEAN_REQ;end else state<=NEXT_LAYER;end
+ end
+ MEAN_REQ:state<=MEAN_START;
+ MEAN_START:state<=MEAN_WAIT;
+ MEAN_WAIT:if(mean_done)begin
+ 
+ if(mean_ch==co-1)state<=REPLAY;else begin mean_ch<=mean_ch+1;state<=MEAN_REQ;end
+ end
+ NEXT_LAYER:begin
+ layer_done<=1;
+ if(layer_index==18)begin busy<=0;done<=1;state<=IDLE;end
+ else begin layer_index<=layer_index+1;state<=NEW_LAYER;end
+ end
+ default:state<=IDLE;
+ endcase
+ end end
+endmodule

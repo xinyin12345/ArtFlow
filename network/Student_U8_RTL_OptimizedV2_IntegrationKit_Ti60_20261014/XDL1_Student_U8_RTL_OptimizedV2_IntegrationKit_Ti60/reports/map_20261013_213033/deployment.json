@@ -1,0 +1,7 @@
+{
+  "stage": "C:\\Users\\dong\\Documents\\ChatGPT\\xfeat\\.fpga_u8_stages\\u8_efx_zyljbxyq",
+  "command": "call \"C:\\Efinity\\2026.1\\bin\\efx_run.bat\" student_u8.xml --flow map --map_opts max_mult=140 max-bit-blast-mem-size=16384",
+  "clock_ns": 6.667,
+  "rtl_sha256": "4967e315a1becdc333ab67b0b36ff4cae2de8dc2f6e0172c978b83cb4ee8fd75",
+  "rtl_sha256_lf_text": "68885a957a5d6b338c0f2385fa6f76471ef724e86b6c4d83d206a01cf6aa051d"
+}

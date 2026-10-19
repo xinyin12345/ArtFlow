@@ -1,0 +1,11 @@
+{
+  "returncode": 0,
+  "reflection_maps": 5,
+  "tap_checks": 720,
+  "shared_signed_products": 516,
+  "stage": "C:\\Users\\dong\\Documents\\ChatGPT\\xfeat\\.fpga_u8_stages\\u8_stats_test_864lcle0",
+  "rtl_sha256": {
+    "source_stats.v": "333693a8cc41c9cdd25dd0a1bcf886ac15bca11defb78bbc1de073f270049bf9",
+    "center_div.v": "c15d0924e462397019680a1a7cae0d56904327529e322069a0fd1116c9e05184"
+  }
+}

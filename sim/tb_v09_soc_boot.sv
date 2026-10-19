@@ -15,7 +15,7 @@ module tb_v09_soc_boot;
     wire [15:0] paddr, gain_r, gain_g, gain_b;
     wire [31:0] pwdata, prdata;
     wire psel, penable, pwrite, pready, pslverror;
-    wire camera_reset, camera_ready;
+    wire camera_reset, camera_ready, accel_irq;
     reg pixel_vs = 0, pixel_hs = 0, pixel_valid = 0;
 
     artflow_soc dut (
@@ -28,7 +28,7 @@ module tb_v09_soc_boot;
         .pwdata(pwdata), .prdata(prdata), .pready(pready), .pslverror(pslverror)
     );
     wire [31:0] ctrl_data,accel_data;
-    wire ctrl_ready,ctrl_error,accel_ready,accel_error,accel_irq;
+    wire ctrl_ready,ctrl_error,accel_ready,accel_error;
     assign prdata=paddr[7] ? accel_data : ctrl_data;
     assign pready=paddr[7] ? accel_ready : ctrl_ready;
     assign pslverror=paddr[7] ? accel_error : ctrl_error;
@@ -57,7 +57,7 @@ module tb_v09_soc_boot;
       .source_locked(locked),.source_bank(),.display_active(1'b0),.display_bank(2'd0),
       .styled_valid(styled_valid),.styled_bank(),.start(job_start),.src_addr(),.dst_addr(),
       .busy(job_busy),.done(job_done),.failed(1'b0),.cycles(32'd123),
-      .irq(accel_irq),.process_toggle(),.completed(completed),.skipped(skipped),.errors(errors));
+      .source_consumed(1'b0),.irq(accel_irq),.process_toggle(),.completed(completed),.skipped(skipped),.errors(errors));
     artflow_control control (
         .diag_events(3'd0), .diag_axi_fire(3'd0), .diag_state(32'd0),
         .diag_fifo(32'd0), .diag_written(32'd0), .diag_completed(32'd0),

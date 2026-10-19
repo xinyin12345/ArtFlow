@@ -15,7 +15,7 @@ def main():
     iv=ROOT/'work/v07/tools/ucrt64/bin'
     env['PATH']=(str(iv)+os.pathsep+r'C:\msys64\ucrt64\bin'+os.pathsep+r'C:\Windows\System32'+os.pathsep+r'C:\Windows'
                  if a.simulator=='iverilog' else r'D:\soft\Questa\questa_fse\win64'+os.pathsep+env['PATH'])
-    common=[*sorted((ROOT/'rtl/accel').glob('*.v')),ROOT/'sim/axi_memory_v07.sv']
+    common=[*sorted(p for p in (ROOT/'rtl/accel').glob('*.v') if p.name!='artflow_glass_dma.v'),ROOT/'sim/axi_memory_v07.sv']
     dma=[*common,ROOT/'sim/tb_v07_dma.sv']
     control=[ROOT/'rtl/accel/artflow_accel_ctrl.v',ROOT/'sim/tb_v07_ctrl.sv']
     system=[*common,*[ROOT/p for p in [

@@ -103,6 +103,7 @@ function [7:0] vertical;
         vertical=sum[11:4];
     end
 endfunction
+wire [WW-1:0] write_read_index=(state==WD && wready && !wlast)?write_index+1'b1:write_index;
 integer c;
 always @(posedge clk) begin
     if(state==RD && rvalid) begin
@@ -122,7 +123,7 @@ always @(posedge clk) begin
         output_line[mode_up ? (x3>>2) : gamma_index] <= mode_up ?
             {8'd1,up_rgb[7:0],up_rgb[15:8],up_rgb[23:16],pack[95:0]} :
             {40'd0,gamma_pixels[47:24],40'd0,gamma_pixels[23:0]};
-    write_q<=output_line[write_index];
+    write_q<=output_line[write_read_index];
 end
 always @(posedge clk or negedge rst_n) begin
     if(!rst_n) begin
@@ -185,7 +186,7 @@ always @(posedge clk or negedge rst_n) begin
             WD: if(wready) begin
                 write_index<=write_index+1'b1;
                 if(wlast) state<=BR;
-                else begin beat<=beat+1'b1;state<=PREF;end
+                else beat<=beat+1'b1;
             end
             BR: if(bvalid) begin
                 if(bresp!=0) failed<=1;

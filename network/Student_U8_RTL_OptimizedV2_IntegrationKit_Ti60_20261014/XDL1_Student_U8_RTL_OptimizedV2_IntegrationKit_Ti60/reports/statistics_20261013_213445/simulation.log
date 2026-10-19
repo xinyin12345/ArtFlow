@@ -1,0 +1,2 @@
+PASS reflection_maps=5 tap_checks=720 shared_signed_products=516
+tb.v:31: $finish called at 19330000 (1ps)

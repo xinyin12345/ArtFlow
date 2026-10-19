@@ -1,0 +1,67 @@
+﻿ArtFlow Glass INT8 模型集成试验
+日期：2026-10-19
+状态：READY_FOR_BOARD_TEST；未提交 Git；未下载到板卡。
+
+工程：D:\work\FPGA\ArtFlow\ArtFlow
+模型：glass_5_20epochs_sum8192_480x270_input3x3_res32_r4_int8
+原始模型、权重、量化参数及网络计算图均未更改。
+输入：480×270 RGB UINT8，内部反射补齐至 480×272。
+输出：480×270，再由原工程双线性放大至 960×540。
+沿用原相机、DDR、HDMI、RISC-V 控制及显示链路。
+CNN 142.857 MHz，AXI/CPU 100 MHz。
+
+实际布局布线结果
+XLR：37514/60800
+RAM10：227/256
+DSP：125/160
+最差 setup：+0.065 ns；hold：+0.026 ns
+Efinity 2026.1.132 的综合、布局布线、正常时序、位流生成均通过。
+视频、UI、CNN 三类实际布线 CDC 检查均通过。
+
+硬件实现
+- 64 个共享乘加单元，八通道并行量化。
+- 三行/五行缓存共用 6W 个 64 位字；特征图使用原 DDR 三个 2 MiB 槽。
+- 12 个带中心化的残差层先统计卷积累加值，再重算并量化，
+  精确实现 round_half_up(sum/8192)，避免保存全图宽累加器。
+- 保留所有 INT8 特征、反射边界、5×5 输出卷积、残差系数、
+  负数 round-half-up、限幅及 RGB 转换；没有降精度或重训练。
+- 最终 RGB 位于 0x01800000，后处理读地址已同步调整。
+- 使用模型保守范围证明检查 24 位卷积、40 位统计、48 位量化计算。
+
+验证
+仿真器：Questa Altera Starter FPGA Edition 2025.3。
+9 组用例，共 16 帧。
+完整尺寸连续两帧，每帧核对 1,190,400 个中间/最终 DDR 写字及其地址，
+以及 518,400 个显示像素；RTL 输出与独立整数参考逐字节一致。
+独立整数参考在完整尺寸下另与交付 TorchScript 模型逐字节一致。
+黑、白、棋盘图案；60% 随机停顿；非整数时钟比连续三帧；
+预处理与 CNN 阶段 AXI R/B 四类错误各两帧均通过。
+该回归包含实际缩放、DDR 桥、异步 FIFO、仲裁及后台视频竞争。
+完整尺寸两帧 100 MHz 墙钟周期：[26068163, 26068258]
+对应最低仿真处理速度：3.836 FPS。
+这是 25% 总线随机停顿、12 周期读首拍延迟和后台视频争用下的仿真值，
+不是板上测得的 PRC FPS。
+
+查看效果
+glass_preview.png：实际模型输入与 FPGA RTL 仿真输出对照。
+ArtFlow_glass_int8.bit/.hex：通过上述门禁的候选位流。
+manifest.json 和 evidence/：源文件哈希、测试日志、资源/时序与 CDC 证据。
+当前主工程已切换 glass：True。
+原 U8 位流仍在 outputs/student_u8_optimized/；修改前文件及 outflow 位流
+备份于 work/glass_int8/baseline/。Git 暂存区哈希与开始时一致。
+
+复现（工程根目录，PowerShell）
+D:/soft/Anaconda/envs/DL_latest/python.exe -B tools/generate_glass_int8.py
+D:/soft/Anaconda/envs/DL_latest/python.exe -B tools/run_glass_int8.py --system --width 960 --height 540 --tag full_system_final --pattern example --video-load 1 --frames 2
+D:/soft/Anaconda/envs/DL_latest/python.exe -B tools/run_glass_regression.py
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/run_glass_efinity.ps1 -Flow compile
+D:/soft/Anaconda/envs/DL_latest/python.exe -B tools/package_glass_int8.py --activate
+
+当前验证范围不包含上板观测、长期运行、门级 SDF 和真实 CPU/PLIC 启动长仿真。
+
+2026-10-19 上板与版本保存补充
+用户反馈：当前 Glass 模型已在板上运行，风格化帧率约 3–4 FPS。
+本次按用户要求保存 Git 基线，包含当前活动配置及其依赖；尚未实施 15 FPS 优化。
+上文“未提交/未下载/待观察”描述的是最初交付时的历史状态。
+固定回退位流：outputs/glass_int8_baseline_3to4fps/；哈希记录：doc/glass_int8_baseline.json。
+板级帧率为用户观测，未据此宣称长期稳定性或 15 FPS 已达标。

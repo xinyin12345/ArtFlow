@@ -57,8 +57,10 @@
         <efx:design_file name="rtl/control/artflow_camera_gate.v" version="default" library="default"/>
         <efx:design_file name="rtl/accel/artflow_cnn_resize.v" version="default" library="default"/>
         <efx:design_file name="rtl/accel/artflow_cnn_bridge.v" version="default" library="default"/>
-        <efx:design_file name="rtl/accel/artflow_cnn_dma.v" version="default" library="default"/>
-        <efx:design_file name="rtl/cnn/s8_shared_flat.v" version="default" library="default"/>
+        <efx:design_file name="rtl/accel/artflow_cnn_accel.v" version="default" library="default"/>
+        <efx:design_file name="rtl/accel/artflow_cnn_cdc_fifo.v" version="default" library="default"/>
+        <efx:design_file name="rtl/accel/artflow_glass_dma.v" version="default" library="default"/>
+        <efx:design_file name="rtl/cnn/glass_int8/glass_int8.v" version="default" library="default"/>
         <efx:design_file name="rtl/video/cam_fb_pipe_v09.v" version="default" library="default"/>
         <efx:design_file name="rtl/accel/artflow_accel_dma.v" version="default" library="default"/>
         <efx:design_file name="rtl/accel/artflow_accel_ctrl.v" version="default" library="default"/>
@@ -91,7 +93,7 @@
         <efx:param name="infer-clk-enable" value="3" value_type="e_option"/>
         <efx:param name="infer-sync-set-reset" value="1" value_type="e_option"/>
         <efx:param name="fanout-limit" value="0" value_type="e_integer"/>
-        <efx:param name="seq_opt" value="0" value_type="e_option"/>
+        <efx:param name="seq_opt" value="1" value_type="e_option"/>
         <efx:param name="retiming" value="0" value_type="e_option"/>
         <efx:param name="dsp-mac-packing" value="1" value_type="e_option"/>
         <efx:param name="dsp-input-regs-packing" value="1" value_type="e_option"/>
@@ -103,7 +105,7 @@
         <efx:param name="pack-luts-to-comb4" value="0" value_type="e_option"/>
         <efx:param name="min-sr-fanout" value="0" value_type="e_integer"/>
         <efx:param name="min-ce-fanout" value="0" value_type="e_integer"/>
-        <efx:param name="seq-opt-sync-only" value="0" value_type="e_option"/>
+        <efx:param name="seq-opt-sync-only" value="1" value_type="e_option"/>
         <efx:param name="blackbox-error" value="1" value_type="e_option"/>
         <efx:param name="allow-const-ram-index" value="0" value_type="e_option"/>
         <efx:param name="hdl-compile-unit" value="1" value_type="e_option"/>
@@ -171,3 +173,4 @@
         <efx:param name="randomize_iv_value" value="off" value_type="e_bool"/>
     </efx:security>
 </efx:project>
+

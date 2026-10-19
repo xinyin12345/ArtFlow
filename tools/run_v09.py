@@ -50,17 +50,18 @@ def vectors(out,w,h,seed):
 def main():
     p=argparse.ArgumentParser();p.add_argument('--width',type=int,default=32);p.add_argument('--height',type=int,default=28)
     p.add_argument('--frames',type=int,default=2);p.add_argument('--fault',type=int,default=0);p.add_argument('--seed',type=int,default=101)
+    p.add_argument('--video-load',type=int,choices=[0,1],default=0);p.add_argument('--tag',default='final');p.add_argument('--stall-pct',type=int,default=25);p.add_argument('--rd-lat',type=int,default=12);p.add_argument('--cnn-half-ns',type=float,default=2.25)
     a=p.parse_args();assert a.width%16==0 and a.width>=32 and a.height>=28 and a.height%2==0
-    out=R/f'work/v09/sim_{a.width}x{a.height}_f{a.fault}';out.mkdir(parents=True,exist_ok=True)
+    out=R/f'work/v09_perf/{a.tag}/sim_{a.width}x{a.height}_f{a.fault}_s{a.stall_pct}_r{a.rd_lat}_c{a.cnn_half_ns:g}_v{a.video_load}';out.mkdir(parents=True,exist_ok=True)
     (out/'summary.json').write_text('{"status":"RUNNING"}')
     n=vectors(out,a.width,a.height,a.seed)
-    sources=[R/'rtl/cnn/s8_shared_flat.v',*[R/f'rtl/accel/artflow_cnn_{s}.v' for s in ['resize','bridge','dma']],R/'sim/axi_memory_v09.sv',R/'sim/tb_v09_dma.sv']
+    sources=[R/'rtl/cnn/s8_shared_flat.v',*[R/f'rtl/accel/artflow_cnn_{s}.v' for s in ['resize','bridge','dma','accel','cdc_fifo']],R/'rtl/accel/artflow_axi_mux.v',R/'sim/axi_background_v09.sv',R/'sim/axi_memory_v09.sv',R/'sim/tb_v09_dma.sv']
     inputs=sources+[Path(__file__),*sorted((R/'rtl/cnn').glob('*.mem')),R/'rtl/gamma_conrrection/gamma_inv2p2_8b.mem']
     hashes={str(x.relative_to(R)):sha(x) for x in inputs}
     iv=R/'work/v07/tools/ucrt64/bin';env=os.environ.copy()
     env['PATH']=str(iv)+os.pathsep+r'C:\msys64\ucrt64\bin'+os.pathsep+r'C:\Windows\System32'
     # Run from the project root so actual synthesizable ROM paths are exercised.
-    cmd=[str(iv/'iverilog.exe'),'-v','-g2012','-s','tb_v09_dma',f'-Ptb_v09_dma.W={a.width}',f'-Ptb_v09_dma.H={a.height}',f'-Ptb_v09_dma.N={n}',f'-Ptb_v09_dma.FRAMES={a.frames}',f'-Ptb_v09_dma.FAULT={a.fault}','-o',str(out/'test.vvp'),*map(str,sources)]
+    cmd=[str(iv/'iverilog.exe'),'-v','-g2012','-s','tb_v09_dma',f'-Ptb_v09_dma.W={a.width}',f'-Ptb_v09_dma.H={a.height}',f'-Ptb_v09_dma.N={n}',f'-Ptb_v09_dma.FRAMES={a.frames}',f'-Ptb_v09_dma.FAULT={a.fault}',f'-Ptb_v09_dma.STALL_PCT={a.stall_pct}',f'-Ptb_v09_dma.RD_LAT={a.rd_lat}',f'-Ptb_v09_dma.CNN_HALF_NS={a.cnn_half_ns}',f'-Ptb_v09_dma.VIDEO_LOAD={a.video_load}','-o',str(out/'test.vvp'),*map(str,sources)]
     limits=[];t=time.monotonic()
     def call(name,cmd,timeout):
         with (out/(name+'.log')).open('w') as f:r=subprocess.run(cmd,cwd=R,env=env,stdout=f,stderr=subprocess.STDOUT,timeout=timeout)
@@ -75,10 +76,12 @@ def main():
         code,txt=call('simulation',[str(iv/'vvp.exe'),str(out/'test.vvp'),'+DIR='+out.as_posix()],7200)
         assert code==0 and 'tb_v09_dma PASS' in txt and not re.search(r'ERROR:|FATAL:',txt),txt[-4000:]
         assert hashes=={str(x.relative_to(R)):sha(x) for x in inputs},'Inputs changed during run'
+        assert not (a.video_load and a.fault),'Fault tests must isolate the CNN'
         status='PASS_WITH_TOOL_LIMITATIONS' if limits else 'PASS'
         print(txt,flush=True)
     except Exception as e:print(e,flush=True)
-    result=dict(status=status,args=vars(a),feature_words=n,seconds=time.monotonic()-t,tool_limitations=limits,source_sha256=hashes,evidence_sha256={p.name:sha(p) for p in out.glob('*.log')})
+    frame_cycles=[int(x) for x in re.findall(r'FRAME PASS .*?cycles=(\d+)',txt)]
+    result=dict(frame_cycles_100mhz=frame_cycles,fps_min=100000000/max(frame_cycles) if frame_cycles else None,status=status,args=vars(a),feature_words=n,seconds=time.monotonic()-t,tool_limitations=limits,source_sha256=hashes,evidence_sha256={p.name:sha(p) for p in out.glob('*.log')})
     (out/'summary.json').write_text(json.dumps(result,indent=2)+'\n')
     print(status,out,flush=True);return status=='FAIL'
 if __name__=='__main__':sys.exit(main())

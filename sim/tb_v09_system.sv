@@ -4,7 +4,8 @@ localparam W=64,H=56,OW=W/2,OH=H/2,DUAL_WINDOW=1,PHASE=3,REV=0;
 localparam HFP=16,HSP=4,HBP=12,VFP=4,VSP=2,VBP=12;
 localparam [31:0] BANK=32'h00400000;
 localparam [15:0] GAIN_R=256,GAIN_G=256,GAIN_B=256;
-reg pclk=0,aclk=0,hclk=0,vclk=0;
+reg pclk=0,aclk=0,hclk=0,vclk=0,cnn_clk=0;
+always #2.25 cnn_clk=~cnn_clk;
 always #10 pclk=~pclk;always #5 aclk=~aclk;always #3.367 hclk=~hclk;
 always @(posedge hclk) vclk<=~vclk;
 reg rst_n=0,prst_n=0,s_vs=0,s_hs=0,s_valid=0;reg [39:0] s_raw=0;
@@ -31,7 +32,7 @@ cam_fb_pipe_v09 #(.DUAL_WINDOW(DUAL_WINDOW),.AXI_DATA_WIDTH(128),.AXI_ADDR_WIDTH
  .H_FRONT_PORCH(HFP[12:0]),.H_SYNC(HSP[12:0]),.H_VALID(OW[12:0]),.H_BACK_PORCH(HBP[12:0]),
  .V_FRONT_PORCH(VFP[12:0]),.V_SYNC(VSP[12:0]),.V_VALID(H[12:0]),.V_BACK_PORCH(VBP[12:0]),
  .rst_n(rst_n),.o_clk(vclk),.o_hdmi_clk(hclk),.o_de(o_de),.o_hs(o_hs),.o_vs(o_vs),.o_r(o_r),.o_g(o_g),.o_b(o_b),
- .axi_clk(aclk),.awid(awid),.awaddr(awaddr),.awlen(awlen),.awsize(awsize),.awburst(awburst),
+ .cnn_clk(cnn_clk),.axi_clk(aclk),.awid(awid),.awaddr(awaddr),.awlen(awlen),.awsize(awsize),.awburst(awburst),
  .awcache(awcache),.awprot(awprot),.awlock(awlock),.awvalid(awvalid),.awready(awready),
  .arid(arid),.araddr(araddr),.arlen(arlen),.arsize(arsize),.arburst(arburst),
  .arcache(arcache),.arprot(arprot),.arlock(arlock),.arvalid(arvalid),.arready(arready),
@@ -67,7 +68,7 @@ initial begin
 end
 always @(negedge aclk) if(rst_n) begin
  if(dut.source_consumed) released++;
- if(dut.u_accel_dma.state==4 && dut.source_locked) $fatal(1,"Original remains locked during CNN");
+ if(dut.u_accel_dma.engine.state==7 && dut.source_locked) $fatal(1,"Original remains locked during CNN");
  if(dut.start) begin
   jobs++;
   for(int n=0;n<OW*OH/4;n++) begin

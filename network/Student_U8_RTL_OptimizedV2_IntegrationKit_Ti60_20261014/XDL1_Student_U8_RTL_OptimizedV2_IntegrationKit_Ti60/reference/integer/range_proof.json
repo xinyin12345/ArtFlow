@@ -1,0 +1,179 @@
+{
+  "scope": "all valid input codes, channelwise abs-weight bound; N=8160",
+  "max_conv_bound": 2540962,
+  "max_requant_bound": 106147661233,
+  "max_statistics_product_bound": 432876202516800,
+  "layers": [
+    {
+      "name": "stem",
+      "conv_abs_bound": 398634,
+      "conv_signed_bits": 20,
+      "statistics_times_multiplier_abs_bound": 0,
+      "requant_abs_bound_including_rounding": 27437104832,
+      "requant_signed_bits": 36,
+      "all_integer_mac_exact_in_fp32_simulator": true
+    },
+    {
+      "name": "enc1_dw",
+      "conv_abs_bound": 158111,
+      "conv_signed_bits": 19,
+      "statistics_times_multiplier_abs_bound": 0,
+      "requant_abs_bound_including_rounding": 49560181328,
+      "requant_signed_bits": 37,
+      "all_integer_mac_exact_in_fp32_simulator": true
+    },
+    {
+      "name": "enc1_pw",
+      "conv_abs_bound": 1219201,
+      "conv_signed_bits": 22,
+      "statistics_times_multiplier_abs_bound": 0,
+      "requant_abs_bound_including_rounding": 39576350063,
+      "requant_signed_bits": 37,
+      "all_integer_mac_exact_in_fp32_simulator": true
+    },
+    {
+      "name": "enc2_dw",
+      "conv_abs_bound": 189979,
+      "conv_signed_bits": 19,
+      "statistics_times_multiplier_abs_bound": 0,
+      "requant_abs_bound_including_rounding": 63866262420,
+      "requant_signed_bits": 37,
+      "all_integer_mac_exact_in_fp32_simulator": true
+    },
+    {
+      "name": "enc2_pw",
+      "conv_abs_bound": 2540962,
+      "conv_signed_bits": 23,
+      "statistics_times_multiplier_abs_bound": 0,
+      "requant_abs_bound_including_rounding": 42663517702,
+      "requant_signed_bits": 37,
+      "all_integer_mac_exact_in_fp32_simulator": true
+    },
+    {
+      "name": "b0_reduce",
+      "conv_abs_bound": 245310,
+      "conv_signed_bits": 19,
+      "statistics_times_multiplier_abs_bound": 227210321707200,
+      "requant_abs_bound_including_rounding": 55965644162,
+      "requant_signed_bits": 37,
+      "all_integer_mac_exact_in_fp32_simulator": true
+    },
+    {
+      "name": "b0_spatial",
+      "conv_abs_bound": 627300,
+      "conv_signed_bits": 21,
+      "statistics_times_multiplier_abs_bound": 294988940064000,
+      "requant_abs_bound_including_rounding": 72427847620,
+      "requant_signed_bits": 38,
+      "all_integer_mac_exact_in_fp32_simulator": true
+    },
+    {
+      "name": "b0_expand",
+      "conv_abs_bound": 169320,
+      "conv_signed_bits": 19,
+      "statistics_times_multiplier_abs_bound": 68488770427200,
+      "requant_abs_bound_including_rounding": 18754268474,
+      "requant_signed_bits": 36,
+      "all_integer_mac_exact_in_fp32_simulator": true
+    },
+    {
+      "name": "b1_reduce",
+      "conv_abs_bound": 128896,
+      "conv_signed_bits": 18,
+      "statistics_times_multiplier_abs_bound": 121260643614720,
+      "requant_abs_bound_including_rounding": 29859337872,
+      "requant_signed_bits": 36,
+      "all_integer_mac_exact_in_fp32_simulator": true
+    },
+    {
+      "name": "b1_spatial",
+      "conv_abs_bound": 770355,
+      "conv_signed_bits": 21,
+      "statistics_times_multiplier_abs_bound": 375748158960000,
+      "requant_abs_bound_including_rounding": 92297581195,
+      "requant_signed_bits": 38,
+      "all_integer_mac_exact_in_fp32_simulator": true
+    },
+    {
+      "name": "b1_expand",
+      "conv_abs_bound": 147645,
+      "conv_signed_bits": 19,
+      "statistics_times_multiplier_abs_bound": 65579595624000,
+      "requant_abs_bound_including_rounding": 17655583696,
+      "requant_signed_bits": 36,
+      "all_integer_mac_exact_in_fp32_simulator": true
+    },
+    {
+      "name": "b2_reduce",
+      "conv_abs_bound": 123776,
+      "conv_signed_bits": 18,
+      "statistics_times_multiplier_abs_bound": 99814891438080,
+      "requant_abs_bound_including_rounding": 24626562125,
+      "requant_signed_bits": 36,
+      "all_integer_mac_exact_in_fp32_simulator": true
+    },
+    {
+      "name": "b2_spatial",
+      "conv_abs_bound": 746640,
+      "conv_signed_bits": 21,
+      "statistics_times_multiplier_abs_bound": 432876202516800,
+      "requant_abs_bound_including_rounding": 106147661233,
+      "requant_signed_bits": 38,
+      "all_integer_mac_exact_in_fp32_simulator": true
+    },
+    {
+      "name": "b2_expand",
+      "conv_abs_bound": 187680,
+      "conv_signed_bits": 19,
+      "statistics_times_multiplier_abs_bound": 59862970087200,
+      "requant_abs_bound_including_rounding": 15582771772,
+      "requant_signed_bits": 35,
+      "all_integer_mac_exact_in_fp32_simulator": true
+    },
+    {
+      "name": "dec1_pw",
+      "conv_abs_bound": 118447,
+      "conv_signed_bits": 18,
+      "statistics_times_multiplier_abs_bound": 0,
+      "requant_abs_bound_including_rounding": 21216928961,
+      "requant_signed_bits": 36,
+      "all_integer_mac_exact_in_fp32_simulator": true
+    },
+    {
+      "name": "dec1_dw",
+      "conv_abs_bound": 174859,
+      "conv_signed_bits": 19,
+      "statistics_times_multiplier_abs_bound": 0,
+      "requant_abs_bound_including_rounding": 23105902134,
+      "requant_signed_bits": 36,
+      "all_integer_mac_exact_in_fp32_simulator": true
+    },
+    {
+      "name": "dec2_pw",
+      "conv_abs_bound": 184746,
+      "conv_signed_bits": 19,
+      "statistics_times_multiplier_abs_bound": 0,
+      "requant_abs_bound_including_rounding": 40629000278,
+      "requant_signed_bits": 37,
+      "all_integer_mac_exact_in_fp32_simulator": true
+    },
+    {
+      "name": "dec2_dw",
+      "conv_abs_bound": 208683,
+      "conv_signed_bits": 19,
+      "statistics_times_multiplier_abs_bound": 0,
+      "requant_abs_bound_including_rounding": 67537006000,
+      "requant_signed_bits": 37,
+      "all_integer_mac_exact_in_fp32_simulator": true
+    },
+    {
+      "name": "rgb",
+      "conv_abs_bound": 153770,
+      "conv_signed_bits": 19,
+      "statistics_times_multiplier_abs_bound": 0,
+      "requant_abs_bound_including_rounding": 28484843723,
+      "requant_signed_bits": 36,
+      "all_integer_mac_exact_in_fp32_simulator": true
+    }
+  ]
+}

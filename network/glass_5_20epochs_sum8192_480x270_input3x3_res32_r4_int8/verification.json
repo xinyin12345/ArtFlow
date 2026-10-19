@@ -1,0 +1,37 @@
+{
+  "executable_format": "TorchScript, load with torch.jit.load",
+  "source": {
+    "checkpoint": "D:\\learn\\qianshai\\hwang2025_model4\\checkpoints\\model4\\glass_5_20epochs_sum8192_480x270_input3x3_res32_r4\\epoch_020.pt",
+    "sha256": "fd861ac8c99714e85812585491b293c8ed4e5561e3a7564af4c105053a769c7e",
+    "architecture": "hwang2025_model4_sum8192_camera480x270_input3x3_res32_r4",
+    "epochs": 20,
+    "calibration_count": 200,
+    "evaluation_count": 200
+  },
+  "all_model_state_tensors_integer": true,
+  "state_tensors": 112,
+  "node_count": 22,
+  "reference_cases": [
+    {
+      "photo": "D:\\learn\\qianshai\\hwang2025_model3\\data\\content\\val2017\\000000001503.jpg",
+      "all_rgb_bytes_equal": true
+    },
+    {
+      "photo": "D:\\learn\\qianshai\\hwang2025_model3\\data\\content\\val2017\\000000249129.jpg",
+      "all_rgb_bytes_equal": true
+    },
+    {
+      "photo": "D:\\learn\\qianshai\\hwang2025_model3\\data\\content\\val2017\\000000577932.jpg",
+      "all_rgb_bytes_equal": true
+    }
+  ],
+  "batch2_bit_exact": true,
+  "int8_metrics": {
+    "lpips": 0.635563353896141,
+    "ssim": 0.2522958127036691
+  },
+  "int8_vs_fp32": {
+    "lpips": 0.09958297397010028,
+    "ssim": 0.878162193596363
+  }
+}

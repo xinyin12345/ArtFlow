@@ -1,4 +1,4 @@
-// v09 candidate: prepare sRGB -> frozen 22-layer S8 -> upscale/tag display RGB.
+// v09 candidate: prepare sRGB -> frozen 19-layer Student U8 optimized V2 -> upscale/tag display RGB.
 module artflow_cnn_dma #(
     parameter WIDTH=960, HEIGHT=540, BURST=64
 )(
@@ -64,7 +64,7 @@ assign bready=select_cnn ? c_bready : s_bready;
 artflow_cnn_resize #(.WIDTH(WIDTH),.HEIGHT(HEIGHT),.BURST(BURST)) scaler(
  .clk(clk),.rst_n(rst_n),.start(state==PRE_START || state==POST_START),
  .upscale(state==POST_START || state==POST),
- .src_addr(state==PRE_START || state==PRE ? src : SCRATCH),
+ .src_addr(state==PRE_START || state==PRE ? src : SCRATCH+32'h00200000),
  .dst_addr(state==PRE_START || state==PRE ? SCRATCH : dst),
  .busy(),.done(scale_done),.failed(scale_failed),.cycles(),
  .araddr(s_araddr),
@@ -88,7 +88,7 @@ artflow_cnn_resize #(.WIDTH(WIDTH),.HEIGHT(HEIGHT),.BURST(BURST)) scaler(
  .wready(!select_cnn && wready),
  .bvalid(!select_cnn && bvalid),
  .bresp(bresp));
-s8_shared #(.EXT_W(WIDTH/2),.EXT_H(HEIGHT/2)) core(
+student_u8 #(.EXT_W(WIDTH/2),.EXT_H(HEIGHT/2)) core(
  .clk(clk),.rst(!rst_n || state==IDLE || state==PRE_START || state==PRE),
  .start(state==CNN_START),.busy(),.done(core_done),
  .mem_valid(mv),.mem_write(mw),.mem_addr(ma),.mem_wdata(mwd),.mem_wstrb(),

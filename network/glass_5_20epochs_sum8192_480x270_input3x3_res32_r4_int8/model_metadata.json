@@ -1,0 +1,19 @@
+{
+  "format": "model4_int8_torchscript_v1",
+  "source": {
+    "checkpoint": "D:\\learn\\qianshai\\hwang2025_model4\\checkpoints\\model4\\glass_5_20epochs_sum8192_480x270_input3x3_res32_r4\\epoch_020.pt",
+    "sha256": "fd861ac8c99714e85812585491b293c8ed4e5561e3a7564af4c105053a769c7e",
+    "architecture": "hwang2025_model4_sum8192_camera480x270_input3x3_res32_r4",
+    "epochs": 20,
+    "calibration_count": 200,
+    "evaluation_count": 200
+  },
+  "architecture": "hwang2025_model4_sum8192_camera480x270_input3x3_res32_r4",
+  "input": "CPU uint8 NCHW [N,3,270,480]",
+  "output": "CPU uint8 NCHW [N,3,270,480]",
+  "weights": "int8",
+  "features": "int8",
+  "rgb": "uint8",
+  "reference_arithmetic": "int64",
+  "graph_nodes": 22
+}

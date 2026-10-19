@@ -1,0 +1,18 @@
+{
+  "evaluation_summary.json": "f2e603e7fb9b248f8afd250ba68cc29262bfd1651ac3a9bd3199dd50534702c1",
+  "example_input.png": "28eb8d754e5d48151973878edfb521f2f0544eda5c220ed2e5122e87ba8dd798",
+  "example_output_int8.png": "71b960fd80feee41783f417adec78d15c33807b2ce1baf64fac2727c97efbada",
+  "infer.py": "a73fd5e9436432f251467914c6e86c196b2bed1b6fed3acea56aa420070b4915",
+  "model.py": "c2a76686ea3ad4429bed476bf1b61df12e266ea3211765c2c0cb86681f102af0",
+  "model_int8.pt": "cbe3344c894fbbeccbc795acbf8851785923aa478abca891a199f93f259f3f10",
+  "model_metadata.json": "b347ef132b7df59d5fab558311b8d36d56c3370cc99cd3b8bcb9f4386999d90f",
+  "README.md": "257a8f06261a9ae60f2125c69781f3b985590d507765f93b93e252246d69f11b",
+  "verification.json": "5dc30aa3d771734b12e59273a1de1b220b169caab741ba232f250e55f7f6cee5",
+  "parameters/audit_scales.json": "3d77e331c8d0cb391926803197e80e27ea643ec3743df3edc75ca3f75ac140e3",
+  "parameters/graph.json": "f115a00e132d012af720a5e16556d50a1369f68922441c39ee85aaf1d1fe4a56",
+  "parameters/model_int8.npz": "f298275fdc4a4b53ea301f8379ba3740f453cafe1ef7678bd359b3d43ceba005",
+  "parameters/parameters.bin": "f53143dae82c2e2257fae481e1932ba327e3b6519e1c0be2e0b3c3b1d30fba65",
+  "parameters/parameters.json": "9af69e10ec6f2a8610fc8ce0b26c70aeb91c7b94269cdd11ceaa14224e622e72",
+  "parameters/range_proof.json": "5f0b72fedb3011137dc82ef258a8de66dedd4179bebf645b546f472809647832",
+  "parameters/SHA256.json": "8e37d27c94027b4283141dd4592a1eded30dd9d2526525b9c853b7084f0fa307"
+}

@@ -1,0 +1,155 @@
+{
+  "checkpoint": "D:\\learn\\qianshai\\hwang2025_model4\\checkpoints\\model4\\glass_5_20epochs_sum8192_480x270_input3x3_res32_r4\\epoch_020.pt",
+  "checkpoint_sha256": "fd861ac8c99714e85812585491b293c8ed4e5561e3a7564af4c105053a769c7e",
+  "architecture": "hwang2025_model4_sum8192_camera480x270_input3x3_res32_r4",
+  "completed_epochs": 20,
+  "evaluation_count": 200,
+  "calibration_count": 200,
+  "calibration_disjoint": true,
+  "fp32": {
+    "lpips": 0.6342415225505829,
+    "ssim": 0.26151033259928225
+  },
+  "int8": {
+    "lpips": 0.635563353896141,
+    "ssim": 0.2522958127036691
+  },
+  "int8_vs_fp32": {
+    "lpips": 0.09958297397010028,
+    "ssim": 0.878162193596363
+  },
+  "int8_vs_fp32_rgb_mae": 0.0425499330367893,
+  "fp32_fold_check": {
+    "normalized_max_abs": 7.450580596923828e-05,
+    "rgb_mean_abs": 4.3388271819821966e-07
+  },
+  "integer_reference_check": {
+    "photo": "D:\\learn\\qianshai\\hwang2025_model3\\data\\content\\val2017\\000000001503.jpg",
+    "nodes_bit_exact": 22,
+    "rgb_bit_exact": true,
+    "strict_backend": "Actual integer int64 convolution, mean, affine, residual and RGB conversion",
+    "evaluation_backend": "Actual integer int64 MAC, statistics, affine, residual and RGB conversion"
+  },
+  "saturation": {
+    "enc0": {
+      "clipped": 152757,
+      "elements": 208896000,
+      "fraction": 0.0007312586167279412
+    },
+    "enc1_dw": {
+      "clipped": 0,
+      "elements": 52224000,
+      "fraction": 0.0
+    },
+    "enc1_pw": {
+      "clipped": 38722,
+      "elements": 104448000,
+      "fraction": 0.0003707299325980392
+    },
+    "enc2_dw": {
+      "clipped": 0,
+      "elements": 26112000,
+      "fraction": 0.0
+    },
+    "enc2_pw": {
+      "clipped": 10539,
+      "elements": 52224000,
+      "fraction": 0.00020180376838235294
+    },
+    "res0_reduce": {
+      "clipped": 16,
+      "elements": 13056000,
+      "fraction": 1.2254901960784314e-06
+    },
+    "res0_spatial": {
+      "clipped": 14,
+      "elements": 13056000,
+      "fraction": 1.0723039215686274e-06
+    },
+    "res0_expand": {
+      "clipped": 1,
+      "elements": 52224000,
+      "fraction": 1.914828431372549e-08
+    },
+    "res1_reduce": {
+      "clipped": 481,
+      "elements": 13056000,
+      "fraction": 3.6841299019607843e-05
+    },
+    "res1_spatial": {
+      "clipped": 3646,
+      "elements": 13056000,
+      "fraction": 0.00027925857843137257
+    },
+    "res1_expand": {
+      "clipped": 0,
+      "elements": 52224000,
+      "fraction": 0.0
+    },
+    "res2_reduce": {
+      "clipped": 150480,
+      "elements": 13056000,
+      "fraction": 0.011525735294117647
+    },
+    "res2_spatial": {
+      "clipped": 9379,
+      "elements": 13056000,
+      "fraction": 0.0007183670343137255
+    },
+    "res2_expand": {
+      "clipped": 0,
+      "elements": 52224000,
+      "fraction": 0.0
+    },
+    "res3_reduce": {
+      "clipped": 136979,
+      "elements": 13056000,
+      "fraction": 0.010491651348039215
+    },
+    "res3_spatial": {
+      "clipped": 42232,
+      "elements": 13056000,
+      "fraction": 0.0032346813725490195
+    },
+    "res3_expand": {
+      "clipped": 2,
+      "elements": 52224000,
+      "fraction": 3.829656862745098e-08
+    },
+    "dec1_dw": {
+      "clipped": 4,
+      "elements": 208896000,
+      "fraction": 1.914828431372549e-08
+    },
+    "dec1_pw": {
+      "clipped": 2821,
+      "elements": 104448000,
+      "fraction": 2.7008655024509804e-05
+    },
+    "dec2_dw": {
+      "clipped": 1,
+      "elements": 417792000,
+      "fraction": 2.3935355392156863e-09
+    },
+    "dec2_pw": {
+      "clipped": 27467,
+      "elements": 208896000,
+      "fraction": 0.00013148648131127452
+    },
+    "output": {
+      "clipped": 0,
+      "elements": 78336000,
+      "fraction": 0.0
+    }
+  },
+  "method": "Post-training, symmetric per-output-channel INT8 weights, symmetric per-tensor INT8 activations; no QAT",
+  "runtime_types": {
+    "weights": "int8",
+    "features": "int8",
+    "rgb": "uint8",
+    "conv_bias": "int32",
+    "mean_and_requant": "int64"
+  },
+  "no_training_or_weight_updates": true,
+  "integer_model": "D:\\learn\\qianshai\\hwang2025_model4\\outputs\\glass_5_20epochs_int8_200\\integer_model"
+}

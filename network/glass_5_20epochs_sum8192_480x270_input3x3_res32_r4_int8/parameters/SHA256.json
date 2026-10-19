@@ -1,0 +1,8 @@
+{
+  "audit_scales.json": "3d77e331c8d0cb391926803197e80e27ea643ec3743df3edc75ca3f75ac140e3",
+  "graph.json": "f115a00e132d012af720a5e16556d50a1369f68922441c39ee85aaf1d1fe4a56",
+  "model_int8.npz": "f298275fdc4a4b53ea301f8379ba3740f453cafe1ef7678bd359b3d43ceba005",
+  "parameters.bin": "f53143dae82c2e2257fae481e1932ba327e3b6519e1c0be2e0b3c3b1d30fba65",
+  "parameters.json": "9af69e10ec6f2a8610fc8ce0b26c70aeb91c7b94269cdd11ceaa14224e622e72",
+  "range_proof.json": "5f0b72fedb3011137dc82ef258a8de66dedd4179bebf645b546f472809647832"
+}

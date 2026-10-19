@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<efx:project name="student_u8" description="480x270 U8 optimized exact statistics projection" sw_version="2026.1" xmlns:efx="http://www.efinixinc.com/enf_proj">
+ <efx:device_info><efx:family name="Titanium"/><efx:device name="Ti60F225"/><efx:timing_model name="I3"/></efx:device_info>
+ <efx:design_info def_veri_version="verilog_2k" unified_flow="true">
+  <efx:top_module name="student_u8"/>
+  <efx:design_file name="student_u8_flat.v" version="default" library="default"/>
+  <efx:top_vhdl_arch name=""/>
+ </efx:design_info>
+ <efx:constraint_info><efx:sdc_file name="clock.sdc"/></efx:constraint_info><efx:sim_info/><efx:misc_info/><efx:ooc_info/><efx:ip_info/>
+ <efx:synthesis tool_name="efx_map"><efx:param name="work_dir" value="work_syn" value_type="e_string"/></efx:synthesis>
+ <efx:place_and_route tool_name="efx_pnr"/><efx:bitstream_generation tool_name="efx_pgm"/><efx:debugger/><efx:security/>
+</efx:project>

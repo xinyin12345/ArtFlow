@@ -1,0 +1,196 @@
+{
+  "scope": "all valid source codes, fixed 480x270 graph; no sample-only bound",
+  "statistic_storage_signed_bits": 24,
+  "statistic_increment_signed_bits": 11,
+  "projection_sum_signed_bits": 40,
+  "shared_math_product_signed_bits": 61,
+  "unchanged_parameters_and_roms": {
+    "reference/integer/model_int.npz": "bfe447e71a538402668fb5f3bdfbcd714a2c4f257d21c8e93c2ba5100595f05f",
+    "reference/integer/graph.json": "6bfa4a431edf3cfa10283de1ef5006d324260312a9fd157ca09015d6b3a1f4ba",
+    "mem/shared_weights.mem": "0fb495b3c9f8d685c049c08fd9001bc12e38c4aaebe6f6397bab563b81d73d32",
+    "mem/shared_bias.mem": "13893019bb2936333f4727a116c348a0ad138d438fb7f4e28b1ada71d680d99f",
+    "mem/shared_main.mem": "c2eff85020b7bee57497d79c408322de41fc7c400cf29628cc8b493e063705e3",
+    "mem/shared_beta.mem": "3fbe3c7ec5fcf78d2fc19c903a995366f1c11905ad690718d24e34fed7adb6eb"
+  },
+  "layers": [
+    {
+      "layer": "b0_reduce",
+      "source": "enc2_pw",
+      "source_abs_code_bound": 255,
+      "source_tap_sum_abs_bound": 2080800,
+      "single_project_product_abs_bound": 266342400,
+      "projection_and_prefix_abs_bounds": [
+        2001729600,
+        1558519200,
+        1839427200,
+        1704175200,
+        1712498400,
+        1508580000,
+        1213106400,
+        1494014400
+      ]
+    },
+    {
+      "layer": "b0_spatial",
+      "source": "b0_reduce",
+      "source_abs_code_bound": 255,
+      "source_tap_sum_abs_bound": 2080800,
+      "single_project_product_abs_bound": 264261600,
+      "projection_and_prefix_abs_bounds": [
+        4744224000,
+        5056344000,
+        2682151200,
+        3364653600,
+        5118768000,
+        3889015200,
+        4103337600,
+        4989758400
+      ]
+    },
+    {
+      "layer": "b0_expand",
+      "source": "b0_spatial",
+      "source_abs_code_bound": 255,
+      "source_tap_sum_abs_bound": 2080800,
+      "single_project_product_abs_bound": 264261600,
+      "projection_and_prefix_abs_bounds": [
+        590947200,
+        834400800,
+        934279200,
+        1381651200,
+        1023753600,
+        1044561600,
+        953006400,
+        803188800,
+        859370400,
+        1181894400,
+        859370400,
+        688744800,
+        734522400,
+        642967200,
+        915552000,
+        780300000
+      ]
+    },
+    {
+      "layer": "b1_reduce",
+      "source": "b0_expand",
+      "source_abs_code_bound": 128,
+      "source_tap_sum_abs_bound": 1044480,
+      "single_project_product_abs_bound": 133693440,
+      "projection_and_prefix_abs_bounds": [
+        829317120,
+        764559360,
+        812605440,
+        666378240,
+        907653120,
+        606842880,
+        1051791360,
+        964055040
+      ]
+    },
+    {
+      "layer": "b1_spatial",
+      "source": "b1_reduce",
+      "source_abs_code_bound": 255,
+      "source_tap_sum_abs_bound": 2080800,
+      "single_project_product_abs_bound": 266342400,
+      "projection_and_prefix_abs_bounds": [
+        5618160000,
+        5029293600,
+        4619376000,
+        3526956000,
+        5641048800,
+        5844967200,
+        5568220800,
+        6286096800
+      ]
+    },
+    {
+      "layer": "b1_expand",
+      "source": "b1_spatial",
+      "source_abs_code_bound": 255,
+      "source_tap_sum_abs_bound": 2080800,
+      "single_project_product_abs_bound": 266342400,
+      "projection_and_prefix_abs_bounds": [
+        932198400,
+        782380800,
+        998784000,
+        665856000,
+        834400800,
+        1117389600,
+        913471200,
+        676260000,
+        1117389600,
+        676260000,
+        1007107200,
+        994622400,
+        990460800,
+        1144440000,
+        1204783200,
+        1115308800
+      ]
+    },
+    {
+      "layer": "b2_reduce",
+      "source": "b1_expand",
+      "source_abs_code_bound": 128,
+      "source_tap_sum_abs_bound": 1044480,
+      "single_project_product_abs_bound": 133693440,
+      "projection_and_prefix_abs_bounds": [
+        812605440,
+        1010012160,
+        899297280,
+        806338560,
+        753070080,
+        906608640,
+        885719040,
+        603709440
+      ]
+    },
+    {
+      "layer": "b2_spatial",
+      "source": "b2_reduce",
+      "source_abs_code_bound": 255,
+      "source_tap_sum_abs_bound": 2080800,
+      "single_project_product_abs_bound": 266342400,
+      "projection_and_prefix_abs_bounds": [
+        5058424800,
+        6092582400,
+        3812025600,
+        4754628000,
+        4365518400,
+        4359276000,
+        4823294400,
+        4521578400
+      ]
+    },
+    {
+      "layer": "b2_expand",
+      "source": "b2_spatial",
+      "source_abs_code_bound": 255,
+      "source_tap_sum_abs_bound": 2080800,
+      "single_project_product_abs_bound": 264261600,
+      "projection_and_prefix_abs_bounds": [
+        1183975200,
+        805269600,
+        1531468800,
+        757411200,
+        1352520000,
+        1161086400,
+        815673600,
+        699148800,
+        1046642400,
+        1473206400,
+        955087200,
+        900986400,
+        1048723200,
+        1113228000,
+        1050804000,
+        801108000
+      ]
+    }
+  ],
+  "identity": "sum_HW(conv_reflect(X,W)) = sum_ci_tap(tap_sums_reflect(X)*W)",
+  "rounding": "no rounding in statistic collection/projection; original single mean division and R24 retained"
+}

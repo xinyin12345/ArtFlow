@@ -1,0 +1,11 @@
+{
+  "returncode": 0,
+  "divider_vectors": 1056,
+  "quant_vectors": 2400,
+  "quant_lane_checks": 9600,
+  "stage": "C:\\Users\\dong\\Documents\\ChatGPT\\xfeat\\.fpga_u8_stages\\u8_units_wueg54_h",
+  "rtl_sha256": {
+    "center_div.v": "c15d0924e462397019680a1a7cae0d56904327529e322069a0fd1116c9e05184",
+    "shared_quant.v": "0a59dcdc4dcb40280994d7eff6e4ceaff35d721381f4bbec94c8945551924ede"
+  }
+}

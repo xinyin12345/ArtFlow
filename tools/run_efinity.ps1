@@ -3,6 +3,11 @@ param(
     [ValidateSet('map','compile','full','sta_tclsh')][string]$Flow = 'compile'
 )
 $ErrorActionPreference = 'Stop'
+$taskMainProject=Join-Path (Split-Path -Parent $PSScriptRoot) 'ArtFlow.xml'
+if((Get-Content -LiteralPath $taskMainProject -Raw) -match 'rtl/cnn/glass_int8/glass_int8.v') {
+ & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'run_glass_efinity.ps1') -Flow $Flow -EfinityRoot $EfinityRoot
+ exit $LASTEXITCODE
+}
 $projectDir = Split-Path -Parent $PSScriptRoot
 $scratchDir = Join-Path $projectDir 'work'
 New-Item -ItemType Directory -Path $scratchDir -Force | Out-Null
@@ -12,7 +17,7 @@ if ($Flow -ne 'sta_tclsh') {
     Copy-Item -LiteralPath (Join-Path $projectDir 'ArtFlow.xml') -Destination (Join-Path $scratchDir 'ArtFlow.before_compile.xml') -Force
     & python -B (Join-Path $PSScriptRoot 'build_firmware.py')
     if ($LASTEXITCODE -ne 0) { throw 'Firmware build failed' }
-    & python -B (Join-Path $PSScriptRoot 'check_project_v09.py') --snapshot
+    & python -B (Join-Path $PSScriptRoot 'check_project_u8.py') --snapshot
     if ($LASTEXITCODE -ne 0) { throw 'Project input gate failed' }
 }
 New-Item -ItemType Directory -Path (Join-Path $scratchDir 'efinity_user') -Force | Out-Null
@@ -61,7 +66,7 @@ try {
           & $efinityPython -B tools/check_implementation.py
           $resultCode = $LASTEXITCODE
           if ($resultCode -eq 0) {
-            & $efinityPython -B tools/check_project_v09.py --check-snapshot
+            & $efinityPython -B tools/check_project_u8.py --check-snapshot
             $resultCode = $LASTEXITCODE
           }
         }
@@ -69,6 +74,10 @@ try {
     }
     if ($resultCode -eq 0 -and $Flow -ne 'map') {
       & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'run_ui_cdc.ps1') -EfinityRoot $EfinityRoot
+      $resultCode = $LASTEXITCODE
+    }
+    if ($resultCode -eq 0 -and $Flow -ne 'map') {
+      & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'run_cnn_cdc.ps1') -EfinityRoot $EfinityRoot
       $resultCode = $LASTEXITCODE
     }
     exit $resultCode

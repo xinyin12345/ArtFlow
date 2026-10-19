@@ -1,3 +1,5 @@
+> 本文是 5c2218c 的 100 MHz 历史基线。当前未提交的 222.222 MHz 性能候选见 [性能说明](v09_performance_notes.md)，使用 tools/package_v09_perf.py 发布。
+
 # ArtFlow v09 S8 CNN 上板候选版
 
 本次在 `D:\work\FPGA\ArtFlow\ArtFlow` 原工程直接接入 `network` 中的冻结网络。初次生成候选时未提交；2026-10-12 按用户要求纳入 v09 候选版本提交，未自动下载板卡。最终构建与仿真结果见 `outputs/v09/manifest.json`；只有打包门禁通过后才生成该候选交付并更新 `outflow/ArtFlow.bit`。既有交付包的 `git_committed: false` 保留初次打包时的状态快照，提交不代表板级验收完成。

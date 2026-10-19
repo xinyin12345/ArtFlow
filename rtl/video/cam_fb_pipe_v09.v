@@ -59,6 +59,7 @@ module cam_fb_pipe_v09
     input [31:0] accel_pwdata, output [31:0] accel_prdata,
     output accel_pready,accel_pslverror,accel_irq,process_toggle,
     input                           axi_clk,
+    input                           cnn_clk,
     output [5:0]                    awid,
     output [AXI_ADDR_WIDTH-1:0]     awaddr,
     output [7:0]                    awlen,
@@ -213,8 +214,8 @@ artflow_accel_ctrl #(.VERSION_ID(32'h41524609),.EARLY_RELEASE(1),.ORIGINAL_BASE(
  .start(start),.src_addr(src_addr),.dst_addr(dst_addr),
  .busy(busy),.done(done),.failed(failed),.cycles(cycles),.source_consumed(source_consumed),
  .irq(accel_irq),.process_toggle(process_toggle),.completed(),.skipped(),.errors());
-artflow_cnn_dma #(.WIDTH(MAX_OUT_WIDTH),.HEIGHT(MAX_IN_HEIGHT/2)) u_accel_dma(
- .clk(axi_clk),.rst_n(accel_clk_ready),.start(start),.src_addr(src_addr),.dst_addr(dst_addr),
+artflow_cnn_accel #(.WIDTH(MAX_OUT_WIDTH),.HEIGHT(MAX_IN_HEIGHT/2)) u_accel_dma(
+ .clk(axi_clk),.cnn_clk(cnn_clk),.rst_n(accel_clk_ready),.start(start),.src_addr(src_addr),.dst_addr(dst_addr),
  .busy(busy),.done(done),.failed(failed),.cycles(cycles),.source_consumed(source_consumed),
  .awaddr(a_awaddr),
  .awlen(a_awlen),

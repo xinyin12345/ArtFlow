@@ -1,0 +1,225 @@
+{
+  "scope": "Conservative bounds for all valid source codes, not only calibration samples",
+  "layers": [
+    {
+      "name": "enc0",
+      "convolution_abs_bound": 460969,
+      "convolution_bits": 20,
+      "integer_mac_exact_in_fp32": true,
+      "spatial_sum_abs_bound": 0,
+      "spatial_sum_bits": 1,
+      "requant_abs_bound": 17332875928,
+      "requant_bits": 36
+    },
+    {
+      "name": "enc1_dw",
+      "convolution_abs_bound": 93853,
+      "convolution_bits": 18,
+      "integer_mac_exact_in_fp32": true,
+      "spatial_sum_abs_bound": 0,
+      "spatial_sum_bits": 1,
+      "requant_abs_bound": 2507621227,
+      "requant_bits": 33
+    },
+    {
+      "name": "enc1_pw",
+      "convolution_abs_bound": 74046,
+      "convolution_bits": 18,
+      "integer_mac_exact_in_fp32": true,
+      "spatial_sum_abs_bound": 0,
+      "spatial_sum_bits": 1,
+      "requant_abs_bound": 11718818008,
+      "requant_bits": 35
+    },
+    {
+      "name": "enc2_dw",
+      "convolution_abs_bound": 80391,
+      "convolution_bits": 18,
+      "integer_mac_exact_in_fp32": true,
+      "spatial_sum_abs_bound": 0,
+      "spatial_sum_bits": 1,
+      "requant_abs_bound": 4864215955,
+      "requant_bits": 34
+    },
+    {
+      "name": "enc2_pw",
+      "convolution_abs_bound": 135059,
+      "convolution_bits": 19,
+      "integer_mac_exact_in_fp32": true,
+      "spatial_sum_abs_bound": 0,
+      "spatial_sum_bits": 1,
+      "requant_abs_bound": 19566818401,
+      "requant_bits": 36
+    },
+    {
+      "name": "res0_reduce",
+      "convolution_abs_bound": 202438,
+      "convolution_bits": 19,
+      "integer_mac_exact_in_fp32": true,
+      "spatial_sum_abs_bound": 1651894080,
+      "spatial_sum_bits": 32,
+      "requant_abs_bound": 30561705525,
+      "requant_bits": 36
+    },
+    {
+      "name": "res0_spatial",
+      "convolution_abs_bound": 346672,
+      "convolution_bits": 20,
+      "integer_mac_exact_in_fp32": true,
+      "spatial_sum_abs_bound": 2828843520,
+      "spatial_sum_bits": 33,
+      "requant_abs_bound": 34172151818,
+      "requant_bits": 36
+    },
+    {
+      "name": "res0_expand",
+      "convolution_abs_bound": 90043,
+      "convolution_bits": 18,
+      "integer_mac_exact_in_fp32": true,
+      "spatial_sum_abs_bound": 734750880,
+      "spatial_sum_bits": 31,
+      "requant_abs_bound": 11962453402,
+      "requant_bits": 35
+    },
+    {
+      "name": "res1_reduce",
+      "convolution_abs_bound": 199009,
+      "convolution_bits": 19,
+      "integer_mac_exact_in_fp32": true,
+      "spatial_sum_abs_bound": 1623913440,
+      "spatial_sum_bits": 32,
+      "requant_abs_bound": 35784788715,
+      "requant_bits": 37
+    },
+    {
+      "name": "res1_spatial",
+      "convolution_abs_bound": 367984,
+      "convolution_bits": 20,
+      "integer_mac_exact_in_fp32": true,
+      "spatial_sum_abs_bound": 3002749440,
+      "spatial_sum_bits": 33,
+      "requant_abs_bound": 49324073716,
+      "requant_bits": 37
+    },
+    {
+      "name": "res1_expand",
+      "convolution_abs_bound": 81534,
+      "convolution_bits": 18,
+      "integer_mac_exact_in_fp32": true,
+      "spatial_sum_abs_bound": 665317440,
+      "spatial_sum_bits": 31,
+      "requant_abs_bound": 9358091951,
+      "requant_bits": 35
+    },
+    {
+      "name": "res2_reduce",
+      "convolution_abs_bound": 202438,
+      "convolution_bits": 19,
+      "integer_mac_exact_in_fp32": true,
+      "spatial_sum_abs_bound": 1651894080,
+      "spatial_sum_bits": 32,
+      "requant_abs_bound": 134949995628,
+      "requant_bits": 38
+    },
+    {
+      "name": "res2_spatial",
+      "convolution_abs_bound": 316010,
+      "convolution_bits": 20,
+      "integer_mac_exact_in_fp32": true,
+      "spatial_sum_abs_bound": 2578641600,
+      "spatial_sum_bits": 33,
+      "requant_abs_bound": 36756860495,
+      "requant_bits": 37
+    },
+    {
+      "name": "res2_expand",
+      "convolution_abs_bound": 86868,
+      "convolution_bits": 18,
+      "integer_mac_exact_in_fp32": true,
+      "spatial_sum_abs_bound": 708842880,
+      "spatial_sum_bits": 31,
+      "requant_abs_bound": 7837114434,
+      "requant_bits": 34
+    },
+    {
+      "name": "res3_reduce",
+      "convolution_abs_bound": 209677,
+      "convolution_bits": 19,
+      "integer_mac_exact_in_fp32": true,
+      "spatial_sum_abs_bound": 1710964320,
+      "spatial_sum_bits": 32,
+      "requant_abs_bound": 133444597513,
+      "requant_bits": 38
+    },
+    {
+      "name": "res3_spatial",
+      "convolution_abs_bound": 313760,
+      "convolution_bits": 20,
+      "integer_mac_exact_in_fp32": true,
+      "spatial_sum_abs_bound": 2560281600,
+      "spatial_sum_bits": 33,
+      "requant_abs_bound": 56788570757,
+      "requant_bits": 37
+    },
+    {
+      "name": "res3_expand",
+      "convolution_abs_bound": 94615,
+      "convolution_bits": 18,
+      "integer_mac_exact_in_fp32": true,
+      "spatial_sum_abs_bound": 772058400,
+      "spatial_sum_bits": 31,
+      "requant_abs_bound": 5965112765,
+      "requant_bits": 34
+    },
+    {
+      "name": "dec1_dw",
+      "convolution_abs_bound": 87630,
+      "convolution_bits": 18,
+      "integer_mac_exact_in_fp32": true,
+      "spatial_sum_abs_bound": 0,
+      "spatial_sum_bits": 1,
+      "requant_abs_bound": 10774056053,
+      "requant_bits": 35
+    },
+    {
+      "name": "dec1_pw",
+      "convolution_abs_bound": 214084,
+      "convolution_bits": 19,
+      "integer_mac_exact_in_fp32": true,
+      "spatial_sum_abs_bound": 0,
+      "spatial_sum_bits": 1,
+      "requant_abs_bound": 27736807270,
+      "requant_bits": 36
+    },
+    {
+      "name": "dec2_dw",
+      "convolution_abs_bound": 86868,
+      "convolution_bits": 18,
+      "integer_mac_exact_in_fp32": true,
+      "spatial_sum_abs_bound": 0,
+      "spatial_sum_bits": 1,
+      "requant_abs_bound": 3736011328,
+      "requant_bits": 33
+    },
+    {
+      "name": "dec2_pw",
+      "convolution_abs_bound": 136880,
+      "convolution_bits": 19,
+      "integer_mac_exact_in_fp32": true,
+      "spatial_sum_abs_bound": 0,
+      "spatial_sum_bits": 1,
+      "requant_abs_bound": 29706086660,
+      "requant_bits": 36
+    },
+    {
+      "name": "output",
+      "convolution_abs_bound": 892899,
+      "convolution_bits": 21,
+      "integer_mac_exact_in_fp32": true,
+      "spatial_sum_abs_bound": 0,
+      "spatial_sum_bits": 1,
+      "requant_abs_bound": 25825570936,
+      "requant_bits": 36
+    }
+  ]
+}

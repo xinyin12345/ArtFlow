@@ -1,0 +1,736 @@
+%Warning-WIDTHTRUNC: rtl\student_u8.v:10:19: Operator VAR 'CW' expects 10 bits on the Initial value, but Initial value's VARREF 'W' generates 32 bits.
+                                           : ... note: In instance 'student_u8'
+   10 |  localparam [9:0] CW=W,CW2=W/2,CW4=W/4,CW8=W/8;
+      |                   ^~
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=0.000
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: rtl\student_u8.v:10:24: Operator VAR 'CW2' expects 10 bits on the Initial value, but Initial value's DIVS generates 32 bits.
+                                           : ... note: In instance 'student_u8'
+   10 |  localparam [9:0] CW=W,CW2=W/2,CW4=W/4,CW8=W/8;
+      |                        ^~~
+%Warning-WIDTHTRUNC: rtl\student_u8.v:10:32: Operator VAR 'CW4' expects 10 bits on the Initial value, but Initial value's DIVS generates 32 bits.
+                                           : ... note: In instance 'student_u8'
+   10 |  localparam [9:0] CW=W,CW2=W/2,CW4=W/4,CW8=W/8;
+      |                                ^~~
+%Warning-WIDTHTRUNC: rtl\student_u8.v:10:40: Operator VAR 'CW8' expects 10 bits on the Initial value, but Initial value's DIVS generates 32 bits.
+                                           : ... note: In instance 'student_u8'
+   10 |  localparam [9:0] CW=W,CW2=W/2,CW4=W/4,CW8=W/8;
+      |                                        ^~~
+%Warning-WIDTHEXPAND: rtl\source_stats.v:22:44: Operator ADD expects 24 bits on the RHS, but RHS's VARREF 'increment' generates 11 bits.
+                                              : ... note: In instance 'student_u8.statistics'
+   22 |  else if(capture&&group_hi==(c>=8))sum<=sum+increment;
+      |                                            ^
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=0.000
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: rtl\shared_quant.v:12:3: Operator ASSIGN expects 25 bits on the Assign RHS, but Assign RHS's SHIFTRS generates 48 bits.
+                                            : ... note: In instance 'student_u8.quant'
+   12 |  t=$signed(z)>>>24;
+      |   ^
+%Warning-WIDTHEXPAND: rtl\shared_quant.v:34:34: Operator ADD expects 48 bits on the LHS, but LHS's SIGNED generates 45 bits.
+                                              : ... note: In instance 'student_u8.quant'
+   34 |    if(v1)total[j]<=$signed(pm[j])+$signed(ps[j])+$signed(db[j]);
+      |                                  ^
+%Warning-WIDTHEXPAND: rtl\shared_quant.v:34:34: Operator ADD expects 48 bits on the RHS, but RHS's SIGNED generates 34 bits.
+                                              : ... note: In instance 'student_u8.quant'
+   34 |    if(v1)total[j]<=$signed(pm[j])+$signed(ps[j])+$signed(db[j]);
+      |                                  ^
+%Warning-WIDTHEXPAND: rtl\shared_line.v:12:24: Operator ADD expects 16 bits on the RHS, but RHS's VARREF 'delta' generates 5 bits.
+                                             : ... note: In instance 'student_u8.lines'
+   12 |    wire [15:0] ra=raddr+delta;
+      |                        ^
+%Warning-WIDTHTRUNC: rtl\shared_line.v:14:34: Bit extraction of array[359:0] requires 9 bit index, not 11 bits.
+                                            : ... note: In instance 'student_u8.lines'
+   14 |      if(we && waddr[4:3]==b/8)ram[waddr[15:5]]<=wdata[(b%8)*8+:8];
+      |                                  ^
+%Warning-WIDTHEXPAND: rtl\shared_line.v:14:25: Operator EQ expects 32 or 4 bits on the LHS, but LHS's SEL generates 2 bits.
+                                             : ... note: In instance 'student_u8.lines'
+   14 |      if(we && waddr[4:3]==b/8)ram[waddr[15:5]]<=wdata[(b%8)*8+:8];
+      |                         ^~
+%Warning-WIDTHTRUNC: rtl\shared_line.v:15:13: Bit extraction of array[359:0] requires 9 bit index, not 11 bits.
+                                            : ... note: In instance 'student_u8.lines'
+   15 |      qr<=ram[ra[15:5]];
+      |             ^
+%Warning-WIDTHEXPAND: rtl\shared_line.v:14:25: Operator EQ expects 32 or 5 bits on the LHS, but LHS's SEL generates 2 bits.
+                                             : ... note: In instance 'student_u8.lines'
+   14 |      if(we && waddr[4:3]==b/8)ram[waddr[15:5]]<=wdata[(b%8)*8+:8];
+      |                         ^~
+%Warning-WIDTHEXPAND: rtl\center_div.v:17:104: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'area' generates 20 bits.
+                                             : ... note: In instance 'student_u8.center_unit'
+   17 |  0:if(start)begin saved_project<=project;saved_sum<=sum;saved_multiplier<=multiplier;saved_beta<=beta;n<=area;state<=1;end
+      |                                                                                                        ^~
+%Warning-WIDTHEXPAND: rtl\center_div.v:31:49: Operator ADD expects 64 bits on the LHS, but LHS's SIGNED generates 32 bits.
+                                            : ... note: In instance 'student_u8.center_unit'
+   31 |    if(negative)dynamic_bias<=$signed(saved_beta)+$signed(quotient);
+      |                                                 ^
+%Warning-WIDTHTRUNC: rtl\center_div.v:31:28: Operator ASSIGNDLY expects 48 bits on the Assign RHS, but Assign RHS's ADD generates 64 bits.
+                                           : ... note: In instance 'student_u8.center_unit'
+   31 |    if(negative)dynamic_bias<=$signed(saved_beta)+$signed(quotient);
+      |                            ^~
+%Warning-WIDTHEXPAND: rtl\center_div.v:32:42: Operator SUB expects 64 bits on the LHS, but LHS's SIGNED generates 32 bits.
+                                            : ... note: In instance 'student_u8.center_unit'
+   32 |    else dynamic_bias<=$signed(saved_beta)-$signed(quotient);
+      |                                          ^
+%Warning-WIDTHTRUNC: rtl\center_div.v:32:21: Operator ASSIGNDLY expects 48 bits on the Assign RHS, but Assign RHS's SUB generates 64 bits.
+                                           : ... note: In instance 'student_u8.center_unit'
+   32 |    else dynamic_bias<=$signed(saved_beta)-$signed(quotient);
+      |                     ^~
+%Warning-WIDTHTRUNC: rtl\student_u8.v:19:23: Operator ASSIGNW expects 20 bits on the Assign RHS, but Assign RHS's MULS generates 32 bits.
+                                           : ... note: In instance 'student_u8'
+   19 |  wire [19:0] mean_area=(W/4)*(H/4);
+      |                       ^
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:5:25: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                             : ... note: In instance 'student_u8'
+    5 | ci=3;co=8;isp=8;osp=8;iw=W/1;ih=H/1;ow=W/1;oh=H/1;
+      |                         ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:5:32: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                             : ... note: In instance 'student_u8'
+    5 | ci=3;co=8;isp=8;osp=8;iw=W/1;ih=H/1;ow=W/1;oh=H/1;
+      |                                ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:5:39: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                             : ... note: In instance 'student_u8'
+    5 | ci=3;co=8;isp=8;osp=8;iw=W/1;ih=H/1;ow=W/1;oh=H/1;
+      |                                       ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:5:46: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                             : ... note: In instance 'student_u8'
+    5 | ci=3;co=8;isp=8;osp=8;iw=W/1;ih=H/1;ow=W/1;oh=H/1;
+      |                                              ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:9:26: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                             : ... note: In instance 'student_u8'
+    9 | ci=8;co=8;isp=8;osp=16;iw=W/1;ih=H/1;ow=W/2;oh=H/2;
+      |                          ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:9:33: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                             : ... note: In instance 'student_u8'
+    9 | ci=8;co=8;isp=8;osp=16;iw=W/1;ih=H/1;ow=W/2;oh=H/2;
+      |                                 ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:9:40: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                             : ... note: In instance 'student_u8'
+    9 | ci=8;co=8;isp=8;osp=16;iw=W/1;ih=H/1;ow=W/2;oh=H/2;
+      |                                        ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:9:47: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                             : ... note: In instance 'student_u8'
+    9 | ci=8;co=8;isp=8;osp=16;iw=W/1;ih=H/1;ow=W/2;oh=H/2;
+      |                                               ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:13:28: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   13 | ci=8;co=16;isp=16;osp=16;iw=W/2;ih=H/2;ow=W/2;oh=H/2;
+      |                            ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:13:35: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   13 | ci=8;co=16;isp=16;osp=16;iw=W/2;ih=H/2;ow=W/2;oh=H/2;
+      |                                   ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:13:42: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   13 | ci=8;co=16;isp=16;osp=16;iw=W/2;ih=H/2;ow=W/2;oh=H/2;
+      |                                          ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:13:49: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   13 | ci=8;co=16;isp=16;osp=16;iw=W/2;ih=H/2;ow=W/2;oh=H/2;
+      |                                                 ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:17:29: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   17 | ci=16;co=16;isp=16;osp=32;iw=W/2;ih=H/2;ow=W/4;oh=H/4;
+      |                             ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:17:36: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   17 | ci=16;co=16;isp=16;osp=32;iw=W/2;ih=H/2;ow=W/4;oh=H/4;
+      |                                    ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:17:43: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   17 | ci=16;co=16;isp=16;osp=32;iw=W/2;ih=H/2;ow=W/4;oh=H/4;
+      |                                           ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:17:50: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   17 | ci=16;co=16;isp=16;osp=32;iw=W/2;ih=H/2;ow=W/4;oh=H/4;
+      |                                                  ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:21:29: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   21 | ci=16;co=16;isp=32;osp=16;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                             ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:21:36: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   21 | ci=16;co=16;isp=32;osp=16;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                    ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:21:43: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   21 | ci=16;co=16;isp=32;osp=16;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                           ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:21:50: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   21 | ci=16;co=16;isp=32;osp=16;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                                  ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:25:27: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   25 | ci=16;co=8;isp=16;osp=8;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                           ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:25:34: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   25 | ci=16;co=8;isp=16;osp=8;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                  ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:25:41: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   25 | ci=16;co=8;isp=16;osp=8;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                         ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:25:48: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   25 | ci=16;co=8;isp=16;osp=8;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                                ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:29:25: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   29 | ci=8;co=8;isp=8;osp=8;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                         ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:29:32: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   29 | ci=8;co=8;isp=8;osp=8;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:29:39: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   29 | ci=8;co=8;isp=8;osp=8;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                       ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:29:46: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   29 | ci=8;co=8;isp=8;osp=8;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                              ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:33:27: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   33 | ci=8;co=16;isp=8;osp=16;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                           ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:33:34: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   33 | ci=8;co=16;isp=8;osp=16;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                  ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:33:41: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   33 | ci=8;co=16;isp=8;osp=16;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                         ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:33:48: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   33 | ci=8;co=16;isp=8;osp=16;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                                ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:37:27: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   37 | ci=16;co=8;isp=16;osp=8;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                           ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:37:34: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   37 | ci=16;co=8;isp=16;osp=8;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                  ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:37:41: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   37 | ci=16;co=8;isp=16;osp=8;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                         ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:37:48: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   37 | ci=16;co=8;isp=16;osp=8;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                                ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:41:25: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   41 | ci=8;co=8;isp=8;osp=8;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                         ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:41:32: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   41 | ci=8;co=8;isp=8;osp=8;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:41:39: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   41 | ci=8;co=8;isp=8;osp=8;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                       ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:41:46: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   41 | ci=8;co=8;isp=8;osp=8;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                              ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:45:27: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   45 | ci=8;co=16;isp=8;osp=16;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                           ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:45:34: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   45 | ci=8;co=16;isp=8;osp=16;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                  ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:45:41: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   45 | ci=8;co=16;isp=8;osp=16;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                         ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:45:48: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   45 | ci=8;co=16;isp=8;osp=16;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                                ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:49:27: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   49 | ci=16;co=8;isp=16;osp=8;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                           ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:49:34: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   49 | ci=16;co=8;isp=16;osp=8;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                  ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:49:41: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   49 | ci=16;co=8;isp=16;osp=8;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                         ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:49:48: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   49 | ci=16;co=8;isp=16;osp=8;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                                ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:53:25: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   53 | ci=8;co=8;isp=8;osp=8;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                         ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:53:32: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   53 | ci=8;co=8;isp=8;osp=8;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:53:39: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   53 | ci=8;co=8;isp=8;osp=8;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                       ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:53:46: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   53 | ci=8;co=8;isp=8;osp=8;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                              ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:57:27: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   57 | ci=8;co=16;isp=8;osp=16;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                           ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:57:34: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   57 | ci=8;co=16;isp=8;osp=16;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                  ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:57:41: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   57 | ci=8;co=16;isp=8;osp=16;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                         ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:57:48: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   57 | ci=8;co=16;isp=8;osp=16;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                                ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:61:29: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   61 | ci=16;co=12;isp=16;osp=16;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                             ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:61:36: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   61 | ci=16;co=12;isp=16;osp=16;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                    ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:61:43: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   61 | ci=16;co=12;isp=16;osp=16;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                           ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:61:50: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   61 | ci=16;co=12;isp=16;osp=16;iw=W/4;ih=H/4;ow=W/4;oh=H/4;
+      |                                                  ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:65:29: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   65 | ci=12;co=12;isp=16;osp=16;iw=W/4;ih=H/4;ow=W/2;oh=H/2;
+      |                             ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:65:36: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   65 | ci=12;co=12;isp=16;osp=16;iw=W/4;ih=H/4;ow=W/2;oh=H/2;
+      |                                    ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:65:43: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   65 | ci=12;co=12;isp=16;osp=16;iw=W/4;ih=H/4;ow=W/2;oh=H/2;
+      |                                           ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:65:50: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   65 | ci=12;co=12;isp=16;osp=16;iw=W/4;ih=H/4;ow=W/2;oh=H/2;
+      |                                                  ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:69:27: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   69 | ci=12;co=8;isp=16;osp=8;iw=W/2;ih=H/2;ow=W/2;oh=H/2;
+      |                           ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:69:34: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   69 | ci=12;co=8;isp=16;osp=8;iw=W/2;ih=H/2;ow=W/2;oh=H/2;
+      |                                  ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:69:41: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   69 | ci=12;co=8;isp=16;osp=8;iw=W/2;ih=H/2;ow=W/2;oh=H/2;
+      |                                         ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:69:48: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   69 | ci=12;co=8;isp=16;osp=8;iw=W/2;ih=H/2;ow=W/2;oh=H/2;
+      |                                                ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:73:25: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   73 | ci=8;co=8;isp=8;osp=8;iw=W/2;ih=H/2;ow=W/1;oh=H/1;
+      |                         ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:73:32: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   73 | ci=8;co=8;isp=8;osp=8;iw=W/2;ih=H/2;ow=W/1;oh=H/1;
+      |                                ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:73:39: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   73 | ci=8;co=8;isp=8;osp=8;iw=W/2;ih=H/2;ow=W/1;oh=H/1;
+      |                                       ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:73:46: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   73 | ci=8;co=8;isp=8;osp=8;iw=W/2;ih=H/2;ow=W/1;oh=H/1;
+      |                                              ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:77:25: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   77 | ci=8;co=3;isp=8;osp=8;iw=W/1;ih=H/1;ow=W/1;oh=H/1;
+      |                         ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:77:32: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   77 | ci=8;co=3;isp=8;osp=8;iw=W/1;ih=H/1;ow=W/1;oh=H/1;
+      |                                ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:77:39: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   77 | ci=8;co=3;isp=8;osp=8;iw=W/1;ih=H/1;ow=W/1;oh=H/1;
+      |                                       ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\layer_config.vh:77:46: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's DIVS generates 32 bits.
+                                              : ... note: In instance 'student_u8'
+   77 | ci=8;co=3;isp=8;osp=8;iw=W/1;ih=H/1;ow=W/1;oh=H/1;
+      |                                              ^
+                     rtl\student_u8.v:21:1: ... note: In file included from 'student_u8.v'
+%Warning-WIDTHTRUNC: rtl\student_u8.v:23:22: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's NEGATE generates 12 bits.
+                                           : ... note: In instance 'student_u8'
+   23 |  begin if(x<0)reflect=-x;else if(x>=size)reflect=(size<<1)-2-x;else reflect=x;end
+      |                      ^
+%Warning-WIDTHEXPAND: rtl\student_u8.v:23:55: Operator SHIFTL expects 32 or 12 bits on the LHS, but LHS's VARREF 'size' generates 11 bits.
+                                            : ... note: In instance 'student_u8'
+   23 |  begin if(x<0)reflect=-x;else if(x>=size)reflect=(size<<1)-2-x;else reflect=x;end
+      |                                                       ^~
+%Warning-WIDTHTRUNC: rtl\student_u8.v:23:49: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's SUB generates 32 or 12 bits.
+                                           : ... note: In instance 'student_u8'
+   23 |  begin if(x<0)reflect=-x;else if(x>=size)reflect=(size<<1)-2-x;else reflect=x;end
+      |                                                 ^
+%Warning-WIDTHTRUNC: rtl\student_u8.v:23:76: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's VARREF 'x' generates 12 bits.
+                                           : ... note: In instance 'student_u8'
+   23 |  begin if(x<0)reflect=-x;else if(x>=size)reflect=(size<<1)-2-x;else reflect=x;end
+      |                                                                            ^
+%Warning-WIDTHEXPAND: rtl\student_u8.v:23:35: Operator GTE expects 12 bits on the RHS, but RHS's VARREF 'size' generates 11 bits.
+                                            : ... note: In instance 'student_u8'
+   23 |  begin if(x<0)reflect=-x;else if(x>=size)reflect=(size<<1)-2-x;else reflect=x;end
+      |                                   ^~
+%Warning-WIDTHEXPAND: rtl\student_u8.v:28:18: Operator SHIFTL expects 16 bits on the LHS, but LHS's VARREF 'x' generates 10 bits.
+                                            : ... note: In instance 'student_u8'
+   28 |  8:pixel_offset=x<<3;16:pixel_offset=x<<4;
+      |                  ^~
+%Warning-WIDTHEXPAND: rtl\student_u8.v:28:39: Operator SHIFTL expects 16 bits on the LHS, but LHS's VARREF 'x' generates 10 bits.
+                                            : ... note: In instance 'student_u8'
+   28 |  8:pixel_offset=x<<3;16:pixel_offset=x<<4;
+      |                                       ^~
+%Warning-WIDTHEXPAND: rtl\student_u8.v:29:19: Operator SHIFTL expects 16 bits on the LHS, but LHS's VARREF 'x' generates 10 bits.
+                                            : ... note: In instance 'student_u8'
+   29 |  32:pixel_offset=x<<5;
+      |                   ^~
+%Warning-WIDTHTRUNC: rtl\student_u8.v:39:23: Operator FUNCREF 'constant_product' expects 16 bits on the Function Argument, but Function Argument's MULS generates 32 bits.
+                                           : ... note: In instance 'student_u8'
+   39 |  if(iw==CW)row_offset=constant_product(row,8*W);
+      |                       ^~~~~~~~~~~~~~~~
+%Warning-WIDTHTRUNC: rtl\student_u8.v:41:23: Operator FUNCREF 'constant_product' expects 16 bits on the Function Argument, but Function Argument's MULS generates 32 bits.
+                                           : ... note: In instance 'student_u8'
+   41 |  if(isp==8)row_offset=constant_product(row,4*W);else row_offset=constant_product(row,8*W);
+      |                       ^~~~~~~~~~~~~~~~
+%Warning-WIDTHTRUNC: rtl\student_u8.v:41:65: Operator FUNCREF 'constant_product' expects 16 bits on the Function Argument, but Function Argument's MULS generates 32 bits.
+                                           : ... note: In instance 'student_u8'
+   41 |  if(isp==8)row_offset=constant_product(row,4*W);else row_offset=constant_product(row,8*W);
+      |                                                                 ^~~~~~~~~~~~~~~~
+%Warning-WIDTHTRUNC: rtl\student_u8.v:44:15: Operator FUNCREF 'constant_product' expects 16 bits on the Function Argument, but Function Argument's MULS generates 32 bits.
+                                           : ... note: In instance 'student_u8'
+   44 |  8:row_offset=constant_product(row,2*W);
+      |               ^~~~~~~~~~~~~~~~
+%Warning-WIDTHTRUNC: rtl\student_u8.v:45:16: Operator FUNCREF 'constant_product' expects 16 bits on the Function Argument, but Function Argument's MULS generates 32 bits.
+                                           : ... note: In instance 'student_u8'
+   45 |  16:row_offset=constant_product(row,4*W);
+      |                ^~~~~~~~~~~~~~~~
+%Warning-WIDTHTRUNC: rtl\student_u8.v:46:16: Operator FUNCREF 'constant_product' expects 16 bits on the Function Argument, but Function Argument's MULS generates 32 bits.
+                                           : ... note: In instance 'student_u8'
+   46 |  32:row_offset=constant_product(row,8*W);
+      |                ^~~~~~~~~~~~~~~~
+%Warning-WIDTHEXPAND: rtl\student_u8.v:53:27: Operator COND expects 32 or 6 bits on the Conditional False, but Conditional False's VARREF 'ng' generates 3 bits.
+                                            : ... note: In instance 'student_u8'
+   53 |  wire [5:0] steps=dw?1:(k3?ng*9:ng);
+      |                           ^
+%Warning-WIDTHEXPAND: rtl\student_u8.v:78:52: Operator GTE expects 32 bits on the LHS, but LHS's VARREF 'req_row' generates 10 bits.
+                                            : ... note: In instance 'student_u8'
+   78 |  wire [9:0] physical_row=(layer_index==0 && req_row>=EXT_H)?(2*EXT_H-2-req_row):req_row;
+      |                                                    ^~
+%Warning-WIDTHEXPAND: rtl\student_u8.v:78:71: Operator SUB expects 32 bits on the RHS, but RHS's VARREF 'req_row' generates 10 bits.
+                                            : ... note: In instance 'student_u8'
+   78 |  wire [9:0] physical_row=(layer_index==0 && req_row>=EXT_H)?(2*EXT_H-2-req_row):req_row;
+      |                                                                       ^
+%Warning-WIDTHEXPAND: rtl\student_u8.v:78:60: Operator COND expects 32 bits on the Conditional False, but Conditional False's VARREF 'req_row' generates 10 bits.
+                                            : ... note: In instance 'student_u8'
+   78 |  wire [9:0] physical_row=(layer_index==0 && req_row>=EXT_H)?(2*EXT_H-2-req_row):req_row;
+      |                                                            ^
+%Warning-WIDTHTRUNC: rtl\student_u8.v:78:25: Operator ASSIGNW expects 10 bits on the Assign RHS, but Assign RHS's COND generates 32 bits.
+                                           : ... note: In instance 'student_u8'
+   78 |  wire [9:0] physical_row=(layer_index==0 && req_row>=EXT_H)?(2*EXT_H-2-req_row):req_row;
+      |                         ^
+%Warning-WIDTHTRUNC: rtl\student_u8.v:79:16: Operator ASSIGNW expects 2 bits on the Assign RHS, but Assign RHS's DIV generates 32 or 4 bits.
+                                           : ... note: In instance 'student_u8'
+   79 |  wire [1:0] pky=ptap/3,pkx=ptap%3;
+      |                ^
+%Warning-WIDTHTRUNC: rtl\student_u8.v:79:27: Operator ASSIGNW expects 2 bits on the Assign RHS, but Assign RHS's MODDIV generates 32 or 4 bits.
+                                           : ... note: In instance 'student_u8'
+   79 |  wire [1:0] pky=ptap/3,pkx=ptap%3;
+      |                           ^
+%Warning-WIDTHEXPAND: rtl\student_u8.v:86:87: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'pf_offset' generates 16 bits.
+                                            : ... note: In instance 'student_u8'
+   86 |  wire [15:0] line_waddr=prefetch_response?((pf_slot==0?0:pf_slot==1?ROW_CAP:2*ROW_CAP)+pf_offset):((loading_slot==0?0:loading_slot==1?ROW_CAP:2*ROW_CAP)+load_offset);
+      |                                                                                       ^
+%Warning-WIDTHEXPAND: rtl\student_u8.v:86:153: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'load_offset' generates 16 bits.
+                                             : ... note: In instance 'student_u8'
+   86 |  wire [15:0] line_waddr=prefetch_response?((pf_slot==0?0:pf_slot==1?ROW_CAP:2*ROW_CAP)+pf_offset):((loading_slot==0?0:loading_slot==1?ROW_CAP:2*ROW_CAP)+load_offset);
+      |                                                                                                                                                         ^
+%Warning-WIDTHTRUNC: rtl\student_u8.v:86:24: Operator ASSIGNW expects 16 bits on the Assign RHS, but Assign RHS's COND generates 32 bits.
+                                           : ... note: In instance 'student_u8'
+   86 |  wire [15:0] line_waddr=prefetch_response?((pf_slot==0?0:pf_slot==1?ROW_CAP:2*ROW_CAP)+pf_offset):((loading_slot==0?0:loading_slot==1?ROW_CAP:2*ROW_CAP)+load_offset);
+      |                        ^
+%Warning-WIDTHTRUNC: rtl\student_u8.v:107:22: Bit extraction of array[17:0] requires 5 bit index, not 6 bits.
+                                            : ... note: In instance 'student_u8'
+  107 |  if(saved_bank)patch1[saved_index]<=masked;else patch0[saved_index]<=masked;
+      |                      ^
+%Warning-WIDTHTRUNC: rtl\student_u8.v:107:55: Bit extraction of array[17:0] requires 5 bit index, not 6 bits.
+                                            : ... note: In instance 'student_u8'
+  107 |  if(saved_bank)patch1[saved_index]<=masked;else patch0[saved_index]<=masked;
+      |                                                       ^
+%Warning-WIDTHEXPAND: rtl\student_u8.v:130:53: Operator COND expects 32 or 9 bits on the Conditional True, but Conditional True's VARREF 'steps' generates 6 bits.
+                                             : ... note: In instance 'student_u8'
+  130 |  wire [8:0] weight_addr=projecting?wbase+(proj_oc[3]?steps:0)+(ng==2?(proj_tap<<1):proj_tap)+(proj_ic>=12?1:0):wbase+(dw?og:(og?steps:0))+(dw?0:issue_index);
+      |                                                     ^
+%Warning-WIDTHEXPAND: rtl\student_u8.v:130:79: Operator SHIFTL expects 32 or 9 bits on the LHS, but LHS's VARREF 'proj_tap' generates 4 bits.
+                                             : ... note: In instance 'student_u8'
+  130 |  wire [8:0] weight_addr=projecting?wbase+(proj_oc[3]?steps:0)+(ng==2?(proj_tap<<1):proj_tap)+(proj_ic>=12?1:0):wbase+(dw?og:(og?steps:0))+(dw?0:issue_index);
+      |                                                                               ^~
+%Warning-WIDTHEXPAND: rtl\student_u8.v:130:69: Operator COND expects 32 or 9 bits on the Conditional False, but Conditional False's VARREF 'proj_tap' generates 4 bits.
+                                             : ... note: In instance 'student_u8'
+  130 |  wire [8:0] weight_addr=projecting?wbase+(proj_oc[3]?steps:0)+(ng==2?(proj_tap<<1):proj_tap)+(proj_ic>=12?1:0):wbase+(dw?og:(og?steps:0))+(dw?0:issue_index);
+      |                                                                     ^
+%Warning-WIDTHEXPAND: rtl\student_u8.v:130:121: Operator COND expects 32 or 9 bits on the Conditional True, but Conditional True's VARREF 'og' generates 1 bits.
+                                              : ... note: In instance 'student_u8'
+  130 |  wire [8:0] weight_addr=projecting?wbase+(proj_oc[3]?steps:0)+(ng==2?(proj_tap<<1):proj_tap)+(proj_ic>=12?1:0):wbase+(dw?og:(og?steps:0))+(dw?0:issue_index);
+      |                                                                                                                         ^
+%Warning-WIDTHEXPAND: rtl\student_u8.v:130:128: Operator COND expects 32 or 9 bits on the Conditional True, but Conditional True's VARREF 'steps' generates 6 bits.
+                                              : ... note: In instance 'student_u8'
+  130 |  wire [8:0] weight_addr=projecting?wbase+(proj_oc[3]?steps:0)+(ng==2?(proj_tap<<1):proj_tap)+(proj_ic>=12?1:0):wbase+(dw?og:(og?steps:0))+(dw?0:issue_index);
+      |                                                                                                                                ^
+%Warning-WIDTHEXPAND: rtl\student_u8.v:130:142: Operator COND expects 32 or 9 bits on the Conditional False, but Conditional False's VARREF 'issue_index' generates 6 bits.
+                                              : ... note: In instance 'student_u8'
+  130 |  wire [8:0] weight_addr=projecting?wbase+(proj_oc[3]?steps:0)+(ng==2?(proj_tap<<1):proj_tap)+(proj_ic>=12?1:0):wbase+(dw?og:(og?steps:0))+(dw?0:issue_index);
+      |                                                                                                                                              ^
+%Warning-WIDTHEXPAND: rtl\student_u8.v:131:66: Operator ADD expects 32 or 8 bits on the RHS, but RHS's VARREF 'coeff_quad' generates 2 bits.
+                                             : ... note: In instance 'student_u8'
+  131 |  wire [7:0] coeff_addr=(state==COEFF_REQ||state==COEFF_CAP)?cbase+coeff_quad:(state==MEAN_REQ||state==MEAN_START||state==MEAN_WAIT)?cbase+(mean_ch>>2):cbase+(og<<1)+(cs==C_B0?1:0);
+      |                                                                  ^
+%Warning-WIDTHEXPAND: rtl\student_u8.v:131:147: Operator SHIFTR expects 32 or 8 bits on the LHS, but LHS's VARREF 'mean_ch' generates 5 bits.
+                                              : ... note: In instance 'student_u8'
+  131 |  wire [7:0] coeff_addr=(state==COEFF_REQ||state==COEFF_CAP)?cbase+coeff_quad:(state==MEAN_REQ||state==MEAN_START||state==MEAN_WAIT)?cbase+(mean_ch>>2):cbase+(og<<1)+(cs==C_B0?1:0);
+      |                                                                                                                                                   ^~
+%Warning-WIDTHEXPAND: rtl\student_u8.v:131:161: Operator SHIFTL expects 32 or 8 bits on the LHS, but LHS's VARREF 'og' generates 1 bits.
+                                              : ... note: In instance 'student_u8'
+  131 |  wire [7:0] coeff_addr=(state==COEFF_REQ||state==COEFF_CAP)?cbase+coeff_quad:(state==MEAN_REQ||state==MEAN_START||state==MEAN_WAIT)?cbase+(mean_ch>>2):cbase+(og<<1)+(cs==C_B0?1:0);
+      |                                                                                                                                                                 ^~
+%Warning-WIDTHTRUNC: rtl\student_u8.v:134:16: Bit extraction of array[127:0] requires 7 bit index, not 9 bits.
+                                            : ... note: In instance 'student_u8'
+  134 |  weight_q<=wrom[weight_addr];
+      |                ^
+%Warning-WIDTHTRUNC: rtl\student_u8.v:135:30: Bit extraction of array[17:0] requires 5 bit index, not 6 bits.
+                                            : ... note: In instance 'student_u8'
+  135 |  patch_q<=consume_bank?patch1[issue_index]:patch0[issue_index];
+      |                              ^
+%Warning-WIDTHTRUNC: rtl\student_u8.v:135:50: Bit extraction of array[17:0] requires 5 bit index, not 6 bits.
+                                            : ... note: In instance 'student_u8'
+  135 |  patch_q<=consume_bank?patch1[issue_index]:patch0[issue_index];
+      |                                                  ^
+%Warning-WIDTHTRUNC: rtl\student_u8.v:136:14: Bit extraction of array[63:0] requires 6 bit index, not 8 bits.
+                                            : ... note: In instance 'student_u8'
+  136 |  bias_q<=brom[coeff_addr];mul_q<=mrom[coeff_addr];beta_q<=trom[coeff_addr];
+      |              ^
+%Warning-WIDTHTRUNC: rtl\student_u8.v:136:38: Bit extraction of array[63:0] requires 6 bit index, not 8 bits.
+                                            : ... note: In instance 'student_u8'
+  136 |  bias_q<=brom[coeff_addr];mul_q<=mrom[coeff_addr];beta_q<=trom[coeff_addr];
+      |                                      ^
+%Warning-WIDTHTRUNC: rtl\student_u8.v:136:63: Bit extraction of array[63:0] requires 6 bit index, not 8 bits.
+                                            : ... note: In instance 'student_u8'
+  136 |  bias_q<=brom[coeff_addr];mul_q<=mrom[coeff_addr];beta_q<=trom[coeff_addr];
+      |                                                               ^
+%Warning-WIDTHTRUNC: rtl\student_u8.v:141:106: Bit extraction of array[15:0] requires 4 bit index, not 5 bits.
+                                             : ... note: In instance 'student_u8'
+  141 |  wire signed [39:0] math_sum=projecting?{{16{projected_source_sum[23]}},projected_source_sum}:center_sums[mean_ch];
+      |                                                                                                          ^
+%Warning-WIDTHEXPAND: rtl\student_u8.v:206:66: Operator SHIFTL expects 24 bits on the LHS, but LHS's VARREF 'og' generates 1 bits.
+                                             : ... note: In instance 'student_u8'
+  206 |  mem_valid=1;mem_addr={skip_slot,21'd0}+offsets[consume_bank]+(og<<3);
+      |                                                                  ^~
+%Warning-WIDTHEXPAND: rtl\student_u8.v:207:59: Operator ADD expects 24 bits on the RHS, but RHS's VARREF 'load_offset' generates 16 bits.
+                                             : ... note: In instance 'student_u8'
+  207 |  end else if(want_row)begin mem_valid=1;mem_addr=load_base+load_offset;end
+      |                                                           ^
+%Warning-WIDTHEXPAND: rtl\student_u8.v:208:58: Operator ADD expects 24 bits on the RHS, but RHS's VARREF 'pf_offset' generates 16 bits.
+                                             : ... note: In instance 'student_u8'
+  208 |  else if(want_prefetch)begin mem_valid=1;mem_addr=pf_base+pf_offset;end
+      |                                                          ^
+%Warning-WIDTHTRUNC: rtl\student_u8.v:258:29: Operator ASSIGNDLY expects 2 bits on the Assign RHS, but Assign RHS's MODDIV generates 32 or 10 bits.
+                                            : ... note: In instance 'student_u8'
+  258 |  pf_row<=next_pf_row;pf_slot<=next_pf_row%3;pf_offset<=0;pf_state<=P_ADDR;
+      |                             ^~
+%Warning-WIDTHTRUNC: rtl\student_u8.v:272:23: Operator ASSIGNDLY expects 2 bits on the Assign RHS, but Assign RHS's MODDIV generates 32 or 10 bits.
+                                            : ... note: In instance 'student_u8'
+  272 |  F_ROW1:begin req_slot<=req_row%3;req_base<={src_slot,21'd0}+row_offset(physical_row);fs<=F_ROW2;end
+      |                       ^~
+%Warning-WIDTHTRUNC: rtl\student_u8.v:274:18: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's COND generates 32 bits.
+                                            : ... note: In instance 'student_u8'
+  274 |  row_bases[row_k]<=req_slot==0?0:req_slot==1?ROW_CAP:2*ROW_CAP;
+      |                  ^~
+%Warning-WIDTHEXPAND: rtl\student_u8.v:287:48: Operator ADD expects 32 bits on the LHS, but LHS's SIGNED generates 12 bits.
+                                             : ... note: In instance 'student_u8'
+  287 |  if(up2)columns[p]<=reflect($signed({2'b00,fx})+p-1,{iw,1'b0})>>1;
+      |                                                ^
+%Warning-WIDTHTRUNC: rtl\student_u8.v:287:21: Operator FUNCREF 'reflect' expects 12 bits on the Function Argument, but Function Argument's SUB generates 32 bits.
+                                            : ... note: In instance 'student_u8'
+  287 |  if(up2)columns[p]<=reflect($signed({2'b00,fx})+p-1,{iw,1'b0})>>1;
+      |                     ^~~~~~~
+%Warning-WIDTHEXPAND: rtl\student_u8.v:288:34: Operator ADD expects 32 bits on the LHS, but LHS's VARREF 'xcenter' generates 12 bits.
+                                             : ... note: In instance 'student_u8'
+  288 |  else columns[p]<=reflect(xcenter+p-(k3?1:0),{1'b0,iw});
+      |                                  ^
+%Warning-WIDTHTRUNC: rtl\student_u8.v:288:19: Operator FUNCREF 'reflect' expects 12 bits on the Function Argument, but Function Argument's SUB generates 32 bits.
+                                            : ... note: In instance 'student_u8'
+  288 |  else columns[p]<=reflect(xcenter+p-(k3?1:0),{1'b0,iw});
+      |                   ^~~~~~~
+%Warning-WIDTHEXPAND: rtl\student_u8.v:294:50: Operator COND expects 32 bits on the Conditional True, but Conditional True's REPLICATE generates 4 bits.
+                                             : ... note: In instance 'student_u8'
+  294 |  for(p=0;p<9;p=p+1)dw_map[fill_bank][p*4+:4]<=up2?
+      |                                                  ^
+%Warning-WIDTHTRUNC: rtl\student_u8.v:294:45: Operator ASSIGNDLY expects 4 bits on the Assign RHS, but Assign RHS's COND generates 32 bits.
+                                            : ... note: In instance 'student_u8'
+  294 |  for(p=0;p<9;p=p+1)dw_map[fill_bank][p*4+:4]<=up2?
+      |                                             ^~
+%Warning-WIDTHEXPAND: rtl\student_u8.v:306:50: Operator ADD expects 24 bits on the RHS, but RHS's VARREF 'osp' generates 6 bits.
+                                             : ... note: In instance 'student_u8'
+  306 |  fill_bank<=!fill_bank;front_offset<=front_offset+osp;
+      |                                                  ^
+%Warning-WIDTHEXPAND: rtl\student_u8.v:328:60: Operator SHIFTL expects 24 bits on the LHS, but LHS's VARREF 'og' generates 1 bits.
+                                             : ... note: In instance 'student_u8'
+  328 |  qaddr<={dst_slot,21'd0}+offsets[consume_bank]+(mode==3?(og<<4):(og<<3));
+      |                                                            ^~
+%Warning-WIDTHEXPAND: rtl\student_u8.v:328:68: Operator SHIFTL expects 24 bits on the LHS, but LHS's VARREF 'og' generates 1 bits.
+                                             : ... note: In instance 'student_u8'
+  328 |  qaddr<={dst_slot,21'd0}+offsets[consume_bank]+(mode==3?(og<<4):(og<<3));
+      |                                                                    ^~
+%Warning-WIDTHEXPAND: rtl\student_u8.v:329:34: Operator GTE expects 32 bits on the LHS, but LHS's ARRAYSEL generates 10 bits.
+                                             : ... note: In instance 'student_u8'
+  329 |  qcrop<=mode==2&&by[consume_bank]>=EXT_H;qgroup<=og;qs<=Q_LO;qhalf<=0;write_half<=0;
+      |                                  ^~
+%Warning-WIDTHEXPAND: rtl\student_u8.v:329:48: Operator ASSIGNDLY expects 3 bits on the Assign RHS, but Assign RHS's VARREF 'og' generates 1 bits.
+                                             : ... note: In instance 'student_u8'
+  329 |  qcrop<=mode==2&&by[consume_bank]>=EXT_H;qgroup<=og;qs<=Q_LO;qhalf<=0;write_half<=0;
+      |                                                ^~
+%Warning-WIDTHEXPAND: rtl\student_u8.v:331:7: Operator EQ expects 32 or 3 bits on the LHS, but LHS's VARREF 'og' generates 1 bits.
+                                            : ... note: In instance 'student_u8'
+  331 |  if(og==ogs-1)begin
+      |       ^~
+%Warning-WIDTHEXPAND: rtl\student_u8.v:359:15: Operator EQ expects 32 or 3 bits on the LHS, but LHS's VARREF 'coeff_quad' generates 2 bits.
+                                             : ... note: In instance 'student_u8'
+  359 |  if(coeff_quad==(ogs<<1)-1)begin
+      |               ^~
+%Warning-WIDTHEXPAND: rtl\student_u8.v:370:12: Operator EQ expects 32 or 6 bits on the LHS, but LHS's VARREF 'proj_oc' generates 4 bits.
+                                             : ... note: In instance 'student_u8'
+  370 |  if(proj_oc==co-1)begin mean_ch<=0;state<=MEAN_REQ;end
+      |            ^~
+%Warning-WIDTHEXPAND: rtl\student_u8.v:366:12: Operator EQ expects 32 or 6 bits on the LHS, but LHS's VARREF 'proj_ic' generates 4 bits.
+                                             : ... note: In instance 'student_u8'
+  366 |  if(proj_ic==ci-1)begin
+      |            ^~
+%Warning-WIDTHEXPAND: rtl\student_u8.v:379:12: Operator EQ expects 32 or 6 bits on the LHS, but LHS's VARREF 'mean_ch' generates 5 bits.
+                                             : ... note: In instance 'student_u8'
+  379 |  if(mean_ch==co-1)state<=REPLAY;else begin mean_ch<=mean_ch+1;state<=MEAN_REQ;end
+      |            ^~
+- V e r i l a t i o n   R e p o r t:  rev vUNKNOWN-built20260516-4e853d8
+- Verilator: Built from 0.155 MB sources in 7 modules, into 2.910 MB in 8 C++ files needing 0.006 MB
+- Verilator: Walltime 0.406 s (elab=0.062, cvt=0.252, bld=0.000); cpu 0.000 s on 1 threads; allocated 42.332 MB
+**********************************************************************
+** Visual Studio 2019 Developer Command Prompt v16.11.52
+** Copyright (c) 2021 Microsoft Corporation
+**********************************************************************
+[vcvarsall.bat] Environment initialized for: 'x64'
+Vstudent_u8.cpp
+Vstudent_u8___024root__0.cpp
+Vstudent_u8___024root__0__Slow.cpp
+Vstudent_u8___024root__1.cpp
+Vstudent_u8___024root__1__Slow.cpp
+Vstudent_u8___024root__Slow.cpp
+Vstudent_u8__ConstPool__0__Slow.cpp
+Vstudent_u8__Syms__Slow.cpp
+verilated.cpp
+verilated_threads.cpp
+sim_main.cpp
+正在生成代码...

@@ -1,3 +1,39 @@
+# ArtFlow Glass INT8 上板基线（3–4 FPS）
+
+当前主工程使用 glass_5 第 20 轮 22 层 INT8 模型，原始权重与整数计算规则保持不变。
+2026-10-19 用户确认模型已在板上运行，风格化帧率约 3–4 FPS。本次将该状态纳入 Git，作为后续 15 FPS 优化的回退基线；尚未实施本轮吞吐优化。
+480×270 输入，960×540 显示；CNN 142.857 MHz。实际布局布线 XLR 37,514/60,800、RAM10 227/256、DSP 125/160；正常时序和全部 CDC 通过。
+完整尺寸两帧逐层/逐像素仿真通过，保守仿真处理速度 3.836 FPS。
+位流：outputs/glass_int8/ArtFlow_glass_int8.bit；当前 outflow/ArtFlow.bit 与其一致。
+固化回退包：outputs/glass_int8_baseline_3to4fps/。位流和 HEX 的 SHA256 见 doc/glass_int8_baseline.json；构建产物仍按工程规则不纳入 Git。
+构建入口：tools/run_efinity.ps1 或 tools/run_glass_efinity.ps1；详情：doc/glass_int8_results.txt。
+原 U8 文件保留，Glass 集成前的配置与位流备份位于 work/glass_int8/baseline/。本条上板结果来自用户反馈，未执行长期稳定性测试。
+
+<!-- GLASS_TRIAL_END -->
+
+# ArtFlow Student U8 整机吞吐优化（未提交）
+
+当前工程保持原 U8 模型数值与画面结果，采用双读缓存、读写并行桥、首层 tap 打包、8 通道量化和上采样窗口复用。
+完整尺寸连续两帧仿真保守值为 **15.639 FPS**，原版为 8.725 FPS；此为相同 DDR/视频竞争条件下的仿真结果，实板 PRC FPS 待测。
+输入 480×270，输出 960×540；CNN 142.857 MHz，AXI/CPU 100 MHz。XLR 55,606/60,800，RAM10 255/256，DSP 158/160；布局布线、正常时序及全部 CDC 已通过。
+构建入口为 tools/run_efinity.ps1，发布入口为 tools/package_u8_optimized.py。最终回归与发布状态以 outputs/student_u8_optimized/manifest.json 为准；说明与复现命令见 doc/u8_integration.md 和 doc/u8_optimization_results.md。
+新位流发布后同步 outflow/ArtFlow.bit；旧 U8 位流保留在 outputs/student_u8_v2/，本轮修改前源码保留在 work/u8_optimization/baseline/。本轮不提交 Git，不自动下载板卡。
+以下为保留的历史版本说明。
+
+---
+
+# ArtFlow v09 222.222 MHz 性能候选（未提交）
+
+当前工作区在提交 5c2218c 上优化：CNN 使用独立 222.222 MHz 时钟，AXI/CPU 保持 100 MHz，增加跨时钟缓冲和量化流水，减少无关 DDR 写回。网络权重、480×270 处理尺寸及 960×540 输出保持不变。
+
+构建入口为 tools/run_efinity.ps1；性能交付入口为 tools/package_v09_perf.py。全部验证通过后生成 outputs/v09_222mhz/ArtFlow_v09_222MHz.bit，并同步 outflow/ArtFlow.bit；是否发布及实际数字以该目录 manifest.json 为准。详见 [性能说明](doc/v09_performance_notes.md) 和 [验证计划](doc/v09_performance_verification_plan.md)。原 100 MHz 位流保留在 outputs/v09/。
+
+Git 本轮不提交；板上 PRC FPS 与长期稳定性待用户确认。
+
+---
+
+以下是提交 5c2218c 的历史基线记录，其时钟及验证状态不代表当前性能候选。
+
 # ArtFlow v09 S8 CNN 风格效果候选版
 
 当前原工程已接入 network 中的完整 22 层 W8/A4/S8 网络，2026-10-12 按用户要求纳入 v09 候选版本提交，板级验收仍待确认。右窗口执行实际训练模型；保持原板级时钟、相机 CAP-P1、白平衡、按键及中断调度。
@@ -63,3 +99,5 @@ python -B tools/verify_v06.py
 源码压缩包可独立解压、构建与校验；重新签核打包要求相邻原始 v05 基线，以确认基线未改。`outputs/ArtFlow_v06_OSD_simulation.png` 是确定性仿真图案上四种模式前100行的拼图，标注的030/060为测试输入，不是实板测量。
 
 资料：[设计说明](doc/v06_notes.md)、[验证计划](doc/verification_plan.md)、[功能映射](doc/feature_list.md)、[用例](doc/case_list.md)、[上板验收](doc/board_acceptance.md)。v05 说明及证据归档于 `doc/baseline_v05/`，不能视为 v06 实测结果。
+
+首次 U8 集成的历史兼容性调整（当前吞吐优化以文首说明为准）：将 line_waddr 的声明移至 prefetch_response 之后；三组小系数 ROM 使用 syn_romstyle="logic"；所有表达式不变，门禁逐字验证声明顺序、ROM 路径与属性调整。综合启用仅同步逻辑的 seq_opt，retiming 保持关闭。

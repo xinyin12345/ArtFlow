@@ -1,0 +1,2 @@
+PASS divider=1056 quant_vectors=2400 quant_lanes=4
+tb.v:23: $finish called at 790130000 (1ps)

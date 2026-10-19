@@ -1,0 +1,57 @@
+{
+  "baseline": "glass_int8_board_3to4fps",
+  "date": "2026-10-19",
+  "model": "glass_5_20epochs_sum8192_480x270_input3x3_res32_r4_int8",
+  "board_fps_user_reported": [
+    3,
+    4
+  ],
+  "simulation_min_fps": 3.8360829480819163,
+  "optimization_to_15fps_started": false,
+  "input_size": [
+    480,
+    270
+  ],
+  "display_size": [
+    960,
+    540
+  ],
+  "cnn_mhz": 142.85714285714286,
+  "axi_mhz": 100,
+  "implementation": {
+    "status": "PASS",
+    "minimum_slack_ns": {
+      "Setup (Max)": 0.065,
+      "Hold (Min)": 0.026
+    },
+    "resources": {
+      "xlr": {
+        "used": 37514,
+        "available": 60800
+      },
+      "ram10": {
+        "used": 227,
+        "available": 256
+      },
+      "dsp": {
+        "used": 125,
+        "available": 160
+      }
+    },
+    "source_snapshot_sha256": "ca4cbff4d27d4c2cc4bed6e3c03d524b212223705d00ce630c2ce99883c27b2c",
+    "sha256": {
+      "work/glass_int8/efinity_out/ArtFlow.bit": "8abfb3d9ff246045d0fbe05a1c0f357ecd308acefc321b56782d42ca3260054c",
+      "work/glass_int8/efinity_out/ArtFlow.hex": "790e99135c68398d067d93820afb6a001ec3799080402bcc0375f9d61cd6b417",
+      "work/glass_int8/efinity_out/ArtFlow.timing.rpt": "87353e621dcc463b38dd7f5e2efa3b9f798c00a8265818a10425f2ca89ab3b26",
+      "work/glass_int8/efinity_out/ArtFlow.place.rpt": "5c4c264b7081acf9f5b41265bafbe8a93a580ea1e061acc525dc5a74252a59bf"
+    }
+  },
+  "baseline_outputs": "outputs/glass_int8_baseline_3to4fps",
+  "sha256": {
+    "ArtFlow_glass_int8.bit": "8abfb3d9ff246045d0fbe05a1c0f357ecd308acefc321b56782d42ca3260054c",
+    "ArtFlow_glass_int8.hex": "790e99135c68398d067d93820afb6a001ec3799080402bcc0375f9d61cd6b417",
+    "manifest.json": "4c112963ae89071ebd81faf31613fb0b17f5da34ee5aae5f24e40ab66f6489f6",
+    "glass_preview.png": "f987389ea5edf6e8a38badbe757b3ea3ef09f3b56075d84383e1643a93c3d978"
+  },
+  "scope": "Source snapshot before throughput optimization; board FPS is user reported; no long-duration board verification."
+}

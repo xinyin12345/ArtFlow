@@ -1,0 +1,47 @@
+{
+  "core_resources": {
+    "xlr": 18773,
+    "ram": 104,
+    "dsp": 127
+  },
+  "target_clock_mhz": 149.99250037498126,
+  "setup_slack_ns": 0.564,
+  "hold_slack_ns": 0.09,
+  "flat_rtl_sha256": "2ddd453094668f04b1bbc09864e31b0ed165f85b35dcc1f56fa20f1135096270",
+  "model": {
+    "source_run": "xdl2_student_quant/runs/w8u8_dw12_s8_qat_e10",
+    "selected_epoch": 4,
+    "qat_sha256": "0b243089a8737c6e4a6ef7999bc9b1b0667fef3d75f09ac11304e158f8599417",
+    "integer_sha256": "bfe447e71a538402668fb5f3bdfbcd714a2c4f257d21c8e93c2ba5100595f05f",
+    "export_graph_sha256": "6bfa4a431edf3cfa10283de1ef5006d324260312a9fd157ca09015d6b3a1f4ba",
+    "training_status": {
+      "phase": "qat_complete",
+      "epochs": 10,
+      "steps": 6250,
+      "selected_epoch": 4,
+      "selected_val": {
+        "count": 256,
+        "psnr_db": 34.789657436311245,
+        "ssim": 0.9870987238828093,
+        "minimum_ssim": 0.8998129367828369,
+        "p10_ssim": 0.976982593536377,
+        "raw_l1": 0.013529761750021099
+      },
+      "training_epoch_s_total": 1189.5664806365967,
+      "finalization_s": 0.7243697643280029,
+      "anchor_unchanged": true
+    },
+    "current_task_retraining": false,
+    "model_changes": false
+  },
+  "cycles_read3": 12583528,
+  "cycles_read10": 19094279,
+  "reads": 930240,
+  "writes": 782400,
+  "feature_bytes": 13701120,
+  "stages_cycles": {
+    "encoder": 5220550,
+    "body": 3060216,
+    "decoder_rgb": 4302762
+  }
+}
