@@ -217,12 +217,12 @@ localparam VBP      = 36;
 //===============================================================================
 // v05: white-balance reset defaults; runtime gains are controlled by Sapphire APB.
 //===============================================================================
-// Reference VIO boots at 280/255/350, but its Q2.14 WB clamps ALL to 6554
-// (about 0.4x). Reproduce that effective ratio in Q8.8, not the VIO literals.
-// 102/256 = 0.3984375; UART 'wb R G B' still accepts Q8.8 (256 = 1x).
-localparam [15:0] CFG_R_GAIN   = 16'd102;
-localparam [15:0] CFG_G_GAIN   = 16'd102;
-localparam [15:0] CFG_B_GAIN   = 16'd102;
+// User-selected startup white balance: R/G/B = 280/170/280 (2026-10-23).
+// Keep these reset gains aligned with firmware/include/platform.h defaults.
+// UART 'wb R G B' remains adjustable in Q8.8 (256 = 1x).
+localparam [15:0] CFG_R_GAIN   = 16'd280;
+localparam [15:0] CFG_G_GAIN   = 16'd170;
+localparam [15:0] CFG_B_GAIN   = 16'd280;
 // Gamma：0 = 直通，1 = 查表
 localparam        CFG_GAMMA_EN = 1'b1;
 // Reference ISP subtracts 17 in RAW8; retain RAW10 precision here (17 * 4).
