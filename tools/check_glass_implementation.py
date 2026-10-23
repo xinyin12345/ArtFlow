@@ -13,7 +13,7 @@ def main():
     for tag,label in [('xlr','XLRs'),('ram10','Memory Blocks'),('dsp','DSP Blocks')]:
         m=re.search(r'^'+label+r':\s*(\d+)\s*/\s*(\d+)',place,re.M);assert m,label
         a,b=map(int,m.groups());assert a<=b;resources[tag]=dict(used=a,available=b)
-    for kind in ['video','ui','cnn']:
+    for kind in ['video','ui','cnn','style_io']:
         s=json.loads((w/f'{kind}_cdc_summary.json').read_text());assert s['status']=='PASS'
         for name,h in s['sha256'].items():assert sha(R/name)==h,'Stale CDC: '+name
     files=[o/'ArtFlow.bit',o/'ArtFlow.hex',o/'ArtFlow.timing.rpt',o/'ArtFlow.place.rpt']

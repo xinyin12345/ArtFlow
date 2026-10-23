@@ -1,0 +1,62 @@
+最终离线验证通过；未烧录、未 JTAG 下载。详细结果见 work/styles19_integration_20261022/FINAL_RESULT.json。
+
+ArtFlow 19风格离线集成（离线验证通过；未烧录）
+
+来源：network/Model4_Three_Styles_FP32_20261022，实际核对D盘文件及SHA256SUMS，未使用E盘包替代。
+原16款编号/模型不变；追加ID16素描、17油画O3、18点彩R3。未训练、未改网络结构、未改模型初始化ROM。
+KEY1三态显示、KEY2 OSD、KEY3风格循环保留。现有链路原本已为5位ID；循环终值更新为18。
+原OSD只显示布局模式和FPS，没有风格名字段或16项OSD表；本次不改变OSD内容、位置或字号。名称见本表及manifest.json。
+HDMI 1920x1080/30Hz；CNN 480x270内部480x272；CNN/AXI/摄像头时钟及预后处理未改。
+
+模型编号：
+00 原彩绘玻璃 (glass)
+01 油画星空 (starry)
+02 水墨画 (inkwash)
+03 红白剪纸 (papercut)
+04 赛璐璐 (cel)
+05 富彩粗刀版画 (woodrich)
+06 偏紫马赛克 (mosaic)
+07 双色版画 (woodcut)
+08 波普风 (popart)
+09 简化淡墨 (lightink)
+10 野兽派平涂 (fauve)
+11 复古网点漫画 (halftone)
+12 粗犷丙烯 (acrylic)
+13 沙画 (sand)
+14 大面块立体主义 (cubist)
+15 朱红人物黑白 (vermilion_ink)
+16 素描 (sketch)
+17 油画 O3 (oil)
+18 点彩 R3 (pointillism)
+
+量化：
+200张既有本地内容图最大值校准，逐输出通道对称INT8权重、层级特征尺度。无梯度/优化器/权重训练。
+ImageNet输入归一化、BatchNorm冻结统计量合入卷积；中心化gamma合入卷积，beta保留独立定点项。
+沿用22层图、sum/8192中心化、round-half-up（含负数）、shift24、ReLU6对应码域限幅、残差倍率和RGB系数。
+全部24位卷积/40位统计/48位再量化及系数范围保守上界检查通过。
+每款25图：5张示例/预览 + 20张既有验证图，未宣称与这三款原始训练集完全无重叠。
+PSNR比较原FP32输出与CPU实际整数参考，数值不等于艺术画质认可：
+sketch: 平均PSNR=30.0650dB，范围=25.1168..35.3572，平均绝对误差=5.8278/255，折叠FP32最大归一化误差=0.000023484
+oil: 平均PSNR=30.2167dB，范围=27.7218..35.3769，平均绝对误差=5.4323/255，折叠FP32最大归一化误差=0.000062078
+pointillism: 平均PSNR=25.2311dB，范围=21.9483..31.1943，平均绝对误差=8.9403/255，折叠FP32最大归一化误差=0.000128269
+点彩局部点纹/颜色差异较明显；轮廓与点彩语言仍保留。三款均为可审阅量化候选，不声称逐像素复现FP32。
+对比图：network/styles19/models/{sketch,oil,pointillism}/comparison.jpg；每行原图/原FP32/实际INT8参考。
+
+参数包：
+network/styles19/parameters.bin：311296字节（304KiB），19个16KiB槽；0x400000–0x44BFFF。
+每槽32字节头、14448字节有效载荷、余下填FF；头含格式、ID、长度、CRC32。全部19槽CRC已验证。
+前262144字节与原network/styles16/parameters.bin逐字节一致，旧包独立保留。
+新增范围0x440000–0x44BFFF尚未读取实板，未来烧录须先备份、核实区域用途和擦除粒度。
+parameters.hex仅供RTL readmemh，不是FPGA配置文件。此次未访问Flash/JTAG/串口或板卡。
+
+复现及回退：
+导出：python -B tools/export_selected_styles.py --out <新的独立输出目录>（默认catalog=network/styles19）。
+旧16款导出仍支持 --catalog network/styles16；不要覆盖历史输出。
+基线：work/styles19_integration_20261022/baseline_manifest.json、baseline/、git_before.patch。
+仅恢复本次修改需先比对integration_changes.json与当前磁盘，避免覆盖后续用户改动；本次未执行回退/提交。
+独立构建：work/styles19_integration_20261022/build_src，原outflow/outputs的旧BIT/HEX未覆盖。
+测试和日志：同一work目录的test_*/summary.json、simulation.log、build_compile_seed2.log。
+全部离线测试已完成并通过，最终状态和精确证据见FINAL_RESULT.json/FINAL_REPORT.txt。
+
+补充视频链路对比：work/styles19_integration_20261022/pipeline_preview/pipeline_comparison.jpg。
+按整机测试同一斑马输入，展示视频输入、PRE缩小/Gamma后CNN输入、FP32+POST、整数参考+POST；不是板上照片。原各模型comparison.jpg是直接网络输入对比；25图统计仍按原统计口径，不能用单张斑马统计替代。

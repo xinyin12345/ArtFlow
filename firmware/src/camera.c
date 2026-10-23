@@ -6,7 +6,7 @@
  * The preserved table requests 0x1bbf (7103), while VTS is left implicit.
  * P1 explicitly uses the documented default VTS=1500 and exposure=2989.
  * Do not infer an FPS from these values: sensor line time is not measured. */
-struct camera_result camera_configure(unsigned baseline) {
+struct camera_result camera_configure(void) {
     struct camera_result result = { I2C_OK, 0, 0 };
     static const uint16_t verify_address[] = {
         0x3208, 0x3209, 0x320a, 0x320b, 0x0100,
@@ -23,15 +23,15 @@ struct camera_result camera_configure(unsigned baseline) {
     for (unsigned i = 0; i < CAMERA_REGISTER_COUNT; ++i) {
         uint8_t value = camera_registers[i].value;
         /* P1 finishes geometry and timing while still in standby. */
-        if (!baseline && camera_registers[i].address == 0x0100 && value == 1) continue;
+        if (camera_registers[i].address == 0x0100 && value == 1) continue;
         result.index = (uint16_t)operation++;
         result.reg = camera_registers[i].address;
-        if (!baseline && result.reg >= 0x3e00 && result.reg <= 0x3e02)
+        if (result.reg >= 0x3e00 && result.reg <= 0x3e02)
             value = verify_value[7u + result.reg - 0x3e00u];
         result.code = camera_write(result.reg, value);
         if (result.code != I2C_OK) goto failed;
     }
-    if (!baseline) {
+    {
         /* Write and verify VTS/exposure before allowing any streamed frame. */
         for (unsigned i = 5; i < 7; ++i) {
             result.index = (uint16_t)operation++;

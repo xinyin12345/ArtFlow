@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "command": "python infer.py --style all --input examples/input_zebra.jpg --output examples/cli_verified",
+  "same_instance": true,
+  "records": [
+    {
+      "style": "sketch",
+      "max_8bit_png_difference_from_server": 1
+    },
+    {
+      "style": "oil",
+      "max_8bit_png_difference_from_server": 1
+    },
+    {
+      "style": "pointillism",
+      "max_8bit_png_difference_from_server": 1
+    }
+  ]
+}

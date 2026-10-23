@@ -1,0 +1,174 @@
+{
+  "paper": {
+    "title": "Design and experimental research of on device style transfer models for mobile environments",
+    "authors": [
+      "Igeon Hwang",
+      "Taeyeon Oh"
+    ],
+    "year": 2025,
+    "doi": "10.1038/s41598-025-98545-4",
+    "architecture_tables": [
+      4
+    ],
+    "reported_environment": {
+      "python": "3.9",
+      "pytorch_verbatim": "2.21",
+      "cuda": "12.1",
+      "cudnn": "9.5"
+    }
+  },
+  "environment": {
+    "name": "model4-xfeat-isolated",
+    "python": ".venv/bin/python"
+  },
+  "model": {
+    "name": "model4",
+    "expected_parameters": 7755,
+    "encoder_channels": [
+      3,
+      8,
+      16,
+      32
+    ],
+    "decoder_channels": [
+      32,
+      16,
+      8,
+      3
+    ],
+    "input_kernel_size": 3,
+    "output_kernel_size": 5,
+    "spatial_kernel_size": 3,
+    "padding_mode": "reflect",
+    "encoder_decoder_norm": "batch",
+    "residual_norm": "sum8192_center",
+    "residual_norm_affine": true,
+    "residual_blocks": 4,
+    "bottleneck_channels": [
+      32,
+      8,
+      8,
+      32
+    ],
+    "upsample_mode": "nearest",
+    "implementation_status": "implemented",
+    "io_contract": "imagenet_normalized_rgb",
+    "output_activation": "linear",
+    "activation": "relu6",
+    "mean_divisor": 8192,
+    "residual_hw": [
+      68,
+      120
+    ],
+    "input_hw": [
+      270,
+      480
+    ],
+    "internal_hw": [
+      272,
+      480
+    ],
+    "input_padding": "bottom_reflect_2_output_crop"
+  },
+  "data": {
+    "dataset": "COCO2017",
+    "split": "server_train_pool_fixed_5000",
+    "content_samples": 5000,
+    "content_size": [
+      270,
+      480
+    ],
+    "style_size": [
+      512,
+      768
+    ],
+    "content_dir": "/gemini/data-1/coco20k_split/train",
+    "style_image": "data/style/pointillism_round6/pointillism_crisp_dabs_v2.png",
+    "style_resize_policy": "keep_aspect_long_edge_no_upsample"
+  },
+  "loss": {
+    "feature_extractor": "vgg16",
+    "feature_weights": "IMAGENET1K_V1",
+    "feature_extractor_frozen": true,
+    "content_layer": "relu2_2",
+    "style_layers": [
+      "relu1_2",
+      "relu2_2",
+      "relu3_3",
+      "relu4_3"
+    ],
+    "style_layer_weights": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "content_weight": 1.5,
+    "style_weight": 25000.0,
+    "imagenet_mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "imagenet_std": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "gram_normalization": "channels_spatial",
+    "experiment_mode": "luma_rgb_chroma_patch_v1",
+    "color_control": {
+      "luma_scale": 11.171961188316345,
+      "color_weight": 3999.6517333984375,
+      "luma_fraction": 0.8,
+      "color_kernel": 21,
+      "color_stride": 8
+    },
+    "patch_control": {
+      "weight": 0.09230920225381851,
+      "layers": [
+        "relu1_2",
+        "relu2_2"
+      ],
+      "layer_weights": [
+        0.5,
+        0.5
+      ],
+      "kernel": 3,
+      "query_grid": 8,
+      "bank_grid": 24,
+      "chunk_size": 512
+    }
+  },
+  "training": {
+    "vgg_activation_checkpointing": true,
+    "learning_rate": 0.001,
+    "paper_batch_size": 16,
+    "minimum_comparison_epochs": 20,
+    "optimizer": "adam",
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "epochs": 10,
+    "batch_size": 16,
+    "seed": 42,
+    "workers": 0,
+    "amp": false,
+    "save_every_epochs": 1,
+    "local_initial_batch_size": 4,
+    "local_seed": 42,
+    "local_workers": 0
+  },
+  "paths": {
+    "vgg_weights": "pretrained/checkpoints/vgg16-397923af.pth",
+    "checkpoints": "checkpoints/model4/pointillism_R3_crisp_patch_xfeat_round6_cw150_sw25000_5k_s768",
+    "outputs": "outputs/pointillism_R3_crisp_patch_xfeat_round6_cw150_sw25000_5k_s768",
+    "logs": "logs/pointillism_dab_round6_gpu0"
+  },
+  "reproduction": {
+    "enforce_reported_settings": false,
+    "enforce_normalized_settings": false,
+    "scope": "Pointillism dab clarity: reference-only, patch-only, combined. D round4 baseline retained. Same fixed5000 seed42 and original color coefficients. Fresh initialization; Model4 unchanged."
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "parameter_count": 7755,
+  "records": [
+    {
+      "style": "sketch",
+      "full_vs_pure_exact": true,
+      "server_cpu_max_abs_difference": 6.258487701416016e-07,
+      "state_tensors": 81
+    },
+    {
+      "style": "oil",
+      "full_vs_pure_exact": true,
+      "server_cpu_max_abs_difference": 1.1324882507324219e-06,
+      "state_tensors": 81
+    },
+    {
+      "style": "pointillism",
+      "full_vs_pure_exact": true,
+      "server_cpu_max_abs_difference": 2.950429916381836e-06,
+      "state_tensors": 81
+    }
+  ],
+  "switch_back_exact": true,
+  "torch_version": "2.8.0+cu128",
+  "device": "cpu",
+  "no_training_performed": true
+}

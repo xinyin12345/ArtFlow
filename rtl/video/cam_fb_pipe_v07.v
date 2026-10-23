@@ -304,6 +304,7 @@ rgb_frame_store_v07 #(
     .WIDTH(MAX_OUT_WIDTH), .HEIGHT(MAX_IN_HEIGHT/2), .DUAL_WINDOW(DUAL_WINDOW),
     .ADDR_WIDTH(AXI_ADDR_WIDTH), .START_ADDR(START_ADDR), .BANK_BYTES(BANK_BYTES)
 ) u_store (
+    .requested_layout(2'd0),.active_layout(),
     .source_locked(source_locked),.source_bank(source_bank),
     .original_valid(original_valid),.original_bank(original_bank),
     .styled_valid(styled_valid),.styled_bank(styled_bank),

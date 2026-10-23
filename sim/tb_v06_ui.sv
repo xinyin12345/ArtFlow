@@ -13,12 +13,12 @@ initial begin
     tick(3);@(negedge clk);rst=1;tick(5); check(mode==0 && osd && !valid);
     // Reject short bounce, both press and release must qualify.
     @(negedge clk);km=0;tick(2);@(negedge clk);km=1;tick(8);frame();check(mode==0);
-    @(negedge clk);km=0;tick(12);check(mode==0);frame();check(mode==1);
+    @(negedge clk);km=0;tick(12);check(mode==1);frame();check(mode==1);
     tick(20);frame();check(mode==1); // held button does not repeat
     @(negedge clk);km=1;tick(2);@(negedge clk);km=0;tick(10);frame();check(mode==1);
     @(negedge clk);km=1;tick(10);
-    repeat(3) begin @(negedge clk);km=0;tick(10);frame();@(negedge clk);km=1;tick(10);end
-    check(mode==0); // modulo-four wrap
+    repeat(2) begin @(negedge clk);km=0;tick(10);frame();@(negedge clk);km=1;tick(10);end
+    check(mode==0); // modulo-three request wrap; actual raster commits in frame_store
     @(negedge clk);ko=0;tick(10);check(osd);frame();check(!osd);
     tick(20);frame();check(!osd);
     @(negedge clk);ko=1;tick(10);@(negedge clk);ko=0;tick(10);frame();check(osd);

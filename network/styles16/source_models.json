@@ -1,0 +1,370 @@
+[
+  {
+    "id": 0,
+    "name": "glass",
+    "payload_sha256": "a7f5d7d3da1a92d60afc669b6056bd388e4df7836e8127727f26f1b9b7463033",
+    "files": {
+      "model_int8.pt": {
+        "path": "network\\glass_5_20epochs_sum8192_480x270_input3x3_res32_r4_int8\\model_int8.pt",
+        "sha256": "cbe3344c894fbbeccbc795acbf8851785923aa478abca891a199f93f259f3f10"
+      },
+      "parameters/model_int8.npz": {
+        "path": "network\\glass_5_20epochs_sum8192_480x270_input3x3_res32_r4_int8\\parameters\\model_int8.npz",
+        "sha256": "f298275fdc4a4b53ea301f8379ba3740f453cafe1ef7678bd359b3d43ceba005"
+      },
+      "parameters/graph.json": {
+        "path": "network\\glass_5_20epochs_sum8192_480x270_input3x3_res32_r4_int8\\parameters\\graph.json",
+        "sha256": "f115a00e132d012af720a5e16556d50a1369f68922441c39ee85aaf1d1fe4a56"
+      },
+      "parameters/range_proof.json": {
+        "path": "network\\glass_5_20epochs_sum8192_480x270_input3x3_res32_r4_int8\\parameters\\range_proof.json",
+        "sha256": "5f0b72fedb3011137dc82ef258a8de66dedd4179bebf645b546f472809647832"
+      }
+    }
+  },
+  {
+    "id": 1,
+    "name": "starry",
+    "payload_sha256": "74787780a44506511fdbb2dc04b37d2ea354b3738b0035e9c432d8b56511fe0d",
+    "files": {
+      "model_int8.pt": {
+        "path": "work\\style_training_glass22_20261021\\selected_frozen_20261021\\runs\\starry\\integer\\model_int8.pt",
+        "sha256": "0c66cf7981734c32049a992a48dbc34cff1fbcd2a4fcae112350e89c72f9f97f"
+      },
+      "parameters/model_int8.npz": {
+        "path": "work\\style_training_glass22_20261021\\selected_frozen_20261021\\runs\\starry\\integer\\model_int8.npz",
+        "sha256": "4f5ca3f210253e1a6008f499fef2a568f812cddc3fb98be22253aceebc1f6ddc"
+      },
+      "parameters/graph.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_frozen_20261021\\runs\\starry\\integer\\graph.json",
+        "sha256": "e70c99324b437af63a289ba5af65a67ce5da3d94147342d913b6116660287f7f"
+      },
+      "parameters/range_proof.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_frozen_20261021\\runs\\starry\\integer\\range_proof.json",
+        "sha256": "e7e333e8dffddac8ce67dc557fafbec4f7a6c6f45e8a76a55d37c4b3e8381dbf"
+      }
+    }
+  },
+  {
+    "id": 2,
+    "name": "inkwash",
+    "payload_sha256": "bcd8fcc4ea404e9c7e500a20a73f84720867aeeb023667f6b22dffc34f0aea52",
+    "files": {
+      "model_int8.pt": {
+        "path": "work\\style_training_glass22_20261021\\selected_frozen_20261021\\runs\\inkwash\\integer\\model_int8.pt",
+        "sha256": "94812bc8cab50e3815af91d4db929d13f3856e8bb7fd270aeda33c4f6838c733"
+      },
+      "parameters/model_int8.npz": {
+        "path": "work\\style_training_glass22_20261021\\selected_frozen_20261021\\runs\\inkwash\\integer\\model_int8.npz",
+        "sha256": "6d0db19e52aa9fe2900cacea4d398178cb4a1ffa5b63562c9445142e1d75fc40"
+      },
+      "parameters/graph.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_frozen_20261021\\runs\\inkwash\\integer\\graph.json",
+        "sha256": "e70c99324b437af63a289ba5af65a67ce5da3d94147342d913b6116660287f7f"
+      },
+      "parameters/range_proof.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_frozen_20261021\\runs\\inkwash\\integer\\range_proof.json",
+        "sha256": "3fdad76c3e4acdb623c298015bb32151880c78f4e66cd6181925a4cb6cb3fd40"
+      }
+    }
+  },
+  {
+    "id": 3,
+    "name": "papercut",
+    "payload_sha256": "aa3871b1839b568b9ef95695d02cdb37cd553b8b9e50fba5b060e6126d199107",
+    "files": {
+      "model_int8.pt": {
+        "path": "work\\style_training_glass22_20261021\\selected_papercut_refined_20261021\\refinements16_20261021\\runs\\papercut\\integer\\model_int8.pt",
+        "sha256": "d9ba2107bcab29f12464aeecaea112c683da9f81ae12fffd5d6be6ca265d00f9"
+      },
+      "parameters/model_int8.npz": {
+        "path": "work\\style_training_glass22_20261021\\selected_papercut_refined_20261021\\refinements16_20261021\\runs\\papercut\\integer\\model_int8.npz",
+        "sha256": "c8fe464db5e40011d8becbafa74981152821a918899a26f1885ebd4865faf362"
+      },
+      "parameters/graph.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_papercut_refined_20261021\\refinements16_20261021\\runs\\papercut\\integer\\graph.json",
+        "sha256": "3a263145c052c0a871607c8c4929237232de2831a4d93eb2e2e792fb1c5aa137"
+      },
+      "parameters/range_proof.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_papercut_refined_20261021\\refinements16_20261021\\runs\\papercut\\integer\\range_proof.json",
+        "sha256": "b457481085e670062d3f5f4c8f5ac8b5a4004d508f69c622677e4d13e8c31c88"
+      }
+    }
+  },
+  {
+    "id": 4,
+    "name": "cel",
+    "payload_sha256": "1cd323da64ad4a3702e994f7284d5bcc8a49126348b68a4a39152784158d49eb",
+    "files": {
+      "model_int8.pt": {
+        "path": "work\\style_training_glass22_20261021\\selected_cel_continuation_20261021\\preserve_first4_20261021\\runs\\cel\\integer\\model_int8.pt",
+        "sha256": "82158cbd363cc8e89375329a976741969cefb2111d29d35f34b10a786874a702"
+      },
+      "parameters/model_int8.npz": {
+        "path": "work\\style_training_glass22_20261021\\selected_cel_continuation_20261021\\preserve_first4_20261021\\runs\\cel\\integer\\model_int8.npz",
+        "sha256": "6862d97956d55bb855bb0d05cea8d19c672c8ddd691cf65d5f294448aecc2a2a"
+      },
+      "parameters/graph.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_cel_continuation_20261021\\preserve_first4_20261021\\runs\\cel\\integer\\graph.json",
+        "sha256": "db12d2ab559b1cf2cccb559d643c4f86580138c3361a5129e0fb5f84448e8b40"
+      },
+      "parameters/range_proof.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_cel_continuation_20261021\\preserve_first4_20261021\\runs\\cel\\integer\\range_proof.json",
+        "sha256": "26fc13d14aa00a4f31e8fb3ffc3fe98a93f166b0bfb847cd3d89d0459028fb36"
+      }
+    }
+  },
+  {
+    "id": 5,
+    "name": "woodrich",
+    "payload_sha256": "7cdafa8567749e911c21903c3716a5a948d597c3def3991e9da99dce854067dd",
+    "files": {
+      "model_int8.pt": {
+        "path": "work\\style_training_glass22_20261021\\selected_woodrich_shadow_20261021\\targeted_corrections2_20261021\\runs\\woodrich\\integer\\model_int8.pt",
+        "sha256": "fc90b839f583a7869b71300786917598ce76814cfd0a6fa8e5793ea0e50b081c"
+      },
+      "parameters/model_int8.npz": {
+        "path": "work\\style_training_glass22_20261021\\selected_woodrich_shadow_20261021\\targeted_corrections2_20261021\\runs\\woodrich\\integer\\model_int8.npz",
+        "sha256": "acf4a4f8280d00c53247c524eb440e64f6837dc7a7d98840bda5eb8d8feb2bba"
+      },
+      "parameters/graph.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_woodrich_shadow_20261021\\targeted_corrections2_20261021\\runs\\woodrich\\integer\\graph.json",
+        "sha256": "d4abfd7e3557edfb3dd37043ff0350f7c265cd69bc0771e9ef9ffbb5bc747782"
+      },
+      "parameters/range_proof.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_woodrich_shadow_20261021\\targeted_corrections2_20261021\\runs\\woodrich\\integer\\range_proof.json",
+        "sha256": "3932d8473d44ae358c23e575ebd51b498408314e3941de3b5b951172972d19d8"
+      }
+    }
+  },
+  {
+    "id": 6,
+    "name": "mosaic",
+    "payload_sha256": "b21f376f1500bbf7db39723a0cbe6505a7c71a5626ff3ca071f73f8a5a76aea0",
+    "files": {
+      "model_int8.pt": {
+        "path": "work\\style_training_glass22_20261021\\selected_mosaic_purple_20261021\\local_followups3_20261021\\runs\\mosaic\\integer\\model_int8.pt",
+        "sha256": "a2ef0ef79e7768bf54990ea9ba7648b6615c074810e5499dfe56b70425153881"
+      },
+      "parameters/model_int8.npz": {
+        "path": "work\\style_training_glass22_20261021\\selected_mosaic_purple_20261021\\local_followups3_20261021\\runs\\mosaic\\integer\\model_int8.npz",
+        "sha256": "4fe04cc3adf97871af48411982f3eb450a47161898335722e78650daa42ef4e7"
+      },
+      "parameters/graph.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_mosaic_purple_20261021\\local_followups3_20261021\\runs\\mosaic\\integer\\graph.json",
+        "sha256": "6babe43cda5ed070ba84e455e6536ec4832c674215e0c5ce448a040213b7abd6"
+      },
+      "parameters/range_proof.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_mosaic_purple_20261021\\local_followups3_20261021\\runs\\mosaic\\integer\\range_proof.json",
+        "sha256": "d8414cc20abaa98e5040be9ac20e0b483390f3a77fe4c2aa72da90021fc1d72b"
+      }
+    }
+  },
+  {
+    "id": 7,
+    "name": "woodcut",
+    "payload_sha256": "7320a7e1efd30868142cc2b4539ef6dcdce8a5f7263077fba181f057f031e301",
+    "files": {
+      "model_int8.pt": {
+        "path": "work\\style_training_glass22_20261021\\selected_woodcut_regions_20261021\\bounded_regions12_20261021\\runs\\woodcut\\integer\\model_int8.pt",
+        "sha256": "94a38534f146b1016e342cab5d7462023019f12c75fe6c4df37521db888bc5d4"
+      },
+      "parameters/model_int8.npz": {
+        "path": "work\\style_training_glass22_20261021\\selected_woodcut_regions_20261021\\bounded_regions12_20261021\\runs\\woodcut\\integer\\model_int8.npz",
+        "sha256": "8fa67d38b337c286ad9c1880e72f67232e6ca64ff02db5bb535ebf78855ef22e"
+      },
+      "parameters/graph.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_woodcut_regions_20261021\\bounded_regions12_20261021\\runs\\woodcut\\integer\\graph.json",
+        "sha256": "aabe3023f92cb957bbb9098994ee6b4414216269686c2bec3fb90c9fddd7965e"
+      },
+      "parameters/range_proof.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_woodcut_regions_20261021\\bounded_regions12_20261021\\runs\\woodcut\\integer\\range_proof.json",
+        "sha256": "9be5c888c294f710b70ffd4d5f314eb51689964654d9e3ec51db65f2ea49f3cc"
+      }
+    }
+  },
+  {
+    "id": 8,
+    "name": "popart",
+    "payload_sha256": "d01ba093a5b5cb5c45a55569c74c16f46723ddfe6bbcea89977dac6257fa172f",
+    "files": {
+      "model_int8.pt": {
+        "path": "work\\style_training_glass22_20261021\\selected_popart_regions_20261021\\bounded_regions12_20261021\\runs\\popart\\integer\\model_int8.pt",
+        "sha256": "d73eaafa571262f3a84049c0e9b4cef9b4a41fb9c3570022682beb85eb8f1017"
+      },
+      "parameters/model_int8.npz": {
+        "path": "work\\style_training_glass22_20261021\\selected_popart_regions_20261021\\bounded_regions12_20261021\\runs\\popart\\integer\\model_int8.npz",
+        "sha256": "b135b665d4586cfb4fb77c9c50a66510fb718c1e7275ee7ab24d119e48d1ad3e"
+      },
+      "parameters/graph.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_popart_regions_20261021\\bounded_regions12_20261021\\runs\\popart\\integer\\graph.json",
+        "sha256": "aabe3023f92cb957bbb9098994ee6b4414216269686c2bec3fb90c9fddd7965e"
+      },
+      "parameters/range_proof.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_popart_regions_20261021\\bounded_regions12_20261021\\runs\\popart\\integer\\range_proof.json",
+        "sha256": "e92950eb32db910d2b0f21e2ba29ae7cae2c639e387ddee6565ad2a3e287a6f1"
+      }
+    }
+  },
+  {
+    "id": 9,
+    "name": "lightink",
+    "payload_sha256": "d55e0f07bd10c1e99469bef8cb99097aac20832f5dd9c6d27c547df80124323f",
+    "files": {
+      "model_int8.pt": {
+        "path": "work\\style_training_glass22_20261021\\selected_lightink_regions_20261021\\bounded_regions12_20261021\\runs\\lightink\\integer\\model_int8.pt",
+        "sha256": "474a0a9bd7f89d13c6c1d79fb8622eaf1172cf48e718bfa062de6c88e4d7f72d"
+      },
+      "parameters/model_int8.npz": {
+        "path": "work\\style_training_glass22_20261021\\selected_lightink_regions_20261021\\bounded_regions12_20261021\\runs\\lightink\\integer\\model_int8.npz",
+        "sha256": "00216cd656c3d7eea75670024689bc446e319b8b58c679b78628b306447e634f"
+      },
+      "parameters/graph.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_lightink_regions_20261021\\bounded_regions12_20261021\\runs\\lightink\\integer\\graph.json",
+        "sha256": "aabe3023f92cb957bbb9098994ee6b4414216269686c2bec3fb90c9fddd7965e"
+      },
+      "parameters/range_proof.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_lightink_regions_20261021\\bounded_regions12_20261021\\runs\\lightink\\integer\\range_proof.json",
+        "sha256": "36a3845fa299b379164558305b5d219352477eebf0488ebe64c471232d491312"
+      }
+    }
+  },
+  {
+    "id": 10,
+    "name": "fauve",
+    "payload_sha256": "226ecdf1629ebb01cd87f536e2628caa95399f37a4e4521768a039437e2c81c2",
+    "files": {
+      "model_int8.pt": {
+        "path": "work\\style_training_glass22_20261021\\selected_fauve_regions_20261021\\bounded_regions12_20261021\\runs\\fauve\\integer\\model_int8.pt",
+        "sha256": "945288513b81dccf5014b83c747f4f845d7026a10b94a775cdfa6b469b319380"
+      },
+      "parameters/model_int8.npz": {
+        "path": "work\\style_training_glass22_20261021\\selected_fauve_regions_20261021\\bounded_regions12_20261021\\runs\\fauve\\integer\\model_int8.npz",
+        "sha256": "66c0c78c34a08728898b181e63d683a2feecc1702dfca962e332976bcf5ad9a6"
+      },
+      "parameters/graph.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_fauve_regions_20261021\\bounded_regions12_20261021\\runs\\fauve\\integer\\graph.json",
+        "sha256": "aabe3023f92cb957bbb9098994ee6b4414216269686c2bec3fb90c9fddd7965e"
+      },
+      "parameters/range_proof.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_fauve_regions_20261021\\bounded_regions12_20261021\\runs\\fauve\\integer\\range_proof.json",
+        "sha256": "b24c0a4cf947a5a76367d7b63c84e8feb116fbda0668f252077db1f6fa5171d4"
+      }
+    }
+  },
+  {
+    "id": 11,
+    "name": "halftone",
+    "payload_sha256": "a067584a0969d95af134e5957bde8a7097f7be47f1ed2c3b2af389603693b345",
+    "files": {
+      "model_int8.pt": {
+        "path": "work\\style_training_glass22_20261021\\selected_halftone_precorrection_20261021\\bounded_regions12_20261021\\runs\\halftone\\integer\\model_int8.pt",
+        "sha256": "cdba3878db9ae8d0e1d18c215d79ff118cd40c6bf4fda298b0b288cdfcca3d2b"
+      },
+      "parameters/model_int8.npz": {
+        "path": "work\\style_training_glass22_20261021\\selected_halftone_precorrection_20261021\\bounded_regions12_20261021\\runs\\halftone\\integer\\model_int8.npz",
+        "sha256": "513b0c2d64ac6aa3443e17c75c506575e211c30b7320c4a182871ac36bec04e2"
+      },
+      "parameters/graph.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_halftone_precorrection_20261021\\bounded_regions12_20261021\\runs\\halftone\\integer\\graph.json",
+        "sha256": "aabe3023f92cb957bbb9098994ee6b4414216269686c2bec3fb90c9fddd7965e"
+      },
+      "parameters/range_proof.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_halftone_precorrection_20261021\\bounded_regions12_20261021\\runs\\halftone\\integer\\range_proof.json",
+        "sha256": "75549e448db5fae8f99aa83e8747f9352c38d922a37433a36ded80b42d78814e"
+      }
+    }
+  },
+  {
+    "id": 12,
+    "name": "acrylic",
+    "payload_sha256": "b8eeb059e8dd5309dbe506cc1e096a1da7619632c03b32067b225a0ad4b2982d",
+    "files": {
+      "model_int8.pt": {
+        "path": "work\\style_training_glass22_20261021\\selected_acrylic_regions_20261021\\bounded_regions12_20261021\\runs\\acrylic\\integer\\model_int8.pt",
+        "sha256": "93614fc6d2a9571fec44a967786ae0c5b21a3594464d6f6c383da6d2ff5f3c47"
+      },
+      "parameters/model_int8.npz": {
+        "path": "work\\style_training_glass22_20261021\\selected_acrylic_regions_20261021\\bounded_regions12_20261021\\runs\\acrylic\\integer\\model_int8.npz",
+        "sha256": "17b22b5f06ad82e3a9b0a9f1bdca36d7fe709a18762f0cda11eb0346570c6b2f"
+      },
+      "parameters/graph.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_acrylic_regions_20261021\\bounded_regions12_20261021\\runs\\acrylic\\integer\\graph.json",
+        "sha256": "aabe3023f92cb957bbb9098994ee6b4414216269686c2bec3fb90c9fddd7965e"
+      },
+      "parameters/range_proof.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_acrylic_regions_20261021\\bounded_regions12_20261021\\runs\\acrylic\\integer\\range_proof.json",
+        "sha256": "fd052609e6db862e196a50c24487979b19af56604da7566fe309521cb3ce3b94"
+      }
+    }
+  },
+  {
+    "id": 13,
+    "name": "sand",
+    "payload_sha256": "0769331c3c3e996fb7d04a6e425ec6fba45da8ba65f968ea996876cafee04b86",
+    "files": {
+      "model_int8.pt": {
+        "path": "work\\style_training_glass22_20261021\\selected_sand_regions_20261021\\bounded_regions12_20261021\\runs\\sand\\integer\\model_int8.pt",
+        "sha256": "0aab4f28c095e7cb39bf170d39aa7c051ed0f451a423afd727e8b2625f1224af"
+      },
+      "parameters/model_int8.npz": {
+        "path": "work\\style_training_glass22_20261021\\selected_sand_regions_20261021\\bounded_regions12_20261021\\runs\\sand\\integer\\model_int8.npz",
+        "sha256": "2ab989428361f91978c7465dcc2593c34d4682fa5a23931ec7906e20fb74ed71"
+      },
+      "parameters/graph.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_sand_regions_20261021\\bounded_regions12_20261021\\runs\\sand\\integer\\graph.json",
+        "sha256": "aabe3023f92cb957bbb9098994ee6b4414216269686c2bec3fb90c9fddd7965e"
+      },
+      "parameters/range_proof.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_sand_regions_20261021\\bounded_regions12_20261021\\runs\\sand\\integer\\range_proof.json",
+        "sha256": "621e6cb875ce036c089684dec59f815657f2e1ce67311eef45fdf125f6ecda0b"
+      }
+    }
+  },
+  {
+    "id": 14,
+    "name": "cubist",
+    "payload_sha256": "23beb9e86d3b11a81e7e344770f7137ccee93b6b6d72870db85b30f75fe989a2",
+    "files": {
+      "model_int8.pt": {
+        "path": "work\\style_training_glass22_20261021\\selected_cubist_regions_20261021\\bounded_regions12_20261021\\runs\\cubist\\integer\\model_int8.pt",
+        "sha256": "eaa0358112053c1745b204d719f4eff6e17c6dccb3fb3f263431d8b5c0202a7b"
+      },
+      "parameters/model_int8.npz": {
+        "path": "work\\style_training_glass22_20261021\\selected_cubist_regions_20261021\\bounded_regions12_20261021\\runs\\cubist\\integer\\model_int8.npz",
+        "sha256": "d61666527a07d6ecc00baf59bf2f4d125372e03eee5c3e02a78dd4b6f7857103"
+      },
+      "parameters/graph.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_cubist_regions_20261021\\bounded_regions12_20261021\\runs\\cubist\\integer\\graph.json",
+        "sha256": "aabe3023f92cb957bbb9098994ee6b4414216269686c2bec3fb90c9fddd7965e"
+      },
+      "parameters/range_proof.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_cubist_regions_20261021\\bounded_regions12_20261021\\runs\\cubist\\integer\\range_proof.json",
+        "sha256": "28cc4c13505479d1e39a47971e05927f9229d8f0a9550b235d090cfe3262a054"
+      }
+    }
+  },
+  {
+    "id": 15,
+    "name": "vermilion_ink",
+    "payload_sha256": "840982ac494e2e1004675da922b587e2313c97089d687f9b676d1a83b2e09ded",
+    "files": {
+      "model_int8.pt": {
+        "path": "work\\style_training_glass22_20261021\\selected_vermilion_person_mono_20261021\\vermilion_person_mono_20261021\\runs\\vermilion_ink\\integer\\model_int8.pt",
+        "sha256": "c88a5a1b504575f95ee8a98022c8d2a317bfcd8aa70b91a3258fc48d046fe20e"
+      },
+      "parameters/model_int8.npz": {
+        "path": "work\\style_training_glass22_20261021\\selected_vermilion_person_mono_20261021\\vermilion_person_mono_20261021\\runs\\vermilion_ink\\integer\\model_int8.npz",
+        "sha256": "2772c727a72f9753bc6e5df8c3a2f8e49a846287d2f8236ba7686af7815e434a"
+      },
+      "parameters/graph.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_vermilion_person_mono_20261021\\vermilion_person_mono_20261021\\runs\\vermilion_ink\\integer\\graph.json",
+        "sha256": "4a1d49ef7c77911c2e436b8e757b92fe65b1720105d626181ea800a53ae222dc"
+      },
+      "parameters/range_proof.json": {
+        "path": "work\\style_training_glass22_20261021\\selected_vermilion_person_mono_20261021\\vermilion_person_mono_20261021\\runs\\vermilion_ink\\integer\\range_proof.json",
+        "sha256": "2450df79049d25948169ba4d20e3c4e8b24d8aaeb38206d83be2c29837f3e1e8"
+      }
+    }
+  }
+]

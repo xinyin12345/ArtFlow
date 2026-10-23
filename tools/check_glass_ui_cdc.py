@@ -4,7 +4,7 @@ import hashlib,json,re
 ROOT=Path(__file__).resolve().parents[1]
 def main():
     (ROOT/'work/glass_int8/ui_cdc_summary.json').write_text('{"status":"RUNNING"}\n')
-    result=[];files=['tools/check_ui_cdc.tcl','tools/check_ui_cdc.py','work/glass_int8/ui_cdc.log',
+    result=[];files=['tools/check_ui_cdc.tcl','tools/check_glass_ui_cdc.py','work/glass_int8/ui_cdc.log',
         'ArtFlow.sdc','rtl/video/artflow_button.v','rtl/video/artflow_fps.v',
         'work/glass_int8/implementation_source_sha256.json','work/glass_int8/efinity_out/ArtFlow.vdb',
         'work/glass_int8/efinity_out/ArtFlow.place','work/glass_int8/efinity_out/ArtFlow.troutingtraces']
@@ -12,14 +12,17 @@ def main():
     # Existing launcher emits this even for STA with encryption disabled.
     checked_log=log.replace('WARNING: cannot find correct IV value','')
     if re.search(r'WARNING|ERROR|Failed to run command',checked_log):raise ValueError('UI CDC STA warning/error')
-    if len(re.findall(r'UI_CDC_ENDPOINT \S+ count=1',log))!=26:raise ValueError('Missing UI CDC endpoints')
-    for tag in ('mode','osd','capture','process','diag_vs','diag_raw','diag_bin','csi_core_1','csi_core_2','csi_byte_1','csi_byte_2','csi_pixel_1','csi_pixel_2'):
+    if len(re.findall(r'UI_CDC_ENDPOINT \S+ count=1',log))!=34:raise ValueError('Missing UI CDC endpoints')
+    for tag in ('layout_bit0','layout_bit1','style','flash','mode','osd','capture','process','diag_vs','diag_raw','diag_bin','csi_core_1','csi_core_2','csi_byte_1','csi_byte_2','csi_pixel_1','csi_pixel_2'):
         for kind in ('setup','hold'):
             name=f'work/glass_int8/efinity_out/ArtFlow.ui_{tag}_{kind}.rpt';files.append(name)
             text=(ROOT/name).read_text()
             if (ROOT/name).stat().st_mtime_ns < (ROOT/'work/glass_int8/implementation_source_sha256.json').stat().st_mtime_ns:
                 raise ValueError('UI CDC report predates implementation: '+name)
-            head,tail={'mode':('u_ui/u_mode_key/key_meta','u_ui/u_mode_key/key_sync'),
+            head,tail={**{f'layout_bit{i}':(f'u_video_pipe/u_store/layout_meta[{i}]',f'u_video_pipe/u_store/layout_sync[{i}]') for i in range(2)},
+                       'style':('u_video_pipe/u_accel_dma/styles.key_filter/key_meta','u_video_pipe/u_accel_dma/styles.key_filter/key_sync'),
+                       'flash':('u_video_pipe/u_accel_dma/styles.banks/reader/miso_meta','u_video_pipe/u_accel_dma/styles.banks/reader/miso_sync'),
+                       'mode':('u_ui/u_mode_key/key_meta','u_ui/u_mode_key/key_sync'),
                        'osd':('u_ui/u_osd_key/key_meta','u_ui/u_osd_key/key_sync'),
                        'capture':('u_ui/u_fps/cap_meta','u_ui/u_fps/cap_sync'),
                        'process':('u_process_fps/cap_meta','u_process_fps/cap_sync'),

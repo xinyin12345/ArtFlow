@@ -63,15 +63,34 @@ def main():
     for i in range(3):rgb.append(f"  {i}:begin rgb_mul=28'd{int(p['rgb.multiplier'][i])};rgb_bias=32'sd{int(p['rgb.bias'][i])};end")
     (O/'rgb.vh').write_text('case(qchannel)\n'+'\n'.join(rgb)+"\n default:begin rgb_mul=0;rgb_bias=0;end\nendcase\n")
     proof=json.loads((N/'parameters/range_proof.json').read_text())
-    assert max(x['convolution_bits'] for x in proof['layers'])<=24
-    assert max(x['spatial_sum_bits'] for x in proof['layers'])<=40
-    assert max(x['requant_bits'] for x in proof['layers'])<=48
+    assert len(proof['layers'])==22
+    if 'convolution_bits' in proof['layers'][0]:
+        assert max(x['convolution_bits'] for x in proof['layers'])<=24
+        assert max(x['spatial_sum_bits'] for x in proof['layers'])<=40
+        assert max(x['requant_bits'] for x in proof['layers'])<=48
+    else:
+        # Frozen QAT exports record numeric bounds instead of bit counts.
+        # Accept that schema without changing or bypassing its range limits.
+        assert proof['pass'] and all(x['pass'] for x in proof['layers'])
+        assert [x['name'] for x in proof['layers']]==[n['name'] for n in g['nodes']]
+        assert max(x['max_acc_bound'] for x in proof['layers'])<2**23
+        assert max(x['spatial_sum_bound'] for x in proof['layers'])<2**39
+        assert max(x['requant_bound'] for x in proof['layers'])<2**47
+        for i,n in enumerate(g['nodes']):
+            bound=(np.abs(p[n['name']+'.weight'].astype(np.int64)).sum((1,2,3))*(255 if i==0 else 127)+np.abs(p[n['name']+'.bias'].astype(np.int64))).max()
+            assert int(bound)<=proof['layers'][i]['max_acc_bound'],n['name']
     for n in g['nodes']:
         assert n['shift']==24 and n['mean_divisor']==8192
         for suffix,bits in [('bias',24),('multiplier',21),('beta_fixed',32),('skip_multiplier',25)]:
             a=p[n['name']+'.'+suffix];assert int(a.min())>=-(1<<(bits-1)) and int(a.max())<(1<<(bits-1))
     (O/'architecture.json').write_text(json.dumps(dict(layers=layers,weight_words=len(weights),coefficient_words=len(coeffs),final_slot=layers[-1]['dst']),indent=2))
     print('ROM PASS',len(weights),'weight words;',len(coeffs),'coefficient words; final slot',layers[-1]['dst'])
-if __name__=='__main__':main()
+if __name__=='__main__':
+    import argparse
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--bundle',type=Path,default=N,help='Existing compatible INT8 export bundle')
+    parser.add_argument('--output',type=Path,default=O,help='Isolated destination for ROMs and graph descriptors')
+    args=parser.parse_args();N=args.bundle;O=args.output
+    main()
 
 

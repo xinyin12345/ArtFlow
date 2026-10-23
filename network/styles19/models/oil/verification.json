@@ -1,0 +1,164 @@
+{
+  "checkpoint_sha256": "e263b5572930a4c69eb852c5551aa6e06cb1730f2256770c873397fd490134bc",
+  "folded_fp32_max_error": 6.207823753356934e-05,
+  "range_proof_pass": true,
+  "metrics": [
+    {
+      "path": "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\network\\Model4_Three_Styles_FP32_20261022\\examples\\input_zebra_480x270.png",
+      "psnr": 35.376915744967775,
+      "mae_codes": 3.1540701389312744,
+      "max_codes": 53.37953186035156
+    },
+    {
+      "path": "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\work\\style_training_glass22_20261021\\inputs\\content_0.png",
+      "psnr": 27.825494013371358,
+      "mae_codes": 6.769804954528809,
+      "max_codes": 157.1253662109375
+    },
+    {
+      "path": "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\work\\style_training_glass22_20261021\\inputs\\content_1.png",
+      "psnr": 29.408248307703474,
+      "mae_codes": 5.95022439956665,
+      "max_codes": 98.47554016113281
+    },
+    {
+      "path": "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\work\\style_training_glass22_20261021\\inputs\\content_2.png",
+      "psnr": 31.165159441977636,
+      "mae_codes": 4.804285049438477,
+      "max_codes": 107.97692108154297
+    },
+    {
+      "path": "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\work\\style_training_glass22_20261021\\inputs\\content_3.png",
+      "psnr": 28.97485734752648,
+      "mae_codes": 6.278360843658447,
+      "max_codes": 109.07243347167969
+    },
+    {
+      "path": "D:\\work\\CodexWork\\network\\hwang2025_model3\\data\\content\\val2017\\000000044260.jpg",
+      "psnr": 33.51005711579318,
+      "mae_codes": 3.845125436782837,
+      "max_codes": 74.78901672363281
+    },
+    {
+      "path": "D:\\work\\CodexWork\\network\\hwang2025_model3\\data\\content\\val2017\\000000387148.jpg",
+      "psnr": 31.73175239414033,
+      "mae_codes": 4.705390930175781,
+      "max_codes": 77.54904174804688
+    },
+    {
+      "path": "D:\\work\\CodexWork\\network\\hwang2025_model3\\data\\content\\val2017\\000000200421.jpg",
+      "psnr": 30.75762403402663,
+      "mae_codes": 5.050011157989502,
+      "max_codes": 118.36653137207031
+    },
+    {
+      "path": "D:\\work\\CodexWork\\network\\hwang2025_model3\\data\\content\\val2017\\000000002261.jpg",
+      "psnr": 30.66099349047458,
+      "mae_codes": 5.194812774658203,
+      "max_codes": 87.02413940429688
+    },
+    {
+      "path": "D:\\work\\CodexWork\\network\\hwang2025_model3\\data\\content\\val2017\\000000119995.jpg",
+      "psnr": 29.24292304456767,
+      "mae_codes": 5.581784248352051,
+      "max_codes": 132.67039489746094
+    },
+    {
+      "path": "D:\\work\\CodexWork\\network\\hwang2025_model3\\data\\content\\val2017\\000000255747.jpg",
+      "psnr": 29.48437008227946,
+      "mae_codes": 5.795573711395264,
+      "max_codes": 141.86795043945312
+    },
+    {
+      "path": "D:\\work\\CodexWork\\network\\hwang2025_model3\\data\\content\\val2017\\000000542073.jpg",
+      "psnr": 29.993101372416607,
+      "mae_codes": 5.504936218261719,
+      "max_codes": 120.36842346191406
+    },
+    {
+      "path": "D:\\work\\CodexWork\\network\\hwang2025_model3\\data\\content\\val2017\\000000409630.jpg",
+      "psnr": 27.721838852825723,
+      "mae_codes": 7.018617630004883,
+      "max_codes": 139.57020568847656
+    },
+    {
+      "path": "D:\\work\\CodexWork\\network\\hwang2025_model3\\data\\content\\val2017\\000000383289.jpg",
+      "psnr": 29.701648441496083,
+      "mae_codes": 5.498139381408691,
+      "max_codes": 139.0
+    },
+    {
+      "path": "D:\\work\\CodexWork\\network\\hwang2025_model3\\data\\content\\val2017\\000000304984.jpg",
+      "psnr": 30.039361762891815,
+      "mae_codes": 5.461671352386475,
+      "max_codes": 118.08700561523438
+    },
+    {
+      "path": "D:\\work\\CodexWork\\network\\hwang2025_model3\\data\\content\\val2017\\000000556498.jpg",
+      "psnr": 32.41976766738525,
+      "mae_codes": 4.148334503173828,
+      "max_codes": 101.18376159667969
+    },
+    {
+      "path": "D:\\work\\CodexWork\\network\\hwang2025_model3\\data\\content\\val2017\\000000574315.jpg",
+      "psnr": 28.767107140035723,
+      "mae_codes": 6.2381415367126465,
+      "max_codes": 106.36770629882812
+    },
+    {
+      "path": "D:\\work\\CodexWork\\network\\hwang2025_model3\\data\\content\\val2017\\000000282037.jpg",
+      "psnr": 30.245304036316156,
+      "mae_codes": 5.24949312210083,
+      "max_codes": 105.0
+    },
+    {
+      "path": "D:\\work\\CodexWork\\network\\hwang2025_model3\\data\\content\\val2017\\000000500716.jpg",
+      "psnr": 27.858654568515384,
+      "mae_codes": 7.159489631652832,
+      "max_codes": 116.8802490234375
+    },
+    {
+      "path": "D:\\work\\CodexWork\\network\\hwang2025_model3\\data\\content\\val2017\\000000413689.jpg",
+      "psnr": 31.261269932851327,
+      "mae_codes": 4.775407791137695,
+      "max_codes": 108.16569519042969
+    },
+    {
+      "path": "D:\\work\\CodexWork\\network\\hwang2025_model3\\data\\content\\val2017\\000000155341.jpg",
+      "psnr": 29.4362696830979,
+      "mae_codes": 5.7925496101379395,
+      "max_codes": 149.95608520507812
+    },
+    {
+      "path": "D:\\work\\CodexWork\\network\\hwang2025_model3\\data\\content\\val2017\\000000355169.jpg",
+      "psnr": 31.632320944054047,
+      "mae_codes": 4.4470391273498535,
+      "max_codes": 101.06559753417969
+    },
+    {
+      "path": "D:\\work\\CodexWork\\network\\hwang2025_model3\\data\\content\\val2017\\000000271471.jpg",
+      "psnr": 28.462284928421248,
+      "mae_codes": 6.352095127105713,
+      "max_codes": 133.54580688476562
+    },
+    {
+      "path": "D:\\work\\CodexWork\\network\\hwang2025_model3\\data\\content\\val2017\\000000254368.jpg",
+      "psnr": 30.788832871512817,
+      "mae_codes": 5.039013385772705,
+      "max_codes": 112.1097412109375
+    },
+    {
+      "path": "D:\\work\\CodexWork\\network\\hwang2025_model3\\data\\content\\val2017\\000000292024.jpg",
+      "psnr": 28.950293998337013,
+      "mae_codes": 5.993819236755371,
+      "max_codes": 134.16110229492188
+    }
+  ],
+  "mean_psnr": 30.216658048679427,
+  "mean_mae_codes": 5.432327651977539,
+  "visual_review": {
+    "status": "REVIEWED_OFFLINE_CANDIDATE",
+    "notes": "Directional paint strokes and broad colors preserved. Local stroke highlights and colors differ."
+  },
+  "rtl_validation": "PASS: all 22 layers at 32x30 and 480x270; full pipeline final RGB DDR output exact"
+}

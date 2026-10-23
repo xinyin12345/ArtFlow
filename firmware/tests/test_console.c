@@ -18,7 +18,7 @@ int main(void) {
     assert(parse_command("defaults").kind == CMD_DEFAULTS);
     assert(parse_command("cam init").kind == CMD_CAM_INIT);
     assert(parse_command("cam off").kind == CMD_CAM_OFF);
-    assert(parse_command("cam baseline").kind == CMD_CAM_BASELINE);
+    assert(parse_command("cam baseline").kind == CMD_INVALID);
     assert(parse_command("cam timing").kind == CMD_CAM_TIMING);
     assert(parse_command(" \t").kind == CMD_EMPTY);
     for (unsigned i = 0; i < sizeof invalid / sizeof invalid[0]; ++i)

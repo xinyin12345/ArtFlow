@@ -60,9 +60,9 @@ enum i2c_result camera_read(uint16_t address, uint8_t *value) {
 }
 int main(void) {
     unsigned faults = 0, mismatches = 0;
-    for (unsigned baseline = 0; baseline < 2; ++baseline) {
+    for (unsigned baseline = 0; baseline < 1; ++baseline) {
         reset_model(baseline);
-        struct camera_result result = camera_configure(baseline);
+        struct camera_result result = camera_configure();
         assert(result.code == I2C_OK && writes == (baseline ? 164u : 166u));
         assert(reads == (baseline ? 5u : 10u) && ready_count == 1 && inits == 1);
         assert(reset_count == 1 && camera_control == CAMERA_READY);
@@ -84,14 +84,14 @@ int main(void) {
         }
         for (unsigned i = 0; i < count; ++i) {
             reset_model(baseline); fail_at = (int)i;
-            result = camera_configure(baseline);
+            result = camera_configure();
             assert(result.code == (expected[i].read ? I2C_TIMEOUT_ERROR : I2C_NACK_ERROR));
             assert(result.index == i && result.reg == expected[i].address && operations == i + 1);
             assert(ready_count == 0 && camera_control == CAMERA_RESET);
             ++faults;
             if (expected[i].read) {
                 reset_model(baseline); mismatch_at = (int)i;
-                result = camera_configure(baseline);
+                result = camera_configure();
                 assert(result.code == CAMERA_VERIFY_ERROR && result.index == i);
                 assert(result.reg == expected[i].address && operations == i + 1);
                 assert(ready_count == 0 && camera_control == CAMERA_RESET);
@@ -116,5 +116,5 @@ int main(void) {
         assert(result.index == i && operations == i + 1 && writes == 0);
         assert(timing.hts == 123 && timing.vts == 456 && timing.exposure_half_lines == 789);
     }
-    printf("PASS camera: P1 standby/timing/readback/stream order, exact baseline replay, %u injected I2C faults, %u readback mismatches, timing decode and 7 read failures\n", faults, mismatches);
+    printf("PASS camera: P1 standby/timing/readback/stream order, legacy profile removed, %u injected I2C faults, %u readback mismatches, timing decode and 7 read failures\n", faults, mismatches);
 }

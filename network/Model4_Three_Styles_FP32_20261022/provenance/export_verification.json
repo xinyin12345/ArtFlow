@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "styles": [
+    {
+      "style": "sketch",
+      "strict_load": true,
+      "full_vs_weights_max_abs_difference": 0.0,
+      "original_checkpoint_sha256_preserved": true,
+      "example_held_out": true
+    },
+    {
+      "style": "oil",
+      "strict_load": true,
+      "full_vs_weights_max_abs_difference": 0.0,
+      "original_checkpoint_sha256_preserved": true,
+      "example_held_out": true
+    },
+    {
+      "style": "pointillism",
+      "strict_load": true,
+      "full_vs_weights_max_abs_difference": 0.0,
+      "original_checkpoint_sha256_preserved": true,
+      "example_held_out": true
+    }
+  ],
+  "same_instance_switch_back_exact": true,
+  "device": "cpu"
+}

@@ -12,7 +12,9 @@ try {
  if($LASTEXITCODE -ne 0){exit $LASTEXITCODE}
  & "$EfinityRoot\python311\bin\python.exe" -B tools/check_glass_cnn_cdc.py prepare
  if($LASTEXITCODE -ne 0){exit $LASTEXITCODE}
- $taskTcl = (Get-Content -LiteralPath tools/check_video_cdc.tcl -Raw) + (Get-Content -LiteralPath tools/check_ui_cdc.tcl -Raw) + (Get-Content -LiteralPath tools/check_cnn_cdc.tcl -Raw)
+ & "$EfinityRoot\python311\bin\python.exe" -B tools/check_style_io.py prepare
+ if($LASTEXITCODE -ne 0){exit $LASTEXITCODE}
+ $taskTcl = (Get-Content -LiteralPath tools/check_video_cdc.tcl -Raw) + (Get-Content -LiteralPath tools/check_ui_cdc.tcl -Raw) + (Get-Content -LiteralPath tools/check_cnn_cdc.tcl -Raw) + (Get-Content -LiteralPath tools/check_style_io.tcl -Raw)
  Set-Content -LiteralPath work/glass_int8/audit.tcl -Value $taskTcl -Encoding ascii
  & "$EfinityRoot\python311\bin\python.exe" "$EfinityRoot\scripts\efx_run.py" ArtFlow_glass.xml --flow sta_tclsh --timeout 300 --output_dir work/glass_int8/efinity_out --work_dir work/glass_int8/efinity_build -t work/glass_int8/audit.tcl --pnr_opts sdc_file=work/glass_int8/video_cdc_audit.sdc *> work/glass_int8/cnn_cdc.log
  $taskCode=$LASTEXITCODE
@@ -24,6 +26,8 @@ try {
  & "$EfinityRoot\python311\bin\python.exe" -B tools/check_glass_video_cdc.py check
  if($LASTEXITCODE -ne 0){exit $LASTEXITCODE}
  & "$EfinityRoot\python311\bin\python.exe" -B tools/check_glass_ui_cdc.py
+ if($LASTEXITCODE -ne 0){exit $LASTEXITCODE}
+ & "$EfinityRoot\python311\bin\python.exe" -B tools/check_style_io.py check
  if($LASTEXITCODE -ne 0){exit $LASTEXITCODE}
  & "$EfinityRoot\python311\bin\python.exe" -B tools/check_glass_cnn_cdc.py check
  exit $LASTEXITCODE

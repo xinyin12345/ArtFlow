@@ -37,7 +37,6 @@ struct command parse_command(const char *line) {
     } else if (word(&p, "cam")) {
         if (word(&p, "init")) result.kind = CMD_CAM_INIT;
         else if (word(&p, "off")) result.kind = CMD_CAM_OFF;
-        else if (word(&p, "baseline")) result.kind = CMD_CAM_BASELINE;
         else if (word(&p, "timing")) result.kind = CMD_CAM_TIMING;
     }
     if (*p) result.kind = CMD_INVALID;

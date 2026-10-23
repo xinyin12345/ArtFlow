@@ -1,6 +1,10 @@
 # Audit v06 synchronizer existence and the timed second-stage path.
 # Normal ArtFlow.sdc stays active; first-stage async exceptions must not cut this path.
 foreach {tag head tail} {
+    layout_bit0 {u_video_pipe/u_store/layout_meta[0]} {u_video_pipe/u_store/layout_sync[0]}
+    layout_bit1 {u_video_pipe/u_store/layout_meta[1]} {u_video_pipe/u_store/layout_sync[1]}
+    style u_video_pipe/u_accel_dma/styles.key_filter/key_meta u_video_pipe/u_accel_dma/styles.key_filter/key_sync
+    flash u_video_pipe/u_accel_dma/styles.banks/reader/miso_meta u_video_pipe/u_accel_dma/styles.banks/reader/miso_sync
     mode u_ui/u_mode_key/key_meta u_ui/u_mode_key/key_sync
     osd u_ui/u_osd_key/key_meta u_ui/u_osd_key/key_sync
     capture u_ui/u_fps/cap_meta u_ui/u_fps/cap_sync

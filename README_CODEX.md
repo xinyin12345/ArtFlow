@@ -1,3 +1,57 @@
+2026-10-22 当前离线候选：19款风格，原16款保持，新增素描/油画O3/点彩R3。
+HDMI30Hz与原CNN结构/时钟不变；KEY3循环0..18。详见 doc/STYLES19_INTEGRATION.txt。
+新下载文件在 outputs/styles19_hdmi30_20261022/，模型包在 network/styles19/parameters.bin。
+本轮仅离线验证，未烧录/未JTAG下载、未训练、未提交Git；以下为此前版本历史记录。
+
+<!-- MULTISTYLE_CURRENT_BEGIN -->
+# 2026-10-21 当前 16 风格候选（未烧录、未提交）
+
+当前源码以 15 款已选新风格加原彩绘玻璃组成 16 款；已取消虹彩不恢复。用户提及的 17 款数量仍待确认。
+保留 480×270 CNN、22 层、冻结整数模型；KEY1 切换双窗口/风格全屏/原画全屏，KEY2 保持 OSD 开关，KEY3（A3/GPIOL_03，低有效）每次有效按压选择下一款风格。
+两套完整参数 bank 后台加载，CRC32 校验后只在 CNN 作业边界提交；未准备好或 Flash 校验失败时继续计算旧模型。
+
+最终隔离候选：`D:/work/CodexWork/2026-10-21/task-2/styles_slim2_20261021/`。
+该候选综合 LUT 36529、FF 25918，布局 XLR 56411/60800、RAM 240/256、DSP 144/160。
+布线及路由 CDC 通过；CNN 142.857 MHz setup/hold +0.303/+0.026 ns，全系统最差 +0.269/+0.026 ns。
+内部无时钟/未约束/多时钟端点均为 0；21 个外部输入和 39 个输出未给同步 I/O 延迟，详见约束覆盖报告及 SPI 协议路由预算，不能理解成所有外部板级时序均已实测。
+连续三帧逐层/逐像素比对通过；100 MHz 完成间隔 [6249024, 6251240]，最低持续 15.996826 fps。 总回归队列状态：`PASS`。
+仿真包含 960×540 供图/写回、25% AXI 随机停顿、视频访存；CPU/摄像头/DDR PHY 和持续板上帧率仍须实测，显示刷新不计作 CNN 帧率。
+
+`network/styles16/manifest.json` 记录确切选定图与模型身份；全部参数包 `parameters.bin` 为 256 KiB。
+`parameters.hex` 是 RTL readmemh 字节文件，不是 Efinity 编程 HEX。Flash 计划区间为 0x400000–0x43FFFF，实际占用未核对，尚未向硬件写入。
+原 `outflow/`、`outputs/` 的 BIT/HEX 均保留，不能误认成多风格新构建；新构建及验证证据在上述隔离目录 `src/work/glass_int8/`。
+模型导出、Flash 引脚、状态寄存器和限制见 [多风格说明](doc/STYLE_SWITCH_CANDIDATE.txt)。
+
+下方单风格 v6 及更早版本为历史记录；其中 KEY3 未使用、旧资源数及旧 BIT 路径不代表当前多风格候选。
+<!-- MULTISTYLE_CURRENT_END -->
+
+---
+
+# 2026-10-21 Glass 单风格吞吐候选（未烧录、未提交）
+
+本次保持原 glass_5 的 22 层网络、权重、量化规则及 480×270 CNN 分辨率，采用共享窗口、流水 MAC、行预取和弹性写回。
+CNN 仍为 142.857 MHz，AXI/CPU 仍为 100 MHz。全尺寸连续三帧仿真逐层/逐像素通过；完成间隔为 [6248001, 6248513] 个 AXI 周期，最差 **16.003808 fps**。
+此结果包含输入准备、CNN、缩放及 DDR 写回，条件为 25% 随机 AXI 停顿和背景视频负载；不代表板卡实测，真实 CPU 调度、摄像头供帧、DDR PHY 与长时间稳定性仍待上板验收。
+
+- KEY1：默认左右各 960×540 双窗口 → 风格 1920×1080 全屏 → 原画全屏 → 双窗口；帧边界提交，长按只触发一次。
+- KEY2：OSD 默认开启，可关闭；字号、位置和诊断内容保持在最终 1080p 坐标。KEY3 本轮未使用，留给未来风格切换。
+- 按键沿用原工程 P14/GPIOR_22、N14/GPIOR_21；依据 260920 硬件说明及官方按键示例。较早原理图标注有差异，详见独立报告；实体键尚未实测。
+- 摄像头仅保留 P1 与初始化/恢复；白平衡及完整诊断保留。`cam baseline` 已移除，保留 `cam init/off/timing`、`wb`、`defaults`、`status`、`help`。
+- 同结构模型仍可重新导出 ROM 并构建，使用 `tools/generate_glass_int8.py` 和 `tools/pack_glass_pipeline_weights.py`。本轮未接入其他风格，未增加运行时权重切换。
+
+最终实现：LUT 37707、FF 25090、XLR 55453/60800、RAM10 230/256、DSP 138/160；CNN setup/hold +0.201/+0.027 ns，全设计最小 +0.120/+0.026 ns，CDC 检查通过。
+约束覆盖检查 no_clock=0、unconstrained_internal_endpoints=0、multiple_clock=0；仍有 19 个输入和 34 个输出没有同步 I/O delay，外部接口验证边界在报告中明确列出。
+资源比原版增加；旧 UI/P1 分支精简不等于整机资源净下降。
+
+本轮证据和新 BIT/HEX 均在独立目录：
+`D:/work/CodexWork/2026-10-21/task-2/glass15_20261021/`。
+报告：`reports/ArtFlow_glass15_validation_20261021.txt`；差异/回退清单：`reports/application_receipt.json` 和 `baseline/`；连续验收：`src/work/glass_int8/pipeline_v6_full_continuous_960x540_example/summary.json`。
+原工程 `outflow/`、`outputs/` 内旧 BIT/HEX 未替换；不要将其误认为本轮候选。没有烧录，没有 Git commit/push。
+
+以下保留历史版本记录，其“当前”与“未实施”等描述仅对应记录当时状态。
+
+---
+
 # ArtFlow Glass INT8 上板基线（3–4 FPS）
 
 当前主工程使用 glass_5 第 20 轮 22 层 INT8 模型，原始权重与整数计算规则保持不变。

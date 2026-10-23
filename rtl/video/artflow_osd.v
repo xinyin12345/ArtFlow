@@ -34,11 +34,11 @@ always @* begin
              8:character="V"; 9:character="0"; 10:character=VERSION_DIGIT;
              12:character="M"; 13:character="O"; 14:character="D";
              15:character="E"; 16:character=":";
-             18:case(mode) 0:character="D";1:character="L";2:character="R";3:character="B";endcase
-             19:case(mode) 0:character="U";1:character="E";2:character="I";3:character="A";endcase
-             20:case(mode) 0:character="A";1:character="F";2:character="G";3:character="R";endcase
-             21:case(mode) 0:character="L";1:character="T";2:character="H";3:character="S";endcase
-             22:if(mode==2) character="T";
+             18:case(mode) 0:character="D";1:character="S";2:character="O";default:character=" ";endcase
+             19:case(mode) 0:character="U";1:character="T";2:character="R";default:character=" ";endcase
+             20:case(mode) 0:character="A";1:character="Y";2:character="I";default:character=" ";endcase
+             21:case(mode) 0:character="L";1:character="L";2:character="G";default:character=" ";endcase
+             22:if(mode==1) character="E";
              default:character=" ";
         endcase
     end else begin
@@ -61,25 +61,8 @@ end
 reg [7:0] font_row;
 initial $readmemh(FONT_FILE,font);
 always @(posedge clk) font_row<=font[{character[6:0],ry[4:2]}];
-reg [23:0] base_rgb;
-always @* begin
-    base_rgb=i_rgb;
-    case(mode)
-        1: if(x>=H_ACTIVE/2) base_rgb=0;
-        2: if(x<H_ACTIVE/2) base_rgb=0;
-        3: begin
-            if(x<H_ACTIVE/8) base_rgb=24'hffffff;
-            else if(x<H_ACTIVE*2/8) base_rgb=24'hffff00;
-            else if(x<H_ACTIVE*3/8) base_rgb=24'h00ffff;
-            else if(x<H_ACTIVE*4/8) base_rgb=24'h00ff00;
-            else if(x<H_ACTIVE*5/8) base_rgb=24'hff00ff;
-            else if(x<H_ACTIVE*6/8) base_rgb=24'hff0000;
-            else if(x<H_ACTIVE*7/8) base_rgb=24'h0000ff;
-            else base_rgb=0;
-        end
-        default: ;
-    endcase
-end
+// Content scaling belongs to the frame store. OSD never masks or replaces it.
+wire [23:0] base_rgb=i_rgb;
 reg de1,hs1,vs1,panel1,title1;
 reg [2:0] column1;
 reg [23:0] rgb1;

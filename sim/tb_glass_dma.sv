@@ -158,6 +158,14 @@ reg [23:0] addresses[0:N-1];
 reg [127:0] word;integer writes=0,frame=0,glass_fd;string folder;
 integer perf_reads=0,perf_writes=0,perf_ar=0,perf_aw=0,perf_stall=0,perf_skipwait=0,perf_run=0;
 reg [3:0] perf_phase=0;
+longint unsigned wall_cycles=0,last_complete=0;
+integer completions=0;
+always @(posedge clk)wall_cycles<=wall_cycles+1;
+// Observe the actual completion edge, including the final frame before finish.
+always @(posedge done)if(rst_n)begin
+ if(completions>0)$display("FRAME_INTERVAL index=%0d axi_cycles=%0d",completions,wall_cycles-last_complete);
+ last_complete=wall_cycles;completions=completions+1;
+end
 always @(posedge cnn_clk) if(dut.crst_n) begin
  if(dut.engine.state!=perf_phase) begin
   $display("PHASE state=%0d cycles=%0d",dut.engine.state,cycles);
@@ -170,11 +178,11 @@ always @(posedge cnn_clk) if(dut.crst_n) begin
   if(dut.engine.c_arvalid && dut.engine.arready) perf_ar=perf_ar+1;
   if(dut.engine.c_awvalid && dut.engine.awready) perf_aw=perf_aw+1;
   if(dut.engine.mv && !dut.engine.mready) perf_stall=perf_stall+1;
-  if(dut.engine.core.state==13) perf_skipwait=perf_skipwait+1;
+  if(dut.engine.core.state==dut.engine.core.RUN && dut.engine.core.fs==dut.engine.core.F_LOAD) perf_skipwait=perf_skipwait+1;
   if(dut.engine.state==4) perf_run=perf_run+1;
  end
  if(dut.engine.core.layer_done) begin
-  $display("PERF reads=%0d writes=%0d ar=%0d aw=%0d stalled=%0d skipwait=%0d cnn_cycles=%0d",perf_reads,perf_writes,perf_ar,perf_aw,perf_stall,perf_skipwait,perf_run);
+  $display("PERF reads=%0d writes=%0d ar=%0d aw=%0d stalled=%0d row_wait=%0d cnn_cycles=%0d",perf_reads,perf_writes,perf_ar,perf_aw,perf_stall,perf_skipwait,perf_run);
   perf_reads=0;perf_writes=0;perf_ar=0;perf_aw=0;perf_stall=0;perf_skipwait=0;perf_run=0;
  end
  if(dut.engine.state==3) begin

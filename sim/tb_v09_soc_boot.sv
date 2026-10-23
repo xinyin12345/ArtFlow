@@ -126,7 +126,7 @@ module tb_v09_soc_boot;
                 if (uart_line == "cam_timing hts=3000 vts=1500 exposure_half_lines=2989\n") timing_message_ok = 1;
                 if (contains(uart_line, "ERR camera NACK index=0")) camera_message_nack = 1;
                 if (uart_line == "OK wb applied\n") wb_message_ok = 1;
-                if (contains(uart_line, "help | status | wb R G B | defaults | cam init/off/baseline/timing"))
+                if (contains(uart_line, "help | status | wb R G B | defaults | cam init/off/timing"))
                     help_message_ok = 1;
                 if (contains(uart_line, "FATAL trap")) $fatal(1, "%s", uart_line);
                 uart_line = "";

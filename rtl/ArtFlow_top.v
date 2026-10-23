@@ -44,6 +44,9 @@ module ArtFlow_top #(
 
    // v05 board UART (115200 8N1, RX GPIOL_02 / TX GPIOR_28)
     input wire key_mode_n, // board key_i[1], GPIOR_22, active low
+    input wire key_style_n, // KEY3 A3 / GPIOL_03, active low
+    input wire flash_miso,
+    output wire flash_cs_n,flash_sck,flash_mosi,flash_wp_n,flash_hold_n,
     input wire key_osd_n,  // board key_i[2], GPIOR_21, active low
     input wire uart_rx,
     output wire uart_tx,
@@ -579,7 +582,9 @@ wire [7:0] hdmi_tx_rdata;
 wire [7:0] hdmi_tx_gdata;
 wire [7:0] hdmi_tx_bdata;
 
+assign flash_wp_n=1'b1;assign flash_hold_n=1'b1;
 cam_fb_pipe_v09 #(
+  .STYLE_ENABLE(1),.STYLE_COUNT(19),
   .DUAL_WINDOW    (CFG_DUAL_WINDOW),
   .BLACK_LEVEL    (CFG_BLACK_LEVEL),
   .AXI_DATA_WIDTH (AXI_DATA_WIDTH ),
@@ -598,6 +603,8 @@ cam_fb_pipe_v09 #(
   .diag_state(diag_state), .diag_fifo(diag_fifo),
   .diag_written(diag_written), .diag_completed(diag_completed),
   .diag_published(diag_published), .diag_rejected(diag_rejected),
+  .key_style_n(key_style_n),.flash_miso(flash_miso),.flash_cs_n(flash_cs_n),.flash_sck(flash_sck),.flash_mosi(flash_mosi),
+  .requested_layout(requested_layout),.active_layout(active_layout),
   .cfg_bayer      (CFG_BAYER      ),
   .cfg_pix_rev    (CFG_PIX_REV    ),
   .cfg_gain_r     (camera_gain_r  ),
@@ -864,22 +871,25 @@ inst_gamma_lut
   .o_vs     (gamma_vs       )
 );
 
+// 1080p30: 74.25 MHz / (2200 * 1125), with unchanged CNN/AXI/camera clocks.
+// All wall-clock timers in the display domain derive from this clock rate.
+localparam integer HDMI_PIXEL_HZ = 74250000;
 // v06: controls, measured FPS and OSD after Gamma, before TMDS.
 wire ui_rst_n;
 video_reset_sync u_ui_reset(.clk(hdmi_tx_slow_clk),.rst_n(vid_rst_n),.ready(ui_rst_n));
-wire [1:0] display_mode;
+wire [1:0] requested_layout,active_layout;
 wire osd_enable, fps_valid;
 wire [11:0] capture_fps_bcd, display_fps_bcd;
-artflow_ui u_ui(
+artflow_ui #(.CLOCK_HZ(HDMI_PIXEL_HZ),.DEBOUNCE_CYCLES(HDMI_PIXEL_HZ/50)) u_ui(
     .clk(hdmi_tx_slow_clk),.rst_n(ui_rst_n),
     .key_mode_n(key_mode_n),.key_osd_n(key_osd_n),
     .capture_toggle(capture_toggle),.i_vs(gamma_vs),
-    .mode(display_mode),.osd_enable(osd_enable),
+    .mode(requested_layout),.osd_enable(osd_enable),
     .capture_bcd(capture_fps_bcd),.display_bcd(display_fps_bcd),.fps_valid(fps_valid));
 wire [11:0] process_sample;
 wire process_sample_valid;
 reg [11:0] process_fps_bcd=0;
-artflow_fps u_process_fps(.clk(hdmi_tx_slow_clk),.rst_n(ui_rst_n),
+artflow_fps #(.CLOCK_HZ(HDMI_PIXEL_HZ)) u_process_fps(.clk(hdmi_tx_slow_clk),.rst_n(ui_rst_n),
  .capture_toggle(process_toggle),.display_tick(1'b0),
  .capture_bcd(process_sample),.display_bcd(),.sample_valid(process_sample_valid));
 always @(posedge hdmi_tx_slow_clk or negedge ui_rst_n)
@@ -889,7 +899,7 @@ wire osd_de,osd_hs,osd_vs;
 wire [23:0] osd_rgb;
 artflow_osd #(.H_ACTIVE(MAX_HRES),.VERSION_DIGIT("9"),.PROCESS_FPS(1)) u_osd(
     .clk(hdmi_tx_slow_clk),.rst_n(ui_rst_n),
-    .mode(display_mode),.osd_enable(osd_enable),
+    .mode(active_layout),.osd_enable(osd_enable),
     .capture_bcd(capture_fps_bcd),.display_bcd(process_fps_bcd),.fps_valid(fps_valid),
     .i_de(gamma_valid),.i_hs(gamma_hs),.i_vs(gamma_vs),
     .i_rgb({gamma_rdata,gamma_gdata,gamma_bdata}),
@@ -912,7 +922,7 @@ dvi_encoder dvi_encoder_m0
   .audio_R			    (audio_R),
   .audio_valid		  (audio_valid),
   .audio_N                (6144),     //(20'h01880),//     
-  .audio_CTS              (148500),      //(20'h28488),//      
+  .audio_CTS              (HDMI_PIXEL_HZ/1000),      //(20'h28488),//      
   .audio_sample_frequency (audio_samp_freq),    //(3'b000),// 
   .audio_word_length      ({audio_samp_word_len,audio_max_word_length}),//(4'b1011),//
 

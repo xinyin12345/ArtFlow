@@ -1,0 +1,160 @@
+{
+  "pass": true,
+  "layers": [
+    {
+      "name": "enc0",
+      "max_acc_bound": 435725,
+      "spatial_sum_bound": 0,
+      "requant_bound": 24423882819,
+      "pass": true
+    },
+    {
+      "name": "enc1_dw",
+      "max_acc_bound": 97155,
+      "spatial_sum_bound": 0,
+      "requant_bound": 3792153960,
+      "pass": true
+    },
+    {
+      "name": "enc1_pw",
+      "max_acc_bound": 77593,
+      "spatial_sum_bound": 0,
+      "requant_bound": 24837907200,
+      "pass": true
+    },
+    {
+      "name": "enc2_dw",
+      "max_acc_bound": 88138,
+      "spatial_sum_bound": 0,
+      "requant_bound": 3179505960,
+      "pass": true
+    },
+    {
+      "name": "enc2_pw",
+      "max_acc_bound": 152795,
+      "spatial_sum_bound": 0,
+      "requant_bound": 32889554438,
+      "pass": true
+    },
+    {
+      "name": "res0_reduce",
+      "max_acc_bound": 255270,
+      "spatial_sum_bound": 2083003200,
+      "requant_bound": 30908984975,
+      "pass": true
+    },
+    {
+      "name": "res0_spatial",
+      "max_acc_bound": 356811,
+      "spatial_sum_bound": 2911577760,
+      "requant_bound": 34852387883,
+      "pass": true
+    },
+    {
+      "name": "res0_expand",
+      "max_acc_bound": 81788,
+      "spatial_sum_bound": 667390080,
+      "requant_bound": 8808120948,
+      "pass": true
+    },
+    {
+      "name": "res1_reduce",
+      "max_acc_bound": 191262,
+      "spatial_sum_bound": 1560697920,
+      "requant_bound": 35492431986,
+      "pass": true
+    },
+    {
+      "name": "res1_spatial",
+      "max_acc_bound": 366989,
+      "spatial_sum_bound": 2994630240,
+      "requant_bound": 42467099511,
+      "pass": true
+    },
+    {
+      "name": "res1_expand",
+      "max_acc_bound": 90170,
+      "spatial_sum_bound": 735787200,
+      "requant_bound": 9856221720,
+      "pass": true
+    },
+    {
+      "name": "res2_reduce",
+      "max_acc_bound": 233299,
+      "spatial_sum_bound": 1903719840,
+      "requant_bound": 47280300284,
+      "pass": true
+    },
+    {
+      "name": "res2_spatial",
+      "max_acc_bound": 350504,
+      "spatial_sum_bound": 2860112640,
+      "requant_bound": 35446889084,
+      "pass": true
+    },
+    {
+      "name": "res2_expand",
+      "max_acc_bound": 82550,
+      "spatial_sum_bound": 673608000,
+      "requant_bound": 9218777060,
+      "pass": true
+    },
+    {
+      "name": "res3_reduce",
+      "max_acc_bound": 235204,
+      "spatial_sum_bound": 1919264640,
+      "requant_bound": 52140074839,
+      "pass": true
+    },
+    {
+      "name": "res3_spatial",
+      "max_acc_bound": 390383,
+      "spatial_sum_bound": 3185525280,
+      "requant_bound": 52569924849,
+      "pass": true
+    },
+    {
+      "name": "res3_expand",
+      "max_acc_bound": 90424,
+      "spatial_sum_bound": 737859840,
+      "requant_bound": 8567076855,
+      "pass": true
+    },
+    {
+      "name": "dec1_dw",
+      "max_acc_bound": 100076,
+      "spatial_sum_bound": 0,
+      "requant_bound": 5783291964,
+      "pass": true
+    },
+    {
+      "name": "dec1_pw",
+      "max_acc_bound": 243518,
+      "spatial_sum_bound": 0,
+      "requant_bound": 37765590380,
+      "pass": true
+    },
+    {
+      "name": "dec2_dw",
+      "max_acc_bound": 85598,
+      "spatial_sum_bound": 0,
+      "requant_bound": 3173903355,
+      "pass": true
+    },
+    {
+      "name": "dec2_pw",
+      "max_acc_bound": 158522,
+      "spatial_sum_bound": 0,
+      "requant_bound": 35376822720,
+      "pass": true
+    },
+    {
+      "name": "output",
+      "max_acc_bound": 963177,
+      "spatial_sum_bound": 0,
+      "requant_bound": 20083203627,
+      "pass": true
+    }
+  ],
+  "scope": "All legal input codes, original 24/40/48-bit datapath; no training"
+}

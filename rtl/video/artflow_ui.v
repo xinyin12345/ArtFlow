@@ -1,5 +1,5 @@
-// Controls and telemetry stay in the HDMI domain. All visible state is
-// committed at positive VS; no mode/OSD/number changes inside an active frame.
+// KEY1 emits a three-state layout request; frame_store commits it at VS.
+// KEY2 OSD visibility and telemetry commit at positive VS in final screen coordinates.
 module artflow_ui #(
     parameter CLOCK_HZ=148500000, DEBOUNCE_CYCLES=2970000
 )(
@@ -18,18 +18,16 @@ wire [11:0] cap_sample, out_sample;
 wire sample_valid;
 artflow_fps #(.CLOCK_HZ(CLOCK_HZ)) u_fps
     (clk,rst_n,capture_toggle,frame_tick,cap_sample,out_sample,sample_valid);
-reg [1:0] requested_mode;
 reg requested_osd;
 always @(posedge clk or negedge rst_n) begin
     if(!rst_n) begin
-        vs_prev<=0; requested_mode<=0; requested_osd<=1;
+        vs_prev<=0; requested_osd<=1;
         mode<=0; osd_enable<=1; capture_bcd<=0; display_bcd<=0; fps_valid<=0;
     end else begin
         vs_prev<=i_vs;
-        if(mode_press) requested_mode<=requested_mode+2'd1;
+        if(mode_press) mode<=mode==2 ? 0 : mode+2'd1;
         if(osd_press) requested_osd<=!requested_osd;
         if(frame_tick) begin
-            mode<=requested_mode+(mode_press ? 2'd1 : 2'd0);
             osd_enable<=requested_osd ^ osd_press;
             capture_bcd<=cap_sample; display_bcd<=out_sample; fps_valid<=sample_valid;
         end

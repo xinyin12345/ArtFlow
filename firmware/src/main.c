@@ -56,11 +56,11 @@ static void show_camera_timing(void) {
     print(" exposure_half_lines="); decimal(timing.exposure_half_lines);
     print("\r\n");
 }
-static void init_camera(unsigned baseline) {
+static void init_camera(void) {
     print("BUSY camera init\r\n");
-    last_camera = camera_configure(baseline);
+    last_camera = camera_configure();
     if (last_camera.code == I2C_OK) {
-        print(baseline ? "OK camera BASELINE\r\n" : "OK camera P1 VTS1500 EXP2989\r\n");
+        print("OK camera P1 VTS1500 EXP2989\r\n");
         show_camera_timing();
     } else {
         print("ERR camera "); print(camera_error(last_camera.code));
@@ -107,7 +107,7 @@ static void show_video_diagnostics(void) {
 static void execute(const struct command *command) {
     if (command->kind == CMD_EMPTY) return;
     if (command->kind == CMD_HELP) {
-        print("help | status | wb R G B | defaults | cam init/off/baseline/timing\r\n"
+        print("help | status | wb R G B | defaults | cam init/off/timing\r\n"
               "Gains: unsigned decimal 0..1024 Q8.8 (256=1x); defaults ");
         decimal(DEFAULT_R); print(" "); decimal(DEFAULT_G); print(" "); decimal(DEFAULT_B);
         print("\r\nCR/LF; max 63 chars; wait for response\r\n");
@@ -129,8 +129,7 @@ static void execute(const struct command *command) {
         print("\r\n"); show_video_diagnostics(); break;
     case CMD_WB: apply_gains(command->rgb[0], command->rgb[1], command->rgb[2]); break;
     case CMD_DEFAULTS: apply_gains(DEFAULT_R, DEFAULT_G, DEFAULT_B); break;
-    case CMD_CAM_INIT: init_camera(0); break;
-    case CMD_CAM_BASELINE: init_camera(1); break;
+    case CMD_CAM_INIT: init_camera(); break;
     case CMD_CAM_TIMING: show_camera_timing(); break;
     case CMD_CAM_OFF:
         control_write(REG_CAMERA, CAMERA_RESET);
@@ -189,7 +188,7 @@ int main(void) {
     mmio_write(UART_BASE + 4u, 0u); /* Polling; disable TX/RX interrupts. */
     print("\r\nArtFlow v09 S8-CNN CAP-P1; UART 115200 8N1\r\n");
     control_valid = control_read(REG_ID) == CONTROL_ID;
-    if (control_valid) init_camera(0);
+    if (control_valid) init_camera();
     else print("ERR control ID mismatch\r\n");
     if (control_valid && control_read(REG_ACCEL_ID) == 0x41524609u) {
         mmio_write(PLIC_BASE + ACCEL_IRQ_ID * 4u, 1u);

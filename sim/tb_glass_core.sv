@@ -4,15 +4,19 @@ parameter W=32,H=30,N=1,FRAMES=2,STALL_PCT=25;
 reg clk=0;always #3.5 clk=~clk;
 reg rst=1,start=0;wire busy,done,mv,mw;wire [23:0] ma;wire [63:0] wd;
 reg ready=0,rv=0;reg [63:0] rd;wire ld;wire [4:0] li;wire [31:0] cycles;
-glass_int8 #(.EXT_W(W),.EXT_H(H)) dut(clk,rst,start,busy,done,mv,mw,ma,wd,,ready,rv,rd,ld,li,cycles);
+glass_int8 #(.EXT_W(W),.EXT_H(H)) dut(clk,rst,start,busy,done,1'b0,1'b0,1'b0,2'b0,10'b0,576'b0,mv,mw,ma,wd,,ready,rv,rd,ld,li,cycles);
 reg [63:0] mem[0:786431],input_words[0:W*H-1],expected[0:N-1];
 reg [23:0] addresses[0:N-1];string folder;integer writes=0,delay_count=0,frame,fd;
-reg pending=0;reg [23:0] pending_addr;reg [31:0] rng=32'h12671;
+// Ordered variable-latency memory supporting the four allowed outstanding reads.
+reg [23:0] queue_addr[0:15];integer queue_due[0:15];
+integer sent_reads=0,returned_reads=0,clock_count=0;
+reg [31:0] rng=32'h12671;
 always @(posedge clk) begin
+ clock_count<=clock_count+1;
  rng<={rng[30:0],rng[31]^rng[21]^rng[1]^rng[0]};
- ready<=!pending && (rng%100>=STALL_PCT);rv<=0;
- if(pending)begin
- if(delay_count==0)begin rv<=1;rd<=mem[pending_addr>>3];pending<=0;end else delay_count<=delay_count-1;
+ ready<=sent_reads-returned_reads<3 && (rng%100>=STALL_PCT);rv<=0;
+ if(sent_reads!=returned_reads && clock_count>=queue_due[returned_reads%16])begin
+  rv<=1;rd<=mem[queue_addr[returned_reads%16]>>3];returned_reads<=returned_reads+1;
  end
  if(!rst&&mv&&ready)begin
  if(mw)begin
@@ -20,8 +24,8 @@ always @(posedge clk) begin
  $fatal(1,"feature mismatch layer=%0d word=%0d address=%h expected_addr=%h got=%h want=%h",li,writes,ma,addresses[writes],wd,expected[writes]);
  mem[ma>>3]<=wd;writes=writes+1;
  end else begin
- if(pending)$fatal(1,"multiple reads");
- pending<=1;pending_addr<=ma;delay_count<=rng%7;
+ if(sent_reads-returned_reads>=4)$fatal(1,"too many reads");
+ queue_addr[sent_reads%16]<=ma;queue_due[sent_reads%16]<=clock_count+1+rng%7;sent_reads<=sent_reads+1;
  end end
  if(ld)begin $display("LAYER next=%0d cycles=%0d writes=%0d",li,cycles,writes);$fflush();end
 end

@@ -1,6 +1,7 @@
 module audio_clock_regeneration_packet #(
     parameter real VIDEO_RATE = 25.2E6,
-    parameter TIME_CNT = 148500
+    // 74.25 MHz display domain: preserve the existing 1 ms ACR packet cadence.
+    parameter TIME_CNT = 74250
 )(
     input logic clk,
     input logic clk_audio,

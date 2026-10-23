@@ -9,9 +9,9 @@ create_clock -period 2.500 -name rx_cal_clk [get_ports {rx_cal_clk}]
 create_clock -period 2.500 -name tx_cal_clk [get_ports {tx_cal_clk}]
 create_clock -period 10.000 -name clk_100m [get_ports {clk_100m}]
 create_clock -period 13.468 -name vid_clk_dvi2 [get_ports {vid_clk_dvi2}]
-create_clock -period 6.734 -name hdmi_tx_slow_clk [get_ports {hdmi_tx_slow_clk}]
+create_clock -period 13.468 -name hdmi_tx_slow_clk [get_ports {hdmi_tx_slow_clk}]
 create_clock -period 18.519 -name fb [get_ports {fb}]
-create_clock -waveform {0.337 1.010} -period 1.347 -name hdmi_tx_fast_clk [get_ports {hdmi_tx_fast_clk}]
+create_clock -waveform {0.337 1.684} -period 2.694 -name hdmi_tx_fast_clk [get_ports {hdmi_tx_fast_clk}]
 create_clock -period 7.000 -name cnn_clk [get_ports {cnn_clk}]
 create_clock -period 10.000 -name core_clk [get_ports {core_clk}]
 create_clock -period 20.000 -name i_mipi_rx_pclk [get_ports {i_mipi_rx_pclk}]
@@ -47,6 +47,8 @@ set_bus_skew -from [get_pins {u_control/mailbox_*[*]~FF|CLK}] -to [get_pins {cam
 # HSIO GPIO Constraints
 #########################
 create_clock -period 40.000 -name CLK_25M [get_ports {CLK_25M}]
+# Existing USER_PLL reference, 27.0000 MHz in ArtFlow.peri.xml; no frequency change.
+create_clock -period 37.037 -name CLK_27M [get_ports {CLK_27M}]
 set_output_delay -clock sdram_clk -reference_pin [get_ports {sdram_clk~CLKOUT~218~95}] -max 0.302 [get_ports {ddr_addr[0]}]
 set_output_delay -clock sdram_clk -reference_pin [get_ports {sdram_clk~CLKOUT~218~95}] -min -0.140 [get_ports {ddr_addr[0]}]
 set_output_delay -clock sdram_clk -reference_pin [get_ports {sdram_clk~CLKOUT~218~36}] -max 0.302 [get_ports {ddr_addr[1]}]
@@ -288,6 +290,19 @@ set_input_delay -clock i_cam_ck_CLKOUT -reference_pin [get_ports {i_cam_ck_CLKOU
 # UART 115200 8N1 and camera I2C are verified at protocol level, not as synchronous I/O.
 set_false_path -from [get_ports {uart_rx io_cam_scl_IN io_cam_sda_IN}]
 
+
 # v06 asynchronous board buttons: only the first synchronization stage.
 set_false_path -from [get_ports {key_mode_n}] -to [get_pins {u_ui/u_mode_key/key_meta~FF|D}]
 set_false_path -from [get_ports {key_osd_n}] -to [get_pins {u_ui/u_osd_key/key_meta~FF|D}]
+
+# Frame-stable layout payload: captured after synchronized display epoch.
+# Output-register alias is promoted to top level in the implemented netlist.
+set_bus_skew -from [get_pins {active_layout[*]~FF|CLK}] -to [get_pins {u_video_pipe/u_store/layout_meta[*]~FF|D}] 2.500
+
+# KEY3 uses the same two-FF synchronization and 20 ms edge qualification.
+set_false_path -from [get_ports {key_style_n}] -to [get_pins {u_video_pipe/u_accel_dma/styles.key_filter/key_meta~FF|D}]
+# The SPI read engine samples its two-FF DO synchronizer only 8 CNN clocks
+# after changing SCK. Audit the round trip separately against 56 ns; do not
+# invent a phase-locked clock for this transaction-gated SCK signal.
+set_false_path -from [get_ports {flash_miso}] -to [get_pins {u_video_pipe/u_accel_dma/styles.banks/reader/miso_meta~FF|D}]
+set_max_delay 10.000 -to [get_ports {flash_cs_n flash_sck flash_mosi}]

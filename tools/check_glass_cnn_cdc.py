@@ -15,7 +15,7 @@ def check():
     snap=R/'work/glass_int8/implementation_source_sha256.json'
     assert implementation_sources()==json.loads(snap.read_text()),'Implementation inputs changed'
     paths=['ArtFlow.sdc','rtl/accel/artflow_cnn_cdc_fifo.v','rtl/accel/artflow_cnn_accel.v',
-           'tools/check_cnn_cdc.py','tools/check_cnn_cdc.tcl','tools/run_cnn_cdc.ps1',
+           'tools/check_glass_cnn_cdc.py','tools/check_cnn_cdc.tcl','tools/run_glass_cdc.ps1',
            'work/glass_int8/implementation_source_sha256.json','work/glass_int8/cnn_cdc_audit.sdc','work/glass_int8/cnn_cdc.log',
            'work/glass_int8/efinity_out/ArtFlow.vdb','work/glass_int8/efinity_out/ArtFlow.place','work/glass_int8/efinity_out/ArtFlow.troutingtraces']
     def report(name):
@@ -31,10 +31,10 @@ def check():
                                delay=float(field('Data Path Delay')),slack=float(field('Slack'))))
         assert result,'Missing timing paths';return result
     prefix='u_video_pipe/u_accel_dma/'
-    sizes=dict(jobs=2,events=2,ar=2,aw=2,w=3,r=3,b=2)
+    sizes=dict(jobs=2,events=2,ar=2,aw=2,w=3,r=3,b=2,style_status_fifo=2)
     meta={prefix+f'{f}/{d}gray_meta[{i}]~FF|D' for f,a in sizes.items() for d in 'wr' for i in range(a+1)}
     log=(R/'work/glass_int8/cnn_cdc.log').read_text(encoding='utf-16')
-    assert len(re.findall(r'CNN_CDC_SYNC \S+ count=[34]',log))==28,'Missing synchronizer inventory'
+    assert len(re.findall(r'CNN_CDC_SYNC \S+ count=[34]',log))==32,'Missing synchronizer inventory'
     assert not re.search(r'ERROR|WARNING|Failed to run',log.replace('WARNING: cannot find correct IV value',''))
     sync_count=0
     for f,a in sizes.items():
@@ -74,15 +74,15 @@ def check():
                 reset_sr.add(dest)
             elif 'gray_meta' in dest:
                 assert 'synchronized with ASYNC_REG property' in description
-                assert re.fullmatch(re.escape(prefix)+r'(jobs|events|ar|aw|w|r|b)/[wr](gray|bin)\[[\d:]+\]~FF\|CLK',source)
+                assert re.fullmatch(re.escape(prefix)+r'(jobs|events|ar|aw|w|r|b|style_status_fifo)/[wr](gray|bin)\[[\d:]+\]~FF\|CLK',source)
                 same_gray=dest.replace('gray_meta','gray').replace('|D','|CLK')
                 if source!=same_gray:
                     # Only Gray's unchanged MSB may merge with its binary FF.
                     f=dest[len(prefix):].split('/')[0]
                     assert source==same_gray.replace('gray','bin') and f'[{sizes[f]}]' in dest
             else:
-                assert re.fullmatch(r'(?:i\d+/)?'+re.escape(prefix)+r'(jobs|events|ar|aw|w|r|b)/storage\[\d+\]\[[\d:]+\]~FF\|CLK',source),source
-                assert re.fullmatch(r'u_video_pipe/(?:a_(?:wdata|wstrb|wlast|awaddr|awlen|araddr|arlen)|u_accel_dma/(?:event_data|job|c_rdata|c_rlast|c_rresp|c_bresp))(?:\[[\d:]+\])?~FF\|D',dest),dest
+                assert re.fullmatch(r'(?:i\d+/)?'+re.escape(prefix)+r'(jobs|events|ar|aw|w|r|b|style_status_fifo)/storage\[\d+\]\[[\d:]+\]~FF\|CLK',source),source
+                assert re.fullmatch(r'u_video_pipe/(?:a_(?:wdata|wstrb|wlast|awaddr|awlen|araddr|arlen)|u_accel_dma/(?:event_data|job|c_rdata|c_rlast|c_rresp|c_bresp|status_data))(?:\[[\d:]+\])?~FF\|D',dest),dest
             inventory.update(expand(dest))
         v=detail(report(direction))
         assert len(v)==len(inventory) and {x['end'] for x in v}==inventory,'Unreported crossing endpoint'

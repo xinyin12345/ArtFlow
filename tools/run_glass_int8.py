@@ -81,7 +81,7 @@ def main():
     Image.fromarray(rgb).save(out/'input.png');Image.fromarray(result).save(out/'integer_output.png')
     if a.pattern=='example' and not a.system and (a.width,a.height)==(480,270):
         assert np.array_equal(result,np.array(Image.open(N/'example_output_int8.png'))),'Delivered example mismatch'
-    sources=[R/'rtl/cnn/glass_int8/glass_int8.v']
+    sources=[R/'rtl/cnn/glass_int8/glass_line4.v',R/'rtl/cnn/glass_int8/glass_model_params.v',R/'rtl/cnn/glass_int8/glass_int8.v']
     if a.system:
         (out/'prepared.hex').write_text(''.join(f'{int(x):016x}\n' for x in pack(rgb)))
         h,w=a.height,a.width;y=np.arange(h);x=np.arange(w);y0=(2*y-1)//4;x0=(2*x-1)//4
@@ -115,7 +115,14 @@ def main():
     summary=dict(status=status,args=vars(a),feature_words=n,frame_cycles=cycles,simulator=version,
         seconds=time.monotonic()-t,source_sha256=hashes,error=error,
         evidence_sha256={p.name:sha(p) for p in out.glob('*.log')})
-    if a.system and cycles:summary['fps_min']=1e8/max(cycles)
+    if a.system and cycles:
+        summary['fps_min']=1e8/max(cycles)
+        intervals=[int(v) for v in re.findall(r'FRAME_INTERVAL .*?axi_cycles=(\d+)',txt)]
+        summary['completion_intervals_axi_cycles']=intervals
+        summary['sustained_fps_min']=1e8/max(intervals) if intervals else None
+        summary['sustained_evidence']='successive real completion events, fixed input recomputed each frame' if intervals else 'single frame only'
+        if not a.fault and a.frames>1 and len(intervals)!=a.frames-1:
+            summary['status']='FAIL';summary['error']='Missing completion-event interval evidence';status='FAIL' 
     (out/'summary.json').write_text(json.dumps(summary,indent=2))
     print(txt[-2500:]);print(status,out,flush=True);return status!='PASS'
 if __name__=='__main__':sys.exit(main())

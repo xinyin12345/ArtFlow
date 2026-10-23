@@ -1,9 +1,9 @@
 # Invoked by run_efinity.ps1 against the generated CDC-only audit SDC.
 # All Gray-bus and gain-mailbox endpoints must survive the implemented netlist.
-foreach name {count_meta epoch_meta} {
+foreach {name bits} {count_meta 32 epoch_meta 32 layout_meta 2} {
     set cells [get_cells u_video_pipe/u_store/${name}*~FF]
     puts "CDC_ENDPOINTS $name count=[llength $cells]"
-    if {[llength $cells] != 32} {error "Missing CDC endpoints: $name"}
+    if {[llength $cells] != $bits} {error "Missing CDC endpoints: $name"}
 }
 foreach name {camera_gain_r camera_gain_g camera_gain_b u_control/mailbox_r u_control/mailbox_g u_control/mailbox_b} {
     set cells [get_cells ${name}*~FF]

@@ -11,6 +11,8 @@ module rgb_frame_store_v07 #(
     input rst_n, input i_clk, input i_vs, input i_valid,
     input [63:0] i_data,
     input o_clk,
+    input [1:0] requested_layout, // 0=native pair, 1=styled 2x, 2=original 2x
+    output reg [1:0] active_layout=0,
     input [12:0] H_FRONT_PORCH, H_SYNC, H_VALID, H_BACK_PORCH,
     input [12:0] V_FRONT_PORCH, V_SYNC, V_VALID, V_BACK_PORCH,
     output reg o_de, o_hs, o_vs, output reg [31:0] o_data,
@@ -140,15 +142,20 @@ reg [31:0] display_epoch_gray = 0;
 (* async_reg = "true" *) reg [1:0] begin_sync=0, bad_sync=0;
 (* async_reg = "true" *) reg [2:0] done_sync=0;
 reg [31:0] requested_epoch = 0;
+// Bundled mailbox: layout is stable for the epoch; two stages plus the
+// existing extra epoch-decode cycle precede the AXI snapshot.
+(* async_reg = "true" *) reg [1:0] layout_meta=0, layout_sync=0;
+reg [1:0] read_layout=0;
 reg begin_seen = 0;
 wire [31:0] completed_words = gray_decode(count_sync);
 always @(posedge axi_clk or negedge arst) begin
     if (!arst) begin
         begin_sync <= 0; done_sync <= 0; bad_sync<=0;
         epoch_meta<=0; epoch_sync<=0; count_meta<=0; count_sync<=0;
-        requested_epoch <= 0;
+        requested_epoch <= 0; layout_meta<=0;layout_sync<=0;
     end else begin
         epoch_meta<=display_epoch_gray; epoch_sync<=epoch_meta;
+        layout_meta<=active_layout;layout_sync<=layout_meta;
         count_meta<=capture_words_gray; count_sync<=count_meta;
         bad_sync<={bad_sync[0],capture_bad};
         begin_sync <= {begin_sync[0],capture_begin};
@@ -278,7 +285,7 @@ always_comb begin
 end
 always @(posedge axi_clk or negedge arst) begin
     if (!arst) begin
-        rs <= R_IDLE; read_active <= 0; read_bank <= 0;
+        rs <= R_IDLE; read_active <= 0; read_bank <= 0;read_layout<=0;
         display_bank<=0;display_styled<=0;display_row<=0;display_right<=0;
         row_words<=0;original_base<=0;result_base<=0;
         read_epoch <= 0; handled_epoch <= 0; words_read <= 0;
@@ -288,9 +295,10 @@ always @(posedge axi_clk or negedge arst) begin
             handled_epoch <= requested_epoch;
             if (latest_valid) begin
                 read_epoch <= requested_epoch; read_bank <= latest_bank; read_active <= 1;
-                read_addr <= START_ADDR + latest_bank * BANK_BYTES;
+                read_layout<=layout_sync;
+                read_addr <= layout_sync==1 && styled_valid ? START_ADDR+(3+styled_bank)*BANK_BYTES : START_ADDR+latest_bank*BANK_BYTES;
                 words_read <= 0; rs <= R_WAIT;
-                display_bank<=styled_bank;display_styled<=styled_valid;
+                display_bank<=styled_bank;display_styled<=styled_valid && layout_sync!=2;
                 display_row<=0;display_right<=0;row_words<=0;
                 original_base<=START_ADDR+latest_bank*BANK_BYTES;
                 result_base<=styled_valid ? START_ADDR+3*BANK_BYTES+styled_bank*BANK_BYTES :
@@ -309,11 +317,21 @@ always @(posedge axi_clk or negedge arst) begin
             if (rlast) begin
                 words_read <= words_read + read_beats;
                 if(row_words+read_beats==ROW_WORDS) begin
-                    row_words<=0;display_right<=!display_right;
-                    if(!display_right) read_addr<=result_base+display_row*(WIDTH*4);
-                    else begin
+                    row_words<=0;
+                    if(read_layout==0) begin
+                        display_right<=!display_right;
+                        if(!display_right) read_addr<=result_base+display_row*(WIDTH*4);
+                        else begin
+                            display_row<=display_row+1'b1;
+                            read_addr<=original_base+(display_row+1'b1)*(WIDTH*4);
+                        end
+                    end else begin
+                        // Read each source row twice for vertical 2x; horizontal
+                        // duplication happens after the display FIFO. Same byte
+                        // count per frame as the native pair, no extra frame RAM.
                         display_row<=display_row+1'b1;
-                        read_addr<=original_base+(display_row+1'b1)*(WIDTH*4);
+                        read_addr<=(read_layout==1?result_base:original_base)+
+                                   ((display_row+1'b1)>>1)*(WIDTH*4);
                     end
                 end else begin
                     row_words<=row_words+read_beats;
@@ -355,8 +373,8 @@ reg [31:0] underflow_frames = 0;
 wire word_ok = qcount != 0 && q0[159:128] == display_epoch && !q0[160];
 // Dual view: native-size left/right copies, centered in the active raster.
 // Read each source row once; replay it from BRAM in the right window.
-wire image_row = !DUAL_WINDOW || (py >= HEIGHT/2 && py < HEIGHT/2+HEIGHT);
-wire source_slot = 1'b1; // both windows consume independently fetched pixels
+wire image_row = active_layout!=0 || (py >= HEIGHT/2 && py < HEIGHT/2+HEIGHT);
+wire source_slot = active_layout==0 || px[0]; // second copy advances a fullscreen pixel
 wire consume = active && image_row && source_slot && !frame_bad && word_ok;
 wire discard = qcount != 0 && (q0[159:128] != display_epoch || frame_bad);
 wire pop = discard || (consume && pixel == 3);
@@ -383,7 +401,7 @@ always @(posedge o_clk or negedge orst) begin
 end
 always @(posedge o_clk or negedge orst) begin
     if (!orst) begin
-        hx <= 0; vy <= 0; pixel <= 0; display_epoch <= 0; display_epoch_gray <= 0;
+        hx <= 0; vy <= 0; pixel <= 0; display_epoch <= 0; display_epoch_gray <= 0;active_layout<=0;
         o_de <= 0; o_hs <= 0; o_vs <= 0; o_data <= 0;
         frame_bad <= 0; underflow_frames <= 0;
     end else begin
@@ -392,6 +410,7 @@ always @(posedge o_clk or negedge orst) begin
             vy <= vy == vtotal-1 ? 0 : vy+13'd1;
         end else hx <= hx+13'd1;
         if (frame_tick) begin
+            active_layout<=requested_layout==1 ? 1 : requested_layout==2 ? 2 : 0;
             display_epoch <= display_epoch + 1;
             display_epoch_gray <= ((display_epoch+1)>>1) ^ (display_epoch+1);
             pixel <= 0; frame_bad <= 0;
@@ -403,7 +422,7 @@ always @(posedge o_clk or negedge orst) begin
         if (active && image_row && !frame_bad) begin
             if (word_ok) begin
                 o_data <= next_pixel;
-                pixel <= pixel+2'd1;
+                if(source_slot) pixel <= pixel+2'd1;
             end else begin
                 frame_bad <= 1;
                 underflow_frames <= underflow_frames + 1;

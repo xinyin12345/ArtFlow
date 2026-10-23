@@ -1,6 +1,6 @@
 # Post-route audit with clock groups removed in the audit-only SDC.
 # All pointer synchronizer stages must exist and retain timed same-clock paths.
-foreach {fifo aw} {jobs 2 events 2 ar 2 aw 2 w 3 r 3 b 2} {
+foreach {fifo aw} {jobs 2 events 2 ar 2 aw 2 w 3 r 3 b 2 style_status_fifo 2} {
     foreach direction {w r} {
         set base u_video_pipe/u_accel_dma/${fifo}/${direction}gray
         foreach stage {meta sync} {

@@ -10,6 +10,10 @@ WORK = ROOT / 'work/glass_int8'
 REPORT = WORK / 'efinity_out/ArtFlow.video_bus_skew.rpt'
 
 GROUPS = (
+    dict(name='layout_meta', bits=2, budget_ns=2.5,
+         source='active_layout[*]~FF|CLK',
+         destination='u_video_pipe/u_store/layout_meta[*]~FF|D',
+         pins={f'u_video_pipe/u_store/layout_meta[{n}]~FF|D' for n in range(2)}),
     dict(name='count_meta', bits=32, budget_ns=2.5,
          source='u_video_pipe/u_store/capture_words*[*]~FF|CLK',
          destination='u_video_pipe/u_store/count_meta[*]~FF|D',
@@ -92,6 +96,8 @@ def parse_reports(skew_body, slow_body, groups=GROUPS):
             bit = int(re.search(r'\[(\d+)\]', destination)[1])
             if name == 'gain_mailbox':
                 expected = {destination.replace('camera_gain_', 'u_control/mailbox_').replace('|D', '|CLK')}
+            elif name == 'layout_meta':
+                expected = {f'active_layout[{bit}]~FF|CLK'}
             else:
                 stem = 'capture_words' if name == 'count_meta' else 'display_epoch'
                 expected = {f'u_video_pipe/u_store/{stem}_gray[{bit}]~FF|CLK'}
@@ -160,8 +166,8 @@ def check():
     body = REPORT.read_text()
     slow = (WORK/'efinity_out/ArtFlow.video_bus_delay.rpt').read_text()
     buses = parse_reports(body, slow)
-    files = ['ArtFlow.sdc','rtl/video/rgb_frame_store.v','rtl/control/artflow_control.v',
-             'rtl/ArtFlow_top.v','tools/check_video_cdc.py','tools/check_video_cdc.tcl','work/glass_int8/video_cdc_audit.sdc',
+    files = ['ArtFlow.sdc','rtl/video/rgb_frame_store_v07.v','rtl/control/artflow_control.v',
+             'rtl/ArtFlow_top.v','tools/check_glass_video_cdc.py','tools/check_video_cdc.tcl','work/glass_int8/video_cdc_audit.sdc',
              'work/glass_int8/efinity_out/ArtFlow.vdb','work/glass_int8/efinity_out/ArtFlow.place',
              'work/glass_int8/efinity_out/ArtFlow.troutingtraces',
              'work/glass_int8/efinity_out/ArtFlow.video_bus_skew.rpt',
@@ -171,7 +177,7 @@ def check():
                   kind='post-route audit with clock groups omitted',
                   sha256={f:hashlib.sha256((ROOT/f).read_bytes()).hexdigest() for f in files})
     (WORK/'video_cdc_summary.json').write_text(json.dumps(result, indent=2)+'\n')
-    print('CDC PASS: 32+32+48 endpoints; ' + '; '.join(
+    print('CDC PASS: 2+32+32+48 endpoints; ' + '; '.join(
           f'{b["name"]}: skew={b["skew_ns"]}, data={b["max_data_delay_ns"]}, '
           f'budget={b["budget_ns"]} ns' for b in buses))
 

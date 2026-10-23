@@ -61,6 +61,10 @@
         <efx:design_file name="rtl/accel/artflow_cnn_cdc_fifo.v" version="default" library="default"/>
         <efx:design_file name="rtl/accel/artflow_glass_dma.v" version="default" library="default"/>
         <efx:design_file name="rtl/cnn/glass_int8/glass_int8.v" version="default" library="default"/>
+        <efx:design_file name="rtl/cnn/glass_int8/glass_line4.v" version="default" library="default"/>
+        <efx:design_file name="rtl/cnn/glass_int8/glass_model_params.v" version="default" library="default"/>
+        <efx:design_file name="rtl/cnn/glass_int8/style_spi_reader.v" version="default" library="default"/>
+        <efx:design_file name="rtl/cnn/glass_int8/style_bank_controller.v" version="default" library="default"/>
         <efx:design_file name="rtl/video/cam_fb_pipe_v09.v" version="default" library="default"/>
         <efx:design_file name="rtl/accel/artflow_accel_dma.v" version="default" library="default"/>
         <efx:design_file name="rtl/accel/artflow_accel_ctrl.v" version="default" library="default"/>
@@ -131,7 +135,7 @@
         <efx:param name="work_dir" value="work_pnr" value_type="e_string"/>
         <efx:param name="verbose" value="off" value_type="e_bool"/>
         <efx:param name="optimization_level" value="TIMING_3" value_type="e_option"/>
-        <efx:param name="seed" value="0" value_type="e_integer"/>
+        <efx:param name="seed" value="2" value_type="e_integer"/>
         <efx:param name="placer_effort_level" value="2" value_type="e_option"/>
         <efx:param name="max_threads" value="-1" value_type="e_integer"/>
         <efx:param name="beneficial_skew" value="off" value_type="e_option"/>
@@ -146,7 +150,7 @@
         <efx:param name="cold_boot" value="off" value_type="e_bool"/>
         <efx:param name="cascade" value="off" value_type="e_option"/>
         <efx:param name="enable_roms" value="on" value_type="e_option"/>
-        <efx:param name="spi_low_power_mode" value="on" value_type="e_bool"/>
+        <efx:param name="spi_low_power_mode" value="off" value_type="e_bool"/>
         <efx:param name="io_weak_pullup" value="on" value_type="e_bool"/>
         <efx:param name="oscillator_clock_divider" value="DIV8" value_type="e_option"/>
         <efx:param name="enable_crc_check" value="on" value_type="e_bool"/>

@@ -54,8 +54,8 @@ void mmio_write(uint32_t address, uint32_t value) {
     control[offset / 4] = value;
     if (offset == REG_COMMIT) control[REG_STATUS / 4] = STATUS_BUSY;
 }
-struct camera_result camera_configure(unsigned baseline) {
-    ++init_calls; init_profile = baseline; control[REG_CAMERA / 4] = CAMERA_READY;
+struct camera_result camera_configure(void) {
+    ++init_calls; init_profile = 0; control[REG_CAMERA / 4] = CAMERA_READY;
     struct camera_result result = {I2C_OK, 0, 0}; return result;
 }
 struct camera_result camera_get_timing(struct camera_timing *timing) {
@@ -109,7 +109,7 @@ int main(void) {
     assert(strstr(text,"P1 VTS1500 EXP2989") != NULL);
     assert(strstr(text,"cam_timing hts=3000 vts=1500 exposure_half_lines=2989") != NULL);
     reset_model(); command("cam baseline");
-    assert(init_calls == 1 && init_profile == 1 && strstr(text,"BASELINE") != NULL);
+    assert(init_calls == 0 && write_count == 0 && strstr(text,"ERR syntax") != NULL);
     reset_model(); control[REG_CAMERA / 4] = CAMERA_READY; command("cam timing");
     assert(init_calls == 0 && timing_calls == 1 && write_count == 0);
     reset_model(); command("cam timing");

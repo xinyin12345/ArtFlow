@@ -3,6 +3,7 @@ module artflow_cnn_dma #(
     parameter WIDTH=960, HEIGHT=540, BURST=64
 )(
     input clk, rst_n, start, input [31:0] src_addr, dst_addr,
+    input param_bank,cfg_valid,cfg_bank,input [1:0] cfg_kind,input [9:0] cfg_addr,input [575:0] cfg_data,
     output busy, output reg done, failed, output reg [31:0] cycles,
     output source_consumed,
     output [31:0] araddr, output [7:0] arlen,
@@ -89,6 +90,7 @@ artflow_cnn_resize #(.WIDTH(WIDTH),.HEIGHT(HEIGHT),.BURST(BURST)) scaler(
  .bvalid(!select_cnn && bvalid),
  .bresp(bresp));
 glass_int8 #(.EXT_W(WIDTH/2),.EXT_H(HEIGHT/2)) core(
+ .param_bank(param_bank),.cfg_valid(cfg_valid),.cfg_bank(cfg_bank),.cfg_kind(cfg_kind),.cfg_addr(cfg_addr),.cfg_data(cfg_data),
  .clk(clk),.rst(!rst_n || state==IDLE || state==PRE_START || state==PRE),
  .start(state==CNN_START),.busy(),.done(core_done),
  .mem_valid(mv),.mem_write(mw),.mem_addr(ma),.mem_wdata(mwd),.mem_wstrb(),

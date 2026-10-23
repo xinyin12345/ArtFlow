@@ -1,6 +1,7 @@
 // ArtFlow v04: RAW binning, triple buffer, fair AXI scheduling, dual windows.
 module cam_fb_pipe_v09
 #(
+    parameter STYLE_ENABLE = 0, STYLE_COUNT=19,
     parameter DUAL_WINDOW = 1, // 1: centered native-size pair; 0: legacy 2x fullscreen
     parameter [9:0] BLACK_LEVEL = 10'd0,
     parameter AXI_DATA_WIDTH = 128,
@@ -13,6 +14,9 @@ module cam_fb_pipe_v09
 )
 (
     // ------------------------------------------------ 配置（v05 起改为 RISC-V 寄存器）
+    input key_style_n,flash_miso,output flash_cs_n,flash_sck,flash_mosi,
+    input      [1:0]    requested_layout,
+    output     [1:0]    active_layout,
     input      [1:0]    cfg_bayer,       // 0 RGGB / 1 GRBG / 2 GBRG / 3 BGGR
     input               cfg_pix_rev,     // CSI 像素顺序：0 = [9:0] 为最左像素
     input      [15:0]   cfg_gain_r,      // Q8.8
@@ -203,10 +207,14 @@ wire source_locked,original_valid,styled_valid,display_active;
 wire [1:0] source_bank,original_bank,styled_bank,display_bank;
 wire start,busy,done,failed,source_consumed;
 wire [31:0] src_addr,dst_addr,cycles;
+wire [31:0] style_status,ctrl_prdata;wire [4:0] completed_style;wire ctrl_error;
+wire style_diag_addr=accel_paddr==16'h00ac || accel_paddr==16'h00b0;
+assign accel_prdata=style_diag_addr ? (accel_paddr==16'h00ac ? style_status : {27'd0,completed_style}) : ctrl_prdata;
+assign accel_pslverror=style_diag_addr?(accel_psel && accel_penable && accel_pwrite):ctrl_error;
 artflow_accel_ctrl #(.VERSION_ID(32'h41524609),.EARLY_RELEASE(1),.ORIGINAL_BASE(START_ADDR),.BANK_BYTES(BANK_BYTES),.STYLED_BASE(START_ADDR+3*BANK_BYTES)) u_accel_ctrl(
  .clk(axi_clk),.rst_n(accel_clk_ready),.paddr(accel_paddr),.psel(accel_psel),
  .penable(accel_penable),.pwrite(accel_pwrite),.pwdata(accel_pwdata),
- .prdata(accel_prdata),.pready(accel_pready),.pslverror(accel_pslverror),
+ .prdata(ctrl_prdata),.pready(accel_pready),.pslverror(ctrl_error),
  .original_valid(original_valid),.original_bank(original_bank),.original_seq(diag_published),
  .source_locked(source_locked),.source_bank(source_bank),
  .display_active(display_active),.display_bank(display_bank),
@@ -214,7 +222,9 @@ artflow_accel_ctrl #(.VERSION_ID(32'h41524609),.EARLY_RELEASE(1),.ORIGINAL_BASE(
  .start(start),.src_addr(src_addr),.dst_addr(dst_addr),
  .busy(busy),.done(done),.failed(failed),.cycles(cycles),.source_consumed(source_consumed),
  .irq(accel_irq),.process_toggle(process_toggle),.completed(),.skipped(),.errors());
-artflow_cnn_accel #(.WIDTH(MAX_OUT_WIDTH),.HEIGHT(MAX_IN_HEIGHT/2)) u_accel_dma(
+artflow_cnn_accel #(.WIDTH(MAX_OUT_WIDTH),.HEIGHT(MAX_IN_HEIGHT/2),.STYLE_ENABLE(STYLE_ENABLE),.STYLE_COUNT(STYLE_COUNT)) u_accel_dma(
+ .key_style_n(key_style_n),.flash_miso(flash_miso),.flash_cs_n(flash_cs_n),.flash_sck(flash_sck),.flash_mosi(flash_mosi),
+ .style_status(style_status),.completed_style(completed_style),
  .clk(axi_clk),.cnn_clk(cnn_clk),.rst_n(accel_clk_ready),.start(start),.src_addr(src_addr),.dst_addr(dst_addr),
  .busy(busy),.done(done),.failed(failed),.cycles(cycles),.source_consumed(source_consumed),
  .awaddr(a_awaddr),
@@ -306,6 +316,7 @@ rgb_frame_store_v07 #(
     .WIDTH(MAX_OUT_WIDTH), .HEIGHT(MAX_IN_HEIGHT/2), .DUAL_WINDOW(DUAL_WINDOW),
     .ADDR_WIDTH(AXI_ADDR_WIDTH), .START_ADDR(START_ADDR), .BANK_BYTES(BANK_BYTES)
 ) u_store (
+    .requested_layout(requested_layout),.active_layout(active_layout),
     .source_locked(source_locked),.source_bank(source_bank),
     .original_valid(original_valid),.original_bank(original_bank),
     .styled_valid(styled_valid),.styled_bank(styled_bank),

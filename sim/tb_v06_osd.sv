@@ -6,8 +6,8 @@ reg [1:0] mode=0;
 reg [23:0] rgb=0;
 reg [11:0] cap=12'h030,outfps=12'h060;
 wire od,oh,ov;wire [23:0] pixel;
-artflow_osd dut(clk,rst,mode,enable,cap,outfps,valid,de,hs,vs,rgb,od,oh,ov,pixel);
-integer fd,frame,x,y,cycle=0;
+artflow_osd #(.VERSION_DIGIT("9"),.PROCESS_FPS(1)) dut(clk,rst,mode,enable,cap,outfps,valid,de,hs,vs,rgb,od,oh,ov,pixel);
+integer fd,frame,x,y,cycle=0;string folder;
 reg prev_de=0,prev_hs=0,prev_vs=0;
 task drive(input bit d,h,v,input [23:0] color);
 begin
@@ -20,10 +20,11 @@ begin
 end endtask
 initial begin
     repeat(3)@(negedge clk);rst=1;
-    fd=$fopen("osd_pixels.hex","w");if(!fd)$fatal(1,"OSD output missing");
+    if(!$value$plusargs("DIR=%s",folder))$fatal(1,"Missing output folder");
+    fd=$fopen({folder,"/osd_pixels.hex"},"w");if(!fd)$fatal(1,"OSD output missing");
     for(frame=0;frame<9;frame++)begin
-        mode=frame%4;enable=frame<4 || frame==8;valid=frame!=8;
-        cap=frame==8?12'h999:12'h030;outfps=12'h060;
+        mode=frame%3;enable=frame<3 || frame>=6;valid=frame<6;
+        cap=frame>=6?12'h999:12'h030;outfps=12'h060;
         drive(0,1,1,0);drive(0,0,1,0);drive(0,0,0,0);
         for(y=0;y<100;y++)begin
             drive(0,1,0,0);drive(0,0,0,0);

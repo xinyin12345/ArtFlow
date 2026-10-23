@@ -27,7 +27,7 @@ cam_fb_pipe_v09 #(.DUAL_WINDOW(DUAL_WINDOW),.AXI_DATA_WIDTH(128),.AXI_ADDR_WIDTH
        .diag_state(), .diag_fifo(), .diag_written(), .diag_completed(), .diag_published(), .diag_rejected(),
     .diag_bin_toggle(),
  .capture_toggle(),
- .cfg_bayer(PHASE[1:0]),.cfg_pix_rev(REV[0]),.cfg_gain_r(GAIN_R),.cfg_gain_g(GAIN_G),.cfg_gain_b(GAIN_B),
+ .requested_layout(2'd0),.active_layout(),.cfg_bayer(PHASE[1:0]),.cfg_pix_rev(REV[0]),.cfg_gain_r(GAIN_R),.cfg_gain_g(GAIN_G),.cfg_gain_b(GAIN_B),
  .i_pclk(pclk),.i_pclk_rstn(prst_n),.i_vs(s_vs),.i_hs(s_hs),.i_valid(s_valid),.i_raw(s_raw),
  .H_FRONT_PORCH(HFP[12:0]),.H_SYNC(HSP[12:0]),.H_VALID(OW[12:0]),.H_BACK_PORCH(HBP[12:0]),
  .V_FRONT_PORCH(VFP[12:0]),.V_SYNC(VSP[12:0]),.V_VALID(H[12:0]),.V_BACK_PORCH(VBP[12:0]),
