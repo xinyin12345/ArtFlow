@@ -139,5 +139,12 @@ int main(void) {
     rx_input = "wb 280 255 350\r";
     while (*rx_input) poll_console(&reader);
     assert(write_count == 0 && strstr(text, "ERR line rejected") != NULL);
+    reset_model();command("freeze");assert(write_count==1 && write_offsets[0]==0xc0 && write_values[0]==1);
+    reset_model();command("live");assert(write_count==1 && write_offsets[0]==0xc0 && write_values[0]==2);
+    reset_model();command("blend 2");assert(write_count==0 && strstr(text,"freeze first")!=NULL);
+    reset_model();control[0xc4/4]=3;command("blend 2");assert(write_count==2 && write_offsets[0]==0xd4 && write_values[0]==20 && write_offsets[1]==0xd0);
+    reset_model();control[0xc4/4]=3;command("window 959 539 2");assert(write_count==4 && write_values[0]==(240u|(135u<<16)) && write_values[1]==(960u|(540u<<16)));
+    reset_model();control[0xc4/4]=3;command("curtain 0");assert(write_count==3 && write_offsets[0]==0xe0 && write_values[0]==0);
+    reset_model();command("blend 5");command("curtain 961");command("window 960 539 0");command("window 10 20 3");assert(write_count==0);
     puts("PASS command dispatch: atomic RGB order, busy rejection, applied versus pending, defaults, malformed no-write, bad-ID no-write, camera reset, UART framing/overflow/break discard and recovery");
 }

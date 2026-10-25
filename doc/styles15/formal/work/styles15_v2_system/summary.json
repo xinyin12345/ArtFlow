@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "vector_sha256": {},
+  "source_sha256": {
+    "rtl/video/cam_fb_pipe_v09.v": "053a7668f6b7d8b3c37405a1d6cddbf94d3fc27c29c339453df037fc4a560451",
+    "rtl/video/bayer_bin2x2.v": "8c47c5d4c278b072388668f9bd277ca5eedc05652e050ce5b9faa5ab2d8b5cfb",
+    "rtl/video/rgb_frame_store.v": "ba6ed4499611c8a8271b63e2a91bb3a960c51c7477ba894f619870d815e3ac57",
+    "rtl/video/rgb_frame_store_v07.v": "932216bc0ab3fc2ae59981b4d3759746968299ac953c1dc76056b9c5da1dc39b",
+    "rtl/video/video_axi_scheduler.v": "519d85915da297082a6104d8884063a3c0c199e1f5b7493ceda2966a7d241a78",
+    "rtl/frame_buffer/DC_FIFO.v": "9ab9a48afde4075ca72d2f21d25457271ba657296a547ba5fe2eaa6719886819",
+    "rtl/frame_buffer/rst_n_piple.v": "2c127c90995a2b0e647db1eec3719c0e746a73def78d0c04bc7884195c2ca2d4",
+    "rtl/accel/artflow_accel_ctrl.v": "5ae9950adc61cf1faf60b0c5c0f18f6d0a2d7d6c8c3340d1ffea09324303d2f9",
+    "rtl/accel/artflow_axi_mux.v": "7d2d3bcb90e7fda8290a9775bb06230ffab5de873f7419f67a069f0fb840f68f",
+    "candidates/round11p_packed_pointers/artflow_pair_reader.sv": "8c01bbdb5b54ae86b72f835fa29a3da15f6b4f312f3627ba572d0e041dfd81ca",
+    "rtl/artflow_pair_normalize.sv": "5bdf7d126c70ea49d2624a3ef147eca783d09314b1c212d890a850d054ddf0a7",
+    "rtl/artflow_interact_blend.sv": "ea6f7db73f1c24034afd1be801c0abf433b68de1e3fd63f163820068de57b498",
+    "candidates/round11_packed25/artflow_pair_render.sv": "82b27897053b3b323fdc85fe685e19806797d9b28356471105a4c7954dd2ff4e",
+    "candidates/round11_packed25/artflow_render_ctrl.v": "ce75fa8b78842cc4fb90b9a3489f0d0116bf0ceb34a295070d20b278d88596ac",
+    "sim/axi_memory_v07.sv": "f601bc338679e6266732f14fab396167a121e074b82137d2b50f10638efda91e",
+    "rtl/accel/artflow_cnn_cdc_fifo.v": "b1373add55b60668684dc6d8eb1f184af9029d1483edefe39006a61edd044b81",
+    "rtl/accel/artflow_cnn_egress_fifo.v": "d1a5aa3a3f6226299b3a19537decf50e5c466424b843b0ecea11b8f7bff07cd9",
+    "candidates/round15_return_ram/artflow_cnn_accel.v": "5b23197736230d8f4621c5967afe732e7d3e12bc83d82c4ea0f6416978d8d2a9",
+    "sim/cnn_engine_fixture_a.sv": "15b1beb44b212f0688dad77d37302a55712780ecdff337c249fc28d77c97cc75",
+    "candidates/round15u_return_ram/artflow_cnn_return_ram_fifo.v": "2854101bd83ac4ad538a0454c7f285417460e55907db02cfd9156869fbbadca0",
+    "candidates/round15u_return_ram/tb_r15u_system.sv": "c83c11ac86bee3f27af85ddf275a4a9a4158300b2c61004f0c5ffef7c3d4569b",
+    "D:/soft/Efinity/2026.1/sim_models/verilog/efx_ram10.v": "dd8db45116a67b9754920856dc380eb2dc73ca51e0a6a62cc74cda01c0e31a33",
+    "D:/soft/Efinity/2026.1/sim_models/verilog/efx_dpram10.v": "c7e39233de0a437fd0d43d83ce60dce10b3bd305c59cfcacfb5eac2fe916bcf9"
+  },
+  "evidence": [
+    "# TEST PASS r15u_system actual pipe/mux/FIFOs/scheduler, real CNN wrapper/CDC, engine transaction fixture; style request injected; jobs=8 rendered=15 captures=44 pixels=55296 underflows=1"
+  ]
+}

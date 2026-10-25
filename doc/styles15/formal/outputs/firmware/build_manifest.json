@@ -1,0 +1,51 @@
+{
+  "entry": "0xf9000000",
+  "ram_bytes": 12288,
+  "stack_reserved_bytes": 1024,
+  "isa": "rv32im_zicsr_zifencei",
+  "core_hz": 100000000,
+  "uart_base": "0xf8010000",
+  "i2c_base": "0xf8016000",
+  "control_base": "0xf8100000",
+  "camera_register_count": 164,
+  "camera_rom_sha256": "db13d1eed22a9478fd0affb9ac86b8265302a474886d7fff688447af2470ffe3",
+  "compiler": "riscv-none-elf-gcc.exe (xPack GNU RISC-V Embedded GCC x86_64) 13.4.0",
+  "image_bytes": 8016,
+  "elf_sha256": "5fa04b4ee181f890285753d012285028def4e2c83e8a10d5cc89ff4a27753ee7",
+  "binary_sha256": "0512b7d5ee79a5a28c8c10f53eab904eaeeb8517da338054d1f1cd36de0a1369",
+  "lanes": [
+    {
+      "path": "ip/sapphire_soc/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol0.bin",
+      "sha256": "434128a7f2c4391d6691d8491245ff158875f2f16a1103c12fc225f412ee775c",
+      "lines": 3072
+    },
+    {
+      "path": "ip/sapphire_soc/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol1.bin",
+      "sha256": "068ea0482027cfc0e76edb07de066bb9216865451c8fec0eaed5421b239b036b",
+      "lines": 3072
+    },
+    {
+      "path": "ip/sapphire_soc/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol2.bin",
+      "sha256": "b67d92b58070970a9d28395c17990b8f513a93a5be78d00d3625c9b3246da0ee",
+      "lines": 3072
+    },
+    {
+      "path": "ip/sapphire_soc/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol3.bin",
+      "sha256": "4d11c5db4b6b5c07f14945034825b36a03120581f72dbf51f23b90a102eb0e67",
+      "lines": 3072
+    }
+  ],
+  "source_hashes": {
+    "firmware/start.S": "139b45a51ac671322c73065ccb07fb6c6e82a55f181d2e967100e926f7608408",
+    "firmware/src/camera.c": "d24777672cea96eb097ac671302dbabed8eb133d8ca9ebdc12b90f6479a40a66",
+    "firmware/src/console.c": "35b1840c8aaf9c02f77d302cd0988062dc10ebd8afd74c3ae12fb0f4e4889da5",
+    "firmware/src/i2c.c": "34a74f2e125bcc18db4fc92421978e7ff055f269d0d73a2753f3a20869cbd187",
+    "firmware/src/main.c": "4284a8a2c8fa4c0ef6bd677b2d50dc46d4db6ba30edc7cdcb85283adc726a842",
+    "firmware/src/runtime.c": "c569167c42e8d69c51dba882117ae9431e7d3da511d0206a418d02b802f61076",
+    "firmware/linker.ld": "cf1b8998d09ff1ef4d6010bec8214e9e247eb4830362c56f2d9a901acd24f042",
+    "firmware/include/camera.h": "957dd598622a0a489591e8ea6cef1818b113b2eae4177029bd4ddd761b0d6ba8",
+    "firmware/include/camera_table.h": "8487d3fc570ee56a8449688766edf3e407a6240a7b6d41ddeda0192723b3cb3d",
+    "firmware/include/console.h": "e8310693883086a5e8ba70363bc9eb367369ea452b69d51489003153bf319956",
+    "firmware/include/platform.h": "3fb494ecd37420207d9ee4fdd3674bf4252799758d395d4d1588d8e546997279"
+  }
+}

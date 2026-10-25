@@ -1,0 +1,78 @@
+{
+  "status": "PASS",
+  "buses": [
+    {
+      "name": "layout_meta",
+      "endpoints": 2,
+      "budget_ns": 2.5,
+      "slow_comparisons": 1,
+      "skew_ns": 0.091,
+      "slack_ns": 2.409,
+      "max_relative_delay_ns": 0.649,
+      "max_data_delay_ns": 0.639
+    },
+    {
+      "name": "count_meta",
+      "endpoints": 32,
+      "budget_ns": 2.5,
+      "slow_comparisons": 32,
+      "skew_ns": 0.403,
+      "slack_ns": 2.097,
+      "max_relative_delay_ns": 0.706,
+      "max_data_delay_ns": 0.695
+    },
+    {
+      "name": "epoch_meta",
+      "endpoints": 32,
+      "budget_ns": 2.5,
+      "slow_comparisons": 31,
+      "skew_ns": 0.398,
+      "slack_ns": 2.102,
+      "max_relative_delay_ns": 0.7,
+      "max_data_delay_ns": 0.69
+    },
+    {
+      "name": "gain_mailbox",
+      "endpoints": 48,
+      "budget_ns": 20.0,
+      "slow_comparisons": 47,
+      "skew_ns": 1.051,
+      "slack_ns": 18.949,
+      "max_relative_delay_ns": 1.346,
+      "max_data_delay_ns": 1.351
+    }
+  ],
+  "endpoints": [
+    2,
+    32,
+    32,
+    48
+  ],
+  "skew_ns": [
+    0.091,
+    0.403,
+    0.398,
+    1.051
+  ],
+  "slack_ns": [
+    2.409,
+    2.097,
+    2.102,
+    18.949
+  ],
+  "kind": "post-route audit with clock groups omitted",
+  "sha256": {
+    "ArtFlow.sdc": "7163d77516512765b1dd486be45e759866381e2eb481c7ad9488b8e567f74126",
+    "rtl/video/rgb_frame_store_v07.v": "932216bc0ab3fc2ae59981b4d3759746968299ac953c1dc76056b9c5da1dc39b",
+    "rtl/control/artflow_control.v": "87650e9d2d16df63b892ba8a3629720fbd6b9620e5fc7b2092c6cddb23a547cb",
+    "rtl/ArtFlow_top.v": "a17662d990c2c612bc1fcb4e4588f2dbfeb1c1b4de182a8fb8392830b7433ddc",
+    "tools/check_round23t_video_cdc.py": "1202c678dd1682eb642267ecb7c44c39ad5c3fb71613e64dd504077d94882925",
+    "tools/check_video_cdc.tcl": "267fd2cb567cb61c3337b8809e839fbb3baabccd1306ef2fe7c7e845e2096889",
+    "work/styles15/video_cdc_audit.sdc": "b557edde4e451aaf4e967227381a97734ea27dfc30cb3410ab7f0efe5e7c6395",
+    "work/styles15/out/ArtFlow.vdb": "2a6512c4a667175cea91096b1f85a4b7fab6b47b747f882baf8cf6b3df912be4",
+    "work/styles15/out/ArtFlow.place": "5fd70b384954ed62afee2de173e8d1c0e26b687e8c9dec19fc720b03e3ec54ab",
+    "work/styles15/out/ArtFlow.troutingtraces": "fe3b9671597a5f077194d06431e0eef191067af640de037ed4212f0c159c87c0",
+    "work/styles15/out/ArtFlow.video_bus_skew.rpt": "cd9f8200191177a7c29985d8132dee654f248309225cd4e89d2238317d5562bf",
+    "work/styles15/out/ArtFlow.video_bus_delay.rpt": "827b7879ad5ca30e1339114b7f6383a392220759a2468c2224f7e035d4a662fc"
+  }
+}

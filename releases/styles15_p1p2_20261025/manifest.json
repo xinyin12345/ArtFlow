@@ -1,0 +1,41 @@
+{
+  "release": "styles15_p1p2_20261025",
+  "origin": "Accepted offline release; copied unchanged programming/model artifacts",
+  "files": {
+    "ArtFlow_styles15_p1p2.bit": {
+      "bytes": 3307662,
+      "sha256": "3edf836b23255f522da09efe3b1f1c141511f562a5c3ea567e93e68dd1238070"
+    },
+    "ArtFlow_styles15_p1p2.hex": {
+      "bytes": 3307722,
+      "sha256": "1756429faafd0cd315810f77464aecbb87b79199b007c0642c3d8269eb78ed65"
+    },
+    "models15_manifest.json": {
+      "bytes": 9954,
+      "sha256": "9fa98f32dbbae0810156f4a39778c6a750b195988109c4ddfd4266a293a4c453"
+    },
+    "models15_parameters.bin": {
+      "bytes": 245760,
+      "sha256": "81b99fc11a2460669d672832d2fb3311319ee78edab25aed9c8ad44b0413b3da"
+    },
+    "offline_signoff.json": {
+      "bytes": 18079,
+      "sha256": "886fee3081eeea723080b4c290bbba0959462c6af4e8a17c387aa28832f62488"
+    },
+    "old_new_mapping.csv": {
+      "bytes": 736,
+      "sha256": "c956ec35a7047ce7b4d333ffeb380c33de3c5be6cbd44fef108da0837ce9180a"
+    },
+    "old_new_mapping.json": {
+      "bytes": 2514,
+      "sha256": "8ebe96a248735dbba70ce99d752d6a0eec597bb2012ea2c6f139393c60d6f793"
+    },
+    "README.md": {
+      "bytes": 4736,
+      "sha256": "a74241ea80d590e29d821bef3d4a1f7e4ef5f89540609aa059d8fbaa1e90eb68"
+    }
+  },
+  "original_manifest": "../../doc/styles15/inherited/release_manifest.json",
+  "formal_validation": "../../doc/styles15/validation.md",
+  "board_validated": false
+}

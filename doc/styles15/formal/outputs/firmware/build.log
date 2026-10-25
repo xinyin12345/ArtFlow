@@ -1,0 +1,4 @@
+riscv-none-elf-gcc.exe (xPack GNU RISC-V Embedded GCC x86_64) 13.4.0
+   text	   data	    bss	    dec	    hex	filename
+   8016	      0	     36	   8052	   1f74	D:\work\FPGA\ArtFlow\ArtFlow\outputs\firmware\artflow_v05.elf
+PASS: 164 camera registers; 4 x 3072 byte lanes round-trip verified; physical 2048+1024 split

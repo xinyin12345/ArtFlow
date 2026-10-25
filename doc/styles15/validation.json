@@ -1,0 +1,103 @@
+{
+  "status": "PASS",
+  "utc": "2026-10-25T11:03:29.288877+00:00",
+  "resources": {
+    "XLR": 56589,
+    "RAM": 246,
+    "DSP": 144
+  },
+  "minimum_slack_ns": {
+    "Setup (Max)": 0.244,
+    "Hold (Min)": 0.023
+  },
+  "rebuilt_matches_accepted": {
+    "bit": false,
+    "hex": false
+  },
+  "rebuilt_sha256": {
+    "bit": "8987673076fe6b91e87f669eb98d076e46778ac8c74c847b19ef2848166d67e6",
+    "hex": "f2773bb277f3e97c87d9849fab2f55dc5b7fa11197139ac5ca3a1f9ea032aad9"
+  },
+  "accepted_bit_sha256": "3edf836b23255f522da09efe3b1f1c141511f562a5c3ea567e93e68dd1238070",
+  "model_sha256": "81b99fc11a2460669d672832d2fb3311319ee78edab25aed9c8ad44b0413b3da",
+  "baseline_commit": "39d00d629182511b83d107cc167ec3556e2b2f12",
+  "evidence_sha256": {
+    "resource_utilization.rpt": "2e757ba653d2d2132e0c2c97f507fc8c24de213567a8da46d52c3ccd43500e8a",
+    "reports/round23t_functional_receipt.json": "a687dfa8c168906b141d0a140c1a97a763bdf8fdda6d4dd461e7e5201b6475a2",
+    "reports/round23t_map_analysis.json": "978e97519d8cf13bf5d05ac19cc41ed69f79d5d06efbd47c7ca6696ad1a8a749",
+    "reports/styles15_formal_validation.json": "d1d9c9aed5d78667cb2ce9d77569399630d08e8de54a50b0073741e8df56a1df",
+    "reports/styles15_payload_equivalence.json": "d07190e178f4e686445da573c08462b3d8a715cef7b9303aebd0f07e1340e2a6",
+    "reports/verification.json": "3b39b94bf3f55ed781d17367d932c6daa0f7c4f395f201cef5b62c1526595557",
+    "work/styles15/cnn_cdc_summary.json": "4d48753924aea53dbf29547b317ea7e8d9b736b751bc541a4e1a7a5949e3338f",
+    "work/styles15/interface_summary.json": "dc35d9d1063e9c55d764ce862243513b66f1e39b2e452188d1690c07b467f08c",
+    "work/styles15/map_summary.json": "d7da27d643b2772aeef090df8d24f9a732513fa85f8cb3efd4b8437d5eb568f3",
+    "work/styles15/normal_sta_summary.json": "92e74dda19d198612ede9b2a68c44e20edad0562690a7c7d1fde139887eaae71",
+    "work/styles15/pgm_summary.json": "246120a83035825cb808c568ee81c842553badac74faf7f655292a935b353670",
+    "work/styles15/pnr_summary.json": "bbd6d58af6cc58a4dfdc001f12414a8548f266843107b21ad95e447d00ac6b8b",
+    "work/styles15/return_ram_cdc_summary.json": "9701c972846fa99d2559754a822a574dc9f34eab1ff020f61ba56202645c5376",
+    "work/styles15/sta_tclsh_summary.json": "c46d55ae39a712a65078f8a852a81bb12893cef000440af7cdcbe0e531fbf111",
+    "work/styles15/style_io_cdc_summary.json": "fe0e1cc31b0a6d92a705a852b3264f9c8259c919a2ee2d3a2d48149f904a77f5",
+    "work/styles15/ui_cdc_summary.json": "fd2cbef60ea24e0fe4f349dccab9b3fdb6ad3690be941a1d472ba86e14e65c6e",
+    "work/styles15/video_cdc_summary.json": "bb53b94a60ad47e6844219aedbf54b3020b94b035458131421636cc1f6a3c8bb",
+    "work/styles15_v2_fifo/simulation.log": "49a74fa8fed79306169675d30d48388847444093861692a8fa29774b06c3b3ad",
+    "work/styles15_v2_fifo/summary.json": "82114632cc2733deb375ddcd8b655a619c1fbd3efef3bb258c1844c9a9d68a55",
+    "work/styles15_v2_fifo_stagger/simulation.log": "b60d65c0dd068454935af6bcb578a2bd01e2c59ef94b3d5093caabd46d98af98",
+    "work/styles15_v2_fifo_stagger/summary.json": "2c0d19419250e66d485676985e52f9b84d77812f17fb634bc114cf9ad5c98414",
+    "work/styles15_v2_lease/simulation.log": "92f77d38651d7e2c98492a54adc84f29ee2a6823c59543dac05c49284b098280",
+    "work/styles15_v2_lease/summary.json": "adb51367707d11719af0a85d2c2f4e90b7d92f45bccb86742523e52837f764e9",
+    "work/styles15_v2_pair_control/simulation.log": "3ed2162f73772b29648dee6b4653e6c68bd6c79172379b793eaa16f9536de73c",
+    "work/styles15_v2_pair_control/summary.json": "10d591807a086b65e1ca99f11a37032e48390c618b62a7c32c44fb71f61e1363",
+    "work/styles15_v2_style_crc/simulation.log": "14e732cb9604ff10ec5f2d81d983872360cb483298dddc69f030bd9bb16fca7e",
+    "work/styles15_v2_style_crc/summary.json": "9eaef9f2b43599b659a86f7a61313d6e6a9c0853ba843992950ca577796c59d6",
+    "work/styles15_v2_style_cycle/simulation.log": "8ec904c82da3615b5fe3c9eab27c0797f443d7aeb5ffae72dda037e568aefc2d",
+    "work/styles15_v2_style_cycle/summary.json": "b36b8326882caa6b2e05634b6e6fbf7dac84d1371e6443801bf054fc2d70f841",
+    "work/styles15_v2_system/simulation.log": "3207ae2f92382eca6f329d1812f34135993b8da7ec32d479e253437a35bfed27",
+    "work/styles15_v2_system/summary.json": "8764e4276c3c1b6f00518d73a4ba6fd359e2198591a71bf51e55259e46753341",
+    "work/styles15_v2_timeout/simulation.log": "130e5b5b5f29b08ab92b07e9c8c9deb459f9f45e373812044f8b84020590dc9b",
+    "work/styles15_v2_timeout/summary.json": "1abb7388635a616a23fa588355a1b32f696a0084564193884634ac2dc3a95fe4",
+    "outputs/firmware/build.log": "56204efafe1ba97809454f0726c2a17713210c4aa3c6011e1da83bb4ea7eb379",
+    "outputs/firmware/build_manifest.json": "21013fd4e66302074ded663f975c52f3295c2bee5dbcfc766d07d00036c3b2a7",
+    "outputs/firmware/host_tests.json": "917ad247e0d63d7016f867773b927b431f6b02cc0043010302ec127175acf5f3"
+  },
+  "map_warning_comparison": {
+    "formal": 344,
+    "accepted": 344,
+    "added": 0,
+    "removed": 0,
+    "comparison": "Exact multiset after normalizing source root paths"
+  },
+  "payload_equivalence": {
+    "status": "PASS",
+    "scope": "Only Generated/Project metadata and resulting header padding differ; complete decoded bytes after offset 256 match.",
+    "artifacts": {
+      "bit": {
+        "decoded_bytes": 1102554,
+        "header_bytes": 256,
+        "changed_header_fields": [
+          "Generated",
+          "Project"
+        ],
+        "payload_identical": true,
+        "payload_sha256": "0b5ce678ebc3d46c49ccb50e1caabfce34b622900d6a5897e602c063c2064641",
+        "rebuilt_file_sha256": "8987673076fe6b91e87f669eb98d076e46778ac8c74c847b19ef2848166d67e6",
+        "accepted_file_sha256": "3edf836b23255f522da09efe3b1f1c141511f562a5c3ea567e93e68dd1238070"
+      },
+      "hex": {
+        "decoded_bytes": 1102574,
+        "header_bytes": 256,
+        "changed_header_fields": [
+          "Generated",
+          "Project"
+        ],
+        "payload_identical": true,
+        "payload_sha256": "19f886c493178941763494e45c1cb295c422cd1b339c9e4a3b518d01a5206d35",
+        "rebuilt_file_sha256": "f2773bb277f3e97c87d9849fab2f55dc5b7fa11197139ac5ca3a1f9ea032aad9",
+        "accepted_file_sha256": "1756429faafd0cd315810f77464aecbb87b79199b007c0642c3d8269eb78ed65"
+      }
+    }
+  },
+  "physical_file_equality": {
+    "ArtFlow.place": true,
+    "ArtFlow.troutingtraces": true
+  }
+}

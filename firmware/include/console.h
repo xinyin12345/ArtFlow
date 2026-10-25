@@ -3,7 +3,7 @@
 #include <stdint.h>
 #define LINE_CAPACITY 64u
 enum command_kind { CMD_EMPTY, CMD_HELP, CMD_STATUS, CMD_WB, CMD_DEFAULTS,
-                    CMD_CAM_INIT, CMD_CAM_OFF, CMD_CAM_TIMING, CMD_INVALID };
+                    CMD_CAM_INIT, CMD_CAM_OFF, CMD_CAM_TIMING, CMD_FREEZE, CMD_LIVE, CMD_PAIR, CMD_BLEND, CMD_CURTAIN, CMD_WINDOW, CMD_INVALID };
 struct command { enum command_kind kind; uint16_t rgb[3]; };
 /* Parse the entire NUL-terminated line; no partial commands are executed. */
 struct command parse_command(const char *line);

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the self-booting 8 KiB Sapphire image. No pip packages or IDE required."""
+"""Build the self-booting 12 KiB Sapphire image. No pip packages or IDE required."""
 from __future__ import annotations
 import argparse
 import hashlib
@@ -12,7 +12,7 @@ import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_GCC = Path(r"D:\soft\Efinity\efinity-riscv-ide-2026.1\toolchain\bin\riscv-none-elf-gcc.exe")
-RAM_BYTES = 8192
+RAM_BYTES = 12288
 
 
 def sha256(path: Path) -> str:
@@ -100,6 +100,12 @@ def main() -> None:
         path = ip / f"EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol{lane}.bin"
         path.write_text("".join(f"{byte:08b}\n" for byte in image[lane::4]), encoding="ascii", newline="\n")
         lanes.append({"path": path.relative_to(ROOT).as_posix(), "sha256": sha256(path), "lines": RAM_BYTES // 4})
+    # Physical split-bank images: lower 8 KiB + upper 4 KiB.
+    for lane in range(4):
+        base = ip / f"EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol{lane}"
+        symbols = image[lane::4]
+        for suffix, data in [("lo", symbols[:2048]), ("hi", symbols[2048:])]:
+            Path(str(base) + "." + suffix + ".bin").write_text("".join(f"{byte:08b}\n" for byte in data), encoding="ascii")
     # Reconstruct bytes from the four files, proving bit/lane order and padding.
     recovered = bytearray(RAM_BYTES)
     for lane, record in enumerate(lanes):
@@ -120,7 +126,7 @@ def main() -> None:
     (out / "build_manifest.json").write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
     # Avoid recording the full disassembly twice in the concise build log.
     (out / "build.log").write_text(metadata["compiler"] + "\n" + size +
-                                 f"PASS: {count} camera registers; 4 x 2048 byte lanes round-trip verified\n", encoding="utf-8")
+                                 f"PASS: {count} camera registers; 4 x 3072 byte lanes round-trip verified; physical 2048+1024 split\n", encoding="utf-8")
     print(size.strip())
     print(f"PASS: firmware built: {binary.stat().st_size} bytes; 1 KiB stack reserved; {count} camera entries")
     print(f"ELF: {elf}")

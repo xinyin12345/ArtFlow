@@ -1,0 +1,221 @@
+{
+  "status": "PASS",
+  "paths": [
+    {
+      "chain": "layout_bit0",
+      "kind": "setup",
+      "min_slack_ns": 9.547
+    },
+    {
+      "chain": "layout_bit0",
+      "kind": "hold",
+      "min_slack_ns": 0.112
+    },
+    {
+      "chain": "layout_bit1",
+      "kind": "setup",
+      "min_slack_ns": 9.552
+    },
+    {
+      "chain": "layout_bit1",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    },
+    {
+      "chain": "style",
+      "kind": "setup",
+      "min_slack_ns": 6.552
+    },
+    {
+      "chain": "style",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    },
+    {
+      "chain": "flash",
+      "kind": "setup",
+      "min_slack_ns": 6.552
+    },
+    {
+      "chain": "flash",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    },
+    {
+      "chain": "mode",
+      "kind": "setup",
+      "min_slack_ns": 13.02
+    },
+    {
+      "chain": "mode",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    },
+    {
+      "chain": "osd",
+      "kind": "setup",
+      "min_slack_ns": 13.015
+    },
+    {
+      "chain": "osd",
+      "kind": "hold",
+      "min_slack_ns": 0.112
+    },
+    {
+      "chain": "capture",
+      "kind": "setup",
+      "min_slack_ns": 13.02
+    },
+    {
+      "chain": "capture",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    },
+    {
+      "chain": "process",
+      "kind": "setup",
+      "min_slack_ns": 13.02
+    },
+    {
+      "chain": "process",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    },
+    {
+      "chain": "diag_vs",
+      "kind": "setup",
+      "min_slack_ns": 9.547
+    },
+    {
+      "chain": "diag_vs",
+      "kind": "hold",
+      "min_slack_ns": 0.112
+    },
+    {
+      "chain": "diag_raw",
+      "kind": "setup",
+      "min_slack_ns": 9.552
+    },
+    {
+      "chain": "diag_raw",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    },
+    {
+      "chain": "diag_bin",
+      "kind": "setup",
+      "min_slack_ns": 9.552
+    },
+    {
+      "chain": "diag_bin",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    },
+    {
+      "chain": "csi_core_1",
+      "kind": "setup",
+      "min_slack_ns": 9.552
+    },
+    {
+      "chain": "csi_core_1",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    },
+    {
+      "chain": "csi_core_2",
+      "kind": "setup",
+      "min_slack_ns": 9.552
+    },
+    {
+      "chain": "csi_core_2",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    },
+    {
+      "chain": "csi_byte_1",
+      "kind": "setup",
+      "min_slack_ns": 9.547
+    },
+    {
+      "chain": "csi_byte_1",
+      "kind": "hold",
+      "min_slack_ns": 0.112
+    },
+    {
+      "chain": "csi_byte_2",
+      "kind": "setup",
+      "min_slack_ns": 9.547
+    },
+    {
+      "chain": "csi_byte_2",
+      "kind": "hold",
+      "min_slack_ns": 0.112
+    },
+    {
+      "chain": "csi_pixel_1",
+      "kind": "setup",
+      "min_slack_ns": 19.552
+    },
+    {
+      "chain": "csi_pixel_1",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    },
+    {
+      "chain": "csi_pixel_2",
+      "kind": "setup",
+      "min_slack_ns": 19.552
+    },
+    {
+      "chain": "csi_pixel_2",
+      "kind": "hold",
+      "min_slack_ns": 0.109
+    }
+  ],
+  "sha256": {
+    "tools/check_ui_cdc.tcl": "5d70748b4d335da451933879de452e078d323454151f517e56bbcde9e215e962",
+    "tools/check_round23t_ui_cdc.py": "3ebdc3a1442c6d3b13c8499c4d2f1775af7069a6f6eb3eba038343b69bd980b1",
+    "work/styles15/ui_cdc.log": "868686a0fbf56323af51f6116ef2fc6dcfe3f8dbc8cbc7258bd534752cd011d7",
+    "ArtFlow.sdc": "7163d77516512765b1dd486be45e759866381e2eb481c7ad9488b8e567f74126",
+    "rtl/video/artflow_button.v": "31dc6ad1248f82d7de0df0837788104ef2b79b585a8595273c882c53cbcf7a21",
+    "rtl/video/artflow_fps.v": "a4d668572673cbdd3e11943998c3205c1d472afa8c0f533add77db5f37fc381e",
+    "work/styles15/implementation_source_sha256.json": "040218f4e56f5d08df59c0a49ba7eb1075511b23d451ecf8a4bd770082fcea14",
+    "work/styles15/out/ArtFlow.vdb": "2a6512c4a667175cea91096b1f85a4b7fab6b47b747f882baf8cf6b3df912be4",
+    "work/styles15/out/ArtFlow.place": "5fd70b384954ed62afee2de173e8d1c0e26b687e8c9dec19fc720b03e3ec54ab",
+    "work/styles15/out/ArtFlow.troutingtraces": "fe3b9671597a5f077194d06431e0eef191067af640de037ed4212f0c159c87c0",
+    "work/styles15/out/ArtFlow.ui_layout_bit0_setup.rpt": "748c5c47dbe3e163396afc26fa8a0d5b7a5a59cdc1d46f1902f1ee5231883857",
+    "work/styles15/out/ArtFlow.ui_layout_bit0_hold.rpt": "137069d517031fe73e90a799cf8ea93e1dfb2b3defdd9772a151de96d54a6bb2",
+    "work/styles15/out/ArtFlow.ui_layout_bit1_setup.rpt": "472ad8e5d4259b5d156323a7e0013cbce35c8726babfac500ee5bf587b4cfdda",
+    "work/styles15/out/ArtFlow.ui_layout_bit1_hold.rpt": "05461d8bdd3ca4cfa377efec6e1d75b7f4af39c43d07e67462ab552db3251abd",
+    "work/styles15/out/ArtFlow.ui_style_setup.rpt": "beb3623c156f19eb0f3e9bc915ca3beef24a58a553849ab814ab1423b349bcfa",
+    "work/styles15/out/ArtFlow.ui_style_hold.rpt": "d74de92d0c9472c681c91d23f0518d4c25368a41ae26e4aa89f6a91e1f5a3938",
+    "work/styles15/out/ArtFlow.ui_flash_setup.rpt": "e330ce3e8adfdb1a9deb12e6c38248fda5954d4d733db1678669e7490a6b2617",
+    "work/styles15/out/ArtFlow.ui_flash_hold.rpt": "9e4f18bd2e6230b5b6b79eadef68d18af626881a222e57d2204d4fb6e566e87d",
+    "work/styles15/out/ArtFlow.ui_mode_setup.rpt": "82ef29e24584e911609cc24c7148208d88ac80dfeee8aaa4197409b4c7b95b26",
+    "work/styles15/out/ArtFlow.ui_mode_hold.rpt": "46b68f4b1040ba79351b3c0a9f3538f35ee5b65dba80c0ad9a1a9e0beaa7289a",
+    "work/styles15/out/ArtFlow.ui_osd_setup.rpt": "39186eafac33b90c65d63020d8af442e10afd318d51b11e30c94c29f1e7a56cc",
+    "work/styles15/out/ArtFlow.ui_osd_hold.rpt": "c4bbcfc04cf6a955211ad963d1929e899f5cb650bfc18798041d0b2f26f71e2b",
+    "work/styles15/out/ArtFlow.ui_capture_setup.rpt": "8fa844e1146641eedd924d1b4277639d63d8fa8d0d7352f286a57ff46671568c",
+    "work/styles15/out/ArtFlow.ui_capture_hold.rpt": "a98ab2783b422d6691d8e8f0aeb2e55aeb69f1e793f5abce05ffd9eed65c1e9e",
+    "work/styles15/out/ArtFlow.ui_process_setup.rpt": "15a7fe3e363ae0e71df6419e2216240645309a95dd30b8e9426a10addad5633e",
+    "work/styles15/out/ArtFlow.ui_process_hold.rpt": "fc8be7635afba9cb6b8335249c91d817e3f23456ea674bf38bc9917a840c9a8c",
+    "work/styles15/out/ArtFlow.ui_diag_vs_setup.rpt": "ee41a48e58688c6d289749f9dc2d3cf859c1ded978cadc194c34ab18f7ed16c7",
+    "work/styles15/out/ArtFlow.ui_diag_vs_hold.rpt": "e72fc975be01f050549401cb2c03a187dae904ed3e7662bacc7497f8fb44edae",
+    "work/styles15/out/ArtFlow.ui_diag_raw_setup.rpt": "68cb60702ea8101a8247681c9cd87ca07750b9cde426abbd9e5a55c24e0951fe",
+    "work/styles15/out/ArtFlow.ui_diag_raw_hold.rpt": "a660a0fc5e5ed2428372ec22957762c31e4fb1ccfbf23a001d709b9dc622a272",
+    "work/styles15/out/ArtFlow.ui_diag_bin_setup.rpt": "ac388f0d2f81bf1c4bdd3d906d9acef0ba54e86a450bee653170dc3a885b5947",
+    "work/styles15/out/ArtFlow.ui_diag_bin_hold.rpt": "5f595f7c884460346b1df4ea51c1bac0aca999a6461bf070105b7475871e14ec",
+    "work/styles15/out/ArtFlow.ui_csi_core_1_setup.rpt": "7b5a14d0d2f73c063e78cf61f4abf174b5e66caf23b901f384a0f37767dfac17",
+    "work/styles15/out/ArtFlow.ui_csi_core_1_hold.rpt": "a52b677653afc7857077bf5bb9fa19a06c912df27beff9c9de62149f6c0a1b2d",
+    "work/styles15/out/ArtFlow.ui_csi_core_2_setup.rpt": "86566ed25bedf10695164120fedb5b5bfd806bf2bb69a082d5aff1f901182218",
+    "work/styles15/out/ArtFlow.ui_csi_core_2_hold.rpt": "37db21710b637b474dbe92e25401c1d292f5ce8d32a0b0f61b73ca4d48fbc7cc",
+    "work/styles15/out/ArtFlow.ui_csi_byte_1_setup.rpt": "75950066eb2978eadc1943886df3638c2750e0f9a68b38f7c99cd6ae3d6aa8af",
+    "work/styles15/out/ArtFlow.ui_csi_byte_1_hold.rpt": "4703d1504dae3c9d354ef37da8e20246dfa9cd944b0a61de7d3bc4ceb6563117",
+    "work/styles15/out/ArtFlow.ui_csi_byte_2_setup.rpt": "16e5aa2b09763b59e860ee0b08ec2cc75b2880d14a051b2be0f4af71891d1aa4",
+    "work/styles15/out/ArtFlow.ui_csi_byte_2_hold.rpt": "1f2a5adbc691ce28d35abb794cfacbcc376cfe3394d2929368f239ebd38b6d05",
+    "work/styles15/out/ArtFlow.ui_csi_pixel_1_setup.rpt": "ea05fc77647a3cff8bddfd411fd803a41a48012888ada5f41a47be9b1e3f7022",
+    "work/styles15/out/ArtFlow.ui_csi_pixel_1_hold.rpt": "e6817ff437d06483271f249aeb2dc161e4ad640326bce464518e0b458cc1f7bf",
+    "work/styles15/out/ArtFlow.ui_csi_pixel_2_setup.rpt": "c986a440f4e25ebcb088ccdf478cb2c07f0ea5df97e21caf68d197cfa867c7bb",
+    "work/styles15/out/ArtFlow.ui_csi_pixel_2_hold.rpt": "005cae62dfe98018151ddadf3bb071fa7c43ba9f9f785b88b78222e380770043"
+  }
+}

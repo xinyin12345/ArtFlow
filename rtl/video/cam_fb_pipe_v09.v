@@ -1,7 +1,7 @@
 // ArtFlow v04: RAW binning, triple buffer, fair AXI scheduling, dual windows.
 module cam_fb_pipe_v09
 #(
-    parameter STYLE_ENABLE = 0, STYLE_COUNT=19,
+    parameter STYLE_ENABLE = 0, STYLE_COUNT=15,
     parameter DUAL_WINDOW = 1, // 1: centered native-size pair; 0: legacy 2x fullscreen
     parameter [9:0] BLACK_LEVEL = 10'd0,
     parameter AXI_DATA_WIDTH = 128,
@@ -203,18 +203,73 @@ wire a_rlast;
 wire a_rready;
 wire accel_clk_ready;
 video_reset_sync u_accel_reset(.clk(axi_clk),.rst_n(rst_n),.ready(accel_clk_ready));
+wire freeze_valid,freeze_busy,retire_ack;wire [1:0] freeze_original_bank;
 wire source_locked,original_valid,styled_valid,display_active;
 wire [1:0] source_bank,original_bank,styled_bank,display_bank;
 wire start,busy,done,failed,source_consumed;
 wire [31:0] src_addr,dst_addr,cycles;
 wire [31:0] style_status,ctrl_prdata;wire [4:0] completed_style;wire ctrl_error;
 wire style_diag_addr=accel_paddr==16'h00ac || accel_paddr==16'h00b0;
-assign accel_prdata=style_diag_addr ? (accel_paddr==16'h00ac ? style_status : {27'd0,completed_style}) : ctrl_prdata;
-assign accel_pslverror=style_diag_addr?(accel_psel && accel_penable && accel_pwrite):ctrl_error;
-artflow_accel_ctrl #(.VERSION_ID(32'h41524609),.EARLY_RELEASE(1),.ORIGINAL_BASE(START_ADDR),.BANK_BYTES(BANK_BYTES),.STYLED_BASE(START_ADDR+3*BANK_BYTES)) u_accel_ctrl(
- .clk(axi_clk),.rst_n(accel_clk_ready),.paddr(accel_paddr),.psel(accel_psel),
+wire render_active,render_valid,render_ready,render_error;wire [1:0] render_bank;wire [31:0] render_prdata;
+wire render_select=accel_paddr>=16'hd0 && accel_paddr<=16'he8;
+wire ctrl_ready;
+assign accel_pready=render_select?render_ready:ctrl_ready;
+assign accel_prdata=render_select?render_prdata:style_diag_addr ? (accel_paddr==16'h00ac ? style_status : {27'd0,completed_style}) : ctrl_prdata;
+assign accel_pslverror=render_select?render_error:style_diag_addr?(accel_psel && accel_penable && accel_pwrite):ctrl_error;
+wire local_grant,cnn_port_ready;
+wire [31:0] m_awaddr;
+wire [7:0] m_awlen;
+wire m_awvalid;
+wire m_awready;
+wire [127:0] m_wdata;
+wire [15:0] m_wstrb;
+wire m_wvalid;
+wire m_wlast;
+wire m_wready;
+wire m_bvalid;
+wire [1:0] m_bresp;
+wire m_bready;
+wire [31:0] m_araddr;
+wire [7:0] m_arlen;
+wire m_arvalid;
+wire m_arready;
+wire [127:0] m_rdata;
+wire m_rvalid;
+wire [1:0] m_rresp;
+wire m_rlast;
+wire m_rready;
+artflow_render_ctrl #(.REQUIRE_GRANT(1),.WIDTH(MAX_OUT_WIDTH),.HEIGHT(MAX_IN_HEIGHT/2),.BANK_BYTES(BANK_BYTES),.START_ADDR(START_ADDR)) u_render_ctrl(
+ .local_grant(local_grant),
+ .clk(axi_clk),.rst_n(accel_clk_ready),.freeze_valid(freeze_valid),.original_bank(freeze_original_bank),.style_bank(styled_bank),
+ .display_active(display_active),.display_bank(display_bank),.paddr(accel_paddr),.psel(accel_psel && render_select),.penable(accel_penable),.pwrite(accel_pwrite),.pwdata(accel_pwdata),
+ .prdata(render_prdata),.pready(render_ready),.pslverror(render_error),.result_valid(render_valid),.result_bank(render_bank),.active(render_active),
+.awaddr(m_awaddr),
+.awlen(m_awlen),
+.awvalid(m_awvalid),
+.awready(m_awready),
+.wdata(m_wdata),
+.wstrb(m_wstrb),
+.wvalid(m_wvalid),
+.wlast(m_wlast),
+.wready(m_wready),
+.bvalid(m_bvalid),
+.bresp(m_bresp),
+.bready(m_bready),
+.araddr(m_araddr),
+.arlen(m_arlen),
+.arvalid(m_arvalid),
+.arready(m_arready),
+.rdata(m_rdata),
+.rvalid(m_rvalid),
+.rresp(m_rresp),
+.rlast(m_rlast),
+.rready(m_rready));
+artflow_accel_ctrl #(.INTERACT(1),.VERSION_ID(32'h41524609),.EARLY_RELEASE(1),.ORIGINAL_BASE(START_ADDR),.BANK_BYTES(BANK_BYTES),.STYLED_BASE(START_ADDR+3*BANK_BYTES)) u_accel_ctrl(
+ .clk(axi_clk),.rst_n(accel_clk_ready),.paddr(accel_paddr),.psel(accel_psel && !render_select),
  .penable(accel_penable),.pwrite(accel_pwrite),.pwdata(accel_pwdata),
- .prdata(ctrl_prdata),.pready(accel_pready),.pslverror(ctrl_error),
+ .prdata(ctrl_prdata),.pready(ctrl_ready),.pslverror(ctrl_error),
+ .retire_ack(retire_ack && !render_active && cnn_port_ready),.requested_style(style_status[9:5]),.completed_style(completed_style),
+ .freeze_valid(freeze_valid),.freeze_busy(freeze_busy),.freeze_original_bank(freeze_original_bank),
  .original_valid(original_valid),.original_bank(original_bank),.original_seq(diag_published),
  .source_locked(source_locked),.source_bank(source_bank),
  .display_active(display_active),.display_bank(display_bank),
@@ -222,7 +277,29 @@ artflow_accel_ctrl #(.VERSION_ID(32'h41524609),.EARLY_RELEASE(1),.ORIGINAL_BASE(
  .start(start),.src_addr(src_addr),.dst_addr(dst_addr),
  .busy(busy),.done(done),.failed(failed),.cycles(cycles),.source_consumed(source_consumed),
  .irq(accel_irq),.process_toggle(process_toggle),.completed(),.skipped(),.errors());
-artflow_cnn_accel #(.WIDTH(MAX_OUT_WIDTH),.HEIGHT(MAX_IN_HEIGHT/2),.STYLE_ENABLE(STYLE_ENABLE),.STYLE_COUNT(STYLE_COUNT)) u_accel_dma(
+artflow_cnn_accel #(.LOCAL_ENABLE(1),.WIDTH(MAX_OUT_WIDTH),.HEIGHT(MAX_IN_HEIGHT/2),.STYLE_ENABLE(STYLE_ENABLE),.STYLE_COUNT(STYLE_COUNT)) u_accel_dma(
+ .freeze_req(freeze_valid),.local_active(render_active),.local_grant(local_grant),.cnn_port_ready(cnn_port_ready),
+ .local_araddr(m_araddr),
+ .local_arlen(m_arlen),
+ .local_arvalid(m_arvalid),
+ .local_arready(m_arready),
+ .local_rdata(m_rdata),
+ .local_rvalid(m_rvalid),
+ .local_rresp(m_rresp),
+ .local_rlast(m_rlast),
+ .local_rready(m_rready),
+ .local_awaddr(m_awaddr),
+ .local_awlen(m_awlen),
+ .local_awvalid(m_awvalid),
+ .local_awready(m_awready),
+ .local_wdata(m_wdata),
+ .local_wstrb(m_wstrb),
+ .local_wvalid(m_wvalid),
+ .local_wlast(m_wlast),
+ .local_wready(m_wready),
+ .local_bvalid(m_bvalid),
+ .local_bresp(m_bresp),
+ .local_bready(m_bready),
  .key_style_n(key_style_n),.flash_miso(flash_miso),.flash_cs_n(flash_cs_n),.flash_sck(flash_sck),.flash_mosi(flash_mosi),
  .style_status(style_status),.completed_style(completed_style),
  .clk(axi_clk),.cnn_clk(cnn_clk),.rst_n(accel_clk_ready),.start(start),.src_addr(src_addr),.dst_addr(dst_addr),
@@ -313,13 +390,14 @@ artflow_axi_mux u_axi_mux(.clk(axi_clk),.rst_n(accel_clk_ready),
  .rlast(rlast),
  .rready(rready));
 rgb_frame_store_v07 #(
-    .WIDTH(MAX_OUT_WIDTH), .HEIGHT(MAX_IN_HEIGHT/2), .DUAL_WINDOW(DUAL_WINDOW),
+    .INTERACT(1),.WIDTH(MAX_OUT_WIDTH), .HEIGHT(MAX_IN_HEIGHT/2), .DUAL_WINDOW(DUAL_WINDOW),
     .ADDR_WIDTH(AXI_ADDR_WIDTH), .START_ADDR(START_ADDR), .BANK_BYTES(BANK_BYTES)
 ) u_store (
+    .freeze_valid(freeze_valid),.freeze_original_bank(freeze_original_bank),.retire_ack(retire_ack),
     .requested_layout(requested_layout),.active_layout(active_layout),
     .source_locked(source_locked),.source_bank(source_bank),
     .original_valid(original_valid),.original_bank(original_bank),
-    .styled_valid(styled_valid),.styled_bank(styled_bank),
+    .styled_valid(styled_valid),.styled_bank(render_valid ? render_bank : styled_bank),
     .display_active(display_active),.display_bank(display_bank),
     .diag_state(diag_state), .diag_fifo(diag_fifo),
     .diag_written(diag_written), .diag_completed(diag_completed),

@@ -30,6 +30,12 @@ struct command parse_command(const char *line) {
     if (!*p) result.kind = CMD_EMPTY;
     else if (word(&p, "help")) result.kind = CMD_HELP;
     else if (word(&p, "status")) result.kind = CMD_STATUS;
+    else if (word(&p, "freeze")) result.kind = CMD_FREEZE;
+    else if (word(&p, "live")) result.kind = CMD_LIVE;
+    else if (word(&p, "pair")) result.kind = CMD_PAIR;
+    else if (word(&p, "blend")) { if(gain(&p,&result.rgb[0]) && result.rgb[0]<=4)result.kind=CMD_BLEND; }
+    else if (word(&p, "curtain")) { if(gain(&p,&result.rgb[0]) && result.rgb[0]<=960)result.kind=CMD_CURTAIN; }
+    else if (word(&p, "window")) { if(gain(&p,&result.rgb[0]) && gain(&p,&result.rgb[1]) && gain(&p,&result.rgb[2]) && result.rgb[0]<960 && result.rgb[1]<540 && result.rgb[2]<3)result.kind=CMD_WINDOW; }
     else if (word(&p, "defaults")) result.kind = CMD_DEFAULTS;
     else if (word(&p, "wb")) {
         if (gain(&p, &result.rgb[0]) && gain(&p, &result.rgb[1]) &&

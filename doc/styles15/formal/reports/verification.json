@@ -1,0 +1,51 @@
+{
+  "status": "PASS",
+  "utc": "2026-10-25T10:37:40.604690+00:00",
+  "retained_old_ids": [
+    0,
+    17,
+    11,
+    1,
+    3,
+    16,
+    8,
+    2,
+    5,
+    15,
+    6,
+    7,
+    10,
+    4,
+    13
+  ],
+  "new_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "bytes": 245760,
+  "sha256": "81b99fc11a2460669d672832d2fb3311319ee78edab25aed9c8ad44b0413b3da",
+  "all15_headers_crc_payload_padding_slots": true,
+  "glass_slot_byte_identical": true,
+  "corruption_checks": [
+    "header_id:REJECTED",
+    "header_crc:REJECTED",
+    "payload:REJECTED",
+    "padding:REJECTED",
+    "truncated:REJECTED",
+    "reordered:REJECTED"
+  ],
+  "hardware_read_or_write": false
+}

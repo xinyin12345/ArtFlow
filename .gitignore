@@ -22,3 +22,6 @@ ooc/
 __pycache__/
 
 /outputs/
+
+# Fifteen-style reproducible validation output
+/reports/

@@ -1,0 +1,16 @@
+﻿new_id,old_id,name,display_name,flash_address,crc32
+0,0,glass,原彩绘玻璃,0x400000,ede953ed
+1,17,oil,油画 O3,0x404000,f9ae31a8
+2,11,halftone,复古网点漫画,0x408000,db7b8ff8
+3,1,starry,油画星空,0x40C000,cd43d0c4
+4,3,papercut,红白剪纸,0x410000,cfdad85d
+5,16,sketch,素描,0x414000,5f3125ff
+6,8,popart,波普风,0x418000,1a7abf16
+7,2,inkwash,水墨画,0x41C000,d34c0fc6
+8,5,woodrich,富彩粗刀版画,0x420000,cd7ed92a
+9,15,vermilion_ink,朱红人物黑白,0x424000,af62e3ba
+10,6,mosaic,偏紫马赛克,0x428000,7b1736ee
+11,7,woodcut,双色版画,0x42C000,3fd56550
+12,10,fauve,野兽派平涂,0x430000,5a725dac
+13,4,cel,赛璐璐,0x434000,2be94496
+14,13,sand,沙画,0x438000,c63c8491

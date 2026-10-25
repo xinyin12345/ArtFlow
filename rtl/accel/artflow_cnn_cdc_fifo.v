@@ -4,7 +4,7 @@
 // until the receiving clock has captured it; only registered Gray pointers cross.
 module artflow_cnn_cdc_fifo #(parameter WIDTH=8, AW=3)(
  input wclk,wrst_n,input [WIDTH-1:0] wdata,input wvalid,output wready,
- input rclk,rrst_n,output reg [WIDTH-1:0] rdata,output reg rvalid,input rready
+ input rclk,rrst_n,output reg [WIDTH-1:0] rdata,output reg rvalid,input rready,output r_idle,output w_idle
 );
 (* syn_ramstyle="registers" *) reg [WIDTH-1:0] storage[0:(1<<AW)-1];
 reg [AW:0] wbin,wgray,rbin,rgray;
@@ -12,6 +12,8 @@ reg [AW:0] wbin,wgray,rbin,rgray;
 wire full=wgray=={~rgray_sync[AW:AW-1],rgray_sync[AW-2:0]};
 wire empty=rgray==wgray_sync;
 wire [AW:0] wnext=wbin+1'b1,rnext=rbin+1'b1;
+assign r_idle=empty && !rvalid;
+assign w_idle=wgray==rgray_sync;
 assign wready=wrst_n && !full;
 always @(posedge wclk) if(wvalid && wready) storage[wbin[AW-1:0]]<=wdata;
 always @(posedge wclk or negedge wrst_n) begin

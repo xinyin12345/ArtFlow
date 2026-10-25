@@ -4,7 +4,7 @@
 // Camera overload drops a whole frame; frame boundaries never reset AXI/FIFOs.
 // Output words carry a 32-bit display epoch. Late data is drained, not displayed.
 module rgb_frame_store_v07 #(
-    parameter WIDTH = 960, HEIGHT = 540, DUAL_WINDOW = 1,
+    parameter INTERACT = 0, WIDTH = 960, HEIGHT = 540, DUAL_WINDOW = 1,
     parameter ADDR_WIDTH = 32, START_ADDR = 0, BANK_BYTES = 32'h00400000,
     parameter FIFO_DEPTH = 1024, BURST_BEATS = 128
 )(
@@ -20,6 +20,7 @@ module rgb_frame_store_v07 #(
     // Read-only diagnostics, all in axi_clk. No feedback into video control.
     output [31:0] diag_state, diag_fifo, diag_written, diag_completed,
     output [31:0] diag_published, diag_rejected,
+    input freeze_valid, input [1:0] freeze_original_bank, output reg retire_ack,
     input source_locked, input [1:0] source_bank,
     output original_valid, output [1:0] original_bank,
     input styled_valid, input [1:0] styled_bank,
@@ -165,6 +166,7 @@ always @(posedge axi_clk or negedge arst) begin
 end
 
 reg [1:0] write_bank = 0, latest_bank = 0, read_bank = 0;
+wire [1:0] selected_original=(INTERACT && freeze_valid) ? freeze_original_bank : latest_bank;
 reg latest_valid = 0;
 assign original_valid=latest_valid;
 assign original_bank=latest_bank;
@@ -285,24 +287,28 @@ always_comb begin
 end
 always @(posedge axi_clk or negedge arst) begin
     if (!arst) begin
+        retire_ack<=0;
         rs <= R_IDLE; read_active <= 0; read_bank <= 0;read_layout<=0;
         display_bank<=0;display_styled<=0;display_row<=0;display_right<=0;
         row_words<=0;original_base<=0;result_base<=0;
         read_epoch <= 0; handled_epoch <= 0; words_read <= 0;
         read_beats <= 0; read_beat <= 0; read_addr <= START_ADDR;
-    end else case (rs)
+    end else begin
+    retire_ack<=0;
+    case (rs)
         R_IDLE: if (requested_epoch != handled_epoch) begin
             handled_epoch <= requested_epoch;
+            retire_ack<=!freeze_valid || !INTERACT;
             if (latest_valid) begin
-                read_epoch <= requested_epoch; read_bank <= latest_bank; read_active <= 1;
+                read_epoch <= requested_epoch; read_bank <= selected_original; read_active <= 1;
                 read_layout<=layout_sync;
-                read_addr <= layout_sync==1 && styled_valid ? START_ADDR+(3+styled_bank)*BANK_BYTES : START_ADDR+latest_bank*BANK_BYTES;
+                read_addr <= layout_sync==1 && styled_valid ? START_ADDR+(3+styled_bank)*BANK_BYTES : START_ADDR+selected_original*BANK_BYTES;
                 words_read <= 0; rs <= R_WAIT;
                 display_bank<=styled_bank;display_styled<=styled_valid && layout_sync!=2;
                 display_row<=0;display_right<=0;row_words<=0;
-                original_base<=START_ADDR+latest_bank*BANK_BYTES;
+                original_base<=START_ADDR+selected_original*BANK_BYTES;
                 result_base<=styled_valid ? START_ADDR+3*BANK_BYTES+styled_bank*BANK_BYTES :
-                                           START_ADDR+latest_bank*BANK_BYTES;
+                                           START_ADDR+selected_original*BANK_BYTES;
             end
         end
         R_WAIT: begin
@@ -341,6 +347,7 @@ always @(posedge axi_clk or negedge arst) begin
             end else read_beat <= read_beat + 9'd1;
         end
     endcase
+    end
 end
 
 // Requests reserve a complete write burst or sufficient read FIFO capacity.

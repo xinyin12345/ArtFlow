@@ -1,6 +1,6 @@
 // All events are in cnn_clk. A loaded bank can become active ONLY at job_start.
 // Missing/invalid Flash never blocks video: keep computing the previous model.
-module style_bank_controller #(parameter STYLE_COUNT=19, parameter [23:0] FLASH_BASE=24'h400000)(
+module style_bank_controller #(parameter STYLE_COUNT=15, parameter [23:0] FLASH_BASE=24'h400000)(
  input clk,rst_n,key_press,job_start,
  output reg active_bank,output reg [4:0] active_style,requested_style,
  output wire [4:0] job_style,

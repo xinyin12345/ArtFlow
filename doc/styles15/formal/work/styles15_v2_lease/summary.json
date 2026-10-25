@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "vector_sha256": {},
+  "source_sha256": {
+    "rtl/accel/artflow_cnn_cdc_fifo.v": "b1373add55b60668684dc6d8eb1f184af9029d1483edefe39006a61edd044b81",
+    "rtl/accel/artflow_cnn_egress_fifo.v": "d1a5aa3a3f6226299b3a19537decf50e5c466424b843b0ecea11b8f7bff07cd9",
+    "candidates/round15_return_ram/artflow_cnn_accel.v": "5b23197736230d8f4621c5967afe732e7d3e12bc83d82c4ea0f6416978d8d2a9",
+    "sim/cnn_engine_fixture_a.sv": "15b1beb44b212f0688dad77d37302a55712780ecdff337c249fc28d77c97cc75",
+    "candidates/round11p_packed_pointers/artflow_pair_reader.sv": "8c01bbdb5b54ae86b72f835fa29a3da15f6b4f312f3627ba572d0e041dfd81ca",
+    "rtl/artflow_pair_normalize.sv": "5bdf7d126c70ea49d2624a3ef147eca783d09314b1c212d890a850d054ddf0a7",
+    "rtl/artflow_interact_blend.sv": "ea6f7db73f1c24034afd1be801c0abf433b68de1e3fd63f163820068de57b498",
+    "candidates/round11_packed25/artflow_pair_render.sv": "82b27897053b3b323fdc85fe685e19806797d9b28356471105a4c7954dd2ff4e",
+    "sim/axi_memory_v07.sv": "f601bc338679e6266732f14fab396167a121e074b82137d2b50f10638efda91e",
+    "candidates/round15u_return_ram/artflow_cnn_return_ram_fifo.v": "2854101bd83ac4ad538a0454c7f285417460e55907db02cfd9156869fbbadca0",
+    "candidates/round15u_return_ram/tb_r15u_lease.sv": "470a8ca97a1d6834e5dc2096c191d75933b4274e26751ab27b493bf343de2f33",
+    "D:/soft/Efinity/2026.1/sim_models/verilog/efx_ram10.v": "dd8db45116a67b9754920856dc380eb2dc73ca51e0a6a62cc74cda01c0e31a33",
+    "D:/soft/Efinity/2026.1/sim_models/verilog/efx_dpram10.v": "c7e39233de0a437fd0d43d83ce60dce10b3bd305c59cfcacfb5eac2fe916bcf9"
+  },
+  "evidence": [
+    "# TEST PASS r15u_lease real wrapper/CDC, transaction engine fixture; cases=22 pixels=15360 cycles=129212 writes=3925 reads=572"
+  ]
+}

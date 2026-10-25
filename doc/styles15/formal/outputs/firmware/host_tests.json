@@ -1,0 +1,22 @@
+[
+  {
+    "test": "console",
+    "passed": true,
+    "output": "PASS console: valid commands, 25 malformed commands, bounds, CRLF, editing, all non-ASCII bytes"
+  },
+  {
+    "test": "i2c",
+    "passed": true,
+    "output": "PASS I2C: write/read wire bytes, consecutive STOP-separated transactions, LISTEN rearm after recovery, repeated START, per-byte NACK, ACK timeout, dropped START, stuck STOP, timer wrap, bounded recovery, hardware timing widths"
+  },
+  {
+    "test": "camera",
+    "passed": true,
+    "output": "PASS camera: P1 standby/timing/readback/stream order, legacy profile removed, 176 injected I2C faults, 10 readback mismatches, timing decode and 7 read failures"
+  },
+  {
+    "test": "commands",
+    "passed": true,
+    "output": "PASS command dispatch: atomic RGB order, busy rejection, applied versus pending, defaults, malformed no-write, bad-ID no-write, camera reset, UART framing/overflow/break discard and recovery"
+  }
+]

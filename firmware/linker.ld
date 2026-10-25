@@ -1,6 +1,6 @@
 OUTPUT_ARCH(riscv)
 ENTRY(_start)
-MEMORY { RAM (rwx) : ORIGIN = 0xf9000000, LENGTH = 8K }
+MEMORY { RAM (rwx) : ORIGIN = 0xf9000000, LENGTH = 12K }
 SECTIONS
 {
   . = ORIGIN(RAM);
@@ -18,6 +18,6 @@ SECTIONS
   } > RAM
   __stack_top = ORIGIN(RAM) + LENGTH(RAM);
   __stack_bottom = __stack_top - 1024;
-  ASSERT(__bss_end <= __stack_bottom, "Firmware exceeds 8 KiB OCRAM with 1 KiB reserved stack")
+  ASSERT(__bss_end <= __stack_bottom, "Firmware exceeds 12 KiB OCRAM with 1 KiB reserved stack")
   /DISCARD/ : { *(.comment .note .eh_frame .eh_frame_hdr) }
 }

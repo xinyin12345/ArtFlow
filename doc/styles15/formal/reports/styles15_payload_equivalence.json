@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "scope": "Only Generated/Project metadata and resulting header padding differ; complete decoded bytes after offset 256 match.",
+  "artifacts": {
+    "bit": {
+      "decoded_bytes": 1102554,
+      "header_bytes": 256,
+      "changed_header_fields": [
+        "Generated",
+        "Project"
+      ],
+      "payload_identical": true,
+      "payload_sha256": "0b5ce678ebc3d46c49ccb50e1caabfce34b622900d6a5897e602c063c2064641",
+      "rebuilt_file_sha256": "8987673076fe6b91e87f669eb98d076e46778ac8c74c847b19ef2848166d67e6",
+      "accepted_file_sha256": "3edf836b23255f522da09efe3b1f1c141511f562a5c3ea567e93e68dd1238070"
+    },
+    "hex": {
+      "decoded_bytes": 1102574,
+      "header_bytes": 256,
+      "changed_header_fields": [
+        "Generated",
+        "Project"
+      ],
+      "payload_identical": true,
+      "payload_sha256": "19f886c493178941763494e45c1cb295c422cd1b339c9e4a3b518d01a5206d35",
+      "rebuilt_file_sha256": "f2773bb277f3e97c87d9849fab2f55dc5b7fa11197139ac5ca3a1f9ea032aad9",
+      "accepted_file_sha256": "1756429faafd0cd315810f77464aecbb87b79199b007c0642c3d8269eb78ed65"
+    }
+  }
+}

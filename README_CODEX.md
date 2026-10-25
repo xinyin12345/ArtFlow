@@ -1,3 +1,9 @@
+# Current default: fifteen-style P1/P2 (2026-10-25)
+
+See README.md and doc/styles15/validation.md for the active project, build entry and fresh validation. Everything below is historical; the old 19-style default is superseded.
+
+---
+
 2026-10-22 当前离线候选：19款风格，原16款保持，新增素描/油画O3/点彩R3。
 HDMI30Hz与原CNN结构/时钟不变；KEY3循环0..18。详见 doc/STYLES19_INTEGRATION.txt。
 新下载文件在 outputs/styles19_hdmi30_20261022/，模型包在 network/styles19/parameters.bin。

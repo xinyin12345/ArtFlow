@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "returncode": 0,
+  "seconds": 136.86745110002812,
+  "command": [
+    "D:\\soft\\Efinity\\2026.1\\python311\\bin\\python.exe",
+    "D:\\soft\\Efinity\\2026.1\\scripts\\efx_run.py",
+    "ArtFlow.xml",
+    "--flow",
+    "sta_tclsh",
+    "--output_dir",
+    "D:/work/FPGA/ArtFlow/ArtFlow/work/styles15/out",
+    "--work_dir",
+    "D:/work/FPGA/ArtFlow/ArtFlow/work/styles15/build",
+    "-t",
+    "D:/work/FPGA/ArtFlow/ArtFlow/work/styles15/audit.tcl",
+    "--pnr_opts",
+    "sdc_file=D:/work/FPGA/ArtFlow/ArtFlow/work/styles15/video_cdc_audit.sdc"
+  ]
+}

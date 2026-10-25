@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "vector_sha256": {},
+  "source_sha256": {
+    "rtl/cnn/glass_int8/style_bank_controller.v": "1f428ac46cee0877288a723d0a78ecc4cce69b582c3520c6dd550810409cef3f",
+    "rtl/cnn/glass_int8/style_spi_reader.v": "a097701ca52f08026f8914d23e2604bdcc3ff7fdd4ef6160a2c7c83e7879ac66",
+    "sim/spi_model_archive.sv": "d67732f736848bd66f1bb0fbd6a9ae70c9c8377c04ed3920379861d20ffa3b54",
+    "sim/tb_styles15_button_cycle.sv": "3c2c5bcf712d29bc920821611d3e294b9f0bcecf554762b6691773da229f00e7",
+    "D:/soft/Efinity/2026.1/sim_models/verilog/efx_ram10.v": "dd8db45116a67b9754920856dc380eb2dc73ca51e0a6a62cc74cda01c0e31a33",
+    "D:/soft/Efinity/2026.1/sim_models/verilog/efx_dpram10.v": "c7e39233de0a437fd0d43d83ce60dce10b3bd305c59cfcacfb5eac2fe916bcf9"
+  },
+  "evidence": [
+    "# STYLE CYCLE PASS id=1",
+    "# STYLE CYCLE PASS id=2",
+    "# STYLE CYCLE PASS id=3",
+    "# STYLE CYCLE PASS id=4",
+    "# STYLE CYCLE PASS id=5",
+    "# STYLE CYCLE PASS id=6",
+    "# STYLE CYCLE PASS id=7",
+    "# STYLE CYCLE PASS id=8",
+    "# STYLE CYCLE PASS id=9",
+    "# STYLE CYCLE PASS id=10",
+    "# STYLE CYCLE PASS id=11",
+    "# STYLE CYCLE PASS id=12",
+    "# STYLE CYCLE PASS id=13",
+    "# STYLE CYCLE PASS id=14",
+    "# STYLE CYCLE PASS id=0",
+    "# STYLE CYCLE PASS id=2",
+    "# RAPID REQUEST REPLACEMENT PASS",
+    "# HEADER REJECTION PASS",
+    "# STYLE CYCLE PASS id=5",
+    "# MISSING FLASH RECOVERY PASS",
+    "# tb_styles15_button_cycle PASS loads=17"
+  ]
+}

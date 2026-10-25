@@ -1,0 +1,37 @@
+Reading pref.tcl
+
+# 2025.3
+
+# ** Note: (vsim-220) 'D:/work/FPGA/ArtFlow/ArtFlow/work/styles15_v2_fifo_stagger/modelsim.ini' is used as the ini file.
+# vsim -c -ini D:/work/FPGA/ArtFlow/ArtFlow/work/styles15_v2_fifo_stagger/modelsim.ini -wlf D:/work/FPGA/ArtFlow/ArtFlow/work/styles15_v2_fifo_stagger/test.wlf -onfinish exit work.tb_r15u_fifo_stagger -do "run -all; quit -code 0" 
+# Start time: 18:43:44 on Oct 25,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-220) 'D:/work/FPGA/ArtFlow/ArtFlow/work/styles15_v2_fifo_stagger/modelsim.ini' is used as the ini file.
+# //  Questa Altera Starter FPGA Edition-64
+# //  Version 2025.3 win64 Sep 15 2025
+# //
+# // Unpublished work. Copyright 2025 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading sv_std.std
+# Loading work.tb_r15u_fifo_stagger(fast)
+# run -all
+# FIFO_RAM_CASE_PASS ID=0 WIDTH=131 AW=3 writes=20243 reads=20236 full_stalls=4032 read_stalls=15049 resets=3
+# FIFO_RAM_CASE_PASS ID=1 WIDTH=131 AW=3 writes=17978 reads=17954 full_stalls=18900 read_stalls=11929 resets=3
+# FIFO_RAM_CASE_PASS ID=2 WIDTH=131 AW=3 writes=17145 reads=17128 full_stalls=7020 read_stalls=11765 resets=3
+# FIFO_RAM_CASE_PASS ID=3 WIDTH=1 AW=2 writes=16934 reads=16920 full_stalls=27282 read_stalls=11586 resets=3
+# FIFO_RAM_CASE_PASS ID=4 WIDTH=20 AW=2 writes=18583 reads=18579 full_stalls=5899 read_stalls=16206 resets=3
+# FIFO_RAM_CASE_PASS ID=5 WIDTH=21 AW=4 writes=13044 reads=12994 full_stalls=19832 read_stalls=8393 resets=3
+# TEST PASS r15u_fifo_stagger nativeRAM six parameter/clock cases exact valid/control cycles and scoreboard, resets/full/backpressure/wrap/collision/drain
+# ** Note: $finish    : D:/work/FPGA/ArtFlow/ArtFlow/candidates/round15u_return_ram/tb_r15u_fifo_stagger.sv(65)
+#    Time: 320471 ns  Iteration: 1  Instance: /tb_r15u_fifo_stagger
+# End time: 18:44:05 on Oct 25,2026, Elapsed time: 0:00:21
+# Errors: 0, Warnings: 0

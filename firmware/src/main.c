@@ -104,10 +104,24 @@ static void show_video_diagnostics(void) {
     print(" state="); hex(control_read(REG_ACCEL_STATUS));
     print("\r\n");
 }
+static void render_command(const struct command *cmd) {
+    if((control_read(0xc4u)&7u)!=3u || (control_read(0xe4u)&3u)) {print("ERR freeze first or render busy\r\n");return;}
+    uint32_t mode=4,level=control_read(0xd4u)>>3;
+    if(cmd->kind==CMD_BLEND)level=cmd->rgb[0];
+    if(cmd->kind==CMD_CURTAIN){mode=2;control_write(0xe0u,cmd->rgb[0]);}
+    if(cmd->kind==CMD_WINDOW){
+        mode=1;uint32_t w=240u*(cmd->rgb[2]+1u),h=135u*(cmd->rgb[2]+1u);
+        uint32_t x=cmd->rgb[0]>w/2u?cmd->rgb[0]-w/2u:0u,y=cmd->rgb[1]>h/2u?cmd->rgb[1]-h/2u:0u;
+        if(x>960u-w)x=960u-w;
+        if(y>540u-h)y=540u-h;
+        control_write(0xd8u,x|(y<<16));control_write(0xdcu,(x+w)|((y+h)<<16));
+    }
+    control_write(0xd4u,mode|(level<<3));control_write(0xd0u,1u);print("PENDING render; use pair\r\n");
+}
 static void execute(const struct command *command) {
     if (command->kind == CMD_EMPTY) return;
     if (command->kind == CMD_HELP) {
-        print("help | status | wb R G B | defaults | cam init/off/timing\r\n"
+        print("help | status | wb R G B | defaults | cam init/off/timing | freeze/live/pair\r\nblend 0..4 | curtain 0..960 | window X Y size(0..2)\r\n"
               "Gains: unsigned decimal 0..1024 Q8.8 (256=1x); defaults ");
         decimal(DEFAULT_R); print(" "); decimal(DEFAULT_G); print(" "); decimal(DEFAULT_B);
         print("\r\nCR/LF; max 63 chars; wait for response\r\n");
@@ -118,6 +132,12 @@ static void execute(const struct command *command) {
     }
     if (!control_valid) { print("ERR control ID mismatch\r\n"); return; }
     switch (command->kind) {
+    case CMD_BLEND: case CMD_CURTAIN: case CMD_WINDOW: render_command(command);break;
+    case CMD_FREEZE: control_write(0xc0u,1u); print("PENDING freeze; use pair\r\n"); break;
+    case CMD_LIVE: control_write(0xc0u,2u); print("PENDING live; use pair\r\n"); break;
+    case CMD_PAIR:
+        print("pair state/seq/style="); hex(control_read(0xc4u)); putc_uart(' ');
+        decimal(control_read(0xc8u)); putc_uart(' ');decimal(control_read(0xccu));print(" render state/count=");hex(control_read(0xe4u));putc_uart(' ');decimal(control_read(0xe8u));print("\r\n");break;
     case CMD_STATUS:
         print("status="); hex(control_read(REG_STATUS));
         print(" camera="); hex(control_read(REG_CAMERA));

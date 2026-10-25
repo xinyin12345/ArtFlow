@@ -584,7 +584,7 @@ wire [7:0] hdmi_tx_bdata;
 
 assign flash_wp_n=1'b1;assign flash_hold_n=1'b1;
 cam_fb_pipe_v09 #(
-  .STYLE_ENABLE(1),.STYLE_COUNT(19),
+  .STYLE_ENABLE(1),.STYLE_COUNT(15),
   .DUAL_WINDOW    (CFG_DUAL_WINDOW),
   .BLACK_LEVEL    (CFG_BLACK_LEVEL),
   .AXI_DATA_WIDTH (AXI_DATA_WIDTH ),

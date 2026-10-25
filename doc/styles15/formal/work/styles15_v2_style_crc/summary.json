@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "vector_sha256": {},
+  "source_sha256": {
+    "rtl/cnn/glass_int8/style_bank_controller.v": "1f428ac46cee0877288a723d0a78ecc4cce69b582c3520c6dd550810409cef3f",
+    "rtl/cnn/glass_int8/style_spi_reader.v": "a097701ca52f08026f8914d23e2604bdcc3ff7fdd4ef6160a2c7c83e7879ac66",
+    "sim/spi_model_archive.sv": "d67732f736848bd66f1bb0fbd6a9ae70c9c8377c04ed3920379861d20ffa3b54",
+    "sim/tb_style_loader.sv": "cb7176b2fefc04547c99a9e022d26e3a0fecd6c8e5097d50a42db44715862cf8",
+    "D:/soft/Efinity/2026.1/sim_models/verilog/efx_ram10.v": "dd8db45116a67b9754920856dc380eb2dc73ca51e0a6a62cc74cda01c0e31a33",
+    "D:/soft/Efinity/2026.1/sim_models/verilog/efx_dpram10.v": "c7e39233de0a437fd0d43d83ce60dce10b3bd305c59cfcacfb5eac2fe916bcf9"
+  },
+  "evidence": [
+    "# LOAD PASS style=1 writes=668",
+    "# CRC REJECTION PASS",
+    "# RECOVERY PASS style=3",
+    "# tb_style_loader PASS"
+  ]
+}
