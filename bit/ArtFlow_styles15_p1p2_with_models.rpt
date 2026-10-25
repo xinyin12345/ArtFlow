@@ -1,0 +1,8 @@
+**** Efinity Programming Tool Generation Report *****
+Time: 2026-10-25 18:21
+
+Generated FPGA Soc Image output file: D:\work\FPGA\ArtFlow\ArtFlow\bit\ArtFlow_styles15_p1p2_with_models.hex
+Flash Address  Length      Input Image File
+0x00000000     0x0010d2ee  D:/work/FPGA/ArtFlow/ArtFlow/bit/ArtFlow_styles15_p1p2.hex
+0x00400000     0x0003c000  D:/work/FPGA/ArtFlow/ArtFlow/bit/models15_parameters.bin
+
