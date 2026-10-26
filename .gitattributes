@@ -15,3 +15,13 @@ releases/styles15_p1p2_20261025/old_new_mapping.csv whitespace=space-before-tab,
 # Raw generated validation evidence is retained exactly and indexed by SHA256.
 /doc/styles15/formal/**/*.log -diff -text
 /doc/styles15/formal/*.rpt -diff -text
+
+# Streaming release hashes require byte-preserving checkouts.
+/releases/stream30_websocket_20261026/** -text
+/rtl/** -text
+/ArtFlow*.xml -text
+/ArtFlow.sdc -text
+/doc/styles15/source_manifest.json -text
+/ip/sapphire_soc/sapphire_soc.v -text
+/candidates/round15u_return_ram/tb_r15u_system.sv -text
+/sim/*.sv -text

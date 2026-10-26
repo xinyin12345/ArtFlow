@@ -1,0 +1,116 @@
+{
+  "status": "PASS",
+  "tests": [
+    "legacy: real HTTP 101 succeeds but SDK dispatch skips URI handler; complete frame drops no_client",
+    "fixed post-handshake registers; exact 28832-byte WS frame despite 113-byte short sends; busy frame drops without overwriting",
+    "second client rejected without clearing primary",
+    "queued work drops after stop or same-fd new connection generation; cannot send stale frame to new session",
+    "work queue failure releases buffer; next complete frame sends successfully",
+    "send failure unregisters/pauses; reconnect and subsequent binary frame recover; close cleans registration"
+  ],
+  "sent": 3,
+  "dropped": 6,
+  "diagnostics": {
+    "diagnostic_version": 3,
+    "build_id": "websocket-20261026-v1",
+    "fpga_enable_ack_available": false,
+    "test_seen": false,
+    "fpga_test_session": 0,
+    "fpga_test_capture_epoch": 0,
+    "status_prepared": 0,
+    "status_transactions_completed": 0,
+    "last_completed_status_session": 0,
+    "last_completed_status_enable_request": false,
+    "txn_last_bits": 0,
+    "txn_max_bits": 0,
+    "txn_bins_zero_nonbyte_short_exact_long": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "accepted_poll_begin_data_end_cancel_test": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "last_reject_reason_code": 0,
+    "rejected_by_reason": {
+      "length": 0,
+      "header": 0,
+      "packet_crc": 0,
+      "payload_length": 0,
+      "padding": 0,
+      "test": 0,
+      "poll": 0,
+      "session": 0,
+      "cancel": 0,
+      "begin": 0,
+      "order": 0,
+      "data": 0,
+      "end_or_frame_crc": 0,
+      "timeout": 0
+    },
+    "pipeline": {
+      "slots": 2,
+      "setup_callbacks": 0,
+      "complete_callbacks": 0,
+      "queue_failures": 0,
+      "stopped": false,
+      "ready_low_hold_us": 1
+    },
+    "rearm_software_us": {
+      "all": {
+        "count": 0,
+        "last": 0,
+        "min": 0,
+        "max": 0,
+        "sum": 0,
+        "bins_le10_le27_le54_le122_gt122": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "previous_status_video_requested": {
+        "count": 0,
+        "last": 0,
+        "min": 0,
+        "max": 0,
+        "sum": 0,
+        "bins_le10_le27_le54_le122_gt122": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "network": {
+      "registered": false,
+      "client_fd": -1,
+      "generation": 6,
+      "registrations": 3,
+      "unregistrations": 3,
+      "extra_clients_rejected": 1,
+      "send_attempts": 4,
+      "last_send_error": -1,
+      "drops_no_client_video_off_busy_work_queue_stale_send": [
+        1,
+        0,
+        1,
+        1,
+        2,
+        1
+      ]
+    }
+  },
+  "scope": "Real loopback TCP HTTP upgrade and WebSocket bytes; actual candidate network functions, actual IDF upgrade dispatch block and WS frame encoder. HTTP parser/session scheduler adapted by host harness; no lwIP, RF, device or physical throughput verification."
+}

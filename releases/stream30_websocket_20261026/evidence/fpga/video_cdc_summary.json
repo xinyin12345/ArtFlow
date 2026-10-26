@@ -1,0 +1,79 @@
+{
+  "status": "PASS",
+  "buses": [
+    {
+      "name": "layout_meta",
+      "endpoints": 2,
+      "budget_ns": 2.5,
+      "slow_comparisons": 1,
+      "skew_ns": 0.179,
+      "slack_ns": 2.321,
+      "max_relative_delay_ns": 0.724,
+      "max_data_delay_ns": 0.714
+    },
+    {
+      "name": "count_meta",
+      "endpoints": 32,
+      "budget_ns": 2.5,
+      "slow_comparisons": 31,
+      "skew_ns": 0.354,
+      "slack_ns": 2.146,
+      "max_relative_delay_ns": 0.65,
+      "max_data_delay_ns": 0.639
+    },
+    {
+      "name": "epoch_meta",
+      "endpoints": 32,
+      "budget_ns": 2.5,
+      "slow_comparisons": 31,
+      "skew_ns": 0.298,
+      "slack_ns": 2.202,
+      "max_relative_delay_ns": 0.596,
+      "max_data_delay_ns": 0.586
+    },
+    {
+      "name": "gain_mailbox",
+      "endpoints": 48,
+      "budget_ns": 20.0,
+      "slow_comparisons": 47,
+      "skew_ns": 0.927,
+      "slack_ns": 19.073,
+      "max_relative_delay_ns": 1.243,
+      "max_data_delay_ns": 1.248
+    }
+  ],
+  "endpoints": [
+    2,
+    32,
+    32,
+    48
+  ],
+  "skew_ns": [
+    0.179,
+    0.354,
+    0.298,
+    0.927
+  ],
+  "slack_ns": [
+    2.321,
+    2.146,
+    2.202,
+    19.073
+  ],
+  "kind": "post-route audit with clock groups omitted",
+  "sha256": {
+    "ArtFlow.sdc": "12656e6eae9ab3e6834ba72f6673d2b2c6e2baa8771ef5235a4925e8f73b28dc",
+    "rtl/video/rgb_frame_store_v07.v": "d5161248852067422c5c6616d1c0fb94ce152aef516854732e24e8d227c10e71",
+    "rtl/control/artflow_control.v": "87650e9d2d16df63b892ba8a3629720fbd6b9620e5fc7b2092c6cddb23a547cb",
+    "rtl/ArtFlow_top.v": "6e53a06273f4ea8d8861164d9c81368094708c89636f4bbc3a398d528da81fc9",
+    "tools/check_round23t_video_cdc.py": "bb83f71e4d8595cf4f79dd5fd26606b387e1dffd2c7616ee262040a80b857e3e",
+    "tools/check_video_cdc.tcl": "267fd2cb567cb61c3337b8809e839fbb3baabccd1306ef2fe7c7e845e2096889",
+    "work/styles15/video_cdc_audit.sdc": "6dc1e03b930ce2bf8ba9b44c4d9445e0c35b059233afbb4501be7bc5d3fab594",
+    "work/styles15/out/ArtFlow.map.v": "19f8e1b5052bbc87d1611a5df8fae7a2ef28e6e4b42baf98fe1126963a4fbfca",
+    "work/styles15/out/ArtFlow.vdb": "4599944a3e5c65b86339c0401527dda74f578c286b0b35156d14c4ec6bc9db49",
+    "work/styles15/out/ArtFlow.place": "5e068ebef0a9e24cb87c34345ed7cbb0df44f1ace32c1a886ccabfa4c8e9a093",
+    "work/styles15/out/ArtFlow.troutingtraces": "02e10e49318e6c0876c72affbd9a45a13aa0fdd8bdf911dda2a018cd95c063e6",
+    "work/styles15/out/ArtFlow.video_bus_skew.rpt": "19d66725e97a78ec178b15395bbae71f19baf370e2a44e460ba54415325a5c15",
+    "work/styles15/out/ArtFlow.video_bus_delay.rpt": "5fca6539892d1e15932798c07070a59bcc3343112614f1d87e65f3931743ee31"
+  }
+}

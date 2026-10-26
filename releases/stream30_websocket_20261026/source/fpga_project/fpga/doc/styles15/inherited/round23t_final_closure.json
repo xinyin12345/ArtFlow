@@ -1,0 +1,56 @@
+{
+  "status": "PASS",
+  "utc": "2026-10-25T09:25:54.878978+00:00",
+  "steps": [
+    {
+      "script": "tools/check_round23t_project.py",
+      "args": [],
+      "returncode": 0,
+      "log": "reports/round23t_final_check_round23t_project.log",
+      "sha256": "9b472bdda3eace46cfa9ca5e040e65080716b582377203e78bb6655360ee7443"
+    },
+    {
+      "script": "tools/run_styles15_flow.py",
+      "args": [
+        "pnr"
+      ],
+      "returncode": 0,
+      "log": "reports/round23t_final_run_styles15_flow_pnr.log",
+      "sha256": "65a36ff5dcb7ae105b4840feec4a2a2f1cf41c9f0c8cf974ad2fab96757977c7"
+    },
+    {
+      "script": "tools/check_round23t_timing.py",
+      "args": [],
+      "returncode": 0,
+      "log": "reports/round23t_final_check_round23t_timing.log",
+      "sha256": "0f041637746d401c5ff529f98b56906e83847e87ebdd5d6ca47751d8c1565d35"
+    },
+    {
+      "script": "tools/run_round23t_cdc.py",
+      "args": [],
+      "returncode": 0,
+      "log": "reports/round23t_final_run_round23t_cdc.log",
+      "sha256": "4bc156c4f03c18d6cb2b426290ffd2ef17883e503a2942094699db9440fdf716"
+    },
+    {
+      "script": "tools/run_round23t_postflow.py",
+      "args": [
+        "pgm"
+      ],
+      "returncode": 0,
+      "log": "reports/round23t_final_run_round23t_postflow_pgm.log",
+      "sha256": "4fed9d377266f8e2dd9da9f078bcad8d1903e951359cca6d7c838e1953288dfe"
+    }
+  ],
+  "sha256": {
+    "work/r23t_timing_phys/out/ArtFlow.bit": "3edf836b23255f522da09efe3b1f1c141511f562a5c3ea567e93e68dd1238070",
+    "work/r23t_timing_phys/out/ArtFlow.hex": "1756429faafd0cd315810f77464aecbb87b79199b007c0642c3d8269eb78ed65",
+    "work/r23t_timing_phys/normal_sta_summary.json": "87643f76a76258e07c712323ba3db1a31e05d6380ed41776c1c391e512e9f6f3",
+    "work/r23t_timing_phys/video_cdc_summary.json": "f15f4258fb59a0092aef3db36766a44235dff806e706788f1fefb92e7fd5de81",
+    "work/r23t_timing_phys/ui_cdc_summary.json": "c36ea833043d924526516e67baa73ef7e804c790a311a0de3e7ec28fcc27f4ce",
+    "work/r23t_timing_phys/cnn_cdc_summary.json": "dcfcdbb05b573f0b5fa0e092cc8fd5cc79d2b7e90099f0da89e9343d95cd0443",
+    "work/r23t_timing_phys/style_io_cdc_summary.json": "ba8be617ece5362951830b141124a8b3c9f828a42a1da3a6f58e5b05cecbe5b1",
+    "work/r23t_timing_phys/return_ram_cdc_summary.json": "f88a782e3cd1321590484db364dac154dcf1d8aa6bd6a9b666f07a8fff4d2b45"
+  },
+  "scope": "Legal PNR, unchanged original-clock final STA and complete CDC, bit/hex generation only. NOT loaded, NOT hardware-validated."
+}

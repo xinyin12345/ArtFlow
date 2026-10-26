@@ -1,0 +1,2 @@
+PASS actual loopback WS payload decoded by shipped browser decoder
+PASS JS CRC/RGB565, bad/partial/duplicate frames, disconnect/reconnect, stale-clear, stop-clear, late-frame suppression and resume

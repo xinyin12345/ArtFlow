@@ -1,3 +1,17 @@
+# 当前主工程：30Hz FPGA 推流 + ESP32 WebSocket
+
+2026-10-26：根目录 RTL、工程 XML/peri/SDC 已整合实板配套的 wifi_stream_20261025 推流版本，保留三布局、15 风格、KEY1/KEY3、OSD 和 WB 280/170/280。169 项签核源哈希逐项校验；没有引入 60Hz 改动。
+
+交接入口：[30Hz 配对交接](releases/stream30_websocket_20261026/README.md)。最终 ESP 源码位于该目录 source/esp_project；含热点密码的已验收 app 仅在本地 private 中，未公开提交。
+
+根工程验证/构建入口：`./BuildStream.ps1 -Phase Check`（默认，只读身份检查）、`-Phase Tests`（离线定向回归）、`-Phase EspTests`（最终 ESP 离线验证）、`-Phase OriginalTests`（原系统回归）、`-Phase Map`、`-Phase Physical`（需先完成原功能回归及映射前置证据，使用独立干净构建副本，不清理现有 work）。当前交付复用签核 bit，未重跑综合/P&R。
+
+**板上 FPGA Flash 仍是历史非推流 15 风格镜像**；根源码变更不意味着已刷 Flash。推流仍须每次掉电后 JTAG 加载匹配 bit，不改模型。
+
+以下保留原项目说明，其中历史构建/Flash 信息以本节和本次交接为准。
+
+---
+
 # ArtFlow: fifteen-style P1/P2 release
 
 The active project is `ArtFlow.xml`; `ArtFlow_glass.xml` is an identical compatibility entry. Both use the accepted TIMING_3 / seed 2 strategy, original clocks and spi_low_power_mode=off.

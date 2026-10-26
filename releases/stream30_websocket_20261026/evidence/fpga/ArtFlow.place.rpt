@@ -1,0 +1,53 @@
+
+Elitestek FPGA Placement and Routing.
+Version: 2026.1.132 
+Date: Sun Oct 25 23:27:32 2026
+
+Copyright (C) 2013 - 2026 Efinix, Inc. All rights reserved.
+ 
+Family: Titanium 
+Device: Ti60F225
+Top-level Entity Name: ArtFlow
+
+---------- IO Placement Summary (begin) ----------
+
++----------------------+--------------+
+| Unassigned Core Pins | Input/Output |
++----------------------+--------------+
+|    pll_inst4_RSTN    |    Output    |
++----------------------+--------------+
+
+----------- IO Placement Summary (end) ----------
+
+
+---------- Module Resource Usage Distribution Estimates (begin) ----------
+
+'Module Resource Usage Distribution Estimates' table printed in: D:/work/FPGA/ArtFlow/Process/wifi_stream_20261025/fpga/work/styles15/out\ArtFlow.hier_util.rpt
+
+----------- Module Resource Usage Distribution Estimates (end) ----------
+
+Elapsed time for packing: 0 hours 0 minutes 5 seconds
+---------- Resource Summary (begin) ----------
+Inputs: 110 / 1703 (6.46%)
+Outputs: 271 / 2267 (11.95%)
+Global Clocks (GBUF): 14 / 32 (43.75%)
+Regional Clocks (RBUF): 1 / 32 (3.12%)
+	RBUF: Core: 0 / 16 (0.00%)
+	RBUF: Periphery: 1 / 8 (12.50%)
+	RBUF: Multi-Region: 0 / 8 (0.00%)
+XLRs: 57981 / 60800 (95.36%)
+	XLRs needed for LUT4: 25769 / 60800 (42.38%)
+	XLRs needed for LUT4 + FF: 12609 / 60800 (20.74%)
+	XLRs needed for COMB4: 0 / 60800 (0.00%)
+	XLRs needed for COMB4 + FF: 0 / 60800 (0.00%)
+	XLRs needed for Adder: 4287 / 60800 (7.05%)
+	XLRs needed for Adder + FF: 2384 / 60800 (3.92%)
+	XLRs needed for SRL8: 2065 / 14720 (14.03%)
+	XLRs needed for SRL8 + FF: 0 / 14720 (0.00%)
+	XLRs needed for FF: 10867 / 60800 (17.87%)
+	XLRs needed for Routing: 0 / 60800 (0.00%)
+Memory Blocks: 253 / 256 (98.83%)
+DSP Blocks: 144 / 160 (90.00%)
+---------- Resource Summary (end) ----------
+
+Elapsed time for placement: 0 hours 2 minutes 28 seconds

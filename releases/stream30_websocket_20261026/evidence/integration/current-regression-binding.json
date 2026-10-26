@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "receipt_source_counts": {
+    "logs/rtl/summary.json": 3,
+    "logs/tap/summary.json": 8,
+    "logs/reset-equivalence/summary.json": 3,
+    "logs/host-tests.json": 5,
+    "logs/browser-tests.json": 16
+  },
+  "hardware_tested": false
+}

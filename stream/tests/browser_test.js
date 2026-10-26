@@ -1,0 +1,14 @@
+const fs=require('fs'),assert=require('assert'),path=require('path'),AFS=require('../protocol/afs.js');const dir=path.join(__dirname,'../logs/protocol');const b=fs.readFileSync(path.join(dir,'valid.ws'));const frame=AFS.decode(b);assert.equal(frame.seq,7);assert.equal(frame.session,0x12345678);assert.equal(frame.rgba.length,57600);const raw=fs.readFileSync(path.join(dir,'image.bin'));for(let i=0;i<14400;i++){const v=raw.readUInt16LE(i*2),r=v>>11,g=(v>>5)&63,bl=v&31;assert.deepEqual([...frame.rgba.slice(i*4,i*4+4)],[(r<<3)|(r>>2),(g<<2)|(g>>4),(bl<<3)|(bl>>2),255]);}const broken=Buffer.from(b);broken[100]^=1;assert.throws(()=>AFS.decode(broken));assert.throws(()=>AFS.decode(b.subarray(0,-1)));assert.equal(AFS.crc(Buffer.from('123456789')),0xcbf43926);
+// Exercise the actual embedded page, including stale/stop and late-frame behavior.
+(async()=>{
+const vm=require('vm');const html=fs.readFileSync(path.join(__dirname,'../esp32/main/index.html'),'utf8');const code=html.match(/<script>([\s\S]*)<\/script>/)[1];let draws=0,clears=0,sockets=[],now=1000;
+const nodes={view:{getContext:()=>({clearRect:()=>clears++,putImageData:()=>draws++})},fps:{value:'1'},message:{textContent:''},status:{textContent:''},start:{},stop:{}};
+let timers=[];class WS{constructor(){sockets.push(this);}close(){this.onclose();}};class Clock extends Date{static now(){return now;}}
+const context={AFS,document:{querySelector:s=>nodes[s.slice(1)]},location:{host:'192.168.4.1'},WebSocket:WS,message:nodes.message,ImageData:class{constructor(a){this.data=a;}},setTimeout:f=>{timers.push(f);return timers.length;},clearTimeout:()=>{},fetch:async()=>({ok:true,json:async()=>({})}),Date:Clock,console};
+vm.createContext(context);vm.runInContext(code,context);sockets[0].onmessage({data:b});assert.equal(draws,1);sockets[0].onmessage({data:b});assert.equal(draws,1);sockets[0].onmessage({data:broken});assert.equal(draws,1);
+const before=clears;now=5001;timers.find(f=>f.name==='checkStale')();assert.equal(clears,before+1);sockets[0].onmessage({data:b});assert.equal(draws,1,'stale clear must retain sequence rejection');
+sockets[0].onclose();assert(clears>=3);timers.find(f=>f.name==='connect')();sockets.at(-1).onmessage({data:b});assert.equal(draws,2);
+await nodes.stop.onclick();const stopped=clears;const newer=Buffer.from(b);newer.writeUInt32LE(8,12);newer.writeUInt32LE(AFS.crc(newer.subarray(0,-4)),newer.length-4);sockets.at(-1).onmessage({data:newer});assert.equal(draws,2,'late frame after stop must not redraw');assert(clears>=stopped);
+await nodes.start.onclick();sockets.at(-1).onmessage({data:newer});assert.equal(draws,3);
+console.log('PASS JS CRC/RGB565, bad/partial/duplicate frames, disconnect/reconnect, stale-clear, stop-clear, late-frame suppression and resume');
+})().catch(e=>{console.error(e);process.exitCode=1;});

@@ -1,0 +1,86 @@
+{
+  "style_crc": [
+    "style_loader",
+    "rtl/cnn/glass_int8/style_bank_controller.v",
+    "rtl/cnn/glass_int8/style_spi_reader.v",
+    "sim/spi_model_archive.sv",
+    "sim/tb_style_loader.sv"
+  ],
+  "style_cycle": [
+    "styles15_button_cycle",
+    "rtl/cnn/glass_int8/style_bank_controller.v",
+    "rtl/cnn/glass_int8/style_spi_reader.v",
+    "sim/spi_model_archive.sv",
+    "sim/tb_styles15_button_cycle.sv"
+  ],
+  "pair_control": [
+    "p1_control",
+    "rtl/accel/artflow_accel_ctrl.v",
+    "sim/tb_p1_control.sv"
+  ],
+  "system": [
+    "r15u_system",
+    "rtl/video/cam_fb_pipe_v09.v",
+    "rtl/video/bayer_bin2x2.v",
+    "rtl/video/rgb_frame_store.v",
+    "rtl/video/rgb_frame_store_v07.v",
+    "rtl/video/video_axi_scheduler.v",
+    "rtl/frame_buffer/DC_FIFO.v",
+    "rtl/frame_buffer/rst_n_piple.v",
+    "rtl/accel/artflow_accel_ctrl.v",
+    "rtl/accel/artflow_axi_mux.v",
+    "candidates/round11p_packed_pointers/artflow_pair_reader.sv",
+    "rtl/artflow_pair_normalize.sv",
+    "rtl/artflow_interact_blend.sv",
+    "candidates/round11_packed25/artflow_pair_render.sv",
+    "candidates/round11_packed25/artflow_render_ctrl.v",
+    "sim/axi_memory_v07.sv",
+    "rtl/accel/artflow_cnn_cdc_fifo.v",
+    "rtl/accel/artflow_cnn_egress_fifo.v",
+    "candidates/round15_return_ram/artflow_cnn_accel.v",
+    "sim/cnn_engine_fixture_a.sv",
+    "candidates/round15u_return_ram/artflow_cnn_return_ram_fifo.v",
+    "candidates/round15u_return_ram/tb_r15u_system.sv"
+  ],
+  "lease": [
+    "r15u_lease",
+    "rtl/accel/artflow_cnn_cdc_fifo.v",
+    "rtl/accel/artflow_cnn_egress_fifo.v",
+    "candidates/round15_return_ram/artflow_cnn_accel.v",
+    "sim/cnn_engine_fixture_a.sv",
+    "candidates/round11p_packed_pointers/artflow_pair_reader.sv",
+    "rtl/artflow_pair_normalize.sv",
+    "rtl/artflow_interact_blend.sv",
+    "candidates/round11_packed25/artflow_pair_render.sv",
+    "sim/axi_memory_v07.sv",
+    "candidates/round15u_return_ram/artflow_cnn_return_ram_fifo.v",
+    "candidates/round15u_return_ram/tb_r15u_lease.sv"
+  ],
+  "timeout": [
+    "r15u_timeout",
+    "rtl/accel/artflow_cnn_cdc_fifo.v",
+    "rtl/accel/artflow_cnn_egress_fifo.v",
+    "candidates/round15_return_ram/artflow_cnn_accel.v",
+    "sim/cnn_engine_fixture_a.sv",
+    "candidates/round11p_packed_pointers/artflow_pair_reader.sv",
+    "rtl/artflow_pair_normalize.sv",
+    "rtl/artflow_interact_blend.sv",
+    "candidates/round11_packed25/artflow_pair_render.sv",
+    "sim/axi_memory_v07.sv",
+    "candidates/round11_packed25/artflow_render_ctrl.v",
+    "candidates/round15u_return_ram/artflow_cnn_return_ram_fifo.v",
+    "candidates/round15u_return_ram/tb_r15u_timeout.sv"
+  ],
+  "fifo": [
+    "r15u_fifo",
+    "rtl/accel/artflow_cnn_cdc_fifo.v",
+    "candidates/round15u_return_ram/artflow_cnn_return_ram_fifo.v",
+    "candidates/round15u_return_ram/tb_r15u_fifo.sv"
+  ],
+  "fifo_stagger": [
+    "r15u_fifo_stagger",
+    "rtl/accel/artflow_cnn_cdc_fifo.v",
+    "candidates/round15u_return_ram/artflow_cnn_return_ram_fifo.v",
+    "candidates/round15u_return_ram/tb_r15u_fifo_stagger.sv"
+  ]
+}

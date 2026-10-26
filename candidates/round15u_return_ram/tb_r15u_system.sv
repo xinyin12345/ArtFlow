@@ -57,13 +57,10 @@ task apb_write(input [15:0] addr,input [31:0] value);
  @(negedge aclk);psel=0;penable=0;pwrite=0;
 endtask
 int irqs=0,jobs=0,published=0;integer srcfile,dstfile;reg [127:0] tmp;
-string dump_dir;
 integer good_pixels=0;
 integer frozen_capture,frozen_done,render_count;
 initial begin
- if (!$value$plusargs("DIR=%s",dump_dir)) $fatal(1,"Missing vector output directory");
- srcfile=$fopen({dump_dir,"/system_input.hex"},"w");dstfile=$fopen({dump_dir,"/system_output.hex"},"w");
- if (!srcfile || !dstfile) $fatal(1,"Cannot write system test vectors");
+ srcfile=$fopen("work/r15u_system/system_input.hex","w");dstfile=$fopen("work/r15u_system/system_output.hex","w");
  repeat(20) @(negedge aclk);rst_n=1;prst_n=1;
  apb_write('h84,3);wait(irq);apb_write('h8c,1);
  for(integer round=0;round<3;round++)begin

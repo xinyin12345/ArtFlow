@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "unit": "PASS: all 14 mutually exclusive reasons, short/zero/CRC/session/cancel/timeout, TEST echo trust boundary\n",
+  "legacy_differential": {
+    "valid": "identical counters, return outcome and output bytes",
+    "bad_crc": "identical counters, return outcome and output bytes",
+    "lost_chunk": "identical counters, return outcome and output bytes",
+    "reordered": "identical counters, return outcome and output bytes",
+    "cancel": "identical counters, return outcome and output bytes",
+    "sender_reset": "identical counters, return outcome and output bytes",
+    "stale_session": "identical counters, return outcome and output bytes",
+    "wrong_frame_crc": "identical counters, return outcome and output bytes",
+    "truncated_frame": "identical counters, return outcome and output bytes",
+    "recovery_after_error": "identical counters, return outcome and output bytes",
+    "diagnostic": "identical counters, return outcome and output bytes",
+    "duplicate_chunk": "identical counters, return outcome and output bytes"
+  }
+}

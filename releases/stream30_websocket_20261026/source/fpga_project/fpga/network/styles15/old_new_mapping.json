@@ -1,0 +1,122 @@
+[
+  {
+    "new_id": 0,
+    "old_id": 0,
+    "name": "glass",
+    "display_name": "原彩绘玻璃",
+    "flash_address": "0x400000",
+    "crc32": "ede953ed"
+  },
+  {
+    "new_id": 1,
+    "old_id": 17,
+    "name": "oil",
+    "display_name": "油画 O3",
+    "flash_address": "0x404000",
+    "crc32": "f9ae31a8"
+  },
+  {
+    "new_id": 2,
+    "old_id": 11,
+    "name": "halftone",
+    "display_name": "复古网点漫画",
+    "flash_address": "0x408000",
+    "crc32": "db7b8ff8"
+  },
+  {
+    "new_id": 3,
+    "old_id": 1,
+    "name": "starry",
+    "display_name": "油画星空",
+    "flash_address": "0x40C000",
+    "crc32": "cd43d0c4"
+  },
+  {
+    "new_id": 4,
+    "old_id": 3,
+    "name": "papercut",
+    "display_name": "红白剪纸",
+    "flash_address": "0x410000",
+    "crc32": "cfdad85d"
+  },
+  {
+    "new_id": 5,
+    "old_id": 16,
+    "name": "sketch",
+    "display_name": "素描",
+    "flash_address": "0x414000",
+    "crc32": "5f3125ff"
+  },
+  {
+    "new_id": 6,
+    "old_id": 8,
+    "name": "popart",
+    "display_name": "波普风",
+    "flash_address": "0x418000",
+    "crc32": "1a7abf16"
+  },
+  {
+    "new_id": 7,
+    "old_id": 2,
+    "name": "inkwash",
+    "display_name": "水墨画",
+    "flash_address": "0x41C000",
+    "crc32": "d34c0fc6"
+  },
+  {
+    "new_id": 8,
+    "old_id": 5,
+    "name": "woodrich",
+    "display_name": "富彩粗刀版画",
+    "flash_address": "0x420000",
+    "crc32": "cd7ed92a"
+  },
+  {
+    "new_id": 9,
+    "old_id": 15,
+    "name": "vermilion_ink",
+    "display_name": "朱红人物黑白",
+    "flash_address": "0x424000",
+    "crc32": "af62e3ba"
+  },
+  {
+    "new_id": 10,
+    "old_id": 6,
+    "name": "mosaic",
+    "display_name": "偏紫马赛克",
+    "flash_address": "0x428000",
+    "crc32": "7b1736ee"
+  },
+  {
+    "new_id": 11,
+    "old_id": 7,
+    "name": "woodcut",
+    "display_name": "双色版画",
+    "flash_address": "0x42C000",
+    "crc32": "3fd56550"
+  },
+  {
+    "new_id": 12,
+    "old_id": 10,
+    "name": "fauve",
+    "display_name": "野兽派平涂",
+    "flash_address": "0x430000",
+    "crc32": "5a725dac"
+  },
+  {
+    "new_id": 13,
+    "old_id": 4,
+    "name": "cel",
+    "display_name": "赛璐璐",
+    "flash_address": "0x434000",
+    "crc32": "2be94496"
+  },
+  {
+    "new_id": 14,
+    "old_id": 13,
+    "name": "sand",
+    "display_name": "沙画",
+    "flash_address": "0x438000",
+    "crc32": "c63c8491"
+  }
+]

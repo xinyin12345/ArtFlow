@@ -1,0 +1,96 @@
+
+Efinix report_timing Report
+Version: 2026.1.132
+Date: Sun Oct 25 23:48:42 2026
+
+Copyright (C) 2013 - 2026 Efinix, Inc. All rights reserved.
+
+User command: foreach {tag head tail} {
+ layout_bit0 {u_video_pipe/u_store/layout_meta[0]} {u_video_pipe/u_store/layout_sync[0]}
+ layout_bit1 {u_video_pipe/u_store/layout_meta[1]} {u_video_pipe/u_store/layout_sync[1]}
+ style u_video_pipe/u_accel_dma/styles.key_filter/key_meta u_video_pipe/u_accel_dma/styles.key_filter/key_sync
+ flash u_video_pipe/u_accel_dma/styles.banks/reader/miso_meta u_video_pipe/u_accel_dma/styles.banks/reader/miso_sync
+ mode u_ui/u_mode_key/key_meta u_ui/u_mode_key/key_sync
+ osd u_ui/u_osd_key/key_meta u_ui/u_osd_key/key_sync
+ capture u_ui/u_fps/cap_meta u_ui/u_fps/cap_sync
+ process u_process_fps/cap_meta u_process_fps/cap_sync
+ diag_vs {u_control/diag_meta[0]} {u_control/diag_sync[0]}
+ diag_raw {u_control/diag_meta[1]} {u_control/diag_sync[1]}
+ diag_bin {u_control/diag_meta[2]} {u_control/diag_sync[2]}
+ csi_core_1 {u_csi_reset/core_release[0]} {u_csi_reset/core_release[1]}
+ csi_core_2 {u_csi_reset/core_release[1]} {csi_reset_core_n}
+ csi_byte_1 {u_csi_reset/byte_release[0]} {u_csi_reset/byte_release[1]}
+ csi_byte_2 {u_csi_reset/byte_release[1]} {csi_reset_byte_n}
+ csi_pixel_1 {u_csi_reset/pixel_release[0]} {u_csi_reset/pixel_release[1]}
+ csi_pixel_2 {u_csi_reset/pixel_release[1]} {csi_reset_pixel_n}
+} {
+ foreach name [list $head $tail] {
+ set cells [get_cells ${name}~FF]
+ puts "UI_CDC_ENDPOINT $name count=[llength $cells]"
+ if {[llength $cells] != 1} {error "Missing UI synchronizer: $name"}
+ }
+ report_timing -setup -from [get_cells ${head}~FF] -to [get_cells ${tail}~FF] -npaths 1 -file ArtFlow.ui_${tag}_setup.rpt
+ report_timing -hold -from [get_cells ${head}~FF] -to [get_cells ${tail}~FF] -npaths 1 -file ArtFlow.ui_${tag}_hold.rpt
+}
+
+Timing Model: I3
+	process : typical
+	temperature : -40C to 100C
+	voltage : 0.95 +/-30mV
+	speedgrade : 3
+	technology : t16ff
+	status : final
+
+Summary:
+
+ Path #  | Slack(ns) |              Start Pin              |        End Pin         |     Launch Clock      |     Capture Clock
+===================================================================================================================================
+ 1       |  0.109    | u_csi_reset/pixel_release[1]~FF|CLK | csi_reset_pixel_n~FF|D | i_mipi_rx_pclk (RISE) | i_mipi_rx_pclk (RISE)
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.109 ns (arrival time - required time)                              
+Path Start      : u_csi_reset/pixel_release[1]~FF|CLK                                  
+Path End        : csi_reset_pixel_n~FF|D                                               
+Launch Clock    : i_mipi_rx_pclk {rise@0.000 ns fall@10.000 ns period=20.000 ns} (RISE)
+Capture Clock   : i_mipi_rx_pclk {rise@0.000 ns fall@10.000 ns period=20.000 ns} (RISE)
+Path Type       : Min at Fast Process Corner                                           
+Data Path Delay : 0.179 ns                                                             
+Logic Levels    : 0                                                                    
+
+Launch Clock Path Delay        : 1.194
++ Clock To Q + Data Path Delay : 0.179
+--------------------------------------
+End-of-path arrival time       : 1.373
+
+Constraint                     : 0.000
++ Capture Clock Path Delay     : 1.194
++ Clock Uncertainty            : 0.070
++ Hold                         : 0.000
+--------------------------------------
+End-of-path required time      : 1.264
+
+Launch Clock Path
+  Location    Delay Type    Incr(ns)     Path(ns)           Netlist Resource(s)
+=======================================================================================
+  (110,0)    input           0.000        0.000     i_mipi_rx_pclk                     
+  (110,0)    input           0.070        0.070     i_mipi_rx_pclk                     
+             net (fo=944)    1.124        1.194     i_mipi_rx_pclk                     
+  (47,307)   EFX_FF          0.000        1.194     u_csi_reset/pixel_release[1]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)          Netlist Resource(s)
+=====================================================================================
+  (47,307)   EFX_FF (Tco)    0.072        0.072     u_csi_reset/pixel_release[1]~FF|Q
+             net (fo=1)      0.107        0.179     u_csi_reset/pixel_release[1]     
+  (47,308)   EFX_FF          0.000        0.179     csi_reset_pixel_n~FF|D           
+
+Capture Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)     Netlist Resource(s)
+=============================================================================
+  (110,0)    input            0.000        0.000     i_mipi_rx_pclk          
+  (110,0)    input            0.070        0.070     i_mipi_rx_pclk          
+             net (fo=944)     1.124        1.194     i_mipi_rx_pclk          
+  (47,308)   EFX_FF           0.000        1.194     csi_reset_pixel_n~FF|CLK
+  (47,308)   EFX_FF (Hold)    0.000        1.194     csi_reset_pixel_n~FF    
+

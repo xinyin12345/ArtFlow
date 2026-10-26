@@ -1,0 +1,9 @@
+{
+  "scope": "new and modified candidate files, known AP password exact bytes plus common token/private-key patterns; not full history audit",
+  "candidate_files": 594,
+  "known_password_hits": 0,
+  "token_private_key_pattern_hits": 0,
+  "withheld": "private original ESP app and credential files; upstream ELF/object/archive also excluded",
+  "remote_visibility": "public",
+  "remote": "https://github.com/xinyin12345/ArtFlow.git"
+}

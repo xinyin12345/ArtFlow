@@ -1,0 +1,63 @@
+
+Efinix report_timing Report
+Version: 2026.1.132
+Date: Sun Oct 25 23:49:43 2026
+
+Copyright (C) 2013 - 2026 Efinix, Inc. All rights reserved.
+
+User command: report_timing -setup -to [get_ports stream_sclk] -npaths 1 -file ArtFlow.afs_stream_sclk.rpt
+
+Timing Model: I3
+	process : typical
+	temperature : -40C to 100C
+	voltage : 0.95 +/-30mV
+	speedgrade : 3
+	technology : t16ff
+	status : final
+
+Summary:
+
+ Path #  | Slack(ns) |     Start Pin      |   End Pin   |      Launch Clock       |      Capture Clock
+===========================================================================================================
+ 1       |  6.089    | stream_sclk~FF|CLK | stream_sclk | hdmi_tx_slow_clk (RISE) | hdmi_tx_slow_clk (RISE)
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack            : 6.089 ns (required time - arrival time)                               
+Path Start       : stream_sclk~FF|CLK                                                    
+Path End         : stream_sclk                                                           
+Launch Clock     : hdmi_tx_slow_clk {rise@0.000 ns fall@6.734 ns period=13.468 ns} (RISE)
+Capture Clock    : hdmi_tx_slow_clk {rise@0.000 ns fall@6.734 ns period=13.468 ns} (RISE)
+Path Type        : Max at Slow Process Corner                                            
+Data Path Delay  : 1.674 ns                                                              
+Logic Levels     : 0                                                                     
+Timing Exception : Max Delay Path 10.000 ns                                              
+
+Launch Clock Path Delay        : 2.111
++ Clock To Q + Data Path Delay : 1.674
+--------------------------------------
+End-of-path arrival time       : 3.785
+
+Constraint                     : 10.000
++ Capture Clock Path Delay     :  0.000
+- Clock Uncertainty            :  0.126
+- Output Delay                 :  0.000
+---------------------------------------
+End-of-path required time      :  9.874
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)   Netlist Resource(s)
+========================================================================
+ (112,0)     input            0.000        0.000     hdmi_tx_slow_clk  
+ (112,0)     input            0.126        0.126     hdmi_tx_slow_clk  
+             net (fo=2322)    1.985        2.111     hdmi_tx_slow_clk  
+ (130,229)   EFX_FF           0.000        2.111     stream_sclk~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)   Netlist Resource(s)
+=======================================================================
+ (130,229)   EFX_FF (Tco)    0.130        0.130      stream_sclk~FF|Q
+             net (fo=4)      1.494        1.624      stream_sclk     
+ (0,309)     output          0.050        1.674      stream_sclk     
+ (0,309)     output          0.000        1.674      stream_sclk     
+

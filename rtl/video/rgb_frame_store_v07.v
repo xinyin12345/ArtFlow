@@ -8,6 +8,8 @@ module rgb_frame_store_v07 #(
     parameter ADDR_WIDTH = 32, START_ADDR = 0, BANK_BYTES = 32'h00400000,
     parameter FIFO_DEPTH = 1024, BURST_BEATS = 128
 )(
+    output stream_tick,stream_bad,stream_valid,
+    output [9:0] stream_x,stream_y,output [23:0] stream_rgb,output [31:0] stream_epoch,
     input rst_n, input i_clk, input i_vs, input i_valid,
     input [63:0] i_data,
     input o_clk,
@@ -266,7 +268,7 @@ reg [8:0] read_beats = 0, read_beat = 0;
 reg [ADDR_WIDTH-1:0] read_addr = 0;
 wire rf_full, rf_empty;
 wire [CW-1:0] rf_used;
-wire [160:0] rf_data;
+wire [161:0] rf_data;
 wire rf_read, rf_valid;
 wire read_stale = read_epoch != requested_epoch;
 wire rf_write = rvalid && rready && !read_stale;
@@ -274,9 +276,9 @@ assign rready = rs == R_DATA && (read_stale || !rf_full);
 assign araddr = read_addr;
 assign arlen = read_beats[7:0] - 8'd1;
 assign arvalid = rs == R_ADDR;
-DC_FIFO #(.FIFO_MODE("Normal"), .DATA_WIDTH(161), .FIFO_DEPTH(FIFO_DEPTH)) display_fifo (
+DC_FIFO #(.FIFO_MODE("Normal"), .DATA_WIDTH(162), .FIFO_DEPTH(FIFO_DEPTH)) display_fifo (
     .Reset(!rst_n), .WrClk(axi_clk), .WrEn(rf_write), .WrDNum(rf_used), .WrFull(rf_full),
-    .WrData({(rresp != 0),read_epoch,rdata}), .RdClk(o_clk), .RdEn(rf_read),
+    .WrData({display_styled,(rresp != 0),read_epoch,rdata}), .RdClk(o_clk), .RdEn(rf_read),
     .RdDNum(), .RdEmpty(rf_empty), .RdData(rf_data), .DataVal(rf_valid));
 integer read_wanted, read_boundary;
 always_comb begin
@@ -363,7 +365,7 @@ video_axi_scheduler u_scheduler (
     .write_grant(write_grant), .read_grant(read_grant));
 
 // Two-word elastic queue hides the synchronous FIFO read latency.
-reg [160:0] q0 = 0, q1 = 0;
+reg [161:0] q0 = 0, q1 = 0;
 reg [1:0] qcount = 0;
 reg pending_read = 0;
 reg [1:0] pixel = 0;
@@ -387,6 +389,16 @@ wire discard = qcount != 0 && (q0[159:128] != display_epoch || frame_bad);
 wire pop = discard || (consume && pixel == 3);
 assign rf_read = orst && !rf_empty && !pending_read && qcount < 2;
 wire [31:0] next_pixel = q0[pixel*32 +: 32];
+// Read-only epoch-tagged style tap. Never feeds video/AXI ownership or timing.
+assign stream_tick=frame_tick;
+assign stream_bad=frame_bad;
+assign stream_epoch=display_epoch;
+assign stream_rgb=next_pixel[23:0];
+assign stream_x=active_layout==0 ? px-WIDTH : px>>1;
+assign stream_y=active_layout==0 ? py-HEIGHT/2 : py>>1;
+assign stream_valid=active && image_row && !frame_bad && word_ok && q0[161] &&
+ ((active_layout==0 && px>=WIDTH && px<WIDTH*2) ||
+  (active_layout==1 && !px[0] && !py[0]));
 always @(posedge o_clk or negedge orst) begin
     if (!orst) begin
         qcount <= 0; pending_read <= 0; q0 <= 0; q1 <= 0;

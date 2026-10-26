@@ -1,0 +1,57 @@
+
+Efinix report_cdc Report
+Version: 2026.1.132
+Date: Sun Oct 25 23:49:23 2026
+
+Copyright (C) 2013 - 2026 Efinix, Inc. All rights reserved.
+
+User command: report_cdc -from [get_clocks core_clk] -to [get_clocks cnn_clk] -details -file ArtFlow.core_to_cnn_cdc.rpt
+
+CDC Report
+
+Source Clock: core_clk
+Destination Clock: cnn_clk
+
+ Row  | Exception |                    Description                     |                        Source (From)                         |                        Destination (To)
+=======================================================================================================================================================================================================
+  1   |   None    |                                                    | accel_pready~FF|CLK                                          | u_video_pipe/u_accel_dma/reset_cnn[0]~FF|SR                    
+  2   |   None    |                                                    | accel_pready~FF|CLK                                          | u_video_pipe/u_accel_dma/reset_cnn[1]~FF|SR                    
+  3   |   None    |                                                    | accel_pready~FF|CLK                                          | u_video_pipe/u_accel_dma/reset_cnn[2]~FF|SR                    
+  4   |   None    | Combinational logic detected before a synchronizer | i1460/u_video_pipe/u_accel_dma/jobs/storage[0][22]~FF|CLK    | u_video_pipe/u_accel_dma/job[22]~FF|D                          
+  5   |   None    | Combinational logic detected before a synchronizer | i1460/u_video_pipe/u_accel_dma/jobs/storage[0][23]~FF|CLK    | u_video_pipe/u_accel_dma/job[23]~FF|D                          
+  6   |   None    | Combinational logic detected before a synchronizer | i1460/u_video_pipe/u_accel_dma/jobs/storage[0][54]~FF|CLK    | u_video_pipe/u_accel_dma/job[54]~FF|D                          
+  7   |   None    | Combinational logic detected before a synchronizer | i1460/u_video_pipe/u_accel_dma/jobs/storage[0][55]~FF|CLK    | u_video_pipe/u_accel_dma/job[55]~FF|D                          
+  8   |   None    | Combinational logic detected before a synchronizer | i1460/u_video_pipe/u_accel_dma/jobs/storage[0][56]~FF|CLK    | u_video_pipe/u_accel_dma/job[56]~FF|D                          
+  9   |   None    | Combinational logic detected before a synchronizer | i1460/u_video_pipe/u_accel_dma/jobs/storage[1][22]~FF|CLK    | u_video_pipe/u_accel_dma/job[22]~FF|D                          
+ 10   |   None    | Combinational logic detected before a synchronizer | i1460/u_video_pipe/u_accel_dma/jobs/storage[1][23]~FF|CLK    | u_video_pipe/u_accel_dma/job[23]~FF|D                          
+ 11   |   None    | Combinational logic detected before a synchronizer | i1460/u_video_pipe/u_accel_dma/jobs/storage[1][54]~FF|CLK    | u_video_pipe/u_accel_dma/job[54]~FF|D                          
+ 12   |   None    | Combinational logic detected before a synchronizer | i1460/u_video_pipe/u_accel_dma/jobs/storage[1][55]~FF|CLK    | u_video_pipe/u_accel_dma/job[55]~FF|D                          
+ 13   |   None    | Combinational logic detected before a synchronizer | i1460/u_video_pipe/u_accel_dma/jobs/storage[1][56]~FF|CLK    | u_video_pipe/u_accel_dma/job[56]~FF|D                          
+ 14   |   None    | Combinational logic detected before a synchronizer | i1460/u_video_pipe/u_accel_dma/jobs/storage[2][22]~FF|CLK    | u_video_pipe/u_accel_dma/job[22]~FF|D                          
+ 15   |   None    | Combinational logic detected before a synchronizer | i1460/u_video_pipe/u_accel_dma/jobs/storage[2][23]~FF|CLK    | u_video_pipe/u_accel_dma/job[23]~FF|D                          
+ 16   |   None    | Combinational logic detected before a synchronizer | i1460/u_video_pipe/u_accel_dma/jobs/storage[2][54]~FF|CLK    | u_video_pipe/u_accel_dma/job[54]~FF|D                          
+ 17   |   None    | Combinational logic detected before a synchronizer | i1460/u_video_pipe/u_accel_dma/jobs/storage[2][55]~FF|CLK    | u_video_pipe/u_accel_dma/job[55]~FF|D                          
+ 18   |   None    | Combinational logic detected before a synchronizer | i1460/u_video_pipe/u_accel_dma/jobs/storage[2][56]~FF|CLK    | u_video_pipe/u_accel_dma/job[56]~FF|D                          
+ 19   |   None    | Combinational logic detected before a synchronizer | i1460/u_video_pipe/u_accel_dma/jobs/storage[3][22]~FF|CLK    | u_video_pipe/u_accel_dma/job[22]~FF|D                          
+ 20   |   None    | Combinational logic detected before a synchronizer | i1460/u_video_pipe/u_accel_dma/jobs/storage[3][23]~FF|CLK    | u_video_pipe/u_accel_dma/job[23]~FF|D                          
+ 21   |   None    | Combinational logic detected before a synchronizer | i1460/u_video_pipe/u_accel_dma/jobs/storage[3][54]~FF|CLK    | u_video_pipe/u_accel_dma/job[54]~FF|D                          
+ 22   |   None    | Combinational logic detected before a synchronizer | i1460/u_video_pipe/u_accel_dma/jobs/storage[3][55]~FF|CLK    | u_video_pipe/u_accel_dma/job[55]~FF|D                          
+ 23   |   None    | Combinational logic detected before a synchronizer | i1460/u_video_pipe/u_accel_dma/jobs/storage[3][56]~FF|CLK    | u_video_pipe/u_accel_dma/job[56]~FF|D                          
+ 24   |   None    | 1-bit synchronized with ASYNC_REG property         | u_video_pipe/u_accel_dma/ar/rbin[2]~FF|CLK                   | u_video_pipe/u_accel_dma/ar/rgray_meta[2]~FF|D                 
+ 25   |   None    | Multi-bit synchronized with ASYNC_REG property     | u_video_pipe/u_accel_dma/ar/rgray[1:0]~FF|CLK                | u_video_pipe/u_accel_dma/ar/rgray_meta[1:0]~FF|D               
+ 26   |   None    | 1-bit synchronized with ASYNC_REG property         | u_video_pipe/u_accel_dma/aw/rbin[2]~FF|CLK                   | u_video_pipe/u_accel_dma/aw/rgray_meta[2]~FF|D                 
+ 27   |   None    | Multi-bit synchronized with ASYNC_REG property     | u_video_pipe/u_accel_dma/aw/rgray[1:0]~FF|CLK                | u_video_pipe/u_accel_dma/aw/rgray_meta[1:0]~FF|D               
+ 28   |   None    | 1-bit synchronized with ASYNC_REG property         | u_video_pipe/u_accel_dma/b/wbin[2]~FF|CLK                    | u_video_pipe/u_accel_dma/b/wgray_meta[2]~FF|D                  
+ 29   |   None    | Multi-bit synchronized with ASYNC_REG property     | u_video_pipe/u_accel_dma/b/wgray[1:0]~FF|CLK                 | u_video_pipe/u_accel_dma/b/wgray_meta[1:0]~FF|D                
+ 30   |   None    | 1-bit synchronized with ASYNC_REG property         | u_video_pipe/u_accel_dma/events/rbin[2]~FF|CLK               | u_video_pipe/u_accel_dma/events/rgray_meta[2]~FF|D             
+ 31   |   None    | Multi-bit synchronized with ASYNC_REG property     | u_video_pipe/u_accel_dma/events/rgray[1:0]~FF|CLK            | u_video_pipe/u_accel_dma/events/rgray_meta[1:0]~FF|D           
+ 32   |   None    | 1-bit synchronized with ASYNC_REG property         | u_video_pipe/u_accel_dma/jobs/wbin[2]~FF|CLK                 | u_video_pipe/u_accel_dma/jobs/wgray_meta[2]~FF|D               
+ 33   |   None    | Multi-bit synchronized with ASYNC_REG property     | u_video_pipe/u_accel_dma/jobs/wgray[1:0]~FF|CLK              | u_video_pipe/u_accel_dma/jobs/wgray_meta[1:0]~FF|D             
+ 34   |   None    | 1-bit synchronized with ASYNC_REG property         | u_video_pipe/u_accel_dma/park_req~FF|CLK                     | u_video_pipe/u_accel_dma/park_meta~FF|D                        
+ 35   |   None    | 1-bit synchronized with ASYNC_REG property         | u_video_pipe/u_accel_dma/r/wbin[3]~FF|CLK                    | u_video_pipe/u_accel_dma/r/wgray_meta[3]~FF|D                  
+ 36   |   None    | Multi-bit synchronized with ASYNC_REG property     | u_video_pipe/u_accel_dma/r/wgray[2:0]~FF|CLK                 | u_video_pipe/u_accel_dma/r/wgray_meta[2:0]~FF|D                
+ 37   |   None    | 1-bit synchronized with ASYNC_REG property         | u_video_pipe/u_accel_dma/style_status_fifo/rbin[2]~FF|CLK    | u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[2]~FF|D  
+ 38   |   None    | Multi-bit synchronized with ASYNC_REG property     | u_video_pipe/u_accel_dma/style_status_fifo/rgray[1:0]~FF|CLK | u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[1:0]~FF|D
+ 39   |   None    | 1-bit synchronized with ASYNC_REG property         | u_video_pipe/u_accel_dma/w/rbin[3]~FF|CLK                    | u_video_pipe/u_accel_dma/w/rgray_meta[3]~FF|D                  
+ 40   |   None    | Multi-bit synchronized with ASYNC_REG property     | u_video_pipe/u_accel_dma/w/rgray[2:0]~FF|CLK                 | u_video_pipe/u_accel_dma/w/rgray_meta[2:0]~FF|D                
+

@@ -43,6 +43,8 @@ module ArtFlow_top #(
 
 
    // v05 board UART (115200 8N1, RX GPIOL_02 / TX GPIOR_28)
+    input wire stream_ready,stream_miso,
+    output wire stream_cs_n,stream_sclk,stream_mosi,
     input wire key_mode_n, // board key_i[1], GPIOR_22, active low
     input wire key_style_n, // KEY3 A3 / GPIOL_03, active low
     input wire flash_miso,
@@ -582,6 +584,12 @@ wire [7:0] hdmi_tx_rdata;
 wire [7:0] hdmi_tx_gdata;
 wire [7:0] hdmi_tx_bdata;
 
+wire stream_tick,stream_bad,stream_valid;
+wire [9:0] stream_x,stream_y;wire [23:0] stream_rgb;wire [31:0] stream_epoch;
+afs_stream_tx u_stream(.clk(hdmi_tx_slow_clk),.rst_n(ui_rst_n),
+ .frame_tick(stream_tick),.frame_bad(stream_bad),.pixel_valid(stream_valid),
+ .source_x(stream_x),.source_y(stream_y),.rgb(stream_rgb),.epoch(stream_epoch),
+ .ready(stream_ready),.miso(stream_miso),.cs_n(stream_cs_n),.sclk(stream_sclk),.mosi(stream_mosi),.completed(),.dropped());
 assign flash_wp_n=1'b1;assign flash_hold_n=1'b1;
 cam_fb_pipe_v09 #(
   .STYLE_ENABLE(1),.STYLE_COUNT(15),
@@ -595,6 +603,9 @@ cam_fb_pipe_v09 #(
   .MAX_IN_WIDTH   (MAX_HRES       ),
   .MAX_OUT_WIDTH  (MAX_HRES/2     )
 ) u_video_pipe (
+    .stream_tick(stream_tick),.stream_bad(stream_bad),.stream_valid(stream_valid),
+    .stream_x(stream_x),.stream_y(stream_y),.stream_rgb(stream_rgb),.stream_epoch(stream_epoch),
+
   .accel_paddr(control_paddr),.accel_psel(control_psel && control_paddr[7]),
   .accel_penable(control_penable),.accel_pwrite(control_pwrite),.accel_pwdata(control_pwdata),
   .accel_prdata(accel_prdata),.accel_pready(accel_pready),.accel_pslverror(accel_pslverror),

@@ -332,6 +332,21 @@
         <efxpt:comp_gpio name="flash_hold_n" gpio_def="GPIOL_N_04" mode="output" bus_name="" io_standard="1.8 V LVCMOS">
             <efxpt:output_config name="flash_hold_n" name_ddio_lo="" register_option="none" clock_name="" is_clock_inverted="false" is_slew_rate="false" tied_option="none" ddio_type="none" delay="0" is_serial="false" drive_strength="4" fastclk_name="" />
         </efxpt:comp_gpio>
+        <efxpt:comp_gpio xmlns:efxpt="http://www.efinixinc.com/peri_design_db" name="stream_sclk" gpio_def="GPIOL_11" mode="output" bus_name="" io_standard="3.3 V LVCMOS">
+            <efxpt:output_config name="stream_sclk" name_ddio_lo="" register_option="none" clock_name="" is_clock_inverted="false" is_slew_rate="false" tied_option="none" ddio_type="none" delay="0" is_serial="false" drive_strength="2" fastclk_name="" />
+        </efxpt:comp_gpio>
+<efxpt:comp_gpio xmlns:efxpt="http://www.efinixinc.com/peri_design_db" name="stream_mosi" gpio_def="GPIOL_09" mode="output" bus_name="" io_standard="3.3 V LVCMOS">
+            <efxpt:output_config name="stream_mosi" name_ddio_lo="" register_option="none" clock_name="" is_clock_inverted="false" is_slew_rate="false" tied_option="none" ddio_type="none" delay="0" is_serial="false" drive_strength="2" fastclk_name="" />
+        </efxpt:comp_gpio>
+<efxpt:comp_gpio xmlns:efxpt="http://www.efinixinc.com/peri_design_db" name="stream_miso" gpio_def="GPIOL_04" mode="input" bus_name="" io_standard="3.3 V LVCMOS">
+            <efxpt:input_config name="stream_miso" name_ddio_lo="" conn_type="normal" is_register="false" clock_name="" is_clock_inverted="false" pull_option="weak pulldown" is_schmitt_trigger="false" ddio_type="none" is_bus_hold="false" delay="0" is_serial="false" is_dyn_delay="false" fastclk_name="" pullup_ena_name="stream_miso_PULL_UP_ENA" dyn_delay_en_name="stream_miso_DLY_ENA" dyn_delay_reset_name="stream_miso_DLY_RST" dyn_delay_ctrl_name="stream_miso_DLY_CTRL" clkmux_buf_name="" />
+        </efxpt:comp_gpio>
+<efxpt:comp_gpio xmlns:efxpt="http://www.efinixinc.com/peri_design_db" name="stream_cs_n" gpio_def="GPIOL_10" mode="output" bus_name="" io_standard="3.3 V LVCMOS">
+            <efxpt:output_config name="stream_cs_n" name_ddio_lo="" register_option="none" clock_name="" is_clock_inverted="false" is_slew_rate="false" tied_option="none" ddio_type="none" delay="0" is_serial="false" drive_strength="2" fastclk_name="" />
+        </efxpt:comp_gpio>
+<efxpt:comp_gpio xmlns:efxpt="http://www.efinixinc.com/peri_design_db" name="stream_ready" gpio_def="GPIOL_06" mode="input" bus_name="" io_standard="3.3 V LVCMOS">
+            <efxpt:input_config name="stream_ready" name_ddio_lo="" conn_type="normal" is_register="false" clock_name="" is_clock_inverted="false" pull_option="weak pulldown" is_schmitt_trigger="false" ddio_type="none" is_bus_hold="false" delay="0" is_serial="false" is_dyn_delay="false" fastclk_name="" pullup_ena_name="stream_ready_PULL_UP_ENA" dyn_delay_en_name="stream_ready_DLY_ENA" dyn_delay_reset_name="stream_ready_DLY_RST" dyn_delay_ctrl_name="stream_ready_DLY_CTRL" clkmux_buf_name="" />
+        </efxpt:comp_gpio>
         <efxpt:global_unused_config state="input with weak pullup"/>
         <efxpt:bus name="ddr_addr" mode="output" msb="15" lsb="0"/>
         <efxpt:bus name="ddr_ba" mode="output" msb="2" lsb="0"/>
@@ -342,6 +357,16 @@
         <efxpt:bus name="ddr_dqs" mode="inout" msb="1" lsb="0"/>
         <efxpt:bus name="ddr_odt" mode="output" msb="0" lsb="0"/>
         <efxpt:bus name="led" mode="output" msb="3" lsb="0"/>
+
+        
+
+        
+
+        
+
+        
+
+        
     </efxpt:gpio_info>
     <efxpt:pll_info>
         <efxpt:pll name="DDR3_PLL" pll_def="PLL_TR0" ref_clock_name="CLK_25M" ref_clock_freq="25.0000" multiplier="4" pre_divider="1" post_divider="1" reset_name="DDR3_PLL_RSTN" locked_name="pll_locked" is_ipfrz="false" is_bypass_lock="true">

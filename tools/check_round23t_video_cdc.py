@@ -19,7 +19,7 @@ GROUPS = (
          destination='u_video_pipe/u_store/count_meta[*]~FF|D',
          pins={f'u_video_pipe/u_store/count_meta[{n}]~FF|D' for n in range(32)}),
     dict(name='epoch_meta', bits=32, budget_ns=2.5,
-         source='u_video_pipe/u_store/display_epoch*[*]~FF|CLK',
+         source='u_video_pipe/u_store/display_epoch*[*]~FF|CLK stream_epoch[31]~FF|CLK',
          destination='u_video_pipe/u_store/epoch_meta[*]~FF|D',
          pins={f'u_video_pipe/u_store/epoch_meta[{n}]~FF|D' for n in range(32)}),
     dict(name='gain_mailbox', bits=48, budget_ns=20.0,
@@ -104,6 +104,7 @@ def parse_reports(skew_body, slow_body, groups=GROUPS):
                 # Synthesis merges only the unchanged MSB of Gray encoding.
                 if bit == 31:
                     expected.add(f'u_video_pipe/u_store/{stem}[31]~FF|CLK')
+                    if name == 'epoch_meta': expected.add('stream_epoch[31]~FF|CLK')
             if source not in expected:
                 raise ValueError(f'Wrong CDC source-to-bit mapping: {source} -> {destination}')
         path_types = re.findall(r'^Path Type:\s*(.+?)\s*$', block, re.M)
@@ -158,17 +159,26 @@ def prepare():
     if len(lines) != 1 or lines[0].endswith('\\'):
         raise ValueError('Review CDC audit generator after clock-group changes')
     source = source.replace(lines[0], '# Clock groups omitted ONLY for CDC route audit')
+    # The observer exports binary epoch; synthesis names the unchanged Gray MSB
+    # stream_epoch[31]. Include that exact alias, retain all 32 endpoints and budget.
+    old = 'u_video_pipe/u_store/display_epoch*[*]~FF|CLK}'
+    assert source.count(old) == 1
+    source = source.replace(old, 'u_video_pipe/u_store/display_epoch*[*]~FF|CLK stream_epoch[31]~FF|CLK}')
     WORK.mkdir(exist_ok=True)
     (WORK/'video_cdc_audit.sdc').write_text('# CDC audit only: NOT normal setup/hold signoff\n' + source)
 
 
 def check():
+    mapped = (WORK/'out/ArtFlow.map.v').read_text()
+    cells = re.findall(r'EFX_FF[^;]+;', mapped)
+    assert len([x for x in cells if x.startswith('EFX_FF \\stream_epoch[31]~FF ') and '.Q(stream_epoch[31])' in x and '.CLK(hdmi_tx_slow_clk)' in x]) == 1
+    assert len([x for x in cells if x.startswith('EFX_FF \\u_video_pipe/u_store/epoch_meta[31]~FF ') and '.D(stream_epoch[31])' in x and '.CLK(core_clk)' in x]) == 1
     body = REPORT.read_text()
     slow = (WORK/'out/ArtFlow.video_bus_delay.rpt').read_text()
     buses = parse_reports(body, slow)
     files = ['ArtFlow.sdc','rtl/video/rgb_frame_store_v07.v','rtl/control/artflow_control.v',
              'rtl/ArtFlow_top.v','tools/check_round23t_video_cdc.py','tools/check_video_cdc.tcl','work/styles15/video_cdc_audit.sdc',
-             'work/styles15/out/ArtFlow.vdb','work/styles15/out/ArtFlow.place',
+             'work/styles15/out/ArtFlow.map.v','work/styles15/out/ArtFlow.vdb','work/styles15/out/ArtFlow.place',
              'work/styles15/out/ArtFlow.troutingtraces',
              'work/styles15/out/ArtFlow.video_bus_skew.rpt',
              'work/styles15/out/ArtFlow.video_bus_delay.rpt']

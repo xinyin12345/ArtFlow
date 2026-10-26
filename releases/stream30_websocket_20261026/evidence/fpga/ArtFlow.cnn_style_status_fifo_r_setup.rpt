@@ -1,0 +1,178 @@
+
+Efinix report_timing Report
+Version: 2026.1.132
+Date: Sun Oct 25 23:49:07 2026
+
+Copyright (C) 2013 - 2026 Efinix, Inc. All rights reserved.
+
+User command: foreach {fifo aw} {jobs 2 events 2 ar 2 aw 2 w 3 r 3 b 2 style_status_fifo 2} {
+ foreach direction {w r} {
+ set base u_video_pipe/u_accel_dma/${fifo}/${direction}gray
+ foreach stage {meta sync} {
+ set cells [get_cells ${base}_${stage}*~FF]
+ puts "CNN_CDC_SYNC ${fifo}_${direction}_${stage} count=[llength $cells]"
+ if {[llength $cells] != [expr {$aw+1}]} {error "Missing CNN FIFO synchronizer"}
+ }
+ foreach kind {setup hold} {
+ report_timing -$kind -from [get_cells ${base}_meta*~FF] -to [get_cells ${base}_sync*~FF] -npaths [expr {$aw+1}] -nworst 1 -file ArtFlow.cnn_${fifo}_${direction}_${kind}.rpt
+ }
+ }
+}
+
+Timing Model: I3
+	process : typical
+	temperature : -40C to 100C
+	voltage : 0.95 +/-30mV
+	speedgrade : 3
+	technology : t16ff
+	status : final
+
+Summary:
+
+ Path #  | Slack(ns) |                            Start Pin                            |                            End Pin                            |  Launch Clock  | Capture Clock
+========================================================================================================================================================================================
+ 1       |  6.551    | u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[0]~FF|CLK | u_video_pipe/u_accel_dma/style_status_fifo/rgray_sync[0]~FF|D | cnn_clk (RISE) | cnn_clk (RISE)
+ 2       |  6.552    | u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[1]~FF|CLK | u_video_pipe/u_accel_dma/style_status_fifo/rgray_sync[1]~FF|D | cnn_clk (RISE) | cnn_clk (RISE)
+ 3       |  6.552    | u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[2]~FF|CLK | u_video_pipe/u_accel_dma/style_status_fifo/rgray_sync[2]~FF|D | cnn_clk (RISE) | cnn_clk (RISE)
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 6.551 ns (required time - arrival time)                        
+Path Start      : u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[0]~FF|CLK
+Path End        : u_video_pipe/u_accel_dma/style_status_fifo/rgray_sync[0]~FF|D  
+Launch Clock    : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)   
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)   
+Path Type       : Max at Slow Process Corner                                     
+Data Path Delay : 0.320 ns                                                       
+Logic Levels    : 0                                                              
+
+Launch Clock Path Delay        : 2.066
++ Clock To Q + Data Path Delay : 0.320
+--------------------------------------
+End-of-path arrival time       : 2.386
+
+Constraint                     : 7.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 8.937
+
+Launch Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                         Netlist Resource(s)
+=====================================================================================================================
+ (112,323)   input             0.000        0.000     cnn_clk                                                        
+ (112,323)   input             0.126        0.126     cnn_clk                                                        
+             net (fo=15248)    1.940        2.066     cnn_clk                                                        
+ (214,158)   EFX_FF            0.000        2.066     u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[0]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                        Netlist Resource(s)
+=================================================================================================================
+ (214,158)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[0]~FF|Q
+             net (fo=1)      0.190        0.320     u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[0]     
+ (214,159)   EFX_FF          0.000        0.320     u_video_pipe/u_accel_dma/style_status_fifo/rgray_sync[0]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                         Netlist Resource(s)
+=====================================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                                        
+ (112,323)   input              0.126       0.126     cnn_clk                                                        
+             net (fo=15248)     1.940       2.066     cnn_clk                                                        
+ (214,159)   EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/style_status_fifo/rgray_sync[0]~FF|CLK
+ (214,159)   EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/style_status_fifo/rgray_sync[0]~FF    
+
+++++ Path 2 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 6.552 ns (required time - arrival time)                        
+Path Start      : u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[1]~FF|CLK
+Path End        : u_video_pipe/u_accel_dma/style_status_fifo/rgray_sync[1]~FF|D  
+Launch Clock    : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)   
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)   
+Path Type       : Max at Slow Process Corner                                     
+Data Path Delay : 0.319 ns                                                       
+Logic Levels    : 0                                                              
+
+Launch Clock Path Delay        : 2.066
++ Clock To Q + Data Path Delay : 0.319
+--------------------------------------
+End-of-path arrival time       : 2.385
+
+Constraint                     : 7.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 8.937
+
+Launch Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                         Netlist Resource(s)
+=====================================================================================================================
+ (112,323)   input             0.000        0.000     cnn_clk                                                        
+ (112,323)   input             0.126        0.126     cnn_clk                                                        
+             net (fo=15248)    1.940        2.066     cnn_clk                                                        
+ (209,165)   EFX_FF            0.000        2.066     u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[1]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                        Netlist Resource(s)
+=================================================================================================================
+ (209,165)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[1]~FF|Q
+             net (fo=1)      0.189        0.319     u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[1]     
+ (209,166)   EFX_FF          0.000        0.319     u_video_pipe/u_accel_dma/style_status_fifo/rgray_sync[1]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                         Netlist Resource(s)
+=====================================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                                        
+ (112,323)   input              0.126       0.126     cnn_clk                                                        
+             net (fo=15248)     1.940       2.066     cnn_clk                                                        
+ (209,166)   EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/style_status_fifo/rgray_sync[1]~FF|CLK
+ (209,166)   EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/style_status_fifo/rgray_sync[1]~FF    
+
+++++ Path 3 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 6.552 ns (required time - arrival time)                        
+Path Start      : u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[2]~FF|CLK
+Path End        : u_video_pipe/u_accel_dma/style_status_fifo/rgray_sync[2]~FF|D  
+Launch Clock    : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)   
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)   
+Path Type       : Max at Slow Process Corner                                     
+Data Path Delay : 0.319 ns                                                       
+Logic Levels    : 0                                                              
+
+Launch Clock Path Delay        : 2.066
++ Clock To Q + Data Path Delay : 0.319
+--------------------------------------
+End-of-path arrival time       : 2.385
+
+Constraint                     : 7.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 8.937
+
+Launch Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                         Netlist Resource(s)
+=====================================================================================================================
+ (112,323)   input             0.000        0.000     cnn_clk                                                        
+ (112,323)   input             0.126        0.126     cnn_clk                                                        
+             net (fo=15248)    1.940        2.066     cnn_clk                                                        
+ (214,166)   EFX_FF            0.000        2.066     u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[2]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                        Netlist Resource(s)
+=================================================================================================================
+ (214,166)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[2]~FF|Q
+             net (fo=1)      0.189        0.319     u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[2]     
+ (214,167)   EFX_FF          0.000        0.319     u_video_pipe/u_accel_dma/style_status_fifo/rgray_sync[2]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                         Netlist Resource(s)
+=====================================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                                        
+ (112,323)   input              0.126       0.126     cnn_clk                                                        
+             net (fo=15248)     1.940       2.066     cnn_clk                                                        
+ (214,167)   EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/style_status_fifo/rgray_sync[2]~FF|CLK
+ (214,167)   EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/style_status_fifo/rgray_sync[2]~FF    
+

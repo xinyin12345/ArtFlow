@@ -1,0 +1,3219 @@
+{
+  "fpga_provenance_verified_entries": 169,
+  "project_design_files_present": true,
+  "files": [
+    {
+      "path": "source/fpga_project/fpga/ArtFlow.peri.xml",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\ArtFlow.peri.xml",
+      "bytes": 74555,
+      "sha256": "afb10355706ea6bf4ec340b68decdfec3ac68b841dbda67807dff29a4b3fd422"
+    },
+    {
+      "path": "source/fpga_project/fpga/ArtFlow.sdc",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\ArtFlow.sdc",
+      "bytes": 36450,
+      "sha256": "12656e6eae9ab3e6834ba72f6673d2b2c6e2baa8771ef5235a4925e8f73b28dc"
+    },
+    {
+      "path": "source/fpga_project/fpga/ArtFlow.xml",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\ArtFlow.xml",
+      "bytes": 15529,
+      "sha256": "23ad7d30f72f3e8640de713e6adda36d7dc49e730fef293721fc016e882cb4e4"
+    },
+    {
+      "path": "source/fpga_project/fpga/ArtFlow_glass.xml",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\ArtFlow_glass.xml",
+      "bytes": 15529,
+      "sha256": "23ad7d30f72f3e8640de713e6adda36d7dc49e730fef293721fc016e882cb4e4"
+    },
+    {
+      "path": "source/fpga_project/fpga/yuvpattern_mif.memh",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\yuvpattern_mif.memh",
+      "bytes": 318,
+      "sha256": "f8e37b33e6e7bcc9b0633c906f48a18bafe02d9fd8aff04b5c434661335f34d8"
+    },
+    {
+      "path": "source/fpga_project/fpga/firmware/linker.ld",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\firmware\\linker.ld",
+      "bytes": 748,
+      "sha256": "cf1b8998d09ff1ef4d6010bec8214e9e247eb4830362c56f2d9a901acd24f042"
+    },
+    {
+      "path": "source/fpga_project/fpga/firmware/start.S",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\firmware\\start.S",
+      "bytes": 1194,
+      "sha256": "139b45a51ac671322c73065ccb07fb6c6e82a55f181d2e967100e926f7608408"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/artflow_interact_blend.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\artflow_interact_blend.sv",
+      "bytes": 1334,
+      "sha256": "ea6f7db73f1c24034afd1be801c0abf433b68de1e3fd63f163820068de57b498"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/artflow_pair_normalize.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\artflow_pair_normalize.sv",
+      "bytes": 2084,
+      "sha256": "5bdf7d126c70ea49d2624a3ef147eca783d09314b1c212d890a850d054ddf0a7"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/ArtFlow_top.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\ArtFlow_top.v",
+      "bytes": 39042,
+      "sha256": "6e53a06273f4ea8d8861164d9c81368094708c89636f4bbc3a398d528da81fc9"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/csi_rx_controller.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\csi_rx_controller.sv",
+      "bytes": 508269,
+      "sha256": "685d96fd52a604434a1da0bb404131cd4413bf76ed8ee738ac596b32ce373e5a"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/dual_clock_fifo.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\dual_clock_fifo.v",
+      "bytes": 17286,
+      "sha256": "2d6f56dedb23fb47e10d412e97e987f338a30fc39c86b1ada4d356fb2f3893dd"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/reset.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\reset.v",
+      "bytes": 5542,
+      "sha256": "ebd78ac16f2d7dc22a4c90b4cde05290e5c8510cea3486c2541514853ce7c25a"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/simple_dual_port_ram.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\simple_dual_port_ram.v",
+      "bytes": 1440,
+      "sha256": "01b74e74d39c4e4ae380bc7be73329987b17fffaea58bc7c92a9b24e4a110c5d"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/true_dual_port_ram.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\true_dual_port_ram.v",
+      "bytes": 2965,
+      "sha256": "44bfb696e997b4d31bfd3c414623623c9b60964bfe711c611cf80a39222e8e8f"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/user_dual_port_ram.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\user_dual_port_ram.v",
+      "bytes": 3756,
+      "sha256": "f522e90f71c388ba4e2e91fd2506039982bdb60b8bb4710d6d99f8895e9367df"
+    },
+    {
+      "path": "source/fpga_project/fpga/sim/axi_memory_v07.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\sim\\axi_memory_v07.sv",
+      "bytes": 5425,
+      "sha256": "f601bc338679e6266732f14fab396167a121e074b82137d2b50f10638efda91e"
+    },
+    {
+      "path": "source/fpga_project/fpga/sim/cnn_engine_fixture_a.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\sim\\cnn_engine_fixture_a.sv",
+      "bytes": 2254,
+      "sha256": "15b1beb44b212f0688dad77d37302a55712780ecdff337c249fc28d77c97cc75"
+    },
+    {
+      "path": "source/fpga_project/fpga/sim/spi_model_archive.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\sim\\spi_model_archive.sv",
+      "bytes": 1099,
+      "sha256": "d67732f736848bd66f1bb0fbd6a9ae70c9c8377c04ed3920379861d20ffa3b54"
+    },
+    {
+      "path": "source/fpga_project/fpga/sim/tb_p1_control.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\sim\\tb_p1_control.sv",
+      "bytes": 3324,
+      "sha256": "81ce9000b5cc7c182f14914df3cdf1dca21d4849d13f754641043258563369ac"
+    },
+    {
+      "path": "source/fpga_project/fpga/sim/tb_styles15_button_cycle.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\sim\\tb_styles15_button_cycle.sv",
+      "bytes": 3760,
+      "sha256": "3c2c5bcf712d29bc920821611d3e294b9f0bcecf554762b6691773da229f00e7"
+    },
+    {
+      "path": "source/fpga_project/fpga/sim/tb_style_loader.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\sim\\tb_style_loader.sv",
+      "bytes": 2248,
+      "sha256": "cb7176b2fefc04547c99a9e022d26e3a0fecd6c8e5097d50a42db44715862cf8"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/accel/artflow_accel_ctrl.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\accel\\artflow_accel_ctrl.v",
+      "bytes": 6927,
+      "sha256": "5ae9950adc61cf1faf60b0c5c0f18f6d0a2d7d6c8c3340d1ffea09324303d2f9"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/accel/artflow_accel_dma.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\accel\\artflow_accel_dma.v",
+      "bytes": 8018,
+      "sha256": "4a246d8d86bfef799503e950f93fb28eefaee9760a371c8d5e1a6e8f595f5db1"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/accel/artflow_axi_mux.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\accel\\artflow_axi_mux.v",
+      "bytes": 3215,
+      "sha256": "7d2d3bcb90e7fda8290a9775bb06230ffab5de873f7419f67a069f0fb840f68f"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/accel/artflow_cnn_bridge.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\accel\\artflow_cnn_bridge.v",
+      "bytes": 4702,
+      "sha256": "94646e599a72492113cbcb3653b9da4e003e9a138e6b66e35c52dc1b9e5c433a"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/accel/artflow_cnn_cdc_fifo.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\accel\\artflow_cnn_cdc_fifo.v",
+      "bytes": 1917,
+      "sha256": "b1373add55b60668684dc6d8eb1f184af9029d1483edefe39006a61edd044b81"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/accel/artflow_cnn_egress_fifo.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\accel\\artflow_cnn_egress_fifo.v",
+      "bytes": 2475,
+      "sha256": "d1a5aa3a3f6226299b3a19537decf50e5c466424b843b0ecea11b8f7bff07cd9"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/accel/artflow_glass_dma.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\accel\\artflow_glass_dma.v",
+      "bytes": 5580,
+      "sha256": "e8b5350a81665e1403b6c96995d0f511f260ccc9624c74199671b4c3cb850b02"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cam/imx185_1080p_reg.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cam\\imx185_1080p_reg.mem",
+      "bytes": 4066,
+      "sha256": "80123fbfa60c79199e949e7febfccac8dee46228466454a637ec2eec49396b56"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cam/piv2_1080p_reg - Copy.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cam\\piv2_1080p_reg - Copy.mem",
+      "bytes": 2752,
+      "sha256": "263c72a8345b68d03cd93d6ea60d891521c9b95d83fb455fb421f0b39c8f2f08"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cam/piv2_1080p_reg.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cam\\piv2_1080p_reg.mem",
+      "bytes": 2752,
+      "sha256": "185a8ca338e4e4b6931a9f5a013240cfb9422fb33f1b28a386dfd10465b1ad19"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cam/piv2_720p_7M_1L_reg.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cam\\piv2_720p_7M_1L_reg.mem",
+      "bytes": 2750,
+      "sha256": "8ffed38e7a4c471000f02cfbf44b8dc1534ae59b79d05c3213177230215c3863"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cam/piv2_720p_7M_2L_reg.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cam\\piv2_720p_7M_2L_reg.mem",
+      "bytes": 2752,
+      "sha256": "0f919c90401e9cebdf3f4db2cc1cbd3753562065e4b05e036d67925c7b8df2c6"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cam/piv2_720p_9M_1L_reg.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cam\\piv2_720p_9M_1L_reg.mem",
+      "bytes": 2752,
+      "sha256": "7cd571396ebecc43e6556faf9785548378e66fef02aaf27b1358c4ad2d1be5d3"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cam/piv2_720p_9M_2L_reg.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cam\\piv2_720p_9M_2L_reg.mem",
+      "bytes": 2752,
+      "sha256": "82e66c1591204cccfb266229dcd8fc3bf0afad828f1460581d35b7b5e29acec7"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/shared_bias.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\shared_bias.mem",
+      "bytes": 5632,
+      "sha256": "e27b1f82a8731061c09069ba13d1c643c4e9a90e33c44c9d46f8bd32c6cc4bfb"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/shared_main.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\shared_main.mem",
+      "bytes": 9728,
+      "sha256": "2bb993896d6bb7117887e1b324cf5b35b4b5c225984ac58cc586929687d0f8fd"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/shared_weights.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\shared_weights.mem",
+      "bytes": 99328,
+      "sha256": "3c76a6ee7601bf8911903379d8bf60464799e02c71df3e75cf360f6b0144d3c6"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/control/artflow_camera_gate.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\control\\artflow_camera_gate.v",
+      "bytes": 1827,
+      "sha256": "139a5854e59d612e1afe3064c2fdd5a0b6d712cf61572d49d6fde5151f9a96b8"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/control/artflow_control.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\control\\artflow_control.v",
+      "bytes": 8352,
+      "sha256": "87650e9d2d16df63b892ba8a3629720fbd6b9620e5fc7b2092c6cddb23a547cb"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/control/artflow_soc.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\control\\artflow_soc.v",
+      "bytes": 6898,
+      "sha256": "e2e6b332aca05d259b872dc3f4f0c6932d911ea2d6f625a7ef55bf1771eb6ad0"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/ddr3_controller/ddr3_parameter.vh",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\ddr3_controller\\ddr3_parameter.vh",
+      "bytes": 1026,
+      "sha256": "d1b890f3997ae485d09cbf365e8254acc5b6eb96e0fa55c98ff83cd7f1292405"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/ddr3_controller/ddr3_top.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\ddr3_controller\\ddr3_top.v",
+      "bytes": 58209,
+      "sha256": "7d8d9cd8a2c69e44ebe9a143f91e6591136aa57f3be22b2cff76904f67d0236a"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/ddr3_controller/lb2_axi_clk.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\ddr3_controller\\lb2_axi_clk.v",
+      "bytes": 16295,
+      "sha256": "9cef7d5361e79d8c7f1deeab3af981444941ea50447c6c7c8b782e381f41dc2d"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/dvi_tx/audio_clock_regeneration_packet.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\dvi_tx\\audio_clock_regeneration_packet.sv",
+      "bytes": 1179,
+      "sha256": "391cd0ecd0b652c3a0355e12c5fb53a1632e8ebee4e308052a9fc099c9d960d0"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/dvi_tx/audio_infoframe_packet.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\dvi_tx\\audio_infoframe_packet.sv",
+      "bytes": 2554,
+      "sha256": "d09b51e8b389647499f31b3e06123aa0ea4fbd096e4fe3d102824d5d95a23831"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/dvi_tx/audio_packet.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\dvi_tx\\audio_packet.sv",
+      "bytes": 7075,
+      "sha256": "86d4f05bcce65f9247a834dbacc2ab9052d1be1622e4515f5e5cd983990a53b9"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/dvi_tx/auxiliary_video_information_info_frame.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\dvi_tx\\auxiliary_video_information_info_frame.sv",
+      "bytes": 5458,
+      "sha256": "28e63ccd6af1e61466dc48658a9b016ac9c9b6dc76bc278cc254f69af8c56500"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/dvi_tx/dvi_encoder.v_encrypted.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\dvi_tx\\dvi_encoder.v_encrypted.v",
+      "bytes": 13383,
+      "sha256": "2a35ca4e11dd93b3c329eef7c9e1d94498864c80041672c01e86ec1450e60381"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/dvi_tx/ecc_calc_v1.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\dvi_tx\\ecc_calc_v1.v",
+      "bytes": 964,
+      "sha256": "7bace5b6945f65a0cc9b3593a81eb92130c4f2a1043d1d427ed8c3fc0429c8bd"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/dvi_tx/efx_fifo.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\dvi_tx\\efx_fifo.v",
+      "bytes": 53930,
+      "sha256": "0f9be5de03c280743837b1b27011b95d9203bc0daa414cec45d676a76dde0581"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/dvi_tx/efx_fifo_define.vh",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\dvi_tx\\efx_fifo_define.vh",
+      "bytes": 3544,
+      "sha256": "6f231c473c47144f223714938cfe6f3f73131a8adf3e3b7d73371b130e06ae63"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/dvi_tx/encode.v_encrypted.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\dvi_tx\\encode.v_encrypted.v",
+      "bytes": 8314,
+      "sha256": "d1a0a8139a41f13736ba97c65a9f481267c0642acd51f2c66120e0e7f543bd3f"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/dvi_tx/packet_assembler.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\dvi_tx\\packet_assembler.sv",
+      "bytes": 3379,
+      "sha256": "76287f0e960fa1abdd650ca01d8f66d22dd9afae7248a5f5c86b4862c44a3514"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/dvi_tx/Sc_Fifo_Slr8.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\dvi_tx\\Sc_Fifo_Slr8.v",
+      "bytes": 8775,
+      "sha256": "6dc746e307436d3b6f0881e24b654a349fceeda4ca76025fdc4c310c1d47c9e6"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/dvi_tx/tx_aux.v_encrypted.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\dvi_tx\\tx_aux.v_encrypted.v",
+      "bytes": 19508,
+      "sha256": "579c75fab971980053dfc9b4fa07de2431bda6dd0e37515f427a5b2f869d72b5"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/frame_buffer/DC_FIFO.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\frame_buffer\\DC_FIFO.v",
+      "bytes": 28534,
+      "sha256": "9ab9a48afde4075ca72d2f21d25457271ba657296a547ba5fe2eaa6719886819"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/frame_buffer/rst_n_piple.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\frame_buffer\\rst_n_piple.v",
+      "bytes": 1529,
+      "sha256": "2c127c90995a2b0e647db1eec3719c0e746a73def78d0c04bc7884195c2ca2d4"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/gamma_conrrection/2P0.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\gamma_conrrection\\2P0.mem",
+      "bytes": 5118,
+      "sha256": "106f129182e2b8350ace85722d418c7f44c252f8be59b42f58f29db8df30c4d6"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/gamma_conrrection/2P1.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\gamma_conrrection\\2P1.mem",
+      "bytes": 5118,
+      "sha256": "bce1459c3e76195090b285fd6f2e90753fef59e33f77404b801a9da7419bc769"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/gamma_conrrection/2P2.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\gamma_conrrection\\2P2.mem",
+      "bytes": 5118,
+      "sha256": "bb22604f3b0c25f48b53c22667a0474368364b9396c926e8ec565d4aa77fd895"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/gamma_conrrection/2P3.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\gamma_conrrection\\2P3.mem",
+      "bytes": 5118,
+      "sha256": "f5fa6e316d1e06fe3015c0aa140c92a478431b8bc6eea6d1194051c7530d9e5d"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/gamma_conrrection/2P4.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\gamma_conrrection\\2P4.mem",
+      "bytes": 5118,
+      "sha256": "323a5f24bfd17eda602a7d4ab6eada6180ef545d2f2be73288f398d85bae4923"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/gamma_conrrection/gamma_2p2_8b.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\gamma_conrrection\\gamma_2p2_8b.mem",
+      "bytes": 1024,
+      "sha256": "03118affc2b0a0656e043d89290136418475f0d61c0e2c65930d29e4256eeb76"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/gamma_conrrection/gamma_inv2p2_8b.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\gamma_conrrection\\gamma_inv2p2_8b.mem",
+      "bytes": 1024,
+      "sha256": "9eeeb04de19b5953bf69f297ae550eb5f8590c8d6bb8161942a481399c895db8"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/gamma_conrrection/gamma_lut.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\gamma_conrrection\\gamma_lut.v",
+      "bytes": 3128,
+      "sha256": "c4c0230931c85992c84f88f604f83d0b289987fa0246648f8f79a6f144794571"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/video/artflow_button.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\video\\artflow_button.v",
+      "bytes": 762,
+      "sha256": "31dc6ad1248f82d7de0df0837788104ef2b79b585a8595273c882c53cbcf7a21"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/video/artflow_fps.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\video\\artflow_fps.v",
+      "bytes": 1630,
+      "sha256": "a4d668572673cbdd3e11943998c3205c1d472afa8c0f533add77db5f37fc381e"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/video/artflow_osd.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\video\\artflow_osd.v",
+      "bytes": 3804,
+      "sha256": "56789a1421ced5433e8ca1509fbb1a179e7d208ab6cbe06ee355b394f059b4d0"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/video/artflow_ui.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\video\\artflow_ui.v",
+      "bytes": 1470,
+      "sha256": "779eadb4cd8754e13b0ca69ce898a9510038e678371b9386e6a57b215f6c02bc"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/video/bayer_bin2x2.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\video\\bayer_bin2x2.v",
+      "bytes": 8304,
+      "sha256": "8c47c5d4c278b072388668f9bd277ca5eedc05652e050ce5b9faa5ab2d8b5cfb"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/video/cam_fb_pipe.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\video\\cam_fb_pipe.v",
+      "bytes": 8390,
+      "sha256": "0125dc39fc141077ce713150ed75d42ad0af0cec3609e701874cbad3a6ef3952"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/video/cam_fb_pipe_v07.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\video\\cam_fb_pipe_v07.v",
+      "bytes": 12616,
+      "sha256": "b411db20dd9e1aef2a657d7053f1e776adb776c4018bb2e8b16fb9220caaf5aa"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/video/cam_fb_pipe_v09.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\video\\cam_fb_pipe_v09.v",
+      "bytes": 17329,
+      "sha256": "2a5422e5123cdae96e35ed0e63c41c14eb1a160b3216110e7e0fe1c69c955fab"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/video/osd_font.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\video\\osd_font.mem",
+      "bytes": 4096,
+      "sha256": "491e17a0c33cb7ecfadca19749c3fe615f6f77f371506ba4450c0b541ae55e77"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/video/rgb_frame_store.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\video\\rgb_frame_store.v",
+      "bytes": 18331,
+      "sha256": "ba6ed4499611c8a8271b63e2a91bb3a960c51c7477ba894f619870d815e3ac57"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/video/rgb_frame_store_v07.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\video\\rgb_frame_store_v07.v",
+      "bytes": 21491,
+      "sha256": "d5161248852067422c5c6616d1c0fb94ce152aef516854732e24e8d227c10e71"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/video/test_pattern.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\video\\test_pattern.v",
+      "bytes": 5347,
+      "sha256": "2b5d5e1153b6e3efe53c93e130511fce996521083b1f5c8455d51d728d907363"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/video/video_axi_scheduler.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\video\\video_axi_scheduler.v",
+      "bytes": 1547,
+      "sha256": "519d85915da297082a6104d8884063a3c0c199e1f5b7493ceda2966a7d241a78"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/dvi_tx/simple_dual_port_ram/ram_init_file.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\dvi_tx\\simple_dual_port_ram\\ram_init_file.mem",
+      "bytes": 2016,
+      "sha256": "633e188a3e0a2b7e194433219361596c4263dcca185a0a7cd54ce5b264d857a8"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/ddr3_controller/axi4_bus_ctl/axi4_bus_ctl.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\ddr3_controller\\axi4_bus_ctl\\axi4_bus_ctl.v",
+      "bytes": 187598,
+      "sha256": "e908d8045fe2332a1740f3aca0226b5fe0bf4d03e25b040fe0f32015d573ad5b"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/ddr3_controller/local_bus_ctl/local_bus_ctl.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\ddr3_controller\\local_bus_ctl\\local_bus_ctl.v",
+      "bytes": 19528,
+      "sha256": "822d5d0f54c7ba0ea8d66f19f1e97cdea3a159932c64295dfe5ca86f9f814608"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/ddr3_controller/memory_bus_ctl/memory_bus_ctl.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\ddr3_controller\\memory_bus_ctl\\memory_bus_ctl.v",
+      "bytes": 337766,
+      "sha256": "a12b886a37278bd44bc207c2debd11156eab1d579e4e3aa7702b229508778882"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/ddr3_controller/phy_ctl/ddr_calibration_ini.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\ddr3_controller\\phy_ctl\\ddr_calibration_ini.v",
+      "bytes": 97258,
+      "sha256": "7a6976bceca5e4598ed9c53c17b522e7c86e07c97f0dbda16f8286d321035522"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/ddr3_controller/phy_ctl/ddr_mpr_rdlvl.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\ddr3_controller\\phy_ctl\\ddr_mpr_rdlvl.v",
+      "bytes": 17792,
+      "sha256": "08446b90c5897750ae6214918981de8262513745da7f7d25850ba6a124b9763e"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/ddr3_controller/phy_ctl/ddr_phy_if.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\ddr3_controller\\phy_ctl\\ddr_phy_if.v",
+      "bytes": 57056,
+      "sha256": "ce8dfd7600e8be615611d353cc6b62e7ccf6411d22ac47c45f9b650ad908584b"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/ddr3_controller/phy_ctl/ddr_phy_rdlvl_dqs.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\ddr3_controller\\phy_ctl\\ddr_phy_rdlvl_dqs.v",
+      "bytes": 24650,
+      "sha256": "bb5e2c9d76c2816164a9bfcbf51a3c2760d897c1340ae493d29867fee601e31f"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/ddr3_controller/phy_ctl/ddr_phy_wrcal.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\ddr3_controller\\phy_ctl\\ddr_phy_wrcal.v",
+      "bytes": 57540,
+      "sha256": "50acbb56f307a0fc9847981216389d41438649993908fdf96c09d823ee7e5ca9"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/ddr3_controller/phy_ctl/ddr_phy_wrlvl.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\ddr3_controller\\phy_ctl\\ddr_phy_wrlvl.v",
+      "bytes": 27304,
+      "sha256": "aec2c9677c03e1110c542ccc643c1ea0458f1f7fbb93dcaad105a7623d4a8591"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/ddr3_controller/phy_ctl/phy_ctl.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\ddr3_controller\\phy_ctl\\phy_ctl.v",
+      "bytes": 44157,
+      "sha256": "2b106e88fb017cbcda86a6ace62f81049d9725a79d4a2ffe9b44672bb4dbc08b"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/ddr3_controller/common/efx_fifo_v2.3/efx_fifo_wrapper.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\ddr3_controller\\common\\efx_fifo_v2.3\\efx_fifo_wrapper.v",
+      "bytes": 55401,
+      "sha256": "63e824ebc3c4293ab5808519a7e9322f12f6700231d1fca30be0367420e61c19"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/glass_int8/coeff.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\glass_int8\\coeff.mem",
+      "bytes": 9984,
+      "sha256": "0ca018aaaaa6a3e8c2be44c519f2a30515316c63d4f3a6f812e8105b1f1e565e"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/glass_int8/coeff0.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\glass_int8\\coeff0.mem",
+      "bytes": 1408,
+      "sha256": "115d5f70817fb10a9addd5393a82bbd48892778ad36ec2c2863716f74af8b9a2"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/glass_int8/coeff1.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\glass_int8\\coeff1.mem",
+      "bytes": 1408,
+      "sha256": "acf9461a62a2d254c22b07fcebbf06373e74becf505fedf51d38a8001c8e96e5"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/glass_int8/coeff2.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\glass_int8\\coeff2.mem",
+      "bytes": 1408,
+      "sha256": "29f1e267b142664fcf217fc73fa86ba05498b177169a000db2a04a71a6b2a535"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/glass_int8/coeff3.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\glass_int8\\coeff3.mem",
+      "bytes": 1408,
+      "sha256": "2b9f71092a631b95843e8b00dbd3cbb822b7c6aa9e7d223ea8394e7f1f06df18"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/glass_int8/coeff4.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\glass_int8\\coeff4.mem",
+      "bytes": 1408,
+      "sha256": "fee1e67b3346210b6950f64e67f11006ebdc52348a159d9e35aeea06d4c1d26f"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/glass_int8/coeff5.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\glass_int8\\coeff5.mem",
+      "bytes": 1408,
+      "sha256": "debcd5e62e1a50909ba0e5edf13df8d78f82f74bdf16fa3265d43000ecd45368"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/glass_int8/coeff6.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\glass_int8\\coeff6.mem",
+      "bytes": 1408,
+      "sha256": "bc51bc43b4c66d670e08980c77277233aa981e4d7e01ec36ed5a9a206a125c64"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/glass_int8/coeff7.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\glass_int8\\coeff7.mem",
+      "bytes": 1408,
+      "sha256": "c1422e113e9edb72aa5d88ce02410264ea4e67dddb450779bb8c807767464402"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/glass_int8/glass_line4.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\glass_int8\\glass_line4.v",
+      "bytes": 790,
+      "sha256": "39ab9131bf287bd77eaf78bf9a428823c9801cab1fa078fe77be61cf78cb8b93"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/glass_int8/glass_model_params.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\glass_int8\\glass_model_params.v",
+      "bytes": 2147,
+      "sha256": "99556acabfe566718cec283e58171b8b7ce9ca9239652be633e705c8ca9679a0"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/glass_int8/layers.vh",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\glass_int8\\layers.vh",
+      "bytes": 7482,
+      "sha256": "6fecb8cbca22563f5bde72213785a35c395d207ca0c580f550ac2686bd027baf"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/glass_int8/packed_layers.vh",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\glass_int8\\packed_layers.vh",
+      "bytes": 759,
+      "sha256": "6fb35c198de82e83879f225c32ccf0d88c6c059bc9e4ae668801c57ccc2d972f"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/glass_int8/packed_weights.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\glass_int8\\packed_weights.mem",
+      "bytes": 18688,
+      "sha256": "6684a936e47fd7226d050a643f868278257f709531a3c086464447fe0b0bca9b"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/glass_int8/rgb.vh",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\glass_int8\\rgb.vh",
+      "bytes": 249,
+      "sha256": "38e0eed7500009974d46e95c1ca86ff02d49c9e351dd2a51dce15fa4cf3dc818"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/glass_int8/style_bank_controller.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\glass_int8\\style_bank_controller.v",
+      "bytes": 4324,
+      "sha256": "1f428ac46cee0877288a723d0a78ecc4cce69b582c3520c6dd550810409cef3f"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/glass_int8/style_coeff_init.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\glass_int8\\style_coeff_init.mem",
+      "bytes": 22528,
+      "sha256": "134525cd11e1e1e4f3447cc14e146911a2cf38a2ae8e1f15f3fe4061dd2c6cd4"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/glass_int8/style_layers.vh",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\glass_int8\\style_layers.vh",
+      "bytes": 6993,
+      "sha256": "23a60baeb148ca52cacfad63b70562d120bff852457dca498cd6a906ed9aabc6"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/glass_int8/style_rgb_init.vh",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\glass_int8\\style_rgb_init.vh",
+      "bytes": 165,
+      "sha256": "966ac382796360d982db4d52f2dda312ba89cacc6637630a40b575c9909c502b"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/glass_int8/style_skip_init.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\glass_int8\\style_skip_init.mem",
+      "bytes": 576,
+      "sha256": "27d031dce4e1f406cbb7ae7c64ac15fa657f89363bcfd8b9e8c6ba34ee02a8e4"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/glass_int8/style_spi_reader.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\glass_int8\\style_spi_reader.v",
+      "bytes": 2223,
+      "sha256": "a097701ca52f08026f8914d23e2604bdcc3ff7fdd4ef6160a2c7c83e7879ac66"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/glass_int8/style_weights_init.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\glass_int8\\style_weights_init.mem",
+      "bytes": 37376,
+      "sha256": "eb558575d8a28fa950b19bbffc0e288bd650c2ef85b071ac68fbf0e3a6e9f96e"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/glass_int8/weights.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\glass_int8\\weights.mem",
+      "bytes": 33280,
+      "sha256": "5ebc555718103c81fcc84b58e182ef4427b35752995df57ac399db4c3d55b4ab"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/student_u8/shared_beta.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\student_u8\\shared_beta.mem",
+      "bytes": 2176,
+      "sha256": "3fbe3c7ec5fcf78d2fc19c903a995366f1c11905ad690718d24e34fed7adb6eb"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/student_u8/shared_bias.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\student_u8\\shared_bias.mem",
+      "bytes": 1664,
+      "sha256": "13893019bb2936333f4727a116c348a0ad138d438fb7f4e28b1ada71d680d99f"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/student_u8/shared_main.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\student_u8\\shared_main.mem",
+      "bytes": 1472,
+      "sha256": "c2eff85020b7bee57497d79c408322de41fc7c400cf29628cc8b493e063705e3"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/student_u8/shared_weights.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\student_u8\\shared_weights.mem",
+      "bytes": 24832,
+      "sha256": "0fb495b3c9f8d685c049c08fd9001bc12e38c4aaebe6f6397bab563b81d73d32"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cnn/student_u8/stem_packed_weights.mem",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cnn\\student_u8\\stem_packed_weights.mem",
+      "bytes": 24832,
+      "sha256": "76e58b0ca1ee130a5a03adc4bb9fcb1114346aa7d568049d699d15767f3f9278"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/cam_i2c_ctrl/i2c/i2c_master_reg_rom.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\cam_i2c_ctrl\\i2c\\i2c_master_reg_rom.v",
+      "bytes": 10450,
+      "sha256": "db13d1eed22a9478fd0affb9ac86b8265302a474886d7fff688447af2470ffe3"
+    },
+    {
+      "path": "source/fpga_project/fpga/network/styles15/models15_manifest.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\network\\styles15\\models15_manifest.json",
+      "bytes": 9954,
+      "sha256": "9fa98f32dbbae0810156f4a39778c6a750b195988109c4ddfd4266a293a4c453"
+    },
+    {
+      "path": "source/fpga_project/fpga/network/styles15/models15_parameters.bin",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\network\\styles15\\models15_parameters.bin",
+      "bytes": 245760,
+      "sha256": "81b99fc11a2460669d672832d2fb3311319ee78edab25aed9c8ad44b0413b3da"
+    },
+    {
+      "path": "source/fpga_project/fpga/network/styles15/models15_parameters.hex",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\network\\styles15\\models15_parameters.hex",
+      "bytes": 983040,
+      "sha256": "53f77864168be77abbda8bca72f35b778321f871d1f2164dc7da22dd06af3a90"
+    },
+    {
+      "path": "source/fpga_project/fpga/network/styles15/old_new_mapping.csv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\network\\styles15\\old_new_mapping.csv",
+      "bytes": 736,
+      "sha256": "c956ec35a7047ce7b4d333ffeb380c33de3c5be6cbd44fef108da0837ce9180a"
+    },
+    {
+      "path": "source/fpga_project/fpga/network/styles15/old_new_mapping.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\network\\styles15\\old_new_mapping.json",
+      "bytes": 2514,
+      "sha256": "8ebe96a248735dbba70ce99d752d6a0eec597bb2012ea2c6f139393c60d6f793"
+    },
+    {
+      "path": "source/fpga_project/fpga/network/styles15/source19_parameters.bin",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\network\\styles15\\source19_parameters.bin",
+      "bytes": 311296,
+      "sha256": "dfc558d7bc3be10b7a78c8e68e71108e6d453f6af454425192afe29538d0f856"
+    },
+    {
+      "path": "source/fpga_project/fpga/ip/sapphire_soc/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol0.bin",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\ip\\sapphire_soc\\EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol0.bin",
+      "bytes": 27648,
+      "sha256": "434128a7f2c4391d6691d8491245ff158875f2f16a1103c12fc225f412ee775c"
+    },
+    {
+      "path": "source/fpga_project/fpga/ip/sapphire_soc/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol0.hi.bin",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\ip\\sapphire_soc\\EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol0.hi.bin",
+      "bytes": 10240,
+      "sha256": "265550c5b81ab8ca12589fa83c0a02102506d5922f4455738c5644fa77b3cda2"
+    },
+    {
+      "path": "source/fpga_project/fpga/ip/sapphire_soc/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol0.lo.bin",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\ip\\sapphire_soc\\EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol0.lo.bin",
+      "bytes": 20480,
+      "sha256": "942cec5459314a9c8ff82fb6b9537a260da1aabd08d1c446f7229df7c197c982"
+    },
+    {
+      "path": "source/fpga_project/fpga/ip/sapphire_soc/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol1.bin",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\ip\\sapphire_soc\\EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol1.bin",
+      "bytes": 27648,
+      "sha256": "068ea0482027cfc0e76edb07de066bb9216865451c8fec0eaed5421b239b036b"
+    },
+    {
+      "path": "source/fpga_project/fpga/ip/sapphire_soc/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol1.hi.bin",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\ip\\sapphire_soc\\EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol1.hi.bin",
+      "bytes": 10240,
+      "sha256": "265550c5b81ab8ca12589fa83c0a02102506d5922f4455738c5644fa77b3cda2"
+    },
+    {
+      "path": "source/fpga_project/fpga/ip/sapphire_soc/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol1.lo.bin",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\ip\\sapphire_soc\\EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol1.lo.bin",
+      "bytes": 20480,
+      "sha256": "f6e1bf7ebfa4b3cdd7a552e99b0a82881fe9436c01fb38a2883f7e038018fb1e"
+    },
+    {
+      "path": "source/fpga_project/fpga/ip/sapphire_soc/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol2.bin",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\ip\\sapphire_soc\\EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol2.bin",
+      "bytes": 27648,
+      "sha256": "b67d92b58070970a9d28395c17990b8f513a93a5be78d00d3625c9b3246da0ee"
+    },
+    {
+      "path": "source/fpga_project/fpga/ip/sapphire_soc/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol2.hi.bin",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\ip\\sapphire_soc\\EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol2.hi.bin",
+      "bytes": 10240,
+      "sha256": "265550c5b81ab8ca12589fa83c0a02102506d5922f4455738c5644fa77b3cda2"
+    },
+    {
+      "path": "source/fpga_project/fpga/ip/sapphire_soc/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol2.lo.bin",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\ip\\sapphire_soc\\EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol2.lo.bin",
+      "bytes": 20480,
+      "sha256": "bd727d2a45b5a456d56ac595f3500b18585b3b6ec99a5e65cab3ee04b0852e30"
+    },
+    {
+      "path": "source/fpga_project/fpga/ip/sapphire_soc/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol3.bin",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\ip\\sapphire_soc\\EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol3.bin",
+      "bytes": 27648,
+      "sha256": "4d11c5db4b6b5c07f14945034825b36a03120581f72dbf51f23b90a102eb0e67"
+    },
+    {
+      "path": "source/fpga_project/fpga/ip/sapphire_soc/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol3.hi.bin",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\ip\\sapphire_soc\\EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol3.hi.bin",
+      "bytes": 10240,
+      "sha256": "265550c5b81ab8ca12589fa83c0a02102506d5922f4455738c5644fa77b3cda2"
+    },
+    {
+      "path": "source/fpga_project/fpga/ip/sapphire_soc/EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol3.lo.bin",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\ip\\sapphire_soc\\EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol3.lo.bin",
+      "bytes": 20480,
+      "sha256": "fe7ec2a0a76b60a8420f30a4fbecaf79524dd570aad902daff02440719a3ecdc"
+    },
+    {
+      "path": "source/fpga_project/fpga/ip/sapphire_soc/sapphire_soc.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\ip\\sapphire_soc\\sapphire_soc.v",
+      "bytes": 1063159,
+      "sha256": "e04b95301829dd99ffbb5961b25682ea024a1189ccfcec62b17518da697df47e"
+    },
+    {
+      "path": "source/fpga_project/fpga/firmware/include/camera.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\firmware\\include\\camera.h",
+      "bytes": 681,
+      "sha256": "957dd598622a0a489591e8ea6cef1818b113b2eae4177029bd4ddd761b0d6ba8"
+    },
+    {
+      "path": "source/fpga_project/fpga/firmware/include/camera_table.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\firmware\\include\\camera_table.h",
+      "bytes": 5447,
+      "sha256": "8487d3fc570ee56a8449688766edf3e407a6240a7b6d41ddeda0192723b3cb3d"
+    },
+    {
+      "path": "source/fpga_project/fpga/firmware/include/console.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\firmware\\include\\console.h",
+      "bytes": 825,
+      "sha256": "e8310693883086a5e8ba70363bc9eb367369ea452b69d51489003153bf319956"
+    },
+    {
+      "path": "source/fpga_project/fpga/firmware/include/platform.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\firmware\\include\\platform.h",
+      "bytes": 2279,
+      "sha256": "3fb494ecd37420207d9ee4fdd3674bf4252799758d395d4d1588d8e546997279"
+    },
+    {
+      "path": "source/fpga_project/fpga/firmware/src/camera.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\firmware\\src\\camera.c",
+      "bytes": 3788,
+      "sha256": "d24777672cea96eb097ac671302dbabed8eb133d8ca9ebdc12b90f6479a40a66"
+    },
+    {
+      "path": "source/fpga_project/fpga/firmware/src/console.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\firmware\\src\\console.c",
+      "bytes": 3042,
+      "sha256": "35b1840c8aaf9c02f77d302cd0988062dc10ebd8afd74c3ae12fb0f4e4889da5"
+    },
+    {
+      "path": "source/fpga_project/fpga/firmware/src/i2c.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\firmware\\src\\i2c.c",
+      "bytes": 5711,
+      "sha256": "34a74f2e125bcc18db4fc92421978e7ff055f269d0d73a2753f3a20869cbd187"
+    },
+    {
+      "path": "source/fpga_project/fpga/firmware/src/main.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\firmware\\src\\main.c",
+      "bytes": 10066,
+      "sha256": "4284a8a2c8fa4c0ef6bd677b2d50dc46d4db6ba30edc7cdcb85283adc726a842"
+    },
+    {
+      "path": "source/fpga_project/fpga/firmware/src/runtime.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\firmware\\src\\runtime.c",
+      "bytes": 473,
+      "sha256": "c569167c42e8d69c51dba882117ae9431e7d3da511d0206a418d02b802f61076"
+    },
+    {
+      "path": "source/fpga_project/fpga/firmware/tests/test_camera.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\firmware\\tests\\test_camera.c",
+      "bytes": 5709,
+      "sha256": "0b9e1002249f33ae9cf6ed319f0c66eba3052c04a717cddcf86f8225396e086c"
+    },
+    {
+      "path": "source/fpga_project/fpga/firmware/tests/test_commands.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\firmware\\tests\\test_commands.c",
+      "bytes": 8357,
+      "sha256": "f7f6d2d13dcb23b106283aa296a81858f002b17a188ceffb9db61b3ae5717469"
+    },
+    {
+      "path": "source/fpga_project/fpga/firmware/tests/test_console.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\firmware\\tests\\test_console.c",
+      "bytes": 2518,
+      "sha256": "cceb90cb02f9b5685c25f694ce80c8f0bf9dc7352f67333eb88e68f92db7a8be"
+    },
+    {
+      "path": "source/fpga_project/fpga/firmware/tests/test_i2c.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\firmware\\tests\\test_i2c.c",
+      "bytes": 4676,
+      "sha256": "14fdf36e80cfa756abe979ca43911cba885384d5da80f5ccb2669f7bf565039e"
+    },
+    {
+      "path": "source/fpga_project/fpga/candidates/round11p_packed_pointers/artflow_pair_reader.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\candidates\\round11p_packed_pointers\\artflow_pair_reader.sv",
+      "bytes": 12959,
+      "sha256": "8c01bbdb5b54ae86b72f835fa29a3da15f6b4f312f3627ba572d0e041dfd81ca"
+    },
+    {
+      "path": "source/fpga_project/fpga/candidates/round11_packed25/artflow_pair_render.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\candidates\\round11_packed25\\artflow_pair_render.sv",
+      "bytes": 4238,
+      "sha256": "82b27897053b3b323fdc85fe685e19806797d9b28356471105a4c7954dd2ff4e"
+    },
+    {
+      "path": "source/fpga_project/fpga/candidates/round11_packed25/artflow_render_ctrl.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\candidates\\round11_packed25\\artflow_render_ctrl.v",
+      "bytes": 4970,
+      "sha256": "ce75fa8b78842cc4fb90b9a3489f0d0116bf0ceb34a295070d20b278d88596ac"
+    },
+    {
+      "path": "source/fpga_project/fpga/candidates/round15u_return_ram/artflow_cnn_return_ram_fifo.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\candidates\\round15u_return_ram\\artflow_cnn_return_ram_fifo.v",
+      "bytes": 2415,
+      "sha256": "2854101bd83ac4ad538a0454c7f285417460e55907db02cfd9156869fbbadca0"
+    },
+    {
+      "path": "source/fpga_project/fpga/candidates/round15u_return_ram/tb_r15u_fifo.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\candidates\\round15u_return_ram\\tb_r15u_fifo.sv",
+      "bytes": 3664,
+      "sha256": "bfe4a368ab72a819953ad2804d4910a8cecb9226d488c9a407c9b10504210e61"
+    },
+    {
+      "path": "source/fpga_project/fpga/candidates/round15u_return_ram/tb_r15u_fifo_stagger.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\candidates\\round15u_return_ram\\tb_r15u_fifo_stagger.sv",
+      "bytes": 3852,
+      "sha256": "6b7a6830d3d29dfd36c9a85e3af4b73555e015d650cc2e67359555d915824780"
+    },
+    {
+      "path": "source/fpga_project/fpga/candidates/round15u_return_ram/tb_r15u_lease.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\candidates\\round15u_return_ram\\tb_r15u_lease.sv",
+      "bytes": 7553,
+      "sha256": "470a8ca97a1d6834e5dc2096c191d75933b4274e26751ab27b493bf343de2f33"
+    },
+    {
+      "path": "source/fpga_project/fpga/candidates/round15u_return_ram/tb_r15u_system.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\candidates\\round15u_return_ram\\tb_r15u_system.sv",
+      "bytes": 9509,
+      "sha256": "410e830b8f82805e5319e551b80c49db979ebe1f828a68f6182fd8959c39fba8"
+    },
+    {
+      "path": "source/fpga_project/fpga/candidates/round15u_return_ram/tb_r15u_timeout.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\candidates\\round15u_return_ram\\tb_r15u_timeout.sv",
+      "bytes": 5686,
+      "sha256": "fcb78d05c0adb80d3b218ac4593faaf04832d74f87e827fcdec4bbd5221f74ff"
+    },
+    {
+      "path": "source/fpga_project/fpga/candidates/round15_return_ram/artflow_cnn_accel.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\candidates\\round15_return_ram\\artflow_cnn_accel.v",
+      "bytes": 10965,
+      "sha256": "5b23197736230d8f4621c5967afe732e7d3e12bc83d82c4ea0f6416978d8d2a9"
+    },
+    {
+      "path": "source/fpga_project/fpga/candidates/round17_scaler_rgb96/artflow_cnn_resize.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\candidates\\round17_scaler_rgb96\\artflow_cnn_resize.v",
+      "bytes": 11444,
+      "sha256": "125769c372f7fed69d76b50d5eed10369ed59312933185f5f9591ce9aa3201a3"
+    },
+    {
+      "path": "source/fpga_project/fpga/candidates/round23_row_rgb/glass_int8.v",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\candidates\\round23_row_rgb\\glass_int8.v",
+      "bytes": 23950,
+      "sha256": "4c8f1a55dc5e1b47f1f36c84485f406b7c3cd32ac6970549988c577529060d62"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/stream/afs_spi_packet.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\stream\\afs_spi_packet.sv",
+      "bytes": 5777,
+      "sha256": "811e9f9e03808d2db9b4a4162145c111bc2ae4e5c35b40a5448ec749b7a808df"
+    },
+    {
+      "path": "source/fpga_project/fpga/rtl/stream/afs_stream_tx.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\rtl\\stream\\afs_stream_tx.sv",
+      "bytes": 6011,
+      "sha256": "05ab7e1763aee97bb5eb5849c11da1ff53a7605a59e579b05712322ac829feca"
+    },
+    {
+      "path": "source/fpga_project/fpga/sim/afs_spi_packet_reset_ref.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\sim\\afs_spi_packet_reset_ref.sv",
+      "bytes": 5109,
+      "sha256": "c1205ba8a2acb85a70f6c0ff4e48099406498970e5943c8b6615db4d0c02cee5"
+    },
+    {
+      "path": "source/fpga_project/fpga/sim/tb_afs_reset_equivalence.sv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\sim\\tb_afs_reset_equivalence.sv",
+      "bytes": 2752,
+      "sha256": "718f33e1b0fdd5cecc7638a85c2b93b1157002d53630028ac7ecfe5853f33fa2"
+    },
+    {
+      "path": "source/fpga_project/scripts/fpga_physical.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\scripts\\fpga_physical.py",
+      "bytes": 1811,
+      "sha256": "71687be153f6314787d5a15a4686f1e79302a14e65ccfcf3680eeebfce25973d"
+    },
+    {
+      "path": "source/fpga_project/scripts/package_esp.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\scripts\\package_esp.py",
+      "bytes": 4191,
+      "sha256": "c1985e59f69252cc7f17ebcdf10f82c76547d4304a0cba7e76bdc1aa20ab0378"
+    },
+    {
+      "path": "source/fpga_project/scripts/package_pair.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\scripts\\package_pair.py",
+      "bytes": 3039,
+      "sha256": "0bc1604653932692caa01b91115bf01aa58e0ad0ce7eb55a26f38c91559ce942"
+    },
+    {
+      "path": "source/fpga_project/scripts/run_original_regressions.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\scripts\\run_original_regressions.py",
+      "bytes": 1373,
+      "sha256": "8f129a55130e4f87c0bcbd8a92fb36de69c9b338f91812cbea6035f9288a76eb"
+    },
+    {
+      "path": "source/fpga_project/scripts/run_reset_equivalence.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\scripts\\run_reset_equivalence.py",
+      "bytes": 1576,
+      "sha256": "d32cb9ef0d2eb0db933c416d8a3711f0caed867179c00bf60cca4b915d9dd00a"
+    },
+    {
+      "path": "source/fpga_project/scripts/run_shared_tests.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\scripts\\run_shared_tests.py",
+      "bytes": 1219,
+      "sha256": "7fc7ec09fd18d9b267ce7359e09377608a36c48176f9754bc9e800107d789dbe"
+    },
+    {
+      "path": "source/fpga_project/scripts/run_stream_rtl.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\scripts\\run_stream_rtl.py",
+      "bytes": 1418,
+      "sha256": "d641534fab7cf84dd872a62b41221c3b053a8593d3e2164c3e0817d1bf8cddab"
+    },
+    {
+      "path": "source/fpga_project/scripts/run_tap_rtl.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\scripts\\run_tap_rtl.py",
+      "bytes": 1652,
+      "sha256": "1b91d7577530ef373c58b56dd3dd1a13b26d01280882bce1909b55348c502da7"
+    },
+    {
+      "path": "source/fpga_project/scripts/stream_io_audit.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\scripts\\stream_io_audit.py",
+      "bytes": 3519,
+      "sha256": "da8e6b4999c0fc16a661e8b36b457d6007f958dea323a617830d2c9fff4131bb"
+    },
+    {
+      "path": "source/fpga_project/scripts/verify_regression_evidence.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\scripts\\verify_regression_evidence.py",
+      "bytes": 769,
+      "sha256": "cb9dc31ae5a5ed0b787f417859ac86ca732a0330c87a9f314fedc66b19ce6df4"
+    },
+    {
+      "path": "source/fpga_project/tests/browser_test.js",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\tests\\browser_test.js",
+      "bytes": 2835,
+      "sha256": "1c780d2670ccdbeb858d162a06fcd935a640665616cdedffbe80b7ac9d6b7869"
+    },
+    {
+      "path": "source/fpga_project/tests/cdc_audit_test.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\tests\\cdc_audit_test.py",
+      "bytes": 1448,
+      "sha256": "9b5d78091a250ad6b0bcacb2bc58cdb06ba2b24cda1613bf4c8f21e5c6425af0"
+    },
+    {
+      "path": "source/fpga_project/tests/check_rtl_vectors.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\tests\\check_rtl_vectors.py",
+      "bytes": 730,
+      "sha256": "64362f16681ca29c968ea9a00026f1f1d32d0d523d9854fb8335b0a3e1515beb"
+    },
+    {
+      "path": "source/fpga_project/tests/generation_test.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\tests\\generation_test.c",
+      "bytes": 755,
+      "sha256": "61630c69dce67fb186adfe136e3aa2def802f6afea76bc5286c692e57133f608"
+    },
+    {
+      "path": "source/fpga_project/tests/mailbox_test.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\tests\\mailbox_test.c",
+      "bytes": 773,
+      "sha256": "aa03b7714c82b89222e50fe1721656843500b0d81dd02e83eaec8bb8185358b5"
+    },
+    {
+      "path": "source/fpga_project/tests/protocol_runner.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\tests\\protocol_runner.c",
+      "bytes": 768,
+      "sha256": "d71602310e764ef0659e8fee9615ed3492ed325a46d6888f249efdf7bca0e414"
+    },
+    {
+      "path": "source/fpga_project/tests/protocol_test.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\tests\\protocol_test.py",
+      "bytes": 2127,
+      "sha256": "b7d13ca04a595f0c595f5cd14f2044338e9a91c472c45819524fbfe72a28856f"
+    },
+    {
+      "path": "source/fpga_project/protocol/afs.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\protocol\\afs.c",
+      "bytes": 15207,
+      "sha256": "d05b51f29e278f940e7684a0e48f0569151d68f9258e40ce835bf9716f6a7287"
+    },
+    {
+      "path": "source/fpga_project/protocol/afs.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\protocol\\afs.h",
+      "bytes": 1026,
+      "sha256": "ca6dfd5208bb9c78af59307ee3132f08102515a9bbb2cf2930a9ef6fa3952635"
+    },
+    {
+      "path": "source/fpga_project/protocol/afs.js",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\protocol\\afs.js",
+      "bytes": 985,
+      "sha256": "ccf0268c09f325c555fc900cf0d791dad88df90cd5c6c7c8899002f9967f24b5"
+    },
+    {
+      "path": "source/fpga_project/protocol/afs_generation.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\protocol\\afs_generation.h",
+      "bytes": 709,
+      "sha256": "8e111c270e5bda808792885ce024b564e8b3b44ca654ea3838f07607df1fc251"
+    },
+    {
+      "path": "source/fpga_project/protocol/afs_mailbox.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\protocol\\afs_mailbox.h",
+      "bytes": 526,
+      "sha256": "74f18557769717ff554567386251b7b1895bc62f496db7be59001cba22d852ef"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/analyze_styles15_map.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\analyze_styles15_map.py",
+      "bytes": 1809,
+      "sha256": "1aee4d59b6545ed95cee5454a20514dd514b56e5029b7368330957dab5e219b5"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/build_firmware.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\build_firmware.py",
+      "bytes": 7223,
+      "sha256": "daefe1d14a2622a00edabea6cc06b14fc959ea9b821ed367ac26497d51bb25ae"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/build_styles15.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\build_styles15.py",
+      "bytes": 5647,
+      "sha256": "dbe0c6973e1d080b2ac0529d6255911bb668d98922d1ab3bc9f3408ea599f07d"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/check_al_lease_cdc.tcl",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\check_al_lease_cdc.tcl",
+      "bytes": 482,
+      "sha256": "3fb71906242e5bbe1c7dfcf037fb9e73f210419d4facbc26911be547c3b26402"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/check_cnn_cdc.tcl",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\check_cnn_cdc.tcl",
+      "bytes": 2027,
+      "sha256": "8df49cf884f011edda4187d66845540d252826d9dd99d6227f82a5737f11e874"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/check_round23t_cnn_cdc.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\check_round23t_cnn_cdc.py",
+      "bytes": 7694,
+      "sha256": "381a9a4784121692d570324c8c538d897afc7cd4d7b96a94f3f12010b762f76f"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/check_round23t_project.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\check_round23t_project.py",
+      "bytes": 950,
+      "sha256": "e0f99be93b0a533b5a2cfcb48d4707bab8353d0ed118d2ee9a377aa7979ade80"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/check_round23t_return_ram_cdc_v2.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\check_round23t_return_ram_cdc_v2.py",
+      "bytes": 3169,
+      "sha256": "da43ece33b9e96bb08871294f43765558f4e9d40014510891165ed15ac15d063"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/check_round23t_return_ram_v2.tcl",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\check_round23t_return_ram_v2.tcl",
+      "bytes": 728,
+      "sha256": "474805b5af607ae5c7f65a3a4292e0a7467efd26afd08d95de63cc44f82a15eb"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/check_round23t_style_io.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\check_round23t_style_io.py",
+      "bytes": 2838,
+      "sha256": "803fa6f067dcff76e5953f9f4145b024d00da481b4855b1602b5310e7a488137"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/check_round23t_timing.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\check_round23t_timing.py",
+      "bytes": 1997,
+      "sha256": "d0d68c8ffad49ecc9778a96c235de3132d30b16e6592aa4e6bcc3c943e140cd9"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/check_round23t_ui_cdc.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\check_round23t_ui_cdc.py",
+      "bytes": 3886,
+      "sha256": "3ebdc3a1442c6d3b13c8499c4d2f1775af7069a6f6eb3eba038343b69bd980b1"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/check_round23t_video_cdc.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\check_round23t_video_cdc.py",
+      "bytes": 12606,
+      "sha256": "bb83f71e4d8595cf4f79dd5fd26606b387e1dffd2c7616ee262040a80b857e3e"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/check_style_io.tcl",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\check_style_io.tcl",
+      "bytes": 502,
+      "sha256": "1b053d3caa3e878b3db5f6009ff67879e56e7cbfdfd20fcf74653ce87ea8ae87"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/check_ui_cdc.tcl",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\check_ui_cdc.tcl",
+      "bytes": 1911,
+      "sha256": "5d70748b4d335da451933879de452e078d323454151f517e56bbcde9e215e962"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/check_video_cdc.tcl",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\check_video_cdc.tcl",
+      "bytes": 1000,
+      "sha256": "267fd2cb567cb61c3337b8809e839fbb3baabccd1306ef2fe7c7e845e2096889"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/map_evidence.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\map_evidence.py",
+      "bytes": 1252,
+      "sha256": "6eed78baa9df07d862a6d60e14ff46716a691373bdd2ed51b53da3dbe576f7db"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/map_hierarchy.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\map_hierarchy.py",
+      "bytes": 814,
+      "sha256": "0de3cfdb7cc73ae99b453215d698c2d4898f92aa542dbd15e2c49d1efd897f0b"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/receipt_styles15_formal.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\receipt_styles15_formal.py",
+      "bytes": 1701,
+      "sha256": "f0a8a1c35d0b4c39b64aaddb9a227dd53aa0291106523f5f2ed8f3b58ecf9e0e"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/regenerate_package.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\regenerate_package.py",
+      "bytes": 915,
+      "sha256": "f1846fd97a6df4461778bd56f7d882867d95ad00a059e927ea8cd6015a46588b"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/run_efinity.ps1",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\run_efinity.ps1",
+      "bytes": 380,
+      "sha256": "31f936c12e31df82c789a5e7ba753bbbad4a678559b9d978ee2c54409ba8f5b7"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/run_glass_efinity.ps1",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\run_glass_efinity.ps1",
+      "bytes": 380,
+      "sha256": "31f936c12e31df82c789a5e7ba753bbbad4a678559b9d978ee2c54409ba8f5b7"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/run_styles15_case.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\run_styles15_case.py",
+      "bytes": 3141,
+      "sha256": "16de8384e93e8de2b7b81ef05dd6446566ea3e06ff5cbd24af1b65090b303434"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/styles15_timing.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\styles15_timing.py",
+      "bytes": 798,
+      "sha256": "87f9c2dd1006c4682e8b450f41fee64976ea485accab91ef9986a70d244468b0"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/test_firmware.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\test_firmware.py",
+      "bytes": 3537,
+      "sha256": "e9b5907d2b4c53272d0ab60e59da87808dd5af68e29060f5499807afac38e32c"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/verify_package.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\verify_package.py",
+      "bytes": 2639,
+      "sha256": "f5415004a11a345ec617d2a322b20780ffbd84ddb5f15b487ca5eee05fa279ab"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/verify_styles15_rebuild.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\verify_styles15_rebuild.py",
+      "bytes": 1427,
+      "sha256": "a25f3a2d1e0e5c60aada4b74ea21898ffa934978b73cfa064c681b383f7476ea"
+    },
+    {
+      "path": "source/fpga_project/BuildFPGA.ps1",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\BuildFPGA.ps1",
+      "bytes": 1138,
+      "sha256": "7fe3155fd724c4ed4ec83700347a3e92743f159949e7110770047702b4104405"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.afs_miso_sync.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.afs_miso_sync.rpt",
+      "bytes": 3715,
+      "sha256": "b882b1d42d0f87a46333f1462e401aae907c285e8f7b383168baec2170b14fc5"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.afs_ready_sync.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.afs_ready_sync.rpt",
+      "bytes": 3742,
+      "sha256": "0e995d36cc25d071570d26bb3dc8aceecee0cafcf2c1e578c31600ea052b84c7"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.afs_stream_cs_n.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.afs_stream_cs_n.rpt",
+      "bytes": 3198,
+      "sha256": "f034cc852b019b1934740425659ac0804cf10e3a89a20c84aaede4e658d0ba79"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.afs_stream_miso.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.afs_stream_miso.rpt",
+      "bytes": 3294,
+      "sha256": "050e997bc4a56567bc633ba0a6d2191036c92cb5249d4a7c4e15843b27ea1d51"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.afs_stream_mosi.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.afs_stream_mosi.rpt",
+      "bytes": 2963,
+      "sha256": "aacf2b9c39d7de4ac2aadcf92da89b270352940f95913eecf8cab622478795c7"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.afs_stream_ready.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.afs_stream_ready.rpt",
+      "bytes": 3316,
+      "sha256": "be89bafe13af660d601b05179c69f634eac180eb1f58451f5b5e55f5074122b3"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.afs_stream_sclk.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.afs_stream_sclk.rpt",
+      "bytes": 2963,
+      "sha256": "3482ee67531bc1f8efa130d91ea998b42ec2393a016507ef990f8aa31149c310"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cdc.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cdc.rpt",
+      "bytes": 296,
+      "sha256": "4de7506dbf2b0d0ae971914d76163e11492591100a78a8f03395f4a678988b28"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_ar_r_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_ar_r_hold.rpt",
+      "bytes": 10711,
+      "sha256": "7be06a5730a3d823ff3fc86ea7028ffda99c8a74c14f20c0d1932770d6862644"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_ar_r_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_ar_r_setup.rpt",
+      "bytes": 10711,
+      "sha256": "70ab86da0810d1e44fcc6eedcedee3a74738a453da69cca92b8f06a2b45608c7"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_ar_w_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_ar_w_hold.rpt",
+      "bytes": 10730,
+      "sha256": "015824cf125bbb3648ed6f21f1b126dfa39a930c9bcc349b53ddce3474de70e2"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_ar_w_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_ar_w_setup.rpt",
+      "bytes": 10769,
+      "sha256": "276f0f9f6d17f94f19403c66eef4b7689d572248e2cc3f47c0ba7d0f021fa8a7"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_aw_r_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_aw_r_hold.rpt",
+      "bytes": 10711,
+      "sha256": "f75d7b747ab4b2000dcf315130ffaa55d87e098420b5c5a10cb6af20a0b93c46"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_aw_r_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_aw_r_setup.rpt",
+      "bytes": 10711,
+      "sha256": "9fe38ad8898a2849ff7c0c42639978cefc5e940f96b35e8bdf34f0c5028fbc31"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_aw_w_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_aw_w_hold.rpt",
+      "bytes": 10730,
+      "sha256": "b37140136354fb4eb29724910f56047ae53a8c663e482d692a6f7b2a0fca10e6"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_aw_w_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_aw_w_setup.rpt",
+      "bytes": 10769,
+      "sha256": "c95c6dc69a6f7d3565aa83023cf73a1d18d0edd25805e370b531257b583fb37d"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_b_r_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_b_r_hold.rpt",
+      "bytes": 10675,
+      "sha256": "8b7b9ae24cbf69f4e6cbc3c3eef7806faab9f7a5a92fc6174e4b8ebdc95b7530"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_b_r_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_b_r_setup.rpt",
+      "bytes": 10714,
+      "sha256": "57e67e191844d0ea27655cfdd6ad50d21ea25e2ddb848fc9b9a9100cb5d3a498"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_b_w_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_b_w_hold.rpt",
+      "bytes": 10656,
+      "sha256": "f40a136058ed474ff7340212339334c631d5f19482c7649b6f6eb63ecf60c68c"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_b_w_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_b_w_setup.rpt",
+      "bytes": 10656,
+      "sha256": "ef0ab819e18faa9c3d921be0260e0aeef6a5b13ad669021fefe28098d7a888da"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_events_r_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_events_r_hold.rpt",
+      "bytes": 10949,
+      "sha256": "93e5ef9a8a0ee34c9b64e9523c21570db70582a8f42dbac823c8a904f8285b2b"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_events_r_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_events_r_setup.rpt",
+      "bytes": 10949,
+      "sha256": "5f64ab7ca730e38ac7bb4e49ba0af7314f930b7f6f66a199be65e0aa6009b8b9"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_events_w_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_events_w_hold.rpt",
+      "bytes": 10968,
+      "sha256": "971f0be05e900639a20f8592c89ff544cd292b071d286736c20a5db8381dd3a0"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_events_w_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_events_w_setup.rpt",
+      "bytes": 11007,
+      "sha256": "362116361d91c22c868a1ed307e472e00b56fa846e9b56bbb72fa86a9166a684"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_jobs_r_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_jobs_r_hold.rpt",
+      "bytes": 10849,
+      "sha256": "f0d9bcbb15693995edd4b94d83b8ccebb4d834909df71bcb516411f1bcda92ec"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_jobs_r_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_jobs_r_setup.rpt",
+      "bytes": 10888,
+      "sha256": "e6f918414eb228fc364f1c8bea68b967a30eb7e8f77b419b8515a9a54f84ee66"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_jobs_w_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_jobs_w_hold.rpt",
+      "bytes": 10830,
+      "sha256": "e78e2d966ee1dac55de4554e9765933166af7bd0c9ec480c5c53015659a4779b"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_jobs_w_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_jobs_w_setup.rpt",
+      "bytes": 10830,
+      "sha256": "21ce173bfa908a501a0b2fb37af5b984b76d6a4e9598bdccf4849be3a1457ed0"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_reset_0_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_reset_0_hold.rpt",
+      "bytes": 4148,
+      "sha256": "d9f1806e67f035957eeb717f2a65fc3970d975ac516c988ab9319ab4c9b1c937"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_reset_0_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_reset_0_setup.rpt",
+      "bytes": 4148,
+      "sha256": "fd8dbaf8c47ab611a7eab00b8e02e7fc2ca9df986d8cdead420c641ec0750314"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_reset_1_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_reset_1_hold.rpt",
+      "bytes": 4148,
+      "sha256": "613586938c2e04bed5e44422537494e29e5a94735338bb07d47d76f77d1416c9"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_reset_1_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_reset_1_setup.rpt",
+      "bytes": 4148,
+      "sha256": "a98db2b45b87cd1902119d44bc4bebc6371e230b26cd593545228d70aed9b7c8"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_r_r_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_r_r_hold.rpt",
+      "bytes": 13813,
+      "sha256": "fb67139302cf061b220cf667b6ab3e1e1f7d72581d85469b91fbf124e3ba76da"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_r_r_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_r_r_setup.rpt",
+      "bytes": 13865,
+      "sha256": "27ce5be42b3236b5b0f6df2f5f9241216af5dd8a0178ac81dccd412c014648be"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_r_w_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_r_w_hold.rpt",
+      "bytes": 13789,
+      "sha256": "98c47630530f040b57087b46881849c6558d5119ff3393d3b7015d57f35e6e47"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_r_w_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_r_w_setup.rpt",
+      "bytes": 13789,
+      "sha256": "328042150e6de8c039f19b523abc5c35e1ac23e58bbbfee034b3a309e4efcdcf"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_style_status_fifo_r_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_style_status_fifo_r_hold.rpt",
+      "bytes": 11680,
+      "sha256": "b9aba1f86932f8c314dda675d1d81d311d81d2f570d255ed2815f8b6137413e9"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_style_status_fifo_r_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_style_status_fifo_r_setup.rpt",
+      "bytes": 11680,
+      "sha256": "8d4445edb117ad64fc302a262db470437a1d22dc7446661c9e4fb569b3b3afa2"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_style_status_fifo_w_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_style_status_fifo_w_hold.rpt",
+      "bytes": 11651,
+      "sha256": "bb068cc4d957fd7e9e549ee83c217239e03f4d850b2204c34bec4d64c3165fbe"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_style_status_fifo_w_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_style_status_fifo_w_setup.rpt",
+      "bytes": 11690,
+      "sha256": "277c542e48c5fbd688fedab36a1cceef79a9eb42ab2a7b9630d671ac4921318e"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_to_core.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_to_core.rpt",
+      "bytes": 1025600,
+      "sha256": "327b2fcba6bb63a80aed05f937b5bef55e4932f34e2b4b051e1d5cf29de36082"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_to_core_cdc.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_to_core_cdc.rpt",
+      "bytes": 93789,
+      "sha256": "986b7e0e4ef2a9f6b0e1fcef5f6e3fb3d6dca5baea589910f08651fb6844849c"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_w_r_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_w_r_hold.rpt",
+      "bytes": 13789,
+      "sha256": "fd90023d5ff63e3dca12df7f6a9ddeab37ee15ced61e747d48266624e3e7c21d"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_w_r_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_w_r_setup.rpt",
+      "bytes": 13789,
+      "sha256": "59c6d4b3bade68edd3fdbb470cc021d4ddd780d1054d50f61668d0e2d69ef29a"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_w_w_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_w_w_hold.rpt",
+      "bytes": 13813,
+      "sha256": "72b5689ebd16f1be59fbe63228b9f8233e98ed4fd06a368ce8522cd75d06c5b0"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.cnn_w_w_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.cnn_w_w_setup.rpt",
+      "bytes": 13865,
+      "sha256": "1399a57a98f05c31da5d01a3138e3e9f1500dda7572cb19821600afa42d04bf5"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.core_to_cnn.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.core_to_cnn.rpt",
+      "bytes": 114869,
+      "sha256": "f1896615d0c17bf315bc32f830eeb85ac65c08e79f8444ed523cfd8292d6200e"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.core_to_cnn_cdc.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.core_to_cnn_cdc.rpt",
+      "bytes": 8758,
+      "sha256": "56d9063e3e1175aaede739aa364bc56237e7361d6e2b6bf93ad73e8be90bcf06"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.hier_util.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.hier_util.rpt",
+      "bytes": 100688,
+      "sha256": "f0cb18c21d2306a41e2e6bc7485dea1c193edf4176c8815cccc0b4b6f6413533"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.hold_fixing.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.hold_fixing.rpt",
+      "bytes": 120,
+      "sha256": "74913c7dd42c1997a27e3518276405a983355f4bec55699dd87db557decfb34f"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.lease_ack_meta_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.lease_ack_meta_hold.rpt",
+      "bytes": 4028,
+      "sha256": "eacdafaca0c444e9e22edc547a9b799df4fa77a782b4f7b6444a6c47cbfe55e3"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.lease_ack_meta_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.lease_ack_meta_setup.rpt",
+      "bytes": 4041,
+      "sha256": "0f405da4d25750acf8f86e2be6b72fa459c180c754c4fb1817771bf4ffca8b1c"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.lease_park_meta_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.lease_park_meta_hold.rpt",
+      "bytes": 4043,
+      "sha256": "09bb8853f4e5d88d0cfcb35bbdb2232f703eff721c5003076c1a45c8ba0fee16"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.lease_park_meta_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.lease_park_meta_setup.rpt",
+      "bytes": 4043,
+      "sha256": "07915d50192b6f0cb88af080544496414c79c01be78d1cfdc087981a32f16ba2"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.map.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.map.rpt",
+      "bytes": 552079,
+      "sha256": "dc8ff83d409fe1c7d6f15d215e3630a699d8f2db33d806721121f6612f38c5ca"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.pinout.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.pinout.rpt",
+      "bytes": 48629,
+      "sha256": "ae3c99b2b224042c3a9e71948ce92bb9fcc6a145930a49406be549ebb1f3e68f"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.place.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.place.rpt",
+      "bytes": 1856,
+      "sha256": "faebe02e54bb708ae783b22eb00897e51df74aac04983cd4509e8c158729af82"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.place.timing.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.place.timing.rpt",
+      "bytes": 1933671,
+      "sha256": "b72685268d564d04fcddf962fb9ddc5c6ecd0b803ec27be69aa230422ea67037"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.pt.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.pt.rpt",
+      "bytes": 57425,
+      "sha256": "1109a69686d767a742d100ca5f93ae124067118102e7c644c391d39fb80419ef"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.pt_timing.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.pt_timing.rpt",
+      "bytes": 19275,
+      "sha256": "dfe5dc9b8aea65013aaf3cbf93e760932ed2017e9a73d95ea56e57f4baa2b52c"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.return_ram_address_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.return_ram_address_hold.rpt",
+      "bytes": 97914,
+      "sha256": "8960db1ab028eaab0e0f5aeee59859312fa63956361ac44dc32eaca255b0c217"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.return_ram_address_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.return_ram_address_setup.rpt",
+      "bytes": 100315,
+      "sha256": "e3edd3f42f11cc9c58562246231db907310ad3e9f5dfa6ad392ba7859f003506"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.return_ram_data_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.return_ram_data_hold.rpt",
+      "bytes": 2068114,
+      "sha256": "18e4a9b74160967ca933dbcf1e7839c7f0c687ac0d9bb978364eb4fe406e4eaa"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.return_ram_data_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.return_ram_data_setup.rpt",
+      "bytes": 2074737,
+      "sha256": "21385d0e2b48be36517952047b4c1cc9d5637d9a0e26c8fce5439e5e701edeec"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.return_ram_write_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.return_ram_write_hold.rpt",
+      "bytes": 650296,
+      "sha256": "53b3e30c66a7aced78836599e65f8da8fba34ff5f21d49c740ef9677103d449e"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.return_ram_write_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.return_ram_write_setup.rpt",
+      "bytes": 803276,
+      "sha256": "ee69b2794facb7a72c539f43daffb5cd0dcb33ab849f0d32cd902922f56957b4"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.route.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.route.rpt",
+      "bytes": 1319,
+      "sha256": "9ea67e113bf5ae3aac9e934e80d8d4cb6ebb3ad89468915c6506239557d6c37e"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.spi_flash_cs_n.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.spi_flash_cs_n.rpt",
+      "bytes": 2979,
+      "sha256": "d7555db805a59c76fdcf0b0a8ecdb04ebdb77d07f465c40baaeb3f6bd2248959"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.spi_flash_mosi.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.spi_flash_mosi.rpt",
+      "bytes": 2979,
+      "sha256": "0a1fa909b555eb6ba1133406305c99bf48b2b1f11090e829e2632117a164ba64"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.spi_flash_sck.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.spi_flash_sck.rpt",
+      "bytes": 2965,
+      "sha256": "12d7143db32ccf7ee4b51c5175fa8b2d9dc0e09e97bbb1f7fcd9f149d00cff0c"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.spi_input.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.spi_input.rpt",
+      "bytes": 3557,
+      "sha256": "de9b30523ffb3c1a8a0ed6ed61bd05c08c3e71527fcc04ca1cfe50a2c9a83b90"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.timing.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.timing.rpt",
+      "bytes": 1825393,
+      "sha256": "e1682c1bbc94938151b441ff0095e907350063a4f218364ba076abd490581c5e"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_capture_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_capture_hold.rpt",
+      "bytes": 5109,
+      "sha256": "0f387713ceefe33a09e84df4241d6a7ce044447a171980df19a708ec06ccaee8"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_capture_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_capture_setup.rpt",
+      "bytes": 5122,
+      "sha256": "50965430747520f3b60896fa0451aafd0ff74fb6ed9855ac2ff49bf20b20d19f"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_csi_byte_1_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_csi_byte_1_hold.rpt",
+      "bytes": 5269,
+      "sha256": "30517238877bfb865b479dadc5dc2798fc4e9adafe72908f4109f38ba2601be0"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_csi_byte_1_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_csi_byte_1_setup.rpt",
+      "bytes": 5282,
+      "sha256": "79d81eb39a06cd64207cbcb5db9e14ad4a6e8ed5390a7f3ee0f29529ed3697ae"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_csi_byte_2_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_csi_byte_2_hold.rpt",
+      "bytes": 5165,
+      "sha256": "9abe88eff2db981a37facdd3a5846c80b73548f898342ce7233b0ec11348bf8b"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_csi_byte_2_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_csi_byte_2_setup.rpt",
+      "bytes": 5178,
+      "sha256": "ac4dfb88f1c1d63efb244e49280003e6dea6afd78af4760aee63cfcb21ede9a2"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_csi_core_1_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_csi_core_1_hold.rpt",
+      "bytes": 5181,
+      "sha256": "1b6ba7a15dce9913ce4cdc23ba3e891192122f07358a276c4d7506eb056fcbdc"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_csi_core_1_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_csi_core_1_setup.rpt",
+      "bytes": 5194,
+      "sha256": "3d38d5ce2f09ba86c0765c15f4dbb62d783fe642edfc5bb1ae157452031ca85e"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_csi_core_2_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_csi_core_2_hold.rpt",
+      "bytes": 5077,
+      "sha256": "05a7fd0b3e3d7b3da7fdff6810ace4c4851955cf6c43a307780a754e76d4c940"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_csi_core_2_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_csi_core_2_setup.rpt",
+      "bytes": 5090,
+      "sha256": "98522f17189c29efca28dcd58e087eb5b3807b73ef5ae2104d97cdf1f6f0504f"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_csi_pixel_1_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_csi_pixel_1_hold.rpt",
+      "bytes": 5288,
+      "sha256": "30ff6c4b72c7316e27ce7a444c9b9e3021897f2cc17fe5dd2d4af92d4b821fc2"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_csi_pixel_1_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_csi_pixel_1_setup.rpt",
+      "bytes": 5301,
+      "sha256": "4ca40610807f3db391158365a90f9aa31e843419cff843c6ab0b93f8bcabf9dd"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_csi_pixel_2_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_csi_pixel_2_hold.rpt",
+      "bytes": 5183,
+      "sha256": "560fc12721e39b6fc68358b10c54eecebb5313b3b847938e23d3d538f8f83e26"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_csi_pixel_2_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_csi_pixel_2_setup.rpt",
+      "bytes": 5196,
+      "sha256": "8054c76273ba91f1e519292fef996f41982224f46de2c78efd941429fd4c13f5"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_diag_bin_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_diag_bin_hold.rpt",
+      "bytes": 5070,
+      "sha256": "b956930f92a7dcad6dfcd66d59a5e367a7c2fa679bc540a7e27f54e48e880ef9"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_diag_bin_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_diag_bin_setup.rpt",
+      "bytes": 5083,
+      "sha256": "09dbb6ae1bae95bed6f796723d6ce5350434aa24f2877aa926765eeb6c1295e8"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_diag_raw_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_diag_raw_hold.rpt",
+      "bytes": 5070,
+      "sha256": "2af295788fcf0fa77789d1740584420f3f6d4b77965592e244700ed416905e01"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_diag_raw_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_diag_raw_setup.rpt",
+      "bytes": 5083,
+      "sha256": "633ac283d818f6e79458457f5fea64db1a1170a1107f4afd36e8cbe02cf2f6c3"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_diag_vs_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_diag_vs_hold.rpt",
+      "bytes": 5070,
+      "sha256": "a87dc8f0ca09c845e66ab4c748a154907cb82629d392117f756aeb0f65a63a83"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_diag_vs_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_diag_vs_setup.rpt",
+      "bytes": 5083,
+      "sha256": "b8b5ae0a5c865a6b0087e1538f73fc0e5316b89a679d175c965782fa6ce319cc"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_flash_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_flash_hold.rpt",
+      "bytes": 5789,
+      "sha256": "b9ca263b9cdfe5e0a6a7960d01b3f8d93d1fa497647f193c5f70512b254c6df6"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_flash_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_flash_setup.rpt",
+      "bytes": 5789,
+      "sha256": "2c69aab00dc2a503481579b9f1e9c913557ec5c7281b7325bb02435b54fa7757"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_layout_bit0_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_layout_bit0_hold.rpt",
+      "bytes": 5361,
+      "sha256": "94ab7ccc9361b8bfa87e66dd8eb54c2d01798ea39deb8f45b4079dd0c8deaa7d"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_layout_bit0_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_layout_bit0_setup.rpt",
+      "bytes": 5374,
+      "sha256": "093c251f5ec4586a9379cc46973b9db36b00b46961202e7655685b046263e7ec"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_layout_bit1_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_layout_bit1_hold.rpt",
+      "bytes": 5361,
+      "sha256": "875f8b23de6de8f43f143e47324c91b6c079c8aea0fd5a1be0798d24b4242648"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_layout_bit1_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_layout_bit1_setup.rpt",
+      "bytes": 5374,
+      "sha256": "89b6ee983ac6c8a2c8ffca593e100a256b677b7942a7f77ec96637e3014ca376"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_mode_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_mode_hold.rpt",
+      "bytes": 5223,
+      "sha256": "89562f05c3c34b62093de21468f866d86a761d5b0cf610d151233f7af6bd305a"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_mode_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_mode_setup.rpt",
+      "bytes": 5236,
+      "sha256": "61060a3ec49e94eb2863b6e66050bed4d0ae2d74809fc9005fede978d5e7f5cf"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_osd_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_osd_hold.rpt",
+      "bytes": 5199,
+      "sha256": "0d833c65c5afd61b522075bc9e3204b1a68fef9cfd6bf41250342ec2cd31f69d"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_osd_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_osd_setup.rpt",
+      "bytes": 5212,
+      "sha256": "122a3fde5d0078e6cf74d69d9da2d63f04c2c01090d55d43e7c9d6451f52da33"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_process_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_process_hold.rpt",
+      "bytes": 5178,
+      "sha256": "ae261af1625dcdccd7cf9208f2a803333b165ff16510306dc527f5ce5fe4e189"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_process_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_process_setup.rpt",
+      "bytes": 5191,
+      "sha256": "8a9cf97f135d6cea06b022e7796d1f4e1af572ab090b107488a029626cca9b8d"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_style_hold.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_style_hold.rpt",
+      "bytes": 5712,
+      "sha256": "2894e17cc4e8d666ef3ed1bbc1a248a7617425cbbb8f25f50c9b3cb963fc55f9"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.ui_style_setup.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.ui_style_setup.rpt",
+      "bytes": 5712,
+      "sha256": "cb65df1b8e867ff0d9d9ebe4f2e44b8e06849089644a6ff1c584edd33dddf2f9"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.video_bus_delay.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.video_bus_delay.rpt",
+      "bytes": 603900,
+      "sha256": "5fca6539892d1e15932798c07070a59bcc3343112614f1d87e65f3931743ee31"
+    },
+    {
+      "path": "evidence/fpga/ArtFlow.video_bus_skew.rpt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ArtFlow.video_bus_skew.rpt",
+      "bytes": 625272,
+      "sha256": "19d66725e97a78ec178b15395bbae71f19baf370e2a44e460ba54415325a5c15"
+    },
+    {
+      "path": "evidence/fpga/audit.tcl",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\audit.tcl",
+      "bytes": 8073,
+      "sha256": "91c1dc957e1a6c8478478a03a1549e6951fd3d1b01c5bbfd4c0eaa59cd28d6e9"
+    },
+    {
+      "path": "evidence/fpga/cnn_cdc_summary.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\cnn_cdc_summary.json",
+      "bytes": 7517,
+      "sha256": "ccf27f0661c52f92c630c5bf451a897677fd5edb00b6f247b3c82e7fce73f92b"
+    },
+    {
+      "path": "evidence/fpga/implementation_source_sha256.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\implementation_source_sha256.json",
+      "bytes": 18606,
+      "sha256": "2be0821dededaefe15bc4270d6c4c15bd0cbbe5cf5c03eab58f6ffc406ef6a81"
+    },
+    {
+      "path": "evidence/fpga/interface_summary.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\interface_summary.json",
+      "bytes": 473,
+      "sha256": "831da412ed4983816d75d3ac42cd3a9bb1bea8df062c5718d6608854b71fdb1a"
+    },
+    {
+      "path": "evidence/fpga/map_summary.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\map_summary.json",
+      "bytes": 467,
+      "sha256": "503118906660067a84de6888f3df4fa766d8317fd5b20d9448f7f88f6af10097"
+    },
+    {
+      "path": "evidence/fpga/normal_sta_summary.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\normal_sta_summary.json",
+      "bytes": 285,
+      "sha256": "3a1303c682d4d2514f313e97bba458c7ad8dde65c5b43ebd2ccda8052d5bc36d"
+    },
+    {
+      "path": "evidence/fpga/pgm_summary.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\pgm_summary.json",
+      "bytes": 466,
+      "sha256": "ef0a7f468cdff0e64d9ea89f84358235977a92ade0d26241685a6cb7f7de45f9"
+    },
+    {
+      "path": "evidence/fpga/pnr_summary.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\pnr_summary.json",
+      "bytes": 521,
+      "sha256": "8ed0ec4bc6651746277adfa6a9f98aec6d4ffa9eda13a125fc2d30e6d06b91aa"
+    },
+    {
+      "path": "evidence/fpga/return_ram_cdc_summary.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\return_ram_cdc_summary.json",
+      "bytes": 6156,
+      "sha256": "4343aa675de0e69bd42d35d43cf2c46b845260a75a064ccd301a22ac56f81348"
+    },
+    {
+      "path": "evidence/fpga/round23t_functional_receipt.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\round23t_functional_receipt.json",
+      "bytes": 28953,
+      "sha256": "5b7506b55e717b303b75f995b953b1279a84d7eeb17faf3055bfd0ef533fe29e"
+    },
+    {
+      "path": "evidence/fpga/round23t_map_analysis.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\round23t_map_analysis.json",
+      "bytes": 157802,
+      "sha256": "2a012b4c8f5f5da4470fef16846ab4fba75dd5e391acb0811a75ea2278bf7d5a"
+    },
+    {
+      "path": "evidence/fpga/sta_tclsh_summary.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\sta_tclsh_summary.json",
+      "bytes": 695,
+      "sha256": "f0c38308a7972655321fcda0292569281f79570141d0ec2d05ee6ab64c26632a"
+    },
+    {
+      "path": "evidence/fpga/stream_io_summary.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\stream_io_summary.json",
+      "bytes": 1852,
+      "sha256": "650845edabe42c95962ab3e7f862427ed12033140345ef706f278cd2f59968d9"
+    },
+    {
+      "path": "evidence/fpga/style_io_cdc_summary.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\style_io_cdc_summary.json",
+      "bytes": 1697,
+      "sha256": "295bc5030e6f450ca5a9cb64ff5dea214fd0194bf86242d940da49e76f6fda1b"
+    },
+    {
+      "path": "evidence/fpga/ui_cdc_summary.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\ui_cdc_summary.json",
+      "bytes": 8575,
+      "sha256": "06112804fab19673196f7168f902095ad99399ff85163f1eb78d2ed185da4e50"
+    },
+    {
+      "path": "evidence/fpga/video_cdc_audit.sdc",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\video_cdc_audit.sdc",
+      "bytes": 37766,
+      "sha256": "6dc1e03b930ce2bf8ba9b44c4d9445e0c35b059233afbb4501be7bc5d3fab594"
+    },
+    {
+      "path": "evidence/fpga/video_cdc_summary.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\evidence\\video_cdc_summary.json",
+      "bytes": 2714,
+      "sha256": "b3c3118ce42599b7fa7fa9ecae79e213bebdafc5bc08ff98aeb3fb48c6297cc3"
+    },
+    {
+      "path": "evidence/fpga_original_manifest.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\manifest.json",
+      "bytes": 42255,
+      "sha256": "0a2e7b3114793c5417b169861e580fac403bdbd2582edd30e3e1b286cf83da6f"
+    },
+    {
+      "path": "fpga/ArtFlow.bit",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\dist\\fpga\\ArtFlow.bit",
+      "bytes": 3340434,
+      "sha256": "7a3a0871530a8fed779fdfe53506fb74abbd6160c50e449252c3aeb67ba1fd30"
+    },
+    {
+      "path": "source/esp_project/esp32/Activate.ps1",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\Activate.ps1",
+      "bytes": 499,
+      "sha256": "ed505ffe193ffe1b897e1e409498126e8c1135ec4b8950e47e755410dfe3400a"
+    },
+    {
+      "path": "source/esp_project/esp32/Build.ps1",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\Build.ps1",
+      "bytes": 429,
+      "sha256": "11c9ff1d4d4154fa2da9b910ba65714da8fa5667146a92667758cd929cf3e1f0"
+    },
+    {
+      "path": "source/esp_project/esp32/CMakeLists.txt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\CMakeLists.txt",
+      "bytes": 161,
+      "sha256": "299a3e20d4dd39d08f09e945aac2d6ee9a7733462a6accdfb519431138d2d025"
+    },
+    {
+      "path": "source/esp_project/esp32/partitions.csv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\partitions.csv",
+      "bytes": 220,
+      "sha256": "4325f43858f07a5166f48878f692375e27c1d0dff381bb032f61f6c6dedb5f27"
+    },
+    {
+      "path": "source/esp_project/esp32/sdkconfig",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\sdkconfig",
+      "bytes": 63383,
+      "sha256": "5c853a17cfdc2440522637b40c6ce370306e57f623ed1b4f1abc4a97ace64ee4"
+    },
+    {
+      "path": "source/esp_project/esp32/sdkconfig.defaults",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\sdkconfig.defaults",
+      "bytes": 1034,
+      "sha256": "ad9209811470351f20e3c89cf1dcef60b2fc97eb475d76230db5ba856f838de5"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/LICENSE",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\LICENSE",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "source/esp_project/esp32/main/CMakeLists.txt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\main\\CMakeLists.txt",
+      "bytes": 415,
+      "sha256": "95ca7df49a3547d7de6f5be31898c9a26f84858f7a78f855005e4a589cb7da5e"
+    },
+    {
+      "path": "source/esp_project/esp32/main/index.html",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\main\\index.html",
+      "bytes": 4176,
+      "sha256": "f0400eb91498deda1c91583d595258422f70a0778f4f98d3d36feb63a7348e72"
+    },
+    {
+      "path": "source/esp_project/esp32/main/main.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\main\\main.c",
+      "bytes": 21347,
+      "sha256": "aa462e05e448ff3080c89eb5adac5fc0344ce4397518f65649afd6aeadbb6213"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/CMakeLists.txt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\CMakeLists.txt",
+      "bytes": 8832,
+      "sha256": "a7ea5102c5ae16b272b8036de2851dbda1ee3f8e9039ba1a0e3255a7e7d683cc"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/README.rst",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\README.rst",
+      "bytes": 391,
+      "sha256": "4f2f1cfbc5f733ee28da3b17030fb86a3415f4ab527626103a48828a7d77d849"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/include/bootloader_clock.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\include\\bootloader_clock.h",
+      "bytes": 490,
+      "sha256": "4fa3b3ac268fa5998d2af27b7d9f0ccc9195969709afeaf00b7b5fafa5e66cbb"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/include/bootloader_common.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\include\\bootloader_common.h",
+      "bytes": 11579,
+      "sha256": "33805383ccbd5b5f0dfe560649942aa9f9e95458d25d138d46912d6f2f372731"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/include/bootloader_mem.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\include\\bootloader_mem.h",
+      "bytes": 237,
+      "sha256": "1b36a71e1d49dd8f755d71f9d505d6690384a9768ecc51d38437abb3c61a598a"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/include/bootloader_memory_utils.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\include\\bootloader_memory_utils.h",
+      "bytes": 7119,
+      "sha256": "99f1f75fcf088b3ddea4849f9b6cc62134f6768d6b9dc029fb7ba05dfa1e6d9e"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/include/bootloader_random.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\include\\bootloader_random.h",
+      "bytes": 1840,
+      "sha256": "27168710f9bc067a988e4cda1b54d3347f2989d14864e0dcbc0d717f04956063"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/include/bootloader_util.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\include\\bootloader_util.h",
+      "bytes": 772,
+      "sha256": "53c7b4a241e3fa55b6e6d45fa56b90bbb4fab7168c20c3501690dc6c73af0d0b"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/include/bootloader_utility_tee.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\include\\bootloader_utility_tee.h",
+      "bytes": 1510,
+      "sha256": "90bb32d202f9ed02b48a560f253928f4e070a1e812d486893c296843ac49f396"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/include/esp_app_format.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\include\\esp_app_format.h",
+      "bytes": 5861,
+      "sha256": "34657b34c7408443186c2d4007edc0c6dc0ca1afc8f7b31e730266c56e249661"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/include/esp_flash_data_types.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\include\\esp_flash_data_types.h",
+      "bytes": 274,
+      "sha256": "df4bffffeda5985df665000b9e76d29fb792c2741cc50871d2680d7b3234eef8"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/include/esp_flash_encrypt.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\include\\esp_flash_encrypt.h",
+      "bytes": 7899,
+      "sha256": "3ecc1f07550f55105d0227d7e833c4497c90913afe1b510f41479f06f05d59b0"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/include/esp_flash_partitions.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\include\\esp_flash_partitions.h",
+      "bytes": 5327,
+      "sha256": "fb6c020402ae7793f1c3aeb14997ffed92bc5841a2fc930630008e6f83783a63"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/include/esp_image_format.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\include\\esp_image_format.h",
+      "bytes": 9281,
+      "sha256": "5c4f045b248d834fc64d6e3ba7bdc79381de1d1b45cb1c529ef104af7e3cefd9"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/include/esp_secure_boot.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\include\\esp_secure_boot.h",
+      "bytes": 16242,
+      "sha256": "fcd23adcbb4ef7f61a1cfa7bae470fd5f5e732504aa85620ef398574aedd828c"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/include/esp_tee_ota_utils.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\include\\esp_tee_ota_utils.h",
+      "bytes": 1784,
+      "sha256": "b08685e03d42cd2002abb6c3804efb36d8ec3951a019f5cd237f916fefdc17ef"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/private_include/bootloader_config.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\private_include\\bootloader_config.h",
+      "bytes": 1060,
+      "sha256": "480292bce0c7eac45fdbe075fecb8f0f54c7f74b4d45a7c04b56a08ed3211288"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/private_include/bootloader_console.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\private_include\\bootloader_console.h",
+      "bytes": 586,
+      "sha256": "d36d39783087a83a0f03e682e2c8edb770e443a07810c9716ba99385da84704f"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/private_include/bootloader_init.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\private_include\\bootloader_init.h",
+      "bytes": 1299,
+      "sha256": "fa62e01c5c2456603e03bed3157edcb2a0cb7641957d05b80b5de3dfabc5fcd3"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/private_include/bootloader_sha.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\private_include\\bootloader_sha.h",
+      "bytes": 1244,
+      "sha256": "bf2312c1c6323087d4154883a98e6d232739579d11b8a9a1151a5c97b395e955"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/private_include/bootloader_signature.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\private_include\\bootloader_signature.h",
+      "bytes": 1227,
+      "sha256": "56249ff0eda4f20ec3c32fd0d221b543de067f2bb7eab065b07d73d3b56640b6"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/private_include/bootloader_soc.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\private_include\\bootloader_soc.h",
+      "bytes": 740,
+      "sha256": "10231f6b2ee9f69a31fbc1466cf6bbe9cc3d8539d5ea3e386041c940dc702417"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/private_include/bootloader_utility.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\private_include\\bootloader_utility.h",
+      "bytes": 5856,
+      "sha256": "913ed73e9d1a9f94d38145dbc18977acc682f78746ad121be72359e11a22fc12"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/bootloader_clock_init.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\bootloader_clock_init.c",
+      "bytes": 10360,
+      "sha256": "0062d5f4531da61910c19bd9aabdeebaced2a1db776c66f8ab90ab4e0f051892"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/bootloader_clock_loader.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\bootloader_clock_loader.c",
+      "bytes": 264,
+      "sha256": "9183380f9b86a9caba3a139cf2fe3539ac1aa4b133b3b98a8f4b4dc3cf74fec7"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/bootloader_common.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\bootloader_common.c",
+      "bytes": 7349,
+      "sha256": "09c09d45514b3ec797c3ee0f1e0b9caad87b62145f2f35242629083fafd49837"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/bootloader_common_loader.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\bootloader_common_loader.c",
+      "bytes": 10645,
+      "sha256": "1676cc0db5043e6bafe8cb18291b853de7d4c5416501c47cd47bf4a5552e59e7"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/bootloader_console.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\bootloader_console.c",
+      "bytes": 5673,
+      "sha256": "4bef39e0235d016ec31295891ac617b0f5b9914d3368bd9c9d34887cb97061ef"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/bootloader_console_loader.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\bootloader_console_loader.c",
+      "bytes": 2606,
+      "sha256": "ece56669cd81253420ac9b35ee44e93f807e828790e7916e103d1d0036055a91"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/bootloader_efuse.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\bootloader_efuse.c",
+      "bytes": 1225,
+      "sha256": "a5325c6a8ec259e41ad7b841f1d3b2453ceca57ed233061babed2fecf35bec50"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/bootloader_init.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\bootloader_init.c",
+      "bytes": 4540,
+      "sha256": "2e5e725a404b7e1c9a2482dc3cb419fc2d61b46c38fbf2eac32ea9c44bff7e96"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/bootloader_mem.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\bootloader_mem.c",
+      "bytes": 1347,
+      "sha256": "42e56744c33d9a17845f9446645e0a921ae18aeccdc5c25ed484f52d65ac025d"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/bootloader_panic.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\bootloader_panic.c",
+      "bytes": 774,
+      "sha256": "7d148cc10ee5e75aec9a90be974971356b4503d317e22d6abd446b318e298767"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/bootloader_random.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\bootloader_random.c",
+      "bytes": 3192,
+      "sha256": "eb710fc31bcde2692061a81d76f4faf3b2358ad5c8ef70e9cc150f7ca7f67508"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/bootloader_random_esp32.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\bootloader_random_esp32.c",
+      "bytes": 5330,
+      "sha256": "c0de56ab57b7061423dcc6e17059fa82cb3186bef7a60b7abc16ae33b5c13024"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/bootloader_random_esp32c2.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\bootloader_random_esp32c2.c",
+      "bytes": 3311,
+      "sha256": "3024976ed49a6660efc332d0114e637d3e78efc830aa0e73b6cb71446d5f1071"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/bootloader_random_esp32c3.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\bootloader_random_esp32c3.c",
+      "bytes": 3300,
+      "sha256": "50331fd993343aca54e7367cff2568a9a3ee88858384fa1b46bb497e4c472b0f"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/bootloader_random_esp32c5.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\bootloader_random_esp32c5.c",
+      "bytes": 2868,
+      "sha256": "b4bb0ec047b12fcff66d6573566ea485b555c89c66c9af31fc7e07aa14f670ee"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/bootloader_random_esp32c6.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\bootloader_random_esp32c6.c",
+      "bytes": 2642,
+      "sha256": "2c583c96196292f19fcd5d0f6b83f08e85120d6d075677dff5520661754fe0b2"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/bootloader_random_esp32c61.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\bootloader_random_esp32c61.c",
+      "bytes": 2712,
+      "sha256": "8b6ad7f7d730bb2bbb3676761f3c952ee50a8688342e1e2f628723a08715c97d"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/bootloader_random_esp32h2.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\bootloader_random_esp32h2.c",
+      "bytes": 2581,
+      "sha256": "0663fe2174dc1cf14db4b43d480ded66d189475a21f1a33f6856edbb359c5f0b"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/bootloader_random_esp32p4.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\bootloader_random_esp32p4.c",
+      "bytes": 2718,
+      "sha256": "82ce1d65a90931bc469fa5c6284b148d2b0e1003b77279f003e1bb44936d57c1"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/bootloader_random_esp32s2.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\bootloader_random_esp32s2.c",
+      "bytes": 3893,
+      "sha256": "b9538aa2d4df138e25150e68fae572ef259d05c3e6cabd0aa64c19742af3253f"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/bootloader_random_esp32s3.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\bootloader_random_esp32s3.c",
+      "bytes": 4670,
+      "sha256": "8a0536dffbe5f7606fd3cde904ca2913472695aee723fc53b6490815b240eb4f"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/bootloader_sha.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\bootloader_sha.c",
+      "bytes": 7247,
+      "sha256": "a1d57568dbc73b04bcd73ab3b0eb58edeec0d554147f08a6fe3f4678d270e6b5"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/bootloader_utility.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\bootloader_utility.c",
+      "bytes": 53583,
+      "sha256": "eaf631c8c64fbfe3978315d2c46b53e3e6255abb83abcbb459056977adf5c812"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/bootloader_utility_tee.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\bootloader_utility_tee.c",
+      "bytes": 10079,
+      "sha256": "f054b7ec5633860a20579a9246ed275256c361a4aa5b07003117ce08c25019eb"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp_image_format.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp_image_format.c",
+      "bytes": 50990,
+      "sha256": "27592efd2dd9b9195a5a122484c64bc2c6e91dc80f85391fe50fe20a67e02e14"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/flash_encrypt.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\flash_encrypt.c",
+      "bytes": 19212,
+      "sha256": "fda247159dc76fa92527b70422ef44fcd99ea7fd0e1bdfc92fe4e884a5cfdcdb"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/flash_partitions.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\flash_partitions.c",
+      "bytes": 3086,
+      "sha256": "25f16aa394cdcee2958433a92afc255f7bbebc315f969af5695914bb665c5efc"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/secure_boot.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\secure_boot.c",
+      "bytes": 17446,
+      "sha256": "da8b3e104ab959368501531801369174aad4131e87b2a7399ecb99acb93b4e57"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/test_apps/.build-test-rules.yml",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\test_apps\\.build-test-rules.yml",
+      "bytes": 260,
+      "sha256": "dc0898050ec6572d494dd191451983cd5a6c205e85ad426d6b26f1eb8e940658"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/test_apps/bootloader_support/CMakeLists.txt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\test_apps\\bootloader_support\\CMakeLists.txt",
+      "bytes": 484,
+      "sha256": "06a5a392d8bc016fce4a81f2f5237bbe7f3dca7660434074b8a8bb7039f4e7a3"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/test_apps/bootloader_support/pytest_bootloader_support.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\test_apps\\bootloader_support\\pytest_bootloader_support.py",
+      "bytes": 818,
+      "sha256": "a13f3e20ace13d4698196994eba5a22a61c7d4926db3d4bec7dcbba062744996"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/test_apps/bootloader_support/README.md",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\test_apps\\bootloader_support\\README.md",
+      "bytes": 306,
+      "sha256": "cf55f167943e227e8532f67d59e6c4407a44e78e7b3a48b84cbd862dd43df3b5"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/test_apps/bootloader_support/sdkconfig.defaults",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\test_apps\\bootloader_support\\sdkconfig.defaults",
+      "bytes": 208,
+      "sha256": "fac1acc4d7f2f39e4121ff80cc5b177fec0f83a079af44a967d7bf330b097c6e"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/test_apps/rtc_custom_section/CMakeLists.txt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\test_apps\\rtc_custom_section\\CMakeLists.txt",
+      "bytes": 484,
+      "sha256": "1b7a3ac0148bca38d7e02edd923c2b5f6bf6f1990186c0d7a3ecb8d479c53b07"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/test_apps/rtc_custom_section/pytest_rtc_mem.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\test_apps\\rtc_custom_section\\pytest_rtc_mem.py",
+      "bytes": 504,
+      "sha256": "a61cacbc6d2bdf9f66063fa82f49506a15ca8fa30e5786dab80c95dd874c2090"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/test_apps/rtc_custom_section/README.md",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\test_apps\\rtc_custom_section\\README.md",
+      "bytes": 238,
+      "sha256": "c06eec1689b7a45df7609b5809d8bfea190af6cedbddf8394a85b7de43f78d61"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/test_apps/rtc_custom_section/sdkconfig.defaults",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\test_apps\\rtc_custom_section\\sdkconfig.defaults",
+      "bytes": 265,
+      "sha256": "8d761ab6d475c59e7f087fad2d29eb1bd1a2a2fa06db99f05ba65e457ccca1e3"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/test_apps/rtc_custom_section/main/CMakeLists.txt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\test_apps\\rtc_custom_section\\main\\CMakeLists.txt",
+      "bytes": 83,
+      "sha256": "de97af9ee449d8079e111bf501c8c2863497de6cb6c4e7c542ab25e9cf504f9b"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/test_apps/rtc_custom_section/main/test_main.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\test_apps\\rtc_custom_section\\main\\test_main.c",
+      "bytes": 857,
+      "sha256": "f949ab478f071ea972e9ffe31c5c6b5e511ce0820efb4f12f29b3f451cbe082c"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/test_apps/bootloader_support/main/CMakeLists.txt",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\test_apps\\bootloader_support\\main\\CMakeLists.txt",
+      "bytes": 423,
+      "sha256": "9ba63ed251cd96d7d0fa34526ef65beca7f25d63e557e0dcfb4e8ffff21b5b5c"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/test_apps/bootloader_support/main/test_app_main.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\test_apps\\bootloader_support\\main\\test_app_main.c",
+      "bytes": 1503,
+      "sha256": "d4cdc9182c12f95b5688994b111ac5e658b104b31cc7a7da60cec3b3d8262204"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/test_apps/bootloader_support/main/test_verify_image.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\test_apps\\bootloader_support\\main\\test_verify_image.c",
+      "bytes": 7321,
+      "sha256": "87e07017a956aea71ef32dfcb4a9788111e3e1c566489ab38ff87f37deb79d84"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32/bootloader_esp32.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32\\bootloader_esp32.c",
+      "bytes": 8936,
+      "sha256": "da683a459ca260c114cbfa4c3aa3328e80270e50fd198eb8e3d9f43d3c4ad04d"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32/bootloader_soc.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32\\bootloader_soc.c",
+      "bytes": 295,
+      "sha256": "f01312d10e48b053b70961f7bd596adc1d6517467f77ee8e356dbb742b29fef1"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32/flash_encryption_secure_features.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32\\flash_encryption_secure_features.c",
+      "bytes": 3474,
+      "sha256": "c06887936b3f9a3bbc2d1d17de60490a322d0abdd004881dd706a5dab3a82d9d"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32/secure_boot_secure_features.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32\\secure_boot_secure_features.c",
+      "bytes": 3303,
+      "sha256": "10bb4c7298f91b02ce29cbf92cb892659a4e105f1fe96324f79493e8f1856ae8"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32c2/bootloader_esp32c2.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32c2\\bootloader_esp32c2.c",
+      "bytes": 4484,
+      "sha256": "7d98173f58402a5f3e4e9e5a673866c9805500ad20e796235fe26c4a2cb735ed"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32c2/bootloader_soc.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32c2\\bootloader_soc.c",
+      "bytes": 629,
+      "sha256": "138fd6193c57a666f327814db33657468c9978ea8e49115d37c0e7241c51b9c8"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32c2/flash_encryption_secure_features.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32c2\\flash_encryption_secure_features.c",
+      "bytes": 1248,
+      "sha256": "68e937a0550756fb6f41423ef210022d83c1b386de45e8f49309512471cec57f"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32c2/secure_boot_secure_features.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32c2\\secure_boot_secure_features.c",
+      "bytes": 2157,
+      "sha256": "c298219c1a452578e9dac3ff3510db064eb5e98948a22f23d98531da95e1f430"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32c3/bootloader_esp32c3.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32c3\\bootloader_esp32c3.c",
+      "bytes": 6089,
+      "sha256": "d0df10924a750ab447f7fb1d86d681eb1477937757e3bdfe1dfaa842029b29d7"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32c3/bootloader_soc.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32c3\\bootloader_soc.c",
+      "bytes": 800,
+      "sha256": "814c099f8f8dd6be555e4693f27ac6f3e629bc349852f6e932fbaebdab79332a"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32c3/flash_encryption_secure_features.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32c3\\flash_encryption_secure_features.c",
+      "bytes": 2164,
+      "sha256": "ef0e2f91a765cbbc378896e6d41ca78ca24274a7304526882dfe6aeffdc6d248"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32c3/secure_boot_secure_features.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32c3\\secure_boot_secure_features.c",
+      "bytes": 2317,
+      "sha256": "8446676eaac0de187f9dcad1191e09f270ee0365d5d60944f5417ee330162587"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32c5/bootloader_esp32c5.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32c5\\bootloader_esp32c5.c",
+      "bytes": 5768,
+      "sha256": "d548f2a75b168a53c637a447eb050568da28ef3ed65c0ab0de7fefb16c422b23"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32c5/bootloader_soc.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32c5\\bootloader_soc.c",
+      "bytes": 1217,
+      "sha256": "9a0265b068a7e7db1fde9894083ab65c83b692d802629cd1dd043e60057bbf42"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32c5/flash_encryption_secure_features.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32c5\\flash_encryption_secure_features.c",
+      "bytes": 3064,
+      "sha256": "de9e28104dd6e8f827d1f4490379dc251f4c196a028897abfbfd94ed26a999d2"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32c5/secure_boot_secure_features.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32c5\\secure_boot_secure_features.c",
+      "bytes": 2430,
+      "sha256": "38fa3483cd9709dca284363f85a1a077a58fd686f8297ef14323c5b05e5f503b"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32c6/bootloader_ecdsa.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32c6\\bootloader_ecdsa.c",
+      "bytes": 1610,
+      "sha256": "1df714de84d32fa0defbf02f6ee811d49a0715c3811d58fb1d14163eec4d5108"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32c6/bootloader_esp32c6.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32c6\\bootloader_esp32c6.c",
+      "bytes": 5538,
+      "sha256": "be435b9f08acbb79db3e525021d0ec62b0a37c0405b4f45bc311d5f1af07a363"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32c6/bootloader_soc.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32c6\\bootloader_soc.c",
+      "bytes": 596,
+      "sha256": "93b874a7ed3db4d368658aa6b6fda3da13e88c6b4434807220a266c0b6a486a3"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32c6/flash_encryption_secure_features.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32c6\\flash_encryption_secure_features.c",
+      "bytes": 2190,
+      "sha256": "e16a74bd1a9c69cf58b568c98cf0f5ce66663d3d3229cea73483f82cc44eb56b"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32c6/secure_boot_secure_features.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32c6\\secure_boot_secure_features.c",
+      "bytes": 2312,
+      "sha256": "da63e47fd766bceae0ce7dc9ac516c202381e9a4553ef7cf2aece2abf322b1a4"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32c61/bootloader_esp32c61.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32c61\\bootloader_esp32c61.c",
+      "bytes": 5451,
+      "sha256": "78af0b6774452a35f5d28223b26055106bd6d94f971d763801a0c632695d758a"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32c61/bootloader_soc.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32c61\\bootloader_soc.c",
+      "bytes": 1175,
+      "sha256": "bf20f7202afd71054ceb89104402a0f99ffc920083ee4916c61e8e69888bc790"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32c61/flash_encryption_secure_features.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32c61\\flash_encryption_secure_features.c",
+      "bytes": 2509,
+      "sha256": "8c3babb940d0478da3ddc5508b78dd6d3e7361db0a8bbe7afe5c84770c53537f"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32c61/secure_boot_secure_features.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32c61\\secure_boot_secure_features.c",
+      "bytes": 2340,
+      "sha256": "968eb3b1987baeb1392543ca549f4c5eb7359ec0d0624bf98c8e006820fdd74e"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32h2/bootloader_esp32h2.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32h2\\bootloader_esp32h2.c",
+      "bytes": 5415,
+      "sha256": "f6a1e1c9f8b908aeba50a24a5cf84da94a902f4ed1275ae96fa29813ebc4cebd"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32h2/bootloader_soc.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32h2\\bootloader_soc.c",
+      "bytes": 555,
+      "sha256": "78dfd4ca357cbf959c8c78925d590f7cb924f67decc6857d9bd2864f855e4eba"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32h2/flash_encryption_secure_features.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32h2\\flash_encryption_secure_features.c",
+      "bytes": 2408,
+      "sha256": "974d302a507578da69393fead6d293f5f85cf1f8a5498f424bed8a2e3be87160"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32h2/secure_boot_secure_features.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32h2\\secure_boot_secure_features.c",
+      "bytes": 2343,
+      "sha256": "f8fa157b3f6d79c7059dc830bc0b4d20c8034bfa0d2477f7ab31a358658a20bc"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32h21/bootloader_esp32h21.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32h21\\bootloader_esp32h21.c",
+      "bytes": 5342,
+      "sha256": "a37a8492bfee15e73ee6111179656b5b1c678ad5ab5ab6e2f171670c9e4d19e6"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32h21/bootloader_soc.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32h21\\bootloader_soc.c",
+      "bytes": 960,
+      "sha256": "7825404aa0aee7c60fa9df9a0d4332e6b0e46fb0dd46317ee883bd55e9bd8db9"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32h21/flash_encryption_secure_features.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32h21\\flash_encryption_secure_features.c",
+      "bytes": 1909,
+      "sha256": "eb9e5a99fbcc306c8225fe771c68489d9ef6341e2ac5418d3e6f42d34fa17bad"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32h21/secure_boot_secure_features.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32h21\\secure_boot_secure_features.c",
+      "bytes": 2317,
+      "sha256": "47518e3ad22609c5fe4488cb8e7e53e02cb0179e320763f6552a4127b8fb34a8"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32h4/bootloader_esp32h4.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32h4\\bootloader_esp32h4.c",
+      "bytes": 6956,
+      "sha256": "00f5c0bc4e63b06a7d11c8eeb3e0d927e8681a102bccc328bf2f4509765e364e"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32h4/bootloader_soc.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32h4\\bootloader_soc.c",
+      "bytes": 658,
+      "sha256": "a14e943c3487a4fc0cb8d793352f9743a7e219229f452f73af117d4b19d97749"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32h4/flash_encryption_secure_features.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32h4\\flash_encryption_secure_features.c",
+      "bytes": 488,
+      "sha256": "2a613eee66d13f23f98ada91117f8df343f107aab4c38c4f62af4efd2293bcf7"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32h4/secure_boot_secure_features.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32h4\\secure_boot_secure_features.c",
+      "bytes": 481,
+      "sha256": "e75c1d6866bc03b8a45eedf0d32d3b1d49ac2b738de0b1ec9fcdd70a869a2650"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32p4/bootloader_esp32p4.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32p4\\bootloader_esp32p4.c",
+      "bytes": 6258,
+      "sha256": "657d0f7ad0ee8db2dba9e9adf8990899ae8963e89eaae021bf80268b305a7224"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32p4/bootloader_soc.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32p4\\bootloader_soc.c",
+      "bytes": 346,
+      "sha256": "7324a7b9522cb0de4aab719a906bbbecc7357d2089a751faac06aa216166d176"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32p4/flash_encryption_secure_features.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32p4\\flash_encryption_secure_features.c",
+      "bytes": 2604,
+      "sha256": "44cbc1e0419925d60394c458e7fbfc19e72b062387f624b9d179508fec051bee"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32p4/secure_boot_secure_features.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32p4\\secure_boot_secure_features.c",
+      "bytes": 2435,
+      "sha256": "b15f87d61eabb655e81c857902a0e3b7f86237ed801a4f5102ec14eacbb7b394"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32s2/bootloader_esp32s2.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32s2\\bootloader_esp32s2.c",
+      "bytes": 6181,
+      "sha256": "6f060cf302ccc4f5ae68093645602980d4eee732f836feee35b6dd512d9fc90d"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32s2/bootloader_soc.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32s2\\bootloader_soc.c",
+      "bytes": 295,
+      "sha256": "f01312d10e48b053b70961f7bd596adc1d6517467f77ee8e356dbb742b29fef1"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32s2/flash_encryption_secure_features.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32s2\\flash_encryption_secure_features.c",
+      "bytes": 2301,
+      "sha256": "4a44a73741c02defbaeddc704a90c49a30f64651f747c8a247e8a1918b60c730"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32s2/secure_boot_secure_features.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32s2\\secure_boot_secure_features.c",
+      "bytes": 2285,
+      "sha256": "efe39a4f037eb228d7823c9c8d4925c583d02017157d3b603506e97816dab372"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32s3/bootloader_esp32s3.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32s3\\bootloader_esp32s3.c",
+      "bytes": 7486,
+      "sha256": "93d3836dd096e50f991ce988b2bb445c3fd6074b0cad7256cc73ee9d8add5c5a"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32s3/bootloader_soc.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32s3\\bootloader_soc.c",
+      "bytes": 800,
+      "sha256": "814c099f8f8dd6be555e4693f27ac6f3e629bc349852f6e932fbaebdab79332a"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32s3/flash_encryption_secure_features.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32s3\\flash_encryption_secure_features.c",
+      "bytes": 2344,
+      "sha256": "ca7d7b7abdca10206a2e37ed29ecad83d33077faae5c0f0cb8f3f194c946d981"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/esp32s3/secure_boot_secure_features.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\esp32s3\\secure_boot_secure_features.c",
+      "bytes": 2318,
+      "sha256": "22a7a1d4cb696981a1b6a65482f9650c43f58ec16d3fdba91735e0ac72b1d8af"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/flash_encryption/flash_encrypt.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\flash_encryption\\flash_encrypt.c",
+      "bytes": 18642,
+      "sha256": "27aa2fa2301e240d6eb9109458d6e9eecd926191aef1779fc19b486b48990bd6"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/secure_boot_v1/secure_boot.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\secure_boot_v1\\secure_boot.c",
+      "bytes": 5968,
+      "sha256": "76f5dcabb5170935d68c9e07f9cb56bab88580336f4aea2384263a68b34384c5"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/secure_boot_v1/secure_boot_signatures_app.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\secure_boot_v1\\secure_boot_signatures_app.c",
+      "bytes": 5058,
+      "sha256": "c2c45fd448c84711bc9586204a35d2dce2fac8c248420d7e3be13da0c8989621"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/secure_boot_v1/secure_boot_signatures_bootloader.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\secure_boot_v1\\secure_boot_signatures_bootloader.c",
+      "bytes": 3310,
+      "sha256": "eb8dbc0cf1303deaa7d3197452e36d82ee65e010decfeb21e18dd828bd2bc597"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/secure_boot_v2/secure_boot.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\secure_boot_v2\\secure_boot.c",
+      "bytes": 16482,
+      "sha256": "283581518e04a4675a56f0d3d04e1bd1817de1fbc24baefca14af0a05bfd4a5d"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/secure_boot_v2/secure_boot_ecdsa_signature.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\secure_boot_v2\\secure_boot_ecdsa_signature.c",
+      "bytes": 4072,
+      "sha256": "8a3b5a2608c60aa05cfd246cc2986740fcc549697e69e0247c0abf2879bb8ce6"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/secure_boot_v2/secure_boot_rsa_signature.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\secure_boot_v2\\secure_boot_rsa_signature.c",
+      "bytes": 3244,
+      "sha256": "eabf99e7619b45703280e69f18dd5cde39008c0f4c7e9620dfada0beea21a459"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/secure_boot_v2/secure_boot_signatures_app.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\secure_boot_v2\\secure_boot_signatures_app.c",
+      "bytes": 15352,
+      "sha256": "3a7993d3304d6dc9fc9a3c321531f4e082ba0d5930173f1e32eac56c0550d914"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/secure_boot_v2/secure_boot_signatures_bootloader.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\secure_boot_v2\\secure_boot_signatures_bootloader.c",
+      "bytes": 9259,
+      "sha256": "0ac95ced08927fea283905551d4f4af5b23b26568089a573fa3441375905f494"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/src/secure_boot_v2/secure_boot_signature_priv.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\src\\secure_boot_v2\\secure_boot_signature_priv.h",
+      "bytes": 510,
+      "sha256": "800f8bb82560a91ddcf1d8245d0235e351c05d4d4cebd4f850cb75cc1ad60301"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/bootloader_flash/include/bootloader_flash.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\bootloader_flash\\include\\bootloader_flash.h",
+      "bytes": 1877,
+      "sha256": "bd9d6c7ad917e137f87dd8cacb8f97d7be23cb155aff14deade2a177cac558d1"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/bootloader_flash/include/bootloader_flash_config.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\bootloader_flash\\include\\bootloader_flash_config.h",
+      "bytes": 2529,
+      "sha256": "2b5aa5309c21e579f88598ba615518dabae5c0c81f2fbb8c5cb2c0d667082b9a"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/bootloader_flash/include/bootloader_flash_override.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\bootloader_flash\\include\\bootloader_flash_override.h",
+      "bytes": 3437,
+      "sha256": "3d31d401d3cf3424c42ee04a96ab82b3915573302bf66c241f0910e0b00d52e8"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/bootloader_flash/include/bootloader_flash_priv.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\bootloader_flash\\include\\bootloader_flash_priv.h",
+      "bytes": 7059,
+      "sha256": "cfd117535075b8fa811fd74b4f5ac8ce3657e670fea8fa00dff0b93f44c0e53f"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/bootloader_flash/include/flash_qio_mode.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\bootloader_flash\\include\\flash_qio_mode.h",
+      "bytes": 647,
+      "sha256": "af2a0d2013b6f76734af50f0dc2ae02a7463e3e8da97743842a435ab134ee992"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\bootloader_flash\\src\\bootloader_flash.c",
+      "bytes": 37366,
+      "sha256": "efe07577fd134f98f3a87ac48d0cae96431dae6fe1bd1113927d0294611c70dc"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\bootloader_flash\\src\\bootloader_flash_config_esp32.c",
+      "bytes": 18441,
+      "sha256": "5bde7e0ae5ca6bc9fdd86e131da76414c02661719f49158c648a5aeb49817d2c"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32c2.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\bootloader_flash\\src\\bootloader_flash_config_esp32c2.c",
+      "bytes": 9795,
+      "sha256": "ff34d059fa8549448bb4e12f87e77d3272d2050df19415246f4b5196bbb888e8"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32c3.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\bootloader_flash\\src\\bootloader_flash_config_esp32c3.c",
+      "bytes": 10590,
+      "sha256": "306ca0bf2e96fafb397f3abda8f5f79e444548163fe1daf2fda247aeb771cc9a"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32c5.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\bootloader_flash\\src\\bootloader_flash_config_esp32c5.c",
+      "bytes": 9971,
+      "sha256": "0c1a2152eb8dd507616b51b1b817d6b60bf91149784456523eee34be5ff3844e"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32c6.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\bootloader_flash\\src\\bootloader_flash_config_esp32c6.c",
+      "bytes": 9039,
+      "sha256": "205ae07146acb70679aefe279585224c3799a2869ea4086cdd7ce629b8fbccfa"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32c61.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\bootloader_flash\\src\\bootloader_flash_config_esp32c61.c",
+      "bytes": 9534,
+      "sha256": "177fffd894e80e474f4c000ccb4c91200b0b4d60475849bf33ec246c15b1ad80"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32h2.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\bootloader_flash\\src\\bootloader_flash_config_esp32h2.c",
+      "bytes": 9177,
+      "sha256": "15d2c8829bbca2e9bcb320c20208b34cb90811a21e852e953b162ab000f7341c"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32h21.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\bootloader_flash\\src\\bootloader_flash_config_esp32h21.c",
+      "bytes": 8774,
+      "sha256": "c46f8c522bd6c557bb13623400bafa4c18256acdd9ba095d2b44540c132f5cdc"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32h4.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\bootloader_flash\\src\\bootloader_flash_config_esp32h4.c",
+      "bytes": 8556,
+      "sha256": "ba6ff81331eab3cf80f7a2a1daa466e63c70cac5bf743aea763673b3ac88d4e0"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32p4.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\bootloader_flash\\src\\bootloader_flash_config_esp32p4.c",
+      "bytes": 9354,
+      "sha256": "691514e447048332bb6a433d309f4b554c2cc0df00b1ed457fd66acda8696d06"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32s2.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\bootloader_flash\\src\\bootloader_flash_config_esp32s2.c",
+      "bytes": 10611,
+      "sha256": "623c7d69c262f9d4e1f355a2f9e325adfddfbd5e25e1c0f45136a8a69d66b9c6"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32s3.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\bootloader_flash\\src\\bootloader_flash_config_esp32s3.c",
+      "bytes": 12053,
+      "sha256": "f968dd6b8f36c069ae9547627b11daff41d1fcfdcde21162b3563947f6697a79"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/bootloader_flash/src/flash_qio_mode.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\bootloader_flash\\src\\flash_qio_mode.c",
+      "bytes": 8730,
+      "sha256": "4831aa6e28e42ebff84f9e68520594d1691b71f3739ac9c667a4a1842e42fcf9"
+    },
+    {
+      "path": "source/esp_project/esp32/bootloader_components/bootloader_support/bootloader_flash/include/esp_private/bootloader_flash_internal.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\esp32\\bootloader_components\\bootloader_support\\bootloader_flash\\include\\esp_private\\bootloader_flash_internal.h",
+      "bytes": 793,
+      "sha256": "e866478c4005f9b10393137a765001b106d3741746e02879b18c50af0d104990"
+    },
+    {
+      "path": "source/esp_project/protocol/afs.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\protocol\\afs.c",
+      "bytes": 15763,
+      "sha256": "1eb1c460fd0993a70f8f87b18089a8664feda6a68c66fbfd2f6feaf84bf97da5"
+    },
+    {
+      "path": "source/esp_project/protocol/afs.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\protocol\\afs.h",
+      "bytes": 1399,
+      "sha256": "7a1f5e19214e195d7baaf859ab5dfa46fde8e7e9d0a7f9a47a237933c6155510"
+    },
+    {
+      "path": "source/esp_project/protocol/afs.js",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\protocol\\afs.js",
+      "bytes": 985,
+      "sha256": "ccf0268c09f325c555fc900cf0d791dad88df90cd5c6c7c8899002f9967f24b5"
+    },
+    {
+      "path": "source/esp_project/protocol/afs_generation.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\protocol\\afs_generation.h",
+      "bytes": 709,
+      "sha256": "8e111c270e5bda808792885ce024b564e8b3b44ca654ea3838f07607df1fc251"
+    },
+    {
+      "path": "source/esp_project/protocol/afs_mailbox.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\protocol\\afs_mailbox.h",
+      "bytes": 526,
+      "sha256": "74f18557769717ff554567386251b7b1895bc62f496db7be59001cba22d852ef"
+    },
+    {
+      "path": "source/esp_project/protocol/afs_pipeline.h",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\protocol\\afs_pipeline.h",
+      "bytes": 1019,
+      "sha256": "dab1c3da66dfe8078112f33dadce99c7e24efeecddfc42fb25069e92f6019a03"
+    },
+    {
+      "path": "source/esp_project/tests/browser_test.js",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\tests\\browser_test.js",
+      "bytes": 3153,
+      "sha256": "4abefed2d2faac2185c97e6d45ccb35114e10df42a2b14f3c916b3b10a9cd28e"
+    },
+    {
+      "path": "source/esp_project/tests/cdc_audit_test.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\tests\\cdc_audit_test.py",
+      "bytes": 1448,
+      "sha256": "9b5d78091a250ad6b0bcacb2bc58cdb06ba2b24cda1613bf4c8f21e5c6425af0"
+    },
+    {
+      "path": "source/esp_project/tests/check_rtl_vectors.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\tests\\check_rtl_vectors.py",
+      "bytes": 730,
+      "sha256": "64362f16681ca29c968ea9a00026f1f1d32d0d523d9854fb8335b0a3e1515beb"
+    },
+    {
+      "path": "source/esp_project/tests/diagnostics_test.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\tests\\diagnostics_test.c",
+      "bytes": 2353,
+      "sha256": "91eba22d3e467162fcccfb9b53fb1ca22ac4027ad78a374781fb012d13380843"
+    },
+    {
+      "path": "source/esp_project/tests/generation_test.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\tests\\generation_test.c",
+      "bytes": 755,
+      "sha256": "61630c69dce67fb186adfe136e3aa2def802f6afea76bc5286c692e57133f608"
+    },
+    {
+      "path": "source/esp_project/tests/mailbox_test.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\tests\\mailbox_test.c",
+      "bytes": 773,
+      "sha256": "aa03b7714c82b89222e50fe1721656843500b0d81dd02e83eaec8bb8185358b5"
+    },
+    {
+      "path": "source/esp_project/tests/protocol_runner.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\tests\\protocol_runner.c",
+      "bytes": 768,
+      "sha256": "d71602310e764ef0659e8fee9615ed3492ed325a46d6888f249efdf7bca0e414"
+    },
+    {
+      "path": "source/esp_project/tests/protocol_test.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\tests\\protocol_test.py",
+      "bytes": 2127,
+      "sha256": "b7d13ca04a595f0c595f5cd14f2044338e9a91c472c45819524fbfe72a28856f"
+    },
+    {
+      "path": "source/esp_project/tests/run_diagnostics.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\tests\\run_diagnostics.py",
+      "bytes": 1483,
+      "sha256": "bdf4e2f3b23a4a9679beefdd7f58f25632c000ef4267a7708d16eefadb54cb62"
+    },
+    {
+      "path": "source/esp_project/tests/run_websocket.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\tests\\run_websocket.py",
+      "bytes": 11045,
+      "sha256": "e72ebdcdee9a78e89e63edfdeda8f5fe1a704f2cccfd5913c489d8d0288817ed"
+    },
+    {
+      "path": "source/esp_project/tests/ws_host_bridge.c",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\tests\\ws_host_bridge.c",
+      "bytes": 17544,
+      "sha256": "dedf57f427d00111893134c492d21712b9cecbd12f7fc67cc9b41d96fde97ffa"
+    },
+    {
+      "path": "source/esp_project/scripts/package_esp.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\scripts\\package_esp.py",
+      "bytes": 4191,
+      "sha256": "c1985e59f69252cc7f17ebcdf10f82c76547d4304a0cba7e76bdc1aa20ab0378"
+    },
+    {
+      "path": "source/esp_project/scripts/package_websocket.py",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\scripts\\package_websocket.py",
+      "bytes": 11483,
+      "sha256": "a170cfe945610c9d9ef18f8a82495d23dc9aa4135d7bfb7bcd33b92bb65bc5c7"
+    },
+    {
+      "path": "esp32/flash_args",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\dist\\esp32\\flash_args",
+      "bytes": 161,
+      "sha256": "d380a972513b8f17a312fa5f80ad8e311cb0ecf02ac8d78337ab09c615941a02"
+    },
+    {
+      "path": "esp32/flasher_args.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\dist\\esp32\\flasher_args.json",
+      "bytes": 955,
+      "sha256": "ddc4951e64638e04635463ce0fd01d297f19d01014dd76dff35c296abdf266a0"
+    },
+    {
+      "path": "esp32/partitions.csv",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\dist\\esp32\\partitions.csv",
+      "bytes": 220,
+      "sha256": "4325f43858f07a5166f48878f692375e27c1d0dff381bb032f61f6c6dedb5f27"
+    },
+    {
+      "path": "esp32/sdkconfig",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\dist\\esp32\\sdkconfig",
+      "bytes": 63383,
+      "sha256": "5c853a17cfdc2440522637b40c6ce370306e57f623ed1b4f1abc4a97ace64ee4"
+    },
+    {
+      "path": "esp32/sdkconfig.defaults",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\dist\\esp32\\sdkconfig.defaults",
+      "bytes": 1034,
+      "sha256": "ad9209811470351f20e3c89cf1dcef60b2fc97eb475d76230db5ba856f838de5"
+    },
+    {
+      "path": "esp32/bootloader/bootloader.bin",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\dist\\esp32\\bootloader\\bootloader.bin",
+      "bytes": 20848,
+      "sha256": "110f4cc2898397f7c514fb18a2fc181795d3eb5bdb3b126c7e13921ca37606ed"
+    },
+    {
+      "path": "esp32/partition_table/partition-table.bin",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\dist\\esp32\\partition_table\\partition-table.bin",
+      "bytes": 3072,
+      "sha256": "5e71c3c890e04714daa03b21a0d23953a2dadf9fdf15eec02b886f7b6e9f8c81"
+    },
+    {
+      "path": "evidence/esp32/websocket-integration.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\logs\\websocket-integration.json",
+      "bytes": 3129,
+      "sha256": "7ec5a03fd66d5e7f9cd6ea59efe9a37eb0159ab2da244fefdab9968e72f83137"
+    },
+    {
+      "path": "evidence/esp32/browser-tests.log",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\logs\\browser-tests.log",
+      "bytes": 200,
+      "sha256": "acef534571a1d6e919bdbb07f3b1f57aac60a68f6236bbe6315e6a73209ade39"
+    },
+    {
+      "path": "evidence/esp32/diagnostics-tests.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\logs\\diagnostics-tests.json",
+      "bytes": 1083,
+      "sha256": "1e55cfa3a897bf471bac297b2dae37f01f3b811a654bdefa4b61e9ffa7a86fa7"
+    },
+    {
+      "path": "evidence/esp32/httpd-source-review.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_websocket_20261026\\logs\\httpd-source-review.json",
+      "bytes": 1135,
+      "sha256": "578494ba08e83ff7de3773dd2c567f75c86b95bf9805167591f086c2ae5096ef"
+    },
+    {
+      "path": "source/fpga_project/fpga/doc/styles15/source_manifest.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\doc\\styles15\\source_manifest.json",
+      "bytes": 18606,
+      "sha256": "2be0821dededaefe15bc4270d6c4c15bd0cbbe5cf5c03eab58f6ffc406ef6a81"
+    },
+    {
+      "path": "source/fpga_project/fpga/doc/styles15/inherited/round23t_final_closure.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\doc\\styles15\\inherited\\round23t_final_closure.json",
+      "bytes": 2540,
+      "sha256": "32b5ba84bae95dc5be66270f0fe106769e79ee5c262f7538719aacee2299074b"
+    },
+    {
+      "path": "source/fpga_project/fpga/doc/styles15/inherited/round23t_functional_receipt.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\doc\\styles15\\inherited\\round23t_functional_receipt.json",
+      "bytes": 21629,
+      "sha256": "f7b5961863ba66435d68cdca4d5f99810b377d4a5e5bbb76ae8e52a6d20af631"
+    },
+    {
+      "path": "source/fpga_project/fpga/doc/styles15/inherited/styles15_final_receipt.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\doc\\styles15\\inherited\\styles15_final_receipt.json",
+      "bytes": 18079,
+      "sha256": "886fee3081eeea723080b4c290bbba0959462c6af4e8a17c387aa28832f62488"
+    },
+    {
+      "path": "source/fpga_project/fpga/tools/styles15_tests.json",
+      "source": "D:\\work\\FPGA\\ArtFlow\\Process\\wifi_stream_20261025\\fpga\\tools\\styles15_tests.json",
+      "bytes": 3069,
+      "sha256": "8d43e4c7a16ab304eeef6011b24bd5cea45a132cf79df2c887b9fd55159fad50"
+    }
+  ],
+  "adapted_after_copy": [
+    "source/esp_project/tests/run_diagnostics.py (legacy reference path only)"
+  ]
+}

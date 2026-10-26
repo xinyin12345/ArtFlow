@@ -306,3 +306,9 @@ set_false_path -from [get_ports {key_style_n}] -to [get_pins {u_video_pipe/u_acc
 # invent a phase-locked clock for this transaction-gated SCK signal.
 set_false_path -from [get_ports {flash_miso}] -to [get_pins {u_video_pipe/u_accel_dma/styles.banks/reader/miso_meta~FF|D}]
 set_max_delay 10.000 -to [get_ports {flash_cs_n flash_sck flash_mosi}]
+
+# AFS stream: asynchronous READY and delayed-sampled MISO first stages only.
+# Budget input routing separately; normal timing still checks stage1 -> stage2.
+set_false_path -from [get_ports {stream_ready}] -to [get_pins {u_stream/packet/ready_meta~FF|D}]
+set_false_path -from [get_ports {stream_miso}] -to [get_pins {u_stream/packet/miso_meta~FF|D}]
+set_max_delay 10.000 -to [get_ports {stream_cs_n stream_sclk stream_mosi}]

@@ -14,6 +14,8 @@ module cam_fb_pipe_v09
 )
 (
     // ------------------------------------------------ 配置（v05 起改为 RISC-V 寄存器）
+    output stream_tick,stream_bad,stream_valid,
+    output [9:0] stream_x,stream_y,output [23:0] stream_rgb,output [31:0] stream_epoch,
     input key_style_n,flash_miso,output flash_cs_n,flash_sck,flash_mosi,
     input      [1:0]    requested_layout,
     output     [1:0]    active_layout,
@@ -393,6 +395,9 @@ rgb_frame_store_v07 #(
     .INTERACT(1),.WIDTH(MAX_OUT_WIDTH), .HEIGHT(MAX_IN_HEIGHT/2), .DUAL_WINDOW(DUAL_WINDOW),
     .ADDR_WIDTH(AXI_ADDR_WIDTH), .START_ADDR(START_ADDR), .BANK_BYTES(BANK_BYTES)
 ) u_store (
+    .stream_tick(stream_tick),.stream_bad(stream_bad),.stream_valid(stream_valid),
+    .stream_x(stream_x),.stream_y(stream_y),.stream_rgb(stream_rgb),.stream_epoch(stream_epoch),
+
     .freeze_valid(freeze_valid),.freeze_original_bank(freeze_original_bank),.retire_ack(retire_ack),
     .requested_layout(requested_layout),.active_layout(active_layout),
     .source_locked(source_locked),.source_bank(source_bank),

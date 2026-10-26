@@ -1,0 +1,11 @@
+/private/
+*.zip
+*.elf
+*.map
+**/build-xmc/
+**/wifi_credentials.h
+**/WIFI_LOCAL.txt
+/esp32/artflow_wifi_stream.bin
+
+/source/esp_project/logs/
+/source/fpga_project/logs/

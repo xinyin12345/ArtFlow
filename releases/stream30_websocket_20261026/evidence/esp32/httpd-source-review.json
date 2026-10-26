@@ -1,0 +1,20 @@
+{
+  "idf": "5.5.6",
+  "source_sha256": {
+    "httpd_uri.c": "f336daea98adb1dfc32c31ce45e05749a48737f50ecb8b7ae792a08b4973d093",
+    "httpd_ws.c": "154140abc17f7699d43d9c0bb83e5bb8aec7ed7f0e00dc71568318c03d345585",
+    "httpd_sess.c": "7b15704f9a1894506033566e50f84d4e4c9852be242b380f56548b14f8478016",
+    "httpd_txrx.c": "438b9e1d357e8ab3b2e353bacea2d84352a65dd45633070aadfde5d2bd9a074c"
+  },
+  "root_cause": "httpd_uri.c:339-365 successful WS upgrade calls optional post-handshake callback then returns without invoking uri->handler; previous app only registered ws_fd in handler GET branch",
+  "fix": "Enable official post-handshake callback; register only after valid WS session; close callback unregisters and closes socket",
+  "additional_send_evidence": "httpd_ws.c:411-466 calls session send_fn once for header and once for payload; send override completes short positive writes before successful return",
+  "config_delta": {
+    "CONFIG_HTTPD_WS_POST_HANDSHAKE_CB_SUPPORT": [
+      null,
+      "y"
+    ]
+  },
+  "pipeline_callbacks_queue_helper_byte_identical": true,
+  "protocol_all_files_identical": true
+}

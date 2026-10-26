@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "returncode": 0,
+  "seconds": 2.743048600037582,
+  "command": [
+    "D:\\soft\\Efinity\\2026.1\\python311\\bin\\python.exe",
+    "D:\\soft\\Efinity\\2026.1\\scripts\\efx_run.py",
+    "ArtFlow.xml",
+    "--flow",
+    "pgm",
+    "--output_dir",
+    "D:/work/FPGA/ArtFlow/Process/wifi_stream_20261025/fpga/work/styles15/out",
+    "--work_dir",
+    "D:/work/FPGA/ArtFlow/Process/wifi_stream_20261025/fpga/work/styles15/build"
+  ]
+}

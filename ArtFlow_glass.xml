@@ -6,6 +6,8 @@
     </efx:device_info>
     <efx:design_info def_veri_version="sv_09" def_vhdl_version="vhdl_2008" unified_flow="false" partition_interface_allowed_off_perimeter="true">
         <efx:top_module name="ArtFlow_top" />
+        <efx:design_file name="rtl/stream/afs_spi_packet.sv" version="default" library="default" />
+        <efx:design_file name="rtl/stream/afs_stream_tx.sv" version="default" library="default" />
         <efx:design_file name="candidates/round11p_packed_pointers/artflow_pair_reader.sv" version="default" library="default" />
         <efx:design_file name="rtl/artflow_pair_normalize.sv" version="default" library="default" />
         <efx:design_file name="rtl/artflow_interact_blend.sv" version="default" library="default" />

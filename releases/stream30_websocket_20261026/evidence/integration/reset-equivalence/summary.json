@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "source_sha256": {
+    "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\sim\\afs_spi_packet_reset_ref.sv": "c1205ba8a2acb85a70f6c0ff4e48099406498970e5943c8b6615db4d0c02cee5",
+    "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\rtl\\stream\\afs_spi_packet.sv": "811e9f9e03808d2db9b4a4162145c111bc2ae4e5c35b40a5448ec749b7a808df",
+    "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\sim\\tb_afs_reset_equivalence.sv": "718f33e1b0fdd5cecc7638a85c2b93b1157002d53630028ac7ecfe5853f33fa2"
+  },
+  "evidence": [
+    "# PASS 50 asynchronous resets including READY wait and CRC tail, 11 valid full packets: control/wire/status cycle equivalence"
+  ],
+  "scope": "Simulation cycle equivalence across 50 asynchronous reset positions including READY wait and CRC tail; not exhaustive formal proof."
+}

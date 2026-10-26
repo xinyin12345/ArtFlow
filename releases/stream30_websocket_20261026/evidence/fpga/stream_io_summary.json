@@ -1,0 +1,57 @@
+{
+  "status": "PASS_CONDITIONAL_EXTERNAL_BUDGET",
+  "routes_ns": {
+    "stream_ready": 0.802,
+    "stream_miso": 0.898,
+    "ready_sync": 0.319,
+    "miso_sync": 0.319,
+    "stream_sclk": 1.674,
+    "stream_mosi": 1.539,
+    "stream_cs_n": 2.581
+  },
+  "path_evidence": {
+    "stream_ready": {
+      "start": "stream_ready",
+      "end": "u_stream/packet/ready_meta~FF|D",
+      "sha256": "be89bafe13af660d601b05179c69f634eac180eb1f58451f5b5e55f5074122b3"
+    },
+    "stream_miso": {
+      "start": "stream_miso",
+      "end": "u_stream/packet/miso_meta~FF|D",
+      "sha256": "050e997bc4a56567bc633ba0a6d2191036c92cb5249d4a7c4e15843b27ea1d51"
+    },
+    "ready_sync": {
+      "start": "u_stream/packet/ready_meta~FF|CLK",
+      "end": "u_stream/packet/ready_sync~FF|D",
+      "sha256": "0e995d36cc25d071570d26bb3dc8aceecee0cafcf2c1e578c31600ea052b84c7"
+    },
+    "miso_sync": {
+      "start": "u_stream/packet/miso_meta~FF|CLK",
+      "end": "u_stream/packet/miso_sync~FF|D",
+      "sha256": "b882b1d42d0f87a46333f1462e401aae907c285e8f7b383168baec2170b14fc5"
+    },
+    "stream_sclk": {
+      "start": "stream_sclk~FF|CLK",
+      "end": "stream_sclk",
+      "sha256": "3482ee67531bc1f8efa130d91ea998b42ec2393a016507ef990f8aa31149c310"
+    },
+    "stream_mosi": {
+      "start": "stream_mosi~FF|CLK",
+      "end": "stream_mosi",
+      "sha256": "aacf2b9c39d7de4ac2aadcf92da89b270352940f95913eecf8cab622478795c7"
+    },
+    "stream_cs_n": {
+      "start": "stream_cs_n_2~FF|CLK",
+      "end": "stream_cs_n",
+      "sha256": "f034cc852b019b1934740425659ac0804cf10e3a89a20c84aaede4e658d0ba79"
+    }
+  },
+  "external_assumptions": {
+    "wire_ns": 4,
+    "esp_launch_ns": 25,
+    "setup_margin_ns": 2
+  },
+  "round_trip_ns": 33.572,
+  "available_ns": 53.872053872053876,
+  "hardware_tested": false
+}

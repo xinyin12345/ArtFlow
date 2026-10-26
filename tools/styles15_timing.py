@@ -13,3 +13,4 @@ def parse_timing(body):
                 raise ValueError('Missing active clock '+clk)
         groups[name]=min(float(r[3]) for r in rows)
     return groups
+
