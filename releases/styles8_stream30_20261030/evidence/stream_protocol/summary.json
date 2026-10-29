@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "cases": {
+    "valid": "PASS C receiver: 1 complete, 0 rejected, 0 diagnostics",
+    "bad_crc": "PASS C receiver: 0 complete, 29 rejected, 0 diagnostics",
+    "lost_chunk": "PASS C receiver: 0 complete, 28 rejected, 0 diagnostics",
+    "reordered": "PASS C receiver: 0 complete, 29 rejected, 0 diagnostics",
+    "cancel": "PASS C receiver: 0 complete, 28 rejected, 0 diagnostics",
+    "sender_reset": "PASS C receiver: 0 complete, 26 rejected, 0 diagnostics",
+    "stale_session": "PASS C receiver: 0 complete, 31 rejected, 0 diagnostics",
+    "wrong_frame_crc": "PASS C receiver: 0 complete, 1 rejected, 0 diagnostics",
+    "truncated_frame": "PASS C receiver: 0 complete, 0 rejected, 0 diagnostics",
+    "recovery_after_error": "PASS C receiver: 1 complete, 1 rejected, 0 diagnostics",
+    "diagnostic": "PASS C receiver: 0 complete, 0 rejected, 1 diagnostics",
+    "duplicate_chunk": "PASS C receiver: 0 complete, 30 rejected, 0 diagnostics"
+  },
+  "hardware_tested": false
+}

@@ -2,7 +2,7 @@ from pathlib import Path
 import json,re,hashlib
 from check_round23t_project import verify as implementation_sources,SNAP
 from styles15_timing import parse_timing
-r=Path(__file__).resolve().parents[1];o=r/'work/styles15/out'
+r=Path(__file__).resolve().parents[1];o=r/'work/styles8/out'
 assert implementation_sources()==json.loads(SNAP.read_text())
 assert json.loads((o.parent/'pnr_summary.json').read_text())['status']=='PASS'
 p=o/'ArtFlow.timing.rpt';t=p.read_text();assert 'Preliminary' not in t,'Final routed timing report required';slack=parse_timing(t)

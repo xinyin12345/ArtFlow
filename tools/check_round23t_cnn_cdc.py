@@ -4,22 +4,22 @@ import hashlib,json,re,sys
 R=Path(__file__).resolve().parents[1]
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def prepare():
-    (R/'work/styles15/cnn_cdc_summary.json').write_text('{"status":"RUNNING"}\n')
+    (R/'work/styles8/cnn_cdc_summary.json').write_text('{"status":"RUNNING"}\n')
     s=(R/'ArtFlow.sdc').read_text()
     lines=re.findall(r'(?m)^set_clock_groups[^\r\n]*',s)
     assert len(lines)==1
     s=s.replace(lines[0],'# Clock groups omitted ONLY for the CNN CDC route audit')
-    (R/'work/styles15/cnn_cdc_audit.sdc').write_text(s)
+    (R/'work/styles8/cnn_cdc_audit.sdc').write_text(s)
 def check():
     from check_round23t_project import verify as implementation_sources
-    snap=R/'work/styles15/implementation_source_sha256.json'
+    snap=R/'work/styles8/implementation_source_sha256.json'
     assert implementation_sources()==json.loads(snap.read_text()),'Implementation inputs changed'
     paths=['ArtFlow.sdc','rtl/accel/artflow_cnn_cdc_fifo.v','candidates/round15_return_ram/artflow_cnn_accel.v',
-           'tools/check_round23t_cnn_cdc.py','tools/check_cnn_cdc.tcl','tools/check_al_lease_cdc.tcl','tools/build_styles15.py',
-           'work/styles15/implementation_source_sha256.json','work/styles15/cnn_cdc_audit.sdc','work/styles15/cnn_cdc.log',
-           'work/styles15/out/ArtFlow.vdb','work/styles15/out/ArtFlow.place','work/styles15/out/ArtFlow.troutingtraces']
+           'tools/check_round23t_cnn_cdc.py','tools/check_cnn_cdc.tcl','tools/check_al_lease_cdc.tcl','tools/build_styles8.py',
+           'work/styles8/implementation_source_sha256.json','work/styles8/cnn_cdc_audit.sdc','work/styles8/cnn_cdc.log',
+           'work/styles8/out/ArtFlow.vdb','work/styles8/out/ArtFlow.place','work/styles8/out/ArtFlow.troutingtraces']
     def report(name):
-        p=R/('work/styles15/out/ArtFlow.'+name+'.rpt')
+        p=R/('work/styles8/out/ArtFlow.'+name+'.rpt')
         assert p.stat().st_mtime_ns>snap.stat().st_mtime_ns,'Stale report: '+name
         paths.append(p.relative_to(R).as_posix());return p.read_text()
     def detail(s):
@@ -33,7 +33,7 @@ def check():
     prefix='u_video_pipe/u_accel_dma/'
     sizes=dict(jobs=2,events=2,ar=2,aw=2,w=3,r=3,b=2,style_status_fifo=2)
     meta={prefix+f'{f}/{d}gray_meta[{i}]~FF|D' for f,a in sizes.items() for d in 'wr' for i in range(a+1)}
-    log=(R/'work/styles15/cnn_cdc.log').read_text(encoding='utf-8')
+    log=(R/'work/styles8/cnn_cdc.log').read_text(encoding='utf-8')
     assert len(re.findall(r'CNN_CDC_SYNC \S+ count=[34]',log))==32,'Missing synchronizer inventory'
     assert not re.search(r'ERROR|WARNING|Failed to run',log.replace('WARNING: cannot find correct IV value',''))
     sync_count=0
@@ -110,7 +110,7 @@ def check():
                 crossing_groups=crossings,gray_delay_budget_ns=4.5,payload_delay_budget_ns=8,
                 note='Clock-group-free route audit; FIFO held payload is a reviewed multi-bit CDC, not independent bit synchronizers',
                 sha256={n:sha(R/n) for n in paths})
-    (R/'work/styles15/cnn_cdc_summary.json').write_text(json.dumps(result,indent=2)+'\n')
+    (R/'work/styles8/cnn_cdc_summary.json').write_text(json.dumps(result,indent=2)+'\n')
     print('CNN CDC PASS:',crossings,'Gray bits',len(meta),'timed synchronizer paths',sync_count)
 if __name__=='__main__':
     {'prepare':prepare,'check':check}[sys.argv[1]]()

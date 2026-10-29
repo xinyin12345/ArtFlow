@@ -1,0 +1,79 @@
+{
+  "status": "PASS",
+  "buses": [
+    {
+      "name": "layout_meta",
+      "endpoints": 2,
+      "budget_ns": 2.5,
+      "slow_comparisons": 1,
+      "skew_ns": 0.25,
+      "slack_ns": 2.25,
+      "max_relative_delay_ns": 0.702,
+      "max_data_delay_ns": 0.692
+    },
+    {
+      "name": "count_meta",
+      "endpoints": 32,
+      "budget_ns": 2.5,
+      "slow_comparisons": 31,
+      "skew_ns": 0.26,
+      "slack_ns": 2.24,
+      "max_relative_delay_ns": 0.569,
+      "max_data_delay_ns": 0.558
+    },
+    {
+      "name": "epoch_meta",
+      "endpoints": 32,
+      "budget_ns": 2.5,
+      "slow_comparisons": 31,
+      "skew_ns": 0.359,
+      "slack_ns": 2.141,
+      "max_relative_delay_ns": 0.655,
+      "max_data_delay_ns": 0.645
+    },
+    {
+      "name": "gain_mailbox",
+      "endpoints": 48,
+      "budget_ns": 20.0,
+      "slow_comparisons": 47,
+      "skew_ns": 1.134,
+      "slack_ns": 18.866,
+      "max_relative_delay_ns": 1.416,
+      "max_data_delay_ns": 1.421
+    }
+  ],
+  "endpoints": [
+    2,
+    32,
+    32,
+    48
+  ],
+  "skew_ns": [
+    0.25,
+    0.26,
+    0.359,
+    1.134
+  ],
+  "slack_ns": [
+    2.25,
+    2.24,
+    2.141,
+    18.866
+  ],
+  "kind": "post-route audit with clock groups omitted",
+  "sha256": {
+    "ArtFlow.sdc": "12656e6eae9ab3e6834ba72f6673d2b2c6e2baa8771ef5235a4925e8f73b28dc",
+    "rtl/video/rgb_frame_store_v07.v": "d5161248852067422c5c6616d1c0fb94ce152aef516854732e24e8d227c10e71",
+    "rtl/control/artflow_control.v": "87650e9d2d16df63b892ba8a3629720fbd6b9620e5fc7b2092c6cddb23a547cb",
+    "rtl/ArtFlow_top.v": "519ee1a697b3ecb9ccf43d8a0d301167cb0b3bab0b33453791421d0ef0378b59",
+    "tools/check_round23t_video_cdc.py": "6ffc0ab58ca6d4a66f8bf473efc792c9df557030506005001d1a8a3893e0adbe",
+    "tools/check_video_cdc.tcl": "267fd2cb567cb61c3337b8809e839fbb3baabccd1306ef2fe7c7e845e2096889",
+    "work/styles8/video_cdc_audit.sdc": "6dc1e03b930ce2bf8ba9b44c4d9445e0c35b059233afbb4501be7bc5d3fab594",
+    "work/styles8/out/ArtFlow.map.v": "dfb89f27902fc449e252c77ce2421d8c190854d5a273df6e5dde0e294e4e52d5",
+    "work/styles8/out/ArtFlow.vdb": "16b6b9ac7718fe54c125bf104619bc45574f57d64d90370c6389d661d2004ea2",
+    "work/styles8/out/ArtFlow.place": "24dea8ccf15ce93f7057ced7411471e0c5abc2020e82896efbfacf2ceadc076b",
+    "work/styles8/out/ArtFlow.troutingtraces": "500da61458cb5cbe4a80060ea108f50ce64500403e6916b94aa5dc1192cf68ae",
+    "work/styles8/out/ArtFlow.video_bus_skew.rpt": "9e3d871c88e595dc6fb1393147a2754b1d27d6d26f4d61d2dc092ed0086fd249",
+    "work/styles8/out/ArtFlow.video_bus_delay.rpt": "621cca9f2c8055974b3ea8b02a280918aaf252923349e698690fa979b993a114"
+  }
+}

@@ -1,3 +1,9 @@
+# Current default: eight styles, 30 Hz HDMI and ESP32 streaming
+
+See README.md and doc/styles8. Everything below is historical.
+
+---
+
 # Current default: fifteen-style P1/P2 (2026-10-25)
 
 See README.md and doc/styles15/validation.md for the active project, build entry and fresh validation. Everything below is historical; the old 19-style default is superseded.

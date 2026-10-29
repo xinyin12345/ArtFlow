@@ -1,7 +1,7 @@
 // CNN/resize execute on cnn_clk; the video/DDR/CPU clock remains 100 MHz.
 // Every AXI channel, job and completion event crosses an independent FIFO.
 // A job completes only after its final DDR B response has crossed back.
-module artflow_cnn_accel #(parameter WIDTH=960,HEIGHT=540,BURST=64,STYLE_ENABLE=0,STYLE_COUNT=15,STYLE_DEBOUNCE=2857143,LOCAL_ENABLE=0)(
+module artflow_cnn_accel #(parameter WIDTH=960,HEIGHT=540,BURST=64,STYLE_ENABLE=0,STYLE_COUNT=8,STYLE_DEBOUNCE=2857143,LOCAL_ENABLE=0)(
  input clk,cnn_clk,rst_n,start,input [31:0] src_addr,dst_addr,
  input freeze_req,local_active,output local_grant,output cnn_port_ready,
  input [31:0] local_araddr,local_awaddr,input [7:0] local_arlen,local_awlen,

@@ -1,0 +1,14 @@
+{
+  "status": "EXPLORATORY_SYNTHESIS_ONLY",
+  "selected": "3-bit index, 25803 FF / 38721 LUT",
+  "equivalent_five_bit_expression": {
+    "ff": 25859,
+    "srl": 2065,
+    "add": 6671,
+    "lut": 38665,
+    "comb": 0,
+    "ram": 253,
+    "dsp": 144
+  },
+  "decision": "No clear total-area advantage (56 FF versus 56 LUT); retain structurally bounded 3-bit state and improve placement effort. The exploratory variant is not shipped."
+}

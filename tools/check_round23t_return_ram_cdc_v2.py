@@ -2,13 +2,13 @@ from pathlib import Path
 import json,re,hashlib
 from check_round23t_project import verify,SNAP,W
 R=Path(__file__).resolve().parents[1];verify();assert json.loads((W/'pnr_summary.json').read_text())['status']=='PASS';assert json.loads((W/'normal_sta_summary.json').read_text())['status']=='PASS'
-a=json.loads((R/'reports/round23t_map_analysis.json').read_text());sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();mp=W/'out/ArtFlow.map.v';assert sha(mp)==a['sha256'][mp.relative_to(R).as_posix()]
+a=json.loads((R/'reports/styles8/round23t_map_analysis.json').read_text());sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();mp=W/'out/ArtFlow.map.v';assert sha(mp)==a['sha256'][mp.relative_to(R).as_posix()]
 ram=a['native_return_RAM'];names={x['instance'] for x in ram};assert len(names)==7
 for x in ram:
  assert x['kind']=='EFX_RAM10' and x['ports']['WCLK']=='core_clk' and x['ports']['RCLK']=='cnn_clk'
  assert x['ports']['RST']=="1'b0" and "OUTPUT_REG=1'b0" in x['attributes'] and 'WRITE_MODE="READ_UNKNOWN"' in x['attributes']
 log=(W/'sta_tclsh.log').read_text();seen=re.findall(r'RETURN_RAM_CELL (\S+)',log);assert len(seen)==7 and set(seen)==names
-bound=['ArtFlow.sdc','tools/check_round23t_return_ram_cdc_v2.py','tools/check_round23t_return_ram_v2.tcl','reports/round23t_map_analysis.json','reports/round23t_functional_receipt.json']
+bound=['ArtFlow.sdc','tools/check_round23t_return_ram_cdc_v2.py','tools/check_round23t_return_ram_v2.tcl','reports/styles8/round23t_map_analysis.json','reports/styles8/round23t_functional_receipt.json']
 for p in [SNAP,W/'normal_sta_summary.json',W/'video_cdc_audit.sdc',W/'sta_tclsh.log',W/'out/ArtFlow.map.v',W/'out/ArtFlow.vdb',W/'out/ArtFlow.place',W/'out/ArtFlow.troutingtraces']:bound.append(p.relative_to(R).as_posix())
 results={}
 for role in ['write','address','data']:

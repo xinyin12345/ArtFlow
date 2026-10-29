@@ -1,0 +1,8 @@
+{
+  "status": "PASS_OFFLINE_CONDITIONAL_IO_BUDGET",
+  "hardware_programmed": false,
+  "artifacts": {
+    "ArtFlow.bit": "44f307f59ad21eb408e5fe217db5714a6b0feb6efa6dcfc7b1495dba93c93617",
+    "ArtFlow.hex": "5a7ede72a24c1f4470428c1cff61f317fe52ac2cb81a5e37658bc146466df12d"
+  }
+}

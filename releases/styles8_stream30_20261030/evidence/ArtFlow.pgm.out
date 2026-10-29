@@ -1,0 +1,30 @@
+INFO     : Elitestek FPGA Bitstream Generator.
+INFO     : Version: 2026.1.132 
+INFO     : Copyright (C) 2013 - 2026 Efinix, Inc. All rights reserved.
+INFO     : Compiled: May 29 2026.
+INFO     : Using source file "D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/build\ArtFlow.lbf"
+INFO     : Generating HEX programming file for device "Ti60F225", family "Titanium"
+INFO     : Using periphery source file "D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/out\ArtFlow.lpf"
+INFO     : Generating bit file: "D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/out\ArtFlow.bit"
+INFO     : HEX Generation Options Summary:
+INFO     : 	Listing options specified to bitstream generation:
+INFO     : 	enable_crc_check                         = on
+INFO     : 	bitstream_compression                    = on
+INFO     : 	oscillator_clock_divider                 = DIV8
+INFO     : 	enable_external_master_clock             = off
+INFO     : 	spi_low_power_mode                       = off
+INFO     : 	active_capture_clk_edge                  = posedge
+INFO     : 	enable_remote_update                     = off
+INFO     : 	release_tri_then_reset                   = on
+INFO     : 	enable_seu_crc_check                     = off
+INFO     : 	seu_mode                                 = automatic
+INFO     : 	seu_wait_interval                        = 0xFFFFFF
+INFO     : 	jtag_usercode                            = 0xFFFFFFFF
+INFO     : 	io_weak_pullup                           = on
+INFO     : Finished generating "D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/out\ArtFlow.hex"
+INFO     : Elitestek Bitstream Generator took 1.069441 seconds [FlowMsg::StageDuration]
+INFO     :     Elitestek Bitstream Generator took 0.84375 seconds (approximately) in total CPU time [FlowMsg::StageDuration::CPUTime]
+INFO     : Elitestek Bitstream Generator virtual memory usage: begin = 2.708 MB, end = 12.228 MB, delta = 9.52 MB [FlowMsg::VMUsage]
+INFO     :     Elitestek Bitstream Generator peak virtual memory usage = 152.696 MB [FlowMsg::VMUsage::Peak]
+INFO     : Elitestek Bitstream Generator resident set memory usage: begin = 9.536 MB, end = 21.792 MB, delta = 12.256 MB [FlowMsg::RSSUsage]
+INFO     :     Elitestek Bitstream Generator peak resident set memory usage = 158.304 MB [FlowMsg::RSSUsage::Peak]

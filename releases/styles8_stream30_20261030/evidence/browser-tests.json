@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "scope": "Final ESP diagnostics, browser and TCP loopback tests; no hardware",
+  "source_sha256": {
+    "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\esp32\\main\\main.c": "aa462e05e448ff3080c89eb5adac5fc0344ce4397518f65649afd6aeadbb6213",
+    "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\esp32\\main\\index.html": "f0400eb91498deda1c91583d595258422f70a0778f4f98d3d36feb63a7348e72",
+    "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\protocol\\afs.c": "1eb1c460fd0993a70f8f87b18089a8664feda6a68c66fbfd2f6feaf84bf97da5",
+    "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\protocol\\afs.h": "7a1f5e19214e195d7baaf859ab5dfa46fde8e7e9d0a7f9a47a237933c6155510",
+    "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\protocol\\afs.js": "ccf0268c09f325c555fc900cf0d791dad88df90cd5c6c7c8899002f9967f24b5",
+    "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\tests\\browser_test.js": "4abefed2d2faac2185c97e6d45ccb35114e10df42a2b14f3c916b3b10a9cd28e",
+    "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\tests\\cdc_audit_test.py": "9b5d78091a250ad6b0bcacb2bc58cdb06ba2b24cda1613bf4c8f21e5c6425af0",
+    "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\tests\\check_rtl_vectors.py": "64362f16681ca29c968ea9a00026f1f1d32d0d523d9854fb8335b0a3e1515beb",
+    "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\tests\\diagnostics_test.c": "91eba22d3e467162fcccfb9b53fb1ca22ac4027ad78a374781fb012d13380843",
+    "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\tests\\generation_test.c": "61630c69dce67fb186adfe136e3aa2def802f6afea76bc5286c692e57133f608",
+    "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\tests\\mailbox_test.c": "aa03b7714c82b89222e50fe1721656843500b0d81dd02e83eaec8bb8185358b5",
+    "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\tests\\protocol_runner.c": "d71602310e764ef0659e8fee9615ed3492ed325a46d6888f249efdf7bca0e414",
+    "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\tests\\protocol_test.py": "b7d13ca04a595f0c595f5cd14f2044338e9a91c472c45819524fbfe72a28856f",
+    "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\tests\\run_diagnostics.py": "7e0d682298efb35e5058213055d3661c4b34b7ce5b047d96c4438df7c03b9839",
+    "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\tests\\run_websocket.py": "e72ebdcdee9a78e89e63edfdeda8f5fe1a704f2cccfd5913c489d8d0288817ed",
+    "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\tests\\ws_host_bridge.c": "dedf57f427d00111893134c492d21712b9cecbd12f7fc67cc9b41d96fde97ffa"
+  }
+}

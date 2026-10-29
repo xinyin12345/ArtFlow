@@ -27,7 +27,7 @@ cam_fb_pipe_v09 #(.DUAL_WINDOW(DUAL_WINDOW),.AXI_DATA_WIDTH(128),.AXI_ADDR_WIDTH
  .accel_irq(irq),.process_toggle(),
        .diag_state(), .diag_fifo(), .diag_written(), .diag_completed(), .diag_published(), .diag_rejected(),
     .diag_bin_toggle(),
- .capture_toggle(),
+ .capture_toggle(),.stream_epoch(),.stream_rgb(),.stream_y(),.stream_x(),.stream_valid(),.stream_bad(),.stream_tick(),
  .cfg_bayer(PHASE[1:0]),.cfg_pix_rev(REV[0]),.cfg_gain_r(GAIN_R),.cfg_gain_g(GAIN_G),.cfg_gain_b(GAIN_B),
  .i_pclk(pclk),.i_pclk_rstn(prst_n),.i_vs(s_vs),.i_hs(s_hs),.i_valid(s_valid),.i_raw(s_raw),
  .H_FRONT_PORCH(HFP[12:0]),.H_SYNC(HSP[12:0]),.H_VALID(OW[12:0]),.H_BACK_PORCH(HBP[12:0]),
@@ -59,8 +59,11 @@ endtask
 int irqs=0,jobs=0,published=0;integer srcfile,dstfile;reg [127:0] tmp;
 integer good_pixels=0;
 integer frozen_capture,frozen_done,render_count;
+string dump_dir;
 initial begin
- srcfile=$fopen("work/r15u_system/system_input.hex","w");dstfile=$fopen("work/r15u_system/system_output.hex","w");
+ if(!$value$plusargs("DIR=%s",dump_dir))$fatal(1,"Missing dump DIR");
+ srcfile=$fopen({dump_dir,"/system_input.hex"},"w");dstfile=$fopen({dump_dir,"/system_output.hex"},"w");
+ if(!srcfile || !dstfile)$fatal(1,"Cannot open system evidence dumps");
  repeat(20) @(negedge aclk);rst_n=1;prst_n=1;
  apb_write('h84,3);wait(irq);apb_write('h8c,1);
  for(integer round=0;round<3;round++)begin

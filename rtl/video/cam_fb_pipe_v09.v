@@ -1,7 +1,7 @@
 // ArtFlow v04: RAW binning, triple buffer, fair AXI scheduling, dual windows.
 module cam_fb_pipe_v09
 #(
-    parameter STYLE_ENABLE = 0, STYLE_COUNT=15,
+    parameter STYLE_ENABLE = 0, STYLE_COUNT=8,
     parameter DUAL_WINDOW = 1, // 1: centered native-size pair; 0: legacy 2x fullscreen
     parameter [9:0] BLACK_LEVEL = 10'd0,
     parameter AXI_DATA_WIDTH = 128,

@@ -1,0 +1,5 @@
+WARNING: cannot find correct IV value
+Creating D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/out
+Creating D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/build
+Running: efx_run_map.py ArtFlow --family Titanium --device Ti60F225 --project_xml D:\work\FPGA\ArtFlow\ArtFlow\ArtFlow.xml --output_dir D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/out --work_dir D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/build --opt root=ArtFlow_top --opt veri_options=verilog_mode=sv_09,vhdl_mode=vhdl_2008 work-dir=D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/build write_efx_verilog=on
+   map :	PASS 

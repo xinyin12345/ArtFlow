@@ -1,0 +1,30 @@
+{
+  "baseline_count": 353,
+  "current_count": 353,
+  "new": [
+    "[EFX-0011 VERI-WARNING] expression size 4 truncated to fit in target size 3 (VERI-1209) (rtl/cnn/glass_int8/style_bank_controller.v:LINE)"
+  ],
+  "removed": [
+    "[EFX-0011 VERI-WARNING] expression size 6 truncated to fit in target size 5 (VERI-1209) (rtl/cnn/glass_int8/style_bank_controller.v:LINE)"
+  ],
+  "baseline_resources": {
+    "ff": 25860,
+    "srl": 2065,
+    "add": 6671,
+    "lut": 38376,
+    "comb": 0,
+    "ram": 253,
+    "dsp": 144
+  },
+  "current_resources": {
+    "ff": 25803,
+    "srl": 2065,
+    "add": 6671,
+    "lut": 38721,
+    "comb": 0,
+    "ram": 253,
+    "dsp": 144
+  },
+  "status": "REVIEWED_NO_NEW_WARNING_CLASS",
+  "review": "Counter increment truncation is intentional modulo INDEX_BITS. All 8 states and wrap, glitch filtering, rapid replacement, invalid ID and CRC fallback passed RTL tests. The other 352 normalized warnings match the validated streaming baseline. Resource increases are reported explicitly."
+}

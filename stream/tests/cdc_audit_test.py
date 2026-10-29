@@ -16,6 +16,6 @@ for name,body in cases.items():
  try:c.parse_reports(fast,body)
  except ValueError:pass
  else:raise AssertionError('Corrupt audit accepted: '+name)
-receipt={'status':'PASS','full_bus_endpoints':[2,32,32,48],'negative_cases_rejected':list(cases),'sha256':{str(p.relative_to(R)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(c.__file__),Path(__file__),c.WORK/'out/ArtFlow.video_bus_skew.rpt',c.WORK/'out/ArtFlow.video_bus_delay.rpt']}}
+receipt={'status':'PASS','full_bus_endpoints':[2,32,32,48],'negative_cases_rejected':list(cases),'sha256':{str(p.relative_to(R.parent)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(c.__file__),Path(__file__),c.WORK/'out/ArtFlow.video_bus_skew.rpt',c.WORK/'out/ArtFlow.video_bus_delay.rpt']}}
 (R/'logs/cdc-audit-parser-tests.json').write_text(json.dumps(receipt,indent=2))
 print('CDC all-bit audit and five corrupt-report rejection tests PASS')

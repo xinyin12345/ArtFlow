@@ -1,0 +1,3 @@
+WARNING: cannot find correct IV value
+Running: efx_run_pnr.py ArtFlow --prj D:\work\FPGA\ArtFlow\ArtFlow\ArtFlow.xml --family Titanium --device Ti60F225 --timing_model I3 --output_dir D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/out --work_dir D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/build --opt optimization_level=TIMING_3 --opt sdc_file=ArtFlow.sdc
+   pnr :	PASS 

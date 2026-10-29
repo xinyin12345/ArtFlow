@@ -1,37 +1,41 @@
-# 当前主工程：30Hz FPGA 推流 + ESP32 WebSocket
+# ArtFlow：8 风格、30 Hz HDMI 与 ESP32 推流
 
-2026-10-26：根目录 RTL、工程 XML/peri/SDC 已整合实板配套的 wifi_stream_20261025 推流版本，保留三布局、15 风格、KEY1/KEY3、OSD 和 WB 280/170/280。169 项签核源哈希逐项校验；没有引入 60Hz 改动。
+主工程入口为 `ArtFlow.xml`；`ArtFlow_glass.xml` 是相同入口。保留 1080p30、KEY1 三态显示、KEY2 OSD、白平衡默认 280/170/280、freeze/pair/blend/curtain/window/live 和原诊断功能。
 
-交接入口：[30Hz 配对交接](releases/stream30_websocket_20261026/README.md)。最终 ESP 源码位于该目录 source/esp_project；含热点密码的已验收 app 仅在本地 private 中，未公开提交。
+|新编号|旧 15 风格编号|风格|
+|---|---|---|
+|00|00|原彩绘玻璃|
+|01|05|素描|
+|02|01|油画|
+|03|03|油画星空|
+|04|02|复古网点漫画|
+|05|14|沙画|
+|06|07|水墨画|
+|07|08|富彩粗刀版画|
 
-根工程验证/构建入口：`./BuildStream.ps1 -Phase Check`（默认，只读身份检查）、`-Phase Tests`（离线定向回归）、`-Phase EspTests`（最终 ESP 离线验证）、`-Phase OriginalTests`（原系统回归）、`-Phase Map`、`-Phase Physical`（需先完成原功能回归及映射前置证据，使用独立干净构建副本，不清理现有 work）。当前交付复用签核 bit，未重跑综合/P&R。
+上电默认 00，KEY3 按上述顺序循环，07 后回到 00。风格切换由 FPGA 控制器完成；CPU 无独立风格循环，现有 OSD 仅显示布局和帧率，没有风格名称表。协议与诊断中的风格编号使用新编号，字段宽度保持兼容。
 
-**板上 FPGA Flash 仍是历史非推流 15 风格镜像**；根源码变更不意味着已刷 Flash。推流仍须每次掉电后 JTAG 加载匹配 bit，不改模型。
+模型未训练、未量化、未改变网络结构。`network/styles8/models8_manifest.json` 同时记录新编号、旧 15 风格编号、最初 19 风格源编号和权重/载荷 SHA256。每槽 16 KiB，包长 128 KiB；模型 Flash 起址仍为 `0x400000`，末址 `0x41FFFF`。仅 AFSM 头中的槽位 ID 随重排改变，权重载荷逐字节保留。
 
-以下保留原项目说明，其中历史构建/Flash 信息以本节和本次交接为准。
+## 构建与验证
 
----
-
-# ArtFlow: fifteen-style P1/P2 release
-
-The active project is `ArtFlow.xml`; `ArtFlow_glass.xml` is an identical compatibility entry. Both use the accepted TIMING_3 / seed 2 strategy, original clocks and spi_low_power_mode=off.
-
-Model order: glass, oil, halftone, starry, papercut, sketch, popart, inkwash, woodrich, vermilion_ink, mosaic, woodcut, fauve, cel, sand. KEY3 cycles 0 through 14. P3/P4/P5 are not integrated.
-
-Run from this repository with Python 3:
+使用已有 Python 3、RISC-V GCC、Questa 和 Efinity 2026.1：
 
 ```powershell
-python -B tools/build_styles15.py
+$env:HOST_CC='C:/msys64/ucrt64/bin/gcc.exe'
+& C:/Espressif/tools/python/v5.5.6/venv/Scripts/python.exe -B tools/build_styles8.py
 ```
 
-This rebuilds firmware, verifies all initialization hashes and model slots, runs four native firmware tests and eight RTL regressions, synthesizes, routes, checks original-clock STA and five CDC groups, and generates BIT/HEX files. It does not access hardware. Efinity defaults to D:/soft/Efinity/2026.1 (override EFINITY_ROOT); Questa defaults to D:/soft/Questa/questa_fse/win64. RISCV_GCC and HOST_CC can override compilers. Installations and their valid licenses must already be available.
+也可依次执行 `--phase tests`、`--phase map`、`--phase physical`。`BuildStream.ps1` 的 Check/Tests/EspTests/OriginalTests/Map/Physical 入口保留。完整脚本先运行原系统与推流测试，再综合、布局布线、原时钟 STA、CDC 与流接口审计，最后生成 BIT/HEX。`EFINITY_ROOT`、`QUESTA_ROOT`、`RISCV_GCC` 和 `HOST_CC` 可指定已有工具路径。
 
-Generated results are in `work/styles15/`, `work/styles15_v2_*`, `reports/` and `outputs/firmware/`. Use `--phase tests`, `--phase map`, then `--phase physical` for staged execution. To preserve and archive a completed run before a fresh full run, use `--archive-run`. Never launch overlapping builds. `tools/run_efinity.ps1` and `tools/run_glass_efinity.ps1` dispatch to this same workflow; their map phase requires completed tests.
+新结果位于 `work/styles8/`、`work/styles8_v2_*` 和 `reports/styles8/`。不复用 15 风格构建结果；不要同时启动重复构建。重跑前用 `--archive-run` 保存该轮的工作和报告。验证范围见 [计划](doc/styles8/verification_plan.md)、[功能映射](doc/styles8/feature_list.md) 与 [测试清单](doc/styles8/case_list.md)。
 
-The accepted release is `releases/styles15_p1p2_20261025/`: ArtFlow_styles15_p1p2.bit/.hex must be paired with models15_parameters.bin (245760 bytes, planned model address 0x400000 through 0x43BFFF). New build files stay in work/styles15/out until separately reviewed. No flash/JTAG/serial operation is part of this workflow.
+## 资源清理与兼容边界
 
-`network/styles15/` contains the default model package, mapping, and the frozen 19-slot input used only to reproduce the selected 15 slots. `tools/regenerate_package.py` reconstructs bytes in memory and compares BIN/HEX. No training or external Process directory is required. Only the selected implementation and required test files remain under `candidates/`; their names preserve accepted provenance.
+当前包移除 papercut、popart、vermilion_ink、mosaic、woodcut、fauve、cel 七个槽位，共减少 114688 字节（46.67%）。当前 RTL 默认和顶层仅循环 8 个槽，当前构建、验证和模型重建入口同步为 8 风格。所有风格共用同一 CNN 和双参数 bank，因此没有七套独立运算引擎可删除。保留通用换模、CRC 拒绝和失效回退能力。
 
-Prior releases and legacy scripts remain for rollback. README_CODEX.md and older doc files describe historical versions; this README and doc/styles15 are authoritative for the current default. Inherited Process evidence is explicitly under doc/styles15/inherited and is not proof of this repository's fresh validation. The release manifest describes the original complete release, including ZIP archives retained in the source location; those archives are intentionally not duplicated here.
+历史 `network/styles15` / `styles19`、既有 release 与回退镜像保留，既是回退资料，也是不可变的模型溯源；不参与新包的额外运行槽位。旧说明保存在 [历史 README](doc/styles15/README_before_styles8.md)。本任务不改独立 60 Hz Process 工程。
 
-System RTL tests use a CNN transaction fixture. Full numerical CNN/CPU boot simulations and board FPS, visuals and Flash capacity are not newly established by those tests. See doc/styles15/validation.md for the actual formal-path run.
+8 风格 BIT 必须配套新模型包，不能继续配旧 15 风格 Flash 模型。保留现有 ESP 应用；本任务不生成或发布含凭据的 ESP 固件，不访问串口、JTAG 或硬件 Flash。离线验证通过仍需用户上板确认画面、按键、推流及断电启动。
+
+本次离线验证已通过：[验证结果](doc/styles8/verification_results.md)，[完整发布包](releases/styles8_stream30_20261030/README.md)。尚待用户上板验收。

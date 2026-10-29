@@ -1,0 +1,178 @@
+INFO     : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+INFO     : Router Setup
+INFO     : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+INFO     : High utilization design detected; tuning for routability.
+INFO     : [Setup Parallel Routing Scheduler]
+INFO     : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+INFO     : Route Circuit with 16 threads
+INFO     : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+INFO     : Overridding delay budgets for 692 synchronizer-related pins
+INFO     : Iter  1: overlap=217116  heapops=24560184   (0%) cpd=1821  frr=1.00  msec=5745
+INFO     : [Setup Delay Budgets | 862.6 ms]
+INFO     : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+INFO     : Hold Fixing
+INFO     : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+INFO     : Total min wire delay:  22158817
+INFO     : Hold fix wire delay:          0
+INFO     : Hold fix delay ratio:     0.00%
+INFO     : Pins requiring hold fix:  0.00%
+INFO     : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+INFO     : Iter  2: overlap=122875  heapops=19147046   (13%) cpd=1827  frr=1.00  msec=3507
+INFO     : Iter  3: overlap=99632   heapops=19682343   (18%) cpd=1846  frr=1.01  msec=3520
+INFO     : Iter  4: overlap=84400   heapops=20602158   (23%) cpd=1851  frr=1.02  msec=3773
+INFO     : Iter  5: overlap=72656   heapops=21492705   (28%) cpd=1851  frr=1.02  msec=3875
+INFO     : Iter  6: overlap=61523   heapops=22217673   (32%) cpd=1846  frr=1.01  msec=4042
+INFO     : Iter  7: overlap=51979   heapops=23087908   (36%) cpd=1846  frr=1.01  msec=4166
+INFO     : Iter  8: overlap=43250   heapops=23506841   (42%) cpd=1860  frr=1.02  msec=4278
+INFO     : Iter  9: overlap=36528   heapops=24105055   (48%) cpd=1860  frr=1.02  msec=4521
+INFO     : Iter 10: overlap=30360   heapops=24681543   (52%) cpd=1860  frr=1.02  msec=4774
+INFO     : Iter 11: overlap=24658   heapops=24812673   (56%) cpd=1881  frr=1.03  msec=5095
+INFO     : Iter 12: overlap=19845   heapops=24311028   (61%) cpd=1950  frr=1.07  msec=4799
+INFO     : Iter 13: overlap=16128   heapops=24186375   (67%) cpd=1874  frr=1.03  msec=4803
+INFO     : Iter 14: overlap=13475   heapops=25270816   (69%) cpd=1874  frr=1.03  msec=5348
+INFO     : Iter 15: overlap=11343   heapops=25978855   (72%) cpd=1869  frr=1.03  msec=5718
+INFO     : [Rebuild Parallel Routing Scheduler]
+INFO     : Iter 16: overlap=8990    heapops=25928551   (75%) cpd=1902  frr=1.04  msec=6240
+INFO     : Iter 17: overlap=7227    heapops=26185465   (78%) cpd=1902  frr=1.04  msec=7972
+INFO     : Iter 18: overlap=5908    heapops=26990508   (79%) cpd=1902  frr=1.04  msec=8415
+INFO     : Iter 19: overlap=4843    heapops=25794714   (81%) cpd=1902  frr=1.04  msec=8295
+INFO     : Iter 20: overlap=3852    heapops=25958778   (82%) cpd=1947  frr=1.07  msec=8755
+INFO     : Iter 21: overlap=3075    heapops=26363434   (83%) cpd=2117  frr=1.16  msec=9017
+INFO     : Iter 22: overlap=2584    heapops=28044730   (84%) cpd=2117  frr=1.16  msec=10652
+INFO     : Iter 23: overlap=2106    heapops=26587524   (86%) cpd=2117  frr=1.16  msec=9790
+INFO     : [Rebuild Parallel Routing Scheduler]
+INFO     : Iter 24: overlap=1562    heapops=25118101   (86%) cpd=2117  frr=1.16  msec=9706
+INFO     : Iter 25: overlap=1223    heapops=27642799   (87%) cpd=2117  frr=1.16  msec=10801
+INFO     : Iter 26: overlap=899     heapops=22036953   (87%) cpd=2117  frr=1.16  msec=8814
+INFO     : Iter 27: overlap=736     heapops=20244372   (88%) cpd=2117  frr=1.16  msec=8323
+INFO     : Iter 28: overlap=564     heapops=16590779   (88%) cpd=2117  frr=1.16  msec=6695
+INFO     : Iter 29: overlap=421     heapops=15543720   (88%) cpd=2117  frr=1.16  msec=6378
+INFO     : Iter 30: overlap=333     heapops=11187237   (88%) cpd=2117  frr=1.16  msec=4710
+INFO     : Iter 31: overlap=228     heapops=11094950   (88%) cpd=2117  frr=1.16  msec=5049
+INFO     : Iter 32: overlap=217     heapops=12699049   (88%) cpd=2117  frr=1.16  msec=5227
+INFO     : [Rebuild Parallel Routing Scheduler]
+INFO     : Iter 33: overlap=163     heapops=8845919    (88%) cpd=2117  frr=1.16  msec=4031
+INFO     : Iter 34: overlap=108     heapops=8643265    (88%) cpd=2117  frr=1.16  msec=3713
+INFO     : Iter 35: overlap=84      heapops=6595442    (88%) cpd=2117  frr=1.16  msec=3024
+INFO     : Iter 36: overlap=58      heapops=4733252    (88%) cpd=2117  frr=1.16  msec=2209
+INFO     : Iter 37: overlap=46      heapops=4382721    (88%) cpd=2117  frr=1.16  msec=2184
+INFO     : Iter 38: overlap=22      heapops=3347646    (88%) cpd=2117  frr=1.16  msec=1845
+INFO     : Iter 39: overlap=20      heapops=2980141    (88%) cpd=2117  frr=1.16  msec=1640
+INFO     : Iter 40: overlap=12      heapops=2905303    (88%) cpd=2117  frr=1.16  msec=1593
+INFO     : Iter 41: overlap=21      heapops=3162757    (88%) cpd=2117  frr=1.16  msec=1660
+INFO     : Iter 42: overlap=7       heapops=2611964    (89%) cpd=2117  frr=1.16  msec=1511
+INFO     : Iter 43: overlap=7       heapops=2536798    (89%) cpd=7049  frr=3.87  msec=1367
+INFO     : Iter 44: overlap=9       heapops=2314324    (89%) cpd=2117  frr=1.16  msec=1246
+INFO     : Iter 45: overlap=3       heapops=3103953    (89%) cpd=7049  frr=3.87  msec=1712
+INFO     : Iter 46: overlap=6       heapops=2331805    (89%) cpd=2117  frr=1.16  msec=1279
+INFO     : Iter 47: overlap=5       heapops=2377136    (89%) cpd=2117  frr=1.16  msec=1330
+INFO     : Iter 48: overlap=1       heapops=2700500    (89%) cpd=2117  frr=1.16  msec=1798
+INFO     : Iter 49: overlap=2       heapops=2785029    (89%) cpd=2117  frr=1.16  msec=2626
+INFO     : Iter 50: overlap=1       heapops=2525008    (89%) cpd=6950  frr=3.82  msec=2049
+INFO     : Iter 51: overlap=2       heapops=2627110    (89%) cpd=2117  frr=1.16  msec=1420
+INFO     : Iter 52: overlap=1       heapops=2673603    (89%) cpd=6950  frr=3.82  msec=1457
+INFO     : Iter 53: overlap=2       heapops=2997647    (89%) cpd=2117  frr=1.16  msec=1742
+INFO     : Iter 54: overlap=2       heapops=2800334    (89%) cpd=2117  frr=1.16  msec=2298
+INFO     : Iter 55: overlap=1       heapops=2611600    (89%) cpd=2117  frr=1.16  msec=2311
+INFO     : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+INFO     : Iter 56: overlap=0       heapops=2082651    (89%) cpd=2117  frr=1.16  msec=1778
+INFO     : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+INFO     : Routing Result
+INFO     : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+INFO     : Routing Succeeded in 253.22 seconds taking 56 iterations! 
+INFO     : 
+INFO     : First iteration critical path delay = 1.821 ns 
+INFO     : Last iteration critical path delay  = 2.117 ns (ratio = 1.16)
+INFO     : Max Routing Heap Size = 365,890
+INFO     : Routing trace written to file 'D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/out\ArtFlow.troutingtraces' 
+INFO     : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+INFO     : Routing took 271.8640317 seconds [FlowMsg::StageDuration]
+INFO     :     Routing took 687.625 seconds (approximately) in total CPU time [FlowMsg::StageDuration::CPUTime]
+INFO     : Routing virtual memory usage: begin = 186.136 MB, end = 652.452 MB, delta = 466.316 MB [FlowMsg::VMUsage]
+INFO     :     Routing peak virtual memory usage = 761.284 MB [FlowMsg::VMUsage::Peak]
+INFO     : Routing resident set memory usage: begin = 204.892 MB, end = 648.304 MB, delta = 443.412 MB [FlowMsg::RSSUsage]
+INFO     :     Routing peak resident set memory usage = 728.328 MB [FlowMsg::RSSUsage::Peak]
+           ***** Beginning stage final timing analysis ... *****
+INFO     : SDC file 'ArtFlow.sdc' parsed successfully.
+Maximum possible analyzed clocks frequency
+   Clock Name     Period (ns)  Frequency (MHz)     Edge
+tx_cal_clk_90edge    2.243        445.831         (R-R)
+sdram_clk            1.972        507.099         (R-R)
+rx_cal_clk           1.963        509.424         (R-R)
+tx_cal_clk           2.028        493.097         (R-R)
+vid_clk_dvi2         1.472        679.348         (R-R)
+hdmi_tx_slow_clk     8.521        117.357         (R-R)
+cnn_clk              6.571        152.184         (R-R)
+core_clk             8.521        117.357         (R-R)
+i_mipi_rx_pclk       8.490        117.786         (R-R)
+i_cam_ck_CLKOUT      5.385        185.701         (R-R)
+
+Geomean max period: 3.760
+
+Setup (Max) Clock Relationship
+  Launch Clock      Capture Clock   Constraint (ns)     Slack (ns)          Edge
+tx_cal_clk_90edge tx_cal_clk_90edge       2.500            0.257           (R-R)
+tx_cal_clk_90edge tx_cal_clk              2.500            1.316           (R-R)
+tx_cal_clk_90edge core_clk                2.500            1.815           (R-R)
+sdram_clk         tx_cal_clk_90edge       2.500            1.028           (R-R)
+sdram_clk         sdram_clk               2.500            0.528           (R-R)
+rx_cal_clk        rx_cal_clk              2.500            0.537           (R-R)
+tx_cal_clk        tx_cal_clk              2.500            0.472           (R-R)
+vid_clk_dvi2      vid_clk_dvi2           13.468           11.996           (R-R)
+vid_clk_dvi2      hdmi_tx_slow_clk       13.468           10.316           (R-R)
+hdmi_tx_slow_clk  hdmi_tx_slow_clk       13.468            4.947           (R-R)
+cnn_clk           cnn_clk                 7.000            0.429           (R-R)
+core_clk          tx_cal_clk_90edge       2.500            0.911           (R-R)
+core_clk          core_clk               10.000            1.479           (R-R)
+core_clk          i_cam_ck_CLKOUT        10.000            7.182           (R-R)
+i_mipi_rx_pclk    i_mipi_rx_pclk         20.000           11.510           (R-R)
+i_mipi_rx_pclk    i_cam_ck_CLKOUT        10.000            7.534           (R-R)
+i_cam_ck_CLKOUT   i_mipi_rx_pclk         10.000            7.138           (R-R)
+i_cam_ck_CLKOUT   i_cam_ck_CLKOUT        10.000            4.615           (R-R)
+
+Hold (Min) Clock Relationship
+  Launch Clock      Capture Clock   Constraint (ns)     Slack (ns)          Edge
+tx_cal_clk_90edge tx_cal_clk_90edge      0.000            0.037            (R-R)
+tx_cal_clk_90edge tx_cal_clk             0.000            0.469            (R-R)
+tx_cal_clk_90edge core_clk               0.000            0.077            (R-R)
+sdram_clk         tx_cal_clk_90edge      0.000            0.464            (R-R)
+sdram_clk         sdram_clk              0.000            0.036            (R-R)
+rx_cal_clk        rx_cal_clk             0.000            0.028            (R-R)
+tx_cal_clk        tx_cal_clk             0.000            0.097            (R-R)
+vid_clk_dvi2      vid_clk_dvi2           0.000            0.109            (R-R)
+vid_clk_dvi2      hdmi_tx_slow_clk       0.000            0.793            (R-R)
+hdmi_tx_slow_clk  hdmi_tx_slow_clk       0.000            0.030            (R-R)
+cnn_clk           cnn_clk                0.000            0.028            (R-R)
+core_clk          tx_cal_clk_90edge      0.000            0.130            (R-R)
+core_clk          core_clk               0.000            0.026            (R-R)
+core_clk          i_cam_ck_CLKOUT        0.000            0.116            (R-R)
+i_mipi_rx_pclk    i_mipi_rx_pclk         0.000            0.047            (R-R)
+i_mipi_rx_pclk    i_cam_ck_CLKOUT        0.000            0.140            (R-R)
+i_cam_ck_CLKOUT   i_mipi_rx_pclk         0.000            0.070            (R-R)
+i_cam_ck_CLKOUT   i_cam_ck_CLKOUT        0.000            0.028            (R-R)
+
+INFO     : Write Timing Report to "D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/out\ArtFlow.timing.rpt" ...
+INFO     : final timing analysis took 21.2229982 seconds [FlowMsg::StageDuration]
+INFO     :     final timing analysis took 24.625 seconds (approximately) in total CPU time [FlowMsg::StageDuration::CPUTime]
+INFO     : final timing analysis virtual memory usage: begin = 539.116 MB, end = 753.396 MB, delta = 214.28 MB [FlowMsg::VMUsage]
+INFO     :     final timing analysis peak virtual memory usage = 761.284 MB [FlowMsg::VMUsage::Peak]
+INFO     : final timing analysis resident set memory usage: begin = 535.88 MB, end = 753.9 MB, delta = 218.02 MB [FlowMsg::RSSUsage]
+INFO     :     final timing analysis peak resident set memory usage = 755.236 MB [FlowMsg::RSSUsage::Peak]
+           ***** Ending stage final timing analysis *****
+           
+           ***** Beginning stage bitstream generation ... *****
+INFO     : Reading core interface constraints file "D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/out\ArtFlow.interface.csv" [DBMsg::CoreInterfaceConstraintsFileReading]
+INFO     : Successfully read core interface constraints file "D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/out\ArtFlow.interface.csv" [DBMsg::CoreInterfaceConstraintsFileLoadSuccess]
+INFO     : Finished writing bitstream file D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/build\ArtFlow.lbf.
+INFO     : Bitstream generation took 2.4772994 seconds [FlowMsg::StageDuration]
+INFO     :     Bitstream generation took 2.1875 seconds (approximately) in total CPU time [FlowMsg::StageDuration::CPUTime]
+INFO     : Bitstream generation virtual memory usage: begin = 463.78 MB, end = 673.404 MB, delta = 209.624 MB [FlowMsg::VMUsage]
+INFO     :     Bitstream generation peak virtual memory usage = 761.284 MB [FlowMsg::VMUsage::Peak]
+INFO     : Bitstream generation resident set memory usage: begin = 467.56 MB, end = 678.236 MB, delta = 210.676 MB [FlowMsg::RSSUsage]
+INFO     :     Bitstream generation peak resident set memory usage = 755.236 MB [FlowMsg::RSSUsage::Peak]
+INFO     : The entire flow of EFX_PNR took 545.2238664 seconds [FlowMsg::StageDuration]
+INFO     :     The entire flow of EFX_PNR took 2684.125 seconds (approximately) in total CPU time [FlowMsg::StageDuration::CPUTime]
+INFO     : The entire flow of EFX_PNR virtual memory usage: begin = 20.164 MB, end = 673.052 MB, delta = 652.888 MB [FlowMsg::VMUsage]
+INFO     :     The entire flow of EFX_PNR peak virtual memory usage = 761.284 MB [FlowMsg::VMUsage::Peak]
+INFO     : The entire flow of EFX_PNR resident set memory usage: begin = 22.712 MB, end = 677.928 MB, delta = 655.216 MB [FlowMsg::RSSUsage]
+INFO     :     The entire flow of EFX_PNR peak resident set memory usage = 755.236 MB [FlowMsg::RSSUsage::Peak]

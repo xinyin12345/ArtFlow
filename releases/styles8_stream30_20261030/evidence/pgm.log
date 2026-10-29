@@ -1,0 +1,3 @@
+WARNING: cannot find correct IV value
+Running: efx_run_pgm.py ArtFlow --family Titanium --device Ti60F225 --output_dir D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/out --work_dir D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/build --opt mode=active width=1 enable_roms=on spi_low_power_mode=off io_weak_pullup=on oscillator_clock_divider=DIV8 enable_crc_check=on bitstream_compression=on active_capture_clk_edge=posedge release_tri_then_reset=on enable_external_master_clock=off jtag_usercode=0xFFFFFFFF
+   pgm :	PASS 

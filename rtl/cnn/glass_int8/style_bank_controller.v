@@ -1,14 +1,18 @@
 // All events are in cnn_clk. A loaded bank can become active ONLY at job_start.
 // Missing/invalid Flash never blocks video: keep computing the previous model.
-module style_bank_controller #(parameter STYLE_COUNT=15, parameter [23:0] FLASH_BASE=24'h400000)(
+module style_bank_controller #(parameter STYLE_COUNT=8, parameter [23:0] FLASH_BASE=24'h400000)(
  input clk,rst_n,key_press,job_start,
- output reg active_bank,output reg [4:0] active_style,requested_style,
+ output reg active_bank,output reg [4:0] active_style,output wire [4:0] requested_style,
  output wire [4:0] job_style,
  output reg cfg_valid,cfg_bank,output reg [1:0] cfg_kind,
  output reg [9:0] cfg_addr,output wire [575:0] cfg_data,
  output loading,output reg ready,output reg [15:0] errors,
  output flash_cs_n,flash_sck,flash_mosi,input flash_miso
 );
+// Only the required index bits are state; keep the five-bit diagnostic ABI.
+localparam INDEX_BITS=(STYLE_COUNT<2)?1:$clog2(STYLE_COUNT);
+reg [INDEX_BITS-1:0] requested_index;
+assign requested_style={{(5-INDEX_BITS){1'b0}},requested_index};
 wire spi_busy,spi_done,byte_valid;wire [7:0] data;
 reg spi_start,load_active,loaded_bank,blocked,header_bad;
 reg [4:0] loaded_style;reg [14:0] byte_index;
@@ -29,14 +33,14 @@ wire [575:0] complete_word={data,word_buffer[575:8]};
 assign cfg_data=cfg_kind==0?word_buffer:cfg_kind==1?{496'd0,word_buffer[575:496]}:{544'd0,word_buffer[575:544]};
 always @(posedge clk or negedge rst_n)begin
  if(!rst_n)begin
-  active_bank<=0;active_style<=0;requested_style<=0;ready<=0;errors<=0;
+  active_bank<=0;active_style<=0;requested_index<=0;ready<=0;errors<=0;
   spi_start<=0;load_active<=0;loaded_bank<=1;loaded_style<=0;blocked<=0;
   cfg_valid<=0;cfg_bank<=1;cfg_kind<=0;cfg_addr<=0;
   byte_index<=0;crc<=32'hffffffff;expected_crc<=0;header_bad<=0;
   word_buffer<=0;word_byte<=0;word_addr<=0;word_kind<=0;
  end else begin
   spi_start<=0;cfg_valid<=0;
-  if(key_press)begin requested_style<=requested_style==STYLE_COUNT-1?0:requested_style+1'b1;blocked<=0;end
+  if(key_press)begin requested_index<=requested_index==STYLE_COUNT-1?0:requested_index+1'b1;blocked<=0;end
   if(ready && loaded_style!=requested_style)ready<=0;
   if(job_start && commit)begin active_bank<=loaded_bank;active_style<=loaded_style;ready<=0;end
   if(!load_active && !ready && !blocked && requested_style!=active_style)begin

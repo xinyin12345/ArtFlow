@@ -1,0 +1,112 @@
+{
+  "status": "PASS",
+  "RAM_count": 7,
+  "port_timing": {
+    "write_setup": {
+      "paths": 164,
+      "minimum_slack_ns": 4.242,
+      "maximum_data_delay_ns": 5.633,
+      "covered_RAM": [
+        "u_video_pipe/u_accel_dma/r/storage_ram[0].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[1].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[2].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[3].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[4].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[5].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[6].memory"
+      ]
+    },
+    "write_hold": {
+      "paths": 164,
+      "minimum_slack_ns": 0.19,
+      "maximum_data_delay_ns": 2.018,
+      "covered_RAM": [
+        "u_video_pipe/u_accel_dma/r/storage_ram[0].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[1].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[2].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[3].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[4].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[5].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[6].memory"
+      ]
+    },
+    "address_setup": {
+      "paths": 28,
+      "minimum_slack_ns": 3.23,
+      "maximum_data_delay_ns": 3.56,
+      "covered_RAM": [
+        "u_video_pipe/u_accel_dma/r/storage_ram[0].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[1].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[2].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[3].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[4].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[5].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[6].memory"
+      ]
+    },
+    "address_hold": {
+      "paths": 28,
+      "minimum_slack_ns": 0.181,
+      "maximum_data_delay_ns": 1.278,
+      "covered_RAM": [
+        "u_video_pipe/u_accel_dma/r/storage_ram[0].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[1].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[2].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[3].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[4].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[5].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[6].memory"
+      ]
+    },
+    "data_setup": {
+      "paths": 594,
+      "minimum_slack_ns": 0.907,
+      "maximum_data_delay_ns": 5.968,
+      "covered_RAM": [
+        "u_video_pipe/u_accel_dma/r/storage_ram[0].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[1].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[2].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[3].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[4].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[5].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[6].memory"
+      ]
+    },
+    "data_hold": {
+      "paths": 594,
+      "minimum_slack_ns": 0.816,
+      "maximum_data_delay_ns": 3.389,
+      "covered_RAM": [
+        "u_video_pipe/u_accel_dma/r/storage_ram[0].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[1].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[2].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[3].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[4].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[5].memory",
+        "u_video_pipe/u_accel_dma/r/storage_ram[6].memory"
+      ]
+    }
+  },
+  "scope": "Reviewed native dual-clock payload memory. Independent core-clock write and CNN-clock read ports, no extra output pipeline stage. Same-clock write/address/data setup+hold audited for every RAM. All Gray/lease CDC checks remain separate and mandatory; no raw payload CDC exception added. Functional collision/reset/capacity tests bound in receipt.",
+  "sha256": {
+    "ArtFlow.sdc": "12656e6eae9ab3e6834ba72f6673d2b2c6e2baa8771ef5235a4925e8f73b28dc",
+    "tools/check_round23t_return_ram_cdc_v2.py": "84e4473689b350f81ebf4f00d4eeffdcc98e626cc2cf4b0a2eb5c77723da749a",
+    "tools/check_round23t_return_ram_v2.tcl": "474805b5af607ae5c7f65a3a4292e0a7467efd26afd08d95de63cc44f82a15eb",
+    "reports/styles8/round23t_map_analysis.json": "b34b05c699aa4f9add71fa22b43187385850900bcc0ecfd8c30a7cdc90d4aed5",
+    "reports/styles8/round23t_functional_receipt.json": "05941937cb8cc2d20ea68d02b1df491e542e7181cec734ec910a05cf204828e8",
+    "work/styles8/implementation_source_sha256.json": "92fad1f0f2f2aa753f175c76f86fc237f91a8165563b496862e4e945000dd710",
+    "work/styles8/normal_sta_summary.json": "723eb878b34d893c537915e7cde3efcee4aa3ccf7c6b5222dd9999cda90d37bc",
+    "work/styles8/video_cdc_audit.sdc": "6dc1e03b930ce2bf8ba9b44c4d9445e0c35b059233afbb4501be7bc5d3fab594",
+    "work/styles8/sta_tclsh.log": "61fa844151deb8c0b052b3303e0602349b91d88d40bd2676a343a8c0c4a3c97b",
+    "work/styles8/out/ArtFlow.map.v": "dfb89f27902fc449e252c77ce2421d8c190854d5a273df6e5dde0e294e4e52d5",
+    "work/styles8/out/ArtFlow.vdb": "16b6b9ac7718fe54c125bf104619bc45574f57d64d90370c6389d661d2004ea2",
+    "work/styles8/out/ArtFlow.place": "24dea8ccf15ce93f7057ced7411471e0c5abc2020e82896efbfacf2ceadc076b",
+    "work/styles8/out/ArtFlow.troutingtraces": "500da61458cb5cbe4a80060ea108f50ce64500403e6916b94aa5dc1192cf68ae",
+    "work/styles8/out/ArtFlow.return_ram_write_setup.rpt": "67df192b9ff856a27f804cad6ed587f6b575039124d979f4d82daf6164fc7494",
+    "work/styles8/out/ArtFlow.return_ram_write_hold.rpt": "7fbc49cff1cd225aed18c6bc0ee300a0146e0fff90f919cf5153f51973bd0612",
+    "work/styles8/out/ArtFlow.return_ram_address_setup.rpt": "6d812ddf8e8480596a2f0ece4dd37b51e892ab23068cc3a8f41e454df2bcbf9d",
+    "work/styles8/out/ArtFlow.return_ram_address_hold.rpt": "cc95573d377472a70ba5b524c21d432b8c9b51c7790cbe008cf1b4898060ee44",
+    "work/styles8/out/ArtFlow.return_ram_data_setup.rpt": "0df1dee874c877466540e58860d8eea949159d4b8b382c8d770f924398c69a26",
+    "work/styles8/out/ArtFlow.return_ram_data_hold.rpt": "d9029c1c9f1e023d0e5ea26a15fc00ee60ad8d8915935af7fe654bad9e70d368"
+  }
+}

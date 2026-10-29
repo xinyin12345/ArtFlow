@@ -1,0 +1,75 @@
+INFO     : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+INFO     : Router Setup
+INFO     : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+INFO     : High utilization design detected; tuning for routability.
+INFO     : [Setup Parallel Routing Scheduler]
+INFO     : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+INFO     : Route Circuit with 16 threads
+INFO     : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+INFO     : Overridding delay budgets for 692 synchronizer-related pins
+INFO     : Iter  1: overlap=230403  heapops=24743680   (0%) cpd=1862  frr=1.00  msec=5843
+INFO     : [Setup Delay Budgets | 904.6 ms]
+INFO     : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+INFO     : Hold Fixing
+INFO     : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+INFO     : Total min wire delay:  22804879
+INFO     : Hold fix wire delay:          3
+INFO     : Hold fix delay ratio:     0.00%
+INFO     : Pins requiring hold fix:  0.00%
+INFO     : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+INFO     : Iter  2: overlap=134667  heapops=19867063   (12%) cpd=1918  frr=1.03  msec=3630
+INFO     : Iter  3: overlap=109602  heapops=20823488   (16%) cpd=1890  frr=1.02  msec=3810
+INFO     : Iter  4: overlap=93146   heapops=21800964   (21%) cpd=1888  frr=1.01  msec=3878
+INFO     : Iter  5: overlap=79127   heapops=22939502   (25%) cpd=1888  frr=1.01  msec=4361
+INFO     : Iter  6: overlap=67609   heapops=24041207   (30%) cpd=1861  frr=1.00  msec=4615
+INFO     : Iter  7: overlap=57373   heapops=25120474   (35%) cpd=1891  frr=1.02  msec=4720
+INFO     : Iter  8: overlap=49311   heapops=26276469   (39%) cpd=1876  frr=1.01  msec=5641
+INFO     : Iter  9: overlap=42637   heapops=27322069   (44%) cpd=1891  frr=1.02  msec=5954
+INFO     : Iter 10: overlap=36327   heapops=29237749   (48%) cpd=1900  frr=1.02  msec=6127
+INFO     : Iter 11: overlap=31176   heapops=30588124   (52%) cpd=1900  frr=1.02  msec=6721
+INFO     : Iter 12: overlap=26749   heapops=32692396   (55%) cpd=1950  frr=1.05  msec=6719
+INFO     : Iter 13: overlap=23004   heapops=34904900   (59%) cpd=1950  frr=1.05  msec=7511
+INFO     : Iter 14: overlap=19834   heapops=37289089   (62%) cpd=1950  frr=1.05  msec=13226
+INFO     : Iter 15: overlap=17252   heapops=39242405   (66%) cpd=2015  frr=1.08  msec=8765
+INFO     : Iter 16: overlap=15425   heapops=42511094   (68%) cpd=2015  frr=1.08  msec=9616
+INFO     : Iter 17: overlap=13485   heapops=44473092   (70%) cpd=2015  frr=1.08  msec=10583
+INFO     : Iter 18: overlap=11684   heapops=46036256   (72%) cpd=2015  frr=1.08  msec=11140
+INFO     : Iter 19: overlap=10057   heapops=48426646   (74%) cpd=2015  frr=1.08  msec=13284
+INFO     : [Rebuild Parallel Routing Scheduler]
+INFO     : Iter 20: overlap=9081    heapops=49655280   (76%) cpd=2015  frr=1.08  msec=13876
+INFO     : Iter 21: overlap=7478    heapops=73599735   (78%) cpd=2015  frr=1.08  msec=26607
+INFO     : Iter 22: overlap=6468    heapops=70278947   (79%) cpd=2015  frr=1.08  msec=25263
+INFO     : Iter 23: overlap=5570    heapops=70163734   (81%) cpd=2015  frr=1.08  msec=25188
+INFO     : Iter 24: overlap=5044    heapops=71917962   (81%) cpd=2015  frr=1.08  msec=26798
+INFO     : Iter 25: overlap=4436    heapops=68857066   (82%) cpd=2015  frr=1.08  msec=25481
+INFO     : Iter 26: overlap=3922    heapops=72380016   (82%) cpd=2015  frr=1.08  msec=27084
+INFO     : Iter 27: overlap=3655    heapops=72241098   (83%) cpd=2153  frr=1.16  msec=32539
+INFO     : Iter 28: overlap=3249    heapops=68961694   (84%) cpd=2153  frr=1.16  msec=26611
+INFO     : Iter 29: overlap=2913    heapops=68668477   (84%) cpd=2153  frr=1.16  msec=28006
+INFO     : Iter 30: overlap=2833    heapops=67215409   (84%) cpd=2153  frr=1.16  msec=28233
+INFO     : Iter 31: overlap=2657    heapops=67084049   (84%) cpd=2153  frr=1.16  msec=29896
+INFO     : Iter 32: overlap=2662    heapops=68614252   (84%) cpd=2153  frr=1.16  msec=28519
+INFO     : Iter 33: overlap=2656    heapops=73273043   (84%) cpd=2153  frr=1.16  msec=28921
+INFO     : Iter 34: overlap=2546    heapops=71430718   (84%) cpd=2153  frr=1.16  msec=28585
+INFO     : Iter 35: overlap=2507    heapops=72070488   (84%) cpd=6814  frr=3.66  msec=28116
+INFO     : Iter 36: overlap=2416    heapops=71006135   (84%) cpd=7161  frr=3.85  msec=27944
+INFO     : Iter 37: overlap=2340    heapops=68558673   (84%) cpd=7489  frr=4.02  msec=27115
+INFO     : Iter 38: overlap=2317    heapops=71231277   (84%) cpd=7569  frr=4.06  msec=31281
+INFO     : Iter 39: overlap=2269    heapops=72460932   (84%) cpd=8146  frr=4.37  msec=30358
+INFO     : Iter 40: overlap=2397    heapops=79221668   (84%) cpd=7645  frr=4.11  msec=32901
+INFO     : Iter 41: overlap=2414    heapops=82862716   (83%) cpd=8281  frr=4.45  msec=27992
+ERROR    : Routing for the circuit has not been converging for the last 3 iterations.
+INFO     : ------------------------------------------------------------------------------------------------------
+Your design has some routing congestion and advanced settings may help. To get the best results, try the following methods one at a time:
+   1. Use a different seed during place and route. You set the --seed option in the Project Editor > Place and Route tab.
+   2. Try a different setting for --optimization-level, specifically the congestion choices. You specify the setting in the Project Editor > Place and Route tab.
+   3. If methods 1 and 2 do not work, you may need to change your design to minimize the congested areas.
+For more information, refer to "Place and Route Options" in the Timing Closure User Guide.
+------------------------------------------------------------------------------------------------------
+INFO     : Routing took 763.3438074 seconds [FlowMsg::StageDuration]
+INFO     :     Routing took 1232.5 seconds (approximately) in total CPU time [FlowMsg::StageDuration::CPUTime]
+INFO     : Routing virtual memory usage: begin = 189.908 MB, end = 683.524 MB, delta = 493.616 MB [FlowMsg::VMUsage]
+INFO     :     Routing peak virtual memory usage = 714.652 MB [FlowMsg::VMUsage::Peak]
+INFO     : Routing resident set memory usage: begin = 210.912 MB, end = 682.668 MB, delta = 471.756 MB [FlowMsg::RSSUsage]
+INFO     :     Routing peak resident set memory usage = 733.884 MB [FlowMsg::RSSUsage::Peak]
+ERROR    : The router is not able to find a legal routing solution

@@ -6,7 +6,7 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-WORK = ROOT / 'work/styles15'
+WORK = ROOT / 'work/styles8'
 REPORT = WORK / 'out/ArtFlow.video_bus_skew.rpt'
 
 GROUPS = (
@@ -177,11 +177,11 @@ def check():
     slow = (WORK/'out/ArtFlow.video_bus_delay.rpt').read_text()
     buses = parse_reports(body, slow)
     files = ['ArtFlow.sdc','rtl/video/rgb_frame_store_v07.v','rtl/control/artflow_control.v',
-             'rtl/ArtFlow_top.v','tools/check_round23t_video_cdc.py','tools/check_video_cdc.tcl','work/styles15/video_cdc_audit.sdc',
-             'work/styles15/out/ArtFlow.map.v','work/styles15/out/ArtFlow.vdb','work/styles15/out/ArtFlow.place',
-             'work/styles15/out/ArtFlow.troutingtraces',
-             'work/styles15/out/ArtFlow.video_bus_skew.rpt',
-             'work/styles15/out/ArtFlow.video_bus_delay.rpt']
+             'rtl/ArtFlow_top.v','tools/check_round23t_video_cdc.py','tools/check_video_cdc.tcl','work/styles8/video_cdc_audit.sdc',
+             'work/styles8/out/ArtFlow.map.v','work/styles8/out/ArtFlow.vdb','work/styles8/out/ArtFlow.place',
+             'work/styles8/out/ArtFlow.troutingtraces',
+             'work/styles8/out/ArtFlow.video_bus_skew.rpt',
+             'work/styles8/out/ArtFlow.video_bus_delay.rpt']
     result = dict(status='PASS', buses=buses, endpoints=[b['endpoints'] for b in buses],
                   skew_ns=[b['skew_ns'] for b in buses], slack_ns=[b['slack_ns'] for b in buses],
                   kind='post-route audit with clock groups omitted',

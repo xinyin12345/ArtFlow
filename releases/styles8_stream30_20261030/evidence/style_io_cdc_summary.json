@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "pad_route_ns": {
+    "input": 0.479,
+    "flash_sck": 0.651,
+    "flash_mosi": 1.305,
+    "flash_cs_n": 0.671
+  },
+  "round_trip_budget_ns": 26.13,
+  "available_ns": 56,
+  "pcb_round_trip_allowance_ns": 2,
+  "flash_tCLQV_ns": 7,
+  "note": "Protocol timing budget with two-FF input synchronization; board flash suffix/load/trace flight allowance needs physical validation. No phase-locked SPI clock assumed.",
+  "datasheet": "https://www.mouser.lt/datasheet/2/870/gd25lq64c_rev3_4_20190615-2486443.pdf",
+  "sha256": {
+    "ArtFlow.sdc": "12656e6eae9ab3e6834ba72f6673d2b2c6e2baa8771ef5235a4925e8f73b28dc",
+    "rtl/cnn/glass_int8/style_spi_reader.v": "a097701ca52f08026f8914d23e2604bdcc3ff7fdd4ef6160a2c7c83e7879ac66",
+    "tools/check_style_io.tcl": "1b053d3caa3e878b3db5f6009ff67879e56e7cbfdfd20fcf74653ce87ea8ae87",
+    "tools/check_round23t_style_io.py": "9b2455adda02936d5e0fbef9a680b959896b996eb910f574f8027a294096a030",
+    "work/styles8/video_cdc_audit.sdc": "6dc1e03b930ce2bf8ba9b44c4d9445e0c35b059233afbb4501be7bc5d3fab594",
+    "work/styles8/implementation_source_sha256.json": "92fad1f0f2f2aa753f175c76f86fc237f91a8165563b496862e4e945000dd710",
+    "work\\styles8\\out\\ArtFlow.spi_input.rpt": "f075e6287176d8c312d5dca57a5cd05b431442adcdcb660df787852eee97738e",
+    "work\\styles8\\out\\ArtFlow.spi_flash_sck.rpt": "19498b2ff0347e6a7ce199cb5b3ad6c5b007c37ddacf68959d5b25a9f2abcdc7",
+    "work\\styles8\\out\\ArtFlow.spi_flash_mosi.rpt": "489deebdf12736bb0393c3d99a3067d0765bd360998b3162784bc5991ac47f42",
+    "work\\styles8\\out\\ArtFlow.spi_flash_cs_n.rpt": "4cb8899c6915ceb451110f2bd4d02cace35780bed3b43805db1ba4118de7da7a"
+  }
+}

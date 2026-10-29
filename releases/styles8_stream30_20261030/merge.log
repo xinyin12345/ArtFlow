@@ -1,0 +1,17 @@
+#-----------------------------------------
+# User Configuration
+#-----------------------------------------
+Mode		: generic_comb_image
+
+No	: Starting Address	: Image	
+Image  1: 0x0                  : D:\work\FPGA\ArtFlow\ArtFlow\releases\styles8_stream30_20261030\ArtFlow_styles8_stream30.hex
+Image  2: 0x400000             : D:\work\FPGA\ArtFlow\ArtFlow\releases\styles8_stream30_20261030\models8_parameters.bin
+
+#-----------------------------------------
+
+Generated FPGA Soc Image output file: D:\work\FPGA\ArtFlow\ArtFlow\releases\styles8_stream30_20261030\ArtFlow_styles8_stream30_with_models.hex
+Flash Address  Length      Input Image File
+0x00000000     0x0010d981  D:\work\FPGA\ArtFlow\ArtFlow\releases\styles8_stream30_20261030\ArtFlow_styles8_stream30.hex
+0x00400000     0x00020000  D:\work\FPGA\ArtFlow\ArtFlow\releases\styles8_stream30_20261030\models8_parameters.bin
+
+Generated report file D:\work\FPGA\ArtFlow\ArtFlow\releases\styles8_stream30_20261030\ArtFlow_styles8_stream30_with_models.rpt

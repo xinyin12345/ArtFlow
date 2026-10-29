@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "full_bus_endpoints": [
+    2,
+    32,
+    32,
+    48
+  ],
+  "negative_cases_rejected": [
+    "missing_msb_source",
+    "wrong_msb_destination",
+    "missing_endpoint_count",
+    "over_budget_path",
+    "negative_detail_slack"
+  ],
+  "sha256": {
+    "tools\\check_round23t_video_cdc.py": "6ffc0ab58ca6d4a66f8bf473efc792c9df557030506005001d1a8a3893e0adbe",
+    "stream\\tests\\cdc_audit_test.py": "5a14eaec946413a45a7d2c8e664f869f7a78a33294d16a5fd4d5c2b8b665428b",
+    "work\\styles8\\out\\ArtFlow.video_bus_skew.rpt": "9e3d871c88e595dc6fb1393147a2754b1d27d6d26f4d61d2dc092ed0086fd249",
+    "work\\styles8\\out\\ArtFlow.video_bus_delay.rpt": "621cca9f2c8055974b3ea8b02a280918aaf252923349e698690fa979b993a114"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "attempts": [
+    {
+      "seed": 2,
+      "status": "FAIL_ROUTING_CONGESTION",
+      "remaining_conflicts": 9,
+      "route_log": "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\work\\styles8_attempt_seed2\\out\\ArtFlow.route.out",
+      "route_log_sha256": "99c7df28b45c00631887623175d308b16199b43c85952e685eef0ab1ad69e251"
+    },
+    {
+      "seed": 3,
+      "status": "FAIL_ROUTING_NOT_CONVERGING",
+      "remaining_conflicts": 2414,
+      "route_log": "work/styles8_attempt_seed3/out/ArtFlow.route.out",
+      "route_log_sha256": "1787ff6beb165c850704ecfae6678e9ce3db344640f9f165512ef9691eb1fa57"
+    },
+    {
+      "seed": 2,
+      "placer_effort_level": 5,
+      "status": "PASS_OFFLINE_CONDITIONAL_IO_BUDGET",
+      "reason": "Seed 2 reached only 9 conflicts; seed 3 stagnated. Raise placement optimization effort with the same RTL and timing constraints.",
+      "minimum_slack_ns": {
+        "Setup (Max)": 0.257,
+        "Hold (Min)": 0.026
+      },
+      "finalization_note": "CDC negative tests passed; fixed receipt paths to repository root, then generated pgm outputs without repeating successful routing."
+    }
+  ],
+  "unchanged": "TIMING_3, clocks, constraints, all RTL and model bytes",
+  "functional_reuse": "All RTL test source and vector hashes rechecked; only the implementation seed changed."
+}

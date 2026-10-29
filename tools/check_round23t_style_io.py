@@ -1,13 +1,13 @@
 from pathlib import Path
 import sys,json,re,hashlib
-R=Path(__file__).resolve().parents[1];W=R/'work/styles15';O=W/'out'
+R=Path(__file__).resolve().parents[1];W=R/'work/styles8';O=W/'out'
 def prepare():
  for name in ['video_cdc_audit.sdc','cnn_cdc_audit.sdc']:
   p=W/name;t=p.read_text();line=next(s for s in t.splitlines() if s.startswith('set_false_path -from [get_ports {flash_miso}]'))
   t=t.replace(line,'# SPI first-stage exception removed only to measure its pad-to-D delay.')
   t+='\n# Artificial launch/capture edges for measuring IO routing, not synchronous signoff.\nset_input_delay -clock cnn_clk -max 0 [get_ports flash_miso]\nset_input_delay -clock cnn_clk -min 0 [get_ports flash_miso]\nset_max_delay 10 -from [get_ports flash_miso] -to [get_pins {u_video_pipe/u_accel_dma/styles.banks/reader/miso_meta~FF|D}]\nset_output_delay -clock cnn_clk -max 0 [get_ports {flash_sck flash_mosi flash_cs_n}]\nset_output_delay -clock cnn_clk -min 0 [get_ports {flash_sck flash_mosi flash_cs_n}]\n';p.write_text(t)
 def check():
- routes={};files=['ArtFlow.sdc','rtl/cnn/glass_int8/style_spi_reader.v','tools/check_style_io.tcl','tools/check_round23t_style_io.py','work/styles15/video_cdc_audit.sdc','work/styles15/implementation_source_sha256.json']
+ routes={};files=['ArtFlow.sdc','rtl/cnn/glass_int8/style_spi_reader.v','tools/check_style_io.tcl','tools/check_round23t_style_io.py','work/styles8/video_cdc_audit.sdc','work/styles8/implementation_source_sha256.json']
  for name in ['input','flash_sck','flash_mosi','flash_cs_n']:
   p=O/f'ArtFlow.spi_{name}.rpt';t=p.read_text();assert p.stat().st_mtime_ns>(W/'implementation_source_sha256.json').stat().st_mtime_ns
   delays=re.findall(r'^Data Path Delay\s*:\s*(-?\d+\.\d+)',t,re.M);assert len(delays)==1,(name,t[-2000:]);v=float(delays[0]);assert 0<=v<=10,(name,v)

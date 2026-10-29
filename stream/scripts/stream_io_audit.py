@@ -1,6 +1,6 @@
 from pathlib import Path
 import re,json,hashlib,sys
-R=Path(__file__).resolve().parents[1];F=R.parent;W=F/'work/styles15';O=W/'out'
+R=Path(__file__).resolve().parents[1];F=R.parent;W=F/'work/styles8';O=W/'out'
 def prepare():
  p=W/'video_cdc_audit.sdc';s=p.read_text()
  for port,reg in [('stream_ready','ready_meta'),('stream_miso','miso_meta')]:

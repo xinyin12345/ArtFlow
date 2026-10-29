@@ -1,0 +1,1729 @@
+
+Efinix report_timing Report
+Version: 2026.1.132
+Date: Fri Oct 30 01:49:43 2026
+
+Copyright (C) 2013 - 2026 Efinix, Inc. All rights reserved.
+
+User command: report_timing -setup -from_clock [get_clocks core_clk] -to_clock [get_clocks cnn_clk] -npaths 1024 -nworst 1 -file ArtFlow.core_to_cnn.rpt
+
+Timing Model: I3
+	process : typical
+	temperature : -40C to 100C
+	voltage : 0.95 +/-30mV
+	speedgrade : 3
+	technology : t16ff
+	status : final
+
+Summary:
+
+ Path #  | Slack(ns) |                         Start Pin                          |                            End Pin                            |  Launch Clock   | Capture Clock
+====================================================================================================================================================================================
+  1      |  -3.223   | accel_pready~FF|CLK                                        | u_video_pipe/u_accel_dma/reset_cnn[0]~FF|SR                   | core_clk (RISE) | cnn_clk (RISE)
+  2      |  -3.223   | accel_pready~FF|CLK                                        | u_video_pipe/u_accel_dma/reset_cnn[1]~FF|SR                   | core_clk (RISE) | cnn_clk (RISE)
+  3      |  -3.223   | accel_pready~FF|CLK                                        | u_video_pipe/u_accel_dma/reset_cnn[2]~FF|SR                   | core_clk (RISE) | cnn_clk (RISE)
+  4      |   0.001   | i1460/u_video_pipe/u_accel_dma/jobs/storage[1][55]~FF|CLK  | u_video_pipe/u_accel_dma/job[55]~FF|D                         | core_clk (RISE) | cnn_clk (RISE)
+  5      |   0.049   | i1460/u_video_pipe/u_accel_dma/jobs/storage[2][23]~FF|CLK  | u_video_pipe/u_accel_dma/job[23]~FF|D                         | core_clk (RISE) | cnn_clk (RISE)
+  6      |   0.121   | i1460/u_video_pipe/u_accel_dma/jobs/storage[1][22]~FF|CLK  | u_video_pipe/u_accel_dma/job[22]~FF|D                         | core_clk (RISE) | cnn_clk (RISE)
+  7      |   0.129   | u_video_pipe/u_accel_dma/jobs/wbin[2]~FF|CLK               | u_video_pipe/u_accel_dma/jobs/wgray_meta[2]~FF|D              | core_clk (RISE) | cnn_clk (RISE)
+  8      |   0.171   | i1460/u_video_pipe/u_accel_dma/jobs/storage[1][54]~FF|CLK  | u_video_pipe/u_accel_dma/job[54]~FF|D                         | core_clk (RISE) | cnn_clk (RISE)
+  9      |   0.229   | i1460/u_video_pipe/u_accel_dma/jobs/storage[1][56]~FF|CLK  | u_video_pipe/u_accel_dma/job[56]~FF|D                         | core_clk (RISE) | cnn_clk (RISE)
+ 10      |   0.239   | u_video_pipe/u_accel_dma/r/wbin[3]~FF|CLK                  | u_video_pipe/u_accel_dma/r/wgray_meta[3]~FF|D                 | core_clk (RISE) | cnn_clk (RISE)
+ 11      |   0.245   | u_video_pipe/u_accel_dma/aw/rgray[1]~FF|CLK                | u_video_pipe/u_accel_dma/aw/rgray_meta[1]~FF|D                | core_clk (RISE) | cnn_clk (RISE)
+ 12      |   0.270   | u_video_pipe/u_accel_dma/w/rgray[0]~FF|CLK                 | u_video_pipe/u_accel_dma/w/rgray_meta[0]~FF|D                 | core_clk (RISE) | cnn_clk (RISE)
+ 13      |   0.283   | u_video_pipe/u_accel_dma/r/wgray[0]~FF|CLK                 | u_video_pipe/u_accel_dma/r/wgray_meta[0]~FF|D                 | core_clk (RISE) | cnn_clk (RISE)
+ 14      |   0.295   | u_video_pipe/u_accel_dma/aw/rgray[0]~FF|CLK                | u_video_pipe/u_accel_dma/aw/rgray_meta[0]~FF|D                | core_clk (RISE) | cnn_clk (RISE)
+ 15      |   0.320   | u_video_pipe/u_accel_dma/style_status_fifo/rbin[2]~FF|CLK  | u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[2]~FF|D | core_clk (RISE) | cnn_clk (RISE)
+ 16      |   0.330   | u_video_pipe/u_accel_dma/ar/rgray[1]~FF|CLK                | u_video_pipe/u_accel_dma/ar/rgray_meta[1]~FF|D                | core_clk (RISE) | cnn_clk (RISE)
+ 17      |   0.348   | u_video_pipe/u_accel_dma/events/rgray[0]~FF|CLK            | u_video_pipe/u_accel_dma/events/rgray_meta[0]~FF|D            | core_clk (RISE) | cnn_clk (RISE)
+ 18      |   0.359   | u_video_pipe/u_accel_dma/style_status_fifo/rgray[0]~FF|CLK | u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[0]~FF|D | core_clk (RISE) | cnn_clk (RISE)
+ 19      |   0.361   | u_video_pipe/u_accel_dma/jobs/wgray[0]~FF|CLK              | u_video_pipe/u_accel_dma/jobs/wgray_meta[0]~FF|D              | core_clk (RISE) | cnn_clk (RISE)
+ 20      |   0.401   | u_video_pipe/u_accel_dma/w/rgray[2]~FF|CLK                 | u_video_pipe/u_accel_dma/w/rgray_meta[2]~FF|D                 | core_clk (RISE) | cnn_clk (RISE)
+ 21      |   0.403   | u_video_pipe/u_accel_dma/events/rbin[2]~FF|CLK             | u_video_pipe/u_accel_dma/events/rgray_meta[2]~FF|D            | core_clk (RISE) | cnn_clk (RISE)
+ 22      |   0.426   | u_video_pipe/u_accel_dma/jobs/wgray[1]~FF|CLK              | u_video_pipe/u_accel_dma/jobs/wgray_meta[1]~FF|D              | core_clk (RISE) | cnn_clk (RISE)
+ 23      |   0.429   | u_video_pipe/u_accel_dma/style_status_fifo/rgray[1]~FF|CLK | u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[1]~FF|D | core_clk (RISE) | cnn_clk (RISE)
+ 24      |   0.454   | u_video_pipe/u_accel_dma/ar/rbin[2]~FF|CLK                 | u_video_pipe/u_accel_dma/ar/rgray_meta[2]~FF|D                | core_clk (RISE) | cnn_clk (RISE)
+ 25      |   0.459   | u_video_pipe/u_accel_dma/b/wgray[0]~FF|CLK                 | u_video_pipe/u_accel_dma/b/wgray_meta[0]~FF|D                 | core_clk (RISE) | cnn_clk (RISE)
+ 26      |   0.466   | u_video_pipe/u_accel_dma/r/wgray[2]~FF|CLK                 | u_video_pipe/u_accel_dma/r/wgray_meta[2]~FF|D                 | core_clk (RISE) | cnn_clk (RISE)
+ 27      |   0.466   | u_video_pipe/u_accel_dma/w/rbin[3]~FF|CLK                  | u_video_pipe/u_accel_dma/w/rgray_meta[3]~FF|D                 | core_clk (RISE) | cnn_clk (RISE)
+ 28      |   0.470   | u_video_pipe/u_accel_dma/b/wgray[1]~FF|CLK                 | u_video_pipe/u_accel_dma/b/wgray_meta[1]~FF|D                 | core_clk (RISE) | cnn_clk (RISE)
+ 29      |   0.474   | u_video_pipe/u_accel_dma/ar/rgray[0]~FF|CLK                | u_video_pipe/u_accel_dma/ar/rgray_meta[0]~FF|D                | core_clk (RISE) | cnn_clk (RISE)
+ 30      |   0.487   | u_video_pipe/u_accel_dma/w/rgray[1]~FF|CLK                 | u_video_pipe/u_accel_dma/w/rgray_meta[1]~FF|D                 | core_clk (RISE) | cnn_clk (RISE)
+ 31      |   0.488   | u_video_pipe/u_accel_dma/aw/rbin[2]~FF|CLK                 | u_video_pipe/u_accel_dma/aw/rgray_meta[2]~FF|D                | core_clk (RISE) | cnn_clk (RISE)
+ 32      |   0.493   | u_video_pipe/u_accel_dma/b/wbin[2]~FF|CLK                  | u_video_pipe/u_accel_dma/b/wgray_meta[2]~FF|D                 | core_clk (RISE) | cnn_clk (RISE)
+ 33      |   0.509   | u_video_pipe/u_accel_dma/park_req~FF|CLK                   | u_video_pipe/u_accel_dma/park_meta~FF|D                       | core_clk (RISE) | cnn_clk (RISE)
+ 34      |   0.522   | u_video_pipe/u_accel_dma/r/wgray[1]~FF|CLK                 | u_video_pipe/u_accel_dma/r/wgray_meta[1]~FF|D                 | core_clk (RISE) | cnn_clk (RISE)
+ 35      |   0.533   | u_video_pipe/u_accel_dma/events/rgray[1]~FF|CLK            | u_video_pipe/u_accel_dma/events/rgray_meta[1]~FF|D            | core_clk (RISE) | cnn_clk (RISE)
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : -3.223 ns (required time - arrival time)                      
+Path Start      : accel_pready~FF|CLK                                           
+Path End        : u_video_pipe/u_accel_dma/reset_cnn[0]~FF|SR                   
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 3.955 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 3.955
+--------------------------------------
+End-of-path arrival time       : 6.059
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.104
+--------------------------------------
+End-of-path required time      : 2.836
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)   Netlist Resource(s)
+========================================================================
+ (0,162)     input            0.000        0.000     core_clk           
+ (0,162)     input            0.126        0.126     core_clk           
+             net (fo=8619)    1.978        2.104     core_clk           
+ (173,252)   EFX_FF           0.000        2.104     accel_pready~FF|CLK
+
+Data Path
+  Location    Delay Type     Incr(ns)     Path(ns)               Netlist Resource(s)
+================================================================================================
+ (173,252)   EFX_FF (Tco)     0.130        0.130     accel_pready~FF|Q                          
+             net (fo=1031)    3.825        3.955     accel_pready                               
+ (64,65)     EFX_FF           0.000        3.955     u_video_pipe/u_accel_dma/reset_cnn[0]~FF|SR
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)               Netlist Resource(s)
+==================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                     
+ (112,323)   input              0.126       0.126     cnn_clk                                     
+             net (fo=15212)     1.940       2.066     cnn_clk                                     
+ (64,65)     EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/reset_cnn[0]~FF|CLK
+ (64,65)     EFX_FF (Setup)    -0.104       1.962     u_video_pipe/u_accel_dma/reset_cnn[0]~FF    
+
+++++ Path 2 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : -3.223 ns (required time - arrival time)                      
+Path Start      : accel_pready~FF|CLK                                           
+Path End        : u_video_pipe/u_accel_dma/reset_cnn[1]~FF|SR                   
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 3.955 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 3.955
+--------------------------------------
+End-of-path arrival time       : 6.059
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.104
+--------------------------------------
+End-of-path required time      : 2.836
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)   Netlist Resource(s)
+========================================================================
+ (0,162)     input            0.000        0.000     core_clk           
+ (0,162)     input            0.126        0.126     core_clk           
+             net (fo=8619)    1.978        2.104     core_clk           
+ (173,252)   EFX_FF           0.000        2.104     accel_pready~FF|CLK
+
+Data Path
+  Location    Delay Type     Incr(ns)     Path(ns)               Netlist Resource(s)
+================================================================================================
+ (173,252)   EFX_FF (Tco)     0.130        0.130     accel_pready~FF|Q                          
+             net (fo=1031)    3.825        3.955     accel_pready                               
+ (64,66)     EFX_FF           0.000        3.955     u_video_pipe/u_accel_dma/reset_cnn[1]~FF|SR
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)               Netlist Resource(s)
+==================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                     
+ (112,323)   input              0.126       0.126     cnn_clk                                     
+             net (fo=15212)     1.940       2.066     cnn_clk                                     
+ (64,66)     EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/reset_cnn[1]~FF|CLK
+ (64,66)     EFX_FF (Setup)    -0.104       1.962     u_video_pipe/u_accel_dma/reset_cnn[1]~FF    
+
+++++ Path 3 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : -3.223 ns (required time - arrival time)                      
+Path Start      : accel_pready~FF|CLK                                           
+Path End        : u_video_pipe/u_accel_dma/reset_cnn[2]~FF|SR                   
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 3.955 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 3.955
+--------------------------------------
+End-of-path arrival time       : 6.059
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.104
+--------------------------------------
+End-of-path required time      : 2.836
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)   Netlist Resource(s)
+========================================================================
+ (0,162)     input            0.000        0.000     core_clk           
+ (0,162)     input            0.126        0.126     core_clk           
+             net (fo=8619)    1.978        2.104     core_clk           
+ (173,252)   EFX_FF           0.000        2.104     accel_pready~FF|CLK
+
+Data Path
+  Location    Delay Type     Incr(ns)     Path(ns)               Netlist Resource(s)
+================================================================================================
+ (173,252)   EFX_FF (Tco)     0.130        0.130     accel_pready~FF|Q                          
+             net (fo=1031)    3.825        3.955     accel_pready                               
+ (64,67)     EFX_FF           0.000        3.955     u_video_pipe/u_accel_dma/reset_cnn[2]~FF|SR
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)               Netlist Resource(s)
+==================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                     
+ (112,323)   input              0.126       0.126     cnn_clk                                     
+             net (fo=15212)     1.940       2.066     cnn_clk                                     
+ (64,67)     EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/reset_cnn[2]~FF|CLK
+ (64,67)     EFX_FF (Setup)    -0.104       1.962     u_video_pipe/u_accel_dma/reset_cnn[2]~FF    
+
+++++ Path 4 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.001 ns (required time - arrival time)                       
+Path Start      : i1460/u_video_pipe/u_accel_dma/jobs/storage[1][55]~FF|CLK     
+Path End        : u_video_pipe/u_accel_dma/job[55]~FF|D                         
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.832 ns                                                      
+Logic Levels    : 2                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.832
+--------------------------------------
+End-of-path arrival time       : 2.936
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)                      Netlist Resource(s)
+==============================================================================================================
+ (0,162)     input            0.000        0.000     core_clk                                                 
+ (0,162)     input            0.126        0.126     core_clk                                                 
+             net (fo=8619)    1.978        2.104     core_clk                                                 
+ (179,101)   EFX_FF           0.000        2.104     i1460/u_video_pipe/u_accel_dma/jobs/storage[1][55]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                     Netlist Resource(s)
+===========================================================================================================
+ (179,101)   EFX_FF (Tco)    0.130        0.130     i1460/u_video_pipe/u_accel_dma/jobs/storage[1][55]~FF|Q
+             net (fo=1)      0.334        0.464     i1460/u_video_pipe/u_accel_dma/jobs/storage[1][55]     
+ (185,99)    EFX_LUT4        0.061        0.525     LUT__167488|in[1]                                      
+ (185,99)    EFX_LUT4        0.000        0.525     LUT__167488|out                                        
+             net (fo=1)      0.246        0.771     n81534                                                 
+ (185,92)    EFX_LUT4        0.061        0.832     LUT__167489|in[3]                                      
+ (185,92)    EFX_LUT4        0.000        0.832     LUT__167489|out                                        
+             net (fo=1)      0.000        0.832     u_video_pipe/u_accel_dma/jobs/n119                     
+ (185,92)    EFX_FF          0.000        0.832     u_video_pipe/u_accel_dma/job[55]~FF|D                  
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)             Netlist Resource(s)
+=============================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                
+ (112,323)   input              0.126       0.126     cnn_clk                                
+             net (fo=15212)     1.940       2.066     cnn_clk                                
+ (185,92)    EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/job[55]~FF|CLK
+ (185,92)    EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/job[55]~FF    
+
+++++ Path 5 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.049 ns (required time - arrival time)                       
+Path Start      : i1460/u_video_pipe/u_accel_dma/jobs/storage[2][23]~FF|CLK     
+Path End        : u_video_pipe/u_accel_dma/job[23]~FF|D                         
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.784 ns                                                      
+Logic Levels    : 1                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.784
+--------------------------------------
+End-of-path arrival time       : 2.888
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)                      Netlist Resource(s)
+==============================================================================================================
+  (0,162)    input            0.000        0.000     core_clk                                                 
+  (0,162)    input            0.126        0.126     core_clk                                                 
+             net (fo=8619)    1.978        2.104     core_clk                                                 
+  (192,90)   EFX_FF           0.000        2.104     i1460/u_video_pipe/u_accel_dma/jobs/storage[2][23]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                     Netlist Resource(s)
+===========================================================================================================
+  (192,90)   EFX_FF (Tco)    0.130        0.130     i1460/u_video_pipe/u_accel_dma/jobs/storage[2][23]~FF|Q
+             net (fo=1)      0.593        0.723     i1460/u_video_pipe/u_accel_dma/jobs/storage[2][23]     
+  (185,88)   EFX_LUT4        0.061        0.784     LUT__167485|in[1]                                      
+  (185,88)   EFX_LUT4        0.000        0.784     LUT__167485|out                                        
+             net (fo=1)      0.000        0.784     u_video_pipe/u_accel_dma/jobs/n151                     
+  (185,88)   EFX_FF          0.000        0.784     u_video_pipe/u_accel_dma/job[23]~FF|D                  
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)             Netlist Resource(s)
+=============================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                
+ (112,323)   input              0.126       0.126     cnn_clk                                
+             net (fo=15212)     1.940       2.066     cnn_clk                                
+ (185,88)    EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/job[23]~FF|CLK
+ (185,88)    EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/job[23]~FF    
+
+++++ Path 6 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.121 ns (required time - arrival time)                       
+Path Start      : i1460/u_video_pipe/u_accel_dma/jobs/storage[1][22]~FF|CLK     
+Path End        : u_video_pipe/u_accel_dma/job[22]~FF|D                         
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.712 ns                                                      
+Logic Levels    : 2                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.712
+--------------------------------------
+End-of-path arrival time       : 2.816
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)                      Netlist Resource(s)
+==============================================================================================================
+  (0,162)    input            0.000        0.000     core_clk                                                 
+  (0,162)    input            0.126        0.126     core_clk                                                 
+             net (fo=8619)    1.978        2.104     core_clk                                                 
+  (184,95)   EFX_FF           0.000        2.104     i1460/u_video_pipe/u_accel_dma/jobs/storage[1][22]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                     Netlist Resource(s)
+===========================================================================================================
+  (184,95)   EFX_FF (Tco)    0.130        0.130     i1460/u_video_pipe/u_accel_dma/jobs/storage[1][22]~FF|Q
+             net (fo=1)      0.129        0.259     i1460/u_video_pipe/u_accel_dma/jobs/storage[1][22]     
+  (184,96)   EFX_LUT4        0.061        0.320     LUT__167482|in[1]                                      
+  (184,96)   EFX_LUT4        0.000        0.320     LUT__167482|out                                        
+             net (fo=1)      0.331        0.651     n81531                                                 
+  (185,89)   EFX_LUT4        0.061        0.712     LUT__167483|in[3]                                      
+  (185,89)   EFX_LUT4        0.000        0.712     LUT__167483|out                                        
+             net (fo=1)      0.000        0.712     u_video_pipe/u_accel_dma/jobs/n152                     
+  (185,89)   EFX_FF          0.000        0.712     u_video_pipe/u_accel_dma/job[22]~FF|D                  
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)             Netlist Resource(s)
+=============================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                
+ (112,323)   input              0.126       0.126     cnn_clk                                
+             net (fo=15212)     1.940       2.066     cnn_clk                                
+ (185,89)    EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/job[22]~FF|CLK
+ (185,89)    EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/job[22]~FF    
+
+++++ Path 7 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.129 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/jobs/wbin[2]~FF|CLK                  
+Path End        : u_video_pipe/u_accel_dma/jobs/wgray_meta[2]~FF|D              
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.704 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.704
+--------------------------------------
+End-of-path arrival time       : 2.808
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)               Netlist Resource(s)
+=================================================================================================
+  (0,162)    input            0.000        0.000     core_clk                                    
+  (0,162)    input            0.126        0.126     core_clk                                    
+             net (fo=8619)    1.978        2.104     core_clk                                    
+  (173,95)   EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/jobs/wbin[2]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                 Netlist Resource(s)
+====================================================================================================
+  (173,95)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/jobs/wbin[2]~FF|Q      
+             net (fo=4)      0.574        0.704     u_video_pipe/u_accel_dma/jobs/wbin[2]           
+  (140,99)   EFX_FF          0.000        0.704     u_video_pipe/u_accel_dma/jobs/wgray_meta[2]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                  Netlist Resource(s)
+========================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                           
+ (112,323)   input              0.126       0.126     cnn_clk                                           
+             net (fo=15212)     1.940       2.066     cnn_clk                                           
+ (140,99)    EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/jobs/wgray_meta[2]~FF|CLK
+ (140,99)    EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/jobs/wgray_meta[2]~FF    
+
+++++ Path 8 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.171 ns (required time - arrival time)                       
+Path Start      : i1460/u_video_pipe/u_accel_dma/jobs/storage[1][54]~FF|CLK     
+Path End        : u_video_pipe/u_accel_dma/job[54]~FF|D                         
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.662 ns                                                      
+Logic Levels    : 2                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.662
+--------------------------------------
+End-of-path arrival time       : 2.766
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)                      Netlist Resource(s)
+==============================================================================================================
+  (0,162)    input            0.000        0.000     core_clk                                                 
+  (0,162)    input            0.126        0.126     core_clk                                                 
+             net (fo=8619)    1.978        2.104     core_clk                                                 
+  (181,98)   EFX_FF           0.000        2.104     i1460/u_video_pipe/u_accel_dma/jobs/storage[1][54]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                     Netlist Resource(s)
+===========================================================================================================
+  (181,98)   EFX_FF (Tco)    0.130        0.130     i1460/u_video_pipe/u_accel_dma/jobs/storage[1][54]~FF|Q
+             net (fo=1)      0.153        0.283     i1460/u_video_pipe/u_accel_dma/jobs/storage[1][54]     
+  (181,97)   EFX_LUT4        0.061        0.344     LUT__167486|in[1]                                      
+  (181,97)   EFX_LUT4        0.000        0.344     LUT__167486|out                                        
+             net (fo=1)      0.257        0.601     n81533                                                 
+  (182,92)   EFX_LUT4        0.061        0.662     LUT__167487|in[3]                                      
+  (182,92)   EFX_LUT4        0.000        0.662     LUT__167487|out                                        
+             net (fo=1)      0.000        0.662     u_video_pipe/u_accel_dma/jobs/n120                     
+  (182,92)   EFX_FF          0.000        0.662     u_video_pipe/u_accel_dma/job[54]~FF|D                  
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)             Netlist Resource(s)
+=============================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                
+ (112,323)   input              0.126       0.126     cnn_clk                                
+             net (fo=15212)     1.940       2.066     cnn_clk                                
+ (182,92)    EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/job[54]~FF|CLK
+ (182,92)    EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/job[54]~FF    
+
+++++ Path 9 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.229 ns (required time - arrival time)                       
+Path Start      : i1460/u_video_pipe/u_accel_dma/jobs/storage[1][56]~FF|CLK     
+Path End        : u_video_pipe/u_accel_dma/job[56]~FF|D                         
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.604 ns                                                      
+Logic Levels    : 2                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.604
+--------------------------------------
+End-of-path arrival time       : 2.708
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)                      Netlist Resource(s)
+==============================================================================================================
+  (0,162)    input            0.000        0.000     core_clk                                                 
+  (0,162)    input            0.126        0.126     core_clk                                                 
+             net (fo=8619)    1.978        2.104     core_clk                                                 
+  (181,95)   EFX_FF           0.000        2.104     i1460/u_video_pipe/u_accel_dma/jobs/storage[1][56]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                     Netlist Resource(s)
+===========================================================================================================
+  (181,95)   EFX_FF (Tco)    0.130        0.130     i1460/u_video_pipe/u_accel_dma/jobs/storage[1][56]~FF|Q
+             net (fo=1)      0.153        0.283     i1460/u_video_pipe/u_accel_dma/jobs/storage[1][56]     
+  (181,94)   EFX_LUT4        0.061        0.344     LUT__167490|in[1]                                      
+  (181,94)   EFX_LUT4        0.000        0.344     LUT__167490|out                                        
+             net (fo=1)      0.199        0.543     n81535                                                 
+  (182,91)   EFX_LUT4        0.061        0.604     LUT__167491|in[3]                                      
+  (182,91)   EFX_LUT4        0.000        0.604     LUT__167491|out                                        
+             net (fo=1)      0.000        0.604     u_video_pipe/u_accel_dma/jobs/n118                     
+  (182,91)   EFX_FF          0.000        0.604     u_video_pipe/u_accel_dma/job[56]~FF|D                  
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)             Netlist Resource(s)
+=============================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                
+ (112,323)   input              0.126       0.126     cnn_clk                                
+             net (fo=15212)     1.940       2.066     cnn_clk                                
+ (182,91)    EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/job[56]~FF|CLK
+ (182,91)    EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/job[56]~FF    
+
+++++ Path 10 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.239 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/r/wbin[3]~FF|CLK                     
+Path End        : u_video_pipe/u_accel_dma/r/wgray_meta[3]~FF|D                 
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.594 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.594
+--------------------------------------
+End-of-path arrival time       : 2.698
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)              Netlist Resource(s)
+==============================================================================================
+ (0,162)     input            0.000        0.000     core_clk                                 
+ (0,162)     input            0.126        0.126     core_clk                                 
+             net (fo=8619)    1.978        2.104     core_clk                                 
+ (164,117)   EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/r/wbin[3]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                Netlist Resource(s)
+=================================================================================================
+ (164,117)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/r/wbin[3]~FF|Q      
+             net (fo=3)      0.464        0.594     u_video_pipe/u_accel_dma/r/wbin[3]           
+ (155,123)   EFX_FF          0.000        0.594     u_video_pipe/u_accel_dma/r/wgray_meta[3]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                 Netlist Resource(s)
+=====================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                        
+ (112,323)   input              0.126       0.126     cnn_clk                                        
+             net (fo=15212)     1.940       2.066     cnn_clk                                        
+ (155,123)   EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/r/wgray_meta[3]~FF|CLK
+ (155,123)   EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/r/wgray_meta[3]~FF    
+
+++++ Path 11 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.245 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/aw/rgray[1]~FF|CLK                   
+Path End        : u_video_pipe/u_accel_dma/aw/rgray_meta[1]~FF|D                
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.588 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.588
+--------------------------------------
+End-of-path arrival time       : 2.692
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)               Netlist Resource(s)
+================================================================================================
+  (0,162)    input            0.000        0.000     core_clk                                   
+  (0,162)    input            0.126        0.126     core_clk                                   
+             net (fo=8619)    1.978        2.104     core_clk                                   
+  (173,83)   EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/aw/rgray[1]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                Netlist Resource(s)
+==================================================================================================
+  (173,83)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/aw/rgray[1]~FF|Q     
+             net (fo=2)      0.458        0.588     u_video_pipe/u_accel_dma/aw/rgray[1]          
+  (158,93)   EFX_FF          0.000        0.588     u_video_pipe/u_accel_dma/aw/rgray_meta[1]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                 Netlist Resource(s)
+======================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                         
+ (112,323)   input              0.126       0.126     cnn_clk                                         
+             net (fo=15212)     1.940       2.066     cnn_clk                                         
+ (158,93)    EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/aw/rgray_meta[1]~FF|CLK
+ (158,93)    EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/aw/rgray_meta[1]~FF    
+
+++++ Path 12 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.270 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/w/rgray[0]~FF|CLK                    
+Path End        : u_video_pipe/u_accel_dma/w/rgray_meta[0]~FF|D                 
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.563 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.563
+--------------------------------------
+End-of-path arrival time       : 2.667
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)              Netlist Resource(s)
+===============================================================================================
+  (0,162)    input            0.000        0.000     core_clk                                  
+  (0,162)    input            0.126        0.126     core_clk                                  
+             net (fo=8619)    1.978        2.104     core_clk                                  
+  (101,62)   EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/w/rgray[0]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                Netlist Resource(s)
+=================================================================================================
+  (101,62)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/w/rgray[0]~FF|Q     
+             net (fo=2)      0.433        0.563     u_video_pipe/u_accel_dma/w/rgray[0]          
+  (95,59)    EFX_FF          0.000        0.563     u_video_pipe/u_accel_dma/w/rgray_meta[0]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                 Netlist Resource(s)
+=====================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                        
+ (112,323)   input              0.126       0.126     cnn_clk                                        
+             net (fo=15212)     1.940       2.066     cnn_clk                                        
+ (95,59)     EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/w/rgray_meta[0]~FF|CLK
+ (95,59)     EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/w/rgray_meta[0]~FF    
+
+++++ Path 13 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.283 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/r/wgray[0]~FF|CLK                    
+Path End        : u_video_pipe/u_accel_dma/r/wgray_meta[0]~FF|D                 
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.550 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.550
+--------------------------------------
+End-of-path arrival time       : 2.654
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)              Netlist Resource(s)
+===============================================================================================
+ (0,162)     input            0.000        0.000     core_clk                                  
+ (0,162)     input            0.126        0.126     core_clk                                  
+             net (fo=8619)    1.978        2.104     core_clk                                  
+ (181,113)   EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/r/wgray[0]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                Netlist Resource(s)
+=================================================================================================
+ (181,113)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/r/wgray[0]~FF|Q     
+             net (fo=2)      0.420        0.550     u_video_pipe/u_accel_dma/r/wgray[0]          
+ (187,109)   EFX_FF          0.000        0.550     u_video_pipe/u_accel_dma/r/wgray_meta[0]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                 Netlist Resource(s)
+=====================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                        
+ (112,323)   input              0.126       0.126     cnn_clk                                        
+             net (fo=15212)     1.940       2.066     cnn_clk                                        
+ (187,109)   EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/r/wgray_meta[0]~FF|CLK
+ (187,109)   EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/r/wgray_meta[0]~FF    
+
+++++ Path 14 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.295 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/aw/rgray[0]~FF|CLK                   
+Path End        : u_video_pipe/u_accel_dma/aw/rgray_meta[0]~FF|D                
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.538 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.538
+--------------------------------------
+End-of-path arrival time       : 2.642
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)               Netlist Resource(s)
+================================================================================================
+  (0,162)    input            0.000        0.000     core_clk                                   
+  (0,162)    input            0.126        0.126     core_clk                                   
+             net (fo=8619)    1.978        2.104     core_clk                                   
+  (175,83)   EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/aw/rgray[0]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                Netlist Resource(s)
+==================================================================================================
+  (175,83)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/aw/rgray[0]~FF|Q     
+             net (fo=2)      0.408        0.538     u_video_pipe/u_accel_dma/aw/rgray[0]          
+  (169,81)   EFX_FF          0.000        0.538     u_video_pipe/u_accel_dma/aw/rgray_meta[0]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                 Netlist Resource(s)
+======================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                         
+ (112,323)   input              0.126       0.126     cnn_clk                                         
+             net (fo=15212)     1.940       2.066     cnn_clk                                         
+ (169,81)    EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/aw/rgray_meta[0]~FF|CLK
+ (169,81)    EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/aw/rgray_meta[0]~FF    
+
+++++ Path 15 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.320 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/style_status_fifo/rbin[2]~FF|CLK     
+Path End        : u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[2]~FF|D 
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.513 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.513
+--------------------------------------
+End-of-path arrival time       : 2.617
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)                      Netlist Resource(s)
+==============================================================================================================
+ (0,162)     input            0.000        0.000     core_clk                                                 
+ (0,162)     input            0.126        0.126     core_clk                                                 
+             net (fo=8619)    1.978        2.104     core_clk                                                 
+ (194,126)   EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/style_status_fifo/rbin[2]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                        Netlist Resource(s)
+=================================================================================================================
+ (194,126)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/style_status_fifo/rbin[2]~FF|Q      
+             net (fo=3)      0.383        0.513     u_video_pipe/u_accel_dma/style_status_fifo/rbin[2]           
+ (160,126)   EFX_FF          0.000        0.513     u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[2]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                         Netlist Resource(s)
+=====================================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                                        
+ (112,323)   input              0.126       0.126     cnn_clk                                                        
+             net (fo=15212)     1.940       2.066     cnn_clk                                                        
+ (160,126)   EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[2]~FF|CLK
+ (160,126)   EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[2]~FF    
+
+++++ Path 16 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.330 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/ar/rgray[1]~FF|CLK                   
+Path End        : u_video_pipe/u_accel_dma/ar/rgray_meta[1]~FF|D                
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.503 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.503
+--------------------------------------
+End-of-path arrival time       : 2.607
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)               Netlist Resource(s)
+================================================================================================
+  (0,162)    input            0.000        0.000     core_clk                                   
+  (0,162)    input            0.126        0.126     core_clk                                   
+             net (fo=8619)    1.978        2.104     core_clk                                   
+  (160,85)   EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/ar/rgray[1]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                Netlist Resource(s)
+==================================================================================================
+  (160,85)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/ar/rgray[1]~FF|Q     
+             net (fo=2)      0.373        0.503     u_video_pipe/u_accel_dma/ar/rgray[1]          
+  (158,89)   EFX_FF          0.000        0.503     u_video_pipe/u_accel_dma/ar/rgray_meta[1]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                 Netlist Resource(s)
+======================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                         
+ (112,323)   input              0.126       0.126     cnn_clk                                         
+             net (fo=15212)     1.940       2.066     cnn_clk                                         
+ (158,89)    EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/ar/rgray_meta[1]~FF|CLK
+ (158,89)    EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/ar/rgray_meta[1]~FF    
+
+++++ Path 17 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.348 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/events/rgray[0]~FF|CLK               
+Path End        : u_video_pipe/u_accel_dma/events/rgray_meta[0]~FF|D            
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.485 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.485
+--------------------------------------
+End-of-path arrival time       : 2.589
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)                 Netlist Resource(s)
+====================================================================================================
+ (0,162)     input            0.000        0.000     core_clk                                       
+ (0,162)     input            0.126        0.126     core_clk                                       
+             net (fo=8619)    1.978        2.104     core_clk                                       
+ (173,113)   EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/events/rgray[0]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                  Netlist Resource(s)
+======================================================================================================
+ (173,113)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/events/rgray[0]~FF|Q     
+             net (fo=2)      0.355        0.485     u_video_pipe/u_accel_dma/events/rgray[0]          
+ (175,117)   EFX_FF          0.000        0.485     u_video_pipe/u_accel_dma/events/rgray_meta[0]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                   Netlist Resource(s)
+==========================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                             
+ (112,323)   input              0.126       0.126     cnn_clk                                             
+             net (fo=15212)     1.940       2.066     cnn_clk                                             
+ (175,117)   EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/events/rgray_meta[0]~FF|CLK
+ (175,117)   EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/events/rgray_meta[0]~FF    
+
+++++ Path 18 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.359 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/style_status_fifo/rgray[0]~FF|CLK    
+Path End        : u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[0]~FF|D 
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.474 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.474
+--------------------------------------
+End-of-path arrival time       : 2.578
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)                      Netlist Resource(s)
+===============================================================================================================
+ (0,162)     input            0.000        0.000     core_clk                                                  
+ (0,162)     input            0.126        0.126     core_clk                                                  
+             net (fo=8619)    1.978        2.104     core_clk                                                  
+ (198,116)   EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/style_status_fifo/rgray[0]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                        Netlist Resource(s)
+=================================================================================================================
+ (198,116)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/style_status_fifo/rgray[0]~FF|Q     
+             net (fo=2)      0.344        0.474     u_video_pipe/u_accel_dma/style_status_fifo/rgray[0]          
+ (200,115)   EFX_FF          0.000        0.474     u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[0]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                         Netlist Resource(s)
+=====================================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                                        
+ (112,323)   input              0.126       0.126     cnn_clk                                                        
+             net (fo=15212)     1.940       2.066     cnn_clk                                                        
+ (200,115)   EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[0]~FF|CLK
+ (200,115)   EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[0]~FF    
+
+++++ Path 19 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.361 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/jobs/wgray[0]~FF|CLK                 
+Path End        : u_video_pipe/u_accel_dma/jobs/wgray_meta[0]~FF|D              
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.472 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.472
+--------------------------------------
+End-of-path arrival time       : 2.576
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)                Netlist Resource(s)
+==================================================================================================
+  (0,162)    input            0.000        0.000     core_clk                                     
+  (0,162)    input            0.126        0.126     core_clk                                     
+             net (fo=8619)    1.978        2.104     core_clk                                     
+  (173,96)   EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/jobs/wgray[0]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                 Netlist Resource(s)
+====================================================================================================
+ (173,96)    EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/jobs/wgray[0]~FF|Q     
+             net (fo=3)      0.342        0.472     u_video_pipe/u_accel_dma/jobs/wgray[0]          
+ (161,101)   EFX_FF          0.000        0.472     u_video_pipe/u_accel_dma/jobs/wgray_meta[0]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                  Netlist Resource(s)
+========================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                           
+ (112,323)   input              0.126       0.126     cnn_clk                                           
+             net (fo=15212)     1.940       2.066     cnn_clk                                           
+ (161,101)   EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/jobs/wgray_meta[0]~FF|CLK
+ (161,101)   EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/jobs/wgray_meta[0]~FF    
+
+++++ Path 20 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.401 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/w/rgray[2]~FF|CLK                    
+Path End        : u_video_pipe/u_accel_dma/w/rgray_meta[2]~FF|D                 
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.432 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.432
+--------------------------------------
+End-of-path arrival time       : 2.536
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)              Netlist Resource(s)
+===============================================================================================
+  (0,162)    input            0.000        0.000     core_clk                                  
+  (0,162)    input            0.126        0.126     core_clk                                  
+             net (fo=8619)    1.978        2.104     core_clk                                  
+  (84,55)    EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/w/rgray[2]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                Netlist Resource(s)
+=================================================================================================
+  (84,55)    EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/w/rgray[2]~FF|Q     
+             net (fo=2)      0.302        0.432     u_video_pipe/u_accel_dma/w/rgray[2]          
+  (94,51)    EFX_FF          0.000        0.432     u_video_pipe/u_accel_dma/w/rgray_meta[2]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                 Netlist Resource(s)
+=====================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                        
+ (112,323)   input              0.126       0.126     cnn_clk                                        
+             net (fo=15212)     1.940       2.066     cnn_clk                                        
+ (94,51)     EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/w/rgray_meta[2]~FF|CLK
+ (94,51)     EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/w/rgray_meta[2]~FF    
+
+++++ Path 21 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.403 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/events/rbin[2]~FF|CLK                
+Path End        : u_video_pipe/u_accel_dma/events/rgray_meta[2]~FF|D            
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.430 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.430
+--------------------------------------
+End-of-path arrival time       : 2.534
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)                Netlist Resource(s)
+===================================================================================================
+ (0,162)     input            0.000        0.000     core_clk                                      
+ (0,162)     input            0.126        0.126     core_clk                                      
+             net (fo=8619)    1.978        2.104     core_clk                                      
+ (175,111)   EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/events/rbin[2]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                  Netlist Resource(s)
+======================================================================================================
+ (175,111)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/events/rbin[2]~FF|Q      
+             net (fo=3)      0.300        0.430     u_video_pipe/u_accel_dma/events/rbin[2]           
+ (172,106)   EFX_FF          0.000        0.430     u_video_pipe/u_accel_dma/events/rgray_meta[2]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                   Netlist Resource(s)
+==========================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                             
+ (112,323)   input              0.126       0.126     cnn_clk                                             
+             net (fo=15212)     1.940       2.066     cnn_clk                                             
+ (172,106)   EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/events/rgray_meta[2]~FF|CLK
+ (172,106)   EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/events/rgray_meta[2]~FF    
+
+++++ Path 22 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.426 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/jobs/wgray[1]~FF|CLK                 
+Path End        : u_video_pipe/u_accel_dma/jobs/wgray_meta[1]~FF|D              
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.407 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.407
+--------------------------------------
+End-of-path arrival time       : 2.511
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)                Netlist Resource(s)
+==================================================================================================
+  (0,162)    input            0.000        0.000     core_clk                                     
+  (0,162)    input            0.126        0.126     core_clk                                     
+             net (fo=8619)    1.978        2.104     core_clk                                     
+  (183,95)   EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/jobs/wgray[1]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                 Netlist Resource(s)
+====================================================================================================
+  (183,95)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/jobs/wgray[1]~FF|Q     
+             net (fo=2)      0.277        0.407     u_video_pipe/u_accel_dma/jobs/wgray[1]          
+  (185,90)   EFX_FF          0.000        0.407     u_video_pipe/u_accel_dma/jobs/wgray_meta[1]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                  Netlist Resource(s)
+========================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                           
+ (112,323)   input              0.126       0.126     cnn_clk                                           
+             net (fo=15212)     1.940       2.066     cnn_clk                                           
+ (185,90)    EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/jobs/wgray_meta[1]~FF|CLK
+ (185,90)    EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/jobs/wgray_meta[1]~FF    
+
+++++ Path 23 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.429 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/style_status_fifo/rgray[1]~FF|CLK    
+Path End        : u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[1]~FF|D 
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.404 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.404
+--------------------------------------
+End-of-path arrival time       : 2.508
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)                      Netlist Resource(s)
+===============================================================================================================
+ (0,162)     input            0.000        0.000     core_clk                                                  
+ (0,162)     input            0.126        0.126     core_clk                                                  
+             net (fo=8619)    1.978        2.104     core_clk                                                  
+ (198,122)   EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/style_status_fifo/rgray[1]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                        Netlist Resource(s)
+=================================================================================================================
+ (198,122)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/style_status_fifo/rgray[1]~FF|Q     
+             net (fo=2)      0.274        0.404     u_video_pipe/u_accel_dma/style_status_fifo/rgray[1]          
+ (203,120)   EFX_FF          0.000        0.404     u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[1]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                         Netlist Resource(s)
+=====================================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                                        
+ (112,323)   input              0.126       0.126     cnn_clk                                                        
+             net (fo=15212)     1.940       2.066     cnn_clk                                                        
+ (203,120)   EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[1]~FF|CLK
+ (203,120)   EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/style_status_fifo/rgray_meta[1]~FF    
+
+++++ Path 24 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.454 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/ar/rbin[2]~FF|CLK                    
+Path End        : u_video_pipe/u_accel_dma/ar/rgray_meta[2]~FF|D                
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.379 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.379
+--------------------------------------
+End-of-path arrival time       : 2.483
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)              Netlist Resource(s)
+===============================================================================================
+  (0,162)    input            0.000        0.000     core_clk                                  
+  (0,162)    input            0.126        0.126     core_clk                                  
+             net (fo=8619)    1.978        2.104     core_clk                                  
+  (160,86)   EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/ar/rbin[2]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                Netlist Resource(s)
+==================================================================================================
+  (160,86)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/ar/rbin[2]~FF|Q      
+             net (fo=3)      0.249        0.379     u_video_pipe/u_accel_dma/ar/rbin[2]           
+  (158,91)   EFX_FF          0.000        0.379     u_video_pipe/u_accel_dma/ar/rgray_meta[2]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                 Netlist Resource(s)
+======================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                         
+ (112,323)   input              0.126       0.126     cnn_clk                                         
+             net (fo=15212)     1.940       2.066     cnn_clk                                         
+ (158,91)    EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/ar/rgray_meta[2]~FF|CLK
+ (158,91)    EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/ar/rgray_meta[2]~FF    
+
+++++ Path 25 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.459 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/b/wgray[0]~FF|CLK                    
+Path End        : u_video_pipe/u_accel_dma/b/wgray_meta[0]~FF|D                 
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.374 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.374
+--------------------------------------
+End-of-path arrival time       : 2.478
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)              Netlist Resource(s)
+===============================================================================================
+ (0,162)     input            0.000        0.000     core_clk                                  
+ (0,162)     input            0.126        0.126     core_clk                                  
+             net (fo=8619)    1.978        2.104     core_clk                                  
+ (167,105)   EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/b/wgray[0]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                Netlist Resource(s)
+=================================================================================================
+ (167,105)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/b/wgray[0]~FF|Q     
+             net (fo=2)      0.244        0.374     u_video_pipe/u_accel_dma/b/wgray[0]          
+ (175,105)   EFX_FF          0.000        0.374     u_video_pipe/u_accel_dma/b/wgray_meta[0]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                 Netlist Resource(s)
+=====================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                        
+ (112,323)   input              0.126       0.126     cnn_clk                                        
+             net (fo=15212)     1.940       2.066     cnn_clk                                        
+ (175,105)   EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/b/wgray_meta[0]~FF|CLK
+ (175,105)   EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/b/wgray_meta[0]~FF    
+
+++++ Path 26 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.466 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/r/wgray[2]~FF|CLK                    
+Path End        : u_video_pipe/u_accel_dma/r/wgray_meta[2]~FF|D                 
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.367 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.367
+--------------------------------------
+End-of-path arrival time       : 2.471
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)              Netlist Resource(s)
+===============================================================================================
+ (0,162)     input            0.000        0.000     core_clk                                  
+ (0,162)     input            0.126        0.126     core_clk                                  
+             net (fo=8619)    1.978        2.104     core_clk                                  
+ (167,109)   EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/r/wgray[2]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                Netlist Resource(s)
+=================================================================================================
+ (167,109)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/r/wgray[2]~FF|Q     
+             net (fo=2)      0.237        0.367     u_video_pipe/u_accel_dma/r/wgray[2]          
+ (172,104)   EFX_FF          0.000        0.367     u_video_pipe/u_accel_dma/r/wgray_meta[2]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                 Netlist Resource(s)
+=====================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                        
+ (112,323)   input              0.126       0.126     cnn_clk                                        
+             net (fo=15212)     1.940       2.066     cnn_clk                                        
+ (172,104)   EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/r/wgray_meta[2]~FF|CLK
+ (172,104)   EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/r/wgray_meta[2]~FF    
+
+++++ Path 27 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.466 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/w/rbin[3]~FF|CLK                     
+Path End        : u_video_pipe/u_accel_dma/w/rgray_meta[3]~FF|D                 
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.367 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.367
+--------------------------------------
+End-of-path arrival time       : 2.471
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)              Netlist Resource(s)
+==============================================================================================
+  (0,162)    input            0.000        0.000     core_clk                                 
+  (0,162)    input            0.126        0.126     core_clk                                 
+             net (fo=8619)    1.978        2.104     core_clk                                 
+  (84,54)    EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/w/rbin[3]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                Netlist Resource(s)
+=================================================================================================
+  (84,54)    EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/w/rbin[3]~FF|Q      
+             net (fo=3)      0.237        0.367     u_video_pipe/u_accel_dma/w/rbin[3]           
+  (89,49)    EFX_FF          0.000        0.367     u_video_pipe/u_accel_dma/w/rgray_meta[3]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                 Netlist Resource(s)
+=====================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                        
+ (112,323)   input              0.126       0.126     cnn_clk                                        
+             net (fo=15212)     1.940       2.066     cnn_clk                                        
+ (89,49)     EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/w/rgray_meta[3]~FF|CLK
+ (89,49)     EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/w/rgray_meta[3]~FF    
+
+++++ Path 28 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.470 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/b/wgray[1]~FF|CLK                    
+Path End        : u_video_pipe/u_accel_dma/b/wgray_meta[1]~FF|D                 
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.363 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.363
+--------------------------------------
+End-of-path arrival time       : 2.467
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)              Netlist Resource(s)
+===============================================================================================
+ (0,162)     input            0.000        0.000     core_clk                                  
+ (0,162)     input            0.126        0.126     core_clk                                  
+             net (fo=8619)    1.978        2.104     core_clk                                  
+ (164,103)   EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/b/wgray[1]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                Netlist Resource(s)
+=================================================================================================
+ (164,103)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/b/wgray[1]~FF|Q     
+             net (fo=2)      0.233        0.363     u_video_pipe/u_accel_dma/b/wgray[1]          
+ (169,98)    EFX_FF          0.000        0.363     u_video_pipe/u_accel_dma/b/wgray_meta[1]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                 Netlist Resource(s)
+=====================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                        
+ (112,323)   input              0.126       0.126     cnn_clk                                        
+             net (fo=15212)     1.940       2.066     cnn_clk                                        
+ (169,98)    EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/b/wgray_meta[1]~FF|CLK
+ (169,98)    EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/b/wgray_meta[1]~FF    
+
+++++ Path 29 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.474 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/ar/rgray[0]~FF|CLK                   
+Path End        : u_video_pipe/u_accel_dma/ar/rgray_meta[0]~FF|D                
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.359 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.359
+--------------------------------------
+End-of-path arrival time       : 2.463
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)               Netlist Resource(s)
+================================================================================================
+  (0,162)    input            0.000        0.000     core_clk                                   
+  (0,162)    input            0.126        0.126     core_clk                                   
+             net (fo=8619)    1.978        2.104     core_clk                                   
+  (160,87)   EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/ar/rgray[0]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                Netlist Resource(s)
+==================================================================================================
+  (160,87)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/ar/rgray[0]~FF|Q     
+             net (fo=2)      0.229        0.359     u_video_pipe/u_accel_dma/ar/rgray[0]          
+  (169,87)   EFX_FF          0.000        0.359     u_video_pipe/u_accel_dma/ar/rgray_meta[0]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                 Netlist Resource(s)
+======================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                         
+ (112,323)   input              0.126       0.126     cnn_clk                                         
+             net (fo=15212)     1.940       2.066     cnn_clk                                         
+ (169,87)    EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/ar/rgray_meta[0]~FF|CLK
+ (169,87)    EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/ar/rgray_meta[0]~FF    
+
+++++ Path 30 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.487 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/w/rgray[1]~FF|CLK                    
+Path End        : u_video_pipe/u_accel_dma/w/rgray_meta[1]~FF|D                 
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.346 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.346
+--------------------------------------
+End-of-path arrival time       : 2.450
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)              Netlist Resource(s)
+===============================================================================================
+  (0,162)    input            0.000        0.000     core_clk                                  
+  (0,162)    input            0.126        0.126     core_clk                                  
+             net (fo=8619)    1.978        2.104     core_clk                                  
+  (84,64)    EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/w/rgray[1]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                Netlist Resource(s)
+=================================================================================================
+  (84,64)    EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/w/rgray[1]~FF|Q     
+             net (fo=2)      0.216        0.346     u_video_pipe/u_accel_dma/w/rgray[1]          
+  (89,64)    EFX_FF          0.000        0.346     u_video_pipe/u_accel_dma/w/rgray_meta[1]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                 Netlist Resource(s)
+=====================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                        
+ (112,323)   input              0.126       0.126     cnn_clk                                        
+             net (fo=15212)     1.940       2.066     cnn_clk                                        
+ (89,64)     EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/w/rgray_meta[1]~FF|CLK
+ (89,64)     EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/w/rgray_meta[1]~FF    
+
+++++ Path 31 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.488 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/aw/rbin[2]~FF|CLK                    
+Path End        : u_video_pipe/u_accel_dma/aw/rgray_meta[2]~FF|D                
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.345 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.345
+--------------------------------------
+End-of-path arrival time       : 2.449
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)              Netlist Resource(s)
+===============================================================================================
+  (0,162)    input            0.000        0.000     core_clk                                  
+  (0,162)    input            0.126        0.126     core_clk                                  
+             net (fo=8619)    1.978        2.104     core_clk                                  
+  (178,81)   EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/aw/rbin[2]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                Netlist Resource(s)
+==================================================================================================
+  (178,81)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/aw/rbin[2]~FF|Q      
+             net (fo=3)      0.215        0.345     u_video_pipe/u_accel_dma/aw/rbin[2]           
+  (173,78)   EFX_FF          0.000        0.345     u_video_pipe/u_accel_dma/aw/rgray_meta[2]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                 Netlist Resource(s)
+======================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                         
+ (112,323)   input              0.126       0.126     cnn_clk                                         
+             net (fo=15212)     1.940       2.066     cnn_clk                                         
+ (173,78)    EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/aw/rgray_meta[2]~FF|CLK
+ (173,78)    EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/aw/rgray_meta[2]~FF    
+
+++++ Path 32 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.493 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/b/wbin[2]~FF|CLK                     
+Path End        : u_video_pipe/u_accel_dma/b/wgray_meta[2]~FF|D                 
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.340 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.340
+--------------------------------------
+End-of-path arrival time       : 2.444
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)              Netlist Resource(s)
+==============================================================================================
+ (0,162)     input            0.000        0.000     core_clk                                 
+ (0,162)     input            0.126        0.126     core_clk                                 
+             net (fo=8619)    1.978        2.104     core_clk                                 
+ (164,105)   EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/b/wbin[2]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                Netlist Resource(s)
+=================================================================================================
+ (164,105)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/b/wbin[2]~FF|Q      
+             net (fo=3)      0.210        0.340     u_video_pipe/u_accel_dma/b/wbin[2]           
+ (169,105)   EFX_FF          0.000        0.340     u_video_pipe/u_accel_dma/b/wgray_meta[2]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                 Netlist Resource(s)
+=====================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                        
+ (112,323)   input              0.126       0.126     cnn_clk                                        
+             net (fo=15212)     1.940       2.066     cnn_clk                                        
+ (169,105)   EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/b/wgray_meta[2]~FF|CLK
+ (169,105)   EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/b/wgray_meta[2]~FF    
+
+++++ Path 33 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.509 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/park_req~FF|CLK                      
+Path End        : u_video_pipe/u_accel_dma/park_meta~FF|D                       
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.324 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.324
+--------------------------------------
+End-of-path arrival time       : 2.428
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)             Netlist Resource(s)
+=============================================================================================
+ (0,162)     input            0.000        0.000     core_clk                                
+ (0,162)     input            0.126        0.126     core_clk                                
+             net (fo=8619)    1.978        2.104     core_clk                                
+ (182,102)   EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/park_req~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)             Netlist Resource(s)
+===========================================================================================
+ (182,102)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/park_req~FF|Q 
+             net (fo=1)      0.194        0.324     u_video_pipe/u_accel_dma/park_req      
+ (182,97)    EFX_FF          0.000        0.324     u_video_pipe/u_accel_dma/park_meta~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)              Netlist Resource(s)
+===============================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                  
+ (112,323)   input              0.126       0.126     cnn_clk                                  
+             net (fo=15212)     1.940       2.066     cnn_clk                                  
+ (182,97)    EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/park_meta~FF|CLK
+ (182,97)    EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/park_meta~FF    
+
+++++ Path 34 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.522 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/r/wgray[1]~FF|CLK                    
+Path End        : u_video_pipe/u_accel_dma/r/wgray_meta[1]~FF|D                 
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.311 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.311
+--------------------------------------
+End-of-path arrival time       : 2.415
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)              Netlist Resource(s)
+===============================================================================================
+ (0,162)     input            0.000        0.000     core_clk                                  
+ (0,162)     input            0.126        0.126     core_clk                                  
+             net (fo=8619)    1.978        2.104     core_clk                                  
+ (167,107)   EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/r/wgray[1]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                Netlist Resource(s)
+=================================================================================================
+ (167,107)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/r/wgray[1]~FF|Q     
+             net (fo=2)      0.181        0.311     u_video_pipe/u_accel_dma/r/wgray[1]          
+ (170,107)   EFX_FF          0.000        0.311     u_video_pipe/u_accel_dma/r/wgray_meta[1]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                 Netlist Resource(s)
+=====================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                        
+ (112,323)   input              0.126       0.126     cnn_clk                                        
+             net (fo=15212)     1.940       2.066     cnn_clk                                        
+ (170,107)   EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/r/wgray_meta[1]~FF|CLK
+ (170,107)   EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/r/wgray_meta[1]~FF    
+
+++++ Path 35 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.533 ns (required time - arrival time)                       
+Path Start      : u_video_pipe/u_accel_dma/events/rgray[1]~FF|CLK               
+Path End        : u_video_pipe/u_accel_dma/events/rgray_meta[1]~FF|D            
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)  
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.300 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.300
+--------------------------------------
+End-of-path arrival time       : 2.404
+
+Constraint                     : 1.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 2.937
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)                 Netlist Resource(s)
+====================================================================================================
+ (0,162)     input            0.000        0.000     core_clk                                       
+ (0,162)     input            0.126        0.126     core_clk                                       
+             net (fo=8619)    1.978        2.104     core_clk                                       
+ (175,110)   EFX_FF           0.000        2.104     u_video_pipe/u_accel_dma/events/rgray[1]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                  Netlist Resource(s)
+======================================================================================================
+ (175,110)   EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/events/rgray[1]~FF|Q     
+             net (fo=2)      0.170        0.300     u_video_pipe/u_accel_dma/events/rgray[1]          
+ (175,114)   EFX_FF          0.000        0.300     u_video_pipe/u_accel_dma/events/rgray_meta[1]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                   Netlist Resource(s)
+==========================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                             
+ (112,323)   input              0.126       0.126     cnn_clk                                             
+             net (fo=15212)     1.940       2.066     cnn_clk                                             
+ (175,114)   EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/events/rgray_meta[1]~FF|CLK
+ (175,114)   EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/events/rgray_meta[1]~FF    
+

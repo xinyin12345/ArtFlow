@@ -1,0 +1,41 @@
+
+Elitestek FPGA Placement and Routing.
+Version: 2026.1.132 
+Date: Fri Oct 30 01:43:38 2026
+
+Copyright (C) 2013 - 2026 Efinix, Inc. All rights reserved.
+ 
+Family: Titanium 
+Device: Ti60F225
+Top-level Entity Name: ArtFlow
+Elapsed time for routing: 0 hours 4 minutes 31 seconds
+
+
+---------- GBUFCE Assignments (begin) ----------
+
+
++-------------------+----------+----------+
+|     Clock Net     | GBUFCE_X | GBUFCE_Y |
++-------------------+----------+----------+
+|      CLK_25M      |    1     |   164    |
+|      CLK_27M      |    1     |   159    |
+|     clk_100m      |   115    |   322    |
+|      cnn_clk      |   112    |   322    |
+|     core_clk      |    1     |   162    |
+|        fb         |   108    |    1     |
+| hdmi_tx_fast_clk  |   107    |    1     |
+| hdmi_tx_slow_clk  |   112    |    1     |
+|  i_cam_ck_CLKOUT  |   110    |   322    |
+|  i_mipi_rx_pclk   |   110    |    1     |
+|    rx_cal_clk     |   218    |   163    |
+|     sdram_clk     |   218    |   159    |
+|    tx_cal_clk     |   218    |   164    |
+| tx_cal_clk_90edge |   218    |   162    |
+|   vid_clk_dvi2    |   109    |    1     |
++-------------------+----------+----------+
+
+
+----------- GBUFCE Assignments (end) ----------
+
+
+Elapsed time for Latest PnR Run: 0 hours 9 minutes 5 seconds

@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "vector_sha256": {},
+  "source_sha256": {
+    "rtl/accel/artflow_cnn_cdc_fifo.v": "b1373add55b60668684dc6d8eb1f184af9029d1483edefe39006a61edd044b81",
+    "candidates/round15u_return_ram/artflow_cnn_return_ram_fifo.v": "2854101bd83ac4ad538a0454c7f285417460e55907db02cfd9156869fbbadca0",
+    "candidates/round15u_return_ram/tb_r15u_fifo_stagger.sv": "6b7a6830d3d29dfd36c9a85e3af4b73555e015d650cc2e67359555d915824780",
+    "D:/soft/Efinity/2026.1/sim_models/verilog/efx_ram10.v": "dd8db45116a67b9754920856dc380eb2dc73ca51e0a6a62cc74cda01c0e31a33",
+    "D:/soft/Efinity/2026.1/sim_models/verilog/efx_dpram10.v": "c7e39233de0a437fd0d43d83ce60dce10b3bd305c59cfcacfb5eac2fe916bcf9"
+  },
+  "evidence": [
+    "# FIFO_RAM_CASE_PASS ID=0 WIDTH=131 AW=3 writes=20243 reads=20236 full_stalls=4032 read_stalls=15049 resets=3",
+    "# FIFO_RAM_CASE_PASS ID=1 WIDTH=131 AW=3 writes=17978 reads=17954 full_stalls=18900 read_stalls=11929 resets=3",
+    "# FIFO_RAM_CASE_PASS ID=2 WIDTH=131 AW=3 writes=17145 reads=17128 full_stalls=7020 read_stalls=11765 resets=3",
+    "# FIFO_RAM_CASE_PASS ID=3 WIDTH=1 AW=2 writes=16934 reads=16920 full_stalls=27282 read_stalls=11586 resets=3",
+    "# FIFO_RAM_CASE_PASS ID=4 WIDTH=20 AW=2 writes=18583 reads=18579 full_stalls=5899 read_stalls=16206 resets=3",
+    "# FIFO_RAM_CASE_PASS ID=5 WIDTH=21 AW=4 writes=13044 reads=12994 full_stalls=19832 read_stalls=8393 resets=3",
+    "# TEST PASS r15u_fifo_stagger nativeRAM six parameter/clock cases exact valid/control cycles and scoreboard, resets/full/backpressure/wrap/collision/drain"
+  ]
+}

@@ -1,0 +1,96 @@
+
+Efinix report_timing Report
+Version: 2026.1.132
+Date: Fri Oct 30 01:49:18 2026
+
+Copyright (C) 2013 - 2026 Efinix, Inc. All rights reserved.
+
+User command: foreach {tag head tail} {
+ layout_bit0 {u_video_pipe/u_store/layout_meta[0]} {u_video_pipe/u_store/layout_sync[0]}
+ layout_bit1 {u_video_pipe/u_store/layout_meta[1]} {u_video_pipe/u_store/layout_sync[1]}
+ style u_video_pipe/u_accel_dma/styles.key_filter/key_meta u_video_pipe/u_accel_dma/styles.key_filter/key_sync
+ flash u_video_pipe/u_accel_dma/styles.banks/reader/miso_meta u_video_pipe/u_accel_dma/styles.banks/reader/miso_sync
+ mode u_ui/u_mode_key/key_meta u_ui/u_mode_key/key_sync
+ osd u_ui/u_osd_key/key_meta u_ui/u_osd_key/key_sync
+ capture u_ui/u_fps/cap_meta u_ui/u_fps/cap_sync
+ process u_process_fps/cap_meta u_process_fps/cap_sync
+ diag_vs {u_control/diag_meta[0]} {u_control/diag_sync[0]}
+ diag_raw {u_control/diag_meta[1]} {u_control/diag_sync[1]}
+ diag_bin {u_control/diag_meta[2]} {u_control/diag_sync[2]}
+ csi_core_1 {u_csi_reset/core_release[0]} {u_csi_reset/core_release[1]}
+ csi_core_2 {u_csi_reset/core_release[1]} {csi_reset_core_n}
+ csi_byte_1 {u_csi_reset/byte_release[0]} {u_csi_reset/byte_release[1]}
+ csi_byte_2 {u_csi_reset/byte_release[1]} {csi_reset_byte_n}
+ csi_pixel_1 {u_csi_reset/pixel_release[0]} {u_csi_reset/pixel_release[1]}
+ csi_pixel_2 {u_csi_reset/pixel_release[1]} {csi_reset_pixel_n}
+} {
+ foreach name [list $head $tail] {
+ set cells [get_cells ${name}~FF]
+ puts "UI_CDC_ENDPOINT $name count=[llength $cells]"
+ if {[llength $cells] != 1} {error "Missing UI synchronizer: $name"}
+ }
+ report_timing -setup -from [get_cells ${head}~FF] -to [get_cells ${tail}~FF] -npaths 1 -file ArtFlow.ui_${tag}_setup.rpt
+ report_timing -hold -from [get_cells ${head}~FF] -to [get_cells ${tail}~FF] -npaths 1 -file ArtFlow.ui_${tag}_hold.rpt
+}
+
+Timing Model: I3
+	process : typical
+	temperature : -40C to 100C
+	voltage : 0.95 +/-30mV
+	speedgrade : 3
+	technology : t16ff
+	status : final
+
+Summary:
+
+ Path #  | Slack(ns) |             Start Pin              |        End Pin        |  Launch Clock   |  Capture Clock
+=====================================================================================================================
+ 1       |  9.552    | u_csi_reset/core_release[1]~FF|CLK | csi_reset_core_n~FF|D | core_clk (RISE) | core_clk (RISE)
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 9.552 ns (required time - arrival time)                       
+Path Start      : u_csi_reset/core_release[1]~FF|CLK                            
+Path End        : csi_reset_core_n~FF|D                                         
+Launch Clock    : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Capture Clock   : core_clk {rise@0.000 ns fall@5.000 ns period=10.000 ns} (RISE)
+Path Type       : Max at Slow Process Corner                                    
+Data Path Delay : 0.319 ns                                                      
+Logic Levels    : 0                                                             
+
+Launch Clock Path Delay        : 2.104
++ Clock To Q + Data Path Delay : 0.319
+--------------------------------------
+End-of-path arrival time       : 2.423
+
+Constraint                     : 10.000
++ Capture Clock Path Delay     :  2.104
+- Clock Uncertainty            :  0.126
+- Setup                        :  0.003
+---------------------------------------
+End-of-path required time      : 11.975
+
+Launch Clock Path
+  Location    Delay Type     Incr(ns)     Path(ns)          Netlist Resource(s)
+=======================================================================================
+ (0,162)     input            0.000        0.000     core_clk                          
+ (0,162)     input            0.126        0.126     core_clk                          
+             net (fo=8619)    1.978        2.104     core_clk                          
+ (184,287)   EFX_FF           0.000        2.104     u_csi_reset/core_release[1]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)         Netlist Resource(s)
+====================================================================================
+ (184,287)   EFX_FF (Tco)    0.130        0.130     u_csi_reset/core_release[1]~FF|Q
+             net (fo=1)      0.189        0.319     u_csi_reset/core_release[1]     
+ (184,288)   EFX_FF          0.000        0.319     csi_reset_core_n~FF|D           
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)     Netlist Resource(s)
+=============================================================================
+ (0,162)     input              0.000       0.000     core_clk               
+ (0,162)     input              0.126       0.126     core_clk               
+             net (fo=8619)      1.978       2.104     core_clk               
+ (184,288)   EFX_FF             0.000       2.104     csi_reset_core_n~FF|CLK
+ (184,288)   EFX_FF (Setup)    -0.003       2.101     csi_reset_core_n~FF    
+

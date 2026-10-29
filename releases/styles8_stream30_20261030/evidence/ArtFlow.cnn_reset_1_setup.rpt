@@ -1,0 +1,78 @@
+
+Efinix report_timing Report
+Version: 2026.1.132
+Date: Fri Oct 30 01:49:42 2026
+
+Copyright (C) 2013 - 2026 Efinix, Inc. All rights reserved.
+
+User command: foreach i {0 1} {
+ set j [expr {$i+1}]
+ set head [format {u_video_pipe/u_accel_dma/reset_cnn[%d]~FF} $i]
+ set tail [format {u_video_pipe/u_accel_dma/reset_cnn[%d]~FF} $j]
+ if {[llength [get_cells $head]] != 1 || [llength [get_cells $tail]] != 1} {error "Missing CNN reset synchronizer"}
+ foreach kind {setup hold} {
+ report_timing -$kind -from [get_cells $head] -to [get_cells $tail] -npaths 1 -file ArtFlow.cnn_reset_${i}_${kind}.rpt
+ }
+}
+
+Timing Model: I3
+	process : typical
+	temperature : -40C to 100C
+	voltage : 0.95 +/-30mV
+	speedgrade : 3
+	technology : t16ff
+	status : final
+
+Summary:
+
+ Path #  | Slack(ns) |                  Start Pin                   |                  End Pin                   |  Launch Clock  | Capture Clock
+==================================================================================================================================================
+ 1       |  6.552    | u_video_pipe/u_accel_dma/reset_cnn[1]~FF|CLK | u_video_pipe/u_accel_dma/reset_cnn[2]~FF|D | cnn_clk (RISE) | cnn_clk (RISE)
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 6.552 ns (required time - arrival time)                     
+Path Start      : u_video_pipe/u_accel_dma/reset_cnn[1]~FF|CLK                
+Path End        : u_video_pipe/u_accel_dma/reset_cnn[2]~FF|D                  
+Launch Clock    : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)
+Path Type       : Max at Slow Process Corner                                  
+Data Path Delay : 0.319 ns                                                    
+Logic Levels    : 0                                                           
+
+Launch Clock Path Delay        : 2.066
++ Clock To Q + Data Path Delay : 0.319
+--------------------------------------
+End-of-path arrival time       : 2.385
+
+Constraint                     : 7.000
++ Capture Clock Path Delay     : 2.066
+- Clock Uncertainty            : 0.126
+- Setup                        : 0.003
+--------------------------------------
+End-of-path required time      : 8.937
+
+Launch Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)               Netlist Resource(s)
+==================================================================================================
+ (112,323)   input             0.000        0.000     cnn_clk                                     
+ (112,323)   input             0.126        0.126     cnn_clk                                     
+             net (fo=15212)    1.940        2.066     cnn_clk                                     
+ (64,66)     EFX_FF            0.000        2.066     u_video_pipe/u_accel_dma/reset_cnn[1]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)              Netlist Resource(s)
+==============================================================================================
+  (64,66)    EFX_FF (Tco)    0.130        0.130     u_video_pipe/u_accel_dma/reset_cnn[1]~FF|Q
+             net (fo=1)      0.189        0.319     u_video_pipe/u_accel_dma/reset_cnn[1]     
+  (64,67)    EFX_FF          0.000        0.319     u_video_pipe/u_accel_dma/reset_cnn[2]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)               Netlist Resource(s)
+==================================================================================================
+ (112,323)   input              0.000       0.000     cnn_clk                                     
+ (112,323)   input              0.126       0.126     cnn_clk                                     
+             net (fo=15212)     1.940       2.066     cnn_clk                                     
+ (64,67)     EFX_FF             0.000       2.066     u_video_pipe/u_accel_dma/reset_cnn[2]~FF|CLK
+ (64,67)     EFX_FF (Setup)    -0.003       2.063     u_video_pipe/u_accel_dma/reset_cnn[2]~FF    
+

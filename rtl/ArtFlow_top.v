@@ -592,7 +592,7 @@ afs_stream_tx u_stream(.clk(hdmi_tx_slow_clk),.rst_n(ui_rst_n),
  .ready(stream_ready),.miso(stream_miso),.cs_n(stream_cs_n),.sclk(stream_sclk),.mosi(stream_mosi),.completed(),.dropped());
 assign flash_wp_n=1'b1;assign flash_hold_n=1'b1;
 cam_fb_pipe_v09 #(
-  .STYLE_ENABLE(1),.STYLE_COUNT(15),
+  .STYLE_ENABLE(1),.STYLE_COUNT(8),
   .DUAL_WINDOW    (CFG_DUAL_WINDOW),
   .BLACK_LEVEL    (CFG_BLACK_LEVEL),
   .AXI_DATA_WIDTH (AXI_DATA_WIDTH ),

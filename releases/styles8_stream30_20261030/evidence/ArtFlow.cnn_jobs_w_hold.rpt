@@ -1,0 +1,178 @@
+
+Efinix report_timing Report
+Version: 2026.1.132
+Date: Fri Oct 30 01:49:24 2026
+
+Copyright (C) 2013 - 2026 Efinix, Inc. All rights reserved.
+
+User command: foreach {fifo aw} {jobs 2 events 2 ar 2 aw 2 w 3 r 3 b 2 style_status_fifo 2} {
+ foreach direction {w r} {
+ set base u_video_pipe/u_accel_dma/${fifo}/${direction}gray
+ foreach stage {meta sync} {
+ set cells [get_cells ${base}_${stage}*~FF]
+ puts "CNN_CDC_SYNC ${fifo}_${direction}_${stage} count=[llength $cells]"
+ if {[llength $cells] != [expr {$aw+1}]} {error "Missing CNN FIFO synchronizer"}
+ }
+ foreach kind {setup hold} {
+ report_timing -$kind -from [get_cells ${base}_meta*~FF] -to [get_cells ${base}_sync*~FF] -npaths [expr {$aw+1}] -nworst 1 -file ArtFlow.cnn_${fifo}_${direction}_${kind}.rpt
+ }
+ }
+}
+
+Timing Model: I3
+	process : typical
+	temperature : -40C to 100C
+	voltage : 0.95 +/-30mV
+	speedgrade : 3
+	technology : t16ff
+	status : final
+
+Summary:
+
+ Path #  | Slack(ns) |                     Start Pin                      |                     End Pin                      |  Launch Clock  | Capture Clock
+==============================================================================================================================================================
+ 1       |  0.109    | u_video_pipe/u_accel_dma/jobs/wgray_meta[0]~FF|CLK | u_video_pipe/u_accel_dma/jobs/wgray_sync[0]~FF|D | cnn_clk (RISE) | cnn_clk (RISE)
+ 2       |  0.109    | u_video_pipe/u_accel_dma/jobs/wgray_meta[1]~FF|CLK | u_video_pipe/u_accel_dma/jobs/wgray_sync[1]~FF|D | cnn_clk (RISE) | cnn_clk (RISE)
+ 3       |  0.109    | u_video_pipe/u_accel_dma/jobs/wgray_meta[2]~FF|CLK | u_video_pipe/u_accel_dma/jobs/wgray_sync[2]~FF|D | cnn_clk (RISE) | cnn_clk (RISE)
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.109 ns (arrival time - required time)                     
+Path Start      : u_video_pipe/u_accel_dma/jobs/wgray_meta[0]~FF|CLK          
+Path End        : u_video_pipe/u_accel_dma/jobs/wgray_sync[0]~FF|D            
+Launch Clock    : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)
+Path Type       : Min at Fast Process Corner                                  
+Data Path Delay : 0.179 ns                                                    
+Logic Levels    : 0                                                           
+
+Launch Clock Path Delay        : 1.168
++ Clock To Q + Data Path Delay : 0.179
+--------------------------------------
+End-of-path arrival time       : 1.347
+
+Constraint                     : 0.000
++ Capture Clock Path Delay     : 1.168
++ Clock Uncertainty            : 0.070
++ Hold                         : 0.000
+--------------------------------------
+End-of-path required time      : 1.238
+
+Launch Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                  Netlist Resource(s)
+========================================================================================================
+ (112,323)   input             0.000        0.000     cnn_clk                                           
+ (112,323)   input             0.070        0.070     cnn_clk                                           
+             net (fo=15212)    1.098        1.168     cnn_clk                                           
+ (161,101)   EFX_FF            0.000        1.168     u_video_pipe/u_accel_dma/jobs/wgray_meta[0]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                 Netlist Resource(s)
+====================================================================================================
+ (161,101)   EFX_FF (Tco)    0.072        0.072     u_video_pipe/u_accel_dma/jobs/wgray_meta[0]~FF|Q
+             net (fo=1)      0.107        0.179     u_video_pipe/u_accel_dma/jobs/wgray_meta[0]     
+ (161,102)   EFX_FF          0.000        0.179     u_video_pipe/u_accel_dma/jobs/wgray_sync[0]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                  Netlist Resource(s)
+========================================================================================================
+ (112,323)   input             0.000        0.000     cnn_clk                                           
+ (112,323)   input             0.070        0.070     cnn_clk                                           
+             net (fo=15212)    1.098        1.168     cnn_clk                                           
+ (161,102)   EFX_FF            0.000        1.168     u_video_pipe/u_accel_dma/jobs/wgray_sync[0]~FF|CLK
+ (161,102)   EFX_FF (Hold)     0.000        1.168     u_video_pipe/u_accel_dma/jobs/wgray_sync[0]~FF    
+
+++++ Path 2 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.109 ns (arrival time - required time)                     
+Path Start      : u_video_pipe/u_accel_dma/jobs/wgray_meta[1]~FF|CLK          
+Path End        : u_video_pipe/u_accel_dma/jobs/wgray_sync[1]~FF|D            
+Launch Clock    : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)
+Path Type       : Min at Fast Process Corner                                  
+Data Path Delay : 0.179 ns                                                    
+Logic Levels    : 0                                                           
+
+Launch Clock Path Delay        : 1.168
++ Clock To Q + Data Path Delay : 0.179
+--------------------------------------
+End-of-path arrival time       : 1.347
+
+Constraint                     : 0.000
++ Capture Clock Path Delay     : 1.168
++ Clock Uncertainty            : 0.070
++ Hold                         : 0.000
+--------------------------------------
+End-of-path required time      : 1.238
+
+Launch Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                  Netlist Resource(s)
+========================================================================================================
+ (112,323)   input             0.000        0.000     cnn_clk                                           
+ (112,323)   input             0.070        0.070     cnn_clk                                           
+             net (fo=15212)    1.098        1.168     cnn_clk                                           
+ (185,90)    EFX_FF            0.000        1.168     u_video_pipe/u_accel_dma/jobs/wgray_meta[1]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                 Netlist Resource(s)
+====================================================================================================
+  (185,90)   EFX_FF (Tco)    0.072        0.072     u_video_pipe/u_accel_dma/jobs/wgray_meta[1]~FF|Q
+             net (fo=1)      0.107        0.179     u_video_pipe/u_accel_dma/jobs/wgray_meta[1]     
+  (185,91)   EFX_FF          0.000        0.179     u_video_pipe/u_accel_dma/jobs/wgray_sync[1]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                  Netlist Resource(s)
+========================================================================================================
+ (112,323)   input             0.000        0.000     cnn_clk                                           
+ (112,323)   input             0.070        0.070     cnn_clk                                           
+             net (fo=15212)    1.098        1.168     cnn_clk                                           
+ (185,91)    EFX_FF            0.000        1.168     u_video_pipe/u_accel_dma/jobs/wgray_sync[1]~FF|CLK
+ (185,91)    EFX_FF (Hold)     0.000        1.168     u_video_pipe/u_accel_dma/jobs/wgray_sync[1]~FF    
+
+++++ Path 3 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack           : 0.109 ns (arrival time - required time)                     
+Path Start      : u_video_pipe/u_accel_dma/jobs/wgray_meta[2]~FF|CLK          
+Path End        : u_video_pipe/u_accel_dma/jobs/wgray_sync[2]~FF|D            
+Launch Clock    : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)
+Capture Clock   : cnn_clk {rise@0.000 ns fall@3.500 ns period=7.000 ns} (RISE)
+Path Type       : Min at Fast Process Corner                                  
+Data Path Delay : 0.179 ns                                                    
+Logic Levels    : 0                                                           
+
+Launch Clock Path Delay        : 1.168
++ Clock To Q + Data Path Delay : 0.179
+--------------------------------------
+End-of-path arrival time       : 1.347
+
+Constraint                     : 0.000
++ Capture Clock Path Delay     : 1.168
++ Clock Uncertainty            : 0.070
++ Hold                         : 0.000
+--------------------------------------
+End-of-path required time      : 1.238
+
+Launch Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                  Netlist Resource(s)
+========================================================================================================
+ (112,323)   input             0.000        0.000     cnn_clk                                           
+ (112,323)   input             0.070        0.070     cnn_clk                                           
+             net (fo=15212)    1.098        1.168     cnn_clk                                           
+ (140,99)    EFX_FF            0.000        1.168     u_video_pipe/u_accel_dma/jobs/wgray_meta[2]~FF|CLK
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)                 Netlist Resource(s)
+====================================================================================================
+ (140,99)    EFX_FF (Tco)    0.072        0.072     u_video_pipe/u_accel_dma/jobs/wgray_meta[2]~FF|Q
+             net (fo=1)      0.107        0.179     u_video_pipe/u_accel_dma/jobs/wgray_meta[2]     
+ (140,100)   EFX_FF          0.000        0.179     u_video_pipe/u_accel_dma/jobs/wgray_sync[2]~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)                  Netlist Resource(s)
+========================================================================================================
+ (112,323)   input             0.000        0.000     cnn_clk                                           
+ (112,323)   input             0.070        0.070     cnn_clk                                           
+             net (fo=15212)    1.098        1.168     cnn_clk                                           
+ (140,100)   EFX_FF            0.000        1.168     u_video_pipe/u_accel_dma/jobs/wgray_sync[2]~FF|CLK
+ (140,100)   EFX_FF (Hold)     0.000        1.168     u_video_pipe/u_accel_dma/jobs/wgray_sync[2]~FF    
+

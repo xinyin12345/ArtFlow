@@ -1,0 +1,32 @@
+Reading pref.tcl
+
+# 2025.3
+
+# ** Note: (vsim-220) 'D:/work/FPGA/ArtFlow/ArtFlow/work/styles8_v2_system/modelsim.ini' is used as the ini file.
+# vsim -c -ini D:/work/FPGA/ArtFlow/ArtFlow/work/styles8_v2_system/modelsim.ini -wlf D:/work/FPGA/ArtFlow/ArtFlow/work/styles8_v2_system/test.wlf -onfinish exit work.tb_r15u_system "+DIR=D:/work/FPGA/ArtFlow/ArtFlow/work/styles8_v2_system" -do "run -all; quit -code 0" 
+# Start time: 00:55:34 on Oct 30,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-220) 'D:/work/FPGA/ArtFlow/ArtFlow/work/styles8_v2_system/modelsim.ini' is used as the ini file.
+# //  Questa Altera Starter FPGA Edition-64
+# //  Version 2025.3 win64 Sep 15 2025
+# //
+# // Unpublished work. Copyright 2025 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading sv_std.std
+# Loading work.tb_r15u_system(fast)
+# run -all
+# UNDERFLOW time=            17683000 epoch=1 x=0 y=6 latest=1 words=0 rs=0 used=0 q=0 qepoch=0
+# TEST PASS r15u_system actual pipe/mux/FIFOs/scheduler, real CNN wrapper/CDC, engine transaction fixture; style request injected; jobs=8 rendered=15 captures=44 pixels=55296 underflows=1
+# ** Note: $finish    : D:/work/FPGA/ArtFlow/ArtFlow/candidates/round15u_return_ram/tb_r15u_system.sv(95)
+#    Time: 2643040 ns  Iteration: 1  Instance: /tb_r15u_system
+# End time: 00:55:44 on Oct 30,2026, Elapsed time: 0:00:10
+# Errors: 0, Warnings: 0

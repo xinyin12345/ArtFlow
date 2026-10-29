@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "results": {
+    "mailbox": "PASS shared mailbox: 105 offered, 9895 dropped; no producer overwrite or blocking",
+    "generation": "PASS FPGA-only reset, stale echo, first new BEGIN, duplicate epoch and wrap",
+    "RTL_to_C": "PASS C receiver: 2 complete, 0 rejected, 6 diagnostics"
+  },
+  "source_sha256": {
+    "protocol/afs.c": "d05b51f29e278f940e7684a0e48f0569151d68f9258e40ce835bf9716f6a7287",
+    "protocol/afs.h": "ca6dfd5208bb9c78af59307ee3132f08102515a9bbb2cf2930a9ef6fa3952635",
+    "protocol/afs.js": "ccf0268c09f325c555fc900cf0d791dad88df90cd5c6c7c8899002f9967f24b5",
+    "protocol/afs_generation.h": "8e111c270e5bda808792885ce024b564e8b3b44ca654ea3838f07607df1fc251",
+    "protocol/afs_mailbox.h": "74f18557769717ff554567386251b7b1895bc62f496db7be59001cba22d852ef"
+  }
+}

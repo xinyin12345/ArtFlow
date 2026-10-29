@@ -1,8 +1,8 @@
 from pathlib import Path
 import sys,json,shutil,hashlib
-R=Path(__file__).resolve().parents[1];F=R.parent;sys.path.insert(0,str(F/'tools'));import build_styles15 as b
+R=Path(__file__).resolve().parents[1];F=R.parent;sys.path.insert(0,str(F/'tools'));import build_styles8 as b
 from check_round23t_project import verify,W
-assert json.loads((F/'reports/round23t_map_analysis.json').read_text())['status']=='PASS'
+assert json.loads((F/'reports/styles8/round23t_map_analysis.json').read_text())['status']=='PASS'
 assert json.loads((R/'logs/rtl/summary.json').read_text())['status']=='PASS'
 if '--resume-audit' not in sys.argv: b.flow('pnr')
 else: assert json.loads((W/'pnr_summary.json').read_text())['status']=='PASS'

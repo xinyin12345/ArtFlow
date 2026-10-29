@@ -19,7 +19,7 @@ try {
     & $Python stream/scripts/run_original_regressions.py
     if ($LASTEXITCODE -ne 0) { throw 'Original regressions failed' }
   } elseif ($Phase -eq 'Map') {
-    & $Python -B tools/build_styles15.py --phase map
+    & $Python -B tools/build_styles8.py --phase map
     if ($LASTEXITCODE -ne 0) { throw 'Map failed; inspect prerequisites/evidence' }
   } elseif ($Phase -eq 'Physical') {
     & $Python stream/scripts/fpga_physical.py

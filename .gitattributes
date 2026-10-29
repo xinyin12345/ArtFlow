@@ -25,3 +25,21 @@ releases/styles15_p1p2_20261025/old_new_mapping.csv whitespace=space-before-tab,
 /ip/sapphire_soc/sapphire_soc.v -text
 /candidates/round15u_return_ram/tb_r15u_system.sv -text
 /sim/*.sv -text
+
+# Eight-style source and generated evidence are hashed byte-for-byte.
+/network/styles8/** -text
+/network/styles8/*.hex -diff
+/releases/styles8_stream30_20261030/** -text
+/releases/styles8_stream30_20261030/*.bit -diff
+/releases/styles8_stream30_20261030/*.hex -diff
+/releases/styles8_stream30_20261030/**/*.log -diff
+/releases/styles8_stream30_20261030/**/*.rpt -diff
+/doc/styles8/source_manifest.json -text
+/tools/*styles8* -text
+/tools/run_rtl_case.py -text
+/tools/regenerate_package.py -text
+/tools/verify_package.py -text
+/tools/check_round23t_project.py -text
+/stream/scripts/fpga_physical.py -text
+/releases/styles8_stream30_20261030/**/*.out -diff
+/releases/styles8_stream30_20261030/**/*.hex -diff

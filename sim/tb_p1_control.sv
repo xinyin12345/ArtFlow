@@ -16,10 +16,10 @@ initial begin
  // Live mode retains original early release and completion accounting.
  arm();wait(start);tick(1);busy=1;source_consumed=1;tick(1);source_consumed=0;if(source_locked)$fatal(1,"live early release lost");finish_job(0);scenarios++;
  for(integer k=0;k<30;k++) begin
-  launch_pair();completed_style=k%15;tick(8);if(freeze_valid)$fatal(1,"published before done");finish_job(0);
+  launch_pair();completed_style=k%8;tick(8);if(freeze_valid)$fatal(1,"published before done");finish_job(0);
   if(!freeze_valid || !source_locked || dut.pair_seq!=original_seq || dut.pair_style!=completed_style)$fatal(1,"pair metadata");
   arm();tick(110);if(start || !freeze_valid || !source_locked)$fatal(1,"frozen relaunch or timeout");
-  if(k%2)begin requested_style=requested_style==14?0:requested_style+1;tick(2);end else wr('hc0,2);
+  if(k%2)begin requested_style=requested_style==7?0:requested_style+1;tick(2);end else wr('hc0,2);
   tick(3);if(freeze_valid || !source_locked || !freeze_busy)$fatal(1,"retire released before display ACK");
   retire_ack=1;tick(1);retire_ack=0;tick(1);if(source_locked || freeze_busy)$fatal(1,"retire ACK");scenarios++;
  end

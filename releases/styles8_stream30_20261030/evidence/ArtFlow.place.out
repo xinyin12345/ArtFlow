@@ -1,0 +1,317 @@
+           
+           Elitestek FPGA Placement and Routing.
+           Version: 2026.1.132 
+           Compiled: May 29 2026.
+           
+           Copyright (C) 2013 - 2026 Efinix, Inc. All rights reserved.
+
+           
+           The Tool Is Based on VPR of University of Toronto,
+           a free open source code under MIT license.
+           
+WARNING  : Found 8 warnings in the post-synthesis netlist.
+INFO     : Reading core interface constraints file "D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/out\ArtFlow.interface.csv" [DBMsg::CoreInterfaceConstraintsFileReading]
+INFO     : Successfully read core interface constraints file "D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/out\ArtFlow.interface.csv" [DBMsg::CoreInterfaceConstraintsFileLoadSuccess]
+INFO     : Creating interface clock pin CLK_27M [DBMsg::NetlistInterfaceClockPinCreated]
+INFO     : Creating interface clock pin clk_100m [DBMsg::NetlistInterfaceClockPinCreated]
+INFO     : Creating interface clock pin fb [DBMsg::NetlistInterfaceClockPinCreated]
+INFO     : Creating interface clock pin hdmi_tx_fast_clk [DBMsg::NetlistInterfaceClockPinCreated]
+WARNING  : logical_block u_soc/u_sapphire_soc/u_EfxSapphireSoc/system_cores_0_logic_cpu/IBusCachedPlugin_cache/lineLoader_address[0]~FF #51341 has no fanout [DBMsg::NetlistLogicalBlockNoFanout]
+WARNING  : logical_block u_soc/u_sapphire_soc/u_EfxSapphireSoc/system_cores_0_logic_cpu/IBusCachedPlugin_cache/lineLoader_address[1]~FF #51342 has no fanout [DBMsg::NetlistLogicalBlockNoFanout]
+WARNING  : logical_block u_soc/u_sapphire_soc/u_EfxSapphireSoc/system_cores_0_logic_cpu/IBusCachedPlugin_cache/lineLoader_address[2]~FF #51343 has no fanout [DBMsg::NetlistLogicalBlockNoFanout]
+WARNING  : logical_block u_soc/u_sapphire_soc/u_EfxSapphireSoc/system_cores_0_logic_cpu/IBusCachedPlugin_cache/lineLoader_address[3]~FF #51344 has no fanout [DBMsg::NetlistLogicalBlockNoFanout]
+WARNING  : logical_block u_soc/u_sapphire_soc/u_EfxSapphireSoc/system_cores_0_logic_cpu/IBusCachedPlugin_cache/lineLoader_address[4]~FF #51345 has no fanout [DBMsg::NetlistLogicalBlockNoFanout]
+WARNING  : logical_block u_soc/u_sapphire_soc/u_EfxSapphireSoc/system_cores_0_logic_cpu/IBusCachedPlugin_cache/lineLoader_address[5]~FF #51346 has no fanout [DBMsg::NetlistLogicalBlockNoFanout]
+WARNING  : logical_block u_soc/u_sapphire_soc/u_EfxSapphireSoc/system_cores_0_logic_cpu/IBusCachedPlugin_cache/lineLoader_address[0]~FF #51341 has no fanout [DBMsg::NetlistLogicalBlockNoFanout]
+WARNING  : logical_block u_soc/u_sapphire_soc/u_EfxSapphireSoc/system_cores_0_logic_cpu/IBusCachedPlugin_cache/lineLoader_address[1]~FF #51342 has no fanout [DBMsg::NetlistLogicalBlockNoFanout]
+WARNING  : logical_block u_soc/u_sapphire_soc/u_EfxSapphireSoc/system_cores_0_logic_cpu/IBusCachedPlugin_cache/lineLoader_address[2]~FF #51343 has no fanout [DBMsg::NetlistLogicalBlockNoFanout]
+WARNING  : logical_block u_soc/u_sapphire_soc/u_EfxSapphireSoc/system_cores_0_logic_cpu/IBusCachedPlugin_cache/lineLoader_address[3]~FF #51344 has no fanout [DBMsg::NetlistLogicalBlockNoFanout]
+WARNING  : logical_block u_soc/u_sapphire_soc/u_EfxSapphireSoc/system_cores_0_logic_cpu/IBusCachedPlugin_cache/lineLoader_address[4]~FF #51345 has no fanout [DBMsg::NetlistLogicalBlockNoFanout]
+WARNING  : logical_block u_soc/u_sapphire_soc/u_EfxSapphireSoc/system_cores_0_logic_cpu/IBusCachedPlugin_cache/lineLoader_address[5]~FF #51346 has no fanout [DBMsg::NetlistLogicalBlockNoFanout]
+INFO     : Reading core interface constraints file "D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/out\ArtFlow.interface.csv" [DBMsg::CoreInterfaceConstraintsFileReading]
+INFO     : Successfully read core interface constraints file "D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/out\ArtFlow.interface.csv" [DBMsg::CoreInterfaceConstraintsFileLoadSuccess]
+WARNING  : IO cell "pll_inst4_RSTN" has no assigned placement; it will be placed randomly
+INFO     : 1 IO cells will have random placement
+INFO     : XLR count after merging: 58286
+INFO     : Netlist has 38723 luts, 25803 ffs and 6671 adders [PackerMsg::NetlistStatistics]
+INFO     : Packed into 58286 clusters with 2.690303(1.041365) inputs(outputs) per cluster for a total of 156807(60697) inputs(outputs) [PackerMsg::ClusterPackingStatistics]
+INFO     : Packed into 58286 xlrs with 2.690303(1.041365) inputs(outputs) per xlr for a total of 156807(60697) inputs(outputs) [PackerMsg::XLRPackingStatistics]
+INFO     : Packed 1 fracturable DSPs into 1 clusters [PackerMsg::DSPPackingStatistics]
+INFO     : Packing took 3.9114618 seconds [FlowMsg::StageDuration]
+INFO     :     Packing took 13.140625 seconds (approximately) in total CPU time [FlowMsg::StageDuration::CPUTime]
+INFO     : Packing virtual memory usage: begin = 59.632 MB, end = 462.816 MB, delta = 403.184 MB [FlowMsg::VMUsage]
+INFO     :     Packing peak virtual memory usage = 462.844 MB [FlowMsg::VMUsage::Peak]
+INFO     : Packing resident set memory usage: begin = 63.848 MB, end = 466.064 MB, delta = 402.216 MB [FlowMsg::RSSUsage]
+INFO     :     Packing peak resident set memory usage = 466.08 MB [FlowMsg::RSSUsage::Peak]
+INFO     : SDC file 'ArtFlow.sdc' parsed successfully.
+INFO     : Reading core interface constraints file "D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/out\ArtFlow.interface.csv" [DBMsg::CoreInterfaceConstraintsFileReading]
+INFO     : Successfully read core interface constraints file "D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/out\ArtFlow.interface.csv" [DBMsg::CoreInterfaceConstraintsFileLoadSuccess]
+WARNING  : Failed to find the cluster pin name for primitive flash_cs_n:OUTPAD
+WARNING  : Failed to find the cluster pin name for primitive flash_mosi:OUTPAD
+WARNING  : Failed to find the cluster pin name for primitive flash_sck:OUTPAD
+WARNING  : Failed to determine -to input of exception in cluster level. The exception will be ignored
+WARNING  : Failed to find the cluster pin name for primitive stream_cs_n:OUTPAD
+WARNING  : Failed to find the cluster pin name for primitive stream_mosi:OUTPAD
+WARNING  : Failed to find the cluster pin name for primitive stream_sclk:OUTPAD
+WARNING  : Failed to determine -to input of exception in cluster level. The exception will be ignored
+WARNING  : Synchronizer chain starting at cell u_soc/u_sapphire_soc/u_EfxSapphireSoc/system_uart_0_io_logic/uartCtrl_1/rx/io_rxd_buffercc/buffers_0~FF is driven by a non-sequential source uart_rx:inpad [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_video_pipe/u_store/capture_fifo/RdClkRstGen[0]~FF is driven by a non-sequential source LUT__168259:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_csi_reset/core_release[0]~FF is driven by a non-sequential source VCC:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_stream/packet/ready_meta~FF is driven by a non-sequential source stream_ready:inpad [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_ddr3_top/u_phy_top/u_ddr_phy_if/ddr_wren_r3~FF is driven by a non-sequential source u_ddr3_top/u_phy_top/u_ddr_phy_if/i189_2:Q [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_ddr3_top/u_phy_top/u_ddr_phy_if/u2_ctl_fifo/u_efx_fifo_top/genblk2.wr_rst[0]~FF is driven by a non-sequential source GND:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_video_pipe/u_store/capture_fifo/WrClkRstGen[0]~FF is driven by a non-sequential source LUT__168255:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_ddr3_top/lb2_axi_clk.u_lb2_axi_clk/u3_dout_fifo/u_efx_fifo_top/genblk2.wr_rst[0]~FF is driven by a non-sequential source GND:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_soc/u_sapphire_soc/u_EfxSapphireSoc/bufferCC_9/buffers_0~FF is driven by a non-sequential source GND:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_ddr3_top/lb2_axi_clk.u_lb2_axi_clk/u2_din_fifo/u_efx_fifo_top/genblk2.wr_rst[0]~FF is driven by a non-sequential source GND:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_ddr3_top/u_phy_top/u_ddr_phy_if/u1_cmd_fifo/u_efx_fifo_top/genblk2.rd_rst[0]~FF is driven by a non-sequential source GND:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_video_pipe/u_store/ra/stages[0]~FF is driven by a non-sequential source VCC:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_video_pipe/u_accel_dma/styles.banks/reader/miso_meta~FF is driven by a non-sequential source flash_miso:inpad [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell inst_efx_csi2_rx/u_efx_csi2_rx/csi2_rx_top_inst/genblk2.lane_aligner_inst/genblk1[0].u1_inst/genblk2.efx_resetsync_a_rst/active_high.efx_resetsync_active_high/async_reg[0][0]~FF is driven by a non-sequential source GND:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_ddr3_top/u_phy_top/u_ddr_phy_if/u3_dout_fifo/u_efx_fifo_top/genblk2.rd_rst[0]~FF is driven by a non-sequential source GND:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_ddr3_top/u_phy_top/u_ddr_phy_if/u4_din_fifo/u_efx_fifo_top/genblk2.rd_rst[0]~FF is driven by a non-sequential source GND:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell control_pixel_reset[0]~FF is driven by a non-sequential source VCC:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_video_pipe/u_store/display_fifo/RdClkRstGen[0]~FF is driven by a non-sequential source LUT__167958:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_csi_reset/pixel_release[0]~FF is driven by a non-sequential source VCC:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_soc/u_sapphire_soc/u_EfxSapphireSoc/userInterruptA_buffercc/i7_2 is driven by a non-sequential source LUT__176638:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell inst_efx_csi2_rx/u_efx_csi2_rx/csi2_rx_top_inst/genblk3.byte2pixel_inst/u1_inst/genblk2.genblk1.efx_resetsync_wr_rst/active_high.efx_resetsync_active_high/async_reg[0][0]~FF is driven by a non-sequential source GND:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_soc/reset_release[0]~FF is driven by a non-sequential source VCC:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_ui/u_mode_key/key_meta~FF is driven by a non-sequential source key_mode_n:inpad [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_soc/u_sapphire_soc/u_EfxSapphireSoc/system_i2c_0_io_logic/i2cCtrl/io_i2c_scl_read_buffercc/buffers_0~FF is driven by a non-sequential source io_cam_scl_IN:inpad [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_video_pipe/u_store/display_fifo/WrClkRstGen[1]~FF is driven by a non-sequential source LUT__167960:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_ddr3_top/u_phy_top/u_ddr_phy_if/u1_cmd_fifo/u_efx_fifo_top/genblk2.wr_rst[0]~FF is driven by a non-sequential source GND:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_video_pipe/u_store/rc/stages[0]~FF is driven by a non-sequential source VCC:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell inst_efx_csi2_rx/u_efx_csi2_rx/csi2_rx_top_inst/genblk2.lane_aligner_inst/genblk1[1].u1_inst/genblk2.efx_resetsync_a_rst/active_high.efx_resetsync_active_high/async_reg[0][0]~FF is driven by a non-sequential source GND:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_ddr3_top/u_phy_top/u_ddr_phy_if/u3_dout_fifo/u_efx_fifo_top/genblk2.wr_rst[0]~FF is driven by a non-sequential source GND:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_ddr3_top/u_phy_top/u_ddr_phy_if/u4_din_fifo/u_efx_fifo_top/genblk2.wr_rst[0]~FF is driven by a non-sequential source GND:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_ui/u_osd_key/key_meta~FF is driven by a non-sequential source key_osd_n:inpad [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_video_pipe/u_accel_reset/stages[0]~FF is driven by a non-sequential source VCC:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_video_pipe/u_accel_dma/styles.key_filter/key_meta~FF is driven by a non-sequential source key_style_n:inpad [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_video_pipe/u_store/ro/stages[0]~FF is driven by a non-sequential source VCC:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_soc/u_sapphire_soc/u_EfxSapphireSoc/system_i2c_0_io_logic/i2cCtrl/io_i2c_sda_read_buffercc/buffers_0~FF is driven by a non-sequential source io_cam_sda_IN:inpad [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_stream/packet/miso_meta~FF is driven by a non-sequential source stream_miso:inpad [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_video_pipe/u_accel_dma/reset_cnn[0]~FF is driven by a non-sequential source VCC:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_ddr3_top/u_phy_top/u_ddr_phy_if/i538_2 is driven by a non-sequential source LUT__170865:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_video_pipe/u_store/capture_fifo/RdClkRstGen[1]~FF is driven by a non-sequential source LUT__168257:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell inst_efx_csi2_rx/u_efx_csi2_rx/csi2_rx_top_inst/genblk2.lane_aligner_inst/genblk1[2].u1_inst/genblk2.efx_resetsync_a_rst/active_high.efx_resetsync_active_high/async_reg[0][0]~FF is driven by a non-sequential source GND:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell inst_efx_csi2_rx/u_efx_csi2_rx/csi2_rx_top_inst/genblk3.byte2pixel_inst/u1_inst/genblk2.genblk1.efx_resetsync_rd_rst/active_high.efx_resetsync_active_high/async_reg[0][0]~FF is driven by a non-sequential source GND:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_ddr3_top/u_phy_top/u_ddr_phy_if/dq_check_en_r3~FF is driven by a non-sequential source u_ddr3_top/u_phy_top/u_ddr_phy_if/i364_2:Q [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_soc/u_sapphire_soc/u_EfxSapphireSoc/bufferCC_10/buffers_0~FF is driven by a non-sequential source GND:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_ddr3_top/lb2_axi_clk.u_lb2_axi_clk/u1_cmd_fifo/u_efx_fifo_top/genblk2.rd_rst[0]~FF is driven by a non-sequential source GND:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_ddr3_top/u_phy_top/u_ddr_phy_if/i189_2 is driven by a non-sequential source LUT__170802:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_video_pipe/u_store/capture_fifo/WrClkRstGen[1]~FF is driven by a non-sequential source LUT__168256:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_video_pipe/u_store/display_fifo/WrClkRstGen[0]~FF is driven by a non-sequential source LUT__168190:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_csi_reset/byte_release[0]~FF is driven by a non-sequential source VCC:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_ddr3_top/u_phy_top/u_ddr_phy_if/ddr_rden_r3~FF is driven by a non-sequential source u_ddr3_top/u_phy_top/u_ddr_phy_if/i538_2:Q [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_ddr3_top/u_phy_top/u_ddr_phy_if/u2_ctl_fifo/u_efx_fifo_top/genblk2.rd_rst[0]~FF is driven by a non-sequential source GND:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_video_pipe/u_store/display_fifo/RdClkRstGen[1]~FF is driven by a non-sequential source LUT__167959:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell inst_efx_csi2_rx/u_efx_csi2_rx/csi2_rx_top_inst/genblk2.lane_aligner_inst/genblk1[3].u1_inst/genblk2.efx_resetsync_a_rst/active_high.efx_resetsync_active_high/async_reg[0][0]~FF is driven by a non-sequential source GND:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_ddr3_top/lb2_axi_clk.u_lb2_axi_clk/u3_dout_fifo/u_efx_fifo_top/genblk2.rd_rst[0]~FF is driven by a non-sequential source GND:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_soc/u_sapphire_soc/u_EfxSapphireSoc/bufferCC_8/buffers_0~FF is driven by a non-sequential source GND:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_ddr3_top/lb2_axi_clk.u_lb2_axi_clk/u1_cmd_fifo/u_efx_fifo_top/genblk2.wr_rst[0]~FF is driven by a non-sequential source GND:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_ddr3_top/lb2_axi_clk.u_lb2_axi_clk/u2_din_fifo/u_efx_fifo_top/genblk2.rd_rst[0]~FF is driven by a non-sequential source GND:O [FlowMsg::SyncHeadDrivenByNonSeq]
+WARNING  : Synchronizer chain starting at cell u_ui_reset/stages[0]~FF is driven by a non-sequential source VCC:O [FlowMsg::SyncHeadDrivenByNonSeq]
+INFO     : Starting Global Placer with 16 threads ...
+            ----------     -------  --------------     -------
+             Iteration       WHPWL Worst Slack (ps) Convergence
+            ----------     -------  --------------     -------
+INFO     :           1    34224904             113         1.6%
+INFO     :           2    28382500              68         2.2%
+INFO     :           3    21228066              39         3.5%
+INFO     :           4    17255306              59         5.8%
+INFO     :           5    11984947             179        10.2%
+INFO     :           6     7594119            -152        21.9%
+INFO     :           7     5725857             -90        32.9%
+INFO     :           8     5031215             -57        40.9%
+INFO     :           9     4710959             -92        46.8%
+INFO     :          10     4636845             -62        50.7%
+INFO     :          11     4411331             155        55.1%
+INFO     :          12     4340277              66        57.9%
+INFO     :          13     4228511              11        60.3%
+INFO     :          14     4209954             113        60.9%
+INFO     :          15     4198376             -27        62.4%
+INFO     :          16     4141730             -33        63.9%
+INFO     :          17     4108898              57        64.8%
+INFO     :          18     4064435              63        66.3%
+INFO     :          19     4036214              48        67.7%
+INFO     :          20     4016643              77        68.7%
+INFO     :          21     3995094              94        69.5%
+INFO     :          22     3975719              74        70.4%
+INFO     :          23     3961039              66        71.4%
+INFO     :          24     3906730             220        73.0%
+INFO     :          25     3885506            -100        74.4%
+INFO     :          26     3879551            -163        75.4%
+INFO     :          27     3837801             -40        78.1%
+INFO     :          28     3788780             -50        79.8%
+INFO     :          29     3743759              10        81.7%
+INFO     :          30     3715091             -71        83.2%
+INFO     :          31     3707018            -264        84.2%
+INFO     :          32     3687243            -443        85.5%
+INFO     :          33     3676629            -276        86.6%
+INFO     :          34     3681428            -336        87.5%
+INFO     :          35     3674846            -455        88.6%
+INFO     :          36     3674180            -322        89.6%
+INFO     :          37     3669855            -310        90.4%
+INFO     :          38     3685745            -450        91.2%
+INFO     :          39     3703940            -348        91.9%
+INFO     :          40     3722722            -162        92.6%
+INFO     :          41     3733598            -222        93.8%
+INFO     :          42     3755566            -481        94.4%
+INFO     :          43     3776368              92        94.9%
+INFO     :          44     3784469            -156        95.5%
+INFO     :          45     3629235            -263        95.5%
+INFO     :          46     3643797            -156        97.2%
+INFO     :          47     3660280            -440        97.8%
+INFO     :          48     3669116            -154        98.2%
+INFO     :          49     3683255            -490        98.4%
+INFO     :          50     3693367            -673        98.8%
+INFO     :          51     3704408            -641        98.9%
+INFO     : GP: best_placement: wpd: 6097.31
+INFO     : Starting Annealer
+            ----------     -------  --------------     -------
+             Iteration       WHPWL  Delay Max (ps)     R Limit
+            ----------     -------  --------------     -------
+INFO     :           0     2529562            7240        30.0
+INFO     :           1     3688069            2345        90.0
+INFO     :           2     3382207            2416        90.0
+INFO     :           3     3093268            2388        23.3
+INFO     :           4     2905045            2067        21.1
+INFO     :           5     2759869            2020        19.1
+INFO     :           6     2659073            2068        17.3
+INFO     :           7     2587022            2020        15.6
+INFO     :           8     2535634            2020        14.0
+INFO     :           9     2486735            2020        12.7
+INFO     :          10     2445857            2020        11.4
+INFO     :          11     2409769            2020        10.3
+INFO     :          12     2377268            2020         9.2
+INFO     :          13     2345142            2020         8.3
+INFO     :          14     2317985            2089         7.5
+INFO     :          15     2295827            1919         6.8
+INFO     :          16     2274795            1898         6.1
+INFO     :          17     2255440            1901         5.5
+INFO     :          18     2237334            1893         5.0
+INFO     :          19     2222332            1893         4.5
+INFO     :          20     2208044            1893         4.0
+INFO     :          21     2197797            1902         3.6
+INFO     :          22     2185672            1893         3.3
+INFO     :          23     2173533            1901         3.0
+INFO     :          24     2166448            1900         2.7
+INFO     :          25     2159427            1900         2.4
+INFO     :          26     2152462            1893         2.2
+INFO     :          27     2148638            1893         2.0
+INFO     :          28     2144855            1904         1.8
+INFO     :          29     2143320            1946         1.6
+INFO     :          30     2140359            1893         1.5
+INFO     :          31     2135956            1893         1.4
+INFO     :          32     2131503            1907         1.2
+INFO     :          33     2129388            1923         1.1
+INFO     :          34     2127432            1923         1.0
+INFO     :          35     2125326            1946         1.0
+INFO     :          36     2124258            1937         1.0
+INFO     :          37     2122804            2000         1.0
+INFO     :          38     2121575            2000         1.0
+INFO     : DP: best_placement: wpd: 7.0842
+INFO     : Starting incremental timing annealer
+INFO     : Starting incremental timing quench 1 with temperature 0.1 and 0.2 moves per pass
+            ----------     -------  --------------     -------
+             Iteration       WHPWL  Delay Max (ps)     R Limit
+            ----------     -------  --------------     -------
+INFO     :           0     2121575            2000        30.0
+INFO     :           1     2227737            1883        27.0
+INFO     :           2     2257239            1864        24.2
+INFO     :           3     2266316            1915        21.7
+INFO     :           4     2265523            1879        19.5
+INFO     :           5     2263254            1885        17.5
+INFO     :           6     2261205            1834        15.7
+INFO     :           7     2258279            1850        14.0
+INFO     :           8     2252822            1812        12.6
+INFO     :           9     2250073            1825        11.3
+INFO     :          10     2245694            1818        10.1
+INFO     :          11     2241849            1832         9.1
+INFO     :          12     2238471            1812         8.1
+INFO     :          13     2231666            1812         7.3
+INFO     :          14     2227385            1812         6.5
+INFO     :          15     2224260            1813         5.9
+INFO     :          16     2219798            1834         5.3
+INFO     :          17     2214697            1812         4.7
+INFO     :          18     2210561            1831         4.3
+INFO     :          19     2205012            1796         3.8
+INFO     :          20     2200450            1796         3.4
+INFO     :          21     2195342            1805         3.1
+INFO     :          22     2190946            1796         2.8
+INFO     :          23     2187151            1796         2.5
+INFO     :          24     2179644            1796         2.2
+INFO     :          25     2173308            1796         2.0
+INFO     : DP: best_placement: wpd: -1
+INFO     : Placement successful: 58683 cells are placed
+INFO     : Peak congestion smeared over 4x4 of the chip is 2.27658 at 151,303
+INFO     : Peak congestion smeared over 1/16 of the chip is 1.72781 at 148,306
+INFO     : Peak congestion smeared over 1/4 of the chip is 1.20873 at 122,323
+INFO     : Congestion-weighted HPWL per net: 41.9193
+INFO     : Post-placement cluster-level checks is successful
+INFO     : Post-placement primitive-level checks is successful
+INFO     : Placement took 225.6013846 seconds [FlowMsg::StageDuration]
+INFO     :     Placement took 1935.453125 seconds (approximately) in total CPU time [FlowMsg::StageDuration::CPUTime]
+INFO     : Placement virtual memory usage: begin = 108.408 MB, end = 344.224 MB, delta = 235.816 MB [FlowMsg::VMUsage]
+INFO     :     Placement peak virtual memory usage = 710.936 MB [FlowMsg::VMUsage::Peak]
+INFO     : Placement resident set memory usage: begin = 121.824 MB, end = 361.476 MB, delta = 239.652 MB [FlowMsg::RSSUsage]
+INFO     :     Placement peak resident set memory usage = 728.328 MB [FlowMsg::RSSUsage::Peak]
+INFO     : SDC file 'ArtFlow.sdc' parsed successfully.
+Maximum possible analyzed clocks frequency
+   Clock Name     Period (ns)  Frequency (MHz)     Edge
+tx_cal_clk_90edge    2.072        482.625         (R-R)
+sdram_clk            2.048        488.281         (R-R)
+rx_cal_clk           1.927        518.941         (R-R)
+tx_cal_clk           2.126        470.367         (R-R)
+vid_clk_dvi2         1.308        764.526         (R-R)
+hdmi_tx_slow_clk     6.661        150.128         (R-R)
+cnn_clk              6.335        157.853         (R-R)
+core_clk             8.257        121.109         (R-R)
+i_mipi_rx_pclk       5.188        192.753         (R-R)
+i_cam_ck_CLKOUT      4.542        220.167         (R-R)
+
+Geomean max period: 3.366
+
+Setup (Max) Clock Relationship
+  Launch Clock      Capture Clock   Constraint (ns)     Slack (ns)          Edge
+tx_cal_clk_90edge tx_cal_clk_90edge       2.500            0.428           (R-R)
+tx_cal_clk_90edge tx_cal_clk              2.500            1.199           (R-R)
+tx_cal_clk_90edge core_clk                2.500            2.089           (R-R)
+sdram_clk         tx_cal_clk_90edge       2.500            0.649           (R-R)
+sdram_clk         sdram_clk               2.500            0.452           (R-R)
+rx_cal_clk        rx_cal_clk              2.500            0.573           (R-R)
+tx_cal_clk        tx_cal_clk              2.500            0.374           (R-R)
+vid_clk_dvi2      vid_clk_dvi2           13.468           12.160           (R-R)
+vid_clk_dvi2      hdmi_tx_slow_clk       13.468           11.350           (R-R)
+hdmi_tx_slow_clk  hdmi_tx_slow_clk       13.468            6.807           (R-R)
+cnn_clk           cnn_clk                 7.000            0.665           (R-R)
+core_clk          tx_cal_clk_90edge       2.500            1.416           (R-R)
+core_clk          core_clk               10.000            1.743           (R-R)
+core_clk          i_cam_ck_CLKOUT        10.000            8.295           (R-R)
+i_mipi_rx_pclk    i_mipi_rx_pclk         20.000           14.812           (R-R)
+i_mipi_rx_pclk    i_cam_ck_CLKOUT        10.000            8.164           (R-R)
+i_cam_ck_CLKOUT   i_mipi_rx_pclk         10.000            7.994           (R-R)
+i_cam_ck_CLKOUT   i_cam_ck_CLKOUT        10.000            5.458           (R-R)
+
+Hold (Min) Clock Relationship
+  Launch Clock      Capture Clock   Constraint (ns)     Slack (ns)          Edge
+tx_cal_clk_90edge tx_cal_clk_90edge      0.000            0.098            (R-R)
+tx_cal_clk_90edge tx_cal_clk             0.000            0.916            (R-R)
+tx_cal_clk_90edge core_clk               0.000            0.149            (R-R)
+sdram_clk         tx_cal_clk_90edge      0.000            0.722            (R-R)
+sdram_clk         sdram_clk              0.000            0.068            (R-R)
+rx_cal_clk        rx_cal_clk             0.000            0.098            (R-R)
+tx_cal_clk        tx_cal_clk             0.000            0.179            (R-R)
+vid_clk_dvi2      vid_clk_dvi2           0.000            0.179            (R-R)
+vid_clk_dvi2      hdmi_tx_slow_clk       0.000            0.784            (R-R)
+hdmi_tx_slow_clk  hdmi_tx_slow_clk       0.000            0.097            (R-R)
+cnn_clk           cnn_clk                0.000            0.098            (R-R)
+core_clk          tx_cal_clk_90edge      0.000            0.149            (R-R)
+core_clk          core_clk               0.000            0.097            (R-R)
+core_clk          i_cam_ck_CLKOUT        0.000            0.195            (R-R)
+i_mipi_rx_pclk    i_mipi_rx_pclk         0.000            0.179            (R-R)
+i_mipi_rx_pclk    i_cam_ck_CLKOUT        0.000            0.195            (R-R)
+i_cam_ck_CLKOUT   i_mipi_rx_pclk         0.000            0.195            (R-R)
+i_cam_ck_CLKOUT   i_cam_ck_CLKOUT        0.000            0.161            (R-R)
+
+INFO     : Write Timing Report to "D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/out/ArtFlow.place.timing.rpt" ...

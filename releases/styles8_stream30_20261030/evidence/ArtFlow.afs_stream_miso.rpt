@@ -1,0 +1,65 @@
+
+Efinix report_timing Report
+Version: 2026.1.132
+Date: Fri Oct 30 01:50:02 2026
+
+Copyright (C) 2013 - 2026 Efinix, Inc. All rights reserved.
+
+User command: report_timing -setup -from [get_ports stream_miso] -to [get_cells u_stream/packet/miso_meta~FF] -npaths 1 -file ArtFlow.afs_stream_miso.rpt
+
+Timing Model: I3
+	process : typical
+	temperature : -40C to 100C
+	voltage : 0.95 +/-30mV
+	speedgrade : 3
+	technology : t16ff
+	status : final
+
+Summary:
+
+ Path #  | Slack(ns) |  Start Pin  |            End Pin             |      Launch Clock       |      Capture Clock
+=======================================================================================================================
+ 1       |  11.147   | stream_miso | u_stream/packet/miso_meta~FF|D | hdmi_tx_slow_clk (RISE) | hdmi_tx_slow_clk (RISE)
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Slack            : 11.147 ns (required time - arrival time)                              
+Path Start       : stream_miso                                                           
+Path End         : u_stream/packet/miso_meta~FF|D                                        
+Launch Clock     : hdmi_tx_slow_clk {rise@0.000 ns fall@6.734 ns period=13.468 ns} (RISE)
+Capture Clock    : hdmi_tx_slow_clk {rise@0.000 ns fall@6.734 ns period=13.468 ns} (RISE)
+Path Type        : Max at Slow Process Corner                                            
+Data Path Delay  : 0.835 ns                                                              
+Logic Levels     : 0                                                                     
+Timing Exception : Max Delay Path 10.000 ns                                              
+
+Launch Clock Path Delay  : 0.000
++ Input Delay            : 0.000
++ Data Path Delay        : 0.835
+--------------------------------
+End-of-path arrival time : 0.835
+
+Constraint                     : 10.000
++ Capture Clock Path Delay     :  2.111
+- Clock Uncertainty            :  0.126
+- Setup                        :  0.003
+---------------------------------------
+End-of-path required time      : 11.982
+
+Data Path
+  Location    Delay Type    Incr(ns)     Path(ns)        Netlist Resource(s)
+==================================================================================
+  (0,320)     input          0.000        0.000     stream_miso                   
+  (0,320)     input          0.126        0.126     stream_miso                   
+              net (fo=1)     0.709        0.835     stream_miso                   
+  (71,260)    EFX_FF         0.000        0.835     u_stream/packet/miso_meta~FF|D
+
+Capture Clock Path
+  Location     Delay Type     Incr(ns)     Path(ns)         Netlist Resource(s)
+======================================================================================
+  (112,0)    input              0.000       0.000     hdmi_tx_slow_clk                
+  (112,0)    input              0.126       0.126     hdmi_tx_slow_clk                
+             net (fo=2322)      1.985       2.111     hdmi_tx_slow_clk                
+  (71,260)   EFX_FF             0.000       2.111     u_stream/packet/miso_meta~FF|CLK
+  (71,260)   EFX_FF (Setup)    -0.003       2.108     u_stream/packet/miso_meta~FF    
+

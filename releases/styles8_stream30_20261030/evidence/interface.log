@@ -1,0 +1,3 @@
+WARNING: cannot find correct IV value
+Running: efx_run_pt_unified.py ArtFlow Titanium Ti60F225 --output_dir D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/out --timing_model I3 --project_xml ArtFlow.xml --work_dir D:/work/FPGA/ArtFlow/ArtFlow/work/styles8/build
+   interface :	PASS 

@@ -1,0 +1,213 @@
+
+Efinity Interface Designer Timing Report
+Version: 2026.1.132
+Date: 2026-10-30 01:39
+
+Copyright (C) 2013 - 2026 Efinix Inc. All rights reserved.
+
+Device: Ti60F225
+Project: ArtFlow
+Timing Model: I3 (final)
+
+---------- 1. PLL Timing Report (begin) ----------
+
++--------------+----------+-----------------+--------------------------+---------+-------------------------+---------------------------------+---------------------------------+
+| PLL Instance | Resource | Reference Clock | Core Clock Reference Pin | FB Mode |    Core Feedback Pin    | PLL Compensation Delay Max (ns) | PLL Compensation Delay Min (ns) |
++--------------+----------+-----------------+--------------------------+---------+-------------------------+---------------------------------+---------------------------------+
+|   USER_PLL   | PLL_BL0  |       core      |   CLK_27M~CLKOUT~18~1    |   core  |      fb~CLKOUT~19~1     |              2.146              |              1.213              |
+|  pll_inst4   | PLL_BR0  |       core      |   CLK_25M~CLKOUT~202~1   |  local  |                         |              0.000              |              0.000              |
+| MIPI_TX_PLL  | PLL_TL0  |       core      |  CLK_25M~CLKOUT~22~322   |   core  |  core_clk~CLKOUT~23~322 |              2.093              |              1.183              |
+|   DDR3_PLL   | PLL_TR0  |       core      |  CLK_25M~CLKOUT~200~322  |   core  | clk_100m~CLKOUT~201~322 |              1.513              |              0.854              |
++--------------+----------+-----------------+--------------------------+---------+-------------------------+---------------------------------+---------------------------------+
+
++-------------------+-------------+----------------------------+-----------------------+----------+
+|       Clock       | Period (ns) | Enable Dynamic Phase Shift | Phase Shift (degrees) | Inverted |
++-------------------+-------------+----------------------------+-----------------------+----------+
+|    vid_clk_dvi2   |    13.468   |           false            |         0.000         |  false   |
+|  hdmi_tx_slow_clk |    13.468   |           false            |         0.000         |  false   |
+|         fb        |    18.519   |           false            |         0.000         |  false   |
+|  hdmi_tx_fast_clk |    2.694    |           false            |         45.000        |  false   |
+|   i_mipi_rx_pclk  |    20.000   |           false            |         0.000         |  false   |
+|      core_clk     |    10.000   |           false            |         0.000         |  false   |
+|      cnn_clk      |    7.000    |           false            |         0.000         |  false   |
+| tx_cal_clk_90edge |    2.500    |            true            |         0.000         |  false   |
+|     sdram_clk     |    2.500    |           false            |         0.000         |  false   |
+|     rx_cal_clk    |    2.500    |            true            |         0.000         |  false   |
+|     tx_cal_clk    |    2.500    |            true            |         0.000         |  false   |
+|      clk_100m     |    10.000   |           false            |         0.000         |  false   |
++-------------------+-------------+----------------------------+-----------------------+----------+
+
+---------- PLL Timing Report (end) ----------
+
+---------- 2. GPIO Timing Report (begin) ----------
+
+Non-registered GPIO Configuration:
+===================================
+
++---------------+----------------+-----------+----------+----------+
+| Instance Name |    Pin Name    | Parameter | Max (ns) | Min (ns) |
++---------------+----------------+-----------+----------+----------+
+|    i_arstn    |    i_arstn     |  GPIO_IN  |  2.193   |  1.271   |
+|   key_mode_n  |   key_mode_n   |  GPIO_IN  |  2.193   |  1.271   |
+|   key_osd_n   |   key_osd_n    |  GPIO_IN  |  2.193   |  1.271   |
+|  key_style_n  |  key_style_n   |  GPIO_IN  |  2.193   |  1.271   |
+|  stream_miso  |  stream_miso   |  GPIO_IN  |  2.193   |  1.271   |
+|  stream_ready |  stream_ready  |  GPIO_IN  |  2.193   |  1.271   |
+|    uart_rx    |    uart_rx     |  GPIO_IN  |  2.193   |  1.271   |
+|     led[0]    |     led[0]     |  GPIO_OUT |  6.301   |  2.493   |
+|     led[1]    |     led[1]     |  GPIO_OUT |  6.301   |  2.493   |
+|  o_cam_rst_p  |  o_cam_rst_p   |  GPIO_OUT |  6.301   |  2.493   |
+|  stream_cs_n  |  stream_cs_n   |  GPIO_OUT |  6.301   |  2.493   |
+|  stream_mosi  |  stream_mosi   |  GPIO_OUT |  6.301   |  2.493   |
+|  stream_sclk  |  stream_sclk   |  GPIO_OUT |  6.301   |  2.493   |
+|    uart_tx    |    uart_tx     |  GPIO_OUT |  6.301   |  2.493   |
+|   io_cam_scl  | io_cam_scl_IN  |  GPIO_IN  |  2.193   |  1.271   |
+|   io_cam_scl  | io_cam_scl_OUT |  GPIO_OUT |  6.301   |  2.493   |
+|   io_cam_scl  | io_cam_scl_OE  |  GPIO_OUT |  4.581   |  2.656   |
+|   io_cam_sda  | io_cam_sda_IN  |  GPIO_IN  |  2.193   |  1.271   |
+|   io_cam_sda  | io_cam_sda_OUT |  GPIO_OUT |  6.301   |  2.493   |
+|   io_cam_sda  | io_cam_sda_OE  |  GPIO_OUT |  4.581   |  2.656   |
++---------------+----------------+-----------+----------+----------+
+
+---------- GPIO Timing Report (end) ----------
+
+---------- 3.1 HSIO GPIO Timing Report (begin) ----------
+
+Non-registered HSIO GPIO Configuration:
+========================================
+
++---------------+--------------+-------------+----------+----------+
+| Instance Name |   Pin Name   |  Parameter  | Max (ns) | Min (ns) |
++---------------+--------------+-------------+----------+----------+
+|    CLK_25M    |   CLK_25M    | GPIO_CLK_IN |  0.953   |  0.552   |
+|    CLK_27M    |   CLK_27M    | GPIO_CLK_IN |  0.953   |  0.552   |
+|   flash_miso  |  flash_miso  |   GPIO_IN   |  0.953   |  0.552   |
+|     verf0     |    verf0     |   GPIO_IN   |  1.151   |  0.667   |
+|     verf1     |    verf1     |   GPIO_IN   |  1.151   |  0.667   |
+|  ddr_reset_n  | ddr_reset_n  |   GPIO_OUT  |  1.968   |  1.141   |
+|   flash_cs_n  |  flash_cs_n  |   GPIO_OUT  |  2.536   |  1.470   |
+|  flash_hold_n | flash_hold_n |   GPIO_OUT  |  2.536   |  1.470   |
+|   flash_mosi  |  flash_mosi  |   GPIO_OUT  |  2.536   |  1.470   |
+|   flash_sck   |  flash_sck   |   GPIO_OUT  |  2.536   |  1.470   |
+|   flash_wp_n  |  flash_wp_n  |   GPIO_OUT  |  2.536   |  1.470   |
+|     led[2]    |    led[2]    |   GPIO_OUT  |  2.536   |  1.470   |
+|     led[3]    |    led[3]    |   GPIO_OUT  |  2.536   |  1.470   |
++---------------+--------------+-------------+----------+----------+
+
+Registered HSIO GPIO Configuration:
+====================================
+
++---------------+-------------------+----------------+----------------+---------------+---------------+-----------------------+-----------------------+
+| Instance Name |     Clock Pin     | Max Setup (ns) | Min Setup (ns) | Max Hold (ns) | Min Hold (ns) | Max Clock To Out (ns) | Min Clock To Out (ns) |
++---------------+-------------------+----------------+----------------+---------------+---------------+-----------------------+-----------------------+
+|  ddr_addr[0]  |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|  ddr_addr[1]  |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|  ddr_addr[2]  |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|  ddr_addr[3]  |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|  ddr_addr[4]  |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|  ddr_addr[5]  |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|  ddr_addr[6]  |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|  ddr_addr[7]  |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|  ddr_addr[8]  |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|  ddr_addr[9]  |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|  ddr_addr[10] |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|  ddr_addr[11] |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|  ddr_addr[12] |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|  ddr_addr[13] |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|  ddr_addr[14] |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|  ddr_addr[15] |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|   ddr_ba[0]   |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|   ddr_ba[1]   |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|   ddr_ba[2]   |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|   ddr_cas_n   |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|     ddr_ck    |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|   ddr_cke[0]  |     sdram_clk     |                |                |               |               |         1.980         |         1.148         |
+|  ddr_cs_n[0]  |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|   ddr_dm[0]   | tx_cal_clk_90edge |                |                |               |               |         1.835         |         1.064         |
+|   ddr_dm[1]   | tx_cal_clk_90edge |                |                |               |               |         1.835         |         1.064         |
+|   ddr_odt[0]  |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|   ddr_ras_n   |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|    ddr_we_n   |     sdram_clk     |                |                |               |               |         1.835         |         1.064         |
+|   ddr_dq[0]   |     rx_cal_clk    |     0.909      |     0.527      |     -0.668    |     -0.387    |                       |                       |
+|   ddr_dq[0]   | tx_cal_clk_90edge |                |                |               |               |         1.835         |         1.022         |
+|   ddr_dq[1]   |     rx_cal_clk    |     0.909      |     0.527      |     -0.668    |     -0.387    |                       |                       |
+|   ddr_dq[1]   | tx_cal_clk_90edge |                |                |               |               |         1.835         |         1.022         |
+|   ddr_dq[2]   |     rx_cal_clk    |     0.909      |     0.527      |     -0.668    |     -0.387    |                       |                       |
+|   ddr_dq[2]   | tx_cal_clk_90edge |                |                |               |               |         1.835         |         1.022         |
+|   ddr_dq[3]   |     rx_cal_clk    |     0.909      |     0.527      |     -0.668    |     -0.387    |                       |                       |
+|   ddr_dq[3]   | tx_cal_clk_90edge |                |                |               |               |         1.835         |         1.022         |
+|   ddr_dq[4]   |     rx_cal_clk    |     0.909      |     0.527      |     -0.668    |     -0.387    |                       |                       |
+|   ddr_dq[4]   | tx_cal_clk_90edge |                |                |               |               |         1.835         |         1.022         |
+|   ddr_dq[5]   |     rx_cal_clk    |     0.909      |     0.527      |     -0.668    |     -0.387    |                       |                       |
+|   ddr_dq[5]   | tx_cal_clk_90edge |                |                |               |               |         1.835         |         1.022         |
+|   ddr_dq[6]   |     rx_cal_clk    |     0.909      |     0.527      |     -0.668    |     -0.387    |                       |                       |
+|   ddr_dq[6]   | tx_cal_clk_90edge |                |                |               |               |         1.835         |         1.022         |
+|   ddr_dq[7]   |     rx_cal_clk    |     0.909      |     0.527      |     -0.668    |     -0.387    |                       |                       |
+|   ddr_dq[7]   | tx_cal_clk_90edge |                |                |               |               |         1.835         |         1.022         |
+|   ddr_dq[8]   |     rx_cal_clk    |     0.909      |     0.527      |     -0.668    |     -0.387    |                       |                       |
+|   ddr_dq[8]   | tx_cal_clk_90edge |                |                |               |               |         1.835         |         1.022         |
+|   ddr_dq[9]   |     rx_cal_clk    |     0.909      |     0.527      |     -0.668    |     -0.387    |                       |                       |
+|   ddr_dq[9]   | tx_cal_clk_90edge |                |                |               |               |         1.835         |         1.022         |
+|   ddr_dq[10]  |     rx_cal_clk    |     0.909      |     0.527      |     -0.668    |     -0.387    |                       |                       |
+|   ddr_dq[10]  | tx_cal_clk_90edge |                |                |               |               |         1.835         |         1.022         |
+|   ddr_dq[11]  |     rx_cal_clk    |     0.909      |     0.527      |     -0.668    |     -0.387    |                       |                       |
+|   ddr_dq[11]  | tx_cal_clk_90edge |                |                |               |               |         1.835         |         1.022         |
+|   ddr_dq[12]  |     rx_cal_clk    |     0.909      |     0.527      |     -0.668    |     -0.387    |                       |                       |
+|   ddr_dq[12]  | tx_cal_clk_90edge |                |                |               |               |         1.835         |         1.022         |
+|   ddr_dq[13]  |     rx_cal_clk    |     0.909      |     0.527      |     -0.668    |     -0.387    |                       |                       |
+|   ddr_dq[13]  | tx_cal_clk_90edge |                |                |               |               |         1.835         |         1.022         |
+|   ddr_dq[14]  |     rx_cal_clk    |     0.909      |     0.527      |     -0.668    |     -0.387    |                       |                       |
+|   ddr_dq[14]  | tx_cal_clk_90edge |                |                |               |               |         1.835         |         1.022         |
+|   ddr_dq[15]  |     rx_cal_clk    |     0.909      |     0.527      |     -0.668    |     -0.387    |                       |                       |
+|   ddr_dq[15]  | tx_cal_clk_90edge |                |                |               |               |         1.835         |         1.022         |
+|   ddr_dqs[0]  |     rx_cal_clk    |     0.909      |     0.527      |     -0.668    |     -0.387    |                       |                       |
+|   ddr_dqs[0]  |     tx_cal_clk    |                |                |               |               |         1.835         |         1.022         |
+|   ddr_dqs[1]  |     rx_cal_clk    |     0.909      |     0.527      |     -0.668    |     -0.387    |                       |                       |
+|   ddr_dqs[1]  |     tx_cal_clk    |                |                |               |               |         1.835         |         1.022         |
++---------------+-------------------+----------------+----------------+---------------+---------------+-----------------------+-----------------------+
+
+---------- HSIO GPIO Timing Report (end) ----------
+
+---------- 3.2.1 LVDS Tx Timing Report (begin) ----------
+
+---------- LVDS Tx Timing Report (end) ----------
+
+---------- 3.2.1 MIPI RX Lane Timing Report (begin) ----------
+
++---------------+------------------+-----------------+----------+----------+
+| Instance Name |     Pin Name     |    Parameter    | Max (ns) | Min (ns) |
++---------------+------------------+-----------------+----------+----------+
+|     cam_ck    | i_cam_ck_LP_P_IN | MIPI_RX_LANE_IN |  2.560   |  1.484   |
+|     cam_ck    | i_cam_ck_LP_N_IN | MIPI_RX_LANE_IN |  2.560   |  1.484   |
+|     cam_d0    |  cam_d0_LP_P_IN  | MIPI_RX_LANE_IN |  3.012   |  1.746   |
+|     cam_d0    |  cam_d0_LP_N_IN  | MIPI_RX_LANE_IN |  3.012   |  1.746   |
+|     cam_d1    |  cam_d1_LP_P_IN  | MIPI_RX_LANE_IN |  3.012   |  1.746   |
+|     cam_d1    |  cam_d1_LP_N_IN  | MIPI_RX_LANE_IN |  3.012   |  1.746   |
+|     cam_d2    |  cam_d2_LP_P_IN  | MIPI_RX_LANE_IN |  3.012   |  1.746   |
+|     cam_d2    |  cam_d2_LP_N_IN  | MIPI_RX_LANE_IN |  3.012   |  1.746   |
+|     cam_d3    |  cam_d3_LP_P_IN  | MIPI_RX_LANE_IN |  3.012   |  1.746   |
+|     cam_d3    |  cam_d3_LP_N_IN  | MIPI_RX_LANE_IN |  3.012   |  1.746   |
++---------------+------------------+-----------------+----------+----------+
+
+---------- MIPI RX Lane Timing Report (end) ----------
+
+---------- 4. Clock Network Delay Report (begin) ----------
+
++-------------------+----------+----------+
+|     Clock Pin     | Max (ns) | Min (ns) |
++-------------------+----------+----------+
+|      CLK_25M      |  2.054   |  1.161   |
+|      CLK_27M      |  2.084   |  1.178   |
+|      clk_100m     |  1.513   |  0.854   |
+|      core_clk     |  2.093   |  1.183   |
+|         fb        |  2.146   |  1.213   |
+|  hdmi_tx_fast_clk |  2.244   |  1.268   |
+|  hdmi_tx_slow_clk |  2.162   |  1.222   |
+|  i_cam_ck_CLKOUT  |  2.059   |  1.163   |
+|     rx_cal_clk    |  2.033   |  1.148   |
+|     sdram_clk     |  2.187   |  1.201   |
+|     tx_cal_clk    |  2.036   |  1.150   |
+| tx_cal_clk_90edge |  2.046   |  1.156   |
++-------------------+----------+----------+
+
+---------- Clock Network Delay Report (end) ----------

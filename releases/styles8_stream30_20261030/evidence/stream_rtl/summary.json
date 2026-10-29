@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "source_sha256": {
+    "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\rtl\\stream\\afs_spi_packet.sv": "811e9f9e03808d2db9b4a4162145c111bc2ae4e5c35b40a5448ec749b7a808df",
+    "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\rtl\\stream\\afs_stream_tx.sv": "05ab7e1763aee97bb5eb5849c11da1ff53a7605a59e579b05712322ac829feca",
+    "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\sim\\tb_afs_stream.sv": "99ab3529685695448b48c62eb9d5d9bb1303d67a48681ad82133760c21ba2e2e"
+  },
+  "evidence": [
+    "# PASS READY timeout leaves CS inactive",
+    "# PASS bad MISO CRC cannot enable video",
+    "# PASS 4000-cycle slow slave cancels complete frame",
+    "# PASS AFS SPI wire CRC, full frame, overflow cancel, source error cancel, reset recovery; packets=95"
+  ]
+}
