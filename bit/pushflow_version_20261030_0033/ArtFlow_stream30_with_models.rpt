@@ -1,0 +1,8 @@
+**** Efinity Programming Tool Generation Report *****
+Time: 2026-10-30 00:04
+
+Generated FPGA Soc Image output file: D:\work\FPGA\ArtFlow\Process\wifi_stream_20261025\dist\fpga\ArtFlow_stream30_with_models.hex
+Flash Address  Length      Input Image File
+0x00000000     0x0010fd9a  D:\work\FPGA\ArtFlow\Process\wifi_stream_20261025\dist\fpga\ArtFlow.hex
+0x00400000     0x0003c000  D:\work\FPGA\ArtFlow\Process\wifi_stream_20261025\dist\fpga\models15_parameters.bin
+
