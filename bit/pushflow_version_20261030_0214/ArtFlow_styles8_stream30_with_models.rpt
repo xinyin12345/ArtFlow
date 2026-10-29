@@ -1,0 +1,8 @@
+**** Efinity Programming Tool Generation Report *****
+Time: 2026-10-30 01:55
+
+Generated FPGA Soc Image output file: D:\work\FPGA\ArtFlow\ArtFlow\releases\styles8_stream30_20261030\ArtFlow_styles8_stream30_with_models.hex
+Flash Address  Length      Input Image File
+0x00000000     0x0010d981  D:\work\FPGA\ArtFlow\ArtFlow\releases\styles8_stream30_20261030\ArtFlow_styles8_stream30.hex
+0x00400000     0x00020000  D:\work\FPGA\ArtFlow\ArtFlow\releases\styles8_stream30_20261030\models8_parameters.bin
+
