@@ -19,6 +19,7 @@ module cam_fb_pipe_v09
     input key_style_n,flash_miso,output flash_cs_n,flash_sck,flash_mosi,
     input      [1:0]    requested_layout,
     output     [1:0]    active_layout,
+    output [2:0] osd_style,output osd_style_valid,
     input      [1:0]    cfg_bayer,       // 0 RGGB / 1 GRBG / 2 GBRG / 3 BGGR
     input               cfg_pix_rev,     // CSI 像素顺序：0 = [9:0] 为最左像素
     input      [15:0]   cfg_gain_r,      // Q8.8
@@ -210,6 +211,7 @@ wire source_locked,original_valid,styled_valid,display_active;
 wire [1:0] source_bank,original_bank,styled_bank,display_bank;
 wire start,busy,done,failed,source_consumed;
 wire [31:0] src_addr,dst_addr,cycles;
+wire [2:0] published_style;
 wire [31:0] style_status,ctrl_prdata;wire [4:0] completed_style;wire ctrl_error;
 wire style_diag_addr=accel_paddr==16'h00ac || accel_paddr==16'h00b0;
 wire render_active,render_valid,render_ready,render_error;wire [1:0] render_bank;wire [31:0] render_prdata;
@@ -270,7 +272,7 @@ artflow_accel_ctrl #(.INTERACT(1),.VERSION_ID(32'h41524609),.EARLY_RELEASE(1),.O
  .clk(axi_clk),.rst_n(accel_clk_ready),.paddr(accel_paddr),.psel(accel_psel && !render_select),
  .penable(accel_penable),.pwrite(accel_pwrite),.pwdata(accel_pwdata),
  .prdata(ctrl_prdata),.pready(ctrl_ready),.pslverror(ctrl_error),
- .retire_ack(retire_ack && !render_active && cnn_port_ready),.requested_style(style_status[9:5]),.completed_style(completed_style),
+ .retire_ack(retire_ack && !render_active && cnn_port_ready),.requested_style(style_status[9:5]),.completed_style(completed_style),.published_style(published_style),
  .freeze_valid(freeze_valid),.freeze_busy(freeze_busy),.freeze_original_bank(freeze_original_bank),
  .original_valid(original_valid),.original_bank(original_bank),.original_seq(diag_published),
  .source_locked(source_locked),.source_bank(source_bank),
@@ -400,6 +402,7 @@ rgb_frame_store_v07 #(
 
     .freeze_valid(freeze_valid),.freeze_original_bank(freeze_original_bank),.retire_ack(retire_ack),
     .requested_layout(requested_layout),.active_layout(active_layout),
+    .styled_style(published_style),.osd_style(osd_style),.osd_style_valid(osd_style_valid),
     .source_locked(source_locked),.source_bank(source_bank),
     .original_valid(original_valid),.original_bank(original_bank),
     .styled_valid(styled_valid),.styled_bank(render_valid ? render_bank : styled_bank),

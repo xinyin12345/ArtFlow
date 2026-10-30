@@ -616,6 +616,7 @@ cam_fb_pipe_v09 #(
   .diag_published(diag_published), .diag_rejected(diag_rejected),
   .key_style_n(key_style_n),.flash_miso(flash_miso),.flash_cs_n(flash_cs_n),.flash_sck(flash_sck),.flash_mosi(flash_mosi),
   .requested_layout(requested_layout),.active_layout(active_layout),
+  .osd_style(osd_style),.osd_style_valid(osd_style_valid),
   .cfg_bayer      (CFG_BAYER      ),
   .cfg_pix_rev    (CFG_PIX_REV    ),
   .cfg_gain_r     (camera_gain_r  ),
@@ -889,12 +890,14 @@ localparam integer HDMI_PIXEL_HZ = 74250000;
 wire ui_rst_n;
 video_reset_sync u_ui_reset(.clk(hdmi_tx_slow_clk),.rst_n(vid_rst_n),.ready(ui_rst_n));
 wire [1:0] requested_layout,active_layout;
+wire [2:0] osd_style;wire osd_style_valid;
 wire osd_enable, fps_valid;
+wire osd_de,osd_hs,osd_vs; // final pixel-domain sync sent to TMDS
 wire [11:0] capture_fps_bcd, display_fps_bcd;
 artflow_ui #(.CLOCK_HZ(HDMI_PIXEL_HZ),.DEBOUNCE_CYCLES(HDMI_PIXEL_HZ/50)) u_ui(
     .clk(hdmi_tx_slow_clk),.rst_n(ui_rst_n),
     .key_mode_n(key_mode_n),.key_osd_n(key_osd_n),
-    .capture_toggle(capture_toggle),.i_vs(gamma_vs),
+    .capture_toggle(capture_toggle),.i_vs(osd_vs),
     .mode(requested_layout),.osd_enable(osd_enable),
     .capture_bcd(capture_fps_bcd),.display_bcd(display_fps_bcd),.fps_valid(fps_valid));
 wire [11:0] process_sample;
@@ -906,12 +909,12 @@ artflow_fps #(.CLOCK_HZ(HDMI_PIXEL_HZ)) u_process_fps(.clk(hdmi_tx_slow_clk),.rs
 always @(posedge hdmi_tx_slow_clk or negedge ui_rst_n)
  if(!ui_rst_n) process_fps_bcd<=0;
  else if(hdmi_tx_vs) process_fps_bcd<=process_sample;
-wire osd_de,osd_hs,osd_vs;
 wire [23:0] osd_rgb;
-artflow_osd #(.H_ACTIVE(MAX_HRES),.VERSION_DIGIT("9"),.PROCESS_FPS(1)) u_osd(
+artflow_osd #(.H_ACTIVE(MAX_HRES),.VERSION_DIGIT("9")) u_osd(
     .clk(hdmi_tx_slow_clk),.rst_n(ui_rst_n),
     .mode(active_layout),.osd_enable(osd_enable),
-    .capture_bcd(capture_fps_bcd),.display_bcd(process_fps_bcd),.fps_valid(fps_valid),
+    .style_id(osd_style),.style_valid(osd_style_valid),
+    .capture_bcd(capture_fps_bcd),.display_bcd(display_fps_bcd),.fps_valid(fps_valid),
     .i_de(gamma_valid),.i_hs(gamma_hs),.i_vs(gamma_vs),
     .i_rgb({gamma_rdata,gamma_gdata,gamma_bdata}),
     .o_de(osd_de),.o_hs(osd_hs),.o_vs(osd_vs),.o_rgb(osd_rgb));

@@ -14,6 +14,7 @@ module artflow_accel_ctrl #(
     input busy,done,failed, input [31:0] cycles,
     input source_consumed,
     input retire_ack, input [4:0] requested_style,completed_style,
+    output reg [2:0] published_style,
     output wire freeze_valid, output wire [1:0] freeze_original_bank,
     output wire freeze_busy,
 
@@ -78,7 +79,7 @@ always @(posedge clk or negedge rst_n) begin
     if(!rst_n) begin
         interaction_state<=LIVE;freeze_timer<=0;pair_seq<=0;pair_style<=0;previous_request<=0;exit_reason<=0;
         armed<=0;irq_enable<=0;pending<=0;source_locked<=0;source_bank<=0;job_active<=0;
-        styled_valid<=0;styled_bank<=0;start<=0;src_addr<=0;dst_addr<=0;
+        styled_valid<=0;styled_bank<=0;published_style<=0;start<=0;src_addr<=0;dst_addr<=0;
         job_bank<=0;last_seq<=0;styled_seq<=0;launched<=0;
         completed<=0;skipped<=0;errors<=0;
     end else begin
@@ -123,7 +124,7 @@ always @(posedge clk or negedge rst_n) begin
             end
             if(failed) errors<=errors+1'b1;
             else begin
-                styled_bank<=job_bank;styled_valid<=1;styled_seq<=last_seq;
+                styled_bank<=job_bank;styled_valid<=1;published_style<=completed_style[2:0];styled_seq<=last_seq;
                 completed<=completed+1'b1;
             end
         end

@@ -10,6 +10,13 @@ task wr(input [15:0] a,input [31:0] d);@(negedge clk);paddr=a;pwdata=d;psel=1;pw
 task arm;wr('h8c,1);wr('h84,3);endtask
 task finish_job(input bit err);@(negedge clk);done=1;failed=err;busy=0;tick(1);done=0;tick(1);endtask
 task launch_pair;original_valid=0;wr('hc0,1);arm();original_seq=original_seq+1;original_valid=1;wait(start);@(negedge clk);busy=1;source_consumed=1;tick(1);source_consumed=0;if(!source_locked || !freeze_busy || freeze_valid)$fatal(1,"pair PRE released source");endtask
+wire [2:0] published_style;
+reg [2:0] expected_published=0;
+always @(posedge clk)begin
+ if(!rst_n)expected_published=0;
+ else if(done && dut.job_active && !failed)expected_published=completed_style[2:0];
+ #1;if(published_style!==expected_published)$fatal(1,"Actual style publication mismatch");
+end
 integer scenarios=0;
 initial begin
  tick(4);rst_n=1;tick(2);
@@ -26,7 +33,7 @@ initial begin
  // Cancel after PRE, keep source until actual final completion.
  launch_pair();wr('hc0,2);tick(12);if(!source_locked || freeze_valid)$fatal(1,"cancel lost pin");finish_job(0);if(freeze_busy || source_locked)$fatal(1,"cancel drain");scenarios++;
  launch_pair();tick(110);if(dut.interaction_state!=5 || !source_locked)$fatal(1,"timeout drain");finish_job(0);if(freeze_busy || source_locked)$fatal(1,"timeout complete");scenarios++;
- launch_pair();finish_job(1);if(freeze_valid || source_locked || errors!=1)$fatal(1,"failed job publication");scenarios++;
+ launch_pair();completed_style=3;finish_job(1);if(freeze_valid || source_locked || errors!=1)$fatal(1,"failed job publication");scenarios++;
  original_valid=0;wr('hc0,1);wr('hc0,2);tick(2);if(freeze_busy)$fatal(1,"wait cancel");scenarios++;
  wr('hc0,1);tick(110);if(freeze_busy || dut.exit_reason!=3)$fatal(1,"wait timeout");scenarios++;
  $display("TEST PASS p1_control scenarios=%0d completed=%0d errors=%0d",scenarios,completed,errors);$finish;

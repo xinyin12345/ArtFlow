@@ -1,0 +1,30 @@
+{
+  "status": "PASS_OFFLINE_FLASH_IMAGE_VERIFIED",
+  "utc": "2026-10-30T20:31:03.758503+00:00",
+  "source_candidate": "D:\\work\\FPGA\\ArtFlow\\Process\\osd_blackbars_20261030",
+  "user_reported_bit_board_effect_good": true,
+  "flash_programmed_by_assistant": false,
+  "flash_cold_boot_verified": false,
+  "baseline_commit": "4473983390d7009be06fc6f5fdb5ad54fe4bce03",
+  "original_release_manifest_sha256": "a7d9ae4a6f4b0387c1c691ade834ebd5274301c943010273f56708c5dabe2881",
+  "configuration_address": 0,
+  "configuration_decoded_bytes": 1104636,
+  "model_base": 4194304,
+  "model_bytes": 131072,
+  "model_slot_bytes": 16384,
+  "merged_decoded_bytes": 4325376,
+  "merged_last_address": 4325375,
+  "gap_fill": 255,
+  "full_merged_byte_equivalence": true,
+  "model_order": [
+    "glass",
+    "sketch",
+    "oil",
+    "starry",
+    "halftone",
+    "sand",
+    "inkwash",
+    "woodrich"
+  ],
+  "original_release_unchanged": true
+}

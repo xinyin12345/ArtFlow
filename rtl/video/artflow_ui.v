@@ -27,8 +27,11 @@ always @(posedge clk or negedge rst_n) begin
         vs_prev<=i_vs;
         if(mode_press) mode<=mode==2 ? 0 : mode+2'd1;
         if(osd_press) requested_osd<=!requested_osd;
-        if(frame_tick) begin
-            osd_enable<=requested_osd ^ osd_press;
+        if(frame_tick) osd_enable<=requested_osd ^ osd_press;
+        // A complete event-free second must publish zero even without another VS.
+        // The pixel-clock timebase must remain running; a stopped clock cannot
+        // measure elapsed time or draw a new on-screen status.
+        if(frame_tick || (sample_valid && out_sample==0)) begin
             capture_bcd<=cap_sample; display_bcd<=out_sample; fps_valid<=sample_valid;
         end
     end

@@ -1,0 +1,149 @@
+{
+  "status": "PASS",
+  "revision": "CAP_OUT",
+  "utc": "2026-10-30T19:51:20.240079+00:00",
+  "cases": [
+    {
+      "report": "reports/osd_simulation.json",
+      "sha256": "edd5343124e0eea850d9e348ace73b9a25594921521747f0773d1f4fe436d273",
+      "evidence": {
+        "v06_fps": [
+          "# tb_v06_fps PASS windows=4"
+        ],
+        "v06_ui": [
+          "# tb_v06_ui PASS checks=12"
+        ],
+        "osd_output_telemetry": [
+          "# PASS output_telemetry windows=8 checks=30 frozen_OUT=30 stopped_OUT=0 targets=29/30/31"
+        ],
+        "osd_blackbars": [
+          "# FRAME 0 PASS pixels=2073600",
+          "# FRAME 1 PASS pixels=2073600",
+          "# FRAME 2 PASS pixels=2073600",
+          "# FRAME 3 PASS pixels=2073600",
+          "# FRAME 4 PASS pixels=2073600",
+          "# FRAME 5 PASS pixels=2073600",
+          "# FRAME 6 PASS pixels=2073600",
+          "# FRAME 7 PASS pixels=2073600",
+          "# FRAME 8 PASS pixels=2073600",
+          "# FRAME 9 PASS pixels=2073600",
+          "# FRAME 10 PASS pixels=2073600",
+          "# FRAME 11 PASS pixels=2073600",
+          "# FRAME 12 PASS pixels=2073600",
+          "# PASS OSD frames=13 timing_cycles=27027156"
+        ]
+      }
+    },
+    {
+      "report": "reports/pixel_comparison.json",
+      "sha256": "43e847b66eb68b485204e4a020b1d5dc102b6b17e1e9256a305a253e28d12c63",
+      "evidence": {}
+    },
+    {
+      "report": "work/osd_reg_fps_edges/summary.json",
+      "sha256": "9cd88bdb28ea689950f6283fb53b9412262726f266b3bf806a9dd1a975d4f028",
+      "evidence": [
+        "# tb_osd_fps_edges PASS windows=8"
+      ]
+    },
+    {
+      "report": "work/osd_reg_layout_equivalence/summary.json",
+      "sha256": "92046f16c9289dfa23d8d8c4da5d60273219d8c31c6c1ef55a03aa05bf7da307",
+      "evidence": [
+        "# LAYOUT FRAME PASS mode=0 pixels=8192 epoch=3",
+        "# LAYOUT FRAME PASS mode=0 pixels=8192 epoch=4",
+        "# LAYOUT FRAME PASS mode=0 pixels=8192 epoch=5",
+        "# LAYOUT FRAME PASS mode=1 pixels=8192 epoch=6",
+        "# LAYOUT FRAME PASS mode=1 pixels=8192 epoch=7",
+        "# LAYOUT FRAME PASS mode=1 pixels=8192 epoch=8",
+        "# LAYOUT FRAME PASS mode=2 pixels=8192 epoch=9",
+        "# LAYOUT FRAME PASS mode=2 pixels=8192 epoch=10",
+        "# LAYOUT FRAME PASS mode=2 pixels=8192 epoch=11",
+        "# LAYOUT FRAME PASS mode=0 pixels=8192 epoch=12",
+        "# tb_osd_layout_equivalence PASS W=64 H=32 checked=32768/24576/24576 frames=4/3/3"
+      ]
+    },
+    {
+      "report": "work/osd_reg_pair_control/summary.json",
+      "sha256": "e31b8ab380f8e8142f4fccc5556418cca3bf5199b196d14770785572e6be4987",
+      "evidence": [
+        "# TEST PASS p1_control scenarios=36 completed=33 errors=1"
+      ]
+    },
+    {
+      "report": "work/osd_reg_style_cycle/summary.json",
+      "sha256": "917566431959460b1755cb3c10e2c18c333b093002376fd89dbc5cfe2954a808",
+      "evidence": [
+        "# STYLE CYCLE PASS id=1",
+        "# STYLE CYCLE PASS id=2",
+        "# STYLE CYCLE PASS id=3",
+        "# STYLE CYCLE PASS id=4",
+        "# STYLE CYCLE PASS id=5",
+        "# STYLE CYCLE PASS id=6",
+        "# STYLE CYCLE PASS id=7",
+        "# STYLE CYCLE PASS id=0",
+        "# STYLE CYCLE PASS id=2",
+        "# RAPID REQUEST REPLACEMENT PASS",
+        "# HEADER REJECTION PASS",
+        "# OUT OF RANGE HEADER ID REJECTION PASS",
+        "# STYLE CYCLE PASS id=6",
+        "# MISSING FLASH RECOVERY PASS",
+        "# tb_styles8_button_cycle PASS loads=10"
+      ]
+    },
+    {
+      "report": "work/osd_reg_system/summary.json",
+      "sha256": "861b84912a75c45e51ece46fae4b9ec08133f0951b3d809a0ac11c0bb6bfdcc7",
+      "evidence": [
+        "# TEST PASS r15u_system actual pipe/mux/FIFOs/scheduler, real CNN wrapper/CDC, engine transaction fixture; style request injected; jobs=8 rendered=15 captures=44 pixels=55296 underflows=1"
+      ]
+    },
+    {
+      "report": "stream/logs/rtl/summary.json",
+      "sha256": "5655bfc1dda39a56f8b7db14940eaee453db338b60546a64413ea35377839942",
+      "evidence": [
+        "# PASS READY timeout leaves CS inactive",
+        "# PASS bad MISO CRC cannot enable video",
+        "# PASS 4000-cycle slow slave cancels complete frame",
+        "# PASS AFS SPI wire CRC, full frame, overflow cancel, source error cancel, reset recovery; packets=95"
+      ]
+    },
+    {
+      "report": "stream/logs/reset-equivalence/summary.json",
+      "sha256": "be24ad08df99a888970bfd460a07d6edcd1f83b2bfacd8e356993399402d7a86",
+      "evidence": [
+        "# PASS 50 asynchronous resets including READY wait and CRC tail, 11 valid full packets: control/wire/status cycle equivalence"
+      ]
+    },
+    {
+      "report": "stream/logs/tap/summary.json",
+      "sha256": "cff8e7a4a558a9c36c1905253e8787080280413158e903ded5c28bc94ff52cf0",
+      "evidence": [
+        "# PASS AFS display tap 11 selection/coordinate/tag/error cases"
+      ]
+    },
+    {
+      "report": "stream/logs/host-tests.json",
+      "sha256": "d6b6f981fae21625bf16fd7d4fac1c4ca6845df90d25bbcb8a516d90e93068fe",
+      "evidence": {
+        "mailbox": "PASS shared mailbox: 105 offered, 9895 dropped; no producer overwrite or blocking",
+        "generation": "PASS FPGA-only reset, stale echo, first new BEGIN, duplicate epoch and wrap",
+        "RTL_to_C": "PASS C receiver: 2 complete, 0 rejected, 6 diagnostics"
+      }
+    },
+    {
+      "report": "stream/logs/browser-tests.json",
+      "sha256": "e84d2b4ca9a5d22acb8b0f1f11108e2846824afb5e858ebf20c4dcbdc768d349",
+      "evidence": {}
+    }
+  ],
+  "actual_output_event": "osd_vs rising edge at TMDS encoder input",
+  "clock_hz": 74250000,
+  "targets_fps": {
+    "CAP": 30,
+    "OUT": 30
+  },
+  "CAP_target_basis": "Existing camera goal ~30 in baseline doc/baseline_v04/board_acceptance.md; not inferred sensor rate; camera.c warns unmeasured line time",
+  "stop_limit": "Running pixel clock: public zero after complete idle one-second window without waiting for VS; stopped clock cannot measure time/draw status",
+  "note": "System fixture one startup underflow matches baseline; no board test; unchanged PRC source/serial diagnostic semantics"
+}

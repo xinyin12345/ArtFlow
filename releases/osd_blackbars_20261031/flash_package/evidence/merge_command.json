@@ -1,0 +1,20 @@
+{
+  "command": [
+    "D:\\soft\\Efinity\\2026.1\\python311\\bin\\python.exe",
+    "D:\\soft\\Efinity\\2026.1\\pgm\\bin\\multi_image_merger.py",
+    "-m",
+    "generic_comb_image",
+    "-ifile",
+    "D:\\work\\FPGA\\ArtFlow\\Process\\osd_blackbars_20261030\\releases\\osd_flash_backup_20261031\\fpga\\ArtFlow_osd_blackbars_20261030.hex",
+    "-ifile",
+    "D:\\work\\FPGA\\ArtFlow\\Process\\osd_blackbars_20261030\\releases\\osd_flash_backup_20261031\\models\\models8_parameters.bin",
+    "-iaddr",
+    "0x0",
+    "-iaddr",
+    "0x400000",
+    "-o",
+    "D:\\work\\FPGA\\ArtFlow\\Process\\osd_blackbars_20261030\\releases\\osd_flash_backup_20261031\\flash\\ArtFlow_osd_8styles_fullflash.hex"
+  ],
+  "tool_sha256": "8b337885ced852eedc92f123d1899ecabb03c6ed860c9aa179d49605aaaf75ce",
+  "hardware_access": false
+}

@@ -1,0 +1,113 @@
+{
+  "status": "PASS_OFFLINE_READY_FOR_USER_BOARD_TEST",
+  "files": {
+    "ArtFlow_osd_blackbars_20261030.bit": {
+      "bytes": 3313848,
+      "sha256": "8ff3f2565d92b7f9e4092d06513b8cefbc771ae21a2bc81f1458ba0fc31d1e50"
+    },
+    "ArtFlow_osd_blackbars_20261030.hex": {
+      "bytes": 3313908,
+      "sha256": "8f0d1b632a34a4397542edb09b7a4d368c2a0f073bebb5aa23ac02d48600b104"
+    }
+  },
+  "gates": {
+    "status": "PASS",
+    "revision": "CAP_OUT",
+    "audit_scripts_sha256": {
+      "tools/osd_audit_cnn_cdc.py": "9a2921170adda17f255f747a7a1da9cdaa39167ac75aba0102cebc5c1e3dbec8",
+      "tools/osd_audit_return_ram_cdc_v2.py": "86df50a29ca7b9c2324af147caf7f0bb505e3cec1011eccba873bf2a34eb8936",
+      "tools/osd_audit_style_io.py": "f2dee53b5ad5b29cf6bdfc4dbd09317edc72b3187b7105351479415f6edea0f4",
+      "tools/osd_audit_timing.py": "f98945a95dcf78a4a0c590ac9f0cf2d0ac592472661f3ee0c8fee3ca96a6e15b",
+      "tools/osd_audit_ui_cdc.py": "b82c84206147287ae779825e345e49b164f2b557eb17f15d603c0530cd0479da",
+      "tools/osd_audit_video_cdc.py": "30cd776bfb5e5e8e620b887d5e551fa9dfa663e8febffe25219b288a10576c35",
+      "tools/check_al_lease_cdc.tcl": "3fb71906242e5bbe1c7dfcf037fb9e73f210419d4facbc26911be547c3b26402",
+      "tools/check_cnn_cdc.tcl": "8df49cf884f011edda4187d66845540d252826d9dd99d6227f82a5737f11e874",
+      "tools/check_osd_mailbox.tcl": "c04225a8ef35a45ea490b951d68ac4b05bd9597c35317d8349fb8c476cc6daac",
+      "tools/check_osd_ui_cdc.tcl": "14d8b66008108180482f3d889197e2d1e17bd1bca5988ecb0d7437eebc5e3312",
+      "tools/check_round23t_return_ram_v2.tcl": "474805b5af607ae5c7f65a3a4292e0a7467efd26afd08d95de63cc44f82a15eb",
+      "tools/check_style_io.tcl": "1b053d3caa3e878b3db5f6009ff67879e56e7cbfdfd20fcf74653ce87ea8ae87",
+      "tools/check_ui_cdc.tcl": "5d70748b4d335da451933879de452e078d323454151f517e56bbcde9e215e962",
+      "tools/check_video_cdc.tcl": "267fd2cb567cb61c3337b8809e839fbb3baabccd1306ef2fe7c7e845e2096889",
+      "tools/run_osd_audits.py": "0b5cb33341d2591cf069dc26086cd6f61c41c527d157c94a020e84d766482edb",
+      "tools/check_osd_sources.py": "41bf01e763545796580a7b8937e2408bc7e5a08cf853e94fe134d9c6262c5d72",
+      "tools/styles15_timing.py": "87f9c2dd1006c4682e8b450f41fee64976ea485accab91ef9986a70d244468b0",
+      "stream/scripts/osd_stream_io_audit.py": "befbd8fd6612a6d74584a1aa54bb1765389fd1392f383b46838bb61b2db53224"
+    },
+    "source_snapshot_sha256": "2ff488897f6144d76218a43584ac846db34fd36de06d730af848950a8ecd36e6",
+    "functional_receipt_sha256": "8740721513001d38f4389397d7e219eec1a052774928b25579002ddcf1861791",
+    "normal_setup_hold": {
+      "status": "PASS",
+      "minimum_slack_ns": {
+        "Setup (Max)": 0.313,
+        "Hold (Min)": 0.026
+      },
+      "sha256": "113730ac000e82e542bb8ef5e64e6ee1720a88acca3729cc47f977b862e9b4d8",
+      "source_snapshot_sha256": "2ff488897f6144d76218a43584ac846db34fd36de06d730af848950a8ecd36e6"
+    },
+    "route_legal": true,
+    "cdc": "video/cnn/ui/style/stream/nativeRAM/newOSD PASS",
+    "hardware_tested": false,
+    "programmed": false
+  },
+  "hardware_programmed": false,
+  "git_committed": false,
+  "main_project_modified": false,
+  "library_previews": "REPLACED_SAME_TWO_LIBRARY_IDS_VERSION_1_READ_VERIFIED_LOCAL_METADATA_UNSUPPORTED",
+  "scope": "OSD-only Process candidate; separate gesture candidate not included",
+  "utc": "2026-10-30T20:01:50.043328+00:00",
+  "baseline_commit": "4473983390d7009be06fc6f5fdb5ad54fe4bce03",
+  "baseline_files_verified": 1078,
+  "model_files_identical": 479,
+  "final_resources": {
+    "revision": "CAP_OUT",
+    "baseline": {
+      "EFX_ADD": 6671,
+      "EFX_LUT4": 38721,
+      "EFX_FF": 25803,
+      "EFX_SRL8": 2065,
+      "EFX_DSP48": 143,
+      "EFX_DSP12": 1,
+      "EFX_RAM10": 246,
+      "EFX_DPRAM10": 7
+    },
+    "candidate": {
+      "EFX_ADD": 6672,
+      "EFX_LUT4": 38530,
+      "EFX_FF": 25807,
+      "EFX_SRL8": 2065,
+      "EFX_DSP48": 143,
+      "EFX_DSP12": 1,
+      "EFX_RAM10": 246,
+      "EFX_DPRAM10": 7
+    },
+    "delta": {
+      "EFX_ADD": 1,
+      "EFX_LUT4": -191,
+      "EFX_FF": 4,
+      "EFX_SRL8": 0,
+      "EFX_DSP48": 0,
+      "EFX_DSP12": 0,
+      "EFX_RAM10": 0,
+      "EFX_DPRAM10": 0
+    },
+    "status": "PASS_FINAL_PHYSICAL",
+    "map_sha256": "33611f3f61add82929a753e1f090e88199709e1760dda5a9c77badd38cec39d0",
+    "source_snapshot_sha256": "2ff488897f6144d76218a43584ac846db34fd36de06d730af848950a8ecd36e6",
+    "xlrs": 58112,
+    "xlr_capacity": 60800,
+    "route_overlaps": 0
+  },
+  "normal_timing": {
+    "status": "PASS",
+    "minimum_slack_ns": {
+      "Setup (Max)": 0.313,
+      "Hold (Min)": 0.026
+    },
+    "sha256": "113730ac000e82e542bb8ef5e64e6ee1720a88acca3729cc47f977b862e9b4d8",
+    "source_snapshot_sha256": "2ff488897f6144d76218a43584ac846db34fd36de06d730af848950a8ecd36e6"
+  },
+  "route_iterations": 46,
+  "route_overlaps": 0,
+  "release_manifest": "outputs/release_manifest.json",
+  "external_io_status": "PASS under documented external timing assumptions; board validation pending"
+}

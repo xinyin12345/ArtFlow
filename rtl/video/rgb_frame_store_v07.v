@@ -26,6 +26,7 @@ module rgb_frame_store_v07 #(
     input source_locked, input [1:0] source_bank,
     output original_valid, output [1:0] original_bank,
     input styled_valid, input [1:0] styled_bank,
+    input [2:0] styled_style,output reg [2:0] osd_style,output reg osd_style_valid,
     output display_active, output reg [1:0] display_bank,
     input axi_clk,
     output [ADDR_WIDTH-1:0] awaddr, output [7:0] awlen,
@@ -389,6 +390,33 @@ wire discard = qcount != 0 && (q0[159:128] != display_epoch || frame_bad);
 wire pop = discard || (consume && pixel == 3);
 assign rf_read = orst && !rf_empty && !pending_read && qcount < 2;
 wire [31:0] next_pixel = q0[pixel*32 +: 32];
+
+// Read-only bundled mailbox. Payload is held until three-stage request reception
+// and the returned acknowledgement; no multi-bit ID is sampled independently.
+reg [3:0] osd_payload;reg osd_request;
+(* async_reg="true" *)reg [1:0] osd_ack_sync;
+reg osd_ack;
+(* async_reg="true" *)reg [2:0] osd_req_sync;
+reg [3:0] osd_pending;
+always @(posedge axi_clk or negedge arst)
+ if(!arst)begin osd_payload<=0;osd_request<=0;osd_ack_sync<=0;end
+ else begin
+  osd_ack_sync<={osd_ack_sync[0],osd_ack};
+  if(rs==R_IDLE && requested_epoch!=handled_epoch && osd_ack_sync[1]==osd_request)begin
+   osd_payload<={latest_valid && styled_valid && layout_sync!=2,styled_style};
+   osd_request<=!osd_request;
+  end
+ end
+always @(posedge o_clk or negedge orst)
+ if(!orst)begin osd_req_sync<=0;osd_ack<=0;osd_pending<=0;osd_style<=0;osd_style_valid<=0;end
+ else begin
+  osd_req_sync<={osd_req_sync[1:0],osd_request};
+  if(osd_req_sync[2]!=osd_ack)begin osd_pending<=osd_payload;osd_ack<=osd_req_sync[2];end
+  // First active pixel occurs after vertical blanking and mailbox settlement.
+  // Hold the label throughout the entire raster, including the black bars.
+  if(active && px==0 && py==0)begin osd_style<=osd_pending[2:0];osd_style_valid<=osd_pending[3];end
+ end
+
 // Read-only epoch-tagged style tap. Never feeds video/AXI ownership or timing.
 assign stream_tick=frame_tick;
 assign stream_bad=frame_bad;

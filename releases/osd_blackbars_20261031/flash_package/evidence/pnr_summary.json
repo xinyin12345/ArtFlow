@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "returncode": 0,
+  "seconds": 334.6547155380249,
+  "command": [
+    "D:\\soft\\Efinity\\2026.1\\python311\\bin\\python.exe",
+    "D:\\soft\\Efinity\\2026.1\\scripts\\efx_run.py",
+    "ArtFlow.xml",
+    "--flow",
+    "pnr",
+    "--output_dir",
+    "D:/work/FPGA/ArtFlow/Process/osd_blackbars_20261030/work/osd_impl/out",
+    "--work_dir",
+    "D:/work/FPGA/ArtFlow/Process/osd_blackbars_20261030/work/osd_impl/build",
+    "--pnr_opts",
+    "optimization_level=TIMING_3",
+    "max_threads=16",
+    "seed=2",
+    "placer_effort_level=5"
+  ],
+  "source_inputs_sha256": {
+    "ArtFlow.xml": "e92431d5013b7067aec1c2676ce0f35a4d653ea992e9db3f1dfd3e51460d7b66",
+    "ArtFlow.sdc": "12656e6eae9ab3e6834ba72f6673d2b2c6e2baa8771ef5235a4925e8f73b28dc",
+    "ArtFlow.peri.xml": "afb10355706ea6bf4ec340b68decdfec3ac68b841dbda67807dff29a4b3fd422",
+    "work/osd_impl/implementation_source_sha256.json": "2ff488897f6144d76218a43584ac846db34fd36de06d730af848950a8ecd36e6",
+    "work/osd_impl/out/ArtFlow.map.v": "8e7c4e2de9d8046f7e85b09b1c3a02c6b6c7e71ed605c4727d4d6c491241c417",
+    "work/osd_impl/out/ArtFlow.vdb": "0b53fe8b55bb2daafeb04492255708339eb5b8b37b81c091c7c6db46bfaefa74",
+    "work/osd_impl/out/ArtFlow.interface.csv": "7e6e75025156fe5b32ab2d8924d575f27ea9966ee25e86f8c5259273e9c95de3"
+  }
+}

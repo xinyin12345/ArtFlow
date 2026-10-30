@@ -13,22 +13,17 @@
 |06|07|水墨画|
 |07|08|富彩粗刀版画|
 
-上电默认 00，KEY3 按上述顺序循环，07 后回到 00。风格切换由 FPGA 控制器完成；CPU 无独立风格循环，现有 OSD 仅显示布局和帧率，没有风格名称表。协议与诊断中的风格编号使用新编号，字段宽度保持兼容。
+上电默认 00，KEY3 按上述顺序循环，07 后回到 00。风格切换由 FPGA 控制器完成；CPU 无独立风格循环，新版 OSD 显示布局、实际已发布风格名称和 CAP/OUT 帧率。协议与诊断中的风格编号使用新编号，字段宽度保持兼容。
 
 模型未训练、未量化、未改变网络结构。`network/styles8/models8_manifest.json` 同时记录新编号、旧 15 风格编号、最初 19 风格源编号和权重/载荷 SHA256。每槽 16 KiB，包长 128 KiB；模型 Flash 起址仍为 `0x400000`，末址 `0x41FFFF`。仅 AFSM 头中的槽位 ID 随重排改变，权重载荷逐字节保留。
 
 ## 构建与验证
 
-使用已有 Python 3、RISC-V GCC、Questa 和 Efinity 2026.1：
+当前 OSD 版本使用 `python -B tools/build_osd.py`，串行执行功能检查、综合、布局布线、最终时序/CDC 和 bit/hex 生成。已有构建日志需先归档，不能覆盖。工具路径支持 `EFINITY_ROOT`、`QUESTA_ROOT`、`HOST_CC`。
 
-```powershell
-$env:HOST_CC='C:/msys64/ucrt64/bin/gcc.exe'
-& C:/Espressif/tools/python/v5.5.6/venv/Scripts/python.exe -B tools/build_styles8.py
-```
+仅核验集成与发布文件：`python -B tools/verify_osd_integration.py`；固件核验：`python -B releases/osd_blackbars_20261031/flash_package/tools/verify_backup.py`。
 
-也可依次执行 `--phase tests`、`--phase map`、`--phase physical`。`BuildStream.ps1` 的 Check/Tests/EspTests/OriginalTests/Map/Physical 入口保留。完整脚本先运行原系统与推流测试，再综合、布局布线、原时钟 STA、CDC 与流接口审计，最后生成 BIT/HEX。`EFINITY_ROOT`、`QUESTA_ROOT`、`RISCV_GCC` 和 `HOST_CC` 可指定已有工具路径。
-
-新结果位于 `work/styles8/`、`work/styles8_v2_*` 和 `reports/styles8/`。不复用 15 风格构建结果；不要同时启动重复构建。重跑前用 `--archive-run` 保存该轮的工作和报告。验证范围见 [计划](doc/styles8/verification_plan.md)、[功能映射](doc/styles8/feature_list.md) 与 [测试清单](doc/styles8/case_list.md)。
+完整命令、依赖、资源与时序、物理证据复用依据和实板验收项见 [OSD 更新说明](releases/osd_blackbars_20261031/README.md)。历史 `build_styles8.py` / `BuildStream.ps1` 与 `doc/styles8/` 保留用于原版本溯源，不作为本次 OSD 的正式完整验证入口。
 
 ## 资源清理与兼容边界
 
@@ -38,4 +33,8 @@ $env:HOST_CC='C:/msys64/ucrt64/bin/gcc.exe'
 
 8 风格 BIT 必须配套新模型包，不能继续配旧 15 风格 Flash 模型。保留现有 ESP 应用；本任务不生成或发布含凭据的 ESP 固件，不访问串口、JTAG 或硬件 Flash。离线验证通过仍需用户上板确认画面、按键、推流及断电启动。
 
-本次离线验证已通过：[验证结果](doc/styles8/verification_results.md)，[完整发布包](releases/styles8_stream30_20261030/README.md)。尚待用户上板验收。
+旧基线验证与回退包：[历史验证结果](doc/styles8/verification_results.md)，[旧发布包](releases/styles8_stream30_20261030/README.md)。当前 OSD 验证见下方更新说明。
+
+## 2026-10-31 OSD 更新
+
+[中文版本说明、构建入口、验证与固件](releases/osd_blackbars_20261031/README.md)。双窗口黑边大字、8 风格标签和 CAP/OUT；实际入口和约束不变。当前正式完整构建使用 `python -B tools/build_osd.py`。

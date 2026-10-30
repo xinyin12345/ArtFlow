@@ -43,3 +43,16 @@ releases/styles15_p1p2_20261025/old_new_mapping.csv whitespace=space-before-tab,
 /stream/scripts/fpga_physical.py -text
 /releases/styles8_stream30_20261030/**/*.out -diff
 /releases/styles8_stream30_20261030/**/*.hex -diff
+
+# OSD release artifacts and evidence require byte-exact Git round trips.
+/releases/osd_blackbars_20261031/** -text
+/releases/osd_blackbars_20261031/**/*.hex -diff
+/releases/osd_blackbars_20261031/**/*.bit -diff
+/bit/osdchange_version_20261031_0436/** -text
+/bit/osdchange_version_20261031_0436/*.hex -diff
+/bit/osdchange_version_20261031_0436/*.bit -diff
+
+# Preserve hashed reference/evidence whitespace exactly, as in historical releases.
+/baseline/rgb_frame_store_v07_baseline.v whitespace=blank-at-eol,space-before-tab,cr-at-eol,-blank-at-eof -text
+/releases/osd_blackbars_20261031/flash_package/evidence/merge.log whitespace=space-before-tab,cr-at-eol,-blank-at-eol
+/releases/osd_blackbars_20261031/flash_package/flash/ArtFlow_osd_8styles_fullflash.rpt whitespace=blank-at-eol,space-before-tab,cr-at-eol,-blank-at-eof

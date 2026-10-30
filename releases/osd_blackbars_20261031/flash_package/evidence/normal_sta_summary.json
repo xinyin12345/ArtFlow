@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "minimum_slack_ns": {
+    "Setup (Max)": 0.313,
+    "Hold (Min)": 0.026
+  },
+  "sha256": "113730ac000e82e542bb8ef5e64e6ee1720a88acca3729cc47f977b862e9b4d8",
+  "source_snapshot_sha256": "2ff488897f6144d76218a43584ac846db34fd36de06d730af848950a8ecd36e6"
+}

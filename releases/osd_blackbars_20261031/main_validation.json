@@ -1,0 +1,505 @@
+{
+  "status": "PASS",
+  "main_project": "D:\\work\\FPGA\\ArtFlow\\ArtFlow",
+  "actual_runs": {
+    "reports/osd_simulation.json": {
+      "sha256": "edd5343124e0eea850d9e348ace73b9a25594921521747f0773d1f4fe436d273",
+      "result": {
+        "status": "PASS",
+        "results": {
+          "v06_fps": [
+            "# tb_v06_fps PASS windows=4"
+          ],
+          "v06_ui": [
+            "# tb_v06_ui PASS checks=12"
+          ],
+          "osd_output_telemetry": [
+            "# PASS output_telemetry windows=8 checks=30 frozen_OUT=30 stopped_OUT=0 targets=29/30/31"
+          ],
+          "osd_blackbars": [
+            "# FRAME 0 PASS pixels=2073600",
+            "# FRAME 1 PASS pixels=2073600",
+            "# FRAME 2 PASS pixels=2073600",
+            "# FRAME 3 PASS pixels=2073600",
+            "# FRAME 4 PASS pixels=2073600",
+            "# FRAME 5 PASS pixels=2073600",
+            "# FRAME 6 PASS pixels=2073600",
+            "# FRAME 7 PASS pixels=2073600",
+            "# FRAME 8 PASS pixels=2073600",
+            "# FRAME 9 PASS pixels=2073600",
+            "# FRAME 10 PASS pixels=2073600",
+            "# FRAME 11 PASS pixels=2073600",
+            "# FRAME 12 PASS pixels=2073600",
+            "# PASS OSD frames=13 timing_cycles=27027156"
+          ]
+        },
+        "sha256": {
+          "rtl/video/artflow_osd.v": "e8fb44c42bb0a2b32fee36c23ce32e7374e32436273aec715e818ef0495c86a5",
+          "rtl/video/artflow_fps.v": "a4d668572673cbdd3e11943998c3205c1d472afa8c0f533add77db5f37fc381e",
+          "rtl/video/artflow_ui.v": "dc085c7a6529ba31e9cc4896b21e6e370855707afc86b16b245030c4b62b00cf",
+          "rtl/video/artflow_button.v": "31dc6ad1248f82d7de0df0837788104ef2b79b585a8595273c882c53cbcf7a21",
+          "sim/tb_osd_blackbars.sv": "9db770b5188eb2c1e920a5d48e99b15eb20c9fdf4860add4d2a8d9e3cd9b7a0e",
+          "sim/tb_v06_fps.sv": "25c15648f4a86c14049fd5f10c7262510c49b6b279f08baa39dfbf0188fd3e3a",
+          "sim/tb_v06_ui.sv": "2db94508362cfabe4ff9d91002dfeee8338dfae58dc484c062518a2b4b342b72",
+          "sim/tb_osd_output_telemetry.sv": "2aba7e7949e2d31651a94a8fca57646cc1eb9bdcd8bcc5450266b243b0070daf",
+          "rtl/video/osd_font.mem": "72ad6556ea4ae89f1c8bf764af309e9b143ec30506de1ec891f3e781bec9166b",
+          "rtl/video/osd_text_rows.mem": "8df19e1b3d5ac3b1c640bd6e338deba8fe51fbd212b6998eb583950e0a341584"
+        }
+      }
+    },
+    "reports/pixel_comparison.json": {
+      "sha256": "43e847b66eb68b485204e4a020b1d5dc102b6b17e1e9256a305a253e28d12c63",
+      "result": {
+        "status": "PASS",
+        "total_pixels": 26956800,
+        "independent_reference": "Python bitmap rectangles plus existing ROM glyph bits",
+        "frames": [
+          {
+            "frame": 0,
+            "mode": 0,
+            "style": 0,
+            "osd": true,
+            "fps_valid": true,
+            "style_valid": true,
+            "cap": 30,
+            "outfps": 30,
+            "pixels": 2073600,
+            "sha256": "9f6bce9ddc212b8b0c239e3ebde8f7e6ff5c692c96e535aa4508bedffa325e35"
+          },
+          {
+            "frame": 1,
+            "mode": 0,
+            "style": 1,
+            "osd": true,
+            "fps_valid": true,
+            "style_valid": true,
+            "cap": 30,
+            "outfps": 29,
+            "pixels": 2073600,
+            "sha256": "0e3a633682ec02b185ddb1f1d170ff867c5f7b14a194c155bb0a3392139b714f"
+          },
+          {
+            "frame": 2,
+            "mode": 0,
+            "style": 2,
+            "osd": true,
+            "fps_valid": true,
+            "style_valid": true,
+            "cap": 30,
+            "outfps": 31,
+            "pixels": 2073600,
+            "sha256": "6fc5ca398b08bfa889c0f56e830af9a88296247623c9ef706522b1b5969c9b9a"
+          },
+          {
+            "frame": 3,
+            "mode": 0,
+            "style": 3,
+            "osd": true,
+            "fps_valid": true,
+            "style_valid": true,
+            "cap": 30,
+            "outfps": 0,
+            "pixels": 2073600,
+            "sha256": "4dd6985a4f6b1adabe6b2e103c4bdb4b989998bfc06c15f43cb0ef676428be05"
+          },
+          {
+            "frame": 4,
+            "mode": 0,
+            "style": 4,
+            "osd": true,
+            "fps_valid": true,
+            "style_valid": true,
+            "cap": 30,
+            "outfps": 999,
+            "pixels": 2073600,
+            "sha256": "b2cea773b3f8f26801b9d5d176ebd4520fa26e6824269427669cc41ee0977092"
+          },
+          {
+            "frame": 5,
+            "mode": 0,
+            "style": 5,
+            "osd": true,
+            "fps_valid": true,
+            "style_valid": true,
+            "cap": 29,
+            "outfps": 30,
+            "pixels": 2073600,
+            "sha256": "bca1cee3c260128e680bc4af619e6659d7392c03b4260419315e6efdbeef7bdc"
+          },
+          {
+            "frame": 6,
+            "mode": 0,
+            "style": 6,
+            "osd": true,
+            "fps_valid": true,
+            "style_valid": true,
+            "cap": 0,
+            "outfps": 30,
+            "pixels": 2073600,
+            "sha256": "9362c78b6ed44ef80d27c91f48fd96908eb35c5c5a3bb063b7b5caf367520a17"
+          },
+          {
+            "frame": 7,
+            "mode": 0,
+            "style": 7,
+            "osd": true,
+            "fps_valid": true,
+            "style_valid": true,
+            "cap": 999,
+            "outfps": 30,
+            "pixels": 2073600,
+            "sha256": "4a8fac4a508ec290fcc42d2a82062111d97acbc494accba30bfbf95e1d8dd6c1"
+          },
+          {
+            "frame": 8,
+            "mode": 1,
+            "style": 0,
+            "osd": true,
+            "fps_valid": true,
+            "style_valid": true,
+            "cap": 30,
+            "outfps": 30,
+            "pixels": 2073600,
+            "sha256": "20c6d1c56b0f8908cc140064a93384b30d15a879295157e9967059a00e8507c6"
+          },
+          {
+            "frame": 9,
+            "mode": 2,
+            "style": 1,
+            "osd": true,
+            "fps_valid": true,
+            "style_valid": true,
+            "cap": 30,
+            "outfps": 30,
+            "pixels": 2073600,
+            "sha256": "46121f7de1dde50116eca4a0abebaf70445c45ddf0bdeebd153fa7d3e6a418af"
+          },
+          {
+            "frame": 10,
+            "mode": 0,
+            "style": 2,
+            "osd": false,
+            "fps_valid": true,
+            "style_valid": true,
+            "cap": 30,
+            "outfps": 30,
+            "pixels": 2073600,
+            "sha256": "454ad7889652d322649c272d82379dc2dd78f26eb8c91cf890cff9d5372ec688"
+          },
+          {
+            "frame": 11,
+            "mode": 0,
+            "style": 3,
+            "osd": true,
+            "fps_valid": false,
+            "style_valid": true,
+            "cap": 30,
+            "outfps": 30,
+            "pixels": 2073600,
+            "sha256": "f02887fd0ad6ab0ac010ffabcb4960db46d9443bac47c10c11d4249c9e1e463c"
+          },
+          {
+            "frame": 12,
+            "mode": 0,
+            "style": 4,
+            "osd": true,
+            "fps_valid": true,
+            "style_valid": false,
+            "cap": 30,
+            "outfps": 30,
+            "pixels": 2073600,
+            "sha256": "4a736de0b0028eb7697a75ef600c2ad1085464113104ddb45227ebcca46563cf"
+          }
+        ]
+      }
+    },
+    "reports/regression_complete.json": {
+      "sha256": "83bf62afab570a0f9ea0fa296c1d5e976deadaab4bb2ff26b41c3612d788b150",
+      "result": {
+        "status": "PASS",
+        "cases": [
+          "fps_edges",
+          "layout_equivalence",
+          "pair_control",
+          "style_cycle",
+          "system"
+        ],
+        "stream": [
+          "SPI framing",
+          "RTL-to-C",
+          "reset equivalence",
+          "frame tap",
+          "ESP host tests"
+        ]
+      }
+    },
+    "work/osd_reg_fps_edges/summary.json": {
+      "sha256": "9cd88bdb28ea689950f6283fb53b9412262726f266b3bf806a9dd1a975d4f028",
+      "result": {
+        "status": "PASS",
+        "vector_sha256": {},
+        "source_sha256": {
+          "rtl/video/artflow_fps.v": "a4d668572673cbdd3e11943998c3205c1d472afa8c0f533add77db5f37fc381e",
+          "sim/tb_osd_fps_edges.sv": "81ebaff281a3b8bd5215c867b3991ceff79007543c4e8a0b9207cac56949f183",
+          "D:/soft/Efinity/2026.1/sim_models/verilog/efx_ram10.v": "dd8db45116a67b9754920856dc380eb2dc73ca51e0a6a62cc74cda01c0e31a33",
+          "D:/soft/Efinity/2026.1/sim_models/verilog/efx_dpram10.v": "c7e39233de0a437fd0d43d83ce60dce10b3bd305c59cfcacfb5eac2fe916bcf9"
+        },
+        "evidence": [
+          "# tb_osd_fps_edges PASS windows=8"
+        ]
+      }
+    },
+    "work/osd_reg_layout_equivalence/summary.json": {
+      "sha256": "92046f16c9289dfa23d8d8c4da5d60273219d8c31c6c1ef55a03aa05bf7da307",
+      "result": {
+        "status": "PASS",
+        "vector_sha256": {},
+        "source_sha256": {
+          "rtl/video/artflow_ui.v": "dc085c7a6529ba31e9cc4896b21e6e370855707afc86b16b245030c4b62b00cf",
+          "rtl/video/artflow_button.v": "31dc6ad1248f82d7de0df0837788104ef2b79b585a8595273c882c53cbcf7a21",
+          "rtl/video/artflow_fps.v": "a4d668572673cbdd3e11943998c3205c1d472afa8c0f533add77db5f37fc381e",
+          "rtl/video/rgb_frame_store_v07.v": "1dd1519092e39972d1bad63d84195602f4b6acd6ce43eb6f475a923a76a2c205",
+          "baseline/rgb_frame_store_v07_baseline.v": "b14061437e9c1e597a72033bc6c4c7aa2ddca2365f362b7423d7f72120031015",
+          "rtl/video/rgb_frame_store.v": "ba6ed4499611c8a8271b63e2a91bb3a960c51c7477ba894f619870d815e3ac57",
+          "rtl/video/video_axi_scheduler.v": "519d85915da297082a6104d8884063a3c0c199e1f5b7493ceda2966a7d241a78",
+          "rtl/frame_buffer/DC_FIFO.v": "9ab9a48afde4075ca72d2f21d25457271ba657296a547ba5fe2eaa6719886819",
+          "rtl/frame_buffer/rst_n_piple.v": "2c127c90995a2b0e647db1eec3719c0e746a73def78d0c04bc7884195c2ca2d4",
+          "sim/axi_memory_v07.sv": "f601bc338679e6266732f14fab396167a121e074b82137d2b50f10638efda91e",
+          "sim/tb_osd_layout_equivalence.sv": "ad7c566a50a0dc157059497827d25806c22668829facd7f23b086220a315faa3",
+          "D:/soft/Efinity/2026.1/sim_models/verilog/efx_ram10.v": "dd8db45116a67b9754920856dc380eb2dc73ca51e0a6a62cc74cda01c0e31a33",
+          "D:/soft/Efinity/2026.1/sim_models/verilog/efx_dpram10.v": "c7e39233de0a437fd0d43d83ce60dce10b3bd305c59cfcacfb5eac2fe916bcf9"
+        },
+        "evidence": [
+          "# LAYOUT FRAME PASS mode=0 pixels=8192 epoch=3",
+          "# LAYOUT FRAME PASS mode=0 pixels=8192 epoch=4",
+          "# LAYOUT FRAME PASS mode=0 pixels=8192 epoch=5",
+          "# LAYOUT FRAME PASS mode=1 pixels=8192 epoch=6",
+          "# LAYOUT FRAME PASS mode=1 pixels=8192 epoch=7",
+          "# LAYOUT FRAME PASS mode=1 pixels=8192 epoch=8",
+          "# LAYOUT FRAME PASS mode=2 pixels=8192 epoch=9",
+          "# LAYOUT FRAME PASS mode=2 pixels=8192 epoch=10",
+          "# LAYOUT FRAME PASS mode=2 pixels=8192 epoch=11",
+          "# LAYOUT FRAME PASS mode=0 pixels=8192 epoch=12",
+          "# tb_osd_layout_equivalence PASS W=64 H=32 checked=32768/24576/24576 frames=4/3/3"
+        ]
+      }
+    },
+    "work/osd_reg_pair_control/summary.json": {
+      "sha256": "e31b8ab380f8e8142f4fccc5556418cca3bf5199b196d14770785572e6be4987",
+      "result": {
+        "status": "PASS",
+        "vector_sha256": {},
+        "source_sha256": {
+          "rtl/accel/artflow_accel_ctrl.v": "9bcd514ced77e03d77a006fefa46b409b19e542e572ea3e244e6fc172005ced7",
+          "sim/tb_p1_control.sv": "cc6edb7e9a1cd955110e0f675818d3647ad438c9ad31be0592973a2f450ea1c0",
+          "D:/soft/Efinity/2026.1/sim_models/verilog/efx_ram10.v": "dd8db45116a67b9754920856dc380eb2dc73ca51e0a6a62cc74cda01c0e31a33",
+          "D:/soft/Efinity/2026.1/sim_models/verilog/efx_dpram10.v": "c7e39233de0a437fd0d43d83ce60dce10b3bd305c59cfcacfb5eac2fe916bcf9"
+        },
+        "evidence": [
+          "# TEST PASS p1_control scenarios=36 completed=33 errors=1"
+        ]
+      }
+    },
+    "work/osd_reg_style_cycle/summary.json": {
+      "sha256": "917566431959460b1755cb3c10e2c18c333b093002376fd89dbc5cfe2954a808",
+      "result": {
+        "status": "PASS",
+        "vector_sha256": {
+          "network/styles8/models8_parameters.hex": "e6eef8394ec8af4df648cb94efe037ca644db134f938c6b36950105a1107d724"
+        },
+        "source_sha256": {
+          "rtl/cnn/glass_int8/style_bank_controller.v": "12443bf39eb9a52e8a560394080b4b1e415d2b3839601dd6e9e8886dd92e26ec",
+          "rtl/cnn/glass_int8/style_spi_reader.v": "a097701ca52f08026f8914d23e2604bdcc3ff7fdd4ef6160a2c7c83e7879ac66",
+          "sim/spi_model_archive.sv": "d754b8a72fc929bddf26253de26e64b1241a654a3d2f6107bb055e2684df7acc",
+          "sim/tb_styles8_button_cycle.sv": "75fc1d2c3188bbb3c2f4ac81be66f85f24d430910c3ebb2efcbb9b96e747c6e3",
+          "D:/soft/Efinity/2026.1/sim_models/verilog/efx_ram10.v": "dd8db45116a67b9754920856dc380eb2dc73ca51e0a6a62cc74cda01c0e31a33",
+          "D:/soft/Efinity/2026.1/sim_models/verilog/efx_dpram10.v": "c7e39233de0a437fd0d43d83ce60dce10b3bd305c59cfcacfb5eac2fe916bcf9"
+        },
+        "evidence": [
+          "# STYLE CYCLE PASS id=1",
+          "# STYLE CYCLE PASS id=2",
+          "# STYLE CYCLE PASS id=3",
+          "# STYLE CYCLE PASS id=4",
+          "# STYLE CYCLE PASS id=5",
+          "# STYLE CYCLE PASS id=6",
+          "# STYLE CYCLE PASS id=7",
+          "# STYLE CYCLE PASS id=0",
+          "# STYLE CYCLE PASS id=2",
+          "# RAPID REQUEST REPLACEMENT PASS",
+          "# HEADER REJECTION PASS",
+          "# OUT OF RANGE HEADER ID REJECTION PASS",
+          "# STYLE CYCLE PASS id=6",
+          "# MISSING FLASH RECOVERY PASS",
+          "# tb_styles8_button_cycle PASS loads=10"
+        ]
+      }
+    },
+    "work/osd_reg_system/summary.json": {
+      "sha256": "861b84912a75c45e51ece46fae4b9ec08133f0951b3d809a0ac11c0bb6bfdcc7",
+      "result": {
+        "status": "PASS",
+        "vector_sha256": {},
+        "source_sha256": {
+          "rtl/video/cam_fb_pipe_v09.v": "d8e8056e6026791530c3f0c4cf65f86234ca9c6acb1546032fdfa4d4427f58eb",
+          "rtl/video/bayer_bin2x2.v": "8c47c5d4c278b072388668f9bd277ca5eedc05652e050ce5b9faa5ab2d8b5cfb",
+          "rtl/video/rgb_frame_store.v": "ba6ed4499611c8a8271b63e2a91bb3a960c51c7477ba894f619870d815e3ac57",
+          "rtl/video/rgb_frame_store_v07.v": "1dd1519092e39972d1bad63d84195602f4b6acd6ce43eb6f475a923a76a2c205",
+          "rtl/video/video_axi_scheduler.v": "519d85915da297082a6104d8884063a3c0c199e1f5b7493ceda2966a7d241a78",
+          "rtl/frame_buffer/DC_FIFO.v": "9ab9a48afde4075ca72d2f21d25457271ba657296a547ba5fe2eaa6719886819",
+          "rtl/frame_buffer/rst_n_piple.v": "2c127c90995a2b0e647db1eec3719c0e746a73def78d0c04bc7884195c2ca2d4",
+          "rtl/accel/artflow_accel_ctrl.v": "9bcd514ced77e03d77a006fefa46b409b19e542e572ea3e244e6fc172005ced7",
+          "rtl/accel/artflow_axi_mux.v": "7d2d3bcb90e7fda8290a9775bb06230ffab5de873f7419f67a069f0fb840f68f",
+          "candidates/round11p_packed_pointers/artflow_pair_reader.sv": "8c01bbdb5b54ae86b72f835fa29a3da15f6b4f312f3627ba572d0e041dfd81ca",
+          "rtl/artflow_pair_normalize.sv": "5bdf7d126c70ea49d2624a3ef147eca783d09314b1c212d890a850d054ddf0a7",
+          "rtl/artflow_interact_blend.sv": "ea6f7db73f1c24034afd1be801c0abf433b68de1e3fd63f163820068de57b498",
+          "candidates/round11_packed25/artflow_pair_render.sv": "82b27897053b3b323fdc85fe685e19806797d9b28356471105a4c7954dd2ff4e",
+          "candidates/round11_packed25/artflow_render_ctrl.v": "ce75fa8b78842cc4fb90b9a3489f0d0116bf0ceb34a295070d20b278d88596ac",
+          "sim/axi_memory_v07.sv": "f601bc338679e6266732f14fab396167a121e074b82137d2b50f10638efda91e",
+          "rtl/accel/artflow_cnn_cdc_fifo.v": "b1373add55b60668684dc6d8eb1f184af9029d1483edefe39006a61edd044b81",
+          "rtl/accel/artflow_cnn_egress_fifo.v": "d1a5aa3a3f6226299b3a19537decf50e5c466424b843b0ecea11b8f7bff07cd9",
+          "candidates/round15_return_ram/artflow_cnn_accel.v": "cbb1cd1c42affff9fa125069c10a3a3f642075a2ad8a2e14f92120f3393b28eb",
+          "sim/cnn_engine_fixture_a.sv": "15b1beb44b212f0688dad77d37302a55712780ecdff337c249fc28d77c97cc75",
+          "candidates/round15u_return_ram/artflow_cnn_return_ram_fifo.v": "2854101bd83ac4ad538a0454c7f285417460e55907db02cfd9156869fbbadca0",
+          "candidates/round15u_return_ram/tb_r15u_system.sv": "fb340ae163a12addf40e9625cdaa428f156d5e1e366c5be9d33fa174a2b720a9",
+          "D:/soft/Efinity/2026.1/sim_models/verilog/efx_ram10.v": "dd8db45116a67b9754920856dc380eb2dc73ca51e0a6a62cc74cda01c0e31a33",
+          "D:/soft/Efinity/2026.1/sim_models/verilog/efx_dpram10.v": "c7e39233de0a437fd0d43d83ce60dce10b3bd305c59cfcacfb5eac2fe916bcf9"
+        },
+        "evidence": [
+          "# TEST PASS r15u_system actual pipe/mux/FIFOs/scheduler, real CNN wrapper/CDC, engine transaction fixture; style request injected; jobs=8 rendered=15 captures=44 pixels=55296 underflows=1"
+        ]
+      }
+    },
+    "stream/logs/rtl/summary.json": {
+      "sha256": "8d53f615fdf7eb5519c0e11c8e34b26bee1baa0d15d4934e07ebfd379ae96191",
+      "result": {
+        "status": "PASS",
+        "source_sha256": {
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\rtl\\stream\\afs_spi_packet.sv": "811e9f9e03808d2db9b4a4162145c111bc2ae4e5c35b40a5448ec749b7a808df",
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\rtl\\stream\\afs_stream_tx.sv": "05ab7e1763aee97bb5eb5849c11da1ff53a7605a59e579b05712322ac829feca",
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\sim\\tb_afs_stream.sv": "99ab3529685695448b48c62eb9d5d9bb1303d67a48681ad82133760c21ba2e2e"
+        },
+        "evidence": [
+          "# PASS READY timeout leaves CS inactive",
+          "# PASS bad MISO CRC cannot enable video",
+          "# PASS 4000-cycle slow slave cancels complete frame",
+          "# PASS AFS SPI wire CRC, full frame, overflow cancel, source error cancel, reset recovery; packets=95"
+        ]
+      }
+    },
+    "stream/logs/reset-equivalence/summary.json": {
+      "sha256": "113eed16255d062e2ffe19702f3b8d2dfca48c268bdb35f23da03447ff1f3b82",
+      "result": {
+        "status": "PASS",
+        "source_sha256": {
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\sim\\afs_spi_packet_reset_ref.sv": "c1205ba8a2acb85a70f6c0ff4e48099406498970e5943c8b6615db4d0c02cee5",
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\rtl\\stream\\afs_spi_packet.sv": "811e9f9e03808d2db9b4a4162145c111bc2ae4e5c35b40a5448ec749b7a808df",
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\sim\\tb_afs_reset_equivalence.sv": "718f33e1b0fdd5cecc7638a85c2b93b1157002d53630028ac7ecfe5853f33fa2"
+        },
+        "evidence": [
+          "# PASS 50 asynchronous resets including READY wait and CRC tail, 11 valid full packets: control/wire/status cycle equivalence"
+        ],
+        "scope": "Simulation cycle equivalence across 50 asynchronous reset positions including READY wait and CRC tail; not exhaustive formal proof."
+      }
+    },
+    "stream/logs/tap/summary.json": {
+      "sha256": "76f89f27531db9bd5b3357bc436c9491dab44bf99890fcbe13ff334b12175d2c",
+      "result": {
+        "status": "PASS",
+        "source_sha256": {
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\rtl\\video\\rgb_frame_store_v07.v": "1dd1519092e39972d1bad63d84195602f4b6acd6ce43eb6f475a923a76a2c205",
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\rtl\\video\\rgb_frame_store.v": "ba6ed4499611c8a8271b63e2a91bb3a960c51c7477ba894f619870d815e3ac57",
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\rtl\\video\\video_axi_scheduler.v": "519d85915da297082a6104d8884063a3c0c199e1f5b7493ceda2966a7d241a78",
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\rtl\\frame_buffer\\DC_FIFO.v": "9ab9a48afde4075ca72d2f21d25457271ba657296a547ba5fe2eaa6719886819",
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\rtl\\frame_buffer\\rst_n_piple.v": "2c127c90995a2b0e647db1eec3719c0e746a73def78d0c04bc7884195c2ca2d4",
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\sim\\tb_afs_tap.sv": "55f6bfbc1372b7e83487c960e125d06cada855be349343c5292d8883e7981982",
+          "D:\\soft\\Efinity\\2026.1\\sim_models\\verilog\\efx_ram10.v": "dd8db45116a67b9754920856dc380eb2dc73ca51e0a6a62cc74cda01c0e31a33",
+          "D:\\soft\\Efinity\\2026.1\\sim_models\\verilog\\efx_dpram10.v": "c7e39233de0a437fd0d43d83ce60dce10b3bd305c59cfcacfb5eac2fe916bcf9"
+        },
+        "evidence": [
+          "# PASS AFS display tap 11 selection/coordinate/tag/error cases"
+        ]
+      }
+    },
+    "stream/logs/host-tests.json": {
+      "sha256": "d6b6f981fae21625bf16fd7d4fac1c4ca6845df90d25bbcb8a516d90e93068fe",
+      "result": {
+        "status": "PASS",
+        "results": {
+          "mailbox": "PASS shared mailbox: 105 offered, 9895 dropped; no producer overwrite or blocking",
+          "generation": "PASS FPGA-only reset, stale echo, first new BEGIN, duplicate epoch and wrap",
+          "RTL_to_C": "PASS C receiver: 2 complete, 0 rejected, 6 diagnostics"
+        },
+        "source_sha256": {
+          "protocol/afs.c": "d05b51f29e278f940e7684a0e48f0569151d68f9258e40ce835bf9716f6a7287",
+          "protocol/afs.h": "ca6dfd5208bb9c78af59307ee3132f08102515a9bbb2cf2930a9ef6fa3952635",
+          "protocol/afs.js": "ccf0268c09f325c555fc900cf0d791dad88df90cd5c6c7c8899002f9967f24b5",
+          "protocol/afs_generation.h": "8e111c270e5bda808792885ce024b564e8b3b44ca654ea3838f07607df1fc251",
+          "protocol/afs_mailbox.h": "74f18557769717ff554567386251b7b1895bc62f496db7be59001cba22d852ef"
+        }
+      }
+    },
+    "stream/logs/browser-tests.json": {
+      "sha256": "9f7eee1ba9097bd2983aab5152eec51127f33ff37f14aa798d422443cc46a72a",
+      "result": {
+        "status": "PASS",
+        "scope": "Final ESP diagnostics, browser and TCP loopback tests; no hardware",
+        "source_sha256": {
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\esp32\\main\\main.c": "aa462e05e448ff3080c89eb5adac5fc0344ce4397518f65649afd6aeadbb6213",
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\esp32\\main\\index.html": "f0400eb91498deda1c91583d595258422f70a0778f4f98d3d36feb63a7348e72",
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\protocol\\afs.c": "1eb1c460fd0993a70f8f87b18089a8664feda6a68c66fbfd2f6feaf84bf97da5",
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\protocol\\afs.h": "7a1f5e19214e195d7baaf859ab5dfa46fde8e7e9d0a7f9a47a237933c6155510",
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\protocol\\afs.js": "ccf0268c09f325c555fc900cf0d791dad88df90cd5c6c7c8899002f9967f24b5",
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\tests\\browser_test.js": "4abefed2d2faac2185c97e6d45ccb35114e10df42a2b14f3c916b3b10a9cd28e",
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\tests\\cdc_audit_test.py": "9b5d78091a250ad6b0bcacb2bc58cdb06ba2b24cda1613bf4c8f21e5c6425af0",
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\tests\\check_rtl_vectors.py": "64362f16681ca29c968ea9a00026f1f1d32d0d523d9854fb8335b0a3e1515beb",
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\tests\\diagnostics_test.c": "91eba22d3e467162fcccfb9b53fb1ca22ac4027ad78a374781fb012d13380843",
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\tests\\generation_test.c": "61630c69dce67fb186adfe136e3aa2def802f6afea76bc5286c692e57133f608",
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\tests\\mailbox_test.c": "aa03b7714c82b89222e50fe1721656843500b0d81dd02e83eaec8bb8185358b5",
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\tests\\protocol_runner.c": "d71602310e764ef0659e8fee9615ed3492ed325a46d6888f249efdf7bca0e414",
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\tests\\protocol_test.py": "b7d13ca04a595f0c595f5cd14f2044338e9a91c472c45819524fbfe72a28856f",
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\tests\\run_diagnostics.py": "7e0d682298efb35e5058213055d3661c4b34b7ce5b047d96c4438df7c03b9839",
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\tests\\run_websocket.py": "e72ebdcdee9a78e89e63edfdeda8f5fe1a704f2cccfd5913c489d8d0288817ed",
+          "D:\\work\\FPGA\\ArtFlow\\ArtFlow\\releases\\stream30_websocket_20261026\\source\\esp_project\\tests\\ws_host_bridge.c": "dedf57f427d00111893134c492d21712b9cecbd12f7fc67cc9b41d96fde97ffa"
+        }
+      }
+    }
+  },
+  "passed": [
+    "236 implementation inputs",
+    "73 source XML and alias",
+    "472 non-gesture model files",
+    "13 frames / 26956800 pixels",
+    "OUT 8 windows / 30 checks including frozen 30 and stopped VS 0",
+    "3 layouts equivalence",
+    "36 pair/control scenarios",
+    "8 styles / 10 loads / rejection recovery",
+    "system regression (one baseline startup underflow)",
+    "SPI/RTL-to-C/reset/tap/host/browser protocol",
+    "font atlas and model regeneration",
+    "flash full image byte comparison",
+    "reused physical provenance and PNR inputs verified"
+  ],
+  "failed_then_recovered": [
+    "Questa single-session license conflict: work/osd_reg_fps_edges_license_conflict; archived, rerun serially PASS"
+  ],
+  "unresolved_failures": [],
+  "not_executed": [
+    "new synthesis/PNR/STA in main: identical accepted inputs; historical physical evidence reused",
+    "hardware flashing",
+    "complete board acceptance / cold boot / electrical margins"
+  ],
+  "physical": {
+    "reused": true,
+    "setup_ns": 0.313,
+    "hold_ns": 0.026,
+    "LUT4": 38530,
+    "FF": 25807,
+    "RAM": 253,
+    "DSP": 144
+  },
+  "security": {
+    "suspected_secret_findings": [],
+    "gesture_sources_added": false,
+    "esp32_multiclient_added": false
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "status": "PASS_INPUT_EQUIVALENCE",
+  "candidate_manifest_sha256": "a7d9ae4a6f4b0387c1c691ade834ebd5274301c943010273f56708c5dabe2881",
+  "excluded_non_synthesis_gesture_paths": [
+    "rtl/gesture/artflow_gesture_confirm.sv",
+    "rtl/gesture/artflow_gesture_event_cdc.sv",
+    "rtl/gesture/artflow_gesture_regions.v",
+    "rtl/gesture/artflow_gesture_wave.sv",
+    "candidates/gesture_curtain/artflow_render_ctrl.v",
+    "candidates/gesture_curtain/cam_fb_pipe_v09.v"
+  ],
+  "models_verified": 472,
+  "xml_alias_identical": true,
+  "physical_evidence_reused": true,
+  "new_physical_build": false,
+  "backup": "D:\\work\\FPGA\\ArtFlow\\backups\\osd_merge_20261031",
+  "copied_files": []
+}

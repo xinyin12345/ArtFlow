@@ -1,0 +1,407 @@
+{
+  ".gitattributes": {
+    "sha256": "27ee1777db0fb2c7ab93ae6ba564bb3353532761fdee78b983649d14a70cae9e",
+    "bytes": 2910,
+    "purpose": "固件与证据字节保留属性"
+  },
+  "README.md": {
+    "sha256": "4a43b2aff1a2335bbf0153d5ce3910706e8c6585e3bca97d61387577aec9a9de",
+    "bytes": 3411,
+    "purpose": "中文版本说明、交付清单或验证文档"
+  },
+  "baseline/rgb_frame_store_v07_baseline.v": {
+    "sha256": "b14061437e9c1e597a72033bc6c4c7aa2ddca2365f362b7423d7f72120031015",
+    "bytes": 21500,
+    "purpose": "回归测试或布局等价性参考 RTL"
+  },
+  "bit/osdchange_version_20261031_0436/ArtFlow_osd_8styles_fullflash.hex": {
+    "sha256": "9237026a9831d63b54e869a4867c0ebc95ba29838fbf07dfb9f5ebb377e56e07",
+    "bytes": 12976128,
+    "purpose": "已有 OSD 固件/模型归档，核验一致后纳入"
+  },
+  "bit/osdchange_version_20261031_0436/ArtFlow_osd_blackbars_20261030.bit": {
+    "sha256": "8ff3f2565d92b7f9e4092d06513b8cefbc771ae21a2bc81f1458ba0fc31d1e50",
+    "bytes": 3313848,
+    "purpose": "已有 OSD 固件/模型归档，核验一致后纳入"
+  },
+  "bit/osdchange_version_20261031_0436/ArtFlow_osd_blackbars_20261030.hex": {
+    "sha256": "8f0d1b632a34a4397542edb09b7a4d368c2a0f073bebb5aa23ac02d48600b104",
+    "bytes": 3313908,
+    "purpose": "已有 OSD 固件/模型归档，核验一致后纳入"
+  },
+  "bit/osdchange_version_20261031_0436/models8_parameters.bin": {
+    "sha256": "2cdef6557e3c4b693d383ec039343dc3b1066b2c39921cf619b458266aa50c09",
+    "bytes": 131072,
+    "purpose": "已有 OSD 固件/模型归档，核验一致后纳入"
+  },
+  "bit/osdchange_version_20261031_0436/models8_parameters.hex": {
+    "sha256": "e6eef8394ec8af4df648cb94efe037ca644db134f938c6b36950105a1107d724",
+    "bytes": 393216,
+    "purpose": "已有 OSD 固件/模型归档，核验一致后纳入"
+  },
+  "bit/osdchange_version_20261031_0436/readme.txt": {
+    "sha256": "081ed524971272380e0f04fec14adc30383d45fd79667201d9320838736580b1",
+    "bytes": 70,
+    "purpose": "已有 OSD 固件/模型归档，核验一致后纳入"
+  },
+  "doc/osd/case_list.md": {
+    "sha256": "2f6d6938686854affb47fa57e4283c14a8dcba81e3db2678ead4d007a504d67e",
+    "bytes": 1133,
+    "purpose": "中文版本说明、交付清单或验证文档"
+  },
+  "doc/osd/feature_list.md": {
+    "sha256": "b292d82f67de36e557ed18c6599a23af8a1eac78f452616e1ed2b5590cf36d84",
+    "bytes": 469,
+    "purpose": "中文版本说明、交付清单或验证文档"
+  },
+  "doc/osd/verification_plan.md": {
+    "sha256": "4b6968592f616ee7f85a501855ae4e925f6153b549c64ece34c198f65be86ec3",
+    "bytes": 1147,
+    "purpose": "中文版本说明、交付清单或验证文档"
+  },
+  "doc/osd/verification_results.md": {
+    "sha256": "99c993543c5ea4b2b2d702ca7eadbc9d5a3bcd81a17dc37512bd652c37989516",
+    "bytes": 619,
+    "purpose": "中文版本说明、交付清单或验证文档"
+  },
+  "releases/osd_blackbars_20261031/DELIVERY_FILES.md": {
+    "sha256": "f26f9b97dd5fa4a88c77820e9b1c468e26a2eb262eff7f956c669ba9663326f8",
+    "bytes": 9905,
+    "purpose": "中文版本说明、交付清单或验证文档"
+  },
+  "releases/osd_blackbars_20261031/README.md": {
+    "sha256": "d0e9c0d504d1eb72241c07e10ec49b381a0130e3fa08e57f2b7d4dd01dd26620",
+    "bytes": 6585,
+    "purpose": "中文版本说明、交付清单或验证文档"
+  },
+  "releases/osd_blackbars_20261031/candidate_evidence.zip": {
+    "sha256": "b44f4b12ecbc2ed4e5baabbed103cc9f9adf2f652ce5674b1e6554e45db170e7",
+    "bytes": 19604354,
+    "purpose": "不可变构建/测试原始证据归档"
+  },
+  "releases/osd_blackbars_20261031/flash_package/README_FLASH_BACKUP.md": {
+    "sha256": "240f774e4279425926b32148bbf249f6cc588667a52700ddb5f4c699b75d0346",
+    "bytes": 4058,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/SHA256SUMS.txt": {
+    "sha256": "afb1e1ae7eb253a8c58eed1417b2f52d727d66aa103f0d986a7bc422d95491f7",
+    "bytes": 2755,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/evidence/compact_osd_change.json": {
+    "sha256": "e0b63834f4ef4946d1bd9775d1559c3f26c9e01b9a39177f30652e65ec72dec0",
+    "bytes": 2432,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/evidence/delivery.json": {
+    "sha256": "7cf700e12f5f4734a113097902ef22e30b507551e57fe99e388400e57a3b7e46",
+    "bytes": 5120,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/evidence/flash_image_verification.json": {
+    "sha256": "2e87fd8633705a5d1bd56b5857c3b85799e37d97baf4e446269f80e9e4a75823",
+    "bytes": 955,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/evidence/merge.log": {
+    "sha256": "88870241f58876c338a8a7e9a9a2c6b5febb707a5680982b6c2d0615d81c9853",
+    "bytes": 1195,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/evidence/merge_command.json": {
+    "sha256": "454eece5ae72d7c0d579a564fc6afe97676ed2ed514200b6f10fa4231e5ab5d1",
+    "bytes": 828,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/evidence/normal_sta_summary.json": {
+    "sha256": "a5a36bcc2750be1a7f83880dbb8ee55484d221a012936b7829493fc1ef07b016",
+    "bytes": 285,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/evidence/original_FINAL_ACCEPTANCE.md": {
+    "sha256": "4c7eab60b3520df946e7a54a1177b7ecf9d4448aa65a41966d5fc5d892e91141",
+    "bytes": 7209,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/evidence/original_package_styles8.py": {
+    "sha256": "a8707441c0f51c30fefa36749341849ef6e9928be4eaf22739f365ae59a24732",
+    "bytes": 5841,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/evidence/original_regenerate_package.py": {
+    "sha256": "09d7efee8cf9ae29a8a1994f92006c22f3bf88a3fa03f3489384bac14a9c8877",
+    "bytes": 895,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/evidence/original_release_manifest.json": {
+    "sha256": "a7d9ae4a6f4b0387c1c691ade834ebd5274301c943010273f56708c5dabe2881",
+    "bytes": 141152,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/evidence/original_verify_package.py": {
+    "sha256": "bbbbed09d00c509fe4da79fee8c9f941c5e52f40e17ab9bb2f9b7148609a4675",
+    "bytes": 2947,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/evidence/pgm_summary.json": {
+    "sha256": "bbf5f759a8b33b59b24d9add26de0e98ec0ae56c1525d75bea994cb20686b513",
+    "bytes": 459,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/evidence/physical_gate.json": {
+    "sha256": "71390e6ac0adf9bb87f15c3c56cc0cd0359bd416ff7e4b3344baa7da4b03c9c7",
+    "bytes": 2622,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/evidence/pnr_summary.json": {
+    "sha256": "5da7ec0abbe2cb556c62416cea690c6468c42a06ab89641ab1e2e1c4cf9fd791",
+    "bytes": 1340,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/evidence/prepare_osd_flash_backup.py": {
+    "sha256": "dc1d588a77d2ca62f99cce2318c94611f184010c5197a3bc245197c937f85389",
+    "bytes": 12384,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/evidence/regression_complete.json": {
+    "sha256": "8740721513001d38f4389397d7e219eec1a052774928b25579002ddcf1861791",
+    "bytes": 6247,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/evidence/source_diff.json": {
+    "sha256": "f75b5115a6865ad91ca8b4f0b7d861d9ddc564c53b103b813ab7a9c787fa1fc5",
+    "bytes": 2207,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/flash/ArtFlow_osd_8styles_fullflash.hex": {
+    "sha256": "9237026a9831d63b54e869a4867c0ebc95ba29838fbf07dfb9f5ebb377e56e07",
+    "bytes": 12976128,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/flash/ArtFlow_osd_8styles_fullflash.rpt": {
+    "sha256": "a392ac82a8341e96499ee7faefc22c72180bcec942d3e52ae5885ef1c28d0505",
+    "bytes": 594,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/fpga/ArtFlow_osd_blackbars_20261030.bit": {
+    "sha256": "8ff3f2565d92b7f9e4092d06513b8cefbc771ae21a2bc81f1458ba0fc31d1e50",
+    "bytes": 3313848,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/fpga/ArtFlow_osd_blackbars_20261030.hex": {
+    "sha256": "8f0d1b632a34a4397542edb09b7a4d368c2a0f073bebb5aa23ac02d48600b104",
+    "bytes": 3313908,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/manifest.json": {
+    "sha256": "337bb514b9094b2b9b72484d5b94f29bad499106946780e032462efc4a575d0e",
+    "bytes": 5197,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/models/models8_manifest.json": {
+    "sha256": "0dec15c4ec0693e165b4609be1017910a854d534307113cda731e7743faf1ef3",
+    "bytes": 6104,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/models/models8_parameters.bin": {
+    "sha256": "2cdef6557e3c4b693d383ec039343dc3b1066b2c39921cf619b458266aa50c09",
+    "bytes": 131072,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/models/models8_parameters.hex": {
+    "sha256": "e6eef8394ec8af4df648cb94efe037ca644db134f938c6b36950105a1107d724",
+    "bytes": 393216,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/models/old_new_mapping.csv": {
+    "sha256": "7dc212895b1db60d9dc62cf401ce79a594188b5e9e4b0ac535fb838705937b69",
+    "bytes": 792,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/flash_package/tools/verify_backup.py": {
+    "sha256": "a9d85b5ec2b9f0afb3be9265b24181ac9f045585896b5b4d8e16b630d7b8e2e2",
+    "bytes": 1887,
+    "purpose": "完整固件包、模型、地址验证、使用说明或原交付证据"
+  },
+  "releases/osd_blackbars_20261031/implementation_inputs.json": {
+    "sha256": "be7e66715d79ea1172b9d2ee2e7f160cf3272b407ca495c99b9f1a9571e39220",
+    "bytes": 26386,
+    "purpose": "集成输入、验证结果或文件哈希清单"
+  },
+  "releases/osd_blackbars_20261031/integration_audit.json": {
+    "sha256": "d01bc3c68d43f666ac5f098281a68e451484a504ba9c12d9e441b94fd8b74d93",
+    "bytes": 708,
+    "purpose": "集成输入、验证结果或文件哈希清单"
+  },
+  "releases/osd_blackbars_20261031/main_validation.json": {
+    "sha256": "16266fd45ccf3e7ea87b3746f4b31c67f036c05bbed075e4cd547bfa3755d91b",
+    "bytes": 26632,
+    "purpose": "集成输入、验证结果或文件哈希清单"
+  },
+  "releases/osd_blackbars_20261031/main_validation_logs.zip": {
+    "sha256": "b0802dbba03f2e8d8b1f2059b7d176b029707c884eb96b1fe8992040d7d228ef",
+    "bytes": 25542,
+    "purpose": "不可变构建/测试原始证据归档"
+  },
+  "rtl/ArtFlow_top.v": {
+    "sha256": "7dba8ccbb26e87720371b71821ae15595860fac9377ba83039aee2a9a867ce08",
+    "bytes": 39235,
+    "purpose": "OSD/风格发布/帧率 RTL 或字库初始化资源"
+  },
+  "rtl/accel/artflow_accel_ctrl.v": {
+    "sha256": "9bcd514ced77e03d77a006fefa46b409b19e542e572ea3e244e6fc172005ced7",
+    "bytes": 7022,
+    "purpose": "OSD/风格发布/帧率 RTL 或字库初始化资源"
+  },
+  "rtl/video/artflow_osd.v": {
+    "sha256": "e8fb44c42bb0a2b32fee36c23ce32e7374e32436273aec715e818ef0495c86a5",
+    "bytes": 8085,
+    "purpose": "OSD/风格发布/帧率 RTL 或字库初始化资源"
+  },
+  "rtl/video/artflow_ui.v": {
+    "sha256": "dc085c7a6529ba31e9cc4896b21e6e370855707afc86b16b245030c4b62b00cf",
+    "bytes": 1746,
+    "purpose": "OSD/风格发布/帧率 RTL 或字库初始化资源"
+  },
+  "rtl/video/cam_fb_pipe_v09.v": {
+    "sha256": "d8e8056e6026791530c3f0c4cf65f86234ca9c6acb1546032fdfa4d4427f58eb",
+    "bytes": 17100,
+    "purpose": "OSD/风格发布/帧率 RTL 或字库初始化资源"
+  },
+  "rtl/video/osd_font.mem": {
+    "sha256": "72ad6556ea4ae89f1c8bf764af309e9b143ec30506de1ec891f3e781bec9166b",
+    "bytes": 4096,
+    "purpose": "OSD/风格发布/帧率 RTL 或字库初始化资源"
+  },
+  "rtl/video/osd_text_rows.mem": {
+    "sha256": "8df19e1b3d5ac3b1c640bd6e338deba8fe51fbd212b6998eb583950e0a341584",
+    "bytes": 8192,
+    "purpose": "OSD/风格发布/帧率 RTL 或字库初始化资源"
+  },
+  "rtl/video/rgb_frame_store_v07.v": {
+    "sha256": "1dd1519092e39972d1bad63d84195602f4b6acd6ce43eb6f475a923a76a2c205",
+    "bytes": 22821,
+    "purpose": "OSD/风格发布/帧率 RTL 或字库初始化资源"
+  },
+  "sim/tb_osd_blackbars.sv": {
+    "sha256": "9db770b5188eb2c1e920a5d48e99b15eb20c9fdf4860add4d2a8d9e3cd9b7a0e",
+    "bytes": 2058,
+    "purpose": "回归测试或布局等价性参考 RTL"
+  },
+  "sim/tb_osd_fps_edges.sv": {
+    "sha256": "81ebaff281a3b8bd5215c867b3991ceff79007543c4e8a0b9207cac56949f183",
+    "bytes": 1740,
+    "purpose": "回归测试或布局等价性参考 RTL"
+  },
+  "sim/tb_osd_layout_equivalence.sv": {
+    "sha256": "ad7c566a50a0dc157059497827d25806c22668829facd7f23b086220a315faa3",
+    "bytes": 11053,
+    "purpose": "回归测试或布局等价性参考 RTL"
+  },
+  "sim/tb_osd_output_telemetry.sv": {
+    "sha256": "2aba7e7949e2d31651a94a8fca57646cc1eb9bdcd8bcc5450266b243b0070daf",
+    "bytes": 2525,
+    "purpose": "回归测试或布局等价性参考 RTL"
+  },
+  "sim/tb_p1_control.sv": {
+    "sha256": "cc6edb7e9a1cd955110e0f675818d3647ad438c9ad31be0592973a2f450ea1c0",
+    "bytes": 3646,
+    "purpose": "回归测试或布局等价性参考 RTL"
+  },
+  "stream/scripts/osd_stream_io_audit.py": {
+    "sha256": "befbd8fd6612a6d74584a1aa54bb1765389fd1392f383b46838bb61b2db53224",
+    "bytes": 3519,
+    "purpose": "构建、独立金模、验证或 CDC/时序审计脚本"
+  },
+  "tools/build_osd.py": {
+    "sha256": "73d9d53b83820d60f6bf1c0795fbaa7c16f6df633de9df04a43a8b84dd0ce9cf",
+    "bytes": 1222,
+    "purpose": "构建、独立金模、验证或 CDC/时序审计脚本"
+  },
+  "tools/build_osd_text_rows.py": {
+    "sha256": "97042db23f779569deb7ca17db0485148c5ae7d92d956c007ea892acad759d75",
+    "bytes": 1191,
+    "purpose": "构建、独立金模、验证或 CDC/时序审计脚本"
+  },
+  "tools/check_osd_frames.py": {
+    "sha256": "9b6856746e7ef17923045a73c1ad169119fd851c1e3c271bdd3ee97e41fee1f0",
+    "bytes": 3849,
+    "purpose": "构建、独立金模、验证或 CDC/时序审计脚本"
+  },
+  "tools/check_osd_mailbox.tcl": {
+    "sha256": "c04225a8ef35a45ea490b951d68ac4b05bd9597c35317d8349fb8c476cc6daac",
+    "bytes": 1070,
+    "purpose": "构建、独立金模、验证或 CDC/时序审计脚本"
+  },
+  "tools/check_osd_sources.py": {
+    "sha256": "41bf01e763545796580a7b8937e2408bc7e5a08cf853e94fe134d9c6262c5d72",
+    "bytes": 374,
+    "purpose": "构建、独立金模、验证或 CDC/时序审计脚本"
+  },
+  "tools/check_osd_ui_cdc.tcl": {
+    "sha256": "14d8b66008108180482f3d889197e2d1e17bd1bca5988ecb0d7437eebc5e3312",
+    "bytes": 1881,
+    "purpose": "构建、独立金模、验证或 CDC/时序审计脚本"
+  },
+  "tools/osd_audit_cnn_cdc.py": {
+    "sha256": "9a2921170adda17f255f747a7a1da9cdaa39167ac75aba0102cebc5c1e3dbec8",
+    "bytes": 7804,
+    "purpose": "构建、独立金模、验证或 CDC/时序审计脚本"
+  },
+  "tools/osd_audit_return_ram_cdc_v2.py": {
+    "sha256": "86df50a29ca7b9c2324af147caf7f0bb505e3cec1011eccba873bf2a34eb8936",
+    "bytes": 3217,
+    "purpose": "构建、独立金模、验证或 CDC/时序审计脚本"
+  },
+  "tools/osd_audit_style_io.py": {
+    "sha256": "f2dee53b5ad5b29cf6bdfc4dbd09317edc72b3187b7105351479415f6edea0f4",
+    "bytes": 2864,
+    "purpose": "构建、独立金模、验证或 CDC/时序审计脚本"
+  },
+  "tools/osd_audit_timing.py": {
+    "sha256": "f98945a95dcf78a4a0c590ac9f0cf2d0ac592472661f3ee0c8fee3ca96a6e15b",
+    "bytes": 2017,
+    "purpose": "构建、独立金模、验证或 CDC/时序审计脚本"
+  },
+  "tools/osd_audit_ui_cdc.py": {
+    "sha256": "b82c84206147287ae779825e345e49b164f2b557eb17f15d603c0530cd0479da",
+    "bytes": 4226,
+    "purpose": "构建、独立金模、验证或 CDC/时序审计脚本"
+  },
+  "tools/osd_audit_video_cdc.py": {
+    "sha256": "30cd776bfb5e5e8e620b887d5e551fa9dfa663e8febffe25219b288a10576c35",
+    "bytes": 12606,
+    "purpose": "构建、独立金模、验证或 CDC/时序审计脚本"
+  },
+  "tools/run_osd_audits.py": {
+    "sha256": "0b5cb33341d2591cf069dc26086cd6f61c41c527d157c94a020e84d766482edb",
+    "bytes": 3555,
+    "purpose": "构建、独立金模、验证或 CDC/时序审计脚本"
+  },
+  "tools/run_osd_flow.py": {
+    "sha256": "b335d19e3dd9ed362cec697a110ff8a6cee8b6e2b1daff45643cc1d6a3ad9db2",
+    "bytes": 2472,
+    "purpose": "构建、独立金模、验证或 CDC/时序审计脚本"
+  },
+  "tools/run_osd_physical_attempt.py": {
+    "sha256": "79870f6b9f8be9ba7baae641ebc9294ee49760812dea45cbf4ce4f0a5c9e0409",
+    "bytes": 2829,
+    "purpose": "构建、独立金模、验证或 CDC/时序审计脚本"
+  },
+  "tools/run_osd_regression.py": {
+    "sha256": "bf538b78631919f60e1e4f5250ef642bdc31a0cdaf9e8c89ff72cb1164f0c2cb",
+    "bytes": 1577,
+    "purpose": "构建、独立金模、验证或 CDC/时序审计脚本"
+  },
+  "tools/run_osd_tests.py": {
+    "sha256": "f06d66a92096720b451555508ff7564fc25e9befd09fba0b510e779061e81fae",
+    "bytes": 1794,
+    "purpose": "构建、独立金模、验证或 CDC/时序审计脚本"
+  },
+  "tools/verify_osd_integration.py": {
+    "sha256": "bd11140687e9c181b6493e3d928c0a7f4f6661ff60525815bd04ae0a54912e4b",
+    "bytes": 2564,
+    "purpose": "构建、独立金模、验证或 CDC/时序审计脚本"
+  }
+}

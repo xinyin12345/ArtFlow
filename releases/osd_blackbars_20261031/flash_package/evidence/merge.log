@@ -1,0 +1,17 @@
+#-----------------------------------------
+# User Configuration
+#-----------------------------------------
+Mode		: generic_comb_image
+
+No	: Starting Address	: Image	
+Image  1: 0x0                  : D:\work\FPGA\ArtFlow\Process\osd_blackbars_20261030\releases\osd_flash_backup_20261031\fpga\ArtFlow_osd_blackbars_20261030.hex
+Image  2: 0x400000             : D:\work\FPGA\ArtFlow\Process\osd_blackbars_20261030\releases\osd_flash_backup_20261031\models\models8_parameters.bin
+
+#-----------------------------------------
+
+Generated FPGA Soc Image output file: D:\work\FPGA\ArtFlow\Process\osd_blackbars_20261030\releases\osd_flash_backup_20261031\flash\ArtFlow_osd_8styles_fullflash.hex
+Flash Address  Length      Input Image File
+0x00000000     0x0010dafc  D:\work\FPGA\ArtFlow\Process\osd_blackbars_20261030\releases\osd_flash_backup_20261031\fpga\ArtFlow_osd_blackbars_20261030.hex
+0x00400000     0x00020000  D:\work\FPGA\ArtFlow\Process\osd_blackbars_20261030\releases\osd_flash_backup_20261031\models\models8_parameters.bin
+
+Generated report file D:\work\FPGA\ArtFlow\Process\osd_blackbars_20261030\releases\osd_flash_backup_20261031\flash\ArtFlow_osd_8styles_fullflash.rpt

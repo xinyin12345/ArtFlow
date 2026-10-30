@@ -1,0 +1,65 @@
+{
+  "status": "PASS_FUNCTIONAL_PIXEL_IDENTICAL",
+  "archive": "D:\\work\\FPGA\\ArtFlow\\Process\\osd_blackbars_20261030\\work\\local_pre_compact_osd_20261030T181213Z",
+  "changed_rtl": [
+    "rtl/video/artflow_osd.v"
+  ],
+  "new_rom": "rtl/video/osd_text_rows.mem",
+  "font_source_sha256": "72ad6556ea4ae89f1c8bf764af309e9b143ec30506de1ec891f3e781bec9166b",
+  "atlas_sha256": "8df19e1b3d5ac3b1c640bd6e338deba8fe51fbd212b6998eb583950e0a341584",
+  "atlas_characters": "16 groups of 16 slots: ARTFLOW, ORIGINAL, DUAL, STYLE, CAP, OUT, WAITING, digits/dash, eight style names",
+  "atlas_rows": 2048,
+  "ram_geometry": "2048x5 in one EFX_RAM10; original 8x8 cells exactly reconstructed by zero columns",
+  "video_register_latency": 2,
+  "palette_register_bits_before": 24,
+  "palette_register_bits_after": 3,
+  "main_modified": false,
+  "constraints_changed": false,
+  "pixel_count": 26956800,
+  "all_13_frame_hashes_identical": true,
+  "all_preview_png_hashes_identical": true,
+  "functional_receipt_sha256": "8740721513001d38f4389397d7e219eec1a052774928b25579002ddcf1861791",
+  "utc": "2026-10-30T19:51:52.092553+00:00",
+  "source_snapshot_sha256": "2ff488897f6144d76218a43584ac846db34fd36de06d730af848950a8ecd36e6",
+  "second_stage_archive": "D:\\work\\FPGA\\ArtFlow\\Process\\osd_blackbars_20261030\\work\\compact_attempt8_congestion3_natural_failure_20261030T194714Z",
+  "current_resources": {
+    "revision": "CAP_OUT",
+    "baseline": {
+      "EFX_ADD": 6671,
+      "EFX_LUT4": 38721,
+      "EFX_FF": 25803,
+      "EFX_SRL8": 2065,
+      "EFX_DSP48": 143,
+      "EFX_DSP12": 1,
+      "EFX_RAM10": 246,
+      "EFX_DPRAM10": 7
+    },
+    "candidate": {
+      "EFX_ADD": 6672,
+      "EFX_LUT4": 38530,
+      "EFX_FF": 25807,
+      "EFX_SRL8": 2065,
+      "EFX_DSP48": 143,
+      "EFX_DSP12": 1,
+      "EFX_RAM10": 246,
+      "EFX_DPRAM10": 7
+    },
+    "delta": {
+      "EFX_ADD": 1,
+      "EFX_LUT4": -191,
+      "EFX_FF": 4,
+      "EFX_SRL8": 0,
+      "EFX_DSP48": 0,
+      "EFX_DSP12": 0,
+      "EFX_RAM10": 0,
+      "EFX_DPRAM10": 0
+    },
+    "status": "PASS_FINAL_PHYSICAL",
+    "map_sha256": "33611f3f61add82929a753e1f090e88199709e1760dda5a9c77badd38cec39d0",
+    "source_snapshot_sha256": "2ff488897f6144d76218a43584ac846db34fd36de06d730af848950a8ecd36e6",
+    "xlrs": 58112,
+    "xlr_capacity": 60800,
+    "route_overlaps": 0
+  },
+  "physical_status": "PASS"
+}
